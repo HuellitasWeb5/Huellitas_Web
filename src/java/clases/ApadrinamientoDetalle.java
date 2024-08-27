@@ -1,0 +1,118 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package clases;
+
+import clasesGenericas.ConectorBD;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/**
+ *
+ * @author Luis Eraso
+ */
+public class ApadrinamientoDetalle {
+    private String id;
+    private String codigoApadrinamiento;
+    private String planApadrinamiento;
+    private String idPlanApadrinamiento;
+    private String codigoMascota;
+    private String lapsoApadrinamiento;
+
+    public ApadrinamientoDetalle() {
+    }
+    public ApadrinamientoDetalle(String id) {
+        String cadenaSQL = "id,codigoApadrinamiento,planApadrinamiento,idPlanApadrinamiento,codigoMascota,lapsoApadrinamiento from apadrinamientoDetalle where id=" + id;
+        ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+        try {
+            if (resultado.next()) {
+                this.id = id;
+                codigoApadrinamiento = resultado.getString("codigoApadrinamiento");
+                planApadrinamiento = resultado.getString("planApadrinamiento");
+                idPlanApadrinamiento = resultado.getString("idPlanApadrinamiento");
+                codigoMascota = resultado.getString("codigoMascota");
+                lapsoApadrinamiento = resultado.getString("lapsoApadrinamiento");
+                
+            }
+        } catch (SQLException ex) {
+            //Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error al consultar ApadrinamientoDetalle" + ex.getMessage());
+        }
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getCodigoApadrinamiento() {
+        return codigoApadrinamiento;
+    }
+
+    public void setCodigoApadrinamiento(String codigoApadrinamiento) {
+        this.codigoApadrinamiento = codigoApadrinamiento;
+    }
+
+    public String getPlanApadrinamiento() {
+        return planApadrinamiento;
+    }
+
+    public void setPlanApadrinamiento(String planApadrinamiento) {
+        this.planApadrinamiento = planApadrinamiento;
+    }
+
+    public String getIdPlanApadrinamiento() {
+        return idPlanApadrinamiento;
+    }
+
+    public void setIdPlanApadrinamiento(String idPlanApadrinamiento) {
+        this.idPlanApadrinamiento = idPlanApadrinamiento;
+    }
+
+    public String getCodigoMascota() {
+        return codigoMascota;
+    }
+
+    public void setCodigoMascota(String codigoMascota) {
+        this.codigoMascota = codigoMascota;
+    }
+
+    public String getLapsoApadrinamiento() {
+        return lapsoApadrinamiento;
+    }
+
+    public void setLapsoApadrinamiento(String lapsoApadrinamiento) {
+        this.lapsoApadrinamiento = lapsoApadrinamiento;
+    }
+
+    @Override
+    public String toString(){
+      String datos = "";
+        if (id != null) {
+            datos = planApadrinamiento;
+        }
+        return datos;
+    }
+
+    public boolean grabar(){
+        String cadenaSQL="insert into apadrinamientoDetalle(id,codigoApadrinamiento,planApadrinamiento,idPlanApadrinamiento,codigoMascota,lapsoApadrinamiento)"
+                + " Values('"+id+"','"+codigoApadrinamiento+"','"+planApadrinamiento+"','"+idPlanApadrinamiento+"','"+codigoMascota+"','"+lapsoApadrinamiento+"')";
+        return ConectorBD.ejecutarQuery(cadenaSQL);
+    }
+    public boolean modificar(){
+        String cadenaSQL="update apadrimientoDetalle set id='"+id+"',codigoApadrinamiento='"+codigoApadrinamiento+"',planApadrinamiento='"+planApadrinamiento+"',"
+                + "idPlanApadrinamiento='"+idPlanApadrinamiento+"',codigoMascota='"+codigoMascota+"',lapsoApadrinamiento='"+lapsoApadrinamiento+"' where id="+id;
+        return ConectorBD.ejecutarQuery(cadenaSQL);
+    }
+        
+    public boolean eliminar(){
+        String cadenaSQL="delete from apadrinamientoDetalle where id="+id;
+        System.out.println("cadenaSQL " + cadenaSQL);
+        return ConectorBD.ejecutarQuery(cadenaSQL);
+    }
+}
