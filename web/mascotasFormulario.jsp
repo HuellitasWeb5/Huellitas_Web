@@ -14,8 +14,8 @@ if (accion.equals("Modificar")) {
         mascota=new Mascota(codigo);
     }
 %>
-<h3><%=accion.toUpperCase() %> USUARIO</h3>
-<form name="formulario" method="post" action="principal.jsp?CONTENIDO=usuariosActualizar.jsp">
+<h3><%=accion.toUpperCase() %> MASCOTAS</h3>
+<form name="formulario" method="post" action="principal.jsp?CONTENIDO=mascotasActualizar.jsp">
     <table border="0">
         <tr>
             <th>Codigo</th>
@@ -34,7 +34,7 @@ if (accion.equals("Modificar")) {
             <td><input type="email" name="foto" value="<%=mascota.getFoto()%>" maxlength="80" required></td>
         </tr>
         <tr>
-            <th>Cuidados especiales/th>
+            <th>Cuidados especiales</th>
             <td><input type="email" name="cuidadosEspeciales" value="<%=mascota.getCuidadosEspeciales()%>" maxlength="80" required></td>
         </tr>
         <tr>
