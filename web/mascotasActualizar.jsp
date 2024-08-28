@@ -8,7 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String accion = request.getParameter("accion");
-    String codigoAnterior = request.getParameter("identificacionAnterior");
+    String codigoAnterior = request.getParameter("codigoAnterior");
 
     Mascota mascota = new Mascota();
     mascota.setCodigo(request.getParameter("codigo"));

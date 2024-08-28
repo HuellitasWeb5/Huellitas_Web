@@ -29,8 +29,8 @@ public class ConectorBD {
     public ConectorBD() {
         servidor="localhost";
         puerto="3306";
-        usuario="ADSO";
-        clave="1302";
+        usuario="adso";
+        clave="utilizar";
         baseDatos="huellitasweb";
     }
     

@@ -30,7 +30,7 @@ for (int i = 0; i < datos.size(); i++) {
   }
 %>
 
-<h3>LISTA DE USUARIOS</h3>
+<h3>MASCOTAS</h3>
 <table border="1">
     <tr>
         <th>Codigo</th><th>Nombre</th><th>Genero</th><th>Tamaño</th><th>Foto</th><th>Cuidados Especiales</th><th>Fecha Nacimiento aproximada</th>
