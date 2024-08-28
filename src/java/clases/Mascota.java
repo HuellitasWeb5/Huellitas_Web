@@ -33,7 +33,7 @@ public class Mascota {
     }
 
     public Mascota(String codigo) {
-        String cadenaSQL="select codigo,nombre,genero,tamaño,foto,cuidadosEspeciales,fechaNacimientoAproximada,estado from mascota";
+        String cadenaSQL="select codigo, nombre, genero, tamaño, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado from mascota";
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
              this.codigo = codigo;
@@ -129,14 +129,14 @@ public class Mascota {
     }
 
    public boolean grabar(){
-       String cadenaSQL="insert into mascota (nombre,genero,tamaño,foto,cuidadosEspeciales,fechaNacimientoAproximada,estado) "
+       String cadenaSQL="insert into mascota (nombre,genero,tamaño,foto,cuidadosEspeciales,fechaNacimientoAproximada, fechaIngreso, estado) "
                + " values ('"+nombre+"','"+genero+"','"+tamaño+"','"+foto+"','"+cuidadosEspeciales+"','"+fechaNacimientoAproximada+"','"+estado+"')";
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }
     // falta el to String con el override
    public boolean modificar(){
        String cadenaSQL="update mascota set nombre='"+nombre+"',genero='"+genero+"',tamaño='"+tamaño+"',foto='"+foto+"',cuidadosEspeciales='"+cuidadosEspeciales+"',"
-               + "fechaNacimientoAproximada='"+fechaNacimientoAproximada+"',estado='"+estado+"' where codigo="+codigo;
+               + "fechaNacimientoAproximada='"+fechaNacimientoAproximada+"',fechaIngreso='"+fechaIngreso+"',estado='"+estado+"' where codigo="+codigo;
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }
     // falta el to String con el override
@@ -169,10 +169,10 @@ public class Mascota {
                while(datos.next()){
                    Mascota mascota =new Mascota();
                    mascota.setCodigo(datos.getString("codigo"));
-                   mascota.setNombre(datos.getString("nombre"));
-                   mascota.setFoto(datos.getString("foto"));                   
+                   mascota.setNombre(datos.getString("nombre"));             
                    mascota.setGenero(datos.getString("genero"));
                    mascota.setTamaño(datos.getString("tamaño"));
+                   mascota.setFoto(datos.getString("foto"));      
                    mascota.setCuidadosEspeciales(datos.getString("cuidadosEspeciales"));
                    mascota.setFechaNacimientoAproximada(datos.getString("fechaNacimientoAproximada"));
                    mascota.setFechaIngreso(datos.getString("fechaIngreso"));
