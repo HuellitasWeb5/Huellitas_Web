@@ -73,6 +73,10 @@ public class Mascota {
     public void setGenero(String genero) {
         this.genero = genero;
     }
+    
+    public GeneroMascota getGeneroEnObjeto() {
+        return new GeneroMascota(genero);
+    }
 
     public String getTamaño() {
         return tamaño;
@@ -134,9 +138,9 @@ public class Mascota {
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }
     // falta el to String con el override
-   public boolean modificar(){
+   public boolean modificar(String codigoAnterior){
        String cadenaSQL="update mascota set nombre='"+nombre+"',genero='"+genero+"',tamaño='"+tamaño+"',foto='"+foto+"',cuidadosEspeciales='"+cuidadosEspeciales+"',"
-               + "fechaNacimientoAproximada='"+fechaNacimientoAproximada+"',fechaIngreso='"+fechaIngreso+"',estado='"+estado+"' where codigo="+codigo;
+               + "fechaNacimientoAproximada='"+fechaNacimientoAproximada+"',fechaIngreso='"+fechaIngreso+"',estado='"+estado+"' where codigo="+codigoAnterior;
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }
     // falta el to String con el override
