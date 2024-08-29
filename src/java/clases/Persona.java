@@ -60,7 +60,11 @@ public class Persona {
     }
 
     public String getIdentificacion() {
-        return identificacion;
+        String resultado = identificacion;
+        if (identificacion == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setIdentificacion(String identificacion) {
@@ -68,7 +72,11 @@ public class Persona {
     }
 
     public String getNombre() {
-        return nombre;
+      String resultado = nombre;
+        if (nombre == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setNombre(String nombre) {
@@ -95,7 +103,11 @@ public class Persona {
     }
 
     public String getEmail() {
-        return email;
+     String resultado = email;
+        if (email == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setEmail(String email) {
@@ -103,7 +115,11 @@ public class Persona {
     }
 
     public String getTelefono() {
-        return telefono;
+       String resultado = telefono;
+        if (telefono == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setTelefono(String telefono) {
@@ -111,7 +127,11 @@ public class Persona {
     }
 
     public String getDireccion() {
-        return direccion;
+       String resultado = direccion;
+        if (direccion== null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setDireccion(String direccion) {
@@ -119,7 +139,11 @@ public class Persona {
     }
 
     public String getResidencia() {
-        return residencia;
+  String resultado = residencia;
+        if (residencia == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setResidencia(String residencia) {
@@ -183,9 +207,9 @@ public class Persona {
 
     public boolean grabar() {
         String cadenaSQL = "insert into Persona(identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave) "
-                + "values ('" + identificacion + "', '" + nombre + "','" + genero + "','" + fechaNacimiento + "', " + email + ","
+                + "values ('" + identificacion + "', '" + nombre + "','" + genero + "','" + fechaNacimiento + "', '" + email + "',"
                 + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "','" + clave + "')";
-        // System.out.println(cadenaSQL);
+        System.out.println(cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 

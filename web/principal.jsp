@@ -9,21 +9,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <% 
 HttpSession sesion=request.getSession();
-Persona USUARIO=null;
-if (sesion.getAttribute("usuario")==null) response.sendRedirect("index.jsp?error=2");
-else USUARIO=(Persona) sesion.getAttribute("usuario");
+Persona ADMINISTRADOR=null;
+if (sesion.getAttribute("administrador")==null) response.sendRedirect("index.jsp?error=2");
+else ADMINISTRADOR=(Persona) sesion.getAttribute("administrador");
 %>
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Software de ventas</title>
+        <title>HUELLITAS WEB</title>
     </head>
 
 
 <body>
      <div id="banner"></div>
-     <div id="menu"><%=USUARIO.getTipoEnObjeto().getMenu()%></div>
+     <div id="menu"><%=ADMINISTRADOR.getTipoEnObjeto().getMenu()%></div>
      <div id="contenido">
             <jsp:include page='<%=request.getParameter("CONTENIDO")%>' flush="true" />
         </div>
