@@ -1,7 +1,7 @@
 <%-- 
-    Document   : UnidadDeMedida
-    Created on : 26/08/2024, 08:16:55 AM
-    Author     : Luis Eraso
+    Document   : formularioInformacion
+    Created on : 29 ago 2024, 11:14:25
+    Author     : Angie
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
