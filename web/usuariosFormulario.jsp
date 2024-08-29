@@ -18,7 +18,7 @@ if (accion.equals("Modificar")) {
 <form name="formulario" method="post" action="principal.jsp?CONTENIDO=usuariosActualizar.jsp">
     <table border="0">
         <tr>
-            <th>Identificacion</th>
+            <th>Identificación</th>
             <td><input type="text" name="identificacion" maxlength="12" value="<%=usuario.getIdentificacion()%>" required></td>
         </tr>
         <tr>
@@ -26,11 +26,11 @@ if (accion.equals("Modificar")) {
             <td><input type="text" name="nombres" value="<%=usuario.getNombre()%>" size="50" maxlength="50"></td>
         </tr>
  
-        <tr><th>Genero</th><td><%=usuario.getGeneroEnObjeto().getRadioButtons() %></td>   </tr>
+        <tr><th>Género</th><td><%=usuario.getGeneroEnObjeto().getRadioButtons() %></td>   </tr>
         
-         <tr><th>fechaNacimiento</th><td><input type="date" name="fechaNacimiento" value="<%=usuario.getFechaNacimiento()%>" maxlength="15"></td></tr>
+         <tr><th>Fecha De Nacimiento</th><td><input type="date" name="fechaNacimiento" value="<%=usuario.getFechaNacimiento()%>" maxlength="15"></td></tr>
          
-        <tr><th>Telefono</th><td><input type="tel" name="telefono" value="<%=usuario.getTelefono()%>" maxlength="12"></td></tr>
+        <tr><th>Teléfono</th><td><input type="tel" name="telefono" value="<%=usuario.getTelefono()%>" maxlength="12"></td></tr>
         
         <tr>
             <th>Correo Electronico</th>
@@ -38,12 +38,12 @@ if (accion.equals("Modificar")) {
         </tr>
        
         <tr>
-        <th>Direccion</th>
-        <td><input type="text" name="direccion" value="<%=usuario.getDireccion()%>" size="50" maxlength="100"></td>
+        <th>Dirección</th>
+        <td><input type="text" name="direccion" value="<%=usuario.getDireccion() %>" size="50" maxlength="100"></td>
     </tr>
     <tr>
         <th>Residencia</th>
-        <td><input type="text" name="residencia" value="<%=usuario.getResidencia()%>" size="50" maxlength="100"></td>
+        <td><input type="text" name="residencia" value="<%=usuario.getResidencia() %>" size="50" maxlength="100"></td>
     </tr>
     <tr>
         <th>Foto</th>

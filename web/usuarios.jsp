@@ -35,7 +35,7 @@ for (int i = 0; i < datos.size(); i++) {
 <h3>LISTA DE USUARIOS HUELLITAS WEB</h3>
 <table border="1">
     <tr>
-        <th>Identificacion</th><th>Nombres</th><th>Genero</th><th>FechaNacimiento</th><<th>Email</th><th>Telefono</th>Direccion</th><th>Residencia</th><th>foto</th><th>Tipo</th>
+        <th>Identificacion</th><th>Nombres</th><th>Genero</th><th>FechaNacimiento</th><th>Email</th><th>Telefono</th><th>Dirección</th><th>Residencia</th><th>foto</th><th>Tipo</th>
                 <th><a href="principal.jsp?CONTENIDO=usuariosFormulario.jsp&accion=Adicionar" title="Adicionar">
                         <img src="presentacion/imagenes/agregar.png"></a></th>
     </tr>
