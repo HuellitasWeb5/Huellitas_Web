@@ -51,7 +51,11 @@ public class Mascota {
     }
 
     public String getCodigo() {
-        return codigo;
+       String resultado = codigo;
+        if (codigo == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setCodigo(String codigo) {
@@ -59,7 +63,11 @@ public class Mascota {
     }
 
     public String getNombre() {
-        return nombre;
+        String resultado = nombre;
+        if (nombre == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setNombre(String nombre) {
@@ -79,7 +87,11 @@ public class Mascota {
     }
 
     public String getTamaño() {
-        return tamaño;
+       String resultado = tamaño;
+        if (tamaño == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setTamaño(String tamaño) {
@@ -96,7 +108,11 @@ public class Mascota {
 
 
     public String getCuidadosEspeciales() {
-        return cuidadosEspeciales;
+        String resultado = cuidadosEspeciales;
+        if (cuidadosEspeciales == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setCuidadosEspeciales(String cuidadosEspeciales) {
@@ -120,7 +136,11 @@ public class Mascota {
     }
 
     public String getEstado() {
-        return estado;
+        String resultado = estado;
+        if (estado == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setEstado(String estado) {
@@ -133,14 +153,15 @@ public class Mascota {
     }
 
    public boolean grabar(){
-       String cadenaSQL="insert into mascota (nombre,genero,tamaño,foto,cuidadosEspeciales,fechaNacimientoAproximada, fechaIngreso, estado) "
-               + " values ('"+nombre+"','"+genero+"','"+tamaño+"','"+foto+"','"+cuidadosEspeciales+"','"+fechaNacimientoAproximada+"','"+estado+"')";
+
+       String cadenaSQL="insert into mascota (nombre, genero, tamaño, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado) "
+               + " values ('"+nombre+"','"+genero+"','"+tamaño+"','"+foto+"','"+cuidadosEspeciales+"','"+fechaNacimientoAproximada+"','"+fechaIngreso+"','"+estado+"')";
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }
     // falta el to String con el override
-   public boolean modificar(String codigoAnterior){
+   public boolean modificar(){
        String cadenaSQL="update mascota set nombre='"+nombre+"',genero='"+genero+"',tamaño='"+tamaño+"',foto='"+foto+"',cuidadosEspeciales='"+cuidadosEspeciales+"',"
-               + "fechaNacimientoAproximada='"+fechaNacimientoAproximada+"',fechaIngreso='"+fechaIngreso+"',estado='"+estado+"' where codigo="+codigoAnterior;
+               + "fechaNacimientoAproximada='"+fechaNacimientoAproximada+"',fechaIngreso='"+fechaIngreso+"',estado='"+estado+"' where codigo="+codigo;
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }
     // falta el to String con el override
@@ -160,8 +181,7 @@ public class Mascota {
        }else {
            orden = " ";
        }
-       String cadenaSQL="Select mascota.codigo, mascota.nombre,genero,tamaño,foto,cuidadosEspeciales,"
-               + "fechaNacimientoAproximada,estado from mascota" +filtro+orden;
+       String cadenaSQL="Select codigo, nombre, genero, tamaño, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado from mascota" +filtro+orden;
        return ConectorBD.consultar(cadenaSQL);
    }
    
@@ -181,6 +201,8 @@ public class Mascota {
                    mascota.setFechaNacimientoAproximada(datos.getString("fechaNacimientoAproximada"));
                    mascota.setFechaIngreso(datos.getString("fechaIngreso"));
                    mascota.setEstado(datos.getString("estado"));
+                   
+                   lista.add(mascota);
                }
            } catch (SQLException ex) {
                Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);

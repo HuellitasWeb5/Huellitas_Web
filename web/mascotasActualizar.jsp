@@ -16,8 +16,8 @@
     mascota.setGenero(request.getParameter("genero"));
     mascota.setTamaño(request.getParameter("tamaño"));
     mascota.setFoto(request.getParameter("foto"));
-    mascota.setCuidadosEspeciales(request.getParameter("cuidadosEspeiales"));
-    mascota.setFechaNacimientoAproximada(request.getParameter("fechaIngreso"));
+    mascota.setCuidadosEspeciales(request.getParameter("cuidadosEspeciales"));
+    mascota.setFechaNacimientoAproximada(request.getParameter("fechaNacimientoAproximada"));
     mascota.setFechaIngreso(request.getParameter("fechaIngreso"));
     mascota.setEstado(request.getParameter("estado"));
 
