@@ -29,8 +29,8 @@ public class ConectorBD {
     public ConectorBD() {
         servidor="localhost";
         puerto="3306";
-        usuario="ADSO";
-        clave="1302";
+        usuario="adso";
+        clave="utilizar";
         baseDatos="huellitasweb";
     }
     
@@ -45,9 +45,9 @@ public class ConectorBD {
             conectado=true;
         } catch (ClassNotFoundException ex) {
             //Logger.getLogger(ConectorBD.class.getName()).log(Level.SEVERE, null, ex);
-            // System.out.println("Error en el controlador de la base de datos "+ex.getMessage());
+            System.out.println("Error en el controlador de la base de datos "+ex.getMessage());
         } catch (SQLException ex) {
-           // System.out.println("Error al conectarse a la base de datos" +ex.getMessage());
+           System.out.println("Error al conectarse a la base de datos " +ex.getMessage());
             
             //Logger.getLogger(ConectorBD.class.getName()).log(Level.SEVERE, null, ex);
         }

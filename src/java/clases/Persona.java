@@ -75,6 +75,9 @@ public class Persona {
         this.nombre = nombre;
     }
 
+      public GeneroPersona getGeneroEnObjeto() {
+        return new GeneroPersona(genero);
+    }
     public String getGenero() {
         return genero;
     }
