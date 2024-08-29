@@ -27,73 +27,70 @@ public class ConectorBD {
     private Connection conexion;//lleva la conexion de la base de datos
 
     public ConectorBD() {
-        servidor="localhost";
-        puerto="3306";
-        usuario="ADSO";
-        clave="1302";
-        baseDatos="huellitasweb";
+        servidor = "localhost";
+        puerto = "3306";
+        usuario = "adso";
+        clave = "utilizar";
+        baseDatos = "huellitasweb";
     }
     
-    public boolean conectar(){
-        boolean conectado=false;
+    
+    public boolean conectar() {
+        boolean conectado = false;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            // System.out.println("Driver: ok");
-            String cadenaConexion="jdbc:mysql://"+servidor+":"+puerto+"/"+baseDatos+"?characterEncoding=utf8";
-            conexion= (Connection)DriverManager.getConnection(cadenaConexion, usuario, clave);
-            // System.out.println("Conectado a la base de datos");
-            conectado=true;
+            System.out.println("Driver ok");
+            String cadenaConexion = "jdbc:mysql://" + servidor + ":" + puerto + "/" + baseDatos + "?characterEncoding=utf8";
+            conexion = (Connection) DriverManager.getConnection(cadenaConexion, usuario, clave);
+            System.out.println("Conectado a la BD");
+            conectado = true;
         } catch (ClassNotFoundException ex) {
-            //Logger.getLogger(ConectorBD.class.getName()).log(Level.SEVERE, null, ex);
-            // System.out.println("Error en el controlador de la base de datos "+ex.getMessage());
+            System.out.println("Error en el controlador en la base de datos" + ex.getMessage());
         } catch (SQLException ex) {
-           // System.out.println("Error al conectarse a la base de datos" +ex.getMessage());
-            
-            //Logger.getLogger(ConectorBD.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Error al conectarse a la base de datos" + ex.getMessage());
         }
         return conectado;
     }
-    
-    public void desconectar(){
+
+    public void desconectar() {
         try {
             conexion.close();
-           // System.out.println("Desconexion de la base de datos completada");
+            System.out.println("Desconectado de la BD");
         } catch (SQLException ex) {
-            ///Logger.getLogger(ConectorBD.class.getName()).log(Level.SEVERE, null, ex);
-            // System.out.println("Error al desconectarse de la base de datos: "+ex.getMessage());
+            System.out.println("Error al desconectar la BD" + ex.getMessage());
         }
     }
-    
-    public static ResultSet consultar(String cadenaSQL){ //getDatos de Archivo
+
+    public static ResultSet consultar(String cadenaSQL) {
         ResultSet resultado = null;
-        ConectorBD conector= new ConectorBD();
+        ConectorBD conector = new ConectorBD();
         if (!conector.conectar()) {
-            System.out.println("Error al conectarse a la base de datos");
+            System.out.println("Error al conectarse al bd");
         }
         try {
-            PreparedStatement sentencia=conector.conexion.prepareStatement(cadenaSQL, ResultSet.TYPE_SCROLL_SENSITIVE,0);
-            resultado=sentencia.executeQuery();
+            PreparedStatement sentencia = conector.conexion.prepareStatement(cadenaSQL, ResultSet.TYPE_SCROLL_SENSITIVE, 0);
+            resultado = sentencia.executeQuery();
         } catch (SQLException ex) {
-         //   Logger.getLogger(ConectorBD.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Error en la cadena SQL: "+cadenaSQL+". "+ex.getMessage());
+            System.out.println("Error en la cadenaSQL. " + cadenaSQL + ". " + ex.getMessage());
         }
-        //conector.desconectar();
         return resultado;
     }
-    
-    public static boolean ejecutarQuery(String cadenaSQL){
-        boolean resultado= false;
-        ConectorBD conector=new ConectorBD();
-        if (!conector.conectar()) System.out.println("Error al conectarse a la base de datos");
+
+    public static boolean ejecutarQuery(String cadenaSQL) {
+        boolean resultado = false;
+        ConectorBD conector = new ConectorBD();
+        if (!conector.conectar()) {
+            System.out.println("Error al conectarse al bd");
+        }
         try {
-            PreparedStatement sentencia=conector.conexion.prepareStatement(cadenaSQL);
-            resultado=sentencia.execute();
-            resultado= true;
+            PreparedStatement sentencia = conector.conexion.prepareStatement(cadenaSQL);
+            resultado = sentencia.execute();
+            resultado = true;
         } catch (SQLException ex) {
-            //Logger.getLogger(ConectorBD.class.getName()).log(Level.SEVERE, null, ex);
-            System.out.println("Error en la cadena SQL: "+cadenaSQL+": "+ex.getMessage());
+            System.out.println("Error en la cadenaSQL. " + cadenaSQL + ". " + ex.getMessage());
         }
         conector.desconectar();
         return resultado;
     }
+
 }
