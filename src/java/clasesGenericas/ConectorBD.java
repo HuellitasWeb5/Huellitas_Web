@@ -27,11 +27,19 @@ public class ConectorBD {
     private Connection conexion;//lleva la conexion de la base de datos
 
     public ConectorBD() {
+<<<<<<< HEAD
         servidor = "localhost";
         puerto = "3306";
         usuario = "adso";
         clave = "utilizar";
         baseDatos = "huellitasweb";
+=======
+        servidor="localhost";
+        puerto="3306";
+        usuario="adso";
+        clave="utilizar";
+        baseDatos="huellitasweb";
+>>>>>>> Dania
     }
     
     
