@@ -41,7 +41,7 @@ public class Persona {
         try {
             if (resultado.next()) {
                 this.identificacion = identificacion;
-                nombre = resultado.getString("nombres");
+                nombre = resultado.getString("nombre");
                 genero = resultado.getString("genero");
                 fechaNacimiento = resultado.getString("fechaNacimiento");
                 email = resultado.getString("email");
@@ -60,7 +60,11 @@ public class Persona {
     }
 
     public String getIdentificacion() {
-        return identificacion;
+        String resultado = identificacion;
+        if (identificacion == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setIdentificacion(String identificacion) {
@@ -68,13 +72,20 @@ public class Persona {
     }
 
     public String getNombre() {
-        return nombre;
+      String resultado = nombre;
+        if (nombre == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
+    public GeneroPersona getGeneroEnObjeto() {
+        return new GeneroPersona(genero);
+    }
     public String getGenero() {
         return genero;
     }
@@ -92,7 +103,11 @@ public class Persona {
     }
 
     public String getEmail() {
-        return email;
+     String resultado = email;
+        if (email == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setEmail(String email) {
@@ -100,7 +115,11 @@ public class Persona {
     }
 
     public String getTelefono() {
-        return telefono;
+       String resultado = telefono;
+        if (telefono == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setTelefono(String telefono) {
@@ -108,7 +127,11 @@ public class Persona {
     }
 
     public String getDireccion() {
-        return direccion;
+       String resultado = direccion;
+        if (direccion== null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setDireccion(String direccion) {
@@ -116,7 +139,11 @@ public class Persona {
     }
 
     public String getResidencia() {
-        return residencia;
+     String resultado = residencia;
+        if (residencia == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setResidencia(String residencia) {
@@ -179,18 +206,20 @@ public class Persona {
 
 
     public boolean grabar() {
+ 
         String cadenaSQL = "insert into Persona(identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave) "
-                + "values ('" + identificacion + "', '" + nombre + "','" + genero + "','" + fechaNacimiento + "', " + email + ","
-                + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "','" + clave + "')";
-        // System.out.println(cadenaSQL);
+                + "values ('" + identificacion + "', '" + nombre + "','" + genero + "','" + fechaNacimiento + "', '" + email + "',"
+                + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "',"+ this.getClave() + ")";
+        System.out.println(cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
     public boolean modificar(String identificacionAnterior) {
 
-        String cadenaSQL = "update Persona set identificacion='" + identificacion + "',nombre='" + nombre + "', "
+        String cadenaSQL = " update persona set identificacion='" + identificacion + "',nombre='" + nombre + "', "
                 + "genero='" + genero + "',fechaNacimiento='" + fechaNacimiento + "',email='" + email + "',telefono='" + telefono + "',"
                 + " direccion='" + direccion + "',residencia='" + residencia + "',foto='" + foto + "',tipo='" + tipo + "',clave='" + clave + "'  where identificacion=" + identificacionAnterior;
+        System.out.println("Modificar"+cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
