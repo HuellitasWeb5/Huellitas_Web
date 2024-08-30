@@ -8,7 +8,7 @@
 <%@page import="clases.Persona"%>
 <%
 String lista="";
-List<Persona> datos=Persona.getListaEnObjetos("tipo<>'F'", null);
+List<Persona> datos=Persona.getListaEnObjetos(null, null);
 for (int i = 0; i < datos.size(); i++) {
         Persona administrador = datos.get(i);
         lista+="<tr>";
@@ -20,8 +20,8 @@ for (int i = 0; i < datos.size(); i++) {
         lista+="<td>" + administrador.getTelefono() + "</td>";
         lista+="<td>" + administrador.getDireccion()+ "</td>";
         lista+="<td>" + administrador.getResidencia()+ "</td>";
-        lista+="<td>" + administrador.getFoto()+ "</td>";
-        
+        lista+="<td><img src='presentacion/administrador/" + administrador.getFoto() + "' width='30' height='auto'></td>";
+ 
         lista+="<td>" + administrador.getTipoEnObjeto()+ "</td>";
         lista+="<td>";
         lista+="<a href='principal.jsp?CONTENIDO=administradoresFormulario.jsp&accion=Modificar&identificacion=" + administrador.getIdentificacion() +
@@ -46,7 +46,7 @@ for (int i = 0; i < datos.size(); i++) {
     function eliminar(identificacion){
         resultado=confirm("Realmente desea eliminar el administrador con identificacion"+identificacion+"?");
         if (resultado) {
-            document.location="principal.jsp?CONTENIDO=usuariosActualizar.jsp&accion=Eliminar&identificacion="+identificacion;
+            document.location="principal.jsp?CONTENIDO=administradoresActualizar.jsp&accion=Eliminar&identificacion="+identificacion;
          }
     }
 </script>

@@ -36,12 +36,12 @@ public class Persona {
     }
 
     public Persona(String identificacion) {
-        String cadenaSQL = "identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave from persona where identificacion=" + identificacion;
+        String cadenaSQL = "select identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave from persona where identificacion=" + identificacion;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
                 this.identificacion = identificacion;
-                nombre = resultado.getString("nombres");
+                nombre = resultado.getString("nombre");
                 genero = resultado.getString("genero");
                 fechaNacimiento = resultado.getString("fechaNacimiento");
                 email = resultado.getString("email");
@@ -139,7 +139,7 @@ public class Persona {
     }
 
     public String getResidencia() {
-  String resultado = residencia;
+     String resultado = residencia;
         if (residencia == null) {
             resultado = "";
         }
@@ -206,18 +206,20 @@ public class Persona {
 
 
     public boolean grabar() {
+ 
         String cadenaSQL = "insert into Persona(identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave) "
                 + "values ('" + identificacion + "', '" + nombre + "','" + genero + "','" + fechaNacimiento + "', '" + email + "',"
-                + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "','" + clave + "')";
+                + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "',"+ this.getClave() + ")";
         System.out.println(cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
     public boolean modificar(String identificacionAnterior) {
 
-        String cadenaSQL = "update Persona set identificacion='" + identificacion + "',nombre='" + nombre + "', "
+        String cadenaSQL = "update persona set identificacion='" + identificacion + "',nombre='" + nombre + "', "
                 + "genero='" + genero + "',fechaNacimiento='" + fechaNacimiento + "',email='" + email + "',telefono='" + telefono + "',"
                 + " direccion='" + direccion + "',residencia='" + residencia + "',foto='" + foto + "',tipo='" + tipo + "',clave='" + clave + "'  where identificacion=" + identificacionAnterior;
+        System.out.println("Modificar"+cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 

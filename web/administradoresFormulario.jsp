@@ -32,7 +32,7 @@ if (accion.equals("Modificar")) {
  
         <tr><th>Género</th><td><%=administrador.getGeneroEnObjeto().getRadioButtons() %></td></tr>
         
-        <tr><th>Fecha De Nacimiento</th><td><input type="date" name="fechaNacimiento" value="<%=administrador.getFechaNacimiento()%>" maxlength="15"></td></tr>
+        <tr><th>Fecha De Nacimiento</th><td><input type="date" name="fechaNacimiento" value="<%=administrador.getFechaNacimiento()%>" maxlength="15" required></td></tr>
        
         <tr><th>Teléfono</th><td><input type="text" name="telefono" value="<%=administrador.getTelefono()%>" maxlength="12"></td></tr>
          
@@ -51,10 +51,12 @@ if (accion.equals("Modificar")) {
         <td><input type="text" name="residencia" value="<%=administrador.getResidencia() %>" size="50" maxlength="100"></td>
         </tr>
         
-        <tr>
-        <th>Foto</th>
-        <td><input type="file" name="foto" accept="image/*"></td>
-        </tr>
+       <tr>
+            <th>Foto</th>
+            <td>
+                <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();">
+            </td>
+         </tr>
         <tr>
             <th>Rol</th>
             <td><select class="recuadro" name="tipo"><%=administrador.getTipoEnObjeto().getListaEnOptions()%></select></td>
@@ -65,8 +67,18 @@ if (accion.equals("Modificar")) {
         </tr>
        
     </table>
+        
+    <script> 
+    function mostrarFoto(){
+        var lector=new FileReader();
+        lector.readAsDataURL(document.formulario.foto.files[0]);
+        lector.onloadend= function(){
+            document.getElementById("foto").src=lector.result;
+        }
+    }
+</script>
     
     <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
     <input  type="submit" class="submit" name="accion" value="<%=accion%>">
-    <input type="submit" class="button"  value="Cancelar" onClick="window.history.back()">
+   <input class="button" type="button" value="Cancelar" onClick="window.history.back()">
 </form>
