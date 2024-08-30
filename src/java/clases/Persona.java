@@ -36,7 +36,7 @@ public class Persona {
     }
 
     public Persona(String identificacion) {
-        String cadenaSQL = "identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave from persona where identificacion=" + identificacion;
+        String cadenaSQL = "select identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave from persona where identificacion=" + identificacion;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
