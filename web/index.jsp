@@ -25,13 +25,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet"  href="presentacion/Prueba.css">
-        <title>Software de ventas</title>
-
-
+        <title>Huellitas Web</title>
+        
     </head>
     <body>
     <center>
-        <h3>VENTAS</h3>
+        <h3>Huellitas Web</h3>
         <p id="error"><%=mensaje%></p>
         <form name="formulario" method="post" action="validar.jsp">  
             <div id="texto">

@@ -8,6 +8,7 @@ package clases;
 import clasesGenericas.ConectorBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 /**
  *
@@ -70,6 +71,7 @@ public class Adopcion {
     public void setActaAdopcion(String actaAdopcion) {
         this.actaAdopcion = actaAdopcion;
     }
+    
     
      @Override
     public String toString() {

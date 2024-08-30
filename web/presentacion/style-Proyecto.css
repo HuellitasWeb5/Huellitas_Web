@@ -1,0 +1,30 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 29 ago 2024, 22:39:34
+    Author     : Angie
+*/
+
+/* Footer */
+
+footer {
+    background-color: #f1f1f1; /* Color de fondo del footer (opcional) */
+    padding: 10px 0; /* Espaciado arriba y abajo (opcional) */
+    text-align: center; /* Centra el texto dentro del footer (opcional) */
+}
+
+.footer-info {
+    display: flex;
+    justify-content: space-around; /* Distribuye los elementos con espacio alrededor */
+    align-items: center; /* Alinea los elementos verticalmente al centro */
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan si el espacio es insuficiente */
+    max-width: 1000px; /* Ancho máximo para el contenedor (opcional) */
+    margin: 0 auto; /* Centra el contenedor horizontalmente (opcional) */
+}
+
+.footer-info p {
+    margin: 0; /* Elimina el margen predeterminado de los párrafos */
+    padding: 0 15px; /* Espaciado horizontal entre los elementos (opcional) */
+}
