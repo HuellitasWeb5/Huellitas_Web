@@ -29,16 +29,13 @@ public class TipoPersona {
         String nombre = null;
         switch (codigo) {
             case "A":
-                nombre = "Administrador";
+                nombre = "Administrador del sistema";
                 break;
-            case "V":
-                nombre = "Vendedor";
+            case "F":
+                nombre = "Administrador de fundacion";
                 break;
             case "C":
                 nombre = "Cliente";
-                break;
-            case "E":
-                nombre = "Empleado";
                 break;
             default:
                 nombre = "Desconocido";
@@ -53,16 +50,25 @@ public class TipoPersona {
     }
 
     public String getMenu() {
-        String menu = "<ul>";
+        String menu = "";
 
         switch (this.codigo) {
             case "A":
-                menu += "<a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a>";
-                menu += "<a href='principal.jsp?CONTENIDO=mascotas.jsp'>Mascotas</a>";
-                menu += "<a href='principal.jsp?CONTENIDO=adopciones.jsp'>Adopciones</a>";
-                menu += "<a href='principal.jsp?CONTENIDO=donaciones.jsp'>Donaciones</a>";
-                menu += "<a href='principal.jsp?CONTENIDO=usuarios.jsp'>Usuarios</a>";
-                menu += "<a href='index.jsp'>Salir</a>";
+                
+                menu += "<header>";
+                menu += "<nav class='navigation'>";
+                menu += "<ul class='menu-horizontal'>";
+                menu += "<li><a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
+                menu += "<li><a href='principal.jsp?CONTENIDO=PruebasInternas.jsp'>Pruebas</a></li>";
+                menu += "<li><a href='principal.jsp?CONTENIDO=unidadesDeMedida.jsp'>UNIDAD DE MEDIDA</a></li>";
+                menu += "<li><a href='principal.jsp?CONTENIDO=adopciones.jsp'>Adopciones</a></li>";
+                menu += "<li><a href='principal.jsp?CONTENIDO=donaciones.jsp'>Donaciones</a></li>";
+                menu += "<li><a href='principal.jsp?CONTENIDO=usuarios.jsp'>Usuarios</a></li>";
+                menu += "<li><a href='index.jsp'>Salir</a></li>";
+                menu += "</ul>";
+                menu += "</nav>";
+                menu += "</header>";
+                
                 //  menu+="<a>Reportes</a>";
                 
                 break;
@@ -75,7 +81,7 @@ public class TipoPersona {
                 break;
         }
 
-        menu += "</ul>";
+        menu += "";
         return menu;
     }
 
