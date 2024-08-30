@@ -29,17 +29,12 @@ public class TipoPersona {
         String nombre = null;
         switch (codigo) {
             case "A":
-                nombre = "Administrador";
+                nombre = "AdministradorSistema";
                 break;
-            case "V":
-                nombre = "Vendedor";
+            case "F":
+                nombre = "AdministradorFundacion";
                 break;
-            case "C":
-                nombre = "Cliente";
-                break;
-            case "E":
-                nombre = "Empleado";
-                break;
+          
             default:
                 nombre = "Desconocido";
                 break;
@@ -61,13 +56,13 @@ public class TipoPersona {
                 menu += "<a href='principal.jsp?CONTENIDO=mascotas.jsp'>Mascotas</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=adopciones.jsp'>Adopciones</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=donaciones.jsp'>Donaciones</a>";
-                menu += "<a href='principal.jsp?CONTENIDO=usuarios.jsp'>Usuarios</a>";
+                menu += "<a href='principal.jsp?CONTENIDO=administradores.jsp'>Administradores</a>";
                 menu += "<a href='index.jsp'>Salir</a>";
                 //  menu+="<a>Reportes</a>";
                 
                 break;
 
-            case "V":
+            case "F":
                 menu += "<li><a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
                 menu += "<li><a href='principal.jsp?CONTENIDO=clientes.jsp'>Clientes</a></li>";
                 menu += "<li><a href='principal.jsp?CONTENIDO=ventas.jsp'>Ventas</a></li>";
@@ -83,13 +78,13 @@ public class TipoPersona {
         String lista = "";
         switch (codigo) {
             case "A":
-                lista = "<option value='A' selected>Administrador</option><option value='V'>Vendedor</option>";
+                lista = "<option value='A' selected>AdministradorSistema</option><option value='F'>AdministradorFundacion</option>";
                 break;
-            case "V":
-                lista = "<option value='A'> Administrador</option><option value='V' selected>Vendedor</option>";
+            case "F":
+                lista = "<option value='A'> AdministradorSistema</option><option value='F' selected>AdministradorFundacion</option>";
                 break;
             default:
-                lista = " <option value='A' selected>Administrador</option><option value='V'>Vendedor</option>";
+                lista = "<option value='A' selected> AdministradorSistema</option><option value='F'>AdministradorFundacion</option>";
                 break;
         }
         return lista;

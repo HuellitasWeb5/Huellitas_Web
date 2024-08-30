@@ -8,7 +8,7 @@
 <%@page import="clases.Persona"%>
 <%
 String lista="";
-List<Persona> datos=Persona.getListaEnObjetos(null, null);
+List<Persona> datos=Persona.getListaEnObjetos("tipo<>'C'", null);
 for (int i = 0; i < datos.size(); i++) {
         Persona administrador = datos.get(i);
         lista+="<tr>";
