@@ -17,7 +17,8 @@ else USUARIO=(Persona) sesion.getAttribute("usuario");
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Software de ventas</title>
+        <link rel="stylesheet" href="presentacion/style-Proyecto.css">
+        <title>HUELLITAS WEB</title>
     </head>
 
 
@@ -28,4 +29,11 @@ else USUARIO=(Persona) sesion.getAttribute("usuario");
             <jsp:include page='<%=request.getParameter("CONTENIDO")%>' flush="true" />
         </div>
 </body>
+<footer>
+    <div class="footer-info">
+        <p>3162562576</p>
+        <p>Fundacionvillaesperanza@gmail.com</p>
+        <p>Parque Natural Chimayoy</p>
+    </div>
+</footer>
 </html>

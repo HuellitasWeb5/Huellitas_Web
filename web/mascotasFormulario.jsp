@@ -19,14 +19,14 @@ if (accion.equals("Modificar")) {
 <form name="formulario" method="post" action="principal.jsp?CONTENIDO=mascotasActualizar.jsp">
     <table border="0">
         <tr>
-            <th>Codigo</th><td><%=mascota.getCodigo()%></td>
+            <th>Código</th><td><%=mascota.getCodigo()%></td>
         </tr>
         <tr>
             <th>Nombre</th>
             <td><input type="text" name="nombre" value="<%=mascota.getNombre()%>" size="50" maxlength="50"></td>
         </tr>
         <tr>
-            <th>Genero</th><td><%=mascota.getGeneroEnObjeto().getRadioButtons() %></td>
+            <th>Género</th><td><%=mascota.getGeneroEnObjeto().getRadioButtons() %></td>
         </tr>
         <tr>
             <th>Tamaño</th><td><input type="text" name="tamaño" value="<%=mascota.getTamaño()%>" maxlength="12"></td>
@@ -36,15 +36,15 @@ if (accion.equals("Modificar")) {
             <td> <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();">
         </tr>
         <tr>
-            <th>Cuidados especiales</th>
+            <th>Cuidados Especiales</th>
             <td><input type="text" name="cuidadosEspeciales" value="<%=mascota.getCuidadosEspeciales()%>" maxlength="80" required></td>
         </tr>
         <tr>
-            <th>fecha aproximada de nacimineto</th>
+            <th>Fecha Aproximada De Nacimiento</th>
             <td><input type="date" name="fechaNacimientoAproximada" value="<%=mascota.getFechaNacimientoAproximada()%>" required></td>
         </tr>
         <tr>
-            <th>fecha de ingreso</th>
+            <th>Fecha De Ingreso</th>
             <td><input type="date" name="fechaIngreso" value="<%=mascota.getFechaIngreso()%>" required></td>
         </tr>
         <tr>

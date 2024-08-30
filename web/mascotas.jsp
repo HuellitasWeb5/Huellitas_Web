@@ -23,8 +23,8 @@ for (int i = 0; i < datos.size(); i++) {
         lista+="<td>" + mascotas.getEstado()+ "</td>";
         lista+="<td>";
         lista+="<a href='principal.jsp?CONTENIDO=mascotasFormulario.jsp&accion=Modificar&identificacion=" + mascotas.getCodigo() +
-                " 'title='Modificar'><img src='presentacion/imagenes/modificar.png' ></a>  "; 
-        lista+="<img src='presentacion/imagenes/eliminar.png' title='Eliminar' onClick='eliminar("+ mascotas.getCodigo()+")'> ";
+                " 'title='Modificar'><img src='presentacion/iconos/modificar.png' ></a>  "; 
+        lista+="<img src='presentacion/iconos/eliminar.png' title='Eliminar' onClick='eliminar("+ mascotas.getCodigo()+")'> ";
         lista+="</td>";
         lista+="</tr>";
   }
@@ -33,10 +33,10 @@ for (int i = 0; i < datos.size(); i++) {
 <h3>MASCOTAS</h3>
 <table border="1">
     <tr>
-        <th>Codigo</th><th>Nombre</th><th>Genero</th><th>Tamaño</th><th>Foto</th><th>Cuidados Especiales</th><th>Fecha Nacimiento aproximada</th>
-        <th>Fecha de ingreso</th><th>Estado</th>
+        <th>Código</th><th>Nombre</th><th>Género</th><th>Tamaño</th><th>Foto</th><th>Cuidados Especiales</th><th>Fecha De Nacimiento Aproximada</th>
+        <th>Fecha De Ingreso</th><th>Estado</th>
                 <th><a href="principal.jsp?CONTENIDO=mascotasFormulario.jsp&accion=Adicionar" title="Adicionar">
-                        <img src="presentacion/imagenes/agregar.png">  </a></th>
+                        <img src="presentacion/iconos/agregar.png">  </a></th>
     </tr>
     <%=lista%>
 </table>
