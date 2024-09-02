@@ -55,6 +55,7 @@ public class TipoPersona {
                 menu += "<a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=mascotas.jsp'>Mascotas</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=adopciones.jsp'>Adopciones</a>";
+                menu += "<a href='principal.jsp?CONTENIDO=padripets.jsp'> APADRINACIONES </a>";
                 menu += "<a href='principal.jsp?CONTENIDO=donaciones.jsp'>Donaciones</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=administradores.jsp'>Administradores</a>";
                 menu += "<a href='index.jsp'>Salir</a>";
