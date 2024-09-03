@@ -192,7 +192,7 @@ public class Persona {
         this.clave = clave;
     }
     public GeneroPersona getGeneroPersona() {
-        return new GeneroPersona(tipo);
+        return new GeneroPersona(genero);
     }
 
     @Override
@@ -209,16 +209,16 @@ public class Persona {
  
         String cadenaSQL = "insert into Persona(identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave) "
                 + "values ('" + identificacion + "', '" + nombre + "','" + genero + "','" + fechaNacimiento + "', '" + email + "',"
-                + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "',"+ this.getClave() + ")";
+                + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "',"+ clave + ")";
         System.out.println(cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
-    public boolean modificar(String identificacionAnterior) {
+    public boolean modificar() {
 
         String cadenaSQL = " update persona set identificacion='" + identificacion + "',nombre='" + nombre + "', "
                 + "genero='" + genero + "',fechaNacimiento='" + fechaNacimiento + "',email='" + email + "',telefono='" + telefono + "',"
-                + " direccion='" + direccion + "',residencia='" + residencia + "',foto='" + foto + "',tipo='" + tipo + "',clave='" + clave + "'  where identificacion=" + identificacionAnterior;
+                + " direccion='" + direccion + "',residencia='" + residencia + "',foto='" + foto + "',tipo='" + tipo + "',clave='" + clave + "'  where identificacion=" +identificacion;
         System.out.println("Modificar"+cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }

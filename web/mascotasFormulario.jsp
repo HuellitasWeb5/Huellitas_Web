@@ -10,13 +10,14 @@
 String accion=request.getParameter("accion");
 String codigo=request.getParameter("codigo");
 Mascota mascota=new Mascota();
-mascota.setCodigo(codigo);
+mascota.setCodigo("codigo");
 if (accion.equals("Modificar")) {
         mascota=new Mascota(codigo);
     }
 %>
+
 <h3><%=accion.toUpperCase() %> MASCOTAS</h3>
-<form name="formulario" method="post" action="principal.jsp?CONTENIDO=mascotasActualizar.jsp">
+<form name="formulario" method="post" action="principal.jsp?CONTENIDO=mascotasActualizar.jsp" enctype="multipart/form-data">
     <table border="0">
         <tr>
             <th>Código</th><td><%=mascota.getCodigo()%></td>
@@ -29,7 +30,11 @@ if (accion.equals("Modificar")) {
             <th>Género</th><td><%=mascota.getGeneroEnObjeto().getRadioButtons() %></td>
         </tr>
         <tr>
-            <th>Tamaño</th><td><input type="text" name="tamaño" value="<%=mascota.getTamaño()%>" maxlength="12"></td>
+            <th>Tamaño</th><td><select name="tamano">
+            <option value="pequeno">Pequeño</option>
+            <option value="mediano">Mediano</option>
+            <option value="grande">Grande</option>
+        </select></td>
         </tr>
         <tr>
             <th>Foto</th>
@@ -49,10 +54,14 @@ if (accion.equals("Modificar")) {
         </tr>
         <tr>
             <th>Estado</th>
-            <td><input type="text" name="estado" value="<%=mascota.getEstado()%>" maxlength="80" required></td>
+            <td><select id="estado" name="estado">
+            <option value="disponible">Disponible</option>
+            <option value="apadrinado">Apadrinado</option>
+            <option value="adoptado">Adoptado</option>
+        </select></td>
         </tr>
     </table>
-    <input type="hidden" name="identificacionAnterior" value="<%=codigo%>">
+    <input type="hidden" name="codigo" value="<%=codigo%>">
     <p><input type="submit" name="accion" value="<%=accion %>"></p>
 </form>
 <script> 
