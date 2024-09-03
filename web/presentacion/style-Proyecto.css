@@ -10,9 +10,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 /* Footer */
 
 footer {
-    background-color: #f1f1f1; /* Color de fondo del footer (opcional) */
-    padding: 10px 0; /* Espaciado arriba y abajo (opcional) */
-    text-align: center; /* Centra el texto dentro del footer (opcional) */
+    background-color: #f1f1f1; /* Color de fondo del footer */
+    padding: 100px 0; /* Espaciado arriba y abajo */
+    text-align: center; /* Centra el texto dentro del footer */
+    margin-top: auto; /* Empuja el footer hacia abajo */
 }
 
 .footer-info {

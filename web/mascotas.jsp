@@ -7,27 +7,32 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-String lista="";
-List<Mascota> datos=Mascota.getListaEnObjetos(null, null);
+String lista = "";
+List<Mascota> datos = Mascota.getListaEnObjetos(null, null);
+boolean mostrarApadrinar = "Apadrinar".equals(request.getParameter("accion"));
+
 for (int i = 0; i < datos.size(); i++) {
-        Mascota mascotas = datos.get(i);
-        lista+="<tr>";
-        lista+="<td>" + mascotas.getCodigo()+ "</td>";
-        lista+="<td>" + mascotas.getNombre()+ "</td>";
-        lista+="<td>" + mascotas.getGenero()+ "</td>";
-        lista+="<td>" + mascotas.getTamaño()+ "</td>";
-        lista+="<td>" + mascotas.getFoto()+ "</td>";
-        lista+="<td>" + mascotas.getCuidadosEspeciales()+ "</td>";
-        lista+="<td>" + mascotas.getFechaNacimientoAproximada()+ "</td>";
-        lista+="<td>" + mascotas.getFechaIngreso()+ "</td>";
-        lista+="<td>" + mascotas.getEstado()+ "</td>";
-        lista+="<td>";
-        lista+="<a href='principal.jsp?CONTENIDO=mascotasFormulario.jsp&accion=Modificar&identificacion=" + mascotas.getCodigo() +
-                " 'title='Modificar'><img src='presentacion/iconos/modificar.png' ></a>  "; 
-        lista+="<img src='presentacion/iconos/eliminar.png' title='Eliminar' onClick='eliminar("+ mascotas.getCodigo()+")'> ";
-        lista+="</td>";
-        lista+="</tr>";
-  }
+    Mascota mascotas = datos.get(i);
+    lista += "<tr>";
+    lista += "<td>" + mascotas.getCodigo() + "</td>";
+    lista += "<td>" + mascotas.getNombre() + "</td>";
+    lista += "<td>" + mascotas.getGenero() + "</td>";
+    lista += "<td>" + mascotas.getTamaño() + "</td>";
+    lista += "<td>" + mascotas.getFoto() + "</td>";
+    lista += "<td>" + mascotas.getCuidadosEspeciales() + "</td>";
+    lista += "<td>" + mascotas.getFechaNacimientoAproximada() + "</td>";
+    lista += "<td>" + mascotas.getFechaIngreso() + "</td>";
+    lista += "<td>" + mascotas.getEstado() + "</td>";
+    lista += "<td>";
+    lista += "<a href='principal.jsp?CONTENIDO=mascotasFormulario.jsp&accion=Modificar&identificacion=" + mascotas.getCodigo() + "' title='Modificar'>" +
+             "<img src='presentacion/iconos/modificar.png' alt='Modificar'></a> ";
+    lista += "<img src='presentacion/iconos/eliminar.png' title='Eliminar' onClick='eliminar(" + mascotas.getCodigo() + ")'> ";
+    if (mostrarApadrinar) {
+        lista += "<button onclick='apadrinar(" + mascotas.getCodigo() + ")'>Apadrinar</button>"; // Botón "Apadrinar" si el parámetro está presente
+    }
+    lista += "</td>";
+    lista += "</tr>";
+}
 %>
 
 <h3>MASCOTAS</h3>

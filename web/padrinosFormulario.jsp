@@ -28,14 +28,14 @@ if (accion.equals("Modificar")) {
         </tr>
         <tr>
             <th>Plan Apadrinamiento</th>
-            <td><select  name="Planes" size="50" maxlength="50"></select></td>
+            <td><select  name="Planes" ></select></td>
         </tr>
         <tr>
             <th>Fecha</th>
             <td><input type="date" name="fecha" value="<%=apadrinamiento.getFecha()%>" required></td>
         </tr>
         
-        
+        <button onclick="window.location.href='principal.jsp?CONTENIDO=mascotas.jsp&accion=Apadrinar'" title="Apadrinar">Apadrinar</button>  
     </table>
     <input type="hidden" name="identificacionAnterior" value="<%=codigo%>">
     <p><input type="submit" name="accion" value="<%=accion %>"></p>
