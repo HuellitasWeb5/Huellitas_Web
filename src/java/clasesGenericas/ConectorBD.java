@@ -27,11 +27,20 @@ public class ConectorBD {
     private Connection conexion;//lleva la conexion de la base de datos
 
     public ConectorBD() {
+<<<<<<< Updated upstream
         servidor="localhost";
         puerto="3306";
         usuario="ADSO";
         clave="1302";
         baseDatos="huellitasweb";
+=======
+        servidor = "localhost";
+        puerto = "3306";
+        usuario = "adso";
+        clave = "utilizar";
+        baseDatos = "huellitasweb";
+        
+>>>>>>> Stashed changes
     }
     
     public boolean conectar(){
