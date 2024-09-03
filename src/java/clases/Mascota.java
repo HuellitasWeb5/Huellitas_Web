@@ -33,29 +33,28 @@ public class Mascota {
     }
 
     public Mascota(String codigo) {
-        String cadenaSQL="select codigo, nombre, genero, tamaño, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado from mascota";
+        String cadenaSQL="select codigo, nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado from mascota where codigo=" +codigo;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
+            if(resultado.next()){
              this.codigo = codigo;
              nombre=resultado.getString("nombre");
              genero=resultado.getString("genero");
-             tamaño=resultado.getString("tamaño");
+             tamaño=resultado.getString("tamano");
              foto=resultado.getString("foto");
              cuidadosEspeciales=resultado.getString("cuidadosEspeciales");
              fechaNacimientoAproximada=resultado.getString("fechaNacimientoAproximada");
              fechaIngreso=resultado.getString("fechaIngreso");
              estado=resultado.getString("estado");
-        } catch (Exception e) {
+            }
+        } catch (Exception ex) {
+             System.out.println("Error al consultar el id" + ex.getMessage());
         }
        
     }
 
     public String getCodigo() {
-       String resultado = codigo;
-        if (codigo == null) {
-            resultado = "";
-        }
-        return resultado;
+        return codigo;
     }
 
     public void setCodigo(String codigo) {
@@ -154,13 +153,14 @@ public class Mascota {
 
    public boolean grabar(){
 
-       String cadenaSQL="insert into mascota (nombre, genero, tamaño, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado) "
+       String cadenaSQL="insert into mascota (nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado) "
                + " values ('"+nombre+"','"+genero+"','"+tamaño+"','"+foto+"','"+cuidadosEspeciales+"','"+fechaNacimientoAproximada+"','"+fechaIngreso+"','"+estado+"')";
+       System.out.println(cadenaSQL);
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }
     // falta el to String con el override
    public boolean modificar(){
-       String cadenaSQL="update mascota set nombre='"+nombre+"',genero='"+genero+"',tamaño='"+tamaño+"',foto='"+foto+"',cuidadosEspeciales='"+cuidadosEspeciales+"',"
+       String cadenaSQL="update mascota set nombre='"+nombre+"',genero='"+genero+"',tamano='"+tamaño+"',foto='"+foto+"',cuidadosEspeciales='"+cuidadosEspeciales+"',"
                + "fechaNacimientoAproximada='"+fechaNacimientoAproximada+"',fechaIngreso='"+fechaIngreso+"',estado='"+estado+"' where codigo="+codigo;
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }
@@ -181,7 +181,7 @@ public class Mascota {
        }else {
            orden = " ";
        }
-       String cadenaSQL="Select codigo, nombre, genero, tamaño, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado from mascota" +filtro+orden;
+       String cadenaSQL="Select codigo, nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado from mascota" +filtro+orden;
        return ConectorBD.consultar(cadenaSQL);
    }
    
@@ -195,7 +195,7 @@ public class Mascota {
                    mascota.setCodigo(datos.getString("codigo"));
                    mascota.setNombre(datos.getString("nombre"));             
                    mascota.setGenero(datos.getString("genero"));
-                   mascota.setTamaño(datos.getString("tamaño"));
+                   mascota.setTamaño(datos.getString("tamano"));
                    mascota.setFoto(datos.getString("foto"));      
                    mascota.setCuidadosEspeciales(datos.getString("cuidadosEspeciales"));
                    mascota.setFechaNacimientoAproximada(datos.getString("fechaNacimientoAproximada"));
