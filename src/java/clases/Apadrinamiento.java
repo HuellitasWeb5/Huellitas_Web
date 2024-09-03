@@ -8,21 +8,25 @@ package clases;
 import clasesGenericas.ConectorBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author Luis Eraso
  */
-public class Apradrinamiento {
+public class Apadrinamiento {
     
     private String codigo;
     private String planApadrinamiento;
     private String fecha;
     private String identificacionPadrino;
 
-    public Apradrinamiento() {
+    public Apadrinamiento() {
     }
-    public Apradrinamiento(String codigo) {
+    public Apadrinamiento(String codigo) {
         String cadenaSQL = "select codigo,planApadrinamiento,fecha,identificacionPadrino where codigo=" + codigo;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
@@ -96,4 +100,39 @@ public class Apradrinamiento {
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
+    public static ResultSet getLista(String filtro, String orden){
+       if(filtro != null && filtro != ""){
+           filtro = " where " + filtro;
+       }else{
+           filtro= " ";
+       }
+       if (orden != null && orden != ""){
+           orden = " orden by " +orden;
+       }else {
+           orden = " ";
+       }
+       String cadenaSQL="Select codigo, planApadrinamiento, fecha, identidicacionpadrino from apadrinamiento" +filtro+orden;
+       return ConectorBD.consultar(cadenaSQL);
+   }
+    
+    public static List<Apadrinamiento> getListaEnObjetos(String filtro, String orden){
+       List<Apadrinamiento> lista=new ArrayList<>();
+       ResultSet datos= Apadrinamiento.getLista(filtro, orden);
+       if (datos != null){
+           try {
+               while(datos.next()){
+                   Apadrinamiento apadrinamiento = new Apadrinamiento();
+                   apadrinamiento.setCodigo("codigo");
+                   apadrinamiento.setPlanApadrinamiento("planApadrinamiento");
+                   apadrinamiento.setFecha("fecha");
+                   apadrinamiento.setIdentificacionPadrino("identidicacionPadrino");
+                   
+                   lista.add(apadrinamiento);
+               }
+           } catch (SQLException ex) {
+               Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       }
+       return lista;
+   }
 }
