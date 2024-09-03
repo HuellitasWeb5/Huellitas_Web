@@ -16,13 +16,13 @@ for (int i = 0; i < datos.size(); i++) {
         lista+="<td>" + mascotas.getNombre()+ "</td>";
         lista+="<td>" + mascotas.getGenero()+ "</td>";
         lista+="<td>" + mascotas.getTamaño()+ "</td>";
-        lista+="<td>" + mascotas.getFoto()+ "</td>";
+        lista += "<td><img src='presentacion/mascota/" + mascotas.getFoto() + "' width='auto' height='30'></td>";
         lista+="<td>" + mascotas.getCuidadosEspeciales()+ "</td>";
         lista+="<td>" + mascotas.getFechaNacimientoAproximada()+ "</td>";
         lista+="<td>" + mascotas.getFechaIngreso()+ "</td>";
         lista+="<td>" + mascotas.getEstado()+ "</td>";
         lista+="<td>";
-        lista+="<a href='principal.jsp?CONTENIDO=mascotasFormulario.jsp&accion=Modificar&identificacion=" + mascotas.getCodigo() +
+        lista+="<a href='principal.jsp?CONTENIDO=mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo() +
                 " 'title='Modificar'><img src='presentacion/iconos/modificar.png' ></a>  "; 
         lista+="<img src='presentacion/iconos/eliminar.png' title='Eliminar' onClick='eliminar("+ mascotas.getCodigo()+")'> ";
         lista+="</td>";
