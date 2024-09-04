@@ -43,9 +43,7 @@
 
     <h3>UNIDADES DE MEDIDA</h3> 
 
-
     <button class="add-button" onclick="abrirFormulario('Adicionar');">Agregar Tipo de Medida</button>
-
 
     <div class="swiper-container">
         <div class="swiper-wrapper">
@@ -57,8 +55,7 @@
         <div class="swiper-pagination"></div>
     </div>
 
-    <div id="formulario" title="Adicionar unidad de ">
-
+    <div id="formulario" title="Adicionar unidad de medida">
         <form name="formularioUnidadDemedida"> 
             <table>
                 <tr>
@@ -74,6 +71,7 @@
             <input type="button" value="Cancelar" onclick="cerrarFormulario();">
         </form>    
     </div>
+
 </html>
 
 <script>
@@ -98,25 +96,38 @@
         });
     });
 
-    function abrirFormulario() {
-        //alert("Hello moto");
-        // document.getElementById("formulario").setAttribute("title","Modificar...");
-        //$('#formulario').attr("title","Modificar");
-        $('#formulario').dialog('open');
-    }
-
     function abrirFormulario(accion, id = null) {
         if (accion === "Modificar") {
             $('#formulario').dialog('option', 'title', 'Modificar Unidad de Medida');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Modificar';
+            // Aquí actualizamos el onclick del botón
             document.querySelector('input[type="button"][value="Modificar"]').setAttribute('onclick', 'modificarUnidadDeMedida(' + id + ');');
-        } else {
+
+            // Cargar los datos de la unidad de medida a modificar
+            cargarDatosUnidadDeMedida(id);
+
+        } else if (accion === "Adicionar") {
             $('#formulario').dialog('option', 'title', 'Adicionar Unidad de Medida');
-            document.querySelector('input[type="button"][value="Modificar"]').value = 'Agregar';
+            document.querySelector('input[type="button"][value="Agregar"]').value = 'Agregar';
             document.querySelector('input[type="button"][value="Agregar"]').setAttribute('onclick', 'agregarUnidadDeMedida();');
+            // Limpiar campos al abrir el formulario para adicionar
+            document.getElementById('nombre').value = '';
+            document.getElementById('notacion').value = '';
         }
 
         $('#formulario').dialog('open');
+    }
+
+    function cargarDatosUnidadDeMedida(id) {
+
+        document.getElementById('nombre').value = "Nombre"
+        document.getElementById('notacion').value = "Notacion";
+    }
+
+    function cargarDatosUnidadDeMedida(id) {
+
+        document.getElementById('nombre').value = "Nombre de Ejemplo"; // Reemplaza con el nombre real
+        document.getElementById('notacion').value = "Notación de Ejemplo"; // Reemplaza con la notación real
     }
 
     function modificarUnidadDeMedida(id) {
@@ -128,15 +139,20 @@
 
     function agregarUnidadDeMedida() {
         var nombre = document.getElementById('nombre').value;
-        var notacion = document.getElementById('notacion').value
+        var notacion = document.getElementById('notacion').value;
         var url = "unidadesDeMedidaActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&notacion=" + notacion;
         window.location.href = url;
     }
-  
+
+    function cerrarFormulario() {
+        document.getElementById("nombre").value = "";
+        document.getElementById("notacion").value = "";
+        $('#formulario').dialog('close');
+    }
 
     const swiper = new Swiper('.swiper-container', {
         loop: true,
-        slidesPerView: 4,
+        slidesPerView: 4, // Muestra 4 tarjetas a la vez
         spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-button-next',
