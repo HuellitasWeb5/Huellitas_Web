@@ -23,8 +23,8 @@ for (int i = 0; i < datos.size(); i++) {
         lista+="<td>" + mascotas.getEstado()+ "</td>";
         lista+="<td>";
         lista+="<a href='principal.jsp?CONTENIDO=mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo() +
-                " 'title='Modificar'><img src='presentacion/iconos/modificar.png' ></a>  "; 
-        lista+="<img src='presentacion/iconos/eliminar.png' title='Eliminar' onClick='eliminar("+ mascotas.getCodigo()+")'> ";
+                " 'title='Modificar'> <button title='Modificar'> Modificar </button> "; 
+        lista+="<button title='Eliminar' onClick='eliminar("+ mascotas.getCodigo()+")'>Eliminar</button>";
         lista+="</td>";
         lista+="</tr>";
   }
@@ -35,8 +35,7 @@ for (int i = 0; i < datos.size(); i++) {
     <tr>
         <th>Código</th><th>Nombre</th><th>Género</th><th>Tamaño</th><th>Foto</th><th>Cuidados Especiales</th><th>Fecha De Nacimiento Aproximada</th>
         <th>Fecha De Ingreso</th><th>Estado</th>
-                <th><a href="principal.jsp?CONTENIDO=mascotasFormulario.jsp&accion=Adicionar" title="Adicionar">
-                        <img src="presentacion/iconos/agregar.png">  </a></th>
+        <th><a href="principal.jsp?CONTENIDO=mascotasFormulario.jsp&accion=Adicionar" title="Adicionar"><button id="Adicionar">Adicionar</button></a></th>
     </tr>
     <%=lista%>
 </table>
