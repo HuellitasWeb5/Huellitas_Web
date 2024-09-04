@@ -9,12 +9,10 @@
 <%@page import="clases.Persona"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<
 <%
 String lista="";
 List<Apadrinamiento> datos=Apadrinamiento.getListaEnObjetos(null, null);
-List<Persona> datosp=Persona.getListaEnObjetos(null, null);
+//List<Persona> datosp=Persona.getListaEnObjetos(null, null);
 for (int i = 0; i < datos.size(); i++) {
     Apadrinamiento apadrinamiento = datos.get(i);
     lista += "<tr>";
@@ -34,9 +32,9 @@ for (int i = 0; i < datos.size(); i++) {
 <button onclick="window.location.href='principal.jsp?CONTENIDO=padrinosFormulario.jsp&accion=Adicionar'" title="Adicionar">Agregar</button>
 <table border="1">
     <tr>
-        <th>Detalles</th> <!-- Título único para la celda que contiene toda la información -->
+        <th>Detalles</th>
     </tr>
-    <%= lista %> <!-- Aquí se insertará el HTML generado por el código Java -->
+    <%= lista %> 
 </table>
 
 <script type="text/javascript">

@@ -16,7 +16,7 @@ if (accion.equals("Modificar")) {
     }
 %>
 
-<h3><%=accion.toUpperCase() %> ADICIONAR PADRIPET</h3>
+<h3><%=accion.toUpperCase() %>  PADRIPET</h3>
 <form name="formulario" method="post" action="principal.jsp?CONTENIDO=mascotasActualizar.jsp">
     <table border="0">
         <tr>
