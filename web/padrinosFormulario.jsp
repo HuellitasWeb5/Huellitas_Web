@@ -17,7 +17,8 @@ if (accion.equals("Modificar")) {
 %>
 
 <h3><%=accion.toUpperCase() %>  PADRIPET</h3>
-<form name="formulario" method="post" action="principal.jsp?CONTENIDO=mascotasActualizar.jsp">
+<button onclick="window.location.href='principal.jsp?CONTENIDO=mascotas.jsp&accion=Apadrinar'" title="Apadrinar">Apadrinarrrr</button>  
+<form name="formulario" method="post">
     <table border="0">
         <tr>
             <th>Código</th><td><%=apadrinamiento.getCodigo()%></td>
@@ -28,14 +29,16 @@ if (accion.equals("Modificar")) {
         </tr>
         <tr>
             <th>Plan Apadrinamiento</th>
-            <td><select  name="Planes" ></select></td>
+            <td><table>
+                
+                </table></td>
         </tr>
         <tr>
             <th>Fecha</th>
-            <td><input type="date" name="fecha" value="<%=apadrinamiento.getFecha()%>" required></td>
+            <td><input type="date" name="fecha"  ></td>
         </tr>
         
-        <button onclick="window.location.href='principal.jsp?CONTENIDO=mascotas.jsp&accion=Apadrinar'" title="Apadrinar">Apadrinar</button>  
+        
     </table>
     <input type="hidden" name="identificacionAnterior" value="<%=codigo%>">
     <p><input type="submit" name="accion" value="<%=accion %>"></p>

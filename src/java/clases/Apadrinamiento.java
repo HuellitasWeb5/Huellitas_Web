@@ -111,7 +111,7 @@ public class Apadrinamiento {
        }else {
            orden = " ";
        }
-       String cadenaSQL="Select codigo, planApadrinamiento, fecha, identidicacionpadrino from apadrinamiento" +filtro+orden;
+       String cadenaSQL="Select codigo, planApadrinamiento, fecha, identificacionpadrino from apadrinamiento" +filtro+orden;
        return ConectorBD.consultar(cadenaSQL);
    }
     

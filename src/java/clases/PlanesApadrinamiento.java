@@ -64,7 +64,7 @@ public class PlanesApadrinamiento {
 
     public boolean grabar(){
         String cadenaSQL="insert into planesApadrinamiento (nombre,descripcion) "
-        + " values ('"+nombre+"','"+descripcion+"') where id="+id;
+        + " values ('"+nombre+"','"+descripcion+"')";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
     public boolean modificar(){
@@ -87,7 +87,7 @@ public class PlanesApadrinamiento {
        }else {
            orden = " ";
        }
-       String cadenaSQL="Select id, nombre, descrpcion from Planesapadrinamiento" +filtro+orden;
+       String cadenaSQL="Select id, nombre, descripcion from PlanesApadrinamiento" +filtro+orden;
        return ConectorBD.consultar(cadenaSQL);
    }
     
@@ -98,10 +98,9 @@ public class PlanesApadrinamiento {
            try {
                while(datos.next()){
                    PlanesApadrinamiento planes = new PlanesApadrinamiento();
-                   planes.setId("id");
-                   planes.setNombre("nombre");
-                   planes.setDescripcion("descripcion");
-                   
+                   planes.setId(datos.getString("id"));
+                   planes.setNombre(datos.getString("nombre"));
+                   planes.setDescripcion(datos.getString("descripcion"));
                    lista.add(planes);
                }
            } catch (SQLException ex) {
