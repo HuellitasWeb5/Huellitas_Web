@@ -8,6 +8,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="presentacion/unidadDeMedida.css">
 <%
+    //subido ahora
     String accion = request.getParameter("accion");
     String codigo = request.getParameter("codigo");
     PlanesApadrinamiento planes=new PlanesApadrinamiento();
