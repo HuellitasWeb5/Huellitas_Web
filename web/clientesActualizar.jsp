@@ -22,7 +22,7 @@ boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 if(!isMultipart){
     //no se pasa por el formulario que corresponde a eliminar
     variables.put("accion", request.getParameter("accion"));
-    variables.put("id", request.getParameter("id"));
+    variables.put("Identificacion", request.getParameter("Identificacion"));
 }else{
     //configuraciones para subir el archivo 
     String rutaActual=getServletContext().getRealPath("/");
@@ -48,15 +48,15 @@ if(!isMultipart){
                 variables.put(elemento.getFieldName(), elemento.getName());
                 if(!elemento.getName().equals("")){
                 subioArchivo=true;
-                //int ubicacionPunto=elemento.getName().lastIndexOf(".");
-                //String extension =elemento.getName().substring(ubicacionPunto);
-                //String nombreArchivo=variables.get("nombre")+"."+extension;
                 elemento.write(new File(destino,elemento.getName()));
                 variables.put(elemento.getFieldName(),elemento.getName());
                 }
             }
         }
 }
+
+String accion=variables.get("accion");
+ String identificacionAnterior=variables.get("identificacionAnterior");
 
 Persona clientes = new Persona();
 clientes.setIdentificacion(variables.get("identificacion"));
@@ -77,12 +77,17 @@ switch(variables.get("accion")){
         break;
     case "Modificar":
          if(!subioArchivo){
-            Persona auxiliar=new Persona(variables.get("codigo"));
+            Persona auxiliar=new Persona(variables.get("identificacion"));
             clientes.setFoto(auxiliar.getFoto());
-        }
-        clientes.modificar();
+
+
+
+
+}
+        clientes.modificar(identificacionAnterior);
         break;
     case "Eliminar":
+        clientes.setIdentificacion(request.getParameter("identificacion1"));
         clientes.eliminar();
         break;
 }
