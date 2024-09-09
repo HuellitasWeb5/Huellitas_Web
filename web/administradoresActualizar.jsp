@@ -21,7 +21,7 @@ boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 if(!isMultipart){
     //no se pasa por el formulario que corresponde a eliminar
     variables.put("accion", request.getParameter("accion"));
-    variables.put("codigo", request.getParameter("codigo"));
+    variables.put("identificacion", request.getParameter("identificacion"));
 }else{
     //configuraciones para subir el archivo 
     String rutaActual=getServletContext().getRealPath("/");
@@ -53,35 +53,36 @@ if(!isMultipart){
             }
         }
 }
-String accion=request.getParameter("accion");
-String identificacionAnterior=request.getParameter("identificacionAnterior");
+String accion=variables.get("accion");
+String identificacionAnterior=variables.get("identificacionAnterior");
 
 Persona administrador = new Persona();
 
-administrador.setIdentificacion(request.getParameter("identificacion"));
-administrador.setNombre(request.getParameter("nombre"));
-administrador.setGenero(request.getParameter("genero"));
-administrador.setFechaNacimiento(request.getParameter("fechaNacimiento"));
-administrador.setEmail(request.getParameter("email"));
-administrador.setTelefono(request.getParameter("telefono"));
-administrador.setDireccion(request.getParameter("direccion"));
-administrador.setResidencia(request.getParameter("residencia"));
-administrador.setFoto(request.getParameter("foto"));
-administrador.setTipo(request.getParameter("tipo"));
-administrador.setClave(request.getParameter("clave"));
+administrador.setIdentificacion(variables.get("identificacion"));
+administrador.setNombre(variables.get("nombre"));
+administrador.setGenero(variables.get("genero"));
+administrador.setFechaNacimiento(variables.get("fechaNacimiento"));
+administrador.setEmail(variables.get("email"));
+administrador.setTelefono(variables.get("telefono"));
+administrador.setDireccion(variables.get("direccion"));
+administrador.setResidencia(variables.get("residencia"));
+administrador.setFoto(variables.get("foto"));
+administrador.setTipo(variables.get("tipo"));
+administrador.setClave(variables.get("clave"));
 
-switch(accion){
+switch(variables.get("accion")){
     case "Adicionar":
         administrador.grabar();
         break;
     case "Modificar":
         if(!subioArchivo){
-            Persona auxiliar=new Persona(variables.get("codigo"));
-            auxiliar.setFoto(auxiliar.getFoto());
+            Persona auxiliar=new Persona(variables.get("identificacion"));
+            administrador.setFoto(auxiliar.getFoto());
         }
         administrador.modificar(identificacionAnterior);
         break;
     case "Eliminar":
+        administrador.setIdentificacion(request.getParameter("identificacion"));
         administrador.eliminar();
         break;
 }
