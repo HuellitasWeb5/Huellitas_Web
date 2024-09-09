@@ -80,14 +80,22 @@ public class Apadrinamiento {
         return planApadrinamiento;
     }
 
-
+    public List<ApadrinamientoDetalle> getDetalles() {
+        return ApadrinamientoDetalle.getListaEnObjetos("codigoApadrinamiento='" + codigo + "'", null);
+    }
+    
     public boolean grabar() {
         String cadenaSQL = "insert into Apadrinamiento(planApadrinamiento,fecha,identificacionPadrino) "
                 + " values ('" + planApadrinamiento + "','" + fecha + "','" + identificacionPadrino + "')";
         // System.out.println(cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
-
+    
+    public boolean grabarConProcedimientoAlmacenado(String mascotasPlan) {
+        String cadenaSQL = "call getRegistrarPadripet('" + this.identificacionPadrino + "','" + mascotasPlan+ "')";
+        return ConectorBD.ejecutarQuery(cadenaSQL);
+    }
+    
     public boolean modificar() {
 
         String cadenaSQL = "update Apadrinamiento set planApadrinamiento='" +planApadrinamiento + "',fecha='" +fecha + "',identificacionPadrino='" +identificacionPadrino + "'  where codigo=" + codigo;

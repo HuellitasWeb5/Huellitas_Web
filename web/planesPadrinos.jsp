@@ -12,7 +12,7 @@
     String accion = request.getParameter("accion");
     String codigo = request.getParameter("codigo");
     PlanesApadrinamiento planes=new PlanesApadrinamiento();
-String lista="";
+    String lista="";
     List<PlanesApadrinamiento> datos=PlanesApadrinamiento.getListaEnObjetos(null, null);
     //PlanesApadrinamiento planes = new  PlanesApadrinamiento();
     for (int i = 0; i < datos.size(); i++) {
