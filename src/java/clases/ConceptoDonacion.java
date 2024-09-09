@@ -5,9 +5,14 @@
  */
 package clases;
 
+import static clases.ConceptoDonacion.getLista;
 import clasesGenericas.ConectorBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,26 +21,24 @@ import java.sql.SQLException;
 public class ConceptoDonacion {
     /*
     */
- private String id;
+    private String id;
     private String nombre;
     private String descripcion;
-    private String tipo;
-    private String idTipoDonacion;
+    private String codigoTipoDonacion;
     private String idUnidadDeMedida;
 
     public ConceptoDonacion() {
     }
 
     public ConceptoDonacion(String id) {
-        String cadenaSQL = "select id, nombre, descripcion,tipo,idTipoDonacion,idUnidadDeMedida from conceptoDonacion";
+        String cadenaSQL = "select id, nombre, descripcion,codigoTipoDonacion,idUnidadDeMedida from conceptoDonacion";
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
                 this.id = id;
                 nombre = resultado.getString("nombre");
                 descripcion = resultado.getString("descripcion");
-                tipo = resultado.getString("tipo");
-                idTipoDonacion = resultado.getString("idTipoDonacion");
+                codigoTipoDonacion = resultado.getString("codigoTipoDonacion");
                 idUnidadDeMedida = resultado.getString("idUnidadDeMedida");
             }
         } catch (SQLException ex) {
@@ -67,21 +70,16 @@ public class ConceptoDonacion {
         this.descripcion = descripcion;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getCodigoTipoDonacion() {
+        return codigoTipoDonacion;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setCodigoTipoDonacion(String codigoTipoDonacion) {
+        this.codigoTipoDonacion = codigoTipoDonacion;
     }
-
-    public String getIdTipoDonacion() {
-        return idTipoDonacion;
-    }
-
-    public void setIdTipoDonacion(String idTipoDonacion) {
-        this.idTipoDonacion = idTipoDonacion;
-    }
+    public TipoDonacion getTipoDonacion(){
+        return new TipoDonacion (codigoTipoDonacion);
+     }
 
     public String getIdUnidadDeMedida() {
         return idUnidadDeMedida;
@@ -90,6 +88,11 @@ public class ConceptoDonacion {
     public void setIdUnidadDeMedida(String idUnidadDeMedida) {
         this.idUnidadDeMedida = idUnidadDeMedida;
     }
+     public UnidadDeMedida getUnidadDeMedida(){
+        return new UnidadDeMedida (idUnidadDeMedida);
+     }
+    
+  
     @Override
     
     public String toString(){
@@ -97,13 +100,13 @@ public class ConceptoDonacion {
     }
 
     public boolean grabar() {
-        String cadenaSQL = "insert into conceptoDonacion (nombre,descripcion,tipo,idTipoDonacion,descripcion) "
-                + " values ('" + nombre + "','" + descripcion + "','" + tipo + "','" + idTipoDonacion + "','" + descripcion + "')";
+        String cadenaSQL = "insert into conceptoDonacion (nombre,descripcion,codigoTipoDonacion,idUnidadDeMedida) "
+                + " values ('" + nombre + "','" + descripcion + "','" + codigoTipoDonacion + "','" + idUnidadDeMedida + "')";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
     public boolean modificar() {
-        String cadenaSQL = "update conceptoDonacion set nombre='" + nombre + "',descripcion='" + descripcion + "',tipo='" + tipo + "',idTipoDonacion='" + idTipoDonacion + "',idUnidadDeMedida='" + idUnidadDeMedida + "' where id=" + id;
+        String cadenaSQL = "update conceptoDonacion set nombre='" + nombre + "',descripcion='" + descripcion + "',codigoTipoDonacion='" + codigoTipoDonacion + "',idUnidadDeMedida='" + idUnidadDeMedida + "' where id=" + id;
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
@@ -111,4 +114,41 @@ public class ConceptoDonacion {
         String cadenaSQL = "delete from conceptoDonacion where id=" + id;
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
+    
+    public static ResultSet getLista(String filtro, String orden){
+          if (filtro != null && filtro != "") {
+         filtro = " where " + filtro;
+      } else {
+         filtro = "";
+      }
+
+      if (orden != null && orden != "") {
+         orden = " order by " + orden;
+      } else {
+         orden = "";
+      }
+        String cadenaSql = "select id, nombre, descripcion,codigoTipoDonacion,idUnidadDeMedida from conceptoDonacion";
+        return ConectorBD.consultar(cadenaSql);
+    }
+    public static List<ConceptoDonacion> getListaEnObjetos(String filtro, String orden) {
+      List<ConceptoDonacion> lista = new ArrayList();
+      ResultSet datos = getLista(filtro, orden);
+      if (datos != null) {
+         try {
+            while(datos.next()) {
+               ConceptoDonacion conceptoDonacion = new ConceptoDonacion();
+               conceptoDonacion.setId(datos.getString("id"));
+               conceptoDonacion.setNombre(datos.getString("nombre"));
+               conceptoDonacion.setDescripcion(datos.getString("descripcion"));
+               conceptoDonacion.setCodigoTipoDonacion(datos.getString("codigoTipoDonacion"));
+               conceptoDonacion.setIdUnidadDeMedida(datos.getString("idUnidadDeMedida"));
+               lista.add(conceptoDonacion);
+            }
+         } catch (SQLException ex) {
+            Logger.getLogger(ConceptoDonacion.class.getName()).log(Level.SEVERE, (String)null, ex);
+         }
+      }
+
+      return lista;
+   }
 }
