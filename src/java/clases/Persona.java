@@ -199,7 +199,7 @@ public class Persona {
     public String toString() {
         String datos = "";
         if (identificacion != null) {
-            datos = nombre;
+            datos =identificacion+" - "+nombre;
         }
         return datos;
     }
@@ -209,16 +209,16 @@ public class Persona {
  
         String cadenaSQL = "insert into Persona(identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave) "
                 + "values ('" + identificacion + "', '" + nombre + "','" + genero + "','" + fechaNacimiento + "', '" + email + "',"
-                + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "',"+ clave + ")";
+                + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "',"+ this.getClave() + ")";
         System.out.println(cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
-    public boolean modificar() {
+    public boolean modificar(String identificacionAnterior) {
 
         String cadenaSQL = " update persona set identificacion='" + identificacion + "',nombre='" + nombre + "', "
                 + "genero='" + genero + "',fechaNacimiento='" + fechaNacimiento + "',email='" + email + "',telefono='" + telefono + "',"
-                + " direccion='" + direccion + "',residencia='" + residencia + "',foto='" + foto + "',tipo='" + tipo + "',clave='" + clave + "'  where identificacion=" +identificacion;
+                + " direccion='" + direccion + "',residencia='" + residencia + "',foto='" + foto + "',tipo='" + tipo + "',clave=" + this.getClave() + "  where identificacion=" +identificacionAnterior;
         System.out.println("Modificar"+cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
