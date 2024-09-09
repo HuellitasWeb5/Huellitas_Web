@@ -23,7 +23,7 @@ for (int i = 0; i < datos.size(); i++) {
         lista+="<td>" + mascotas.getEstado()+ "</td>";
         lista+="<td>";
         lista+="<a href='principal.jsp?CONTENIDO=mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo() +
-                " 'title='Modificar'> <button title='Modificar'> Modificar </button> "; 
+                " 'title='Modificar'> <button title='Modificar'> Modificar </button></a> "; 
         lista+="<button title='Eliminar' onClick='eliminar("+ mascotas.getCodigo()+")'>Eliminar</button>";
         lista+="</td>";
         lista+="</tr>";
