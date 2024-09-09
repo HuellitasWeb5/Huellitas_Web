@@ -189,7 +189,7 @@ public class Persona {
     }
 
     public void setClave(String clave) {
-        this.clave = clave;
+            this.clave = clave;
     }
     public GeneroPersona getGeneroPersona() {
         return new GeneroPersona(genero);
@@ -197,9 +197,10 @@ public class Persona {
 
     @Override
     public String toString() {
-        String datos = "";
-        if (identificacion != null) {
-            datos =identificacion+" - "+nombre;
+
+        String datos="";
+        if (identificacion!=null){
+            datos=identificacion+" - "+nombre;
         }
         return datos;
     }
@@ -209,7 +210,8 @@ public class Persona {
  
         String cadenaSQL = "insert into Persona(identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave) "
                 + "values ('" + identificacion + "', '" + nombre + "','" + genero + "','" + fechaNacimiento + "', '" + email + "',"
-                + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "',"+ this.getClave() + ")";
+
+                + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "',"+ this.getClave()  + ")";
         System.out.println(cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
@@ -224,8 +226,8 @@ public class Persona {
     }
 
     public boolean eliminar() {
-        String cadenaSQL = "delete from Persona where identificacion=" + identificacion;
-        System.out.println("cadenaSQL " + cadenaSQL);
+       String cadenaSQL = "delete from Persona where identificacion=" + identificacion;
+        System.out.println("Eliminar " + cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
@@ -239,6 +241,7 @@ public class Persona {
             orden = " order by  " + orden;
         } else {
             orden = " ";
+            
         }
         String cadenaSQL = "select identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave from persona " + filtro + orden;
       //   System.out.println(cadenaSQL); // prueba para revisar como esta iniciando en sesion

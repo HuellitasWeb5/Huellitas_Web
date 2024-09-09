@@ -17,6 +17,7 @@ if (accion.equals("Modificar")) {
 %>
 
 <h3><%=accion.toUpperCase() %> MASCOTAS</h3>
+<table border="0"><tr><td><!-- para la tabla que se creó para la imagen-->
 <form name="formulario" method="post" action="principal.jsp?CONTENIDO=mascotasActualizar.jsp" enctype="multipart/form-data">
     <table border="0">
         <tr>
@@ -58,12 +59,14 @@ if (accion.equals("Modificar")) {
             <option value="disponible">Disponible</option>
             <option value="apadrinado">Apadrinado</option>
             <option value="adoptado">Adoptado</option>
-        </select></td>
+        </select>
         </tr>
     </table>
     <input type="hidden" name="codigo" value="<%=codigo%>">
-    <p><input type="submit" name="accion" value="<%=accion %>"></p>
+    <input type="submit" name="accion" value="<%=accion %>">
+    <input type="button" value="Cancelar" onClick="window.history.back()">
 </form>
+    </td><td><img src="presentacion/mascota/<%=mascota.getFoto()%>" id="foto" width="auto" height="350"></td></table>
 <script> 
     function mostrarFoto(){
         var lector=new FileReader();

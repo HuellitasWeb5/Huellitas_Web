@@ -15,6 +15,7 @@ if (accion.equals("Modificar")) {
     }
 %>
 <h3><%=accion.toUpperCase() %> CLIENTE</h3>
+<table border="0"><tr><td><!-- para la tabla que se creó para la imagen-->
 <form name="formulario" method="post" action="principal.jsp?CONTENIDO=clientesActualizar.jsp" enctype="multipart/form-data">
     <table border="0">
         <tr>
@@ -23,7 +24,7 @@ if (accion.equals("Modificar")) {
         </tr>
         <tr>
             <th>Nombres</th>
-            <td><input type="text" name="nombre" value="<%=clientes.getNombre()%>" size="50" maxlength="50"></td>
+            <td><input type="text" name="nombre" value="<%=clientes.getNombre()%>" size="30" maxlength="50" required=""></td>
         </tr>
         <tr>
             <th>Genero</th><td><%=clientes.getGeneroPersona().getRadioButtons() %></td>   
@@ -43,11 +44,13 @@ if (accion.equals("Modificar")) {
             <th>Foto</th>
             <td> <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();"></td>
         </tr>
-        <tr><th>Contraseña</th><td><input type="password" name="clave" value=""></td></tr>
+        <tr><th>Contraseña</th><td><input type="password" name="clave" value="" required></td></tr>
     </table>
     <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
-    <p><input type="submit" name="accion" value="<%=accion %>"></p>
+    <input type="submit" name="accion" value="<%=accion %>">
+    <input type="button" value="Cancelar" onClick="window.history.back()">
 </form>
+    <td><img src="presentacion/clientes/<%=clientes.getFoto()%>" id="foto" width="auto" height="200"></td></table>
 <script> 
     function mostrarFoto(){
         var lector=new FileReader();
