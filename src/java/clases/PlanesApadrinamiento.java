@@ -7,6 +7,11 @@ package clases;
 
 import clasesGenericas.ConectorBD;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -29,7 +34,7 @@ public class PlanesApadrinamiento {
                 nombre = resultado.getString("nombre");
                 descripcion = resultado.getString("descripcion");
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
         }
     }
 
@@ -59,7 +64,7 @@ public class PlanesApadrinamiento {
 
     public boolean grabar(){
         String cadenaSQL="insert into planesApadrinamiento (nombre,descripcion) "
-        + " values ('"+nombre+"','"+descripcion+"') where id="+id;
+        + " values ('"+nombre+"','"+descripcion+"')";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
     public boolean modificar(){
@@ -70,5 +75,39 @@ public class PlanesApadrinamiento {
         String cadenaSQL="delete from planesApadrinamiento where id="+id;
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
+    
+    public static ResultSet getLista(String filtro, String orden){
+       if(filtro != null && filtro != ""){
+           filtro = " where " + filtro;
+       }else{
+           filtro= " ";
+       }
+       if (orden != null && orden != ""){
+           orden = " orden by " +orden;
+       }else {
+           orden = " ";
+       }
+       String cadenaSQL="Select id, nombre, descripcion from PlanesApadrinamiento" +filtro+orden;
+       return ConectorBD.consultar(cadenaSQL);
+   }
+    
+    public static List<PlanesApadrinamiento> getListaEnObjetos(String filtro, String orden){
+       List<PlanesApadrinamiento> lista=new ArrayList<>();
+       ResultSet datos= PlanesApadrinamiento.getLista(filtro, orden);
+       if (datos != null){
+           try {
+               while(datos.next()){
+                   PlanesApadrinamiento planes = new PlanesApadrinamiento();
+                   planes.setId(datos.getString("id"));
+                   planes.setNombre(datos.getString("nombre"));
+                   planes.setDescripcion(datos.getString("descripcion"));
+                   lista.add(planes);
+               }
+           } catch (SQLException ex) {
+               Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       }
+       return lista;
+   }
 }
 
