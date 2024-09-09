@@ -16,7 +16,8 @@ if (accion.equals("Modificar")) {
 %>
 
 <h3><%= accion.toUpperCase() %>   ADMINISTRADOR </h3>
-<form name="formulario" method="post" action="principal.jsp?CONTENIDO=administradoresActualizar.jsp">
+<table border="0"><tr><td><!-- para la tabla que se creó para la imagen-->
+<form name="formulario" method="post" action="principal.jsp?CONTENIDO=administradoresActualizar.jsp" enctype="multipart/form-data">
     <table border="0">
     
         <tr>
@@ -34,13 +35,12 @@ if (accion.equals("Modificar")) {
         
         <tr><th>Fecha De Nacimiento</th><td><input type="date" name="fechaNacimiento" value="<%=administrador.getFechaNacimiento()%>" maxlength="15" required></td></tr>
        
-        <tr><th>Teléfono</th><td><input type="text" name="telefono" value="<%=administrador.getTelefono()%>" maxlength="12"></td></tr>
          
         <tr>
             <th>Correo Electronico</th>
             <td><input type="text" name="email" value="<%=administrador.getEmail() %>" maxlength="80" required></td>
         </tr>
-        
+        <tr><th>Teléfono</th><td><input type="text" name="telefono" value="<%=administrador.getTelefono()%>" maxlength="12"></td></tr>
        <tr>
         <th>Dirección</th>
         <td><input type="text" name="direccion" value="<%=administrador.getDireccion() %>" size="50" maxlength="100"></td>
@@ -63,11 +63,15 @@ if (accion.equals("Modificar")) {
         </tr>
         <tr>
             <th>Contraseña</th>
-            <td><input type="password" name="clave"></td>
+            <td><input type="password" name="clave" required></td>
         </tr>
-       
     </table>
-        
+        <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
+        <input type="submit" name="accion" value="<%=accion%>">
+        <input type="button" value="Cancelar" onClick="window.history.back()">
+</form>
+   
+    </td><td><img src="presentacion/administrador/<%=administrador.getFoto()%>" id="foto" width="auto" height="350"></td></table>
     <script> 
     function mostrarFoto(){
         var lector=new FileReader();
@@ -78,7 +82,4 @@ if (accion.equals("Modificar")) {
     }
 </script>
     
-    <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
-    <input  type="submit" class="submit" name="accion" value="<%=accion%>">
-   <input class="button" type="button" value="Cancelar" onClick="window.history.back()">
-</form>
+    

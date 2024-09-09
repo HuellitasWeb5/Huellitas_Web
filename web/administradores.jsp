@@ -23,10 +23,9 @@ for (int i = 0; i < datos.size(); i++) {
         lista+="<td><img src='presentacion/administrador/" + administrador.getFoto() + "' width='30' height='auto'></td>";
  
         lista+="<td>" + administrador.getTipoEnObjeto()+ "</td>";
-        lista+="<td>";
-        lista+="<a href='principal.jsp?CONTENIDO=administradoresFormulario.jsp&accion=Modificar&identificacion=" + administrador.getIdentificacion() +
-                " 'title='Modificar'><img src='presentacion/imagenes/modificar.png'></a>  "; 
-        lista+="<img src='presentacion/imagenes/eliminar.png' title='Eliminar' onClick='eliminar("+ administrador.getIdentificacion()+")'> ";
+        lista+="<td><a href='principal.jsp?CONTENIDO=administradoresFormulario.jsp&accion=Modificar&identificacion=" + administrador.getIdentificacion()+
+                " 'title='Modificar'> <button title='Modificar'> Modificar </button></a> "; 
+        lista+="<button title='Eliminar' onClick='eliminar("+ administrador.getIdentificacion()+")'>Eliminar</button>";
         lista+="</td>";
         lista+="</tr>";
   }
@@ -37,7 +36,7 @@ for (int i = 0; i < datos.size(); i++) {
     <tr>
         <th>Identificacion</th><th>Nombres</th><th>Genero</th><th>FechaNacimiento</th><th>Email</th><th>Telefono</th><th>Dirección</th><th>Residencia</th><th>foto</th><th>Tipo</th>
                 <th><a href="principal.jsp?CONTENIDO=administradoresFormulario.jsp&accion=Adicionar" title="Adicionar  ">
-                        <img src="presentacion/imagenes/agregar.png"></a></th>
+                        <button id="Adicionar">Adicionar</button> </a>
     </tr>
     <%=lista%>
 </table>

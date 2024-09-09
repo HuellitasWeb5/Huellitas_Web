@@ -197,6 +197,7 @@ public class Persona {
 
     @Override
     public String toString() {
+
         String datos="";
         if (identificacion!=null){
             datos=identificacion+" - "+nombre;
@@ -209,6 +210,7 @@ public class Persona {
  
         String cadenaSQL = "insert into Persona(identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave) "
                 + "values ('" + identificacion + "', '" + nombre + "','" + genero + "','" + fechaNacimiento + "', '" + email + "',"
+
                 + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "',"+ this.getClave()  + ")";
         System.out.println(cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
