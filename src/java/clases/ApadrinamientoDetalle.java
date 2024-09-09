@@ -115,4 +115,6 @@ public class ApadrinamientoDetalle {
         System.out.println("cadenaSQL " + cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
+      
+        
 }
