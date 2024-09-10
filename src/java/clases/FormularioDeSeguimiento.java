@@ -29,6 +29,20 @@ public class FormularioDeSeguimiento {
     public FormularioDeSeguimiento() {
     }
 
+    public FormularioDeSeguimiento(int id, Date fecha, String foto, Date fechaProximaVisita, String descripcion, String evolucionMedica, String masaCorporal, String estadoEmocional, String adaptacion, String vinculo, int codigoAdopcion) {
+        this.id = id;
+        this.fecha = fecha;
+        this.foto = foto;
+        this.fechaProximaVisita = fechaProximaVisita;
+        this.descripcion = descripcion;
+        this.evolucionMedica = evolucionMedica;
+        this.masaCorporal = masaCorporal;
+        this.estadoEmocional = estadoEmocional;
+        this.adaptacion = adaptacion;
+        this.vinculo = vinculo;
+        this.codigoAdopcion = codigoAdopcion;
+    }
+
     public int getId() {
         return id;
     }
