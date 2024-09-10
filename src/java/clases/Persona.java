@@ -285,5 +285,4 @@ public class Persona {
         }
         return persona;
     }
-
 }
