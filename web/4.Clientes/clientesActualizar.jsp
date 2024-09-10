@@ -90,5 +90,5 @@
 %>
 
 <script type="text/javascript">
-    document.location = "principal.jsp?CONTENIDO=clientes.jsp"
+    document.location = "principal.jsp?CONTENIDO=4.Clientes/clientes.jsp"
 </script>

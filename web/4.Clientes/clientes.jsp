@@ -23,7 +23,7 @@ for (int i = 0; i < datos.size(); i++) {
         lista+="<td>" + clientes.getResidencia()+ "</td>";
         lista+="<td><img src='presentacion/clientes/" + clientes.getFoto() + "' width='30' height='auto'></td>";
         lista+="<td>";
-        lista+="<a href='principal.jsp?CONTENIDO=clientesFormulario.jsp&accion=Modificar&identificacion=" + clientes.getIdentificacion()+
+        lista+="<a href='principal.jsp?CONTENIDO=4.Clientes/clientesFormulario.jsp&accion=Modificar&identificacion=" + clientes.getIdentificacion()+
                 " 'title='Modificar'> <button title='Modificar'> Modificar </button> </a>"; 
         lista+="<button title='Eliminar' onClick='eliminar("+ clientes.getIdentificacion()+")'>Eliminar</button>";
         lista+="</td>";
@@ -35,7 +35,7 @@ for (int i = 0; i < datos.size(); i++) {
     <tr>
         <th>Identificacion</th><th>Nombres</th><th>Genero</th><th>Fecha de nacimiento</th><th>Email</th><th>Telefono</th><th>Direccion</th>
         <th>Residencia</th><th>Foto</th>
-                <th><a href="principal.jsp?CONTENIDO=clientesFormulario.jsp&accion=Adicionar" title="Adicionar">
+                <th><a href="principal.jsp?CONTENIDO=4.Clientes/clientesFormulario.jsp&accion=Adicionar" title="Adicionar">
                         <button id="Adicionar" >Adicionar</button>  </a></th>
     </tr>
     <%=lista%>
@@ -45,7 +45,7 @@ for (int i = 0; i < datos.size(); i++) {
     function eliminar(identificacion){
         resultado=confirm("Realmente desea eliminar el cliente con identificacion= "+identificacion+"?");
         if (resultado) {
-            document.location="principal.jsp?CONTENIDO=clientesActualizar.jsp&accion=Eliminar&identificacion="+identificacion;
+            document.location="principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp&accion=Eliminar&identificacion="+identificacion;
          }
     }
 </script>
