@@ -54,6 +54,7 @@ public class TipoPersona {
             case "A":
                 menu += "<a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=mascotas.jsp'>Mascotas</a>";
+                menu += "<a href='principal.jsp?CONTENIDO=tiposDonaciones.jsp'>TIPO DE DONACION</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=unidadesDeMedida.jsp'>Unida de medida</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=adopciones.jsp'>Adopciones</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=padripets.jsp'> Padripet</a>";

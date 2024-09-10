@@ -13,8 +13,6 @@
 </head>
 
 <%
-    String accion = request.getParameter("accion");
-    String id = request.getParameter("id");
     UnidadDeMedida unidadDeMedida = new UnidadDeMedida();
     String lista = "";
     List<UnidadDeMedida> datos = UnidadDeMedida.getListaEnObjetos(null, null);
@@ -100,17 +98,17 @@
         if (accion === "Modificar") {
             $('#formulario').dialog('option', 'title', 'Modificar Unidad de Medida');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Modificar';
-            // Aquí actualizamos el onclick del botón
+        
             document.querySelector('input[type="button"][value="Modificar"]').setAttribute('onclick', 'modificarUnidadDeMedida(' + id + ');');
 
-            // Cargar los datos de la unidad de medida a modificar
+         
             cargarDatosUnidadDeMedida(id);
 
         } else if (accion === "Adicionar") {
             $('#formulario').dialog('option', 'title', 'Adicionar Unidad de Medida');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Agregar';
             document.querySelector('input[type="button"][value="Agregar"]').setAttribute('onclick', 'agregarUnidadDeMedida();');
-            // Limpiar campos al abrir el formulario para adicionar
+          
             document.getElementById('nombre').value = '';
             document.getElementById('notacion').value = '';
         }
@@ -120,17 +118,11 @@
 
     function cargarDatosUnidadDeMedida(id) {
 
-        document.getElementById('nombre').value = "Nombre"
-        document.getElementById('notacion').value = "Notacion";
     }
 
-    function cargarDatosUnidadDeMedida(id) {
-
-        document.getElementById('nombre').value = "Nombre de Ejemplo"; // Reemplaza con el nombre real
-        document.getElementById('notacion').value = "Notación de Ejemplo"; // Reemplaza con la notación real
-    }
-
+ 
     function modificarUnidadDeMedida(id) {
+        
         var nombre = document.getElementById('nombre').value;
         var notacion = document.getElementById('notacion').value;
         var url = "unidadesDeMedidaActualizar.jsp?accion=Modificar&id=" + id + "&nombre=" + nombre + "&notacion=" + notacion;
@@ -152,7 +144,7 @@
 
     const swiper = new Swiper('.swiper-container', {
         loop: true,
-        slidesPerView: 4, // Muestra 4 tarjetas a la vez
+        slidesPerView: 4, // ayuda a mostrarme  4 tarjetas a la vez
         spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-button-next',
