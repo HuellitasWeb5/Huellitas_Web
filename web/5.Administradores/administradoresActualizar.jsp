@@ -91,5 +91,5 @@ switch(variables.get("accion")){
 
 
 <script type="text/javascript">
-    document.location="principal.jsp?CONTENIDO=administradores.jsp"
+    document.location="principal.jsp?CONTENIDO=5.Administradores/administradores.jsp"
 </script>
