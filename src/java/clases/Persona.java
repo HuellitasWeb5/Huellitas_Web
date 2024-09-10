@@ -286,4 +286,18 @@ public class Persona {
         return persona;
     }
 
+    public static String getListaEnArreglosJS(String filtro, String orden) {
+        String lista = "[";
+        List<Persona> datos = Persona.getListaEnObjetos(filtro, orden);
+        for (int i = 0; i < datos.size(); i++) {
+            Persona persona = datos.get(i);
+            if (i > 0) {
+                lista += ", ";
+            }
+            lista += "['" + persona.getIdentificacion() + "', '" + persona.getNombre() + "','" + persona.getTelefono() + "','" + persona.getDireccion()+ "', '" + persona.getResidencia    () + "',"
+                    + "'" + persona.getEmail()+ "']";
+        }
+        lista += "]";
+        return lista;
+    }
 }
