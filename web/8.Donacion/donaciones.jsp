@@ -74,7 +74,7 @@
     function confirmarEliminacion(codigo) {
         const respuesta = confirm("¿Realmente desea eliminar el registro?");
         if (respuesta) {
-            document.location = "principal.jsp?CONTENIDO=donacionsActualizar.jsp&accion=Eliminar&codigo=" + codigo;
+            document.location = "principal.jsp?CONTENIDO=8.Donacion/donacionsActualizar.jsp&accion=Eliminar&codigo=" + codigo;
         }
     }
 
@@ -82,11 +82,11 @@
         // Debo hacer el boton de ver detalles
     }
     function abrirFormularioAdicionar() {
-        var url="principal.jsp?CONTENIDO=donacionesFormulario.jsp"; //&accion=Adicionar";
+        var url="principal.jsp?CONTENIDO=8.Donacion/donacionesFormulario.jsp"; //&accion=Adicionar";
         window.location.href=url;
     }
     function agregarTipoDonacion() {
-        var url = "principal.jsp?CONTENIDO=tiposDonaciones.jsp?"
+        var url = "principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp?"
         window.location.href = url;
     }
     const swiper = new Swiper('.swiper-container', {

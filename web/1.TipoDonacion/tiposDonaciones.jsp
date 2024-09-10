@@ -118,7 +118,7 @@
     }
 
     function abrirFormularioConceptoDonacion(codigo) {
-        var url = "principal.jsp?CONTENIDO=conceptoDonaciones.jsp&codigo=" + codigo;
+        var url = "principal.jsp?CONTENIDO=1.TipoDonacion/conceptoDonaciones.jsp&codigo=" + codigo;
         window.location.href = url;
     }
 
