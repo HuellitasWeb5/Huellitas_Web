@@ -53,14 +53,15 @@ public class TipoPersona {
         switch (this.codigo) {
             case "A":
                 menu += "<a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a>";
-                menu += "<a href='principal.jsp?CONTENIDO=mascotas.jsp'>Mascotas</a>";
-                menu += "<a href='principal.jsp?CONTENIDO=tiposDonaciones.jsp'>TIPO DE DONACION</a>";
-                menu += "<a href='principal.jsp?CONTENIDO=unidadesDeMedida.jsp'>Unida de medida</a>";
-                menu += "<a href='principal.jsp?CONTENIDO=adopciones.jsp'>Adopciones</a>";
-                menu += "<a href='principal.jsp?CONTENIDO=padripets.jsp'> Padripet</a>";
-                menu += "<a href='principal.jsp?CONTENIDO=donaciones.jsp'>Donaciones</a>";
-                menu += "<a href='principal.jsp?CONTENIDO=administradores.jsp'>Administradores</a>";
-                menu += "<a href='principal.jsp?CONTENIDO=clientes.jsp'>Clientes</a>";
+                menu += "<a href='principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp'>Tipo donacion</a>";
+                menu += "<a href='principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesPadrinos.jsp'>Planes padripets</a>";
+                menu += "<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp'>Mascotas</a>";
+                menu += "<a href='principal.jsp?CONTENIDO=4.Clientes/clientes.jsp'>Clientes</a>";
+                menu += "<a href='principal.jsp?CONTENIDO=5.Administradores/administradores.jsp'>Administradores</a>";
+                menu += "<a href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp'> Padripet</a>";
+                menu += "<a href='principal.jsp?CONTENIDO=7.Adopciones/adopciones.jsp'>Adopciones</a>";
+                menu += "<a href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a>";
+                menu += "<a href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Unida de medida</a>";
                 menu += "<a href='index.jsp'>Salir</a>";
                 //  menu+="<a>Reportes</a>";
                 
