@@ -35,22 +35,6 @@ if(accion.equals("Modificar")){
             listaDetalle += "</tr>";
         }
 }
-String lista = "";
-List<Mascota> datos = Mascota.getListaEnObjetos(null, null);
-if (accion.equals("Modificar")) {
-        apadrinamiento=new Apadrinamiento(codigo);
-    }
-for (int i = 0; i < datos.size(); i++) {
-    Mascota mascotas = datos.get(i);
-    lista += "<tr>";
-    lista += "<td>" + mascotas.getCodigo() + "</td>";
-    lista += "<td>" + mascotas.getNombre() + "</td>";
-    lista += "<td>" + mascotas.getFoto() + "</td>";
-    lista += "<td>" + mascotas.getCuidadosEspeciales() + "</td>";
-    lista += "<td><input type='checkbox' class='select-row' data-id='" + mascotas.getCodigo() + "'></td>";
-    lista += "</tr>";
-}
-PlanesApadrinamiento planes1=new PlanesApadrinamiento(codigoPlan);
     String listaPlan="";
     List<PlanesApadrinamiento> datosPlanes=PlanesApadrinamiento.getListaEnObjetos(null, null);
     for(int j=0; j < datosPlanes.size();j++){
@@ -65,7 +49,7 @@ PlanesApadrinamiento planes1=new PlanesApadrinamiento(codigoPlan);
 %>
 
 <h3><%=accion.toUpperCase() %>  PADRIPET</h3>
-<form name="formulario" method="post" action="principal.jsp?CONTENIDO=padrinosActualizar.jsp">
+<form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
     <table border='0'>
         <tr>
             <th>Código</th><td id="codigoPadrino"></td>
@@ -106,10 +90,10 @@ PlanesApadrinamiento planes1=new PlanesApadrinamiento(codigoPlan);
                     <th>Mascota</th><th><input type="text" id="Mascota"></th>
                 </tr>
                 <tr>
-                    <th>Fecha Inicio: </th><input type="date" id="Fecha"></th>
+                    <th>Fecha Inicio: </th><th><input type="date" id="Fecha"></th>
                 </tr>
                 <tr>
-                    <th>Fecha Fin: </th><input type="date" ></th>
+                    <th>Fecha Fin: </th><th><input type="date" ></th>
                 </tr>
             </thead>
         </table>
