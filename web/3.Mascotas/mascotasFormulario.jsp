@@ -18,7 +18,7 @@ if (accion.equals("Modificar")) {
 
 <h3><%=accion.toUpperCase() %> MASCOTAS</h3>
 <table border="0"><tr><td><!-- para la tabla que se creó para la imagen-->
-<form name="formulario" method="post" action="principal.jsp?CONTENIDO=mascotasActualizar.jsp" enctype="multipart/form-data">
+<form name="formulario" method="post" action="principal.jsp?CONTENIDO=3.Mascotas/mascotasActualizar.jsp" enctype="multipart/form-data">
     <table border="0">
         <tr>
             <th>Código</th><td><%=mascota.getCodigo()%></td>
