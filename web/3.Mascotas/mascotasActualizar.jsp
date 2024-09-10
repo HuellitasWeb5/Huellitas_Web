@@ -86,5 +86,5 @@ if(!isMultipart){
 %>
 
 <script type="text/javascript">
-    document.location = "principal.jsp?CONTENIDO=mascotas.jsp";
+    document.location = "principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp";
 </script>>
