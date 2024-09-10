@@ -8,6 +8,10 @@ package clases;
 import clasesGenericas.ConectorBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -24,7 +28,7 @@ public class ApadrinamientoDetalle {
     public ApadrinamientoDetalle() {
     }
     public ApadrinamientoDetalle(String id) {
-        String cadenaSQL = "id,codigoApadrinamiento,planApadrinamiento,idPlanApadrinamiento,codigoMascota,lapsoApadrinamiento from apadrinamientoDetalle where id=" + id;
+        String cadenaSQL = "select id,codigoApadrinamiento,planApadrinamiento,idPlanApadrinamiento,codigoMascota,lapsoApadrinamiento from apadrinamientoDetalle where id=" + id;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
@@ -98,7 +102,7 @@ public class ApadrinamientoDetalle {
         }
         return datos;
     }
-
+    
     public boolean grabar(){
         String cadenaSQL="insert into apadrinamientoDetalle(id,codigoApadrinamiento,planApadrinamiento,idPlanApadrinamiento,codigoMascota,lapsoApadrinamiento)"
                 + " Values('"+id+"','"+codigoApadrinamiento+"','"+planApadrinamiento+"','"+idPlanApadrinamiento+"','"+codigoMascota+"','"+lapsoApadrinamiento+"')";
@@ -115,6 +119,43 @@ public class ApadrinamientoDetalle {
         System.out.println("cadenaSQL " + cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
-      
-        
+    
+    public static ResultSet getLista(String filtro, String orden){
+       if(filtro != null && filtro != ""){
+           filtro = " where " + filtro;
+       }else{
+           filtro= " ";
+       }
+       if (orden != null && orden != ""){
+           orden = " orden by " +orden;
+       }else {
+           orden = " ";
+       }
+       String cadenaSQL="select id,codigoApadrinamiento,planApadrinamiento,idPlanApadrinamiento,codigoMascota,lapsoApadrinamiento from apadrinamientoDetalle" +filtro+orden;
+       return ConectorBD.consultar(cadenaSQL);
+   }
+    
+    public static List<ApadrinamientoDetalle> getListaEnObjetos(String filtro, String orden){
+       List<ApadrinamientoDetalle> lista=new ArrayList<>();
+       ResultSet datos= ApadrinamientoDetalle.getLista(filtro, orden);
+       if (datos != null){
+           try {
+               while(datos.next()){
+                   ApadrinamientoDetalle detalles = new ApadrinamientoDetalle();
+                   detalles.setId(datos.getString("id"));
+                   detalles.setCodigoApadrinamiento(datos.getString("codigoApadrinamiento"));
+                   detalles.setPlanApadrinamiento(datos.getString("planApadrinamiento"));
+                   detalles.setIdPlanApadrinamiento(datos.getString("idPlanApadrinamiento"));
+                   detalles.setCodigoMascota(datos.getString("codigoMascota"));
+                   detalles.setLapsoApadrinamiento(datos.getString("lapsoApadrinamiento"));
+                   
+                   lista.add(detalles);
+               }
+           } catch (SQLException ex) {
+               Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
+           }
+       }
+       return lista;
+   }
+    
 }
