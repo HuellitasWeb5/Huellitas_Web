@@ -22,7 +22,7 @@ for (int i = 0; i < datos.size(); i++) {
         lista+="<td>" + mascotas.getFechaIngreso()+ "</td>";
         lista+="<td>" + mascotas.getEstado()+ "</td>";
         lista+="<td>";
-        lista+="<a href='principal.jsp?CONTENIDO=mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo() +
+        lista+="<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo() +
                 " 'title='Modificar'> <button title='Modificar'> Modificar </button></a> "; 
         lista+="<button title='Eliminar' onClick='eliminar("+ mascotas.getCodigo()+")'>Eliminar</button>";
         lista+="</td>";
@@ -35,7 +35,7 @@ for (int i = 0; i < datos.size(); i++) {
     <tr>
         <th>Código</th><th>Nombre</th><th>Género</th><th>Tamaño</th><th>Foto</th><th>Cuidados Especiales</th><th>Fecha De Nacimiento Aproximada</th>
         <th>Fecha De Ingreso</th><th>Estado</th>
-        <th><a href="principal.jsp?CONTENIDO=mascotasFormulario.jsp&accion=Adicionar" title="Adicionar"><button id="Adicionar">Adicionar</button></a></th>
+        <th><a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar" title="Adicionar"><button id="Adicionar">Adicionar</button></a></th>
     </tr>
     <%=lista%>
 </table>
@@ -44,7 +44,7 @@ for (int i = 0; i < datos.size(); i++) {
     function eliminar(codigo){
         resultado=confirm("Realmente desea eliminar la mascota con el codigo: "+codigo+"?");
         if (resultado) {
-            document.location="principal.jsp?CONTENIDO=mascotasActualizar.jsp&accion=Eliminar&codigo="+codigo;
+            document.location="principal.jsp?CONTENIDO=3.Mascotas/mascotasActualizar.jsp&accion=Eliminar&codigo="+codigo;
          }
     }
 </script>
