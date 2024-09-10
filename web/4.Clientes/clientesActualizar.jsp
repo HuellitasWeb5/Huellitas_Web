@@ -83,7 +83,7 @@
             clientes.modificar(identificacionAnterior);
             break;
         case "Eliminar":
-            clientes.setIdentificacion(request.getParameter("identificacion1"));
+            clientes.setIdentificacion(request.getParameter("identificacion"));
             clientes.eliminar();
             break;
     }
