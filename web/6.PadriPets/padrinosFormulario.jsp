@@ -11,18 +11,17 @@
 <%@page import="clases.Apadrinamiento"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-String accion=request.getParameter("accion");
-String codigo=request.getParameter("codigo");
-String codigoPlan=request.getParameter("codigoPlan");
-String lineaModificar = "";
-Apadrinamiento apadrinamiento = new Apadrinamiento();
-String listaDetalle="";
-if(accion.equals("Modificar")){
-    apadrinamiento= new Apadrinamiento(codigo);
-    lineaModificar = "<tr><th>Fecha</th><td>" + apadrinamiento.getFecha() + "</td></tr>";
-    lineaModificar += "<tr><th>Codigo</th><td>" + apadrinamiento.getCodigo() + "</td></tr>";
-    List<ApadrinamientoDetalle> datosDetalle = apadrinamiento.getDetalles(); 
-    for (int k = 0; k < datosDetalle.size(); k++) {
+    String accion = request.getParameter("accion");
+    String codigo = request.getParameter("codigo");
+    String lineaModificar = "";
+    
+    String listaDetalle = "";
+    if (accion.equals("Modificar")) {
+        Apadrinamiento apadrinamiento = new Apadrinamiento(codigo);
+        lineaModificar = "<tr><th>Fecha</th><td>" + apadrinamiento.getFecha() + "</td></tr>";
+        lineaModificar += "<tr><th>Codigo</th><td>" + apadrinamiento.getCodigo() + "</td></tr>";
+        List<ApadrinamientoDetalle> datosDetalle = apadrinamiento.getDetalles();
+        for (int k = 0; k < datosDetalle.size(); k++) {
             ApadrinamientoDetalle detalle = datosDetalle.get(k);
             listaDetalle += "<tr>";
             listaDetalle += "<td align='rigth'>" + detalle.getCodigoMascota() + "</td>";
@@ -34,10 +33,10 @@ if(accion.equals("Modificar")){
             listaDetalle += "</td>";
             listaDetalle += "</tr>";
         }
-}
-    String listaPlan="";
-    List<PlanesApadrinamiento> datosPlanes=PlanesApadrinamiento.getListaEnObjetos(null, null);
-    for(int j=0; j < datosPlanes.size();j++){
+    }
+    String listaPlan = "";
+    List<PlanesApadrinamiento> datosPlanes = PlanesApadrinamiento.getListaEnObjetos(null, null);
+    for (int j = 0; j < datosPlanes.size(); j++) {
         PlanesApadrinamiento planes2 = datosPlanes.get(j);
         listaPlan += "<tr>";
         listaPlan += "<td>" + planes2.getId() + "</td>";
@@ -48,9 +47,10 @@ if(accion.equals("Modificar")){
     }
 %>
 
-<h3><%=accion.toUpperCase() %>  PADRIPET</h3>
+<h3><%=accion.toUpperCase()%>  PADRIPET</h3>
 <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
     <table border='0'>
+        <%=lineaModificar%>
         <tr>
             <th>Código</th><td id="codigoPadrino"></td>
         </tr>
@@ -68,8 +68,9 @@ if(accion.equals("Modificar")){
         </tr>
     </table>
     <br>
-    <button onclick="abrirFormulario()">Adicionar mascota</button>
-        <input type="hidden" name="mascotasPlan" size="100">
+    <a href="#" class="button-link" onclick="abrirFormulario();">Adicionar mascota</a>
+
+    <input type="hidden" name="mascotasPlan" size="100">
 
     <table border="1" id="tablaMascotas">
         <tr>
@@ -77,53 +78,50 @@ if(accion.equals("Modificar")){
         </tr>
         <%=listaDetalle%>
     </table>
-    
+
     <input type="hidden" name="numero" value="<%=codigo%>">
     <input type="submit" name="accion" value="<%=accion%>">
     <input type="button" value="Cancelar" onClick="window.history.back()">
 </form>
-<div id="formularioPlan" title="Apadrinar mascota">
+<div id="formulario" title="Apadrinar mascota">
     <form name="formularioMascotas">
-        <table id="mascotas" border="1">
+        <table id="mascotas" border="0">
             <thead>
-                <tr>
-                    <th>Mascota</th><th><input type="text" id="Mascota"></th>
-                </tr>
-                <tr>
-                    <th>Fecha Inicio: </th><th><input type="date" id="Fecha"></th>
-                </tr>
-                <tr>
-                    <th>Fecha Fin: </th><th><input type="date" ></th>
-                </tr>
+                <tr><th>Mascota</th><th><input type="text" id="Mascota"></th></tr>
+                <tr><th>Fecha Inicio: </th><th><input type="date" id="Fecha"></th></tr>
+                <tr><th>Fecha Fin: </th><th><input type="date" ></th></tr>
             </thead>
         </table>
         <br>
         <table id='planes' border="1">
             <thead>
                 <tr>
-                    <th>Codigo</th>
-                    <th>Nombre</th>
-                    <th>Descripcion</th>
-                    <th>Seleccionar</th>
+                    <th>Codigo</th><th>Nombre</th><th>Descripcion</th><th>Seleccionar</th>
                 </tr>
             </thead>
             <tbody>
-                <%= listaPlan %>
+                <%= listaPlan%>
             </tbody>
         </table>
-        <br>
-        <label>Fecha fin:</label><input type="date" id="fechaFin">
         <br>
         <button onclick="apadrinar()">Aceptar</button>
         <button onclick="cerrarFormulario()">Cancelar</button>
     </form>
 </div>
 <script>
+    var mascota = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+    var vectorMascotas = new Array();
+    for(var i = 0; i < mascota.length; i++) {
+    vectorMascotas[i] = mascota[i][1];
+    };
+    $("#Mascota").autocomplete({
+    source: vectorMascotas
+    });
+
     $(function () {
-        $("#formularioPlan").dialog({
+        $("#formulario").dialog({
             autoOpen: false,
-            width: 700,
-            height: 500,
+            
             show: {
                 effect: "blind",
                 duration: 1000
@@ -131,75 +129,18 @@ if(accion.equals("Modificar")){
             hide: {
                 effect: "explode",
                 duration: 1000
-            }
+            },
+            width: 600,   // Ancho del diálogo en píxeles
+            height: 400
         });
     });
 
+
     function abrirFormulario() {
-        $('#formularioPlan').dialog('open');
+        $('#formulario').dialog('open');
     }
 
     function cerrarFormulario() {
-        $('#formularioPlan').dialog('close');
-    }
-
-    function apadrinar() {
-        var objeto = document.formulario.mascotasPlan;
-        if (objeto.value != '')
-            objeto.value += "||";
-
-        var selectedMascota = document.formularioMascotas.querySelector('#mascotas input[name="mascota"]:checked');
-        var selectedPlan = document.formularioMascotas.querySelector('#planes input[name="plan"]:checked');
-        var fechaFin = document.formularioMascotas.getElementById('fechaFin').value;
-
-        if (!selectedMascota || !selectedPlan) {
-            alert('Debes seleccionar una mascota y un plan.');
-            return;
-        }
-
-        var rowMascota = selectedMascota.closest('tr');
-        var nombreMascota = rowMascota.cells[1].innerText;
-
-        var rowPlan = selectedPlan.closest('tr');
-        var nombrePlan = rowPlan.cells[1].innerText;
-
-        objeto.value += nombreMascota + "|" nombrePlan + "|" + fechaFin;
-        cargarTabla();
-        cerrarFormulario();
-    }
-
-    function cargarTabla() {
-        document.getElementById("tablaMascotas").innerHTML = '<tr><th>Mascota</th><th>Plan</th><th>Fecha Fin</th>\n\
-                    <th><img src="presentacion/imagenes/añadir.png" width="30" height="30" title="Adicionar" onclick="abrirFormulario();"></th></tr>';
-        var filas = document.formulario.mascotasPlan.value.split("||");
-                for (var i = 0; i < filas.length;i++){
-        var fila = filas[i].split("|");
-        var nombre = fila[0];
-
-        var nombrePlan = fila[1];
-        var fecha = fila[2];
-
-        document.getElementById("tablaMascotas").innerHTML += "<tr><td>" + nombre + "</td><td align='right'>" +
-                nombrePlan + "</td><td align='right'>" + fecha + "</td> +
-                "<td><img src='presentacion/imagenes/eliminar.png' width='30' height='30' title='Eliminar' onClick='eliminar(" + i + ")'>\n\
-                           </td></tr>";
-        };
-    }
-
-    function eliminar(fila) {
-        var mascotasPlan = "";
-        var filas = document.formulario.mascotasPlan.value.split("||"); 
-        var contador = 0;
-        for (var i = 0; i < filas.length; i++) {
-            if (i != fila) {
-                if (contador > 0)
-                    mascotasPlan += "||";
-                mascotasPlan += filas[i];
-                contador++;
-            }
-        }
-        document.formulario.mascotasPlan.value = mascotasPlan;
-
-        cargarTabla();
+        $('#formulario').dialog('close');
     }
 </script>
