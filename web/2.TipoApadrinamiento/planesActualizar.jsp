@@ -31,5 +31,5 @@
     }
 %>
 <script type="text/javascript">
-    document.location="principal.jsp?CONTENIDO=planesPadrinos.jsp";
+    document.location="principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesPadrinos.jsp";
 </script>

@@ -28,7 +28,8 @@ for (int i = 0; i < datos.size(); i++) {
 }
 %>
 <h3>PADRIPETS</h3>
-<button onclick="window.location.href='principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp&accion=Adicionar'" title="Adicionar">Agregar</button>
+<a href="principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp&accion=Adicionar" title="Adicionar">
+                    <img src="presentacion/imagenes/añadir.png" width="30" height="30"> </a>
 <table border="1">
     <tr>
         <th>Detalles</th>
