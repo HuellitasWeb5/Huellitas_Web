@@ -31,7 +31,7 @@ if (accion.equals("Modificar")) {
         </tr>
         <tr>
             <th>Fecha de nacimiento</th>
-            <td><input type="date" name="fechaNacimiento" value="<%=clientes.getFechaNacimiento()%>" size="50" maxlength="50"></td>
+            <td><input type="date" name="fechaNacimiento" value="<%=clientes.getFechaNacimiento()%>" size="50" maxlength="50" required></td>
         </tr>
         <tr>
             <th>Email</th>

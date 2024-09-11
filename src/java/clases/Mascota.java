@@ -22,7 +22,7 @@ public class Mascota {
     private String codigo;
     private String nombre;
     private String genero;
-    private String tamaño;
+    private String tamano;
     private String foto;
     private String cuidadosEspeciales;
     private String fechaNacimientoAproximada;
@@ -40,7 +40,7 @@ public class Mascota {
              this.codigo = codigo;
              nombre=resultado.getString("nombre");
              genero=resultado.getString("genero");
-             tamaño=resultado.getString("tamano");
+             tamano=resultado.getString("tamano");
              foto=resultado.getString("foto");
              cuidadosEspeciales=resultado.getString("cuidadosEspeciales");
              fechaNacimientoAproximada=resultado.getString("fechaNacimientoAproximada");
@@ -85,16 +85,16 @@ public class Mascota {
         return new GeneroMascota(genero);
     }
 
-    public String getTamaño() {
-       String resultado = tamaño;
-        if (tamaño == null) {
+    public String getTamano() {
+       String resultado = tamano;
+        if (tamano == null) {
             resultado = "";
         }
         return resultado;
     }
 
-    public void setTamaño(String tamaño) {
-        this.tamaño = tamaño;
+    public void setTamano(String tamano) {
+        this.tamano = tamano;
     }
 
     public String getFoto() {
@@ -154,13 +154,13 @@ public class Mascota {
    public boolean grabar(){
 
        String cadenaSQL="insert into mascota (nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado) "
-               + " values ('"+nombre+"','"+genero+"','"+tamaño+"','"+foto+"','"+cuidadosEspeciales+"','"+fechaNacimientoAproximada+"','"+fechaIngreso+"','"+estado+"')";
+               + " values ('"+nombre+"','"+genero+"','"+tamano+"','"+foto+"','"+cuidadosEspeciales+"','"+fechaNacimientoAproximada+"','"+fechaIngreso+"','"+estado+"')";
        System.out.println(cadenaSQL);
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }
     // falta el to String con el override
    public boolean modificar(){
-       String cadenaSQL="update mascota set nombre='"+nombre+"',genero='"+genero+"',tamano='"+tamaño+"',foto='"+foto+"',cuidadosEspeciales='"+cuidadosEspeciales+"',"
+       String cadenaSQL="update mascota set nombre='"+nombre+"',genero='"+genero+"',tamano='"+tamano+"',foto='"+foto+"',cuidadosEspeciales='"+cuidadosEspeciales+"',"
                + "fechaNacimientoAproximada='"+fechaNacimientoAproximada+"',fechaIngreso='"+fechaIngreso+"',estado='"+estado+"' where codigo="+codigo;
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }
@@ -195,7 +195,7 @@ public class Mascota {
                    mascota.setCodigo(datos.getString("codigo"));
                    mascota.setNombre(datos.getString("nombre"));             
                    mascota.setGenero(datos.getString("genero"));
-                   mascota.setTamaño(datos.getString("tamano"));
+                   mascota.setTamano(datos.getString("tamano"));
                    mascota.setFoto(datos.getString("foto"));      
                    mascota.setCuidadosEspeciales(datos.getString("cuidadosEspeciales"));
                    mascota.setFechaNacimientoAproximada(datos.getString("fechaNacimientoAproximada"));
@@ -210,5 +210,29 @@ public class Mascota {
        }
        return lista;
    }
+   
+    public static String getListaCompletaEnArregloJS(String filtro, String orden) {
+        String lista = "[";
+        List<Mascota> datos = Mascota.getListaEnObjetos(filtro, orden);
+        for (int i = 0; i < datos.size(); i++) {
+            Mascota mascota = datos.get(i);
+            if (i > 0) {
+                lista += ", ";
+            }
+            lista += "[";
+            lista += "'" + mascota.getCodigo() + "',";
+            lista += "'" + mascota.getNombre()+ "',";
+            lista += "'" + mascota.getGenero()+ "',";
+            lista += "'" + mascota.getTamano()+ "',";
+            lista += "'" + mascota.getFoto()+ "',";
+            lista += "'" + mascota.getCuidadosEspeciales()+ "',";
+            lista += "'" + mascota.getFechaNacimientoAproximada()+ "',";
+            lista += "'" + mascota.getFechaIngreso()+ "',";
+            lista += "'" + mascota.getEstado()+ "',";
+            lista += "]";
+        }
+        lista += "];";
+        return lista;
+    }
     
 }
