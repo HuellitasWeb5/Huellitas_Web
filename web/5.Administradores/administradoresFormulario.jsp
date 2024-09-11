@@ -17,7 +17,7 @@ if (accion.equals("Modificar")) {
 
 <h3><%= accion.toUpperCase() %>   ADMINISTRADOR </h3>
 <table border="0"><tr><td><!-- para la tabla que se creó para la imagen-->
-<form name="formulario" method="post" action="principal.jsp?CONTENIDO=administradoresActualizar.jsp" enctype="multipart/form-data">
+<form name="formulario" method="post" action="principal.jsp?CONTENIDO=5.Administradores/administradoresActualizar.jsp" enctype="multipart/form-data">
     <table border="0">
     
         <tr>

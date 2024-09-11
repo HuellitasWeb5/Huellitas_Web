@@ -23,7 +23,7 @@ for (int i = 0; i < datos.size(); i++) {
         lista+="<td><img src='presentacion/administrador/" + administrador.getFoto() + "' width='30' height='auto'></td>";
  
         lista+="<td>" + administrador.getTipoEnObjeto()+ "</td>";
-        lista+="<td><a href='principal.jsp?CONTENIDO=administradoresFormulario.jsp&accion=Modificar&identificacion=" + administrador.getIdentificacion()+
+        lista+="<td><a href='principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Modificar&identificacion=" + administrador.getIdentificacion()+
                 " 'title='Modificar'> <button title='Modificar'> Modificar </button></a> "; 
         lista+="<button title='Eliminar' onClick='eliminar("+ administrador.getIdentificacion()+")'>Eliminar</button>";
         lista+="</td>";
@@ -35,7 +35,7 @@ for (int i = 0; i < datos.size(); i++) {
 <table border="1">
     <tr>
         <th>Identificacion</th><th>Nombres</th><th>Genero</th><th>FechaNacimiento</th><th>Email</th><th>Telefono</th><th>Dirección</th><th>Residencia</th><th>foto</th><th>Tipo</th>
-                <th><a href="principal.jsp?CONTENIDO=administradoresFormulario.jsp&accion=Adicionar" title="Adicionar  ">
+                <th><a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Adicionar" title="Adicionar  ">
                         <button id="Adicionar">Adicionar</button> </a>
     </tr>
     <%=lista%>
@@ -45,7 +45,7 @@ for (int i = 0; i < datos.size(); i++) {
     function eliminar(identificacion){
         resultado=confirm("Realmente desea eliminar el administrador con identificacion"+identificacion+"?");
         if (resultado) {
-            document.location="principal.jsp?CONTENIDO=administradoresActualizar.jsp&accion=Eliminar&identificacion="+identificacion;
+            document.location="principal.jsp?CONTENIDO=5.Administradores/administradoresActualizar.jsp&accion=Eliminar&identificacion="+identificacion;
          }
     }
 </script>
