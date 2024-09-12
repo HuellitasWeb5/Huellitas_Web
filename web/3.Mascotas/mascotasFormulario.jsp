@@ -67,7 +67,7 @@ if (accion.equals("Modificar")) {
     <input type="submit" name="accion" value="<%=accion %>">
     <input type="button" value="Cancelar" onClick="window.history.back()">
 </form>
-    </td><td><img src="presentacion/mascota/<%=mascota.getFoto()%>" id="foto" width="auto" height="350"></td></table>
+    </td><td><img src="presentacion/mascota/<%=mascota.getFoto()%>" id="foto" width="auto" height="250"></td></table>
 <script> 
     function mostrarFoto(){
         var lector=new FileReader();
