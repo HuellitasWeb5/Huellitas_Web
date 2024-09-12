@@ -39,10 +39,11 @@ if (accion.equals("Modificar")) {
         </tr>
         <tr>
             <th>Foto</th>
-            <td> <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();">
+            <td> <input type="file" name="foto" accept="image/*" value="<%=mascota.getFoto()%>" onchange="mostrarFoto();">
         </tr>
         <tr>
             <th>Cuidados Especiales</th>
+
             <td><input type="text" name="cuidadosEspeciales" value="<%=mascota.getCuidadosEspeciales()%>" maxlength="80" required></td>
         </tr>
         <tr>

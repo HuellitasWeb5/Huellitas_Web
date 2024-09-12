@@ -61,7 +61,7 @@ if(!isMultipart){
     mascota.setCodigo(variables.get("codigo"));
     mascota.setNombre(variables.get("nombre"));
     mascota.setGenero(variables.get("genero"));
-    mascota.setTamaño(variables.get("tamano"));
+    mascota.setTamano(variables.get("tamano"));
     mascota.setFoto(variables.get("foto"));
     mascota.setCuidadosEspeciales(variables.get("cuidadosEspeciales"));
     mascota.setFechaNacimientoAproximada(variables.get("fechaNacimientoAproximada"));
