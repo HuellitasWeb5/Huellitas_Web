@@ -4,6 +4,7 @@
     Author     : SENA
 --%>
 
+<%@page import="clases.Persona"%>
 <%@page import="clases.Mascota"%>
 <%@page import="clases.PlanesApadrinamiento"%>
 <%@page import="clases.ApadrinamientoDetalle"%>
@@ -42,7 +43,7 @@
         listaPlan += "<td>" + planes2.getId() + "</td>";
         listaPlan += "<td>" + planes2.getNombre() + "</td>";
         listaPlan += "<td>" + planes2.getDescripcion() + "</td>";
-        listaPlan += "<td><input type='checkbox' class='select-row' id='" + planes2.getId() + "'></td>";
+        listaPlan += "<td><input type='radio' name='opcionSeleccionada' value='" + planes2.getNombre()+ "'></td>";
         listaPlan += "</tr>";
     }
 %>
@@ -68,14 +69,12 @@
         </tr>
     </table>
     <br>
-    <a href="#" class="button-link" onclick="abrirFormulario();">Adicionar mascota</a>
+    <input type="button" value="Adicionar Mascota" onclick="abrirFormulario();">
 
     <input type="hidden" name="mascotasPlan" size="100">
 
     <table border="1" id="tablaMascotas">
-        <tr>
-            <th>Mascota</th><th>Plan</th><th>Fecha Fin</th>
-        </tr>
+        <tr><th>Mascota</th><th>Codigo Mascota</th><th>Plan</th><th>Lapso Plan</th></tr>
         <%=listaDetalle%>
     </table>
 
@@ -89,35 +88,97 @@
             <thead>
                 <tr><th>Mascota</th><th><input type="text" id="Mascota"></th></tr>
                 <tr><th>Fecha Inicio: </th><th><input type="date" id="Fecha"></th></tr>
-                <tr><th>Fecha Fin: </th><th><input type="date" ></th></tr>
+                <tr><th>Fecha Fin: </th><th><input type="date" id="FechaFin"></th></tr>
             </thead>
         </table>
         <br>
         <table id='planes' border="1">
             <thead>
-                <tr>
-                    <th>Codigo</th><th>Nombre</th><th>Descripcion</th><th>Seleccionar</th>
-                </tr>
+                <tr><th>Codigo</th><th>Nombre</th><th>Descripcion</th><th>Seleccionar</th></tr>
             </thead>
             <tbody>
                 <%= listaPlan%>
             </tbody>
         </table>
         <br>
-        <button onclick="apadrinar()">Aceptar</button>
-        <button onclick="cerrarFormulario()">Cancelar</button>
+        <input type="button" value="Agregar" onclick="actualizarTabla();">
+        <input type="button" value="Cancelar" onclick="cerrarFormulario();">
     </form>
 </div>
 <script>
     var mascota = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
     var vectorMascotas = new Array();
     for(var i = 0; i < mascota.length; i++) {
-    vectorMascotas[i] = mascota[i][1];
+    vectorMascotas[i] = mascota[i][1] + " - " + mascota[i][0];
     };
     $("#Mascota").autocomplete({
     source: vectorMascotas
     });
 
+var personas = <%=Persona.getListaEnArregloJS("tipo='C'", null)%>;
+    $("#identificacionPadrino").autocomplete({
+        source: personas
+    });
+
+
+    function buscarMascota(valor, indice) {
+        var encontrado = false;
+        var i = 0;
+        while (!encontrado) {
+            if (valor == mascota[i][indice]) {
+                encontrado = true;
+            }
+            i++;
+        }
+        if (encontrado)
+            return i - 1;
+        else
+            return false;
+    }
+
+    function actualizarTabla() {
+        var objeto = document.formulario.mascotasPlan;
+        if (objeto.value != '')
+            objeto.value += "||";
+
+        var mascota = document.formularioMascotas.Mascota.value;
+        var nombreMascota = mascota.substring(0, mascota.indexOf("-")).trim();
+        var codigo = document.formularioMascotas.Mascota.value;
+        var codigoMascota = codigo.substring(codigo.indexOf("-")+1).trim();
+        var Plan =document.querySelectorAll('input[name="opcionSeleccionada"]');
+            let seleccion = '';
+            Plan.forEach(Plan => {
+                if (Plan.checked) {
+                    seleccion = Plan.value;
+                }
+            });
+        var fechaInicio = document.getElementById('Fecha').value;
+        var fechaFin = document.getElementById('FechaFin').value;
+        var LapsoPlan = fechaInicio + " / " + fechaFin;
+        objeto.value += nombreMascota + "|" + codigoMascota + "|" + seleccion +"|"+ LapsoPlan;
+
+        cargarTabla();
+        cerrarFormulario();
+    }
+            
+    function cargarTabla() {
+        document.getElementById("tablaMascotas").innerHTML = '<tr><th>Mascota</th><th>Codigo Mascota</th><th>Plan</th><th>Lapso Plan</th></tr>';
+        var filas = document.formulario.mascotasPlan.value.split("||");
+        for (var i = 0; i < filas.length; i++) {
+            var fila = filas[i].split("|");
+            var nombreMascota = fila[0];
+            var codMascota = fila[1];
+            var plan = fila[2];
+            var lapsoplan = fila[3];
+            
+
+            document.getElementById("tablaMascotas").innerHTML += "<tr><td>" + nombreMascota + "</td><td align='right'>" +
+                    codMascota + "</td><td align='right'>" + plan + "</td><td align='right'>" + lapsoplan + "</td></tr>";
+        }
+    }
+            
+            
+            
     $(function () {
         $("#formulario").dialog({
             autoOpen: false,
