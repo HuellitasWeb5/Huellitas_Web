@@ -15,7 +15,6 @@
     PlanesApadrinamiento planes=new PlanesApadrinamiento();
     String lista="";
     List<PlanesApadrinamiento> datos=PlanesApadrinamiento.getListaEnObjetos(null, null);
-    //PlanesApadrinamiento planes = new  PlanesApadrinamiento();
     for (int i = 0; i < datos.size(); i++) {
         planes = datos.get(i);
         lista += "<div class='swiper-slide'>";
@@ -62,7 +61,7 @@
     function confirmarEliminacion(id) {
         const respuesta = confirm("¿Realmente desea eliminar el registro?");
         if (respuesta) {
-            document.location = "principal.jsp?CONTENIDO=planesActualizar.jsp&accion=Eliminar&id=" + id;
+            document.location = "principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesActualizar.jsp&accion=Eliminar&id=" + id;
         }
     }
 
@@ -105,13 +104,13 @@
     function modificar(id) {
         var nombre = document.getElementById('Nombre').value;
         var descripcion = document.getElementById('Descripcion').value;
-        var url = "planesActualizar.jsp?accion=Modificar&id=" + id + "&Nombre=" + nombre + "&Descripcion=" + descripcion;
+        var url = "principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesActualizar.jsp?accion=Modificar&id=" + id + "&Nombre=" + nombre + "&Descripcion=" + descripcion;
         window.location.href = url;
     }
     function agregarPlan() {
         var nombre = document.getElementById('Nombre').value;
         var descripcion = document.getElementById('Descripcion').value;
-        var url = "planesActualizar.jsp?accion=Adicionar&Nombre=" + nombre + "&Descripcion=" + descripcion;
+        var url = "principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesActualizar.jsp?accion=Adicionar&Nombre=" + nombre + "&Descripcion=" + descripcion;
         window.location.href = url;
     }
 
