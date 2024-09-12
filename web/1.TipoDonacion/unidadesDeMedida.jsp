@@ -76,7 +76,7 @@
     function confirmarEliminacion(id) {
         const respuesta = confirm("¿Realmente desea eliminar el registro?");
         if (respuesta) {
-            document.location = "principal.jsp?CONTENIDO=unidadesDeMedidaActualizar.jsp&accion=Eliminar&id=" + id;
+            document.location = "principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedidaActualizar.jsp&accion=Eliminar&id=" + id;
         }
     }
 
@@ -125,14 +125,14 @@
         
         var nombre = document.getElementById('nombre').value;
         var notacion = document.getElementById('notacion').value;
-        var url = "unidadesDeMedidaActualizar.jsp?accion=Modificar&id=" + id + "&nombre=" + nombre + "&notacion=" + notacion;
+        var url = "1.TipoDonacion/unidadesDeMedidaActualizar.jsp?accion=Modificar&id=" + id + "&nombre=" + nombre + "&notacion=" + notacion;
         window.location.href = url;
     }
 
     function agregarUnidadDeMedida() {
         var nombre = document.getElementById('nombre').value;
         var notacion = document.getElementById('notacion').value;
-        var url = "unidadesDeMedidaActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&notacion=" + notacion;
+        var url = "1.TipoDonacion/unidadesDeMedidaActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&notacion=" + notacion;
         window.location.href = url;
     }
 
