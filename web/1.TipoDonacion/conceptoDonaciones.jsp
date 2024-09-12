@@ -101,7 +101,7 @@
        
         const respuesta = confirm("¿Realmente desea eliminar el registro?");
         if (respuesta) {
-            document.location = "principal.jsp?CONTENIDO=conceptosDonacionesActualizar.jsp&accion=Eliminar&id=" + id;
+            document.location = "principal.jsp?CONTENIDO=1.TipoDonacion/conceptosDonacionesActualizar.jsp&accion=Eliminar&id=" + id;
         }
     }
 
@@ -146,7 +146,7 @@
         var descripcion = document.getElementById('descripcion').value;
         var tipo = document.getElementById('codigoTipoDonacion').value;
         var idUnidadDeMedida = document.getElementById('idUnidadDeMedida').value;
-        var url = "conceptosDonacionesActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + tipo + "&idUnidadDeMedida=" + idUnidadDeMedida;
+        var url = "1.TipoDonacion/conceptosDonacionesActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + tipo + "&idUnidadDeMedida=" + idUnidadDeMedida;
         window.location.href = url;
     }
 
