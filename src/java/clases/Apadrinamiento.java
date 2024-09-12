@@ -37,7 +37,6 @@ public class Apadrinamiento {
                 identificacionPadrino = resultado.getString("identificacionPadrino");
             }
         } catch (SQLException ex) {
-            //Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Error al consultar en apadrinamiento" + ex.getMessage());
         }
     }
