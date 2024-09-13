@@ -65,7 +65,6 @@
     <div class="filter-container">
         <input type="text" id="filtroDonacions" placeholder="Filtrar donacions...">
         <button class="add-button" onclick="abrirFormulario();">Adicionar Donacion</button>
-        <button class="add-button" onclick="agregarTipoDonacion();">Adicionar Tipo de Donación</button>
     </div>
 
     <div class="swiper-container">

@@ -18,22 +18,21 @@ import java.util.logging.Logger;
  * @author Luis Eraso
  */
 public class ConectorBD {
-     private String servidor;
+
+    private String servidor;
     private String puerto;
     private String usuario;
     private String clave;
     private String baseDatos;
-    
+
     private Connection conexion;//lleva la conexion de la base de datos
 
     public ConectorBD() {
 
         // Mantener siempre comentado estas credenciales al subir cambios.
-      //   servidor="localhost";
-      //   puerto="3306";
-      //   usuario="ADSO";
-      //   clave="1302";
-       baseDatos="huellitasweb";
+        //  usuario = "ADSO";
+        //  clave = "1302";
+
 
       servidor = "localhost";
       puerto = "3306";
@@ -42,8 +41,7 @@ public class ConectorBD {
       baseDatos = "huellitasweb";
 
     }
-    
-    
+
     public boolean conectar() {
         boolean conectado = false;
         try {

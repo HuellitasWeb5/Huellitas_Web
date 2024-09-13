@@ -35,5 +35,5 @@
     }
 %>
 <script type="text/javascript">
-    document.location = "principal.jsp?CONTENIDO=conceptoDonaciones.jsp"
+    document.location = "principal.jsp?CONTENIDO=1.TipoDonacion/conceptoDonaciones.jsp"
 </script>

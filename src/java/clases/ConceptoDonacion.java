@@ -127,7 +127,7 @@ public class ConceptoDonacion {
       } else {
          orden = "";
       }
-        String cadenaSql = "select id, nombre, descripcion,codigoTipoDonacion,idUnidadDeMedida from conceptoDonacion";
+        String cadenaSql = "select id, nombre, descripcion,codigoTipoDonacion,idUnidadDeMedida from conceptoDonacion"+filtro+orden;
         return ConectorBD.consultar(cadenaSql);
     }
     public static List<ConceptoDonacion> getListaEnObjetos(String filtro, String orden) {
