@@ -65,18 +65,19 @@ public class TipoPersona {
                 menu += "<a href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp'>formulario De Informacion</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=7.Adopcion/formularioSeguimiento.jsp'>formulario De Seguimiento</a>";
-                
                 menu += "<a href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Unida de medida</a>";
                 menu += "<a href='index.jsp'>Salir</a>";
-                //  menu+="<a>Reportes</a>";
                 
                 break;
 
             case "F":
                 menu += "<li><a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
-                menu += "<li><a href='principal.jsp?CONTENIDO=clientes.jsp'>Clientes</a></li>";
-                menu += "<li><a href='principal.jsp?CONTENIDO=ventas.jsp'>Ventas</a></li>";
+                menu += "<li><a href='index.jsp'>Salir</a></li>";
+                break;
+                
+             case "C":
+                menu += "<li><a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
                 menu += "<li><a href='index.jsp'>Salir</a></li>";
                 break;
         }
