@@ -72,6 +72,9 @@ public class Adopcion {
         this.actaAdopcion = actaAdopcion;
     }
     
+    public Persona getAdoptante(){
+        return new Persona(identificacionAdoptante);
+    }
     
      @Override
     public String toString() {

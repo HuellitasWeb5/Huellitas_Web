@@ -8,6 +8,7 @@
         <script>
             function validarFormulario() {
                 var fecha = document.getElementById("fecha").value;
+                var ocupacion = document.getElementById("ocupacion").value;
                 var codigoAdopcion = document.getElementById("codigoAdopcion").value;
 
                 if (fecha === "" || ocupacion === "" || codigoAdopcion === "") {
@@ -19,7 +20,6 @@
         </script>
     </head>
     <body>
-
         <%
             String accion = request.getParameter("accion");
             FormularioDeInformacion formulario = new FormularioDeInformacion();
@@ -56,7 +56,7 @@
             <input type="date" id="fecha" name="fecha" required><br><br>
 
             <!-- Ocupación -->
-            <label for="ocupacion">¿ Cuál es su ocupación?</label>
+            <label for="ocupacion">¿Cuál es su ocupación?</label>
             <input type="text" id="ocupacion" name="ocupacion" maxlength="100" required><br><br>
 
             <!-- Tiempo libre (Sí o No) -->
@@ -78,16 +78,16 @@
             </fieldset>
 
             <!-- Compromiso (Sí o No) -->
-            <label for="compromiso">¿Está dispuesto a esterilizar a la mascota y proporcionarle atención medica regular?</label>
-             <fieldset>
+            <label for="compromiso">¿Está dispuesto a esterilizar a la mascota y proporcionarle atención médica regular?</label>
+            <fieldset>
                 <input type="radio" id="compromisoSi" name="compromiso" value="si">
                 <label for="compromisoSi">Sí</label>
-                <input type="radio" id="espacioNo" name="compromiso" value="no">
+                <input type="radio" id="compromisoNo" name="compromiso" value="no">
                 <label for="compromisoNo">No</label>
             </fieldset>
 
             <!-- Niños en casa (Número) -->
-            <label for="ninos">¿En el hogar viven niños?,¿Cuántos?</label>
+            <label for="ninos">¿En el hogar viven niños? ¿Cuántos?</label>
             <input type="number" id="ninos" name="ninos" min="0" required><br><br>
 
             <!-- Habitantes (Número) -->
@@ -100,7 +100,7 @@
 
             <!-- Otras mascotas (Sí o No) -->
             <label for="otrasMascotas">¿Tiene otras mascotas a su cargo?</label>
-             <fieldset>
+            <fieldset>
                 <input type="radio" id="otrasMascotasSi" name="otrasMascotas" value="si">
                 <label for="otrasMascotasSi">Sí</label>
                 <input type="radio" id="otrasMascotasNo" name="otrasMascotas" value="no">
@@ -108,16 +108,16 @@
             </fieldset>
 
             <!-- Propietario (Sí o No) -->
-            <label for="propietario">¿Es propietario de la vivienda en la que  reside?</label>
+            <label for="propietario">¿Es propietario de la vivienda en la que reside?</label>
             <fieldset>
                 <input type="radio" id="propietarioSi" name="propietario" value="si">
                 <label for="propietarioSi">Sí</label>
-                <input type="radio" id="otrasMascotasNo" name="propietario" value="no">
+                <input type="radio" id="propietarioNo" name="propietario" value="no">
                 <label for="propietarioNo">No</label>
             </fieldset>
 
             <!-- Motivación para adoptar -->
-            <label for="motivacion">¿Cuál es el motivo por el cuál  desea adoptar a la mascota?</label>
+            <label for="motivacion">¿Cuál es el motivo por el cuál desea adoptar a la mascota?</label>
             <input type="text" id="motivacion" name="motivacion" maxlength="100" required><br><br>
 
             <!-- Descripción -->
