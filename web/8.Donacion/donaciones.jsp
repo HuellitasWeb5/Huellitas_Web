@@ -81,8 +81,8 @@
     function verDetalles(codigo) {
         // Debo hacer el boton de ver detalles
     }
-    function abrirFormularioAdicionar() {
-        var url="principal.jsp?CONTENIDO=8.Donacion/donacionesFormulario.jsp"; //&accion=Adicionar";
+    function abrirFormularioAdicionar(codigo) {
+        var url="principal.jsp?CONTENIDO=8.Donacion/donacionesFormulario.jsp&accion=Adicionar";
         window.location.href=url;
     }
     function agregarTipoDonacion() {
