@@ -28,13 +28,16 @@ public class TipoPersona {
     public String getNombre() {
         String nombre = null;
         switch (codigo) {
-            case "A":
+            case "S":
                 nombre = "AdministradorSistema";
                 break;
             case "F":
                 nombre = "AdministradorFundacion";
                 break;
-          
+            case "C":
+                nombre = "Cliente";
+                break;
+                
             default:
                 nombre = "Desconocido";
                 break;
@@ -51,7 +54,7 @@ public class TipoPersona {
         String menu = "<ul>";
 
         switch (this.codigo) {
-            case "A":
+            case "S":
                 menu += "<a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp'>Tipo donacion</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesPadrinos.jsp'>Planes padripets</a>";
@@ -62,18 +65,19 @@ public class TipoPersona {
                 menu += "<a href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp'>formulario De Informacion</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=7.Adopcion/formularioSeguimiento.jsp'>formulario De Seguimiento</a>";
-                
                 menu += "<a href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Unida de medida</a>";
                 menu += "<a href='index.jsp'>Salir</a>";
-                //  menu+="<a>Reportes</a>";
                 
                 break;
 
             case "F":
                 menu += "<li><a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
-                menu += "<li><a href='principal.jsp?CONTENIDO=clientes.jsp'>Clientes</a></li>";
-                menu += "<li><a href='principal.jsp?CONTENIDO=ventas.jsp'>Ventas</a></li>";
+                menu += "<li><a href='index.jsp'>Salir</a></li>";
+                break;
+                
+             case "C":
+                menu += "<li><a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
                 menu += "<li><a href='index.jsp'>Salir</a></li>";
                 break;
         }
@@ -85,14 +89,17 @@ public class TipoPersona {
     public String getListaEnOptions() {
         String lista = "";
         switch (codigo) {
-            case "A":
-                lista = "<option value='A' selected>AdministradorSistema</option><option value='F'>AdministradorFundacion</option>";
+            case "S":
+                lista = "<option value='S' selected>AdministradorSistema</option><option value='F'>AdministradorFundacion</option><option value='C'>Cliente</option>";
                 break;
             case "F":
-                lista = "<option value='A'> AdministradorSistema</option><option value='F' selected>AdministradorFundacion</option>";
+                lista = "<option value='S'> AdministradorSistema</option><option value='F' selected>AdministradorFundacion</option><option value='C'>Cliente</option>";
+                break;
+            case "C":
+                lista = "<option value='S'> AdministradorSistema</option><option value='F'>AdministradorFundacion</option><option value='C' selected>Cliente</option>";
                 break;
             default:
-                lista = "<option value='A' selected> AdministradorSistema</option><option value='F'>AdministradorFundacion</option>";
+                lista = "<option value='S' selected> AdministradorSistema</option><option value='F'>AdministradorFundacion</option><option value='C'>Cliente</option>";
                 break;
         }
         return lista;

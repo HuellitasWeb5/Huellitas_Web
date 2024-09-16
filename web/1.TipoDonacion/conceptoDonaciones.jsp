@@ -16,12 +16,14 @@
 
 <%
     String codigo = request.getParameter("codigo");
+    String filtro=null;
+    if (codigo!=null) filtro="codigoTipoDonacion="+codigo;
     TipoDonacion tipoDonacion = new TipoDonacion(codigo);
     ConceptoDonacion conceptoDonacion = new ConceptoDonacion();
 
     String lista = "";
   
-  List<ConceptoDonacion> datos = ConceptoDonacion.getListaEnObjetos("codigoTipoDonacion='" + codigo, null);
+  List<ConceptoDonacion> datos = ConceptoDonacion.getListaEnObjetos(filtro, null);
   
     for (int i = 0; i < datos.size(); i++) {
         conceptoDonacion = datos.get(i);
@@ -34,7 +36,7 @@
         lista += "<div class='card-body'>";
         lista += "<p><strong>ID:</strong> " + conceptoDonacion.getId() + "</p>";
         lista += "<p><strong>Descripción:</strong> " + conceptoDonacion.getDescripcion() + "</p>";
-        lista += "<p><strong>Tipo:</strong> " + conceptoDonacion.getTipoDonacion() + "</p>";
+        lista += "<p><strong>Tipo:</strong> " +conceptoDonacion.getTipoDonacion() + "</p>";
         lista += "<p><strong>Unidad de Medida:</strong> " + conceptoDonacion.getIdUnidadDeMedida() + "</p>";
         lista += "<div class='button-container'>";
         lista += "<button class='btn-modificar' onclick='abrirFormulario(\"Modificar\", \"" + conceptoDonacion.getId() + "\");'>Modificar</button>";
@@ -99,7 +101,7 @@
        
         const respuesta = confirm("¿Realmente desea eliminar el registro?");
         if (respuesta) {
-            document.location = "principal.jsp?CONTENIDO=conceptosDonacionesActualizar.jsp&accion=Eliminar&id=" + id;
+            document.location = "principal.jsp?CONTENIDO=1.TipoDonacion/conceptosDonacionesActualizar.jsp&accion=Eliminar&id=" + id;
         }
     }
 
@@ -144,7 +146,7 @@
         var descripcion = document.getElementById('descripcion').value;
         var tipo = document.getElementById('codigoTipoDonacion').value;
         var idUnidadDeMedida = document.getElementById('idUnidadDeMedida').value;
-        var url = "conceptosDonacionesActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + tipo + "&idUnidadDeMedida=" + idUnidadDeMedida;
+        var url = "1.TipoDonacion/conceptosDonacionesActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + tipo + "&idUnidadDeMedida=" + idUnidadDeMedida;
         window.location.href = url;
     }
 

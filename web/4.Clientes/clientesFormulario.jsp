@@ -42,7 +42,7 @@ if (accion.equals("Modificar")) {
         <tr><th>Residencia</th><td><input type="text" name="residencia" value="<%=clientes.getResidencia()%>" maxlength="12"></td></tr>
         <tr>
             <th>Foto</th>
-            <td> <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();"></td>
+            <td> <input type="file" name="foto" accept="image/*" value="<%=clientes.getFoto()%>" onchange="mostrarFoto();"></td>
         </tr>
         <tr><th>Contraseña</th><td><input type="password" name="clave" value="" required></td></tr>
     </table>

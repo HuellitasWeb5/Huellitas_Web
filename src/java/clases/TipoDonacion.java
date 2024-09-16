@@ -27,7 +27,7 @@ public class TipoDonacion {
     }
 
     public TipoDonacion(String codigo) {
-        String cadenaSQL = "select codigo, nombre, descripcion from tipoDonacion";
+        String cadenaSQL = "select codigo, nombre, descripcion from tipoDonacion where codigo="+codigo;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
