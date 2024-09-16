@@ -29,7 +29,6 @@
             listaDetalle += "<td align='rigth'>" + detalle.getPlanApadrinamiento() + "</td>";
             listaDetalle += "<td align='rigth'>" + detalle.getLapsoApadrinamiento() + "</td>";
             listaDetalle += "<td>";
-            listaDetalle += "<img src='presentacion/imagenes/modificar.png' width='30' heigth='30'  title='Modificar'>";
             listaDetalle += "<img src='presentacion/imagenes/eliminar.png' width='30' heigth='30'  title='Eliminar'>";
             listaDetalle += "</td>";
             listaDetalle += "</tr>";
@@ -173,11 +172,27 @@ var personas = <%=Persona.getListaEnArregloJS("tipo='C'", null)%>;
             
 
             document.getElementById("tablaMascotas").innerHTML += "<tr><td>" + nombreMascota + "</td><td align='right'>" +
-                    codMascota + "</td><td align='right'>" + plan + "</td><td align='right'>" + lapsoplan + "</td></tr>";
+                    codMascota + "</td><td align='right'>" + plan + "</td><td align='right'>" + lapsoplan +
+                    "</td><td><img src='presentacion/imagenes/eliminar.png' width='30' heigth='30'  title='Eliminar' onClick='eliminar(" + i + ")'></td></tr>";
         }
     }
             
-            
+    function eliminar(fila) {
+        var mascotae = "";
+        var filas = document.formulario.mascotasPlan.value.split("||");
+        var contador = 0;
+        for (var i = 0; i < filas.length; i++) {
+            if (i != fila) {
+                if (contador > 0)
+                    mascotae += "||";
+                    mascotae += filas[i];
+                contador++;
+            }
+        }
+        document.formulario.mascotasPlan.value = mascotae;
+
+        cargarTabla();
+    }        
             
     $(function () {
         $("#formulario").dialog({
