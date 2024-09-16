@@ -145,12 +145,16 @@ public class Mascota {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-        @Override
     
-    public String toString(){
-        return nombre;
-    }
+    public String toString() {
 
+        String datos="";
+        if (codigo!=null){
+            datos=nombre+" - "+codigo;
+        }
+        return datos;
+    }
+    
    public boolean grabar(){
 
        String cadenaSQL="insert into mascota (nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado) "
