@@ -1,16 +1,43 @@
 <%@ page import="clases.FormularioDeInformacion" %>
 <%@ page import="java.sql.Date" %>
+<%@ page import="clases.Persona"%>
+<%@ page import="clases.Mascota"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
+<%
+        String accion = request.getParameter("accion");
+        FormularioDeInformacion formulario = new FormularioDeInformacion();
+
+        if ("grabar".equals(accion)) {
+            formulario.setFecha(Date.valueOf(request.getParameter("fecha")));
+            formulario.setOcupacion(request.getParameter("ocupacion"));
+            formulario.setTiempoLibre(request.getParameter("tiempoLibre"));
+            formulario.setEspacio(request.getParameter("espacio"));
+            formulario.setCompromiso(request.getParameter("compromiso"));
+            formulario.setNinos(request.getParameter("ninos"));
+            formulario.setHabitantes(request.getParameter("habitantes"));
+            formulario.setResponsables(request.getParameter("responsables"));
+            formulario.setOtrasMascotas(request.getParameter("otrasMascotas"));
+            formulario.setPropietario(request.getParameter("propietario"));
+            formulario.setMotivacion(request.getParameter("motivacion"));
+            formulario.setDescripcion(request.getParameter("descripcion"));
+            formulario.setCodigoAdopcion(Integer.parseInt(request.getParameter("codigoAdopcion")));
+
+            if (formulario.grabar()) {
+                out.println("<h3>Formulario guardado exitosamente.</h3>");
+            } else {
+                out.println("<h3>Error al guardar el formulario.</h3>");
+            }
+        }
+%>
 <html>
     <head>
-        <title>Formulario de Información para Adopción</title>
+        <title>Formulario de Información</title>
         <script>
             function validarFormulario() {
                 var fecha = document.getElementById("fecha").value;
                 var ocupacion = document.getElementById("ocupacion").value;
                 var codigoAdopcion = document.getElementById("codigoAdopcion").value;
-
                 if (fecha === "" || ocupacion === "" || codigoAdopcion === "") {
                     alert("Por favor, complete los campos obligatorios.");
                     return false;
@@ -20,38 +47,64 @@
         </script>
     </head>
     <body>
-        <%
-            String accion = request.getParameter("accion");
-            FormularioDeInformacion formulario = new FormularioDeInformacion();
-
-            if ("grabar".equals(accion)) {
-                formulario.setFecha(Date.valueOf(request.getParameter("fecha")));
-                formulario.setOcupacion(request.getParameter("ocupacion"));
-                formulario.setTiempoLibre(request.getParameter("tiempoLibre"));
-                formulario.setEspacio(request.getParameter("espacio"));
-                formulario.setCompromiso(request.getParameter("compromiso"));
-                formulario.setNinos(request.getParameter("ninos"));
-                formulario.setHabitantes(request.getParameter("habitantes"));
-                formulario.setResponsables(request.getParameter("responsables"));
-                formulario.setOtrasMascotas(request.getParameter("otrasMascotas"));
-                formulario.setPropietario(request.getParameter("propietario"));
-                formulario.setMotivacion(request.getParameter("motivacion"));
-                formulario.setDescripcion(request.getParameter("descripcion"));
-                formulario.setCodigoAdopcion(Integer.parseInt(request.getParameter("codigoAdopcion")));
-
-                if (formulario.grabar()) {
-                    out.println("<h3>Formulario guardado exitosamente.</h3>");
-                } else {
-                    out.println("<h3>Error al guardar el formulario.</h3>");
-                }
-            }
-        %>
-
         <h1>Formulario de Información</h1>
         <form method="post" action="formularioInformacion.jsp" onsubmit="return validarFormulario();">
             <input type="hidden" name="accion" value="grabar">
-
-            <!-- Fecha -->
+            
+            <!-- ADOPTANTE  --> 
+            
+            <table>
+                <tr>
+                    <th>Identificación</th>
+                    <td><input type="text" name="identificacion" id="identificacion"></td>
+                </tr>
+                <tr>
+                    <th>Nombre del Adoptante</th>
+                    <td type="text" name="nombre" id="nombre" ></td>
+                </tr>
+                <tr>
+                    <th>Teléfono</th>
+                    <td type="text" name="telefono" id="telefono" ></td>
+                </tr>
+                <tr>
+                    <th>Dirección</th>
+                    <td type="text" name="direccion" id="direccion"></td>
+                </tr>
+                <tr>
+                    <th>Residencia</th>
+                    <td type="text" name="residencia" id="residencia"></td>
+                </tr>
+            </table>
+            
+            <!-- MASCOTA  --> 
+            
+            <table>
+                <tr>
+                    <th>Código</th>
+                    <td><input type="text" name="codigo" id="codigo"></td>
+                </tr>
+                <tr>
+                    <th>Nombre de la mascota</th>
+                    <td type="text" name="nombreMascota" id="nombreMascota" ></td>
+                </tr>
+                <tr>
+                    <th>Fecha De Nacimiento Aproximada</th>
+                    <td type="text" name="fechaNacimiento" id="fechaNacimiento" ></td>
+                </tr>
+                <tr>
+                    <th>Género</th>
+                    <td type="text" name="genero" id="genero"></td>
+                </tr>
+                <tr>
+                    <th>Cuidados Especiales</th>
+                    <td type="text" name="cuidadosEspeciales" id="cuidadosEspeciales"></td>
+                </tr>
+            </table>
+            
+             <!-- FORMULARIO  --> 
+            
+            <tr>
+                <!-- Fecha -->
             <label for="fecha">Fecha:</label>
             <input type="date" id="fecha" name="fecha" required><br><br>
 
@@ -130,6 +183,86 @@
 
             <button type="submit">Enviar</button>
         </form>
+        <script>
 
+            // BUSCAR PERSONA
+
+            var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
+            var vectorPersonas = new Array();
+            for (var i = 0; i < personas.length; i++) {
+                vectorPersonas[i] = personas[i][0];
+            }
+            $("#identificacion").autocomplete({
+                source: vectorPersonas
+            });
+            function buscarPersona(valor, indice) {
+                encontrado = false;
+                i = 0;
+                while (!encontrado) {
+                    if (valor == personas[i][indice])
+                        encontrado = true;
+                    i++;
+                }
+                if (encontrado)
+                    return i - 1;
+                else
+                    return false;
+            }
+            $('#identificacion').change(function () {
+                identificacion = this.value.trim();
+                indicePersona = buscarPersona(identificacion, 0);
+                nombre = personas[indicePersona][1];
+                telefono = personas[indicePersona][2];
+                direccion = personas[indicePersona][3];
+                residencia = personas[indicePersona][4];
+                document.getElementById("nombre").innerHTML = nombre;
+                document.getElementById("telefono").innerHTML = telefono;
+                document.getElementById("direccion").innerHTML = direccion;
+                document.getElementById("residencia").innerHTML = residencia;
+            });
+
+            // BUSCAR MASCOTA
+
+            var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+            var vectorMascotas = new Array();
+            for (var i = 0; i < mascotas.length; i++) {
+                vectorMascotas[i] = mascotas[i][0];
+            }
+            $("#codigo").autocomplete({
+                source: vectorMascotas
+            });
+
+            function buscarMascota(valor, indice) {
+                encontrado = false;
+                i = 0;
+                while (!encontrado) {
+                    if (valor == mascotas[i][indice])
+                        encontrado = true;
+                    i++;
+                }
+                if (encontrado)
+                    return i - 1;
+                else
+                    return false;
+            }
+
+            $('#codigo').change(function () {
+                codigo = this.value.trim();
+                indiceMascota = buscarMascota(codigo, 0);
+                nombreMascota = mascotas[indiceMascota][1];
+                fechaNacimiento = mascotas[indiceMascota][6];
+                genero = mascotas[indiceMascota][2];
+                cuidadosEspeciales = mascotas [indiceMascota][5];
+                document.getElementById("nombreMascota").innerHTML = nombreMascota;
+                document.getElementById("fechaNacimiento").innerHTML = fechaNacimiento;
+                document.getElementById("genero").innerHTML = genero;
+                document.getElementById("cuidadosEspeciales").innerHTML = cuidadosEspeciales;
+                   
+
+            });
+
+        </script>
     </body>
 </html>
+
+
