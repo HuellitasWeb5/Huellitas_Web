@@ -62,6 +62,13 @@ if (accion.equals("Modificar")) {
             <option value="adoptado">Adoptado</option>
         </select>
         </tr>
+        <tr>
+            <th>Descripcion</th>
+            <td>
+                <textarea name="descripcion" cols="50" rows="5"></textarea>
+            </td>
+        </tr>
+        
     </table>
     <input type="hidden" name="codigo" value="<%=codigo%>">
     <input type="submit" name="accion" value="<%=accion %>">
