@@ -8,6 +8,8 @@ package clases;
 import clasesGenericas.ConectorBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -204,7 +206,11 @@ public class Persona {
         }
         return datos;
     }
-
+   public int getEdad() {
+        LocalDate fechaNacimiento = LocalDate.parse(this.getFechaNacimiento());
+        LocalDate fechaActual = LocalDate.now();
+        return Period.between(fechaNacimiento, fechaActual).getYears();
+    }
 
     public boolean grabar() {
  

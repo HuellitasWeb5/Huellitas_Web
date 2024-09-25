@@ -34,7 +34,7 @@ for (int i = 0; i < datos.size(); i++) {
 <h3>LISTA  DE  ADMINISTRADORES  </h3>
 <table border="1">
     <tr>
-        <th>Identificacion</th><th>Nombres</th><th>Genero</th><th>FechaNacimiento</th><th>Email</th><th>Telefono</th><th>Dirección</th><th>Residencia</th><th>foto</th><th>Tipo</th>
+        <th>Identificacion</th><th>Nombres</th><th>Genero</th><th>Edad</th><th>Email</th><th>Telefono</th><th>Dirección</th><th>Residencia</th><th>foto</th><th>Tipo</th>
                 <th><a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Adicionar" title="Adicionar  ">
                         <button id="Adicionar">Adicionar</button> </a>
     </tr>
@@ -48,4 +48,27 @@ for (int i = 0; i < datos.size(); i++) {
             document.location="principal.jsp?CONTENIDO=5.Administradores/administradoresActualizar.jsp&accion=Eliminar&identificacion="+identificacion;
          }
     }
+    
+     function calcularEdad() {
+        const fechaNacimiento = document.getElementById("fechaNacimiento").value;
+        if (fechaNacimiento) {
+            const fechaActual = new Date();
+            const nacimiento = new Date(fechaNacimiento);
+            let edad = fechaActual.getFullYear() - nacimiento.getFullYear();
+            const mes = fechaActual.getMonth() - nacimiento.getMonth();
+
+            if (mes < 0 || (mes === 0 && fechaActual.getDate() < nacimiento.getDate())) {
+                edad--;
+            }
+
+            document.getElementById("edad").textContent = edad;
+        }
+    }
+
+    // Llamar a la función al cargar la página si ya hay una fecha de nacimiento
+    window.onload = function() {
+        calcularEdad();
+    };
 </script>
+
+    
