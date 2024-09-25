@@ -73,12 +73,13 @@ public class Donacion {
     }
 
     @Override
+    
     public String toString() {
         return codigo;
     }
 
     public boolean grabar() {
-        String cadenaSQL = "insert into donacion(fecha,descipcion,identificacaionDonante) values ('" + fecha + "','" + descripcion + "','" + identificacionDonante + "')";
+        String cadenaSQL = "insert into donacion(fecha,descripcion,identificacionDonante) values ('" + fecha + "','" + descripcion + "','" + identificacionDonante + "')";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
