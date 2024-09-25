@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 String lista="";
-List<Persona> datos=Persona.getListaEnObjetos("tipo<>'A' && tipo<>'V'", null);
+List<Persona> datos=Persona.getListaEnObjetos(null, null);
 for (int i = 0; i < datos.size(); i++) {
         Persona clientes = datos.get(i);
         lista+="<tr>";
@@ -30,7 +30,7 @@ for (int i = 0; i < datos.size(); i++) {
         lista+="</tr>";
     }
 %>
-<h3>LISTA DE CLIENTES</h3>
+<h3>SANPATITAS</h3>
 <table border="1">
     <tr>
         <th>Identificacion</th><th>Nombres</th><th>Genero</th><th>Fecha de nacimiento</th><th>Email</th><th>Telefono</th><th>Direccion</th>

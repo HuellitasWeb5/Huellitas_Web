@@ -14,7 +14,7 @@ if (accion.equals("Modificar")) {
         clientes=new Persona(identificacion);
     }
 %>
-<h3><%=accion.toUpperCase() %> CLIENTE</h3>
+<h3><%=accion.toUpperCase() %> SANPATITAS</h3>
 <table border="0"><tr><td><!-- para la tabla que se creó para la imagen-->
 <form name="formulario" method="post" action="principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp" enctype="multipart/form-data">
     <table border="0">
