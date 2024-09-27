@@ -66,6 +66,7 @@ public class TipoPersona {
                 menu += "<a href='principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp'>formulario De Informacion</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=7.Adopcion/formularioSeguimiento.jsp'>formulario De Seguimiento</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a>";
+                menu += "<a href='principal.jsp?CONTENIDO=8.Donacion/donacionDetalle.jsp'>Donaciones DETALLES</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Unida de medida</a>";
                 menu += "<a href='index.jsp'>Salir</a>";
                 
