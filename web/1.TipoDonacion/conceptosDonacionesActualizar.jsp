@@ -12,7 +12,8 @@
     String accion = request.getParameter("accion");
     String nombre = request.getParameter("nombre");
     String descripcion = request.getParameter("descripcion");
-    String codigoTipoDonacion = request.getParameter("codigoTipoDonacion").substring(0, request.getParameter("codigoTipoDonacion").indexOf("-")).trim();
+    String codigoTipoDonacion = request.getParameter("codigoTipoDonacion");
+   
     String idUnidadDeMedida = request.getParameter("idUnidadDeMedida");
     ConceptoDonacion conceptoDonacion = new ConceptoDonacion();
     conceptoDonacion.setNombre(nombre);
@@ -35,5 +36,5 @@
     }
 %>
 <script type="text/javascript">
-    document.location = "principal.jsp?CONTENIDO=1.TipoDonacion/conceptoDonaciones.jsp"
+    document.location="/HuellitasWeb/principal.jsp?CONTENIDO=1.TipoDonacion/conceptoDonaciones.jsp"
 </script>

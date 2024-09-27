@@ -16,7 +16,7 @@
 <center><h3>Agregar donacionDetallees</h3></center>
 <table>
     <tr>
-        <th>Codigo</th>
+        <th>Codigo </th>
         <td><input type="text" name="codigo" id="codigo"></td>
     </tr>
     <tr>
