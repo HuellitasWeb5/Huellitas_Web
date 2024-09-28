@@ -32,8 +32,10 @@
 %>
 <html>
     <head>
-        <title>Formulario de Información</title>
         <script>
+
+            // VALIDACIÓN DE DATOS
+
             function validarFormulario() {
                 var fecha = document.getElementById("fecha").value;
                 var ocupacion = document.getElementById("ocupacion").value;
@@ -44,15 +46,52 @@
                 }
                 return true;
             }
+
+            // GENERAR FECHA ACTUAL Y GENERAR ID DEL FORMULARIO
+
+            window.onload = function () {
+                var today = new Date();
+                var day = String(today.getDate()).padStart(2, '0');
+                var month = String(today.getMonth() + 1).padStart(2, '0');
+                var year = today.getFullYear();
+                var codigoFormulario = localStorage.getItem('codigoFormulario');
+                document.getElementById('fecha').value = year + '-' + month + '-' + day;
+                if (!codigoFormulario) {
+                    codigoFormulario = 1;
+                } else {
+
+                    codigoFormulario = parseInt(codigoFormulario) + 1;
+                }
+                localStorage.setItem('codigoFormulario', codigoFormulario);
+                var codigoConCeros = String(codigoFormulario).padStart(6, '0');
+                document.getElementById('codigoFormulario').value = codigoConCeros;
+            }
+
+            function enviarFormulario() {
+                var codigo = document.getElementById('codigoFormulario').value;
+                console.log("Código generado: " + codigo);
+
+                return true;
+            }
+
         </script>
     </head>
     <body>
         <h1>Formulario de Información</h1>
         <form method="post" action="formularioInformacion.jsp" onsubmit="return validarFormulario();">
             <input type="hidden" name="accion" value="grabar">
-            
+
+            <!-- Fecha -->
+
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" name="fecha" readonly required><br><br> 
+
+            <!-- Código del formulario -->
+            <label for="codigoFormulario">Código del formulario:</label>
+            <input type="text" id="codigoFormulario" name="codigoFormulario" readonly required><br><br>
+
             <!-- ADOPTANTE  --> 
-            
+
             <table>
                 <tr>
                     <th>Identificación</th>
@@ -74,10 +113,13 @@
                     <th>Residencia</th>
                     <td type="text" name="residencia" id="residencia"></td>
                 </tr>
+                <tr>
+                    <td><input type="file" name="foto" id="foto" accept="image/*"></td>
+                </tr>
             </table>
-            
+
             <!-- MASCOTA  --> 
-            
+
             <table>
                 <tr>
                     <th>Código</th>
@@ -99,16 +141,16 @@
                     <th>Cuidados Especiales</th>
                     <td type="text" name="cuidadosEspeciales" id="cuidadosEspeciales"></td>
                 </tr>
+                <tr>
+                    <td><input type="file" name="foto" id="foto" accept="image/*"></td>
+                </tr>
             </table>
-            
-             <!-- FORMULARIO  --> 
-            
-            <tr>
-                <!-- Fecha -->
-            <label for="fecha">Fecha:</label>
-            <input type="date" id="fecha" name="fecha" required><br><br>
 
-            <!-- Ocupación -->
+            <!-- FORMULARIO  --> 
+
+            <tr>
+
+                <!-- Ocupación -->
             <label for="ocupacion">¿Cuál es su ocupación?</label>
             <input type="text" id="ocupacion" name="ocupacion" maxlength="100" required><br><br>
 
@@ -173,14 +215,45 @@
             <label for="motivacion">¿Cuál es el motivo por el cuál desea adoptar a la mascota?</label>
             <input type="text" id="motivacion" name="motivacion" maxlength="100" required><br><br>
 
+            <!-- Campo para seleccionar días de la semana -->
+
+            <label>Por favor, indíquenos los días en los que estaría disponible para recibir la visita de seguimiento con respecto al cuidado de la mascota:</label>
+            <br>
+            <label><input type="checkbox" name="horarioVisitaDias" value="Lunes"> Lunes</label><br>
+            <label><input type="checkbox" name="horarioVisitaDias" value="Martes"> Martes</label><br>
+            <label><input type="checkbox" name="horarioVisitaDias" value="Miércoles"> Miércoles</label><br>
+            <label><input type="checkbox" name="horarioVisitaDias" value="Jueves"> Jueves</label><br>
+            <label><input type="checkbox" name="horarioVisitaDias" value="Viernes"> Viernes</label><br>
+            <label><input type="checkbox" name="horarioVisitaDias" value="Sábado"> Sábado</label><br>
+            <label><input type="checkbox" name="horarioVisitaDias" value="Domingo"> Domingo</label><br>
+
+            <!-- Campo para seleccionar la hora -->
+            <label for="horarioVisitaHora">Selecciona la hora:</label>
+            <input type="text" id="horarioVisitaHora" name="horarioVisitaHora" placeholder="HH:MM" maxlength="5">
+            <select id="horarioVisitaAmPm" name="horarioVisitaAmPm">
+                <option value="AM">AM</option>
+                <option value="PM">PM</option>
+            </select>
+            <br>
+
+            <!-- Campo para subir foto del recibo -->
+            <label for="fotoRecibo">Subir foto del recibo:</label>
+            <input type="file" id="fotoRecibo" name="fotoRecibo" accept="image/*, application/pdf">
+            <br>
+
+            <!-- Campo para subir foto de la vivienda -->
+            <label for="fotoVivienda">Subir foto de la vivienda:</label>
+            <input type="file" id="fotoVivienda" name="fotoVivienda" accept="image/*, application/pdf">
+            <br>
+
+            <!-- Campo para subir foto de la cédula -->
+            <label for="fotoCedula">Subir foto de la cédula:</label>
+            <input type="file" id="fotoCedula" name="fotoCedula" accept="image/*, application/pdf">
+            <br>
+
             <!-- Descripción -->
             <label for="descripcion">Descripción adicional:</label>
             <textarea id="descripcion" name="descripcion" rows="5" cols="30" required></textarea><br><br>
-
-            <!-- Código de adopción -->
-            <label for="codigoAdopcion">Código de Adopción:</label>
-            <input type="number" id="codigoAdopcion" name="codigoAdopcion" required><br><br>
-
             <button type="submit">Enviar</button>
         </form>
         <script>
@@ -215,10 +288,12 @@
                 telefono = personas[indicePersona][2];
                 direccion = personas[indicePersona][3];
                 residencia = personas[indicePersona][4];
+                foto = personas[indicePersona][6];
                 document.getElementById("nombre").innerHTML = nombre;
                 document.getElementById("telefono").innerHTML = telefono;
                 document.getElementById("direccion").innerHTML = direccion;
                 document.getElementById("residencia").innerHTML = residencia;
+                document.getElementById("foto").innerHTML = foto;
             });
 
             // BUSCAR MASCOTA
@@ -253,12 +328,12 @@
                 fechaNacimiento = mascotas[indiceMascota][6];
                 genero = mascotas[indiceMascota][2];
                 cuidadosEspeciales = mascotas [indiceMascota][5];
+                foto = mascotas [indiceMascota][4];
                 document.getElementById("nombreMascota").innerHTML = nombreMascota;
                 document.getElementById("fechaNacimiento").innerHTML = fechaNacimiento;
                 document.getElementById("genero").innerHTML = genero;
                 document.getElementById("cuidadosEspeciales").innerHTML = cuidadosEspeciales;
-                   
-
+                document.getElementById("foto").innerHTML = foto;
             });
 
         </script>
