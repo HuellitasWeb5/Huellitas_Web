@@ -17,6 +17,24 @@
     TipoDonacion tipoDonacion = new TipoDonacion();
     String lista = "";
     List<TipoDonacion> datos = TipoDonacion.getListaEnObjetos(null, null);
+
+    // Crear objeto de JavaScript con los datos de tipos de donación
+%>
+
+<script>
+    const tiposDonacion = {};
+
+    <% for (int i = 0; i < datos.size(); i++) {
+            tipoDonacion = datos.get(i);%>
+    tiposDonacion["<%= tipoDonacion.getCodigo()%>"] = {
+        nombre: "<%= tipoDonacion.getNombre()%>",
+        descripcion: "<%= tipoDonacion.getDescripcion()%>"
+    };
+    <% } %>
+</script>
+
+<%
+    // Generar la lista de tarjetas para el Swiper
     for (int i = 0; i < datos.size(); i++) {
         tipoDonacion = datos.get(i);
 
@@ -85,6 +103,8 @@
     $(function () {
         $("#formulario").dialog({
             autoOpen: false,
+            width: 400, // Ancho del diálogo en píxeles
+            height: 200, // Alto del diálogo en píxeles
             show: {
                 effect: "blind",
                 duration: 500
@@ -96,14 +116,14 @@
         });
     });
 
+
     function abrirFormulario(accion, codigo = null) {
         if (accion === "Modificar") {
             $('#formulario').dialog('option', 'title', 'Modificar Tipo de Donación');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Modificar';
-
             document.querySelector('input[type="button"][value="Modificar"]').setAttribute('onclick', 'modificarTipoDonacion(' + codigo + ');');
 
-            cargarDatosTipoDonacion(codigo);
+            cargarDatosTipoDonacion(codigo); // Precargar datos
 
         } else if (accion === "Adicionar") {
             $('#formulario').dialog('option', 'title', 'Adicionar Tipo de Donación');
@@ -122,8 +142,13 @@
         window.location.href = url;
     }
 
-    function cargarDatosTipoDonacion() {
+    function cargarDatosTipoDonacion(codigo) {
+        const tipoDonacion = tiposDonacion[codigo];
 
+        if (tipoDonacion) {
+            document.getElementById('nombre').value = tipoDonacion.nombre;
+            document.getElementById('descripcion').value = tipoDonacion.descripcion;
+        }
     }
 
     function modificarTipoDonacion(codigo) {
@@ -148,7 +173,7 @@
 
     const swiper = new Swiper('.swiper-container', {
         loop: true,
-        slidesPerView: 4, 
+        slidesPerView: 4,
         spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-button-next',
