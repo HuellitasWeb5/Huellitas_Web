@@ -14,7 +14,7 @@ if (accion.equals("Modificar")) {
         clientes=new Persona(identificacion);
     }
 %>
-<h3><%=accion.toUpperCase() %> CLIENTE</h3>
+<h3><%=accion.toUpperCase() %> SANPATITAS</h3>
 <table border="0"><tr><td><!-- para la tabla que se creó para la imagen-->
 <form name="formulario" method="post" action="principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp" enctype="multipart/form-data">
     <table border="0">
@@ -44,7 +44,7 @@ if (accion.equals("Modificar")) {
             <th>Foto</th>
             <td> <input type="file" name="foto" accept="image/*" value="<%=clientes.getFoto()%>" onchange="mostrarFoto();"></td>
         </tr>
-        <tr><th>Contraseña</th><td><input type="password" name="clave" value="" required></td></tr>
+        <tr><th>Contraseña</th><td><input type="password" name="clave" value="<%=clientes.getClave()%>" required></td></tr>
     </table>
     <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
     <input type="submit" name="accion" value="<%=accion %>">

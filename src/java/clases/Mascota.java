@@ -8,6 +8,8 @@ package clases;
 import clasesGenericas.ConectorBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -28,12 +30,13 @@ public class Mascota {
     private String fechaNacimientoAproximada;
     private String fechaIngreso;
     private String estado;
+    private String descripcion;
 
     public Mascota() {
     }
 
     public Mascota(String codigo) {
-        String cadenaSQL="select codigo, nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado from mascota where codigo=" +codigo;
+        String cadenaSQL="select codigo, nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado, descripcion from mascota where codigo=" +codigo;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if(resultado.next()){
@@ -46,6 +49,7 @@ public class Mascota {
              fechaNacimientoAproximada=resultado.getString("fechaNacimientoAproximada");
              fechaIngreso=resultado.getString("fechaIngreso");
              estado=resultado.getString("estado");
+             descripcion=resultado.getString("descripcion");
             }
         } catch (Exception ex) {
              System.out.println("Error al consultar el id" + ex.getMessage());
@@ -146,6 +150,24 @@ public class Mascota {
         this.estado = estado;
     }
     
+    public String getDescripcion() {
+        String resultado = descripcion;
+        if (descripcion == null) {
+            resultado = "";
+        }
+        return resultado;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+    
+    public int getEdad() {
+        LocalDate fechaNacimiento = LocalDate.parse(this.getFechaNacimientoAproximada());
+        LocalDate fechaActual = LocalDate.now();
+        return Period.between(fechaNacimiento, fechaActual).getYears();
+    }
+    
     public String toString() {
 
         String datos="";
@@ -157,15 +179,15 @@ public class Mascota {
     
    public boolean grabar(){
 
-       String cadenaSQL="insert into mascota (nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado) "
-               + " values ('"+nombre+"','"+genero+"','"+tamano+"','"+foto+"','"+cuidadosEspeciales+"','"+fechaNacimientoAproximada+"','"+fechaIngreso+"','"+estado+"')";
+       String cadenaSQL="insert into mascota (nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado, descripcion) "
+               + " values ('"+nombre+"','"+genero+"','"+tamano+"','"+foto+"','"+cuidadosEspeciales+"','"+fechaNacimientoAproximada+"','"+fechaIngreso+"','"+estado+"','"+descripcion+")";
        System.out.println(cadenaSQL);
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }
     // falta el to String con el override
    public boolean modificar(){
        String cadenaSQL="update mascota set nombre='"+nombre+"',genero='"+genero+"',tamano='"+tamano+"',foto='"+foto+"',cuidadosEspeciales='"+cuidadosEspeciales+"',"
-               + "fechaNacimientoAproximada='"+fechaNacimientoAproximada+"',fechaIngreso='"+fechaIngreso+"',estado='"+estado+"' where codigo="+codigo;
+               + "fechaNacimientoAproximada='"+fechaNacimientoAproximada+"',fechaIngreso='"+fechaIngreso+"',estado='"+estado+"',descripcion='"+descripcion+"' where codigo="+codigo;
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }
     // falta el to String con el override
@@ -185,7 +207,7 @@ public class Mascota {
        }else {
            orden = " ";
        }
-       String cadenaSQL="Select codigo, nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado from mascota" +filtro+orden;
+       String cadenaSQL="Select codigo, nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado, descripcion from mascota" +filtro+orden;
        return ConectorBD.consultar(cadenaSQL);
    }
    
@@ -205,6 +227,7 @@ public class Mascota {
                    mascota.setFechaNacimientoAproximada(datos.getString("fechaNacimientoAproximada"));
                    mascota.setFechaIngreso(datos.getString("fechaIngreso"));
                    mascota.setEstado(datos.getString("estado"));
+                   mascota.setDescripcion(datos.getString("descripcion"));
                    
                    lista.add(mascota);
                }
@@ -233,6 +256,7 @@ public class Mascota {
             lista += "'" + mascota.getFechaNacimientoAproximada()+ "',";
             lista += "'" + mascota.getFechaIngreso()+ "',";
             lista += "'" + mascota.getEstado()+ "',";
+            lista += "'" + mascota.getDescripcion()+ "',";
             lista += "]";
         }
         lista += "];";
