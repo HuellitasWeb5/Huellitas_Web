@@ -15,10 +15,7 @@
 
 <center><h3>Agregar donacionDetallees</h3></center>
 <table>
-    <tr>
-        <th>Codigo </th>
-        <td><input type="text" name="codigo" id="codigo"></td>
-    </tr>
+
     <tr>
         <th>Identificación donante</th>
         <td><input type="text" name="identificacionDonante" id="identificacionDonante"></td>
@@ -34,8 +31,10 @@
     <tr>
         <th>Descripción</th>
         <td><input type="text" name="descripcion" id="descripcion"></td>
+        
     </tr>
 </table>
+<input type="text" size="200">
 <div class="filter-container">
     <button class="add-button" onclick="AgregarDonacion();">Adicionar Donacion</button>
 </div>

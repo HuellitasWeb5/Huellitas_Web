@@ -79,7 +79,7 @@ public class Donacion {
     }
 
     public boolean grabar() {
-        String cadenaSQL = "insert into donacion(codigo,fecha,descripcion,identificacionDonante) values ('" + codigo + "','" + fecha + "','" + descripcion + "','" + identificacionDonante + "')";
+        String cadenaSQL = "insert into donacion(fecha,descripcion,identificacionDonante) values ('" + fecha + "','" + descripcion + "','" + identificacionDonante + "')";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 

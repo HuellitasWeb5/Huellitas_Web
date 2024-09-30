@@ -37,7 +37,7 @@ public class TipoPersona {
             case "C":
                 nombre = "Cliente";
                 break;
-                
+
             default:
                 nombre = "Desconocido";
                 break;
@@ -69,15 +69,15 @@ public class TipoPersona {
                 menu += "<a href='principal.jsp?CONTENIDO=8.Donacion/donacionDetalle.jsp'>Donaciones DETALLES</a>";
                 menu += "<a href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Unida de medida</a>";
                 menu += "<a href='index.jsp'>Salir</a>";
-                
+
                 break;
 
             case "F":
                 menu += "<li><a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
                 menu += "<li><a href='index.jsp'>Salir</a></li>";
                 break;
-                
-             case "C":
+
+            case "C":
                 menu += "<li><a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
                 menu += "<li><a href='index.jsp'>Salir</a></li>";
                 break;
