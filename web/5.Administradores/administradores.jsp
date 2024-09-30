@@ -15,7 +15,7 @@ for (int i = 0; i < datos.size(); i++) {
         lista+="<td>" + administrador.getIdentificacion() + "</td>";
         lista+="<td>" + administrador.getNombre()+ "</td>";
         lista+="<td>" + administrador.getGenero() + "</td>";
-        lista+="<td>" + administrador.getFechaNacimiento() + "</td>";
+        lista+="<td>" + administrador.getEdad()+ "</td>";
         lista+="<td>" + administrador.getEmail()+ "</td>";
         lista+="<td>" + administrador.getTelefono() + "</td>";
         lista+="<td>" + administrador.getDireccion()+ "</td>";
@@ -49,26 +49,26 @@ for (int i = 0; i < datos.size(); i++) {
          }
     }
     
-     function calcularEdad() {
-        const fechaNacimiento = document.getElementById("fechaNacimiento").value;
-        if (fechaNacimiento) {
-            const fechaActual = new Date();
-            const nacimiento = new Date(fechaNacimiento);
-            let edad = fechaActual.getFullYear() - nacimiento.getFullYear();
-            const mes = fechaActual.getMonth() - nacimiento.getMonth();
+    function calcularEdad() {
+    const fechaNacimiento = document.getElementById("fechaNacimiento").value;
+    if (fechaNacimiento) {
+        const fechaActual = new Date();
+        const nacimiento = new Date(fechaNacimiento);
+        let edad = fechaActual.getFullYear() - nacimiento.getFullYear();
+        const mes = fechaActual.getMonth() - nacimiento.getMonth();
 
-            if (mes < 0 || (mes === 0 && fechaActual.getDate() < nacimiento.getDate())) {
-                edad--;
-            }
-
-            document.getElementById("edad").textContent = edad;
+        if (mes < 0 || (mes === 0 && fechaActual.getDate() < nacimiento.getDate())) {
+            edad--;
         }
-    }
 
-    // Llamar a la función al cargar la página si ya hay una fecha de nacimiento
-    window.onload = function() {
-        calcularEdad();
-    };
+        document.getElementById("edad").textContent = edad;
+    }
+}
+
+// Llamar a la función al cargar la página si ya hay una fecha de nacimiento
+window.onload = function() {
+    calcularEdad();
+};
 </script>
 
     
