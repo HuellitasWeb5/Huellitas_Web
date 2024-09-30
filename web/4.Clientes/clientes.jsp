@@ -16,7 +16,7 @@ for (int i = 0; i < datos.size(); i++) {
         lista+="<td>" + clientes.getIdentificacion() + "</td>";
         lista+="<td>" + clientes.getNombre()+ "</td>";
         lista+="<td>" + clientes.getGeneroPersona()+ "</td>";
-        lista+="<td>" + clientes.getFechaNacimiento()+ "</td>";
+        lista+="<td>" + clientes.getEdad()+ "</td>";
         lista+="<td>" + clientes.getEmail()+ "</td>";
         lista+="<td>" + clientes.getTelefono()+ "</td>";
         lista+="<td>" + clientes.getDireccion()+ "</td>";
@@ -48,4 +48,25 @@ for (int i = 0; i < datos.size(); i++) {
             document.location="principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp&accion=Eliminar&identificacion="+identificacion;
          }
     }
+    
+    function calcularEdad() {
+        const fechaNacimiento = document.getElementById("fechaNacimiento").value;
+        if (fechaNacimiento) {
+            const fechaActual = new Date();
+            const nacimiento = new Date(fechaNacimiento);
+            let edad = fechaActual.getFullYear() - nacimiento.getFullYear();
+            const mes = fechaActual.getMonth() - nacimiento.getMonth();
+
+            if (mes < 0 || (mes === 0 && fechaActual.getDate() < nacimiento.getDate())) {
+                edad--;
+            }
+
+            document.getElementById("edad").textContent = edad;
+        }
+    }
+
+    // Llamar a la función al cargar la página si ya hay una fecha de nacimiento
+    window.onload = function() {
+        calcularEdad();
+    };
 </script>
