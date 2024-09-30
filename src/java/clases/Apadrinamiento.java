@@ -23,11 +23,13 @@ public class Apadrinamiento {
     private String planApadrinamiento;
     private String fecha;
     private String identificacionPadrino;
+    private String fotoRecibo;
+    private String fotoCedula;
 
     public Apadrinamiento() {
     }
     public Apadrinamiento(String codigo) {
-        String cadenaSQL = "select codigo,planApadrinamiento,fecha,identificacionPadrino where codigo=" + codigo;
+        String cadenaSQL = "select codigo,planApadrinamiento,fecha,identificacionPadrino, fotoRecibo, fotoCedula where codigo=" + codigo;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
@@ -35,12 +37,30 @@ public class Apadrinamiento {
                 planApadrinamiento = resultado.getString("planApadrinamiento");
                 fecha = resultado.getString("fecha");
                 identificacionPadrino = resultado.getString("identificacionPadrino");
+                fotoCedula = resultado.getString("fotoCedula");
+                fotoRecibo = resultado.getString("fotoRecibo");
             }
         } catch (SQLException ex) {
             System.out.println("Error al consultar en apadrinamiento" + ex.getMessage());
         }
     }
 
+    public String getFotoRecibo() {
+        return fotoRecibo;
+    }
+
+    public void setFotoRecibo(String fotoRecibo) {
+        this.fotoRecibo = fotoRecibo;
+    }
+
+    public String getFotoCedula() {
+        return fotoCedula;
+    }
+
+    public void setFotoCedula(String fotoCedula) {
+        this.fotoCedula = fotoCedula;
+    }
+    
     public String getCodigo() {
         return codigo;
     }
@@ -84,8 +104,8 @@ public class Apadrinamiento {
     }
     
     public boolean grabar() {
-        String cadenaSQL = "insert into Apadrinamiento(planApadrinamiento,fecha,identificacionPadrino) "
-                + " values ('" + planApadrinamiento + "','" + fecha + "','" + identificacionPadrino + "')";
+        String cadenaSQL = "insert into Apadrinamiento(planApadrinamiento,fecha,identificacionPadrino,fotoRecibo, fotoCedula) "
+                + " values ('" + planApadrinamiento + "','" + fecha + "','" + identificacionPadrino + "','" + fotoRecibo + "','" + fotoCedula + "')";
         // System.out.println(cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
@@ -97,7 +117,7 @@ public class Apadrinamiento {
     
     public boolean modificar() {
 
-        String cadenaSQL = "update Apadrinamiento set planApadrinamiento='" +planApadrinamiento + "',fecha='" +fecha + "',identificacionPadrino='" +identificacionPadrino + "'  where codigo=" + codigo;
+        String cadenaSQL = "update Apadrinamiento set planApadrinamiento='" +planApadrinamiento + "',fecha='" +fecha + "',fotoRecibo='" +fotoRecibo + "',fotoCedula='" +fotoCedula + "',identificacionPadrino='" +identificacionPadrino + "'  where codigo=" + codigo;
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
@@ -118,7 +138,7 @@ public class Apadrinamiento {
        }else {
            orden = " ";
        }
-       String cadenaSQL="Select codigo, planApadrinamiento, fecha, identificacionpadrino from apadrinamiento" +filtro+orden;
+       String cadenaSQL="Select codigo, planApadrinamiento, fecha, identificacionpadrino,fotoRecibo, fotoCedula from apadrinamiento" +filtro+orden;
        return ConectorBD.consultar(cadenaSQL);
    }
     
@@ -133,7 +153,8 @@ public class Apadrinamiento {
                    apadrinamiento.setPlanApadrinamiento("planApadrinamiento");
                    apadrinamiento.setFecha("fecha");
                    apadrinamiento.setIdentificacionPadrino("identidicacionPadrino");
-                   
+                   apadrinamiento.setFotoRecibo("fotoRecibo");
+                   apadrinamiento.setFotoCedula("fotoCedula");
                    lista.add(apadrinamiento);
                }
            } catch (SQLException ex) {
