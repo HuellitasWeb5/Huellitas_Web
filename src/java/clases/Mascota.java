@@ -8,6 +8,8 @@ package clases;
 import clasesGenericas.ConectorBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -158,6 +160,12 @@ public class Mascota {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+    
+    public int getEdad() {
+        LocalDate fechaNacimiento = LocalDate.parse(this.getFechaNacimientoAproximada());
+        LocalDate fechaActual = LocalDate.now();
+        return Period.between(fechaNacimiento, fechaActual).getYears();
     }
     
     public String toString() {
