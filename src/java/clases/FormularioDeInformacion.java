@@ -260,7 +260,7 @@ public class FormularioDeInformacion {
                 + this.fotoRecibo + "','"
                 + this.fotoVivienda + "','"
                 + this.fotoCedula + "','"
-                + this.autorizacionDatos + "')";
+                + this.autorizacionDatos + "', '";
 
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
@@ -357,17 +357,17 @@ public class FormularioDeInformacion {
                 lista += ", ";
             }
             lista += "{"
-                    + "\"codigo\": " + formulario.getCodigo() + ", " // int, sin comillas
-                    + "\"fecha\": \"" + formulario.getFecha() + "\", " // String, con comillas dobles
+                    + "\"codigo\": " + formulario.getCodigo() + ", " 
+                    + "\"fecha\": \"" + formulario.getFecha() + "\", " 
                     + "\"ocupacion\": \"" + formulario.getOcupacion() + "\", "
-                    + "\"tiempoLibre\": " + formulario.getTiempoLibre() + ", " // int, sin comillas
-                    + "\"espacio\": " + formulario.getEspacio() + ", " // int, sin comillas
-                    + "\"compromiso\": " + formulario.getCompromiso() + ", " // int, sin comillas
-                    + "\"ninos\": " + formulario.getNinos() + ", " // int, sin comillas
-                    + "\"habitantes\": " + formulario.getHabitantes() + ", " // int, sin comillas
-                    + "\"responsables\": " + formulario.getResponsables() + ", " // int, sin comillas
-                    + "\"otrasMascotas\": " + formulario.getOtrasMascotas() + ", " // int, sin comillas
-                    + "\"propietario\": \"" + formulario.getPropietario() + "\", " // String, con comillas
+                    + "\"tiempoLibre\": " + formulario.getTiempoLibre() + ", " 
+                    + "\"espacio\": " + formulario.getEspacio() + ", " 
+                    + "\"compromiso\": " + formulario.getCompromiso() + ", " 
+                    + "\"ninos\": " + formulario.getNinos() + ", " 
+                    + "\"habitantes\": " + formulario.getHabitantes() + ", " 
+                    + "\"responsables\": " + formulario.getResponsables() + ", " 
+                    + "\"otrasMascotas\": " + formulario.getOtrasMascotas() + ", " 
+                    + "\"propietario\": \"" + formulario.getPropietario() + "\", " 
                     + "\"motivacion\": \"" + formulario.getMotivacion() + "\", "
                     + "\"descripcion\": \"" + formulario.getDescripcion() + "\", "
                     + "\"fechaVisitaDia\": \"" + formulario.getFechaVisitaDia() + "\", "
@@ -375,7 +375,7 @@ public class FormularioDeInformacion {
                     + "\"fotoRecibo\": \"" + formulario.getFotoRecibo() + "\", "
                     + "\"fotoVivienda\": \"" + formulario.getFotoVivienda() + "\", "
                     + "\"fotoCedula\": \"" + formulario.getFotoCedula() + "\", "
-                    + "\"autorizacionDatos\": " + formulario.getAutorizacionDatos() // boolean, sin comillas
+                    + "\"autorizacionDatos\": " + formulario.getAutorizacionDatos() 
                     + "}";
         }
 
