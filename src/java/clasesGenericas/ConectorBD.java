@@ -29,7 +29,7 @@ public class ConectorBD {
 
     public ConectorBD() {
 
-        // Mantener siempre comentado estas credenciales al subir cambios.
+
 
         servidor = "localhost";
         puerto = "3306";

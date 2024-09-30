@@ -74,7 +74,7 @@
     function confirmarEliminacion(codigo) {
         const respuesta = confirm("¿Realmente desea eliminar el registro?");
         if (respuesta) {
-            document.location = "principal.jsp?CONTENIDO=8.Donacion/donacionsActualizar.jsp&accion=Eliminar&codigo=" + codigo;
+            document.location = "principal.jsp?CONTENIDO=8.Donacion/donacionesFormularioActualizar.jsp&accion=Eliminar&codigo=" + codigo;
         }
     }
 

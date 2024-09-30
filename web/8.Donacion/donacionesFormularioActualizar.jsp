@@ -1,46 +1,37 @@
+<%-- 
+    Document   : donacionesFormularioActualizar
+    Created on : 6/09/2024, 03:15:29 PM
+    Author     : Luis Eraso
+--%>
+
 <%@page import="clases.Donacion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <%
-
     String accion = request.getParameter("accion");
+    String identificacionDonante = request.getParameter("identificacionDonante");
     String descripcion = request.getParameter("descripcion");
     String fecha = request.getParameter("fecha");
-    String identificacionDonante = request.getParameter("identificacionDonante");
-
     Donacion donacion = new Donacion();
-
+    donacion.setIdentificacionDonante(identificacionDonante);
     donacion.setDescripcion(descripcion);
     donacion.setFecha(fecha);
-    donacion.setIdentificacionDonante(identificacionDonante);
-    boolean grabadoConExito = false;
-
+  
+    
     switch (accion) {
         case "Adicionar":
-            grabadoConExito = donacion.grabar(); // Suponiendo que grabar() retorna true si fue exitoso.
-            break;
+            donacion.grabar();
+            break; 
         case "Modificar":
             donacion.setCodigo(request.getParameter("codigo"));
-            grabadoConExito = donacion.modificar(); // Similarmente
+            donacion.modificar();
             break;
-        case "Eliminar":
+        case "Eliminar":    
             donacion.setCodigo(request.getParameter("codigo"));
-            grabadoConExito = donacion.eliminar();
+            donacion.eliminar();
             break;
     }
-    
 %>
-
 <script type="text/javascript">
-    // Verificamos si la operación fue exitosa y luego llamamos a la función AgregarDonacion
-    <% if (grabadoConExito) { %>
-        AgregarDonacion();
-    <% } %>
-
-    function AgregarDonacion() {
-        var codigo = '<%= donacion.getCodigo() %>'; // Obtenemos el código de la donación desde el servidor
-        var url = "donacionesFormulario.jsp?accion=Adicionar&codigo=" + codigo;
-        window.location.href = url;
-    }
+    document.location="/HuellitasWeb/principal.jsp?CONTENIDO=8.Donacion/donacionesDetalles.jsp&codigo="+codigo
 </script>
