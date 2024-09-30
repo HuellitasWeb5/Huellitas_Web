@@ -8,6 +8,8 @@ package clases;
 import clasesGenericas.ConectorBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -19,10 +21,10 @@ import java.util.logging.Logger;
  */
 public class Persona {
 
-    private String identificacion; //
-    private String nombre; //
-    private String genero; //
-    private String fechaNacimiento; // 
+    private String identificacion; 
+    private String nombre; 
+    private String genero; 
+    private String fechaNacimiento; 
     private String email;
     private String telefono;
     private String direccion;
@@ -54,7 +56,6 @@ public class Persona {
 
             }
         } catch (SQLException ex) {
-            //Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Error al consultar la identificacion" + ex.getMessage());
         }
     }
@@ -207,6 +208,12 @@ public class Persona {
         return datos;
     }
 
+   public int getEdad() {
+        LocalDate fechaNacimiento = LocalDate.parse(this.getFechaNacimiento());
+        LocalDate fechaActual = LocalDate.now();
+        return Period.between(fechaNacimiento, fechaActual).getYears();
+    }
+
     public boolean grabar() {
 
         String cadenaSQL = "insert into Persona(identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave) "
@@ -244,7 +251,6 @@ public class Persona {
 
         }
         String cadenaSQL = "select identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave from persona " + filtro + orden;
-        //   System.out.println(cadenaSQL); // prueba para revisar como esta iniciando en sesion
         return ConectorBD.consultar(cadenaSQL);
     }
 
@@ -282,7 +288,7 @@ public class Persona {
         List<Persona> lista = Persona.getListaEnObjetos("identificacion='" + identificacion
                 + "' and clave=md5('" + clave + "')", null);
         if (lista.size() > 0) {
-            persona = lista.get(0); // get devuelve el primer elemento de la lista
+            persona = lista.get(0); 
         }
         return persona;
     }

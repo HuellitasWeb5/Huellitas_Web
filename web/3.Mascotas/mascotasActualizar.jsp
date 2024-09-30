@@ -18,11 +18,11 @@
 boolean subioArchivo=false;
 Map<String, String> variables=new HashMap<String, String>(); //aqui se almacenan los datos enviados por el formulario
 boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-if(!isMultipart){
+if(!isMultipart) {
     //no se pasa por el formulario que corresponde a eliminar
     variables.put("accion", request.getParameter("accion"));
     variables.put("codigo", request.getParameter("codigo"));
-}else{
+} else {
     //configuraciones para subir el archivo 
     String rutaActual=getServletContext().getRealPath("/");
     out.print(rutaActual);
@@ -37,21 +37,21 @@ if(!isMultipart){
     List elementosFormulario=upload.parseRequest(origen);
     Iterator iterador=elementosFormulario.iterator();
     while (iterador.hasNext()) {
-            FileItem elemento=(FileItem) iterador.next();
-            if(elemento.isFormField()){
+            FileItem elemento= (FileItem) iterador.next();
+            if (elemento.isFormField()){
                 out.print(elemento.getFieldName()+" = "+elemento.getString()+"<br>");
-                variables.put(elemento.getFieldName(),elemento.getString());
+                variables.put(elemento.getFieldName(), elemento.getString());
             }
             else {
                 out.print(elemento.getFieldName()+" = "+elemento.getName()+"<br>");
                 variables.put(elemento.getFieldName(), elemento.getName());
                 if(!elemento.getName().equals("")){
-                subioArchivo=true;
-                //int ubicacionPunto=elemento.getName().lastIndexOf(".");
-                //String extension =elemento.getName().substring(ubicacionPunto);
-                //String nombreArchivo=variables.get("nombre")+"."+extension;
-                elemento.write(new File(destino,elemento.getName()));
-                variables.put(elemento.getFieldName(),elemento.getName());
+                    subioArchivo=true;
+                    //int ubicacionPunto=elemento.getName().lastIndexOf(".");
+                    //String extension =elemento.getName().substring(ubicacionPunto);
+                    //String nombreArchivo=variables.get("nombre")+"."+extension;
+                    elemento.write(new File(destino, elemento.getName()));
+                    variables.put(elemento.getFieldName(), elemento.getName());
                 }
             }
         }
@@ -67,7 +67,7 @@ if(!isMultipart){
     mascota.setFechaNacimientoAproximada(variables.get("fechaNacimientoAproximada"));
     mascota.setFechaIngreso(variables.get("fechaIngreso"));
     mascota.setEstado(variables.get("estado"));
-
+    
     switch (variables.get("accion")) {
         case "Adicionar":
             mascota.grabar();
