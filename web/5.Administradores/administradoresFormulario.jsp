@@ -38,7 +38,7 @@ if (accion.equals("Modificar")) {
     <td>
         <input type="date" id="fechaNacimiento" name="fechaNacimiento" value="<%=administrador.getFechaNacimiento()%>" maxlength="15" required onchange="calcularEdad()">
     </td>
-</tr>  
+     </tr>  
         <tr>
             <th>Correo Electronico</th>
             <td><input type="text" name="email" value="<%=administrador.getEmail() %>" maxlength="80" required></td>
