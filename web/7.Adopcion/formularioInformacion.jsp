@@ -14,14 +14,20 @@
         formulario.setTiempoLibre(request.getParameter("tiempoLibre"));
         formulario.setEspacio(request.getParameter("espacio"));
         formulario.setCompromiso(request.getParameter("compromiso"));
-        formulario.setNinos(request.getParameter("ninos"));
-        formulario.setHabitantes(request.getParameter("habitantes"));
-        formulario.setResponsables(request.getParameter("responsables"));
+        formulario.setNinos(Integer.parseInt(request.getParameter("ninos")));
+        formulario.setHabitantes(Integer.parseInt(request.getParameter("habitantes")));
+        formulario.setResponsables(Integer.parseInt(request.getParameter("responsables")));
         formulario.setOtrasMascotas(request.getParameter("otrasMascotas"));
         formulario.setPropietario(request.getParameter("propietario"));
         formulario.setMotivacion(request.getParameter("motivacion"));
         formulario.setDescripcion(request.getParameter("descripcion"));
         formulario.setCodigoAdopcion(Integer.parseInt(request.getParameter("codigoAdopcion")));
+        formulario.setFechaVisitaDia(request.getParameter("fechaVisitaDia"));
+        formulario.setFechaVisitaHora(request.getParameter("fechaVisitaHora"));
+        formulario.setFotoRecibo(request.getParameter("fotoRecibo"));
+        formulario.setFotoVivienda(request.getParameter("fotoVivienda"));
+        formulario.setFotoCedula(request.getParameter("fotoCedula"));
+        formulario.setAutorizacionDatos(request.getParameter("autorizacionDatos"));
 
         if (formulario.grabar()) {
             out.println("<h3>Formulario guardado exitosamente.</h3>");
@@ -30,7 +36,6 @@
         }
     }
 %>
-
 <html>
     <head>
         <script>
