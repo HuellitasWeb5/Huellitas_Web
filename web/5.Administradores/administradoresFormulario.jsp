@@ -33,9 +33,12 @@ if (accion.equals("Modificar")) {
  
         <tr><th>Género</th><td><%=administrador.getGeneroEnObjeto().getRadioButtons() %></td></tr>
         
-        <tr><th>Fecha De Nacimiento</th><td><input type="date" name="fechaNacimiento" value="<%=administrador.getFechaNacimiento()%>" maxlength="15" required></td></tr>
-       
-         
+       <tr>
+    <th>Fecha De Nacimiento</th>
+    <td>
+        <input type="date" id="fechaNacimiento" name="fechaNacimiento" value="<%=administrador.getFechaNacimiento()%>" maxlength="15" required onchange="calcularEdad()">
+    </td>
+</tr>  
         <tr>
             <th>Correo Electronico</th>
             <td><input type="text" name="email" value="<%=administrador.getEmail() %>" maxlength="80" required></td>
@@ -80,6 +83,9 @@ if (accion.equals("Modificar")) {
             document.getElementById("foto").src=lector.result;
         }
     }
+ 
+
 </script>
     
-    
+
+   

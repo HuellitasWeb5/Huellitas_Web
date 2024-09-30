@@ -32,5 +32,5 @@
     }
 %>
 <script type="text/javascript">
-   document.location="principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp"
+    document.location="/HuellitasWeb/principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp"
 </script>
