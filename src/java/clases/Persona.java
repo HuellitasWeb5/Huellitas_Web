@@ -206,11 +206,11 @@ public class Persona {
         }
         return datos;
     }
-   public int getEdad() {
-        LocalDate fechaNacimiento = LocalDate.parse(this.getFechaNacimiento());
-        LocalDate fechaActual = LocalDate.now();
-        return Period.between(fechaNacimiento, fechaActual).getYears();
-    }
+  public int getEdad() {
+    LocalDate fechaNacimiento = LocalDate.parse(this.getFechaNacimiento());
+    LocalDate fechaActual = LocalDate.now();
+    return Period.between(fechaNacimiento, fechaActual).getYears();
+}
 
     public boolean grabar() {
  
