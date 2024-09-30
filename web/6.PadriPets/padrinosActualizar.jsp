@@ -11,7 +11,7 @@
     Apadrinamiento padrino= new Apadrinamiento();
     switch (accion) {
         case "Adicionar":
-            String identificacion = request.getParameter("identificacionPadrino");
+            String identificacion = request.getParameter("identificacion");
             String mascotasPlan = request.getParameter("mascotasPlan");
             padrino.setIdentificacionPadrino(identificacion);
             padrino.grabarConProcedimientoAlmacenado(mascotasPlan);
