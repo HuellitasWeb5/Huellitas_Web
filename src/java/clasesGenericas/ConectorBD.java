@@ -30,9 +30,6 @@ public class ConectorBD {
     public ConectorBD() {
 
         // Mantener siempre comentado estas credenciales al subir cambios.
-       // usuario = "ADSO";
-        //clave = "1302";
-
 
         servidor = "localhost";
         puerto = "3306";
