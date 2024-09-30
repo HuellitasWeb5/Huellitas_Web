@@ -67,6 +67,7 @@ if(!isMultipart){
     mascota.setFechaNacimientoAproximada(variables.get("fechaNacimientoAproximada"));
     mascota.setFechaIngreso(variables.get("fechaIngreso"));
     mascota.setEstado(variables.get("estado"));
+    mascota.setEstado(variables.get("estado"));
 
     switch (variables.get("accion")) {
         case "Adicionar":
