@@ -44,7 +44,7 @@ if (accion.equals("Modificar")) {
             <th>Foto</th>
             <td> <input type="file" name="foto" accept="image/*" value="<%=clientes.getFoto()%>" onchange="mostrarFoto();"></td>
         </tr>
-        <tr><th>Contraseña</th><td><input type="password" name="clave" value="" required></td></tr>
+        <tr><th>Contraseña</th><td><input type="password" name="clave" value="<%=clientes.getClave()%>" required></td></tr>
     </table>
     <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
     <input type="submit" name="accion" value="<%=accion %>">
