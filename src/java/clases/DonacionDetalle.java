@@ -19,7 +19,7 @@ public class DonacionDetalle {
     }
 
     public DonacionDetalle(String id) {
-        String cadenaSQL = "select id, idConcepto, cantidad, valorUnitarios, codigoDonacion from donacionesdetalle";
+        String cadenaSQL = "select id, idConcepto, cantidad, valorUnitarios, codigoDonacion from donacionesdetalle id="+id;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {

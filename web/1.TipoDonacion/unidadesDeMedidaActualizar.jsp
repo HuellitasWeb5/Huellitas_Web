@@ -31,5 +31,5 @@
     }
 %>
 <script type="text/javascript">
-    document.location="principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp"
+    document.location="/HuellitasWeb/principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp"
 </script>
