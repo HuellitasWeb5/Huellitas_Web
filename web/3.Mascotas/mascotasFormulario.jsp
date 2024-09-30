@@ -25,13 +25,13 @@ if (accion.equals("Modificar")) {
         </tr>
         <tr>
             <th>Nombre</th>
-            <td><input type="text" name="nombre" value="<%=mascota.getNombre()%>" size="50" maxlength="50"></td>
+            <td><input type="text" name="nombre" value="<%=mascota.getNombre()%>" size="50" maxlength="50" required></td>
         </tr>
         <tr>
             <th>Género</th><td><%=mascota.getGeneroEnObjeto().getRadioButtons() %></td>
         </tr>
         <tr>
-            <th>Tamaño</th><td><select name="tamano">
+            <th>Tamaño</th><td><select name="tamano" required>
             <option value="pequeno">Pequeño</option>
             <option value="mediano">Mediano</option>
             <option value="grande">Grande</option>
@@ -39,7 +39,7 @@ if (accion.equals("Modificar")) {
         </tr>
         <tr>
             <th>Foto</th>
-            <td> <input type="file" name="foto" accept="image/*" value="<%=mascota.getFoto()%>" onchange="mostrarFoto();">
+            <td> <input type="file" name="foto" accept="image/*" value="<%=mascota.getFoto()%>" onchange="mostrarFoto();" required>
         </tr>
         <tr>
             <th>Cuidados Especiales</th>
@@ -56,7 +56,7 @@ if (accion.equals("Modificar")) {
         </tr>
         <tr>
             <th>Estado</th>
-            <td><select id="estado" name="estado">
+            <td><select id="estado" name="estado" required>
             <option value="disponible">Disponible</option>
             <option value="apadrinado">Apadrinado</option>
             <option value="adoptado">Adoptado</option>
@@ -65,7 +65,7 @@ if (accion.equals("Modificar")) {
         <tr>
             <th>Descripcion</th>
             <td>
-                <textarea name="descripcion" cols="50" rows="5"></textarea>
+                <textarea name="descripcion" cols="50" rows="5" maxlength="60" required></textarea>
             </td>
         </tr>
         
