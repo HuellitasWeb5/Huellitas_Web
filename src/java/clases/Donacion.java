@@ -28,7 +28,7 @@ public class Donacion {
     }
 
     public Donacion(String codigo) {
-        String cadenaSQL = "select codigo,fecha,descripcion,identificacionDonante from donacion";
+        String cadenaSQL = "select codigo,fecha,descripcion,identificacionDonante from donacion where codigo="+codigo;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             this.codigo = codigo;
@@ -36,7 +36,7 @@ public class Donacion {
             descripcion = resultado.getString("descripcion");
             identificacionDonante = resultado.getString("identificacionDonante");
         } catch (SQLException ex) {
-            System.out.println("Error al consultar en donacion" + ex.getMessage());
+            System.out.println("Error al consultar en donacion " + ex.getMessage());
         }
     }
 
@@ -73,12 +73,13 @@ public class Donacion {
     }
 
     @Override
+    
     public String toString() {
         return codigo;
     }
 
     public boolean grabar() {
-        String cadenaSQL = "insert into donacion(fecha,descipcion,identificacaionDonante) values ('" + fecha + "','" + descripcion + "','" + identificacionDonante + "')";
+        String cadenaSQL = "insert into donacion(fecha,descripcion,identificacionDonante) values ('" + fecha + "','" + descripcion + "','" + identificacionDonante + "')";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 

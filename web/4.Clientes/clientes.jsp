@@ -9,14 +9,14 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
 String lista="";
-List<Persona> datos=Persona.getListaEnObjetos("tipo<>'A' && tipo<>'V'", null);
+List<Persona> datos=Persona.getListaEnObjetos(null, null);
 for (int i = 0; i < datos.size(); i++) {
         Persona clientes = datos.get(i);
         lista+="<tr>";
         lista+="<td>" + clientes.getIdentificacion() + "</td>";
         lista+="<td>" + clientes.getNombre()+ "</td>";
         lista+="<td>" + clientes.getGeneroPersona()+ "</td>";
-        lista+="<td>" + clientes.getFechaNacimiento()+ "</td>";
+        lista+="<td>" + clientes.getEdad()+ "</td>";
         lista+="<td>" + clientes.getEmail()+ "</td>";
         lista+="<td>" + clientes.getTelefono()+ "</td>";
         lista+="<td>" + clientes.getDireccion()+ "</td>";
@@ -30,7 +30,7 @@ for (int i = 0; i < datos.size(); i++) {
         lista+="</tr>";
     }
 %>
-<h3>LISTA DE CLIENTES</h3>
+<h3>SANPATITAS</h3>
 <table border="1">
     <tr>
         <th>Identificacion</th><th>Nombres</th><th>Genero</th><th>Fecha de nacimiento</th><th>Email</th><th>Telefono</th><th>Direccion</th>
@@ -48,4 +48,25 @@ for (int i = 0; i < datos.size(); i++) {
             document.location="principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp&accion=Eliminar&identificacion="+identificacion;
          }
     }
+    
+    function calcularEdad() {
+        const fechaNacimiento = document.getElementById("fechaNacimiento").value;
+        if (fechaNacimiento) {
+            const fechaActual = new Date();
+            const nacimiento = new Date(fechaNacimiento);
+            let edad = fechaActual.getFullYear() - nacimiento.getFullYear();
+            const mes = fechaActual.getMonth() - nacimiento.getMonth();
+
+            if (mes < 0 || (mes === 0 && fechaActual.getDate() < nacimiento.getDate())) {
+                edad--;
+            }
+
+            document.getElementById("edad").textContent = edad;
+        }
+    }
+
+    // Llamar a la función al cargar la página si ya hay una fecha de nacimiento
+    window.onload = function() {
+        calcularEdad();
+    };
 </script>
