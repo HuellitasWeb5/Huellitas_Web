@@ -9,7 +9,7 @@
 
    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="presentacion/mascota.css" />
+        <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
     </head>
 
     <%
@@ -36,8 +36,8 @@
             lista+="<p><strong>Descripción:</strong>" + mascotas.getDescripcion()+ "</p>";
             lista+="<p>";
             lista+="<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo() +
-                    " 'title='Modificar'> <button class='btn-modificar'> Modificar </button></a> "; 
-            lista+="<button class='btn-apadrinar'>Apadrinar</button></a> "; 
+                    " 'title='Modificar'> <button class='btn-adicionar'> Modificar </button></a> "; 
+            lista+="<button class='btn-otro'> Apadrinar </button></a> "; 
             lista+="<button class='btn-eliminar' onClick='eliminar("+ mascotas.getCodigo()+")'>Eliminar</button>";
             lista+="</p>";
             lista += "</div>";

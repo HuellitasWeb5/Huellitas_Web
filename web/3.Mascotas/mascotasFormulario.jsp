@@ -3,7 +3,9 @@
     Created on : 28/08/2024, 09:12:29 AM
     Author     : URB
 --%>
-
+<head>
+    <link rel="stylesheet" href="presentacion/style-TarjetasModificar.css">
+</head>
 <%@page import="clases.Mascota"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
@@ -17,7 +19,8 @@ if (accion.equals("Modificar")) {
 %>
 
 <h3><%=accion.toUpperCase() %> MASCOTAS</h3>
-<table border="0"><tr><td><!-- para la tabla que se creó para la imagen-->
+<table border="0"><tr><td>
+
 <form name="formulario" method="post" action="principal.jsp?CONTENIDO=3.Mascotas/mascotasActualizar.jsp" enctype="multipart/form-data">
     <table border="0">
         <tr>
@@ -71,8 +74,8 @@ if (accion.equals("Modificar")) {
         
     </table>
     <input type="hidden" name="codigo" value="<%=codigo%>">
-    <input type="submit" name="accion" value="<%=accion %>">
-    <input type="button" value="Cancelar" onClick="window.history.back()">
+    <input class='btn-adicionar' type="submit" name="accion" value="<%=accion %>">
+    <input class='btn-eliminar' type="button" value="Cancelar" onClick="window.history.back()">
 </form>
     </td><td><img src="presentacion/mascota/<%=mascota.getFoto()%>" id="foto" width="auto" height="250"></td></table>
 <script> 

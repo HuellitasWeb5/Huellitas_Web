@@ -7,6 +7,12 @@
 <%@page import="clases.Persona"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
+</head>
+
 <%
 String lista="";
 List<Persona> datos=Persona.getListaEnObjetos(null, null);
@@ -24,8 +30,8 @@ for (int i = 0; i < datos.size(); i++) {
         lista+="<td><img src='presentacion/clientes/" + clientes.getFoto() + "' width='30' height='auto'></td>";
         lista+="<td>";
         lista+="<a href='principal.jsp?CONTENIDO=4.Clientes/clientesFormulario.jsp&accion=Modificar&identificacion=" + clientes.getIdentificacion()+
-                " 'title='Modificar'> <button title='Modificar'> Modificar </button> </a>"; 
-        lista+="<button title='Eliminar' onClick='eliminar("+ clientes.getIdentificacion()+")'>Eliminar</button>";
+                " 'title='Modificar'> <button class='btn-adicionar' title='Modificar'> Modificar </button> </a>"; 
+        lista+="<button class='btn-eliminar' title='Eliminar' onClick='eliminar("+ clientes.getIdentificacion()+")'>Eliminar</button>";
         lista+="</td>";
         lista+="</tr>";
     }
@@ -36,7 +42,7 @@ for (int i = 0; i < datos.size(); i++) {
         <th>Identificacion</th><th>Nombres</th><th>Genero</th><th>Fecha de nacimiento</th><th>Email</th><th>Telefono</th><th>Direccion</th>
         <th>Residencia</th><th>Foto</th>
                 <th><a href="principal.jsp?CONTENIDO=4.Clientes/clientesFormulario.jsp&accion=Adicionar" title="Adicionar">
-                        <button id="Adicionar" >Adicionar</button>  </a></th>
+                        <button class='btn-otro' id="Adicionar" >Adicionar</button>  </a></th>
     </tr>
     <%=lista%>
 </table>
