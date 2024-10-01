@@ -8,17 +8,20 @@ package clases;
 import clasesGenericas.ConectorBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
- * @author Luis Eraso
+ * @author Angie
  */
 public class Adopcion {
 
-
     private String codigo;
     private String identificacionAdoptante;
+    private String codigoMascota;
     private String fechaAdopcion;
     private String actaAdopcion;
 
@@ -26,18 +29,21 @@ public class Adopcion {
     }
 
     public Adopcion(String codigo) {
-        String cadenaSQL = "select codigo,identificacionAdoptante,fechaAdopcion,actaAdopcion from adopcion";
+        String cadenaSQL = "select codigo, identificacionAdoptante, codigoMascota, fechaAdopcion, actaAdopcion from adopcion where codigo = '" + codigo + "'";
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
-            this.codigo = codigo;
-            identificacionAdoptante=resultado.getString("identificacionAdoptante");
-            fechaAdopcion=resultado.getString("fechaAdopcion");
-            actaAdopcion=resultado.getString("actaAdopcion");
-
+            if (resultado.next()) { 
+                this.codigo = codigo;
+                identificacionAdoptante = resultado.getString("identificacionAdoptante");
+                codigoMascota = resultado.getString("codigoMascota");
+                fechaAdopcion = resultado.getString("fechaAdopcion");
+                actaAdopcion = resultado.getString("actaAdopcion");
+            } else {
+                System.out.println("No se encontró la adopción con el código: " + codigo);
+            }
         } catch (SQLException ex) {
-            System.out.println("Error al consultar el codigo en adopcion: " + ex.getMessage());
+            System.out.println("Error al consultar el código en adopcion: " + ex.getMessage());
         }
-
     }
 
     public String getCodigo() {
@@ -56,6 +62,14 @@ public class Adopcion {
         this.identificacionAdoptante = identificacionAdoptante;
     }
 
+    public String getCodigoMascota() {
+        return codigoMascota;
+    }
+
+    public void setCodigoMascota(String codigoMascota) {
+        this.codigoMascota = codigoMascota;
+    }
+
     public String getFechaAdopcion() {
         return fechaAdopcion;
     }
@@ -71,35 +85,63 @@ public class Adopcion {
     public void setActaAdopcion(String actaAdopcion) {
         this.actaAdopcion = actaAdopcion;
     }
-    
-    public Persona getAdoptante(){
+
+    public Persona getAdoptante() {
         return new Persona(identificacionAdoptante);
     }
-    
-     @Override
+
+    @Override
+
     public String toString() {
         return identificacionAdoptante;
     }
-    
-   public boolean grabar () {
-       String cadenaSQL="insert into adopcion (identificacionAdoptante,fechaAdopcion,actaAdopcion) values ('"+identificacionAdoptante+"','"+fechaAdopcion+"','"+actaAdopcion+"')";
-       
-       return ConectorBD.ejecutarQuery(cadenaSQL);
-   }
-   
-   
-   public boolean modificar () {
-       String cadenaSQL="update adopcion set identificacionAdoptante='"+identificacionAdoptante+"',identificacionAdoptante='"+fechaAdopcion+"',actaAdopcion='"+actaAdopcion+"' where codigo="+codigo;
-       
-       return ConectorBD.ejecutarQuery(cadenaSQL);
-   }
-   
-   
-   public boolean eliminar () {
-       String cadenaSQL="delete from adopcion where codigo="+codigo;
-       
-       return ConectorBD.ejecutarQuery(cadenaSQL);
-   }
-   
+
+    public boolean grabar() {
+        String cadenaSQL = "insert into adopcion (identificacionAdoptante, codigoMascota, fechaAdopcion, actaAdopcion) values ('" + identificacionAdoptante + "','" + codigoMascota + "','" + fechaAdopcion + "','" + actaAdopcion + "')";
+
+        return ConectorBD.ejecutarQuery(cadenaSQL);
+    }
+
+    public boolean modificar() {
+        String cadenaSQL = "update adopcion set identificacionAdoptante='" + identificacionAdoptante + "', codigoMascota='" + codigoMascota + "', fechaAdopcion='" + fechaAdopcion + "', actaAdopcion='" + actaAdopcion + "' where codigo=" + codigo;
+
+        return ConectorBD.ejecutarQuery(cadenaSQL);
+    }
+
+    public boolean eliminar() {
+        String cadenaSQL = "delete from adopcion where codigo=" + codigo;
+
+        return ConectorBD.ejecutarQuery(cadenaSQL);
+    }
+
+    public static ResultSet getLista(String filtro, String orden) {
+        if (filtro != null && !filtro.isEmpty()) filtro = " where " + filtro;
+        else filtro = " ";
+        if (orden != null && !orden.isEmpty()) orden = " order by " + orden;
+        else orden = " ";
+        String cadenaSQL = "select codigo, identificacionAdoptante, codigoMascota, fechaAdopcion, actaAdopcion from adopcion" + filtro + orden;
+        return ConectorBD.consultar(cadenaSQL);
+    }
+
+    public static List<Adopcion> getListaEnObjetos(String filtro, String orden) {
+        List<Adopcion> lista = new ArrayList<>();
+        ResultSet datos = Adopcion.getLista(filtro, orden);
+        if (datos != null) {
+            try {
+                while (datos.next()) {
+                    Adopcion adopcion = new Adopcion();
+                    adopcion.setCodigo(datos.getString("codigo"));
+                    adopcion.setIdentificacionAdoptante(datos.getString("identificacionAdoptante"));
+                    adopcion.setCodigoMascota(datos.getString("codigoMascota"));
+                    adopcion.setFechaAdopcion(datos.getString("fechaAdopcion"));
+                    adopcion.setActaAdopcion(datos.getString("actaAdopcion"));
+                    lista.add(adopcion);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Adopcion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
 
 }
