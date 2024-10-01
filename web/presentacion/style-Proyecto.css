@@ -8,7 +8,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 /* Footer */
-/* Estilos generales para el footer */
+
 footer {
 
     background-color: #333; /* Color de fondo oscuro */
@@ -32,8 +32,11 @@ footer {
 
 /* Estilos para los párrafos dentro del footer */
 
-    margin: 0; 
-    padding: 0 15px;
+    /* Estilos para los párrafos dentro del footer */
+.footer-info p {
+    margin: 0 15px; /* Espaciado horizontal entre los elementos */
+    font-size: 1em; /* Tamaño de fuente ajustado */
+    color: #f0f0f0; /* Color del texto */
 }
 
 /* Contenedor Formularios */
