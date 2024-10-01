@@ -7,20 +7,23 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : Angie
 */
 
-/* Footer */
-
+/* Ajuste para el footer */
 footer {
-
-    background-color: #333; /* Color de fondo oscuro */
-    color: white; /* Color del texto blanco */
+    background-color: #333; /* Fondo oscuro */
+    color: white; /* Texto blanco */
     text-align: center; /* Centrar el contenido */
-    padding: 20px 0; /* Espacio arriba y abajo */
-    position: relative; /* El footer se desplazará con el contenido */
-    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    padding: 20px 0; /* Espaciado arriba y abajo */
+    width: 100%; /* Ancho completo */
     box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
-
+    position: relative; /* El footer será relativo, para que no se superponga */
+    z-index: 10; /* Asegurar que el footer esté sobre otros elementos */
 }
 
+
+/* Contenedor principal para que el footer no se solape */
+.container {
+    padding-bottom: 100px; /* Espacio suficiente para que el footer no tape el contenido */
+}
 /* Estilos para la información del footer */
 .footer-info {
     display: flex;
@@ -38,6 +41,13 @@ footer {
     font-size: 1em; /* Tamaño de fuente ajustado */
     color: #f0f0f0; /* Color del texto */
 }
+
+
+
+
+
+
+
 
 /* Contenedor Formularios */
 
@@ -66,4 +76,6 @@ label {
 .submit {
     margin-top: 20px; /* Espacio arriba del botón enviar */
 }
-
+.container {
+    padding-bottom: 60px; /* Margen inferior para que el contenido no quede tapado por el footer */
+}
