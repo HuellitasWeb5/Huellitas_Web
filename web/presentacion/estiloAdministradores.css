@@ -22,8 +22,18 @@
     width: 100%;
 }
 
-
+/* Ajuste del ancho y largo de las tarjetas */
+.card {
+    background-color: #62ff67; /* Color de fondo verde */
+    border-radius: 150px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+    padding: 10px; /* Reducido para disminuir el largo (antes 20px) */
+    text-align: center; /* Centramos el texto */
+    min-width: 250px; /* Ajuste del ancho mínimo (antes 250px) */
+    max-width: 300px; /* Ajuste del ancho máximo (antes 300px) */
+}
 /*
+
 
 /* Estilo general del cuerpo */
 body {
@@ -91,16 +101,16 @@ h3 {
 .navigation-buttons {
     display: flex; /* Usar flexbox para los botones de navegación */
     justify-content: center; /* Centra los botones de navegación */
-    margin-top: 20px; /* Espacio entre las tarjetas y los botones de navegación */
+    margin-top: 50px; /* Espacio entre las tarjetas y los botones de navegación */
 }
 /* Estilo básico de las tarjetas */
 .card {
     background-color: #cce5ff; /* Color de fondo verde */
-    border-radius: 10px;
+    border-radius: 30px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
-    min-width: 100px; /* Puedes ajustar este valor según sea necesario */
+    min-width: 300px; /* Puedes ajustar este valor según sea necesario */
     margin: 10px; /* Espacio entre tarjetas */
 }
 
@@ -117,7 +127,14 @@ h3 {
     border: 8px solid #027605; /* Aumentar el grosor del borde blanco alrededor de la imagen */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra sutil alrededor de la imagen */
 }
+/* Ajuste del tamaño de la fuente en las tarjetas */
+.card-body {
+    font-size: 0.85em; /* Reducir el tamaño del texto */
+}
 
+.card-header {
+    font-size: 1.1em; /* Reducir el tamaño del título */
+}
 /* Encabezado de la tarjeta */
 .card-header {
     font-size: 1.3em; /* Ajustar el tamaño de la fuente */
@@ -205,4 +222,20 @@ h3 {
 
 #Adicionar:hover {
     background-color: #218838;
+}#searchForm {
+    display: flex;
+    align-items: center;
+}
+
+#searchInput {
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 450px;
+    margin-right: 10px;
+}
+
+#nameList {
+    list-style-type: none;
+    padding: 0;
 }
