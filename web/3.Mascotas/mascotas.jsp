@@ -1,4 +1,4 @@
-    <%-- 
+<%-- 
         Document   : mascotas
         Created on : 28/08/2024, 08:37:21 AM
         Author     : URB
@@ -9,10 +9,9 @@
 
    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
+        <link rel="stylesheet" href="presentacion/estiloAdministradores.css" />
     </head>
 
-    
     <%
     String lista="";
     List<Mascota> datos=Mascota.getListaEnObjetos(null, null);
@@ -21,7 +20,8 @@
             lista += "<div class='swiper-slide card'>"; // Añadido la clase 'card'
             lista += "<div class='card-body'>"; // Contenedor para el cuerpo de la tarjeta
             lista += "<img src='presentacion/mascota/" + mascotas.getFoto() + "' width='auto' height='60'class='profile-image'>";
-            lista += "<h2>" + mascotas.getNombre()+ "</h2>";
+            lista += "<div class='card-header'>";
+            lista += "<h2>" + mascotas.getNombre()+ "</h2></div>";
             lista+="<p><strong>Código:</strong>" + mascotas.getCodigo()+ "</p>";
             lista+="<p><strong>Genero:</strong>" + mascotas.getGeneroEnObjeto()+ "</p>";
             lista+="<p><strong>Tamaño:</strong>" + mascotas.getTamano()+ "</p>";
@@ -31,9 +31,10 @@
             lista+="<p><strong>Estado:</strong>" + mascotas.getEstado()+ "</p>";
             lista+="<p><strong>Descripción:</strong>" + mascotas.getDescripcion()+ "</p>";
             lista+="<p>";
+            lista += "<div class='card-footer'>"; // Contenedor para los botones
             lista+="<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo() +
-                    " 'title='Modificar'> <button class='btn-adicionar'> Modificar </button></a> "; 
-            lista+="<button class='btn-otro'> Apadrinar </button></a> "; 
+                    " 'title='Modificar'> <button class='btn-modificar'> Modificar </button></a> "; 
+            lista+="<button class='btn-apadrinar'>Apadrinar</button></a> "; 
             lista+="<button class='btn-eliminar' onClick='eliminar("+ mascotas.getCodigo()+")'>Eliminar</button>";
             lista+="</p>";
             lista += "</div>";
