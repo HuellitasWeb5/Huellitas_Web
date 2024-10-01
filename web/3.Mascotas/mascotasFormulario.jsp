@@ -9,6 +9,7 @@
 <%@page import="clases.Mascota"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
+    
 String accion=request.getParameter("accion");
 String codigo=request.getParameter("codigo");
 Mascota mascota=new Mascota();

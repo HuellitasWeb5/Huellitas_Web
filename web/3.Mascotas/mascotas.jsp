@@ -12,6 +12,7 @@
         <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
     </head>
 
+    
     <%
     String lista="";
     List<Mascota> datos=Mascota.getListaEnObjetos(null, null);
