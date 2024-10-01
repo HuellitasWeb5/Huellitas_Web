@@ -21,22 +21,26 @@
 
             <!-- FECHA -->
 
-            <div >Fecha actual: <span id="fecha"></span></div>
+            <div>Fecha actual: <span id="fecha"></span></div>
 
             <!-- ADOPTANTE  --> 
 
-            <table>
+            <table border="1">
                 <tr>
                     <th>Identificación</th>
                     <td><input type="text" name="identificacion" id="identificacion"></td>
+                    <!-- La celda de la imagen ocupará 5 filas y estará centrada -->
+                    <td rowspan="5" style="text-align: center; vertical-align: middle;">
+                        <img id="fotoClientePreview" src="" alt="Foto del Cliente" width="100" height="100">
+                    </td>
                 </tr>
                 <tr>
                     <th>Nombre del Adoptante</th>
-                    <td type="text" name="nombre" id="nombre" ></td>
+                    <td type="text" name="nombre" id="nombre"></td>
                 </tr>
                 <tr>
                     <th>Teléfono</th>
-                    <td type="text" name="telefono" id="telefono" ></td>
+                    <td type="text" name="telefono" id="telefono"></td>
                 </tr>
                 <tr>
                     <th>Dirección</th>
@@ -46,10 +50,8 @@
                     <th>Residencia</th>
                     <td type="text" name="residencia" id="residencia"></td>
                 </tr>
-                <tr>
-                <img id="fotoClientePreview" src="" alt="Foto del Cliente" width="100" height="100">
-                </tr>
             </table>
+
 
             <!-- MASCOTA  --> 
 
@@ -232,7 +234,7 @@
         document.getElementById("residencia").innerHTML = residencia;
         document.getElementById("fotoClientePreview").src = foto;
     });
-    
+
     // BUSCAR MASCOTA
 
     var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
@@ -273,17 +275,15 @@
     });
     // FORMATO DE FECHA
 
-    window.onload = function () {
-        const fechaActual = new Date();
-                con st dia = ("0" + fechaActual.getDate()).slice( - 2);
-        const mes = ("0" + (fechaActual.getMonth() + 1)).slice(-2);
-        const año = fechaActual.getFullYear();
-        const fechaFormateada = ${año} -${mes} -${dia};
-        document.getElementById('fecha').value = fechaFormateada;
-    };
     function cargarFecha() {
-    const fecha = new Date();
-            const fechaFormateada = fecha.toLocaleDateString('es-ES'); // Formato español (dd/mm/aaaa)
-            document.getElementById('fecha').innerText = fechaFormateada;
+        var fecha = new Date();
+        var dia = String(fecha.getDate()).padStart(2, '0');
+        var mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Enero es 0
+        var anio = fecha.getFullYear();
+        var fechaActual = dia + '/' + mes + '/' + anio;
+        document.getElementById('fecha').innerText = fechaActual;
+    }
+
+    mentById('fecha').innerText = fechaFormateada;
 
 </script>
