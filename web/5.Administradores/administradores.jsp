@@ -6,41 +6,90 @@
 
 <%@page import="java.util.List"%>
 <%@page import="clases.Persona"%>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="presentacion/estiloAdministradores.css">
+
+</head>
 <%
-String lista="";
-List<Persona> datos=Persona.getListaEnObjetos("tipo<>'C'", null);
+String lista = "";
+List<Persona> datos = Persona.getListaEnObjetos("tipo<>'C'", null);
 for (int i = 0; i < datos.size(); i++) {
-        Persona administrador = datos.get(i);
-        lista+="<tr>";
-        lista+="<td>" + administrador.getIdentificacion() + "</td>";
-        lista+="<td>" + administrador.getNombre()+ "</td>";
-        lista+="<td>" + administrador.getGenero() + "</td>";
-        lista+="<td>" + administrador.getFechaNacimiento() + "</td>";
-        lista+="<td>" + administrador.getEmail()+ "</td>";
-        lista+="<td>" + administrador.getTelefono() + "</td>";
-        lista+="<td>" + administrador.getDireccion()+ "</td>";
-        lista+="<td>" + administrador.getResidencia()+ "</td>";
-        lista+="<td><img src='presentacion/administrador/" + administrador.getFoto() + "' width='30' height='auto'></td>";
- 
-        lista+="<td>" + administrador.getTipoEnObjeto()+ "</td>";
-        lista+="<td><a href='principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Modificar&identificacion=" + administrador.getIdentificacion()+
-                " 'title='Modificar'> <button title='Modificar'> Modificar </button></a> "; 
-        lista+="<button title='Eliminar' onClick='eliminar("+ administrador.getIdentificacion()+")'>Eliminar</button>";
-        lista+="</td>";
-        lista+="</tr>";
-  }
+    Persona administrador = datos.get(i);
+    lista += "<div class='swiper-slide card'>"; // Añadido la clase 'card'
+    lista += "<div class='card-body'>"; // Contenedor para el cuerpo de la tarjeta
+    lista += "<img src='presentacion/administrador/" + administrador.getFoto() + "' class='profile-image'/>"; // Imagen de perfil
+    lista += "<p><strong>Identificación:</strong> " + administrador.getIdentificacion() + "</p>";
+    lista += "<p><strong>Nombre:</strong> " + administrador.getNombre() + "</p>";
+    lista += "<p><strong>Género:</strong> " + administrador.getGenero() + "</p>";
+    lista += "<p><strong>Edad:</strong> " + administrador.getEdad() + "</p>";
+    lista += "<p><strong>Email:</strong> " + administrador.getEmail() + "</p>";
+    lista += "<p><strong>Teléfono:</strong> " + administrador.getTelefono() + "</p>";
+    lista += "<p><strong>Dirección:</strong> " + administrador.getDireccion() + "</p>";
+    lista += "<p><strong>Residencia:</strong> " + administrador.getResidencia() + "</p>";
+    lista += "<div class='card-footer'>"; // Contenedor para los botones
+    lista += "<a href='principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Modificar&identificacion=" + administrador.getIdentificacion() + "' title='Modificar'>";
+    lista += "<button title='Modificar'>Modificar</button></a>";
+    lista += "<button title='Eliminar' onClick='eliminar(" + administrador.getIdentificacion() + ")'>Eliminar</button>";
+    lista += "</div>"; // Fin de card-footer
+    lista += "</div>"; // Fin de card-body
+    lista += "</div>"; // Fin de swiper-slide
+}
 %>
 
-<h3>LISTA  DE  ADMINISTRADORES  </h3>
-<table border="1">
-    <tr>
-        <th>Identificacion</th><th>Nombres</th><th>Genero</th><th>Edad</th><th>Email</th><th>Telefono</th><th>Dirección</th><th>Residencia</th><th>foto</th><th>Tipo</th>
-                <th><a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Adicionar" title="Adicionar  ">
-                        <button id="Adicionar">Adicionar</button> </a>
-    </tr>
-    <%=lista%>
-</table>
 
+<h3>LISTA DE ADMINISTRADORES</h3>
+
+<div class="btn-adicionar-container">
+    <a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Adicionar">
+        <button id="Adicionar" class="btn-adicionar">Adicionar</button>
+    </a>
+</div>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <% for (int i = 0; i < datos.size(); i++) {
+            Persona administrador = datos.get(i);
+        %>
+        <div class="swiper-slide">
+            <div class="card">
+                <div class="card-header">
+                    <%= administrador.getNombre() %>
+                </div>
+                <div class="card-image">
+                    <img src="presentacion/administrador/<%= administrador.getFoto() %>" alt="Foto de <%= administrador.getNombre() %>" class="profile-image">
+                </div>
+                <div class="card-body">
+                    <p><strong>Identificación:</strong> <%= administrador.getIdentificacion() %></p>
+                    <p><strong>Género:</strong> <%= administrador.getGenero() %></p>
+                    <p><strong>Edad:</strong> <%= administrador.getEdad() %></p>
+                    <p><strong>Email:</strong> <%= administrador.getEmail() %></p>
+                    <p><strong>Teléfono:</strong> <%= administrador.getTelefono() %></p>
+                    <p><strong>Dirección:</strong> <%= administrador.getDireccion() %></p>
+                    <p><strong>Residencia:</strong> <%= administrador.getResidencia() %></p>
+                </div>
+                <div class="card-footer">
+                    <a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Modificar&identificacion=<%= administrador.getIdentificacion() %>">
+                        <button class="btn-modificar">Modificar</button>
+                    </a>
+                    <button class="btn-eliminar" onClick="eliminar(<%= administrador.getIdentificacion() %>)">Eliminar</button>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <!-- Añadir botones de navegación -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
+</div>
+    <form id="searchForm">
+    <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
+    <ul id="nameList"></ul> <!-- Lista de nombres -->
+</form>
+
+<div id="result"></div> <!-- Para mostrar la identificación -->
 <script type="text/javascript">
     function eliminar(identificacion){
         resultado=confirm("Realmente desea eliminar el administrador con identificacion"+identificacion+"?");
@@ -49,26 +98,40 @@ for (int i = 0; i < datos.size(); i++) {
          }
     }
     
-     function calcularEdad() {
-        const fechaNacimiento = document.getElementById("fechaNacimiento").value;
-        if (fechaNacimiento) {
-            const fechaActual = new Date();
-            const nacimiento = new Date(fechaNacimiento);
-            let edad = fechaActual.getFullYear() - nacimiento.getFullYear();
-            const mes = fechaActual.getMonth() - nacimiento.getMonth();
+    function calcularEdad() {
+    const fechaNacimiento = document.getElementById("fechaNacimiento").value;
+    if (fechaNacimiento) {
+        const fechaActual = new Date();
+        const nacimiento = new Date(fechaNacimiento);
+        let edad = fechaActual.getFullYear() - nacimiento.getFullYear();
+        const mes = fechaActual.getMonth() - nacimiento.getMonth();
 
-            if (mes < 0 || (mes === 0 && fechaActual.getDate() < nacimiento.getDate())) {
-                edad--;
-            }
-
-            document.getElementById("edad").textContent = edad;
+        if (mes < 0 || (mes === 0 && fechaActual.getDate() < nacimiento.getDate())) {
+            edad--;
         }
-    }
 
-    // Llamar a la función al cargar la página si ya hay una fecha de nacimiento
-    window.onload = function() {
-        calcularEdad();
-    };
+        document.getElementById("edad").textContent = edad;
+    }
+}
+
+// Llamar a la función al cargar la página si ya hay una fecha de nacimiento
+window.onload = function() {
+    calcularEdad();
+}
+
+  const swiper = new Swiper('.swiper-container', {
+        loop: true,
+        slidesPerView: 3, // ayuda a mostrarme  4 tarjetas a la vez
+        spaceBetween: 10,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        }
+    });
 </script>
 
-    
+  
