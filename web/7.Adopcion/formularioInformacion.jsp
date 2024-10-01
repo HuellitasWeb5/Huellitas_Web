@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <%
 //<link rel="stylesheet" href="presentacion/style-Proyecto.css">    
-    String accion = request.getParameter("accion");
 
 %>
 
@@ -25,11 +24,10 @@
 
             <!-- ADOPTANTE  --> 
 
-            <table border="1">
+            <table>
                 <tr>
                     <th>Identificación</th>
                     <td><input type="text" name="identificacion" id="identificacion"></td>
-                    <!-- La celda de la imagen ocupará 5 filas y estará centrada -->
                     <td rowspan="5" style="text-align: center; vertical-align: middle;">
                         <img id="fotoClientePreview" src="" alt="Foto del Cliente" width="100" height="100">
                     </td>
@@ -273,6 +271,7 @@
         document.getElementById("cuidadosEspeciales").innerHTML = cuidadosEspeciales;
         document.getElementById("fotoMascotaPreview").src = foto;
     });
+    
     // FORMATO DE FECHA
 
     function cargarFecha() {
