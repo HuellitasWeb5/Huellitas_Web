@@ -25,14 +25,9 @@ public class ConectorBD {
     private String clave;
     private String baseDatos;
 
-    private Connection conexion;//lleva la conexion de la base de datos
+    private Connection conexion;
 
     public ConectorBD() {
-
-        // Mantener siempre comentado estas credenciales al subir cambios.
-       // usuario = "ADSO";
-        //clave = "1302";
-
 
         servidor = "localhost";
         puerto = "3306";
