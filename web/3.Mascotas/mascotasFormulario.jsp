@@ -39,7 +39,7 @@ if (accion.equals("Modificar")) {
         </tr>
         <tr>
             <th>Foto</th>
-            <td> <input type="file" name="foto" accept="image/*" value="<%=mascota.getFoto()%>" onchange="mostrarFoto();" required>
+            <td> <input type="file" name="foto" accept="image/*" value="<%=mascota.getFoto()%>" onchange="mostrarFoto();" >
         </tr>
         <tr>
             <th>Cuidados Especiales</th>
@@ -56,7 +56,7 @@ if (accion.equals("Modificar")) {
         </tr>
         <tr>
             <th>Estado</th>
-            <td><select id="estado" name="estado" required>
+            <td><select id="estado" name="estado"  required>
             <option value="disponible">Disponible</option>
             <option value="apadrinado">Apadrinado</option>
             <option value="adoptado">Adoptado</option>
@@ -65,7 +65,7 @@ if (accion.equals("Modificar")) {
         <tr>
             <th>Descripcion</th>
             <td>
-                <textarea name="descripcion" cols="50" rows="5" maxlength="60" required></textarea>
+                <textarea name="descripcion" cols="50" rows="5" maxlength="60"  required><%=mascota.getDescripcion()%></textarea>
             </td>
         </tr>
         
