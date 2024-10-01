@@ -1,8 +1,3 @@
-<%-- 
-    Document   : conceptosDonaciones
-    Created on : 6/09/2024, 03:15:29 PM
-    Author     : Luis Eraso
---%>
 <%@page import="clases.UnidadDeMedida"%>
 <%@page import="clases.TipoDonacion"%>
 <%@page import="java.util.List"%>
@@ -16,20 +11,27 @@
 
 <%
     String codigo = request.getParameter("codigo");
-    String filtro = null;
-    if (codigo != null) {
-        filtro = "codigoTipoDonacion=" + codigo;
-    }
     TipoDonacion tipoDonacion = new TipoDonacion(codigo);
     ConceptoDonacion conceptoDonacion = new ConceptoDonacion();
+    List<ConceptoDonacion> datos = ConceptoDonacion.getListaEnObjetos(codigo, null);
+%>
 
+<script>
+    const conceptoDonacion = {};
+    
+    <% for (int i = 0; i < datos.size(); i++) {
+        conceptoDonacion = datos.get(i); %>
+        conceptoDonacion["<%= conceptoDonacion.getId() %>"] = {
+            nombre: "<%= conceptoDonacion.getNombre() %>",
+            descripcion: "<%= conceptoDonacion.getDescripcion() %>"
+        };
+    <% } %>
+</script>
+
+<% 
     String lista = "";
-
-    List<ConceptoDonacion> datos = ConceptoDonacion.getListaEnObjetos(filtro, null);
-
     for (int i = 0; i < datos.size(); i++) {
         conceptoDonacion = datos.get(i);
-
         lista += "<div class='swiper-slide'>";
         lista += "<div class='card'>";
         lista += "<div class='card-header'>";
@@ -53,11 +55,11 @@
 <html lang="es">
     <h3>CONCEPTOS DE DONACIONES</h3> 
 
-    <button class="add-button" onclick="abrirFormulario('Adicionar', '<%= tipoDonacion.getCodigo()%>');">Agregar Concepto de Donación</button>
+    <button class="add-button" onclick="abrirFormulario('Adicionar', '<%= tipoDonacion.getCodigo() %>');">Agregar Concepto de Donación</button>
 
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <%= lista%>
+            <%= lista %>
         </div>
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
@@ -77,16 +79,14 @@
                 </tr>
                 <tr>
                     <th>Tipo de Donación</th>
-                    <td>
-                        <input type="text" id="codigoTipoDonacion" name="codigoTipoDonacion" readonly>
-                    </td>
+                    <td><input type="text" id="codigoTipoDonacion" name="codigoTipoDonacion" readonly></td>
                 </tr>
                 <tr>
                     <th>Unidad de Medida</th>
                     <td>
                         <select id="idUnidadDeMedida" name="idUnidadDeMedida">
                             <option value="" disabled selected>Seleccione una unidad de medida</option>
-                            <%=UnidadDeMedida.getListaEnOptions(null)%>
+                            <%= UnidadDeMedida.getListaEnOptions(null) %>
                         </select>
                     </td>
                 </tr>
@@ -98,9 +98,7 @@
 </html>
 
 <script>
-
     function confirmarEliminacion(id) {
-
         const respuesta = confirm("¿Realmente desea eliminar el registro?");
         if (respuesta) {
             document.location = "principal.jsp?CONTENIDO=1.TipoDonacion/conceptosDonacionesActualizar.jsp&accion=Eliminar&id=" + id;
@@ -121,12 +119,23 @@
         });
     });
 
+    function cargarDatosConceptoDonacion(id) {
+        const concepto = conceptoDonacion[id]; // Cambiado el nombre de la variable aquí
+
+        if (concepto) {
+            document.getElementById('nombre').value = concepto.nombre;
+            document.getElementById('descripcion').value = concepto.descripcion;
+            document.getElementById('codigoTipoDonacion').value = concepto.tipoDonacion; // Asegúrate de que este campo se llene correctamente
+        }
+    }
+
     function abrirFormulario(accion, codigoTipoDonacion = null) {
         if (accion === "Modificar") {
             $('#formulario').dialog('option', 'title', 'Modificar Concepto de Donación');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Modificar';
-            document.querySelector('input[type="button"][value="Modificar"]').setAttribute('onclick', 'modificarConceptoDonacion();');
-            // cargarDatosConceptoDonacion(codigoTipoDonacion);
+            document.querySelector('input[type="button"][value="Agregar"]').setAttribute('onclick', 'modificarConceptoDonacion("' + codigoTipoDonacion + '");');
+            cargarDatosConceptoDonacion(codigoTipoDonacion); // Asegúrate de pasar el id correcto
+
         } else if (accion === "Adicionar") {
             $('#formulario').dialog('option', 'title', 'Adicionar Concepto de Donación');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Agregar';
@@ -151,6 +160,7 @@
         var url = "1.TipoDonacion/conceptosDonacionesActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + tipo + "&idUnidadDeMedida=" + idUnidadDeMedida;
         window.location.href = url;
     }
+
     function cerrarFormulario() {
         document.getElementById('nombre').value = "";
         document.getElementById('descripcion').value = "";
@@ -158,7 +168,6 @@
         document.getElementById('idUnidadDeMedida').value = "";
         $('#formulario').dialog('close');
     }
-
 
     const swiper = new Swiper('.swiper-container', {
         loop: true,

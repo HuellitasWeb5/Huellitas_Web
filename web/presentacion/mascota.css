@@ -1,0 +1,99 @@
+/* Estilos para el carrusel y las tarjetas */
+.swiper-container {
+    width: 100%; /* Ocupa el 100% del contenedor padre */
+    max-width: 1200px; /* Limita el ancho máximo del carrusel */
+    margin: 0 auto; /* Centra el carrusel en la página */
+    overflow: hidden; /* Evita que el contenido se desborde fuera del contenedor */
+}
+.swiper-slide {
+    flex: 0 0 25%; /* Cada tarjeta ocupa exactamente el 25% del contenedor */
+    box-sizing: border-box; /* Asegura que el padding y los bordes se incluyan en el ancho total */
+    max-width: 25%; /* Limita el ancho máximo de cada tarjeta al 25% */
+    margin-right: 10px; /* Espacio entre las tarjetas */
+}
+
+.swiper-slide:last-child {
+    margin-right: 0; /* Elimina el margen a la última tarjeta */
+}
+
+.swiper-wrapper {
+    display: flex;
+    justify-content: space-between; /* Espacio igual entre las tarjetas */
+}
+
+.swiper-slide .card {
+    width: 100%; /* La tarjeta ocupa todo el ancho del slide */
+    padding: 10px; /* Espaciado interno de la tarjeta */
+}
+
+/* Estilos de las tarjetas */
+.card {
+    background-color: #fff;
+    border: 1px solid #ccffcc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px; /* Reduce el padding para hacer la tarjeta más compacta */
+    max-width: 250px; /* Disminuye el ancho máximo de la tarjeta */
+    margin: 10px auto; /* Reduce el margen alrededor de las tarjetas */
+}
+
+.profile-image {
+    width: 90px; /* Aumentar el tamaño de la imagen */
+    height: 90px; /* Aumentar el tamaño de la imagen */
+    border-radius: 50%; /* Hace la imagen redonda */
+    object-fit: cover; /* Asegura que la imagen se recorte adecuadamente */
+    margin-bottom: 15px; /* Espacio debajo de la imagen */
+    display: block; /* Asegura que la imagen se trate como un bloque */
+    margin-left: auto; /* Centra la imagen */
+    margin-right: auto; /* Centra la imagen */
+    border: 2px solid #027605; /* Aumentar el grosor del borde blanco alrededor de la imagen */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra sutil alrededor de la imagen */
+}
+
+.card-header {
+    font-size: 1em; /* Reduce el tamaño de la fuente */
+    font-weight: bold;
+    margin-bottom: 8px; /* Reduce el margen inferior */
+}
+
+.card-body {
+    font-size: 0.9em; /* Reduce el tamaño de la fuente */
+}
+
+.card-footer {
+    text-align: right;
+}
+
+/* Estilos de los botones */
+.add-button, .btn-modificar, .btn-eliminar ,.btn-concepto, .btn-apadrinar {
+    margin: 5px 10px; /* Reduce el margen vertical */
+    padding: 8px 12px; /* Reduce el padding para hacer los botones más pequeños */
+    background-color: #4CAF50; 
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.add-button:hover, .btn-modificar:hover, .btn-eliminar:hover,.btn-concepto {
+    background-color: #45a049;
+}
+
+/* Controles de navegación */
+.swiper-button-next,
+.swiper-button-prev {
+    color: #000; /* Color de las flechas de navegación */
+}
+
+/* Estilo de la paginación */
+.swiper-pagination-bullet-active {
+    background-color: #000; /* Color del indicador activo */
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .card {
+        max-width: 100%;
+    }
+}
