@@ -1,92 +1,38 @@
-/* Estilos para el carrusel y las tarjetas */
-.swiper-container {
-    width: 100%; /* Ocupa el 100% del contenedor padre */
-    max-width: 1200px; /* Limita el ancho máximo del carrusel */
-    margin: 0 auto; /* Centra el carrusel en la página */
-    overflow: hidden; /* Evita que el contenido se desborde fuera del contenedor */
-}
-
-.swiper-slide {
-    flex: 0 0 auto; /* Ajuste automático del tamaño de la tarjeta */
-    width: 331px; /* Ancho fijo de cada tarjeta */
-    height: 400px; /* Altura fija de cada tarjeta */
-    box-sizing: border-box; /* Asegura que el padding y los bordes se incluyan en el ancho total */
-    margin-right: 10px; /* Espacio entre las tarjetas */
-}
-
-.swiper-slide:last-child {
-    margin-right: 0; /* Elimina el margen a la última tarjeta */
-}
-
-.swiper-wrapper {
-    display: flex;
-    justify-content: space-between; /* Espacio igual entre las tarjetas */
-}
-
-.swiper-slide .card {
-    width: 100%; /* La tarjeta ocupa todo el ancho del slide */
-    height: 100%; /* La tarjeta ocupa toda la altura del slide */
-    padding: 10px; /* Espaciado interno de la tarjeta */
-    box-sizing: border-box; /* Incluye el padding en el tamaño total */
-}
-
-/* Estilos de las tarjetas */
-.card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 10px; /* Espaciado interno */
-    width: 331px; /* Ancho fijo de la tarjeta */
-    height: 189.047px; /* Altura fija de la tarjeta */
-    margin: 10px auto; /* Margen automático para centrar la tarjeta */
-    box-sizing: border-box; /* Incluye el padding en el tamaño total */
-}
-
-.card-header {
-    font-size: 1em; /* Reduce el tamaño de la fuente */
-    font-weight: bold;
-    margin-bottom: 8px; /* Reduce el margen inferior */
-}
-
-.card-body {
-    font-size: 0.9em; /* Reduce el tamaño de la fuente */
-}
-
-.card-footer {
-    text-align: right;
-}
-
-/* Estilos de los botones */
-.add-button, .btn-modificar, .btn-eliminar, .btn-concepto {
-    margin: 15px 20px; /* Margen alrededor del botón */
-    padding: 8px 12px; /* Padding para el botón */
-    background-color: #4CAF50; 
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.add-button:hover, .btn-modificar:hover, .btn-eliminar:hover, .btn-concepto {
-    background-color: #45a049;
-}
-
-/* Controles de navegación */
-.swiper-button-next,
-.swiper-button-prev {
-    color: #000; /* Color de las flechas de navegación */
-}
-
-/* Estilo de la paginación */
-.swiper-pagination-bullet-active {
-    background-color: #000; /* Color del indicador activo */
-}
-
-/* Ajustes responsivos */
-@media (max-width: 768px) {
-    .card {
-        width: 100%; /* Ancho completo en pantallas pequeñas */
-        height: auto; /* Ajuste automático de la altura en pantallas pequeñas */
+ .navbar {
+        background-color: #000; /* Fondo negro */
     }
-}
+
+    .navbar-nav .nav-link {
+        position: relative;
+        padding-bottom: 8px; /* Espacio para la línea animada */
+        color: #fff; /* Color del texto en blanco */
+        text-decoration: none; /* Sin subrayado */
+        transition: color 0.3s ease; /* Transición suave del color */
+    }
+
+    /* Agregar la línea debajo del enlace al hacer hover */
+    .navbar-nav .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0; /* Inicia sin ancho */
+        height: 2px; /* Grosor de la línea */
+        bottom: 0; /* Posición en la parte inferior del enlace */
+        left: 0;
+        background-color: #007bff; /* Color de la línea */
+        transition: width 0.3s ease; /* Animación del ancho */
+    }
+
+    /* Expande la línea cuando se pasa el cursor por encima */
+    .navbar-nav .nav-link:hover::after {
+        width: 100%; /* La línea se expande a todo el ancho del enlace */
+    }
+
+    /* Mantener la línea debajo del elemento activo */
+    .navbar-nav .nav-link.active::after {
+        width: 100%;
+    }
+
+    /* Cambiar el color del texto al hacer hover */
+    .navbar-nav .nav-link:hover {
+        color: #007bff; /* Color del texto al pasar el cursor */
+    }
