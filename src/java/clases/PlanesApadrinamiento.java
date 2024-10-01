@@ -87,7 +87,7 @@ public class PlanesApadrinamiento {
        }else {
            orden = " ";
        }
-       String cadenaSQL="Select id, nombre, descripcion from PlanesApadrinamiento" +filtro+orden;
+       String cadenaSQL="Select id, nombre, descripcion from planesApadrinamiento" +filtro+orden;
        return ConectorBD.consultar(cadenaSQL);
    }
     
