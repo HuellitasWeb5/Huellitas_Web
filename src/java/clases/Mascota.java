@@ -180,7 +180,7 @@ public class Mascota {
    public boolean grabar(){
 
        String cadenaSQL="insert into mascota (nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado, descripcion) "
-               + " values ('"+nombre+"','"+genero+"','"+tamano+"','"+foto+"','"+cuidadosEspeciales+"','"+fechaNacimientoAproximada+"','"+fechaIngreso+"','"+estado+"','"+descripcion+")";
+               + " values ('"+nombre+"','"+genero+"','"+tamano+"','"+foto+"','"+cuidadosEspeciales+"','"+fechaNacimientoAproximada+"','"+fechaIngreso+"','"+estado+"','"+descripcion+"')";
        System.out.println(cadenaSQL);
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }
