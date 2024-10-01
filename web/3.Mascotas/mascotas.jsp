@@ -9,7 +9,7 @@
 
    <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="presentacion/mascota.css" />
+        <link rel="stylesheet" href="presentacion/estiloAdministradores.css" />
     </head>
 
     <%
@@ -17,15 +17,10 @@
     List<Mascota> datos=Mascota.getListaEnObjetos(null, null);
     for (int i = 0; i < datos.size(); i++) {
             Mascota mascotas = datos.get(i);
-            lista += "<div class='swiper-slide'>";
-            lista += "<div class='card'>";
-            lista += "<div class='card-header'>";
-            lista += "<div class='card-img'>";
+            lista += "<div class='swiper-slide card'>"; // Añadido la clase 'card'
+            lista += "<div class='card-body'>"; // Contenedor para el cuerpo de la tarjeta
             lista += "<img src='presentacion/mascota/" + mascotas.getFoto() + "' width='auto' height='60'class='profile-image'>";
-            lista += "</div>";
             lista += "<h2>" + mascotas.getNombre()+ "</h2>";
-            lista += "</div>";
-            lista += "<div class='card-body'>";
             lista+="<p><strong>Código:</strong>" + mascotas.getCodigo()+ "</p>";
             lista+="<p><strong>Genero:</strong>" + mascotas.getGeneroEnObjeto()+ "</p>";
             lista+="<p><strong>Tamaño:</strong>" + mascotas.getTamano()+ "</p>";
@@ -35,6 +30,7 @@
             lista+="<p><strong>Estado:</strong>" + mascotas.getEstado()+ "</p>";
             lista+="<p><strong>Descripción:</strong>" + mascotas.getDescripcion()+ "</p>";
             lista+="<p>";
+            lista += "<div class='card-footer'>"; // Contenedor para los botones
             lista+="<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo() +
                     " 'title='Modificar'> <button class='btn-modificar'> Modificar </button></a> "; 
             lista+="<button class='btn-apadrinar'>Apadrinar</button></a> "; 
@@ -47,18 +43,30 @@
       }
     %>
 
+<div class="header-container">
+    <!-- Buscar por nombre -->
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
+        <ul id="nameList"></ul> <!-- Lista de nombres -->
+    </form>
+
+    <!-- Botón de adicionar -->
+    <div class="btn-adicionar-container">
+        <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar">
+            <button id="Adicionar" class="btn-adicionar">Adicionar</button>
+        </a>
+    </div>
+</div>
     <h3>MASCOTAS</h3>
      
-    <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar" title="Adicionar"><button id="Adicionar">Adicionar</button></a>
-
         <div class="swiper-container">
             <div class="swiper-wrapper">
                 <%= lista%>
                 <br><br>
             </div>
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
-            <div class="swiper-pagination"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
         </div>
 
     <script type="text/javascript">
@@ -92,8 +100,8 @@
 
      const swiper = new Swiper('.swiper-container', {
         loop: true,
-        slidesPerView: 3, // Muestra 4 tarjetas al mismo tiempo
-        spaceBetween: 20,
+        slidesPerView: 3, // ayuda a mostrarme  4 tarjetas a la vez
+        spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -101,7 +109,7 @@
         pagination: {
             el: '.swiper-pagination',
             clickable: true,
-        },
+        }
     });
   
 </script>
