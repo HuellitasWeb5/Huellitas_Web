@@ -2,7 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/estiloAdmiFormulario.css">
+        <link rel="stylesheet" href="presentacion/style-TarjetasModificar.css">
     <script>
         function mostrarFoto() {
             var lector = new FileReader();
@@ -78,8 +78,8 @@ if (accion.equals("Modificar")) {
                 </div>
                 <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
                 <div class="btn-container">
-                    <input type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
-                    <input type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
+                    <input class='btn-adicionar'  type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
+                    <input class='btn-eliminar' type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
                 </div>
             </form>
         </div>

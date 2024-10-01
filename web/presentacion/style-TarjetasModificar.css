@@ -22,32 +22,6 @@ td {
     justify-content: center; /* Centra los botones en el contenedor */
     margin-top: 20px; /* Espacio entre el formulario y los botones */
 }
-
-.btn-adicionar, .btn-cancelar {
-    padding: 10px 20px; /* Espacio interno de los botones */
-    background-color: #62ff67; /* Color verde para el botón de adicionar */
-    color: white; /* Texto blanco */
-    border: 2px solid #62ff67; /* Borde verde para el botón */
-    border-radius: 5px; /* Bordes redondeados */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-    transition: background-color 0.3s ease, border-color 0.3s ease; /* Transición suave */
-    margin: 0 10px; /* Espacio horizontal entre los botones */
-}
-
-.btn-cancelar {
-    background-color: #dc3545; /* Color rojo para el botón de cancelar */
-    border: 2px solid #dc3545; /* Borde rojo para el botón */
-}
-
-.btn-adicionar:hover {
-    background-color: #4CAF50; /* Color más oscuro al pasar el cursor */
-    border-color: #4CAF50; /* Ajusta el color del borde */
-}
-
-.btn-cancelar:hover {
-    background-color: #c82333; /* Color más oscuro al pasar el cursor */
-    border-color: #c82333; /* Ajusta el color del borde */
-}
 .card-header {
     background-color: #9effa1; /* Fondo azul claro para el encabezado */
     color: white; /* Texto blanco */
@@ -141,4 +115,57 @@ h3 {
 
 .card-footer input:hover {
     background-color: #45a049; /* Cambio de color al pasar el cursor */
+}
+
+/* Estilo del botón */
+
+.btn-container {
+    text-align: center; /* Alinea el botón a la derecha */
+    margin-bottom: 20px; /* Espacio entre el botón y las tarjetas */
+}
+
+
+.btn-adicionar {
+    padding: 10px 20px;
+    background-color: #40c328; 
+    color: black;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.btn-adicionar:hover {
+    background-color: #2e8a11; 
+    color: white;
+}
+
+.btn-eliminar {
+    padding: 10px 20px;
+    background-color: #f12727;
+    color: black;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.btn-eliminar:hover {
+    background-color: #9d1e1e;
+    color: white;
+}
+
+.btn-otro {
+    padding: 10px 20px;
+    background-color: #28c3a4;
+    color: black;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1em;
+    }
+
+.btn-otro:hover {
+    background-color: #11728a;
+    color: white;
 }

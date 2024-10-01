@@ -9,7 +9,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/estiloAdministradores.css">
+        <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
 
 </head>
 <%
@@ -30,8 +30,8 @@ for (int i = 0; i < datos.size(); i++) {
     lista += "<p><strong>Residencia:</strong> " + administrador.getResidencia() + "</p>";
     lista += "<div class='card-footer'>"; // Contenedor para los botones
     lista += "<a href='principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Modificar&identificacion=" + administrador.getIdentificacion() + "' title='Modificar'>";
-    lista += "<button title='Modificar'>Modificar</button></a>";
-    lista += "<button title='Eliminar' onClick='eliminar(" + administrador.getIdentificacion() + ")'>Eliminar</button>";
+    lista += "<button class='btn-adicionar'  title='Modificar'>Modificar</button></a>";
+    lista += "<button class='btn-eliminar' title='Eliminar' onClick='eliminar(" + administrador.getIdentificacion() + ")'>Eliminar</button>";
     lista += "</div>"; // Fin de card-footer
     lista += "</div>"; // Fin de card-body
     lista += "</div>"; // Fin de swiper-slide
@@ -53,9 +53,9 @@ for (int i = 0; i < datos.size(); i++) {
     <div id="selectedAdminInfo"></div>
 </div>
     <!-- Botón de adicionar -->
-    <div class="btn-adicionar-container">
+    <div class="btn-estilo-container">
         <a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Adicionar">
-            <button id="Adicionar" class="btn-adicionar">Adicionar</button>
+            <button class='btn-adicionar' id="Adicionar" class="btn-adicionar">Adicionar</button>
         </a>
     </div>
 
@@ -86,9 +86,9 @@ for (int i = 0; i < datos.size(); i++) {
                     <p><strong>Dirección:</strong> <%= administrador.getDireccion() %></p>
                     <p><strong>Residencia:</strong> <%= administrador.getResidencia() %></p>
                 </div>
-                <div class="card-footer">
+                <div class="btn-container">
                     <a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Modificar&identificacion=<%= administrador.getIdentificacion() %>">
-                        <button class="btn-modificar">Modificar</button>
+                        <button class="btn-adicionar">Modificar</button>
                     </a>
                     <button class="btn-eliminar" onClick="eliminar(<%= administrador.getIdentificacion() %>)">Eliminar</button>
                 </div>
@@ -96,10 +96,7 @@ for (int i = 0; i < datos.size(); i++) {
         </div>
         <% } %>
     </div>
-    <!-- Añadir botones de navegación -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-pagination"></div>
+
 
 <div id="result"></div> <!-- Para mostrar la identificación -->
 <script type="text/javascript">
