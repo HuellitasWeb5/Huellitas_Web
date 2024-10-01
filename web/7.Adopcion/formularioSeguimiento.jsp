@@ -5,30 +5,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <%
-        String accion = request.getParameter("accion");
-        FormularioDeInformacion formulario = new FormularioDeInformacion();
-
-        if ("grabar".equals(accion)) {
-            formulario.setFecha(Date.valueOf(request.getParameter("fecha")));
-            formulario.setOcupacion(request.getParameter("ocupacion"));
-            formulario.setTiempoLibre(request.getParameter("tiempoLibre"));
-            formulario.setEspacio(request.getParameter("espacio"));
-            formulario.setCompromiso(request.getParameter("compromiso"));
-            formulario.setNinos(request.getParameter("ninos"));
-            formulario.setHabitantes(request.getParameter("habitantes"));
-            formulario.setResponsables(request.getParameter("responsables"));
-            formulario.setOtrasMascotas(request.getParameter("otrasMascotas"));
-            formulario.setPropietario(request.getParameter("propietario"));
-            formulario.setMotivacion(request.getParameter("motivacion"));
-            formulario.setDescripcion(request.getParameter("descripcion"));
-            formulario.setCodigoAdopcion(Integer.parseInt(request.getParameter("codigoAdopcion")));
-
-            if (formulario.grabar()) {
-                out.println("<h3>Formulario guardado exitosamente.</h3>");
-            } else {
-                out.println("<h3>Error al guardar el formulario.</h3>");
-            }
-        }
+        
 %>
 <html>
     <head>
