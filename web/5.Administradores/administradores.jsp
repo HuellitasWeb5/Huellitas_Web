@@ -50,6 +50,7 @@ for (int i = 0; i < datos.size(); i++) {
         </div>
         <ul id="nameList"></ul> <!-- Lista de nombres -->
     </form>
+    <div id="selectedAdminInfo"></div>
 </div>
     <!-- Botón de adicionar -->
     <div class="btn-adicionar-container">
@@ -144,15 +145,14 @@ window.onload = function() {
         }
     });
     
-    function filterNames() {
+   function filterNames() {
     // Obtener el valor de entrada del campo de búsqueda
     let input = document.getElementById('searchInput');
     let filter = input.value.toLowerCase();
     
-    // Obtener la lista de nombres y los elementos de las tarjetas
-    let nameList = document.getElementById('nameList');
+    // Obtener los elementos de las tarjetas
     let cards = document.getElementsByClassName('card');
-    
+
     // Iterar sobre todas las tarjetas y filtrar por el texto que se escribió
     for (let i = 0; i < cards.length; i++) {
         // Obtener el nombre dentro de la tarjeta
@@ -165,6 +165,20 @@ window.onload = function() {
         }
     }
 }
+
+// Agregar un evento de clic a cada tarjeta
+const cards = document.querySelectorAll('.card');
+cards.forEach(card => {
+    card.addEventListener('click', function() {
+        const name = this.querySelector('.card-header').innerText;
+        const id = this.dataset.id; // Obtener la identificación de la tarjeta
+
+        // Aquí puedes mostrar el nombre y la identificación como desees
+        alert(`Nombre: ${name}, ID: ${id}`);
+        
+        // O puedes hacer algo más con esta información, como cargarla en otra parte
+    });
+});
 </script>
 
   
