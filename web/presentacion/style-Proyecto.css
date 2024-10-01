@@ -8,23 +8,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 /* Footer */
-
+/* Estilos generales para el footer */
 footer {
-    background-color: #f1f1f1;
-    padding: 10px 0; 
-    text-align: center; 
+
+    background-color: #333; /* Color de fondo oscuro */
+    color: white; /* Color del texto blanco */
+    text-align: center; /* Centrar el contenido */
+    padding: 20px 0; /* Espacio arriba y abajo */
+    position: relative; /* El footer se desplazará con el contenido */
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+
 }
 
+/* Estilos para la información del footer */
 .footer-info {
     display: flex;
     justify-content: space-around; 
     align-items: center; 
     flex-wrap: wrap; 
-    max-width: 1000px; 
-    margin: 0 auto; 
+
 }
 
-.footer-info p {
+/* Estilos para los párrafos dentro del footer */
+
     margin: 0; 
     padding: 0 15px;
 }
@@ -56,3 +63,4 @@ label {
 .submit {
     margin-top: 20px; /* Espacio arriba del botón enviar */
 }
+
