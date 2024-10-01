@@ -9,7 +9,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/unidadDeMedida.css">
+    <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
 </head>
 
 <%
@@ -98,17 +98,17 @@
         if (accion === "Modificar") {
             $('#formulario').dialog('option', 'title', 'Modificar Unidad de Medida');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Modificar';
-        
+
             document.querySelector('input[type="button"][value="Modificar"]').setAttribute('onclick', 'modificarUnidadDeMedida(' + id + ');');
 
-         
+
             cargarDatosUnidadDeMedida(id);
 
         } else if (accion === "Adicionar") {
             $('#formulario').dialog('option', 'title', 'Adicionar Unidad de Medida');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Agregar';
             document.querySelector('input[type="button"][value="Agregar"]').setAttribute('onclick', 'agregarUnidadDeMedida();');
-          
+
             document.getElementById('nombre').value = '';
             document.getElementById('notacion').value = '';
         }
@@ -120,9 +120,9 @@
 
     }
 
- 
+
     function modificarUnidadDeMedida(id) {
-        
+
         var nombre = document.getElementById('nombre').value;
         var notacion = document.getElementById('notacion').value;
         var url = "1.TipoDonacion/unidadesDeMedidaActualizar.jsp?accion=Modificar&id=" + id + "&nombre=" + nombre + "&notacion=" + notacion;
