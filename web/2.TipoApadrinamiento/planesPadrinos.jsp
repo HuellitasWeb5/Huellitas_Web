@@ -7,7 +7,7 @@
 <%@page import="clases.PlanesApadrinamiento" %>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<link rel="stylesheet" href="presentacion/unidadDeMedida.css">
+<link rel="stylesheet" href="presentacion/style-Tarjetas.css">
 <%
     //subido ahora
     String accion = request.getParameter("accion");

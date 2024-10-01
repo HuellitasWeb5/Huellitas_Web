@@ -1,4 +1,4 @@
-    <%-- 
+<%-- 
         Document   : mascotas
         Created on : 28/08/2024, 08:37:21 AM
         Author     : URB
@@ -20,7 +20,8 @@
             lista += "<div class='swiper-slide card'>"; // Añadido la clase 'card'
             lista += "<div class='card-body'>"; // Contenedor para el cuerpo de la tarjeta
             lista += "<img src='presentacion/mascota/" + mascotas.getFoto() + "' width='auto' height='60'class='profile-image'>";
-            lista += "<h2>" + mascotas.getNombre()+ "</h2>";
+            lista += "<div class='card-header'>";
+            lista += "<h2>" + mascotas.getNombre()+ "</h2></div>";
             lista+="<p><strong>Código:</strong>" + mascotas.getCodigo()+ "</p>";
             lista+="<p><strong>Genero:</strong>" + mascotas.getGeneroEnObjeto()+ "</p>";
             lista+="<p><strong>Tamaño:</strong>" + mascotas.getTamano()+ "</p>";
