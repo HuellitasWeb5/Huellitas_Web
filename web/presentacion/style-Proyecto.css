@@ -8,23 +8,38 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 /* Footer */
-
+/* Estilos generales para el footer */
 footer {
-    background-color: #f1f1f1; /* Color de fondo del footer (opcional) */
-    padding: 10px 0; /* Espaciado arriba y abajo (opcional) */
-    text-align: center; /* Centra el texto dentro del footer (opcional) */
+    background-color: #333; /* Color de fondo oscuro */
+    color: white; /* Color del texto blanco */
+    text-align: center; /* Centrar el contenido */
+    padding: 20px 0; /* Espacio arriba y abajo */
+    position: relative; /* El footer se desplazará con el contenido */
+    width: 100%; /* Ocupa todo el ancho de la pantalla */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3); /* Sombra sutil */
 }
 
+/* Estilos para la información del footer */
 .footer-info {
-    display: flex;
-    justify-content: space-around; /* Distribuye los elementos con espacio alrededor */
-    align-items: center; /* Alinea los elementos verticalmente al centro */
-    flex-wrap: wrap; /* Permite que los elementos se envuelvan si el espacio es insuficiente */
-    max-width: 1000px; /* Ancho máximo para el contenedor (opcional) */
-    margin: 0 auto; /* Centra el contenedor horizontalmente (opcional) */
+    display: flex; /* Usar flexbox para alinear los elementos */
+    justify-content: space-evenly; /* Espaciar los elementos de manera uniforme */
+    align-items: center; /* Centrar verticalmente */
+    flex-wrap: wrap; /* Asegurarse de que los elementos se ajusten en pantallas más pequeñas */
 }
 
+/* Estilos para los párrafos dentro del footer */
 .footer-info p {
-    margin: 0; /* Elimina el margen predeterminado de los párrafos */
-    padding: 0 15px; /* Espaciado horizontal entre los elementos (opcional) */
+    margin: 0 15px; /* Espaciado horizontal entre los elementos */
+    font-size: 1em; /* Tamaño de fuente ajustado */
+    color: #f0f0f0; /* Color del texto */
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+    .footer-info {
+        flex-direction: column; /* Apilar los elementos en pantallas pequeñas */
+    }
+    footer {
+        padding: 15px 0; /* Reducir el padding en pantallas pequeñas */
+    }
 }
