@@ -32,7 +32,7 @@
             listaDetalle += "<td align='rigth'>" + detalle.getPlanApadrinamiento() + "</td>";
             listaDetalle += "<td align='rigth'>" + detalle.getLapsoApadrinamiento() + "</td>";
             listaDetalle += "<td>";
-            listaDetalle += "<img src='presentacion/imagenes/eliminar.png' width='30' heigth='30'  title='Eliminar'>";
+            listaDetalle += "<input type='button' title='Eliminar'>eliminar";
             listaDetalle += "</td>";
             listaDetalle += "</tr>";
         }
@@ -40,14 +40,23 @@
     String listaPlan = "";
     List<PlanesApadrinamiento> datosPlanes = PlanesApadrinamiento.getListaEnObjetos(null, null);
     for (int j = 0; j < datosPlanes.size(); j++) {
-        PlanesApadrinamiento planes2 = datosPlanes.get(j);
-        listaPlan += "<tr>";
-        listaPlan += "<td>" + planes2.getId() + "</td>";
-        listaPlan += "<td>" + planes2.getNombre() + "</td>";
-        listaPlan += "<td>" + planes2.getDescripcion() + "</td>";
-        listaPlan += "<td><input type='radio' name='opcionSeleccionada' value='" + planes2.getNombre() + "'></td>";
-        listaPlan += "</tr>";
-    }
+    PlanesApadrinamiento planes2 = datosPlanes.get(j);
+    listaPlan += "<div class='swiper-slide'>";
+    listaPlan += "<div class='card'>";
+    listaPlan += "<div class='card-header'>";
+    listaPlan += "<h2>" + planes2.getNombre() + "</h2>";
+    listaPlan += "</div>";
+    listaPlan += "<div class='card-body'>";
+    listaPlan += "<p><strong>Codigo:</strong> " + planes2.getId() + "</p>";
+    listaPlan += "<p><strong>Descripción:</strong> " + planes2.getDescripcion() + "</p>";
+    listaPlan += "<div class='button-container'>";
+    listaPlan += "<input type='radio' name='opcionSeleccionada' value='" + planes2.getNombre() + "'>";
+    listaPlan += "</div>";
+    listaPlan += "</div>";
+    listaPlan += "</div>";
+    listaPlan += "</div>";
+}
+
 %>
 
 <h3><%=accion.toUpperCase()%>  PADRIPET</h3>
@@ -95,7 +104,7 @@
             <input type="hidden" name="mascotasPlan" size="100">
 
             <table border="1" id="tablaMascotas">
-                <tr><th>Mascota</th><th>Codigo Mascota</th><th>Plan</th><th>Lapso Plan</th></tr>
+                <tr><th>Mascota</th><th>Codigo Mascota</th><th>Plan</th><th>Lapso Plan</th><th>Opciones</th></tr>
                         <%=listaDetalle%>
             </table>
 
@@ -234,19 +243,20 @@
     }
 
     function cargarTabla() {
-        document.getElementById("tablaMascotas").innerHTML = '<tr><th>Mascota</th><th>Codigo Mascota</th><th>Plan</th><th>Lapso Plan</th></tr>';
+        document.getElementById("tablaMascotas").innerHTML = '<tr><th>Mascota</th><th>Codigo Mascota</th><th>Plan</th><th>Lapso Plan</th><th>Opciones</th></tr>';
         var filas = document.formulario.mascotasPlan.value.split("||");
-        for (var i = 0; i < filas.length; i++) {
-            var fila = filas[i].split("|");
-            var nombreMascota = fila[0];
-            var codMascota = fila[1];
-            var plan = fila[2];
-            var lapsoplan = fila[3];
+        if(filas!=""){
+            for (var i = 0; i < filas.length; i++) {
+                var fila = filas[i].split("|");
+                var nombreMascota = fila[0];
+                var codMascota = fila[1];
+                var plan = fila[2];
+                var lapsoplan = fila[3];
 
-
-            document.getElementById("tablaMascotas").innerHTML += "<tr><td>" + nombreMascota + "</td><td align='right'>" +
-                    codMascota + "</td><td align='right'>" + plan + "</td><td align='right'>" + lapsoplan +
-                    "</td><td><img src='presentacion/imagenes/eliminar.png' width='30' heigth='30'  title='Eliminar' onClick='eliminar(" + i + ")'></td></tr>";
+                document.getElementById("tablaMascotas").innerHTML += "<tr><td>" + nombreMascota + "</td><td align='right'>" +
+                        codMascota + "</td><td align='right'>" + plan + "</td><td align='right'>" + lapsoplan +
+                        "</td><td><button title='Eliminar' onClick='eliminar(" + i + ")'>Eliminar</td></tr>";
+            }
         }
     }
 
@@ -266,6 +276,7 @@
 
         cargarTabla();
     }
+    
 
     $(function () {
         $("#formulario").dialog({
@@ -290,6 +301,14 @@
     }
 
     function cerrarFormulario() {
-        $('#formulario').dialog('close');
-    }
+    // Cerrar el diálogo
+    $('#formulario').dialog('close');
+
+    // Restaurar valores del formulario
+    document.forms['formularioMascotas'].reset(); // Resetea todos los inputs del formulario
+
+    // Limpiar el contenido de la tabla de selección (si es necesario)
+    $('#mascotas input[type="text"]').val(''); // Limpia los campos de texto
+    $('#planes input[type="checkbox"]:checked').prop('checked', false); // Desmarca cualquier checkbox seleccionado en la tabla de planes
+}
 </script>
