@@ -15,12 +15,15 @@
     String accion = request.getParameter("accion");
     String codigo = request.getParameter("codigo");
     String lineaModificar = "";
-    
+    Apadrinamiento apadrinamiento = new Apadrinamiento();
     String listaDetalle = "";
     if (accion.equals("Modificar")) {
-        Apadrinamiento apadrinamiento = new Apadrinamiento(codigo);
+        apadrinamiento = new Apadrinamiento(codigo);
         lineaModificar = "<tr><th>Fecha</th><td>" + apadrinamiento.getFecha() + "</td></tr>";
         lineaModificar += "<tr><th>Codigo</th><td>" + apadrinamiento.getCodigo() + "</td></tr>";
+        lineaModificar += "<tr><th>Identificacion</th><td>" + apadrinamiento.getIdentificacionPadrino() + "</td></tr>";
+        lineaModificar += "<tr><th>Foto Recibo</th><td>" + apadrinamiento.getFotoRecibo() + "</td></tr>";
+        lineaModificar += "<tr><th>Foto Cedula</th><td>" + apadrinamiento.getFotoCedula() + "</td></tr>";
         List<ApadrinamientoDetalle> datosDetalle = apadrinamiento.getDetalles();
         for (int k = 0; k < datosDetalle.size(); k++) {
             ApadrinamientoDetalle detalle = datosDetalle.get(k);
@@ -42,45 +45,68 @@
         listaPlan += "<td>" + planes2.getId() + "</td>";
         listaPlan += "<td>" + planes2.getNombre() + "</td>";
         listaPlan += "<td>" + planes2.getDescripcion() + "</td>";
-        listaPlan += "<td><input type='radio' name='opcionSeleccionada' value='" + planes2.getNombre()+ "'></td>";
+        listaPlan += "<td><input type='radio' name='opcionSeleccionada' value='" + planes2.getNombre() + "'></td>";
         listaPlan += "</tr>";
     }
 %>
 
 <h3><%=accion.toUpperCase()%>  PADRIPET</h3>
-<form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
-    <table border='0'>
-        <%=lineaModificar%>
-        <tr>
-            <th>Código</th><td id="codigoPadrino"></td>
-        </tr>
-        <tr>
-            <th>Identificacion</th>
-            <td><input type="text" id="identificacionPadrino"></td>
-        </tr>
-        <tr>
-            <th>Direccion</th>
-            <td><input type="text" id="direccionPadrino"></td>
-        </tr>
-        <tr>
-            <th>Telefono</th>
-            <td><input type="text" id="telefonoPadrino"></td>
-        </tr>
-    </table>
-    <br>
-    <input type="button" value="Adicionar Mascota" onclick="abrirFormulario();">
+<table border="0">
+    <td>
+        <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
+            <table border='0'>
+                <%=lineaModificar%>
+                <tr>
+                    <th>Código</th><td id="codigoPadrino"></td>
+                </tr>
+                <tr>
+                    <th>Identificacion</th>
+                    <td><input type="text" name="identificacion" id="identificacion"></td>
+                </tr>
+                <tr>
+                    <th>Nombre</th>
+                    <td type="text" name="nombre" id="nombre"></td>
+                </tr>
+                <tr>
+                    <th>Direccion</th>
+                    <td type="text" name="direccion" id="direccion"></td>
+                </tr>
+                <tr>
+                    <th>Telefono</th>
+                    <td type="text" name="telefono" id="telefono"></td>
+                </tr>
+                <tr>
+                    <th>Foto recibo</th>
+                    <td>
+                        <input type="file" name="fotoRecibo" accept="image/*" onchange="mostrarFotoRecibo();">
+                    </td>
+                </tr>
+                <tr>
+                    <th>Foto cedula</th>
+                    <td>
+                        <input type="file" name="fotoCedula" accept="image/*" onchange="mostrarFotoCedula();">
+                    </td>
+                </tr>
 
-    <input type="hidden" name="mascotasPlan" size="100">
+            </table>
+            <br>
+            <input type="button" value="Adicionar Mascota" onclick="abrirFormulario();">
 
-    <table border="1" id="tablaMascotas">
-        <tr><th>Mascota</th><th>Codigo Mascota</th><th>Plan</th><th>Lapso Plan</th></tr>
-        <%=listaDetalle%>
-    </table>
+            <input type="hidden" name="mascotasPlan" size="100">
 
-    <input type="hidden" name="numero" value="<%=codigo%>">
-    <input type="submit" name="accion" value="<%=accion%>">
-    <input type="button" value="Cancelar" onClick="window.history.back()">
-</form>
+            <table border="1" id="tablaMascotas">
+                <tr><th>Mascota</th><th>Codigo Mascota</th><th>Plan</th><th>Lapso Plan</th></tr>
+                        <%=listaDetalle%>
+            </table>
+
+            <input type="hidden" name="numero" value="<%=codigo%>">
+            <input type="submit" name="accion" value="<%=accion%>">
+            <input type="button" value="Cancelar" onClick="window.history.back()">
+        </form>
+    </td>
+</td><td><img src="presentacion/padripet/<%=apadrinamiento.getFotoRecibo()%>" id="fotoRecibo" width="auto" height="350"></td>
+</td><td><img src="presentacion/padripet/<%=apadrinamiento.getFotoCedula()%>" id="fotoCedula" width="auto" height="350"></td>
+</table>
 <div id="formulario" title="Apadrinar mascota">
     <form name="formularioMascotas">
         <table id="mascotas" border="0">
@@ -105,20 +131,67 @@
     </form>
 </div>
 <script>
+    function mostrarFotoRecibo() {
+        var lector = new FileReader();
+        lector.readAsDataURL(document.formulario.fotoRecibo.files[0]);
+        lector.onloadend = function () {
+            document.getElementById("fotoRecibo").src = lector.result;
+        };
+    }
+
+    function mostrarFotoCedula() {
+        var lector = new FileReader();
+        lector.readAsDataURL(document.formulario.fotoCedula.files[0]);
+        lector.onloadend = function () {
+            document.getElementById("fotoCedula").src = lector.result;
+        };
+    }
+
+
+
     var mascota = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
     var vectorMascotas = new Array();
-    for(var i = 0; i < mascota.length; i++) {
-    vectorMascotas[i] = mascota[i][1] + " - " + mascota[i][0];
-    };
+    for (var i = 0; i < mascota.length; i++) {
+        vectorMascotas[i] = mascota[i][1] + " - " + mascota[i][0];
+    }
+    ;
     $("#Mascota").autocomplete({
-    source: vectorMascotas
+        source: vectorMascotas
     });
 
-var personas = <%=Persona.getListaEnArregloJS("tipo='C'", null)%>;
-    $("#identificacionPadrino").autocomplete({
-        source: personas
+    var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
+    var vectorPersonas = new Array();
+    for (var i = 0; i < personas.length; i++) {
+        vectorPersonas[i] = personas[i][0];
+    }
+    ;
+    $("#identificacion").autocomplete({
+        source: vectorPersonas
     });
 
+    function buscarPersona(valor, indice) {
+        encontrado = false;
+        i = 0;
+        while (!encontrado) {
+            if (valor == personas[i][indice])
+                encontrado = true;
+            i++;
+        }
+        if (encontrado)
+            return i - 1;
+        else
+            return false;
+    }
+    $('#identificacion').change(function () {
+        identificacion = this.value.trim();
+        indicePersona = buscarPersona(identificacion, 0);
+        nombres = personas[indicePersona][1];
+        direccion = personas[indicePersona][3];
+        telefono = personas[indicePersona][2];
+        document.getElementById("nombre").innerHTML = nombres;
+        document.getElementById("direccion").innerHTML = direccion;
+        document.getElementById("telefono").innerHTML = telefono;
+    });
 
     function buscarMascota(valor, indice) {
         var encontrado = false;
@@ -143,23 +216,23 @@ var personas = <%=Persona.getListaEnArregloJS("tipo='C'", null)%>;
         var mascota = document.formularioMascotas.Mascota.value;
         var nombreMascota = mascota.substring(0, mascota.indexOf("-")).trim();
         var codigo = document.formularioMascotas.Mascota.value;
-        var codigoMascota = codigo.substring(codigo.indexOf("-")+1).trim();
-        var Plan =document.querySelectorAll('input[name="opcionSeleccionada"]');
-            let seleccion = '';
-            Plan.forEach(Plan => {
-                if (Plan.checked) {
-                    seleccion = Plan.value;
-                }
-            });
+        var codigoMascota = codigo.substring(codigo.indexOf("-") + 1).trim();
+        var Plan = document.querySelectorAll('input[name="opcionSeleccionada"]');
+        let seleccion = '';
+        Plan.forEach(Plan => {
+            if (Plan.checked) {
+                seleccion = Plan.value;
+            }
+        });
         var fechaInicio = document.getElementById('Fecha').value;
         var fechaFin = document.getElementById('FechaFin').value;
         var LapsoPlan = fechaInicio + " / " + fechaFin;
-        objeto.value += nombreMascota + "|" + codigoMascota + "|" + seleccion +"|"+ LapsoPlan;
+        objeto.value += nombreMascota + "|" + codigoMascota + "|" + seleccion + "|" + LapsoPlan;
 
         cargarTabla();
         cerrarFormulario();
     }
-            
+
     function cargarTabla() {
         document.getElementById("tablaMascotas").innerHTML = '<tr><th>Mascota</th><th>Codigo Mascota</th><th>Plan</th><th>Lapso Plan</th></tr>';
         var filas = document.formulario.mascotasPlan.value.split("||");
@@ -169,14 +242,14 @@ var personas = <%=Persona.getListaEnArregloJS("tipo='C'", null)%>;
             var codMascota = fila[1];
             var plan = fila[2];
             var lapsoplan = fila[3];
-            
+
 
             document.getElementById("tablaMascotas").innerHTML += "<tr><td>" + nombreMascota + "</td><td align='right'>" +
                     codMascota + "</td><td align='right'>" + plan + "</td><td align='right'>" + lapsoplan +
                     "</td><td><img src='presentacion/imagenes/eliminar.png' width='30' heigth='30'  title='Eliminar' onClick='eliminar(" + i + ")'></td></tr>";
         }
     }
-            
+
     function eliminar(fila) {
         var mascotae = "";
         var filas = document.formulario.mascotasPlan.value.split("||");
@@ -185,19 +258,19 @@ var personas = <%=Persona.getListaEnArregloJS("tipo='C'", null)%>;
             if (i != fila) {
                 if (contador > 0)
                     mascotae += "||";
-                    mascotae += filas[i];
+                mascotae += filas[i];
                 contador++;
             }
         }
         document.formulario.mascotasPlan.value = mascotae;
 
         cargarTabla();
-    }        
-            
+    }
+
     $(function () {
         $("#formulario").dialog({
             autoOpen: false,
-            
+
             show: {
                 effect: "blind",
                 duration: 1000
@@ -206,7 +279,7 @@ var personas = <%=Persona.getListaEnArregloJS("tipo='C'", null)%>;
                 effect: "explode",
                 duration: 1000
             },
-            width: 600,   // Ancho del diálogo en píxeles
+            width: 600, // Ancho del diálogo en píxeles
             height: 400
         });
     });

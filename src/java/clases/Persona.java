@@ -20,11 +20,11 @@ import java.util.logging.Logger;
  * @author Luis Eraso
  */
 public class Persona {
-    
-    private String identificacion; //
-    private String nombre; //
-    private String genero; //
-    private String fechaNacimiento; // 
+
+    private String identificacion; 
+    private String nombre; 
+    private String genero; 
+    private String fechaNacimiento; 
     private String email;
     private String telefono;
     private String direccion;
@@ -56,7 +56,6 @@ public class Persona {
 
             }
         } catch (SQLException ex) {
-            //Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("Error al consultar la identificacion" + ex.getMessage());
         }
     }
@@ -74,7 +73,7 @@ public class Persona {
     }
 
     public String getNombre() {
-      String resultado = nombre;
+        String resultado = nombre;
         if (nombre == null) {
             resultado = "";
         }
@@ -88,6 +87,7 @@ public class Persona {
     public GeneroPersona getGeneroEnObjeto() {
         return new GeneroPersona(genero);
     }
+
     public String getGenero() {
         return genero;
     }
@@ -105,7 +105,7 @@ public class Persona {
     }
 
     public String getEmail() {
-     String resultado = email;
+        String resultado = email;
         if (email == null) {
             resultado = "";
         }
@@ -117,7 +117,7 @@ public class Persona {
     }
 
     public String getTelefono() {
-       String resultado = telefono;
+        String resultado = telefono;
         if (telefono == null) {
             resultado = "";
         }
@@ -129,8 +129,8 @@ public class Persona {
     }
 
     public String getDireccion() {
-       String resultado = direccion;
-        if (direccion== null) {
+        String resultado = direccion;
+        if (direccion == null) {
             resultado = "";
         }
         return resultado;
@@ -141,7 +141,7 @@ public class Persona {
     }
 
     public String getResidencia() {
-     String resultado = residencia;
+        String resultado = residencia;
         if (residencia == null) {
             resultado = "";
         }
@@ -160,7 +160,7 @@ public class Persona {
         this.foto = foto;
     }
 
-  public String getTipo() {
+    public String getTipo() {
         if (tipo == null) {
             tipo = "";
         }
@@ -191,8 +191,9 @@ public class Persona {
     }
 
     public void setClave(String clave) {
-            this.clave = clave;
+        this.clave = clave;
     }
+
     public GeneroPersona getGeneroPersona() {
         return new GeneroPersona(genero);
     }
@@ -200,24 +201,26 @@ public class Persona {
     @Override
     public String toString() {
 
-        String datos="";
-        if (identificacion!=null){
-            datos=identificacion+" - "+nombre;
+        String datos = "";
+        if (identificacion != null) {
+            datos = identificacion + " - " + nombre;
         }
         return datos;
     }
-  public int getEdad() {
-    LocalDate fechaNacimiento = LocalDate.parse(this.getFechaNacimiento());
-    LocalDate fechaActual = LocalDate.now();
-    return Period.between(fechaNacimiento, fechaActual).getYears();
-}
+
+
+   public int getEdad() {
+        LocalDate fechaNacimiento = LocalDate.parse(this.getFechaNacimiento());
+        LocalDate fechaActual = LocalDate.now();
+        return Period.between(fechaNacimiento, fechaActual).getYears();
+    }
+
 
     public boolean grabar() {
- 
+
         String cadenaSQL = "insert into Persona(identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave) "
                 + "values ('" + identificacion + "', '" + nombre + "','" + genero + "','" + fechaNacimiento + "', '" + email + "',"
-
-                + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "',"+ this.getClave()  + ")";
+                + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "'," + this.getClave() + ")";
         System.out.println(cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
@@ -226,13 +229,13 @@ public class Persona {
 
         String cadenaSQL = " update persona set identificacion='" + identificacion + "',nombre='" + nombre + "', "
                 + "genero='" + genero + "',fechaNacimiento='" + fechaNacimiento + "',email='" + email + "',telefono='" + telefono + "',"
-                + " direccion='" + direccion + "',residencia='" + residencia + "',foto='" + foto + "',tipo='" + tipo + "',clave=" + this.getClave() + "  where identificacion=" +identificacionAnterior;
-        System.out.println("Modificar"+cadenaSQL);
+                + " direccion='" + direccion + "',residencia='" + residencia + "',foto='" + foto + "',tipo='" + tipo + "',clave=" + this.getClave() + "  where identificacion=" + identificacionAnterior;
+        System.out.println("Modificar" + cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
     public boolean eliminar() {
-       String cadenaSQL = "delete from Persona where identificacion=" + identificacion;
+        String cadenaSQL = "delete from Persona where identificacion=" + identificacion;
         System.out.println("Eliminar " + cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
@@ -247,10 +250,9 @@ public class Persona {
             orden = " order by  " + orden;
         } else {
             orden = " ";
-            
+
         }
         String cadenaSQL = "select identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave from persona " + filtro + orden;
-      //   System.out.println(cadenaSQL); // prueba para revisar como esta iniciando en sesion
         return ConectorBD.consultar(cadenaSQL);
     }
 
@@ -259,7 +261,7 @@ public class Persona {
         ResultSet datos = Persona.getLista(filtro, orden);
         if (datos != null) {
             try {
-                while(datos.next()){
+                while (datos.next()) {
                     Persona persona = new Persona();
                     persona.setIdentificacion(datos.getString("identificacion"));
                     persona.setNombre(datos.getString("nombre"));
@@ -274,7 +276,7 @@ public class Persona {
                     persona.setClave(datos.getString("clave"));
 
                     lista.add(persona);
-                    System.out.println(persona); 
+                    System.out.println(persona);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);
@@ -282,12 +284,13 @@ public class Persona {
         }
         return lista;
     }
-  public static Persona validar(String identificacion, String clave) {
+
+    public static Persona validar(String identificacion, String clave) {
         Persona persona = null;
         List<Persona> lista = Persona.getListaEnObjetos("identificacion='" + identificacion
                 + "' and clave=md5('" + clave + "')", null);
         if (lista.size() > 0) {
-            persona = lista.get(0); // get devuelve el primer elemento de la lista
+            persona = lista.get(0); 
         }
         return persona;
     }
@@ -300,8 +303,10 @@ public class Persona {
             if (i > 0) {
                 lista += ", ";
             }
-            lista += "['" + persona.getIdentificacion() + "', '" + persona.getNombre() + "','" + persona.getTelefono() + "','" + persona.getDireccion()+ "', '" + persona.getResidencia    () + "',"
-                    + "'" + persona.getEmail()+ "']";
+            lista += "['" + persona.getIdentificacion() + "', '" + persona.getNombre() + "', '"
+                    + persona.getTelefono() + "', '" + persona.getDireccion() + "', '"
+                    + persona.getResidencia() + "', '" + persona.getEmail() + "', '"
+                    + persona.getFoto() + "']"; 
         }
         lista += "]";
         return lista;
