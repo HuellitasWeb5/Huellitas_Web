@@ -91,16 +91,16 @@ public class TipoPersona {
         String lista = "";
         switch (codigo) {
             case "S":
-                lista = "<option value='S' selected>AdministradorSistema</option><option value='F'>AdministradorFundacion</option><option value='C'>Cliente</option>";
+                lista = "<option value='S' selected>Administrador  Sistema</option><option value='F'>Administrador  Fundacion</option><option value='C'>Cliente</option>";
                 break;
             case "F":
-                lista = "<option value='S'> AdministradorSistema</option><option value='F' selected>AdministradorFundacion</option><option value='C'>Cliente</option>";
+                lista = "<option value='S'> Administrador  Sistema</option><option value='F' selected>Administrador  Fundacion</option><option value='C'>Cliente</option>";
                 break;
             case "C":
-                lista = "<option value='S'> AdministradorSistema</option><option value='F'>AdministradorFundacion</option><option value='C' selected>Cliente</option>";
+                lista = "<option value='S'> Administrador  Sistema</option><option value='F'>Administrador  Fundacion</option><option value='C' selected>Cliente</option>";
                 break;
             default:
-                lista = "<option value='S' selected> AdministradorSistema</option><option value='F'>AdministradorFundacion</option><option value='C'>Cliente</option>";
+                lista = "<option value='S' selected> Administrador  Sistema</option><option value='F'>Administrador  Fundacion</option><option value='C'>Cliente</option>";
                 break;
         }
         return lista;
