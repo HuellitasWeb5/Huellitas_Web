@@ -42,10 +42,8 @@ footer {
 /* Contenedor Formularios */
 
 .container {
-    max-width: 800px; /* Ancho máximo del contenedor */
-    margin: 20px auto; /* Centrar el contenedor */
-    padding: 20px; /* Espaciado interno */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
     border-radius: 18px;
     padding: 20px 40px;
 }
@@ -54,16 +52,26 @@ h1 {
 }
 table {
     width: 100%; /* Hacer que las tablas ocupen todo el ancho */
+    margin-top: 20px;   
     margin-bottom: 20px; 
-    border-radius: 18px;
-    padding: 20px 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);/* Margen inferior */
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);/* Margen inferior */
 }
 label {
-    display: block; /* Hacer que las etiquetas ocupen una línea completa */
+ /* Hacer que las etiquetas ocupen una línea completa */
     margin-top: 10px; /* Margen superior */
 }
 .submit {
-    margin-top: 20px; /* Espacio arriba del botón enviar */
+    margin: 10px auto;
+    width: 120px;
+    backdrop-filter: blur(10px);
+    background: rgba(0, 255, 0, 0.4);
+    border: 2px solid rgba(225, 225, 225, 0.9);
+    border-radius: 12px;
+    padding: 4px 4px;
+    font-weight: 600;
+    font-size: 21px;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
 
