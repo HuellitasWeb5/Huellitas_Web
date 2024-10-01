@@ -41,11 +41,21 @@ for (int i = 0; i < datos.size(); i++) {
 
 <h3>LISTA DE ADMINISTRADORES</h3>
 
-<div class="btn-adicionar-container">
-    <a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Adicionar">
-        <button id="Adicionar" class="btn-adicionar">Adicionar</button>
-    </a>
+<div class="header-container">
+    <!-- Buscar por nombre -->
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
+        <ul id="nameList"></ul> <!-- Lista de nombres -->
+    </form>
+
+    <!-- Botón de adicionar -->
+    <div class="btn-adicionar-container">
+        <a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Adicionar">
+            <button id="Adicionar" class="btn-adicionar">Adicionar</button>
+        </a>
+    </div>
 </div>
+
 
 <div class="swiper-container">
     <div class="swiper-wrapper">
@@ -83,11 +93,6 @@ for (int i = 0; i < datos.size(); i++) {
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
     <div class="swiper-pagination"></div>
-</div>
-    <form id="searchForm">
-    <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
-    <ul id="nameList"></ul> <!-- Lista de nombres -->
-</form>
 
 <div id="result"></div> <!-- Para mostrar la identificación -->
 <script type="text/javascript">
