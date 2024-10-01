@@ -8,6 +8,8 @@ package clases;
 import clasesGenericas.ConectorBD;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -160,6 +162,12 @@ public class Mascota {
         this.descripcion = descripcion;
     }
     
+    public int getEdad() {
+        LocalDate fechaNacimiento = LocalDate.parse(this.getFechaNacimientoAproximada());
+        LocalDate fechaActual = LocalDate.now();
+        return Period.between(fechaNacimiento, fechaActual).getYears();
+    }
+    
     public String toString() {
 
         String datos="";
@@ -172,7 +180,7 @@ public class Mascota {
    public boolean grabar(){
 
        String cadenaSQL="insert into mascota (nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado, descripcion) "
-               + " values ('"+nombre+"','"+genero+"','"+tamano+"','"+foto+"','"+cuidadosEspeciales+"','"+fechaNacimientoAproximada+"','"+fechaIngreso+"','"+estado+"','"+descripcion+")";
+               + " values ('"+nombre+"','"+genero+"','"+tamano+"','"+foto+"','"+cuidadosEspeciales+"','"+fechaNacimientoAproximada+"','"+fechaIngreso+"','"+estado+"','"+descripcion+"')";
        System.out.println(cadenaSQL);
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }

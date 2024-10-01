@@ -1,7 +1,7 @@
 <%-- 
-    Document   : donacionDetalle
-    Created on : 17/09/2024, 04:38:39 PM
-    Author     : Luis Eraso
+    Document   : verFormularioInformacion
+    Created on : 28 sept 2024, 17:58:05
+    Author     : Angie
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>

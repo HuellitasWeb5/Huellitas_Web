@@ -62,6 +62,10 @@ public class UnidadDeMedida {
    public void setNotacion(String notacion) {
       this.notacion = notacion;
    }
+   @Override
+   public String toString() {
+        return nombre;
+    }
 
    public boolean grabar() {
       String cadenaSQL = "insert into UnidadDeMedida (nombre,notacion) values ('" + this.nombre + "','" + this.notacion + "')";
