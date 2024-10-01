@@ -27,9 +27,8 @@
     text-align: center; /* Centramos el texto */
     min-width: 250px; /* Ajuste del ancho mínimo (antes 250px) */
     max-width: 300px; /* Ajuste del ancho máximo (antes 300px) */
+    height: auto; /* Ajusta la altura según el contenido */
 }
-/*
-
 
 /* Estilo general del cuerpo */
 body {
@@ -56,11 +55,16 @@ h3 {
 }
 
 /* Contenedor para las tarjetas */
+
 .card-carousel {
-    display: flex;
     transition: transform 0.3s ease-in-out;
     width: 100%;
     scroll-behavior: smooth;
+    display: flex;
+    overflow: hidden;
+    width: 100%;
+    padding-bottom: 50px; /* Espacio para que el contenido no se acerque demasiado al footer */
+    justify-content: center;
 }
 
 .card-container {
@@ -70,44 +74,87 @@ h3 {
     justify-content: center; /* Centra el contenido */
 }
 
+.swiper-container {
+    position: relative; /* Necesario para posicionar las flechas de forma absoluta */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente el swiper */
+    margin-top: 10px; /* Ajusta este valor para moverlo hacia arriba */
+    padding-bottom: 200px; /* Espacio adicional en la parte inferior */
+}
+
+
 .swiper-wrapper {
-    display: flex; /* Usar flexbox para las tarjetas */
-    flex-wrap: nowrap; /* Evitar que las tarjetas se rompan a la siguiente línea */
+    display: flex;
+    align-items: center; /* Alinea las tarjetas en el centro verticalmente */
 }
 
 .swiper-slide {
     margin: 10px; /* Espacio entre tarjetas */
 }
 
-.card {
-    background-color: #62ff67; /* Color de fondo verde */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-    padding: 20px; /* Espacio interno */
-    text-align: center; /* Centramos el texto */
-    min-width: 150px; /* Ajusta según sea necesario */
+
+.swiper-button-prev,
+.swiper-button-next {
+    position: absolute; /* Posicionamiento absoluto */
+    top: 45%; /* Cambia este valor para mover las flechas un poco más arriba o abajo */
+    transform: translateY(-50%); /* Mantiene el centrado vertical */
+    z-index: 10; /* Asegúrate de que estén por encima de las tarjetas */
 }
 
+/* Ajustar la posición de las flechas */
+.swiper-button-prev {
+    left: 10px; /* Puedes ajustar la distancia desde el borde izquierdo */
+}
+
+.swiper-button-next {
+    right: 10px; /* Puedes ajustar la distancia desde el borde derecho */
+}
+
+.card {
+    background-color: #cce5ff; /* Color inicial de la tarjeta */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    min-width: 150px; /* Puedes ajustar este valor según sea necesario */
+    margin: 10px; /* Espacio entre tarjetas */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Transiciones suaves */
+}
+
+.card:hover {
+    background-color: #62ff67; /* Color al pasar el cursor */
+    transform: translateY(-10px); /* Mueve la tarjeta hacia arriba */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
+}
 .card-footer {
     display: flex; /* Alinear los botones horizontalmente */
     justify-content: center; /* Centrar los botones */
     margin-top: 10px; /* Espacio entre el contenido y los botones */
 }
-
+.card {
+    min-width: 300px; /* Ajusta el ancho mínimo según tus necesidades */
+    margin: 10px; /* Espaciado entre tarjetas */
+    height: auto; /* Ajusta la altura según el contenido */
+}
 .navigation-buttons {
     display: flex; /* Usar flexbox para los botones de navegación */
     justify-content: center; /* Centra los botones de navegación */
     margin-top: 50px; /* Espacio entre las tarjetas y los botones de navegación */
 }
 /* Estilo básico de las tarjetas */
+
 .card {
-    background-color: #cce5ff; /* Color de fondo verde */
-    border-radius: 30px;
+    background-color: #cce5ff; /* Fondo */
+    border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
-    min-width: 300px; /* Puedes ajustar este valor según sea necesario */
-    margin: 10px; /* Espacio entre tarjetas */
+    min-width: 300px; /* Ajuste de ancho */
+    margin: 10px;
+    height: auto; /* Altura automática para adaptarse al contenido */
+    display: flex;
+    flex-direction: column; /* Mantener el contenido en columna */
+    justify-content: space-between; /* Para que botones queden abajo */
 }
 
 /* Estilos para las imágenes de perfil en las tarjetas */
@@ -131,18 +178,21 @@ h3 {
 .card-header {
     font-size: 1.1em; /* Reducir el tamaño del título */
 }
-/* Encabezado de la tarjeta */
+/* Encabezado de la tarjeta del nombre */
+
 .card-header {
     font-size: 1.3em; /* Ajustar el tamaño de la fuente */
     font-weight: bold;
     margin-bottom: 10px;
+    border-bottom: 3px solid #005d03; /* Cambia el color y el grosor del borde */
+    padding-bottom: 5px; /* Añadir espacio entre el texto y el borde */
 }
-
 /* Cuerpo de la tarjeta */
 .card-body {
     font-size: 0.9em; /* Ajustar el tamaño de la fuente */
     margin-bottom: 15px;
 }
+
 
 /* Estilo de los botones en las tarjetas */
 .card-footer button {
@@ -185,13 +235,13 @@ h3 {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* Contenedor para el botón de adicionar */
+/* Estilo del botón */
+
 .btn-container {
-    text-align: right; /* Alinea el botón a la derecha */
+    text-align: center; /* Alinea el botón a la derecha */
     margin-bottom: 20px; /* Espacio entre el botón y las tarjetas */
 }
 
-/* Estilo del botón */
 
 .btn-adicionar {
     padding: 10px 20px;
@@ -236,4 +286,31 @@ h3 {
 .btn-otro:hover {
     background-color: #11728a;
     color: white;
+
+}
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente el contenido */
+    margin-bottom: 20px; /* Espacio entre el header y el resto del contenido */
+}
+
+.search-container {
+    display: flex; /* Usar flexbox para alinear el input y el icono */
+    align-items: center; /* Centrar verticalmente */
+    margin-top: 30px; /* Espacio entre el título y el campo de búsqueda */
+}
+
+#searchInput {
+    padding: 8px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    width: 500px; /* Ajusta el ancho como desees */
+    margin-right: 10px; /* Espacio entre el input y el icono */
+}
+
+.search-icon {
+    width: 20px; /* Ajusta el tamaño del icono */
+    height: 20px; /* Ajusta el tamaño del icono */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el icono */
 }
