@@ -43,14 +43,14 @@
             listaDetalle += "</tr>";
         }
     }
-    String listaPlan = "<div class='carousel-container'>"; // Contenedor principal
-    listaPlan += "<div class='swiper-container carousel'>"; // Contenedor de Swiper
-    listaPlan += "<div class='swiper-wrapper'>"; // Necesario para Swiper
+    String listaPlan = "<div class='carousel-container'>";
+    listaPlan += "<div class='swiper-container carousel'>";
+    listaPlan += "<div class='swiper-wrapper'>";
     List<PlanesApadrinamiento> datosPlanes = PlanesApadrinamiento.getListaEnObjetos(null, null);
     System.out.println("Tamaño de datosPlanes: " + datosPlanes.size());
     for (int j = 0; j < datosPlanes.size(); j++) {
         PlanesApadrinamiento planes2 = datosPlanes.get(j);
-        listaPlan += "<div class='swiper-slide'>"; // Clase para swiper
+        listaPlan += "<div class='swiper-slide'>";
         listaPlan += "<div class='card'>";
         listaPlan += "<div class='card-header'>";
         listaPlan += "<h2>" + planes2.getNombre() + "</h2>";
@@ -65,12 +65,12 @@
         listaPlan += "</div>";
         listaPlan += "</div>";
     }
-    listaPlan += "</div>"; // Cierre del contenedor de tarjetas
+    listaPlan += "</div>";
 
     listaPlan += "<div class='swiper-button-prev'></div>";
     listaPlan += "<div class='swiper-button-next'></div>";
-    listaPlan += "</div>"; // Cierre del contenedor de Swiper
-    listaPlan += "</div>"; // Cierre del contenedor principal
+    listaPlan += "</div>";
+    listaPlan += "</div>";
 
 
 %>
@@ -79,6 +79,8 @@
 <table border="0">
     <td>
         <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
+
+            <input  name="mascotasPlan" id="mascotasPlan">
             <table border='0'>
                 <%=lineaModificar%>
                 <tr>
@@ -113,36 +115,39 @@
                     </td>
                 </tr>
 
+
             </table>
+
         </form>
     </td>
 </td><td><img src="presentacion/padripet/<%=apadrinamiento.getFotoRecibo()%>" id="fotoRecibo" width="auto" height="350"></td>
 </td><td><img src="presentacion/padripet/<%=apadrinamiento.getFotoCedula()%>" id="fotoCedula" width="auto" height="350"></td>
 </table>
-<input type="button" value="Adicionar Mascota" onclick="abrirFormulario();">
+<input type="button" value="Seleccionar Mascota" onclick="abrirFormulario();">
 
-            <input type="hidden" name="mascotasPlan" size="100">
-<!--  desde aqui tengo que hacer cambios para las tarjetas de las mascotas seleccionadas y el plan-->
-            <div class="carousel-container"> <!-- Contenedor principal para las tarjetas -->
-                <div class="swiper-container" id="mascotasCarousel"> <!-- Contenedor de Swiper -->
-                    <div class="swiper-wrapper" id="mascotasCards"> <!-- Contenedor de las tarjetas -->
-                        <!-- Las tarjetas se generarán aquí -->
-                    </div>
-                    <div class="swiper-button-prev"></div>
-                    <div class="swiper-button-next"></div>
-                </div>
-            </div>
 
-            <input type="hidden" name="numero" value="<%=codigo%>">
-            <input type="submit" name="accion" value="<%=accion%>">
-            <input type="button" value="Cancelar" onClick="window.history.back()">
+<div class="carousel-container">
+    <div class="swiper-container" id="contenedorTarjetas">
+        <div class="swiper-wrapper">
+            <!-- Aquí se generarán dinámicamente las tarjetas -->
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+</div>
+
+
+<input type="hidden" name="numero" value="<%=codigo%>">
+<input type="submit" name="accion" value="<%=accion%>">
+<input type="button" value="Cancelar" onClick="window.history.back()">
+
 <div id="formulario" title="Apadrinar mascota">
     <form name="formularioMascotas">
         <table id="mascotas" border="0">
             <thead>
-                <tr><th>Mascota</th><th><input type="text" id="Mascota"></th></tr>
-                <tr><th>Fecha Inicio: </th><th><input type="date" id="Fecha"></th></tr>
-                <tr><th>Fecha Fin: </th><th><input type="date" id="FechaFin"></th></tr>
+                <tr><th>Mascota</th><th><input type="text" name="Mascota" id="Mascota"></th></tr>
+                <tr><th>Fecha Inicio:</th><th><input type="date" name="Fecha" id="Fecha"></th></tr>
+                <tr><th>Fecha Fin:</th><th><input type="date" name="FechaFin" id="FechaFin"></th></tr>
             </thead>
         </table>
         <%= listaPlan%>
@@ -243,106 +248,149 @@
     }
 
     function actualizarTabla() {
-        var objeto = document.formulario.mascotasPlan;
+        var objeto = document.getElementById("mascotasPlan");
+
         if (objeto.value != '')
-            objeto.value += "||";
+            objeto.value += "||";  // Asegúrate de agregar el separador correctamente
 
         var mascota = document.formularioMascotas.Mascota.value;
-        var nombreMascota = mascota.substring(0, mascota.indexOf("-")).trim();
-        var codigo = document.formularioMascotas.Mascota.value;
-        var codigoMascota = codigo.substring(codigo.indexOf("-") + 1).trim();
+        var nombreMascota = mascota.substring(0, mascota.indexOf("-")).trim();  // Corregido subString
+        var codigoMascota = mascota.substring(mascota.indexOf("-") + 1).trim();
 
-        var Plan = document.querySelectorAll('input[name="opcionSeleccionada"]');
-        let seleccion = '';
-        Plan.forEach(Plan => {
-            if (Plan.checked) {
-                seleccion = Plan.value;
+        // Obtener la opción seleccionada
+        var plan = document.querySelectorAll('input[name="opcionSeleccionada"]');
+        var seleccion = '';
+        plan.forEach(plan => {
+            if (plan.checked) {
+                seleccion = plan.value;
             }
         });
 
+        // Fechas
         var fechaInicio = document.getElementById('Fecha').value;
         var fechaFin = document.getElementById('FechaFin').value;
-        var LapsoPlan = fechaInicio + " / " + fechaFin;
+        var lapsoPlan = fechaInicio + " / " + fechaFin;
 
-        objeto.value += nombreMascota + "|" + codigoMascota + "|" + seleccion + "|" + LapsoPlan;
+        // Guardar el valor en el input "mascotasPlan"
+        objeto.value += nombreMascota + "|" + codigoMascota + "|" + seleccion + "|" + lapsoPlan;
 
-        cargarTabla(); // Cargar las tarjetas después de agregar
-        cerrarFormulario(); // Si tienes un formulario que deseas cerrar
+        cargarTabla();  // Asegúrate de que esta función exista o esté implementada correctamente
+        cerrarFormulario();  // Cerrar formulario
     }
 
     function cargarTabla() {
-    var contenedor = document.getElementById("mascotasCards");
-            contenedor.innerHTML = ''; // Limpiar el contenedor de tarjetas
-            var filas = document.formulario.mascotasPlan.value.split("||");
-            if (filas != "") {
-    filas.forEach((fila, index) => {
-    var datos = fila.split("|");
-            var nombreMascota = datos[0];
-            var codMascota = datos[1];
-            var plan = datos[2];
-            var lapsoplan = datos[3];
-            // Crear tarjeta
-            contenedor.innerHTML += `
-                <div class="swiper-slide">
-                    <div class="card">
-                        <div class="card-header">
-                            <h2>${nombreMascota}</h2>
-                        </div>
-                        <div class="card-body">
-                            <p><strong>Código Mascota:</strong> ${codMascota}</p>
-                            <p><strong>Plan:</strong> ${plan}</p>
-                            <p><strong>Lapso Plan:</strong> ${lapsoplan}</p>
-                            <button title='Eliminar' onClick='eliminar(${index})'>Eliminar</button>
-                        </div>
-                    </div>
-                </div>`;
-    });
-    }
-    }
-    function eliminar(fila) {
-    var mascotae = "";
-            var filas = document.formulario.mascotasPlan.value.split("||");
-            var contador = 0;
-            for (var i = 0; i < filas.length; i++) {
-    if (i != fila) {
-    if (contador > 0)
-            mascotae += "||";
-            mascotae += filas[i];
-            contador++;
-    }
-    }
-    document.formulario.mascotasPlan.value = mascotae;
-            cargarTabla();
+    // Obtener el contenedor de las tarjetas (el swiper-wrapper dentro de la swiper-container)
+    var contenedor = document.querySelector('.swiper-wrapper');
+    contenedor.innerHTML = '';  // Limpiar el contenedor antes de agregar nuevas tarjetas
+
+    // Obtener el valor del input 'mascotasPlan'
+    var datos = document.getElementById('mascotasPlan').value;
+    
+    // Verificar que haya datos
+    if (datos === '') {
+        return;
     }
 
+    // Separar los datos por el delimitador '||'
+    var registros = datos.split('||');
+    
+    // Iterar sobre cada registro
+    registros.forEach(function(registro) {
+        var campos = registro.split('|');
+        
+        // Crear los elementos para la tarjeta
+        var tarjeta = document.createElement('div');
+        tarjeta.classList.add('swiper-slide');  // Añadir clase de swiper-slide
+        
+        var card = document.createElement('div');
+        card.classList.add('card');  // Añadir clase de tarjeta
+        
+        // Crear el contenido de la tarjeta
+        var nombreElemento = document.createElement('h2');
+        nombreElemento.textContent = 'Mascota: ' + campos[0];
+        
+        var codigoElemento = document.createElement('p');
+        codigoElemento.innerHTML = '<strong>Código:</strong> ' + campos[1];
+        
+        var planElemento = document.createElement('p');
+        planElemento.innerHTML = '<strong>Plan:</strong> ' + campos[2];
+        
+        var lapsoElemento = document.createElement('p');
+        lapsoElemento.innerHTML = '<strong>Lapso:</strong> ' + campos[3];
+        
+        // Agregar los elementos a la tarjeta
+        card.appendChild(nombreElemento);
+        card.appendChild(codigoElemento);
+        card.appendChild(planElemento);
+        card.appendChild(lapsoElemento);
+        
+        // Agregar la tarjeta a la diapositiva
+        tarjeta.appendChild(card);
+        
+        // Agregar la tarjeta al contenedor (swiper-wrapper)
+        contenedor.appendChild(tarjeta);
+    });
+    
+    // Reiniciar swiper.js para actualizar el carrusel con las nuevas tarjetas
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 3,
+        spaceBetween: 10,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        loop: true,  // Hace que el carrusel sea cíclico
+    });
+}
+
+
+    function eliminar(fila) {
+        var mascotae = "";
+        var filas = document.formulario.mascotasPlan.value.split("||");
+        var contador = 0;
+
+        for (var i = 0; i < filas.length; i++) {
+            if (i !== fila) {
+                if (contador > 0)
+                    mascotae += "||";
+                mascotae += filas[i];
+                contador++;
+            }
+        }
+        document.formulario.mascotasPlan.value = mascotae;
+
+        cargarTabla(); // Recarga las tarjetas
+    }
 
     $(function () {
-    $("#formulario").dialog({
-    autoOpen: false,
+        $("#formulario").dialog({
+            autoOpen: false,
             show: {
-            effect: "blind",
-                    duration: 1000
+                effect: "blind",
+                duration: 1000
             },
             hide: {
-            effect: "explode",
-                    duration: 1000
+                effect: "explode",
+                duration: 1000
             },
             width: 920, // Ancho del diálogo en píxeles
             height: 440
+        });
     });
-    });
-            function abrirFormulario() {
-            $('#formulario').dialog('open');
-            }
+    function abrirFormulario() {
+        $('#formulario').dialog('open');
+    }
 
     function cerrarFormulario() {
-    // Cerrar el diálogo
-    $('#formulario').dialog('close');
-            // Restaurar valores del formulario
-            document.forms['formularioMascotas'].reset(); // Resetea todos los inputs del formulario
+        // Cerrar el diálogo
+        $('#formulario').dialog('close');
+        // Restaurar valores del formulario
+        document.forms['formularioMascotas'].reset(); // Resetea todos los inputs del formulario
 
-            // Limpiar el contenido de la tabla de selección (si es necesario)
-            $('#mascotas input[type="text"]').val(''); // Limpia los campos de texto
-            $('#planes input[type="checkbox"]:checked').prop('checked', false); // Desmarca cualquier checkbox seleccionado en la tabla de planes
+        // Limpiar el contenido de la tabla de selección (si es necesario)
+        $('#mascotas input[type="text"]').val(''); // Limpia los campos de texto
+        $('#planes input[type="checkbox"]:checked').prop('checked', false); // Desmarca cualquier checkbox seleccionado en la tabla de planes
     }
+    
+    
 </script>
