@@ -34,9 +34,8 @@
     height: auto; /* Ajusta la altura según el contenido */
 }
 
+/* Estilo general del cuerpo -----------------------------------------------------------------------------------------*/
 
-
-/* Estilo general del cuerpo */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -60,7 +59,7 @@ h3 {
     padding: 20px 0;
 }
 
-/* Contenedor para las tarjetas */
+/* Contenedor para las tarjetas --------------------------------------------------------------------------------------*/
 
 .card-carousel {
     transition: transform 0.3s ease-in-out;
@@ -88,7 +87,6 @@ h3 {
     padding-bottom: 200px; /* Espacio adicional en la parte inferior */
 }
 
-
 .swiper-wrapper {
     display: flex;
     align-items: center; /* Alinea las tarjetas en el centro verticalmente */
@@ -98,8 +96,6 @@ h3 {
     margin: 10px; /* Espacio entre tarjetas */
 }
 
-
-.swiper-button-prev,
 .swiper-button-next {
     position: absolute; /* Posicionamiento absoluto */
     top: 45%; /* Cambia este valor para mover las flechas un poco más arriba o abajo */
@@ -107,7 +103,8 @@ h3 {
     z-index: 10; /* Asegúrate de que estén por encima de las tarjetas */
 }
 
-/* Ajustar la posición de las flechas */
+/* Ajustar la posición de las flechas -------------------------------------------------------------------------------*/
+
 .swiper-button-prev {
     left: 10px; /* Puedes ajustar la distancia desde el borde izquierdo */
 }
@@ -147,7 +144,8 @@ h3 {
     justify-content: center; /* Centra los botones de navegación */
     margin-top: 50px; /* Espacio entre las tarjetas y los botones de navegación */
 }
-/* Estilo básico de las tarjetas */
+
+/* Estilo básico de las tarjetas ------------------------------------------------------------------------------------*/
 
 .card {
     background-color: #cce5ff; /* Fondo */
@@ -164,6 +162,7 @@ h3 {
 }
 
 /* Estilos para las imágenes de perfil en las tarjetas */
+
 .profile-image {
     width: 120px; /* Aumentar el tamaño de la imagen */
     height: 120px; /* Aumentar el tamaño de la imagen */
@@ -177,6 +176,7 @@ h3 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra sutil alrededor de la imagen */
 }
 /* Ajuste del tamaño de la fuente en las tarjetas */
+
 .card-body {
     font-size: 0.85em; /* Reducir el tamaño del texto */
 }
@@ -194,12 +194,14 @@ h3 {
     padding-bottom: 5px; /* Añadir espacio entre el texto y el borde */
 }
 /* Cuerpo de la tarjeta */
+
 .card-body {
     font-size: 0.9em; /* Ajustar el tamaño de la fuente */
     margin-bottom: 15px;
 }
 
 /* Botones de navegación (flechas) */
+
 .carousel-prev, .carousel-next {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
@@ -225,6 +227,7 @@ h3 {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
+
 /* Contenedor para el botón de adicionar */
 .btn-container {
     text-align: right; /* Alinea el botón a la derecha */
@@ -234,6 +237,97 @@ h3 {
 
 
 /* Estilo del botón de adicionar */
+
+/* Estilo de los formularios -----------------------------------------------------------------------------------*/
+
+.containerFormulario {
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    border-radius: 18px;
+    padding: 20px 40px;
+    max-width: 1200px; 
+}
+
+h1 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px; /* Centrar el título */
+}
+.tableFormulario {
+    width: 100%; /* Hacer que la tabla ocupe el 100% del contenedor */
+    margin-top: 20px;   
+    margin-bottom: 20px; 
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Margen inferior */
+    max-width: 900px; /* Establece un ancho máximo para la tabla */
+}
+
+.tableDatos {
+    width: 50%; /* Hacer que la tabla ocupe el 100% del contenedor */
+    margin-top: 20px;   
+    margin-bottom: 20px; 
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Margen inferior */
+    max-width: 500px; 
+    display: inline-block;
+    margin-right: 15px; /* Espacio entre tablas */
+}
+
+label {
+ /* Hacer que las etiquetas ocupen una línea completa */
+    margin-top: 10px; /* Margen superior */
+}
+
+.container {
+    padding-bottom: 60px; /* Margen inferior para que el contenido no quede tapado por el footer */
+}
+
+.tableFormulario td, .tableFormulario th {
+    padding: 10px; /* Ajusta el valor según necesites */
+}
+
+.tableDatos td, .tableDatos th {
+    padding: 4px; /* Ajusta el valor según necesites */
+}
+
+/* Estilo para los campos de texto */
+input[type="text"], input[type="number"], textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+fieldset {
+    border: none;
+    margin-top: 15px;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+img {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilo de los botones --------------------------------------------------------------------------------------------*/
+
+.btn-container {
+    margin: auto;
+    text-align: center; /* Alinea el botón a la derecha */
+    margin-bottom: 10px; /* Espacio entre el botón y las tarjetas */
+}
+
+
 .btn-adicionar {
     padding: 10px 20px;
     background-color:#f12727 ; /* Color verde para el botón */
@@ -298,6 +392,9 @@ h3 {
     list-style-type: none;
     padding: 0;
 }
+
+/* Estilo de los iconos -----------------------------------------------------------------------------------------*/
+
 .header-container {
     display: flex;
     flex-direction: column;
