@@ -282,25 +282,7 @@ input[type="text"], input[type="number"], textarea {
     border-radius: 8px;
     border: 1px solid #ccc;
     box-sizing: border-box;
-}
-
-label {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-fieldset {
-    border: none;
-    margin-top: 15px;
-}
-
-input[type="radio"], input[type="checkbox"] {
-    margin-right: 8px;
-}
-
-img {
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    }
 }
 
 /* Estilo de los botones --------------------------------------------------------------------------------------------*/
