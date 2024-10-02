@@ -58,7 +58,7 @@
                 ¿Olvidó su contraseña?
             </div>
             <div class="registro">
-                ¿Aún no tienes una cuenta? <a href="#">Registrarse</a>
+                ¿Aún no tienes una cuenta? <a href="registrarseFormulario.jsp">Registrarse</a>
             </div>
         </div> <!-- Cierre del contenedor -->
     </body>

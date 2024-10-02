@@ -88,11 +88,23 @@ public class TipoPersona {
 
             case "F":
                 menu += "<li><a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Medidas</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp'>Tipos Donacion</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesPadrinos.jsp'>Planes Padrinos</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp'>Mascotas</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=4.Clientes/clientes.jsp'>Clientes</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp'>Padripet</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a></li>";
                 menu += "<li><a href='index.jsp'>Salir</a></li>";
                 break;
 
             case "C":
                 menu += "<li><a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp'>Padripet</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/perfil.jsp'>Perfil</a></li>";
                 menu += "<li><a href='index.jsp'>Salir</a></li>";
                 break;
         }
@@ -105,16 +117,16 @@ public class TipoPersona {
         String lista = "";
         switch (codigo) {
             case "S":
-                lista = "<option value='S' selected>Administrador  Sistema</option><option value='F'>Administrador  Fundacion</option><option value='C'>Cliente</option>";
+                lista = "<option value='S' selected>Administrador  Sistema</option><option value='F'>Administrador  Fundacion</option>";
                 break;
             case "F":
-                lista = "<option value='S'> Administrador  Sistema</option><option value='F' selected>Administrador  Fundacion</option><option value='C'>Cliente</option>";
+                lista = "<option value='S'> Administrador  Sistema</option><option value='F' selected>Administrador  Fundacion</option>";
                 break;
             case "C":
-                lista = "<option value='S'> Administrador  Sistema</option><option value='F'>Administrador  Fundacion</option><option value='C' selected>Cliente</option>";
+                lista = "<option value='S'> Administrador  Sistema</option><option value='F'>Administrador  Fundacion</option>";
                 break;
             default:
-                lista = "<option value='S' selected> Administrador  Sistema</option><option value='F'>Administrador  Fundacion</option><option value='C'>Cliente</option>";
+                lista = "<option value='S' selected> Administrador  Sistema</option><option value='F'>Administrador  Fundacion</option>";
                 break;
         }
         return lista;
