@@ -199,22 +199,6 @@ h3 {
     margin-bottom: 15px;
 }
 
-
-/* Estilo de los botones en las tarjetas */
-.card-footer button {
-    margin: 5px; /* Margen uniforme entre botones */
-    padding: 5px 10px; /* Ajustar padding de botones */
-    background-color: #f12727;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.card-footer button:hover {
-    background-color: #45a049;
-}
-
 /* Botones de navegación (flechas) */
 .carousel-prev, .carousel-next {
     background-color: rgba(0, 0, 0, 0.5);
@@ -242,15 +226,27 @@ h3 {
 }
 
 /* Contenedor para el botón de adicionar */
-.btn-adicionar-container {
+.btn-container {
     text-align: right; /* Alinea el botón a la derecha */
     margin-bottom: 20px; /* Espacio entre el botón y las tarjetas */
 }
 
+
+
 /* Estilo del botón de adicionar */
 .btn-adicionar {
     padding: 10px 20px;
-    background-color: #62ff67; /* Color verde para el botón */
+    background-color:#f12727 ; /* Color verde para el botón */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+ /* Estilo del botón de modificar */
+.btn-modificar {
+    padding: 10px 20px;
+    background-color: #28a745; /* Color para el botón de modificar */
     color: white;
     border: none;
     border-radius: 5px;
@@ -258,6 +254,16 @@ h3 {
     font-size: 1em;
 }
 
+/* Estilo del botón de eliminar */
+.btn-eliminar {
+    padding: 10px 20px;
+    background-color: #dc3545; /* Color para el botón de eliminar */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
 .btn-adicionar:hover {
     background-color: #62ff67; /* Azul más oscuro al pasar el cursor */
 }
