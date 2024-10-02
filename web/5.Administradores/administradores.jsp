@@ -76,6 +76,9 @@ for (int i = 0; i < datos.size(); i++) {
                 <div class="card-header">
                     <%= administrador.getNombre() %>
                 </div>
+                 <div class="card-subtitle">
+            <p> <%= administrador.getTipoEnObjeto().getNombre() %></p>
+               </div>
 
                 <div class="card-body">
                     <p><strong>Identificación:</strong> <%= administrador.getIdentificacion() %></p>
