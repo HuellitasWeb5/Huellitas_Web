@@ -80,7 +80,7 @@
     <td>
         <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
 
-            <input  name="mascotasPlan" id="mascotasPlan">
+            <input type="hidden" name="mascotasPlan" id="mascotasPlan">
             <table border='0'>
                 <%=lineaModificar%>
                 <tr>
@@ -344,23 +344,30 @@
 }
 
 
-    function eliminar(fila) {
-        var mascotae = "";
-        var filas = document.formulario.mascotasPlan.value.split("||");
-        var contador = 0;
+   function eliminar(fila) {
+    console.log("Eliminando fila:", fila);
 
-        for (var i = 0; i < filas.length; i++) {
-            if (i !== fila) {
-                if (contador > 0)
-                    mascotae += "||";
-                mascotae += filas[i];
-                contador++;
-            }
+    var mascotae = "";
+    var filas = document.formulario.mascotasPlan.value.split("||");
+    console.log("Filas antes de eliminar:", filas);
+
+    var contador = 0;
+
+    for (var i = 0; i < filas.length; i++) {
+        if (i !== fila) {
+            if (contador > 0)
+                mascotae += "||";
+            mascotae += filas[i];
+            contador++;
         }
-        document.formulario.mascotasPlan.value = mascotae;
-
-        cargarTabla(); // Recarga las tarjetas
     }
+
+    console.log("Filas después de eliminar:", mascotae);
+
+    document.formulario.mascotasPlan.value = mascotae;
+
+    cargarTabla(); // Recarga las tarjetas
+}
 
     $(function () {
         $("#formulario").dialog({
