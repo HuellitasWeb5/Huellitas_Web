@@ -4,18 +4,22 @@
 <%@ page import="clases.Mascota"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
+</head>
+
 <%
-//<link rel="stylesheet" href="presentacion/style-Proyecto.css">    
+   
 
 %>
 
 <body onload="cargarFecha()">
     <form method="post" action="formularioInformacion.jsp" onsubmit="return validarFormulario();">
 
-        <div class="container">
+        <div class="containerFormulario">
             <h1>Formulario de Información</h1>
-
-
             <input type="hidden" name="accion" value="grabar">
 
             <!-- FECHA -->
@@ -24,12 +28,12 @@
 
             <!-- ADOPTANTE  --> 
 
-            <table>
+            <table  class="tableDatos">
                 <tr>
-                    <th>Identificación</th>
+                    <th>Identificación:</th>
                     <td><input type="text" name="identificacion" id="identificacion"></td>
                     <td rowspan="5" style="text-align: center; vertical-align: middle;">
-                        <img id="fotoClientePreview" src="" alt="Foto del Cliente" width="100" height="100">
+                        <img id="fotoClientePreview" src="" alt="Foto del Cliente" width="125" height="125">
                     </td>
                 </tr>
                 <tr>
@@ -53,17 +57,19 @@
 
             <!-- MASCOTA  --> 
 
-            <table>
+            <table class="tableDatos">
                 <tr>
-                    <th>Código</th>
+                    <th>Código:</th>
                     <td><input type="text" name="codigo" id="codigo"></td>
+                    <td rowspan="5" style="text-align: center; vertical-align: middle;">
+                        <img id="fotoMascotaPreview" src="" alt="Foto de la Mascota" width="125" height="125">
                 </tr>
                 <tr>
                     <th>Nombre de la mascota</th>
                     <td type="text" name="nombreMascota" id="nombreMascota" ></td>
                 </tr>
                 <tr>
-                    <th>Fecha De Nacimiento Aproximada</th>
+                    <th>Edad Aproximada</th>
                     <td type="text" name="fechaNacimiento" id="fechaNacimiento" ></td>
                 </tr>
                 <tr>
@@ -74,13 +80,15 @@
                     <th>Cuidados Especiales</th>
                     <td type="text" name="cuidadosEspeciales" id="cuidadosEspeciales"></td>
                 </tr>
-                <tr>
-                <img id="fotoMascotaPreview" src="" alt="Foto de la Mascota" width="100" height="100">
-                </tr>
 
             </table>
 
-            <!-- FORMULARIO  --> 
+            <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar">
+                <button id="Adicionar" class="btn-adicionar">Agregar Mascota</button><br>
+            </a>
+
+
+            <!-- FORMULARIO  -->    
 
             <!-- Ocupación -->
             <label for="ocupacion">¿Cuál es su ocupación?</label>
@@ -185,104 +193,102 @@
 
             <!-- Descripción -->
             <label for="descripcion">Descripción adicional:</label>
-            <br><textarea id="descripcion" name="descripcion" rows="5" cols="30" required></textarea><br><br>
+            <br><textarea id="descripcion" name="descripcion" rows="4" cols="88" required></textarea><br><br>
 
-            <input class="submit" type="submit" value="Enviar">
-            <input class="button" type="button" value="Cancelar" onClick="window.history.back()">
+            <input class="btn-adicionar" type="submit" value="Enviar">
+            <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
+            </body>
+            </form>
+            <script>
 
-        </div>
-</body>
-</form>
-<script>
+                // BUSCAR PERSONA
 
-    // BUSCAR PERSONA
+                var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
+                var vectorPersonas = new Array();
+                for (var i = 0; i < personas.length; i++) {
+                    vectorPersonas[i] = personas[i][0];
+                }
+                $("#identificacion").autocomplete({
+                    source: vectorPersonas
+                });
+                function buscarPersona(valor, indice) {
+                    encontrado = false;
+                    i = 0;
+                    while (!encontrado) {
+                        if (valor == personas[i][indice])
+                            encontrado = true;
+                        i++;
+                    }
+                    if (encontrado)
+                        return i - 1;
+                    else
+                        return false;
+                }
+                $('#identificacion').change(function () {
+                    identificacion = this.value.trim();
+                    indicePersona = buscarPersona(identificacion, 0);
+                    nombre = personas[indicePersona][1];
+                    telefono = personas[indicePersona][2];
+                    direccion = personas[indicePersona][3];
+                    residencia = personas[indicePersona][4];
+                    foto = personas[indicePersona][6];
+                    document.getElementById("nombre").innerHTML = nombre;
+                    document.getElementById("telefono").innerHTML = telefono;
+                    document.getElementById("direccion").innerHTML = direccion;
+                    document.getElementById("residencia").innerHTML = residencia;
+                    document.getElementById("fotoClientePreview").src = foto;
+                });
 
-    var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
-    var vectorPersonas = new Array();
-    for (var i = 0; i < personas.length; i++) {
-        vectorPersonas[i] = personas[i][0];
-    }
-    $("#identificacion").autocomplete({
-        source: vectorPersonas
-    });
-    function buscarPersona(valor, indice) {
-        encontrado = false;
-        i = 0;
-        while (!encontrado) {
-            if (valor == personas[i][indice])
-                encontrado = true;
-            i++;
-        }
-        if (encontrado)
-            return i - 1;
-        else
-            return false;
-    }
-    $('#identificacion').change(function () {
-        identificacion = this.value.trim();
-        indicePersona = buscarPersona(identificacion, 0);
-        nombre = personas[indicePersona][1];
-        telefono = personas[indicePersona][2];
-        direccion = personas[indicePersona][3];
-        residencia = personas[indicePersona][4];
-        foto = personas[indicePersona][6];
-        document.getElementById("nombre").innerHTML = nombre;
-        document.getElementById("telefono").innerHTML = telefono;
-        document.getElementById("direccion").innerHTML = direccion;
-        document.getElementById("residencia").innerHTML = residencia;
-        document.getElementById("fotoClientePreview").src = foto;
-    });
+                // BUSCAR MASCOTA
 
-    // BUSCAR MASCOTA
+                var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+                var vectorMascotas = new Array();
+                for (var i = 0; i < mascotas.length; i++) {
+                    vectorMascotas[i] = mascotas[i][0];
+                }
+                $("#codigo").autocomplete({
+                    source: vectorMascotas
+                });
+                function buscarMascota(valor, indice) {
+                    encontrado = false;
+                    i = 0;
+                    while (!encontrado) {
+                        if (valor == mascotas[i][indice])
+                            encontrado = true;
+                        i++;
+                    }
+                    if (encontrado)
+                        return i - 1;
+                    else
+                        return false;
+                }
 
-    var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
-    var vectorMascotas = new Array();
-    for (var i = 0; i < mascotas.length; i++) {
-        vectorMascotas[i] = mascotas[i][0];
-    }
-    $("#codigo").autocomplete({
-        source: vectorMascotas
-    });
-    function buscarMascota(valor, indice) {
-        encontrado = false;
-        i = 0;
-        while (!encontrado) {
-            if (valor == mascotas[i][indice])
-                encontrado = true;
-            i++;
-        }
-        if (encontrado)
-            return i - 1;
-        else
-            return false;
-    }
+                $('#codigo').change(function () {
+                    codigo = this.value.trim();
+                    indiceMascota = buscarMascota(codigo, 0);
+                    nombreMascota = mascotas[indiceMascota][1];
+                    fechaNacimiento = mascotas[indiceMascota][6];
+                    genero = mascotas[indiceMascota][2];
+                    cuidadosEspeciales = mascotas [indiceMascota][5];
+                    foto = mascotas [indiceMascota][4];
+                    document.getElementById("nombreMascota").innerHTML = nombreMascota;
+                    document.getElementById("fechaNacimiento").innerHTML = fechaNacimiento;
+                    document.getElementById("genero").innerHTML = genero;
+                    document.getElementById("cuidadosEspeciales").innerHTML = cuidadosEspeciales;
+                    document.getElementById("fotoMascotaPreview").src = foto;
+                });
 
-    $('#codigo').change(function () {
-        codigo = this.value.trim();
-        indiceMascota = buscarMascota(codigo, 0);
-        nombreMascota = mascotas[indiceMascota][1];
-        fechaNacimiento = mascotas[indiceMascota][6];
-        genero = mascotas[indiceMascota][2];
-        cuidadosEspeciales = mascotas [indiceMascota][5];
-        foto = mascotas [indiceMascota][4];
-        document.getElementById("nombreMascota").innerHTML = nombreMascota;
-        document.getElementById("fechaNacimiento").innerHTML = fechaNacimiento;
-        document.getElementById("genero").innerHTML = genero;
-        document.getElementById("cuidadosEspeciales").innerHTML = cuidadosEspeciales;
-        document.getElementById("fotoMascotaPreview").src = foto;
-    });
-    
-    // FORMATO DE FECHA
+                // FORMATO DE FECHA
 
-    function cargarFecha() {
-        var fecha = new Date();
-        var dia = String(fecha.getDate()).padStart(2, '0');
-        var mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Enero es 0
-        var anio = fecha.getFullYear();
-        var fechaActual = dia + '/' + mes + '/' + anio;
-        document.getElementById('fecha').innerText = fechaActual;
-    }
+                function cargarFecha() {
+                    var fecha = new Date();
+                    var dia = String(fecha.getDate()).padStart(2, '0');
+                    var mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Enero es 0
+                    var anio = fecha.getFullYear();
+                    var fechaActual = dia + '/' + mes + '/' + anio;
+                    document.getElementById('fecha').innerText = fechaActual;
+                }
 
-    mentById('fecha').innerText = fechaFormateada;
+                mentById('fecha').innerText = fechaFormateada;
 
-</script>
+            </script>
