@@ -16,8 +16,7 @@
 %>
 
 <body onload="cargarFecha()">
-    <form method="post" action="formularioInformacion.jsp" onsubmit="return validarFormulario();">
-
+    <form method="post" action="formularioInformacion.jsp" onsubmit="return validarFormulario();">    
         <div class="containerFormulario">
             <h1>Formulario de Información</h1>
             <input type="hidden" name="accion" value="grabar">
@@ -27,7 +26,7 @@
             <div>Fecha actual: <span id="fecha"></span></div>
 
             <!-- ADOPTANTE  --> 
-
+<div class="contenedor-tarjetas">
             <table  class="tableDatos">
                 <tr>
                     <th>Identificación:</th>
@@ -82,15 +81,17 @@
                 </tr>
 
             </table>
-
+</div>
             <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar">
-                <button id="Adicionar" class="btn-adicionar">Agregar Mascota</button><br>
+                <br><button id="Adicionar" class="btn-adicionar">Agregar Mascota</button><br>
             </a>
 
+        <!-- FORMULARIO  -->    
 
-            <!-- FORMULARIO  -->    
+        <table  class="tableFormulario">
 
             <!-- Ocupación -->
+
             <label for="ocupacion">¿Cuál es su ocupación?</label>
             <input type="text" id="ocupacion" name="ocupacion" maxlength="100" required><br><br>
 
@@ -195,100 +196,103 @@
             <label for="descripcion">Descripción adicional:</label>
             <br><textarea id="descripcion" name="descripcion" rows="4" cols="88" required></textarea><br><br>
 
-            <input class="btn-adicionar" type="submit" value="Enviar">
-            <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
-            </body>
-            </form>
-            <script>
+        </table>
 
-                // BUSCAR PERSONA
+        <input class="btn-adicionar" type="submit" value="Enviar">
+        <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
+        </body>
+        </div>>
+    </form>
+    <script>
 
-                var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
-                var vectorPersonas = new Array();
-                for (var i = 0; i < personas.length; i++) {
-                    vectorPersonas[i] = personas[i][0];
-                }
-                $("#identificacion").autocomplete({
-                    source: vectorPersonas
-                });
-                function buscarPersona(valor, indice) {
-                    encontrado = false;
-                    i = 0;
-                    while (!encontrado) {
-                        if (valor == personas[i][indice])
-                            encontrado = true;
-                        i++;
-                    }
-                    if (encontrado)
-                        return i - 1;
-                    else
-                        return false;
-                }
-                $('#identificacion').change(function () {
-                    identificacion = this.value.trim();
-                    indicePersona = buscarPersona(identificacion, 0);
-                    nombre = personas[indicePersona][1];
-                    telefono = personas[indicePersona][2];
-                    direccion = personas[indicePersona][3];
-                    residencia = personas[indicePersona][4];
-                    foto = personas[indicePersona][6];
-                    document.getElementById("nombre").innerHTML = nombre;
-                    document.getElementById("telefono").innerHTML = telefono;
-                    document.getElementById("direccion").innerHTML = direccion;
-                    document.getElementById("residencia").innerHTML = residencia;
-                    document.getElementById("fotoClientePreview").src = foto;
-                });
+        // BUSCAR PERSONA
 
-                // BUSCAR MASCOTA
+        var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
+        var vectorPersonas = new Array();
+        for (var i = 0; i < personas.length; i++) {
+            vectorPersonas[i] = personas[i][0];
+        }
+        $("#identificacion").autocomplete({
+            source: vectorPersonas
+        });
+        function buscarPersona(valor, indice) {
+            encontrado = false;
+            i = 0;
+            while (!encontrado) {
+                if (valor == personas[i][indice])
+                    encontrado = true;
+                i++;
+            }
+            if (encontrado)
+                return i - 1;
+            else
+                return false;
+        }
+        $('#identificacion').change(function () {
+            identificacion = this.value.trim();
+            indicePersona = buscarPersona(identificacion, 0);
+            nombre = personas[indicePersona][1];
+            telefono = personas[indicePersona][2];
+            direccion = personas[indicePersona][3];
+            residencia = personas[indicePersona][4];
+            foto = personas[indicePersona][6];
+            document.getElementById("nombre").innerHTML = nombre;
+            document.getElementById("telefono").innerHTML = telefono;
+            document.getElementById("direccion").innerHTML = direccion;
+            document.getElementById("residencia").innerHTML = residencia;
+            document.getElementById("fotoClientePreview").src = foto;
+        });
 
-                var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
-                var vectorMascotas = new Array();
-                for (var i = 0; i < mascotas.length; i++) {
-                    vectorMascotas[i] = mascotas[i][0];
-                }
-                $("#codigo").autocomplete({
-                    source: vectorMascotas
-                });
-                function buscarMascota(valor, indice) {
-                    encontrado = false;
-                    i = 0;
-                    while (!encontrado) {
-                        if (valor == mascotas[i][indice])
-                            encontrado = true;
-                        i++;
-                    }
-                    if (encontrado)
-                        return i - 1;
-                    else
-                        return false;
-                }
+        // BUSCAR MASCOTA
 
-                $('#codigo').change(function () {
-                    codigo = this.value.trim();
-                    indiceMascota = buscarMascota(codigo, 0);
-                    nombreMascota = mascotas[indiceMascota][1];
-                    fechaNacimiento = mascotas[indiceMascota][6];
-                    genero = mascotas[indiceMascota][2];
-                    cuidadosEspeciales = mascotas [indiceMascota][5];
-                    foto = mascotas [indiceMascota][4];
-                    document.getElementById("nombreMascota").innerHTML = nombreMascota;
-                    document.getElementById("fechaNacimiento").innerHTML = fechaNacimiento;
-                    document.getElementById("genero").innerHTML = genero;
-                    document.getElementById("cuidadosEspeciales").innerHTML = cuidadosEspeciales;
-                    document.getElementById("fotoMascotaPreview").src = foto;
-                });
+        var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+        var vectorMascotas = new Array();
+        for (var i = 0; i < mascotas.length; i++) {
+            vectorMascotas[i] = mascotas[i][0];
+        }
+        $("#codigo").autocomplete({
+            source: vectorMascotas
+        });
+        function buscarMascota(valor, indice) {
+            encontrado = false;
+            i = 0;
+            while (!encontrado) {
+                if (valor == mascotas[i][indice])
+                    encontrado = true;
+                i++;
+            }
+            if (encontrado)
+                return i - 1;
+            else
+                return false;
+        }
 
-                // FORMATO DE FECHA
+        $('#codigo').change(function () {
+            codigo = this.value.trim();
+            indiceMascota = buscarMascota(codigo, 0);
+            nombreMascota = mascotas[indiceMascota][1];
+            fechaNacimiento = mascotas[indiceMascota][6];
+            genero = mascotas[indiceMascota][2];
+            cuidadosEspeciales = mascotas [indiceMascota][5];
+            foto = mascotas [indiceMascota][4];
+            document.getElementById("nombreMascota").innerHTML = nombreMascota;
+            document.getElementById("fechaNacimiento").innerHTML = fechaNacimiento;
+            document.getElementById("genero").innerHTML = genero;
+            document.getElementById("cuidadosEspeciales").innerHTML = cuidadosEspeciales;
+            document.getElementById("fotoMascotaPreview").src = foto;
+        });
 
-                function cargarFecha() {
-                    var fecha = new Date();
-                    var dia = String(fecha.getDate()).padStart(2, '0');
-                    var mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Enero es 0
-                    var anio = fecha.getFullYear();
-                    var fechaActual = dia + '/' + mes + '/' + anio;
-                    document.getElementById('fecha').innerText = fechaActual;
-                }
+        // FORMATO DE FECHA
 
-                mentById('fecha').innerText = fechaFormateada;
+        function cargarFecha() {
+            var fecha = new Date();
+            var dia = String(fecha.getDate()).padStart(2, '0');
+            var mes = String(fecha.getMonth() + 1).padStart(2, '0'); // Enero es 0
+            var anio = fecha.getFullYear();
+            var fechaActual = dia + '/' + mes + '/' + anio;
+            document.getElementById('fecha').innerText = fechaActual;
+        }
 
-            </script>
+        mentById('fecha').innerText = fechaFormateada;
+
+    </script>
