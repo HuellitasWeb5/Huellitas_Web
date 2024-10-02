@@ -1,8 +1,7 @@
-
-
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box; /* Asegura que el padding y el borde se incluyan en el ancho y alto */
     font-family: "Roboto", sans-serif;
 }
 
@@ -17,12 +16,27 @@ body {
 }
 
 .container {
-    width: 500px;
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco más opaco para mejor legibilidad */
+    width: 500px; /* Mantén el ancho deseado */
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco más opaco */
     border: 4px solid #11998e; /* Borde visible */
     border-radius: 40px; /* Bordes redondeados */
     padding: 40px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
+    overflow: hidden; /* Evita que el contenido se salga del cuadro */
+    display: flex;
+    flex-direction: column; /* Alineación vertical */
+    align-items: center; /* Centrar horizontalmente */
+}
+
+video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que el video cubra toda el área */
+    z-index: -1; /* Asegura que el video esté detrás de otros elementos */
+    opacity: 0.8; /* Ajusta la opacidad para el efecto deseado */
 }
 
 h3 {
@@ -39,34 +53,49 @@ p#error {
 }
 
 form {
+    width: 100%; /* Asegura que el formulario ocupe todo el ancho del contenedor */
     margin-bottom: 20px;
 }
 
-table {
-    width: 100%;
+.input-box {
+    width: 100%; /* Asegura que cada caja de entrada ocupe todo el ancho */
+    margin: 20px 0; /* Espacio entre cada campo */
 }
 
-td {
-    padding: 10px 0;
-    color: #11998e; /* Color de las etiquetas */
+
+.input-box label {
+    display: block; /* Muestra la etiqueta en un bloque */
+    margin-bottom: 5px; /* Espacio entre la etiqueta y el input */
+    color: #11998e; /* Color de la etiqueta */
+    text-align: center; /* Alineación centrada */
+    width: 100%; /* Asegura que el ancho de la etiqueta sea el 100% del contenedor */
+}
+.icon-input {
+    position: relative;
+    display: flex;
+    align-items: center;
 }
 
-input[type="text"], 
-input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    background: transparent;
+.icon-input input {
+    width: 100%; /* Asegura que el input ocupe todo el ancho */
+    padding: 10px; /* Espaciado interno */
+    padding-right: 40px; /* Espacio para el icono */
     border: 2px solid #11998e; /* Borde verde */
     border-radius: 40px; /* Bordes redondeados */
     color: #11998e; /* Color de texto */
 }
 
-input::placeholder {
-    color: #cccccc; /* Color del texto del placeholder */
+.icon-input .icon {
+    position: absolute;
+    right: 10px; /* Coloca el icono en la parte derecha */
+    top: 50%; /* Centra verticalmente */
+    transform: translateY(-50%); /* Ajusta para centrar exactamente */
+    width: 20px;  /* Tamaño pequeño del icono */
+    height: 16px; /* Tamaño pequeño del icono */
 }
 
 input[type="submit"] {
-    width: 100%;
+    width: 100%; /* Botón ocupa todo el ancho */
     padding: 10px;
     background-color: #1c7430; /* Color del botón */
     color: white; /* Color del texto del botón */
@@ -95,13 +124,4 @@ input[type="submit"]:hover {
 
 .recordar a:hover, .registro a:hover {
     text-decoration: underline; /* Subrayado al pasar el mouse */
-}
-.input-box {
-    margin: 20px 0; /* Espacio entre cada campo */
-}
-
-.input-box label {
-    display: block; /* Muestra la etiqueta en un bloque */
-    margin-bottom: 5px; /* Espacio entre la etiqueta y el input */
-    color: #11998e; /* Color de la etiqueta */
 }

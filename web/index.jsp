@@ -43,9 +43,9 @@
             <a href="#" onclick="window.location.href='index-InicioSesion.jsp'">INICIAR SESION</a>
         </nav>
         <section class="textos-header">
-            <h2>Fundacion</h2>
+            <h2>FUNDACION</h2>
             <h1>VILLA ESPERANZA</h1>
-            <h2>Huellitas de amor</h2>
+            <h2>Huellitas De Amor</h2>
         </section>
         <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
                 style="height: 100%; width: 100%;">
@@ -105,8 +105,7 @@
                 
             </div>
         </section>
-    </main>
-     <footer>
+    </main>     <footer>
         <div class="contenedor-footer">
             <div class="content-foo">
                 <h4>Celular:</h4>
@@ -128,4 +127,19 @@
 </html>
     </center>	
 </body>
+ <script>
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 3,
+        spaceBetween: 30,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        loop: true,  // Hace que las tarjetas roten en un bucle
+    });
+</script>
 </html>
