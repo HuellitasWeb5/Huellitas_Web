@@ -323,7 +323,6 @@ img {
     text-align: center; /* Alinea el botón a la derecha */
     margin-bottom: 10px; /* Espacio entre el botón y las tarjetas */
 }
-
 .btn-adicionar {
     padding: 10px 20px;
     background-color:#1dba35; 
@@ -337,6 +336,20 @@ img {
 .btn-adicionar:hover {
     background-color: #256f30; 
 }
+.btn-modificar {
+    padding: 10px 20px;
+    background-color:#1dba35; 
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.btn-modificar:hover {
+    background-color: #256f30; 
+}
+
 
 .btn-eliminar {
     padding: 10px 20px;
