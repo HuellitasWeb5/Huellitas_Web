@@ -32,7 +32,7 @@
         lista += "<p><strong>Genero:</strong>" + mascotas.getGeneroEnObjeto() + "</p>";
         lista += "<p><strong>Tamaño:</strong>" + mascotas.getTamano() + "</p>";
         lista += "<p><strong>Cuidado:</strong>" + mascotas.getCuidadosEspeciales() + "</p>";
-        lista += "<p><strong>Edad aproximada:</strong>" + mascotas.getEdad() + "</p>";
+        lista += "<p><strong>Edad aproximada:</strong>" + mascotas.getEdad() + " años</p>";
         lista += "<p><strong>Fecha de ingreso:</strong>" + mascotas.getFechaIngreso() + "</p>";
         lista += "<p><strong>Estado:</strong>" + mascotas.getEstado() + "</p>";
         lista += "<p><strong>Descripción:</strong>" + mascotas.getDescripcion() + "</p>";
