@@ -5,14 +5,14 @@
 --%>
 
 
-=======
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String mensaje = "";
     if (request.getParameter("error") != null) {
         switch (request.getParameter("error")) {
             case "1":
-                mensaje = "Identificacion o contaseña no valido";
+                mensaje = "Identificacion o contaseÃ±a no valido";
                 break;
             case "2":
                 mensaje = "Acceso denegado";
@@ -23,32 +23,12 @@
     }
 %>
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet"  href="presentacion/Prueba.css">
-        <title>Huellitas Web</title>
-        
-    </head>
-    <body>
-    <center>
-        <h3>Huellitas Web</h3>
-        <p id="error"><%=mensaje%></p>
-        <form name="formulario" method="post" action="validar.jsp">  
-            <div id="texto">
-                <table border="0">
-                    <tr><td>Identificacion</td><td><input type="text" name="identificacion" id="usuario" required></td></tr>
-                    <tr><td>Contraseña</td><td><input type="password" name="clave" id="clave" required></td></tr>
-                </table>
-
-
-<head>
       <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet"  href="presentacion/style-Index.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Huellitas Web</title>
-    <link rel="shortcut icon" href="LogoPeque�o.png" type="image/x-icon">
+    <link rel="shortcut icon" href="LogoPequeï¿½o.png" type="image/x-icon">
     <link rel="stylesheet" href="Principal.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,7 +64,7 @@
                     <img src="presentacion/mascota/perritoamca.PNG" alt="">
                     <div class="contenido-texto-adop">
                         <center><h4>Peluchin</h4></center>
-                        <p>Gracias al albergue Villa Esperanza pudieron rescatarme, ya que a la edad de 2 a�os me abandonaron en 
+                        <p>Gracias al albergue Villa Esperanza pudieron rescatarme, ya que a la edad de 2 aï¿½os me abandonaron en 
                             la carretera  unos migrantes, pero gracias a Dios ya estoy bajo la proteccion del albergue.
                         </p>
                     </div>
@@ -93,7 +73,7 @@
                     <img src="presentacion/mascota/abuela.PNG" alt="">
                     <div class="contenido-texto-adop">
                         <center><h4>Abuela</h4></center>
-                        <p> Soy una perrita de 12 a�os de edad, el albergue me acogio cuando tenia 5 a�os 
+                        <p> Soy una perrita de 12 aï¿½os de edad, el albergue me acogio cuando tenia 5 aï¿½os 
                             y desde entonces me ha cuidado y me ha brindado todo el amor posible
                         </p>
                     </div>
@@ -110,7 +90,7 @@
                     <img src="presentacion/mascota/pechuga.PNG" alt="">
                     <div class="contenido-texto-adop">
                         <center><h4>Comino</h4></center>
-                        <p>Soy perrito que me encontraron amarrado en una via que conduce a un pueblo nari�o, soy perrito ciego que llegue al albergue totalmente desnutrido, pero hoy despues de tanto tiempo ya estoy feliz por mi nuevo inicio de vida
+                        <p>Soy perrito que me encontraron amarrado en una via que conduce a un pueblo nariï¿½o, soy perrito ciego que llegue al albergue totalmente desnutrido, pero hoy despues de tanto tiempo ya estoy feliz por mi nuevo inicio de vida
                         </p>
                     </div>
                 </div>
@@ -121,7 +101,7 @@
                 
                  <img src="presentacion/mascota/perrito1.jpg" alt="">
                     <div class="HistoriaObjetivo">
-                        <p>Nuestro objetivo es poder rescatar a los perritos que no se encuentran en buen estado intentando poder ayudarles a velar por la seguridad de estos animales, tambien asi ayudando a conseguirles un hogar donde puedan vivir en condiciones �ptimas para el cuidado de ellos, la adopci�n no es algo tan sencillo, primero debe mirar si la persona interesada en adopci�n cumple con las condiciones necesarias para poder cuidar a una mascota y si el trato que le van a dar es el correcto.
+                        <p>Nuestro objetivo es poder rescatar a los perritos que no se encuentran en buen estado intentando poder ayudarles a velar por la seguridad de estos animales, tambien asi ayudando a conseguirles un hogar donde puedan vivir en condiciones ï¿½ptimas para el cuidado de ellos, la adopciï¿½n no es algo tan sencillo, primero debe mirar si la persona interesada en adopciï¿½n cumple con las condiciones necesarias para poder cuidar a una mascota y si el trato que le van a dar es el correcto.
                 
             </div>
         </section>
@@ -137,7 +117,7 @@
                 <p>villaesperanza@gmail.com</p>
             </div>
             <div class="content-foo">
-                <h4>Direcci�n:</h4>
+                <h4>Direcciï¿½n:</h4>
                 <p>Parque De Chimayoy</p>
             </div>
         </div>
