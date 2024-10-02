@@ -10,7 +10,7 @@
     if (request.getParameter("error") != null) {
         switch (request.getParameter("error")) {
             case "1":
-                mensaje = "Usuario o contaseña no valido";
+                mensaje = "Identificacion o contaseña no valido";
                 break;
             case "2":
                 mensaje = "Acceso denegado";
@@ -29,30 +29,30 @@
         <title>Huellitas Web</title>
     </head>
     <body>
-    <div class="container"> <!-- Contenedor principal -->
-        <center>
-            <h3>HUELLITAS WEB</h3>
-            <p id="error"><%=mensaje%></p>
-         <form name="formulario" method="post" action="validar.jsp">  
-    <div class="input-box">
-        <label for="usuario">Usuario</label>
-        <input type="text" name="identificacion" id="usuario" required placeholder="Ingrese su usuario">
-    </div>
-    <div class="input-box">
-        <label for="clave">Contraseña</label>
-        <input type="password" name="clave" id="clave" required placeholder="Ingrese su contraseña">
-    </div>
-    <input type="submit" value="Iniciar" id="Iniciar">
-</form>
-            <!-- Nueva sección para recordar contraseña y registro -->
-            <div class="recordar">
-                ¿Olvidó su contraseña?
-            </div>
+        <div class="container"> <!-- Contenedor principal -->
+            <center>
+                <h3>HUELLITAS WEB</h3>
+                <p id="error"><%=mensaje%></p>
+                <form name="formulario" method="post" action="validar.jsp">  
+                    <div class="input-box">
+                        <label for="usuario">Identificacion</label>
+                        <input type="text" name="identificacion" id="usuario" required placeholder="Ingrese su identificacion">
+                    </div>
+                    <div class="input-box">
+                        <label for="clave">Contraseña</label>
+                        <input type="password" name="clave" id="clave" required placeholder="Ingrese su contraseña">
+                    </div>
+                    <input type="submit" value="Iniciar" id="Iniciar">
+                </form>
+                <!-- Nueva sección para recordar contraseña y registro -->
+                <div class="recordar">
+                    ¿Olvidó su contraseña?
+                </div>
 
-            <div class="registro">
-                ¿Aún no tienes una cuenta? <a href="#">Registrarse</a>
-            </div>
-        </center>
-    </div> <!-- Cierre del contenedor -->
+                <div class="registro">
+                    ¿Aún no tienes una cuenta? <a href="registrarseFormulario.jsp">Registrarse</a>
+                </div>
+            </center>
+        </div> <!-- Cierre del contenedor -->
     </body>
 </html>
