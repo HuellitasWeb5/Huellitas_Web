@@ -9,70 +9,124 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
 </head>
 
 <%
-String lista="";
-List<Persona> datos=Persona.getListaEnObjetos(null, null);
-for (int i = 0; i < datos.size(); i++) {
+    String lista = "";
+    List<Persona> datos = Persona.getListaEnObjetos("tipo<>'S' && tipo<>'F'", null);
+    for (int i = 0; i < datos.size(); i++) {
         Persona clientes = datos.get(i);
-        lista+="<tr>";
-        lista+="<td>" + clientes.getIdentificacion() + "</td>";
-        lista+="<td>" + clientes.getNombre()+ "</td>";
-        lista+="<td>" + clientes.getGeneroPersona()+ "</td>";
-        lista+="<td>" + clientes.getEdad()+ "</td>";
-        lista+="<td>" + clientes.getEmail()+ "</td>";
-        lista+="<td>" + clientes.getTelefono()+ "</td>";
-        lista+="<td>" + clientes.getDireccion()+ "</td>";
-        lista+="<td>" + clientes.getResidencia()+ "</td>";
-        lista+="<td><img src='presentacion/clientes/" + clientes.getFoto() + "' width='30' height='auto'></td>";
-        lista+="<td>";
-        lista+="<a href='principal.jsp?CONTENIDO=4.Clientes/clientesFormulario.jsp&accion=Modificar&identificacion=" + clientes.getIdentificacion()+
-                " 'title='Modificar'> <button class='btn-adicionar' title='Modificar'> Modificar </button> </a>"; 
-        lista+="<button class='btn-eliminar' title='Eliminar' onClick='eliminar("+ clientes.getIdentificacion()+")'>Eliminar</button>";
-        lista+="</td>";
-        lista+="</tr>";
+        lista += "<div class='swiper-slide card'>"; // Añadido la clase 'card'
+        lista += "<div class='card-body'>"; // Contenedor para el cuerpo de la tarjeta
+        lista += "<img src='presentacion/clientes/" + clientes.getFoto() + "' width='30' height='auto' class='profile-image'>";
+        lista += "<div class='card-header'>";
+        lista += "<h2>" + clientes.getNombre() + "</h2></div>";
+        lista += "<p><strong>Identificacion:</strong>" + clientes.getIdentificacion() + "</p>";
+        lista += "<p><strong>Genero:</strong>" + clientes.getGeneroPersona() + "</p>";
+        lista += "<p><strong>Edad:</strong>" + clientes.getEdad() + "</p>";
+        lista += "<p><strong>Email:</strong>" + clientes.getEmail() + "</p>";
+        lista += "<p><strong>Telefono:</strong>" + clientes.getTelefono() + "</p>";
+        lista += "<p><strong>Direccion:</strong>" + clientes.getDireccion() + "</p>";
+        lista += "<p><strong>Residencia:</strong>" + clientes.getResidencia() + "</p>";
+        lista += "<p>";
+        lista += "<div class='btn-container'>"; // Contenedor para los botones
+        lista += "<a href='principal.jsp?CONTENIDO=4.Clientes/clientesFormulario.jsp&accion=Modificar&identificacion=" + clientes.getIdentificacion()
+                + " 'title='Modificar'> <button class='btn-adicionar' title='Modificar'> Modificar </button> </a>";
+        lista += "<button class='btn-eliminar' title='Eliminar' onClick='eliminar(" + clientes.getIdentificacion() + ")'>Eliminar</button>";
+        lista += "</p>";
+        lista += "</div>";
+        lista += "</div>";
+        lista += "</div>";
     }
 %>
 <h3>SANPATITAS</h3>
-<table border="1">
-    <tr>
-        <th>Identificacion</th><th>Nombres</th><th>Genero</th><th>Fecha de nacimiento</th><th>Email</th><th>Telefono</th><th>Direccion</th>
-        <th>Residencia</th><th>Foto</th>
-                <th><a href="principal.jsp?CONTENIDO=4.Clientes/clientesFormulario.jsp&accion=Adicionar" title="Adicionar">
-                        <button class='btn-otro' id="Adicionar" >Adicionar</button>  </a></th>
-    </tr>
-    <%=lista%>
-</table>
+<div class="header-container">
+    <!-- Buscar por nombre -->
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
+        <ul id="nameList"></ul> <!-- Lista de nombres -->
+    </form>
+
+    <!-- Botón de adicionar -->
+    <div class="btn-container">
+        <a href="principal.jsp?CONTENIDO=4.Clientes/clientesFormulario.jsp&accion=Adicionar" title="Adicionar">
+            <button class='btn-adicionar' id="Adicionar">Adicionar</button></a>
+    </div>
+</div>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <%= lista%>
+    </div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
+</div>
 
 <script type="text/javascript">
-    function eliminar(identificacion){
-        resultado=confirm("Realmente desea eliminar el cliente con identificacion= "+identificacion+"?");
-        if (resultado) {
-            document.location="principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp&accion=Eliminar&identificacion="+identificacion;
-         }
-    }
-    
-    function calcularEdad() {
-        const fechaNacimiento = document.getElementById("fechaNacimiento").value;
-        if (fechaNacimiento) {
-            const fechaActual = new Date();
-            const nacimiento = new Date(fechaNacimiento);
-            let edad = fechaActual.getFullYear() - nacimiento.getFullYear();
-            const mes = fechaActual.getMonth() - nacimiento.getMonth();
-
-            if (mes < 0 || (mes === 0 && fechaActual.getDate() < nacimiento.getDate())) {
-                edad--;
+        function eliminar(identificacion){
+            resultado=confirm("Realmente desea eliminar el cliente con identificacion= " + identificacion + "?");
+            if (resultado) {
+                document.location = "principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp&accion=Eliminar&identificacion=" + identificacion;
             }
-
-            document.getElementById("edad").textContent = edad;
         }
-    }
 
-    // Llamar a la función al cargar la página si ya hay una fecha de nacimiento
-    window.onload = function() {
-        calcularEdad();
-    };
-</script>
+        function calcularEdad() {
+            const fechaNacimiento = document.getElementById("fechaNacimiento").value;
+            if (fechaNacimiento) {
+                const fechaActual = new Date();
+                const nacimiento = new Date(fechaNacimiento);
+                let edad = fechaActual.getFullYear() - nacimiento.getFullYear();
+                const mes = fechaActual.getMonth() - nacimiento.getMonth();
+
+                if (mes < 0 || (mes === 0 && fechaActual.getDate() < nacimiento.getDate())) {
+                    edad--;
+                }
+
+                document.getElementById("edad").textContent = edad;
+            }
+        }
+
+        // Llamar a la función al cargar la página si ya hay una fecha de nacimiento
+        window.onload = function () {
+            calcularEdad();
+        };
+
+        const swiper = new Swiper('.swiper-container', {
+            loop: true,
+            slidesPerView: 3, // ayuda a mostrarme  4 tarjetas a la vez
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            }
+        });
+
+        function filterNames() {
+            // Obtener el valor de entrada del campo de búsqueda
+            let input = document.getElementById('searchInput');
+            let filter = input.value.toLowerCase();
+
+            // Obtener la lista de nombres y los elementos de las tarjetas
+            let nameList = document.getElementById('nameList');
+            let cards = document.getElementsByClassName('card');
+
+            // Iterar sobre todas las tarjetas y filtrar por el texto que se escribió
+            for (let i = 0; i < cards.length; i++) {
+                // Obtener el nombre dentro de la tarjeta
+                let name = cards[i].querySelector('.card-header').innerText;
+
+                if (name.toLowerCase().includes(filter)) {
+                    cards[i].style.display = "";  // Mostrar tarjeta si coincide
+                } else {
+                    cards[i].style.display = "none";  // Ocultar tarjeta si no coincide
+                }
+            }
+        }
+    </script>
