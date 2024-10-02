@@ -111,6 +111,7 @@
                 <h4>Celular:</h4>
                 <p>3143143142</p>
             </div>
+
             <div class="content-foo">
                 <h4>Correo:</h4>
                 <p>villaesperanza@gmail.com</p>
@@ -125,6 +126,7 @@
 </body>
 
 </html>
+
     </center>	
 </body>
  <script>
