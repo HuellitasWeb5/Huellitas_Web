@@ -13,7 +13,6 @@
 String accion=request.getParameter("accion");
 String codigo=request.getParameter("codigo");
 Mascota mascota=new Mascota();
-mascota.setCodigo("codigo");
 if (accion.equals("Modificar")) {
         mascota=new Mascota(codigo);
     }
@@ -30,18 +29,18 @@ if (accion.equals("Modificar")) {
             <form name="formulario" method="post" action="principal.jsp?CONTENIDO=3.Mascotas/mascotasActualizar.jsp" enctype="multipart/form-data">
                 <div class="form-group">
                             <label for="codigo">Codigo:</label>
-                            <input type="text" name="codigo" id="codigo" maxlength="12" value="<%=mascota.getCodigo()%>" required>
+                            <a><%=mascota.getCodigo()%> </a>
                 </div>
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
                     <input type="text" name="nombre" value="<%=mascota.getNombre()%>" size="50" maxlength="50" required>
                 </div>
                 <div class="form-group">
-                    <label for="genero">Genero</label>
+                    <label for="genero">Genero:</label>
                     <div><%=mascota.getGeneroEnObjeto().getRadioButtons() %></div>
                 </div>
                 <div class="form-group">
-                    <label for="tamano">Tamaño</label>
+                    <label for="tamano">Tamaño:</label>
                     <div><select name="tamano" required>
                     <option value="pequeno">Pequeño</option>
                     <option value="mediano">Mediano</option>
@@ -49,23 +48,23 @@ if (accion.equals("Modificar")) {
                 </select></div>
                 </div>
                 <div class="form-group">
-                    <label for="foto">Foto</label>
+                    <label for="foto">Foto:</label>
                     <input type="file" name="foto" accept="image/*" value="<%=mascota.getFoto()%>" onchange="mostrarFoto();" >
                 </div>
                 <div class="form-group">
-                    <label for="cuidadosEspeciales">Cuidados Especiales</label>
+                    <label for="cuidadosEspeciales">Cuidados Especiales:</label>
                     <input type="text" name="cuidadosEspeciales" value="<%=mascota.getCuidadosEspeciales()%>" maxlength="80" required>
                 </div>
                 <div class="form-group">
-                    <label for="fechaNacimientoAproximada">Fecha Aproximada De Nacimiento</label>
+                    <label for="fechaNacimientoAproximada">Fecha Aproximada De Nacimiento:</label>
                     <input type="date" name="fechaNacimientoAproximada" value="<%=mascota.getFechaNacimientoAproximada()%>" required>
                 </div>
                 <div class="form-group">
-                    <label for="fechaIngreso">Fecha De Ingreso</label>
+                    <label for="fechaIngreso">Fecha De Ingreso:</label>
                     <input type="date" name="fechaIngreso" value="<%=mascota.getFechaIngreso()%>" required>
                 </div>
                 <div class="form-group">
-                    <label for="estado">Estado</label>
+                    <label for="estado">Estado:</label>
                     <td><select id="estado" name="estado"  required>
                     <option value="disponible">Disponible</option>
                     <option value="apadrinado">Apadrinado</option>
@@ -73,7 +72,7 @@ if (accion.equals("Modificar")) {
                 </select>
                 </div>
                 <div class="form-group">
-                    <label for="descripcion">Descripcion</label>
+                    <label for="descripcion">Descripcion:</label>
                     <textarea name="descripcion" cols="50" rows="5" maxlength="60"  required><%=mascota.getDescripcion()%></textarea>
                 </div>
                 <div class="btn-container">
