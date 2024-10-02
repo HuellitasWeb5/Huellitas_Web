@@ -31,18 +31,14 @@
             lista += "<p><strong>Fecha de ingreso:</strong>" + mascotas.getFechaIngreso() + "</p>";
             lista += "<p><strong>Estado:</strong>" + mascotas.getEstado() + "</p>";
             lista += "<p><strong>Descripción:</strong>" + mascotas.getDescripcion() + "</p>";
-            lista += "<div class='btn-container>"; // Contenedor para los botones
-            lista += "<p>";
-            lista += "<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo()
-                    + " 'title='Modificar'> <button class='btn-adicionar'> Modificar </button></a> ";
-            lista += "<a><button class='btn-eliminar' onClick='eliminar(" + mascotas.getCodigo() + ")'>Eliminar</button></a>";
-            lista += "</p>";
-            lista += "</div>";
-            lista += "<p>";
             lista += "<div class='btn-container'>"; // Contenedor para los botones
-            lista += "<button class='btn-otro'>Apadrinar</button>";
-            lista += "<button class='btn-otro'>Adoptar</button>";
-            lista += "</p>";
+            lista += "<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo()
+                + " 'title='Modificar'> <button class='btn-adicionar' title='Modificar'> Modificar </button> </a>";
+            lista += "<a><button class='btn-eliminar' onClick='eliminar(" + mascotas.getCodigo() + ")'>Eliminar</button></a>";
+            lista += "</div>";
+            lista += "<div class='btn-container'>"; // Contenedor para los botones
+            lista += "<a><button class='btn-otro'>padripets</button></a>";
+            lista += "<a><button class='btn-otro'>Adoptar</button></a>";
             lista += "</div>";
             lista += "</div>";
             lista += "</div>";
@@ -107,8 +103,8 @@
 
         const swiper = new Swiper('.swiper-container', {
             loop: true,
-            slidesPerView: 3, // ayuda a mostrarme  4 tarjetas a la vez
-            spaceBetween: 10,
+            slidesPerView: 4, // ayuda a mostrarme  4 tarjetas a la vez
+            spaceBetween: 20,
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
