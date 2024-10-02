@@ -64,7 +64,7 @@ if (accion.equals("Modificar")) {
                 </div>
                 <div class="form-group">
                     <label for="clave">Contraseña:</label>
-                    <input type="password" name="clave" id="clave" value="<%=clientes.getClave()%>" required>
+                    <input type="password" name="clave" id="clave" required>
                 </div>
                 <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
                 <div class="btn-container">
