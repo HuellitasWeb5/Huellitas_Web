@@ -9,9 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
     </head>
-    <body>
-        <h1>Hello World!</h1>
-    </body>
+    
+    <h3>FORMULARIOS DE ADOPCIÓN</h3>
+    <div class="btn-container">
+    <input class="btn-eliminar" type="button" value="Regresar" onClick="window.history.back()">
+    </div>
 </html>

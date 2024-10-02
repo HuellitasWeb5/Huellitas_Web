@@ -24,7 +24,7 @@
     <form id="searchForm">
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
-            <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon"> <!-- Cambia la ruta por la de tu icono -->
+            <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon"> 
         </div>
         <ul id="nameList"></ul> 
     </form>
@@ -33,11 +33,13 @@
     <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar">
         <button id="Adicionar" class="btn-adicionar">Realizar Adopción</button>
     </a>
-    <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioSeguimiento.jsp&accion=Adicionar">
-        <button id="Adicionar" class="btn-otro">Ver Formularios</button>
+    <a href="principal.jsp?CONTENIDO=7.Adopcion/verFormularioSeg.jsp&accion=Adicionar">
+        <button id="Adicionar" class="btn-otro">Formularios de Seguimiento</button>
     </a>
-</div>
-</div>     
+    <a href="principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp&accion=Adicionar">
+        <button id="Adicionar" class="btn-otro">Formularios de Adopciones</button>
+    </a>
+</div>  
 
 <script type="text/javascript">
 

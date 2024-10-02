@@ -11,8 +11,40 @@
 </head>
 
 <%
-
-
+/*   String lista = "";
+    Lst<Mascota> datos = Mascota.getListaEnObjetos(null, null);
+    for (int i = 0; i < datos.size(); i++) {
+        Mascota mascotas = datos.get(i);
+        lista += "<div class='swiper-slide card'>"; 
+        lista += "<div class='card-body'>"; 
+        lista += "<img src='presentacion/mascota/" + mascotas.getFoto() + "' width='auto' height='60' class='profile-image'>";
+        lista += "<div class='card-header'>";
+        lista += "<h2>" + mascotas.getNombre() + "</h2>";
+        lista += "</div>";
+        lista += "<p><strong>Código:</strong> " + mascotas.getCodigo() + "</p>";
+        lista += "<p><strong>Género:</strong> " + mascotas.getGeneroEnObjeto() + "</p>";
+        lista += "<p><strong>Tamaño:</strong> " + mascotas.getTamano() + "</p>";
+        lista += "<p><strong>Cuidado:</strong> " + mascotas.getCuidadosEspeciales() + "</p>";
+        lista += "<p><strong>Edad aproximada:</strong> " + mascotas.getEdad() + "</p>";
+        lista += "<p><strong>Fecha de ingreso:</strong> " + mascotas.getFechaIngreso() + "</p>";
+        lista += "<p><strong>Estado:</strong> " + mascotas.getEstado() + "</p>";
+        lista += "<p><strong>Descripción:</strong> " + mascotas.getDescripcion() + "</p>";
+        lista += "<div class='btn-container'>"; 
+        lista += "<p>";
+        lista += "<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo() + "' title='Modificar'>"
+                + "<button class='btn-adicionar'>Modificar</button></a> ";
+        lista += "<a><button class='btn-eliminar' onClick='eliminar(" + mascotas.getCodigo() + ")'>Eliminar</button></a>";
+        lista += "</p>";
+        lista += "</div>"; 
+        lista += "<div class='btn-container'>"; 
+        lista += "<p>";
+        lista += "<button class='btn-otro'>Apadrinar</button>";
+        lista += "<button class='btn-otro'>Adoptar</button>";
+        lista += "</p>";
+        lista += "</div>"; 
+        lista += "</div>"; 
+        lista += "</div>"; 
+    }*/
 %>
 
 <body onload="cargarFecha()">
@@ -213,29 +245,30 @@
                     <th>MASCOTA</th>
                     <tr>
                         <th>Código:</th>
-                        <td><input type="text" name="codigo" id="codigo"></td>
+                        <td><input type="text" name="codigoFormulario" id="codigoFormulario"></td>
                         <td rowspan="5" style="text-align: center; vertical-align: middle;">
                             <img id="fotoMascotaPreview" src="" alt="Foto de la Mascota" width="125" height="125">
                         </td>
                     </tr>
                     <tr>
                         <th>Nombre de la mascota</th>
-                        <td type="text" name="nombreMascota" id="nombreMascota" ></td>
+                        <td type="text" name="nombreMascotaFormulario" id="nombreMascotaFormulario" ></td>
                     </tr>
                     <tr>
                         <th>Edad Aproximada</th>
-                        <td type="text" name="fechaNacimiento" id="fechaNacimiento" ></td>
+                        <td type="text" name="fechaNacimientoFormulario" id="fechaNacimientoFormulario" ></td>
                     </tr>
                     <tr>
                         <th>Género</th>
-                        <td type="text" name="genero" id="genero"></td>
+                        <td type="text" name="generoFormulario" id="generoFormulario"></td>
                     </tr>
                     <tr>
                         <th>Cuidados Especiales</th>
-                        <td type="text" name="cuidadosEspeciales" id="cuidadosEspeciales"></td>
+                        <td type="text" name="cuidadosEspecialesFormulario" id="cuidadosEspecialesFormulario"></td>
                     </tr>
                 </table>
-        <input type="button" value="Cancelar" onclick="cerrarFormulario();">
+        <input class="btn-adicionar" type="submit" value="Agregar">
+        <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
     </form>    
 </div>
 <script>
@@ -278,7 +311,7 @@
         document.getElementById("fotoClientePreview").src = foto;
     });
 
-    // BUSCAR MASCOTA
+    // BUSCAR MASCOTA PRINCIPAL
 
     var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
     var vectorMascotas = new Array();
@@ -317,11 +350,46 @@
         document.getElementById("fotoMascotaPreview").src = foto;
     });
 
-    // FORMATO DE FECHA
+    // BUSCAR MASCOTA FORMULARIO 
+    
+    var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+    var vectorMascotas = new Array();
+    for (var i = 0; i < mascotas.length; i++) {
+        vectorMascotas[i] = mascotas[i][0];
+    }
+    $("#codigoFormulario").autocomplete({
+        source: vectorMascotas
+    });
+    function buscarMascota(valor, indice) {
+        encontrado = false;
+        i = 0;
+        while (!encontrado) {
+            if (valor == mascotas[i][indice])
+                encontrado = true;
+            i++;
+        }
+        if (encontrado)
+            return i - 1;
+        else
+            return false;
+    }
 
+    $('#codigoFormulario').change(function () {
+        codigo = this.value.trim();
+        indiceMascota = buscarMascota(codigo, 0);
+        nombreMascota = mascotas[indiceMascota][1];
+        fechaNacimiento = mascotas[indiceMascota][6];
+        genero = mascotas[indiceMascota][2];
+        cuidadosEspeciales = mascotas [indiceMascota][5];
+        foto = mascotas [indiceMascota][4];
+        document.getElementById("nombreMascotaFormulario").innerHTML = nombreMascota;
+        document.getElementById("fechaNacimientoFormulario").innerHTML = fechaNacimiento;
+        document.getElementById("generoFormulario").innerHTML = genero;
+        document.getElementById("cuidadosEspecialesFormulario").innerHTML = cuidadosEspeciales;
+        document.getElementById("fotoMascotaPreviewFormulario").src = foto;
+    });
 
-
-    // AGREGAR MASCOTA 
+    // AGREGAR MASCOTA A LA ADOPCION
 
     $(function () {
         $("#formulario").dialog({
@@ -334,14 +402,15 @@
                 effect: "explode",
                 duration: 1000
             },
-            width: 920, // Ancho del diálogo en píxeles
-            height: 440
+            width: 550, // Ancho del diálogo en píxeles
+            height: 400
         });
     });
     function abrirFormulario() {
         $('#formulario').dialog('open');
     }
 
+    // CARGAR FECHA
     function cerrarFormulario() {
         // Cerrar el diálogo
         $('#formulario').dialog('close');
