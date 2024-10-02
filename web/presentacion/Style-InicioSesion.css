@@ -1,0 +1,107 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    height: 100vh;
+    background-image: url('../IMAGENES/FondoPrincipal.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    width: 500px;
+    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco más opaco para mejor legibilidad */
+    border: 4px solid #11998e; /* Borde visible */
+    border-radius: 40px; /* Bordes redondeados */
+    padding: 40px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
+}
+
+h3 {
+    font-size: 28px;
+    color: #000; /* Color del título */
+    text-align: center; /* Alineación centrada */
+    margin-bottom: 20px;
+}
+
+p#error {
+    color: red; /* Color para el mensaje de error */
+    text-align: center; /* Alineación centrada */
+    margin-bottom: 20px; /* Margen inferior */
+}
+
+form {
+    margin-bottom: 20px;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    padding: 10px 0;
+    color: #11998e; /* Color de las etiquetas */
+}
+
+input[type="text"], 
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    background: transparent;
+    border: 2px solid #11998e; /* Borde verde */
+    border-radius: 40px; /* Bordes redondeados */
+    color: #11998e; /* Color de texto */
+}
+
+input::placeholder {
+    color: #cccccc; /* Color del texto del placeholder */
+}
+
+input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    background-color: #1c7430; /* Color del botón */
+    color: white; /* Color del texto del botón */
+    border: none;
+    border-radius: 20px; /* Bordes redondeados */
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+    background-color: #000; /* Color al pasar el mouse */
+}
+
+.recordar, .registro {
+    margin: 15px 0;
+    color: #000; /* Color de los textos */
+    text-align: center; /* Alineación centrada */
+}
+
+.recordar a, .registro a {
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.recordar a:hover, .registro a:hover {
+    text-decoration: underline; /* Subrayado al pasar el mouse */
+}
+.input-box {
+    margin: 20px 0; /* Espacio entre cada campo */
+}
+
+.input-box label {
+    display: block; /* Muestra la etiqueta en un bloque */
+    margin-bottom: 5px; /* Espacio entre la etiqueta y el input */
+    color: #11998e; /* Color de la etiqueta */
+}
