@@ -41,6 +41,7 @@ for (int i = 0; i < datos.size(); i++) {
 
 
 <h3>LISTA DE ADMINISTRADORES</h3>
+
 <div class="header-container">
 
 <form id="searchForm">
@@ -48,7 +49,7 @@ for (int i = 0; i < datos.size(); i++) {
             <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
             <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon"> <!-- Cambia la ruta por la de tu icono -->
         </div>
-        <ul id="nameList"></ul> <!-- Lista de nombres -->
+        <ul id="nameList"></ul> 
     </form>
     <div id="selectedAdminInfo"></div>
 </div>
