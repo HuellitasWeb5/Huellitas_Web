@@ -227,17 +227,6 @@ h3 {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-
-/* Contenedor para el botón de adicionar */
-.btn-container {
-    text-align: right; /* Alinea el botón a la derecha */
-    margin-bottom: 20px; /* Espacio entre el botón y las tarjetas */
-}
-
-
-
-/* Estilo del botón de adicionar */
-
 /* Estilo de los formularios -----------------------------------------------------------------------------------*/
 
 .containerFormulario {
@@ -335,20 +324,9 @@ img {
     margin-bottom: 10px; /* Espacio entre el botón y las tarjetas */
 }
 
-
 .btn-adicionar {
     padding: 10px 20px;
-    background-color:#f12727 ; /* Color verde para el botón */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 1em;
-}
- /* Estilo del botón de modificar */
-.btn-modificar {
-    padding: 10px 20px;
-    background-color: #28a745; /* Color para el botón de modificar */
+    background-color:#1dba35; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -356,49 +334,36 @@ img {
     font-size: 1em;
 }
 
-/* Estilo del botón de eliminar */
+.btn-adicionar:hover {
+    background-color: #256f30; 
+}
+
 .btn-eliminar {
     padding: 10px 20px;
-    background-color: #dc3545; /* Color para el botón de eliminar */
+    background-color: #e3203b; /* Color para el botón de eliminar */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
 }
-.btn-adicionar:hover {
-    background-color: #62ff67; /* Azul más oscuro al pasar el cursor */
+
+.btn-eliminar:hover {
+    background-color: #a51529; 
 }
 
-/* Estilo adicional para el botón "Adicionar" */
-#Adicionar {
-    background-color: #28a745;
+.btn-otro {
+    padding: 10px 20px;
+    background-color: #1994d2;
     color: white;
-    padding: 10px;
-    border-radius: 10px;
-     width: 200px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 1em;
 }
 
-#Adicionar:hover {
-    background-color: #218838;
-}#searchForm {
-    display: flex;
-    align-items: center;
-}
-
-#searchInput {
-    padding: 8px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    width: 450px;
-    margin-right: 10px;
-}
-
-#nameList {
-    list-style-type: none;
-    padding: 0;
+.btn-otro:hover {
+    background-color: #1b668c; 
 }
 
 /* Estilo de los iconos -----------------------------------------------------------------------------------------*/
