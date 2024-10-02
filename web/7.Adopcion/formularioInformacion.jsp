@@ -18,7 +18,7 @@
 <body onload="cargarFecha()">
     <form>    
         <div class="containerFormulario">
-            <h1>Formulario de Información</h1>
+            <h1>FORMULARIO DE ADOPCIÓN</h1>
             <input type="hidden" name="accion" value="grabar">
 
             <!-- FECHA -->
@@ -28,6 +28,7 @@
             <!-- ADOPTANTE  --> 
             <div class="contenedor-tarjetas">
                 <table  class="tableDatos">
+                    <th>SAN PATITAS</th>
                     <tr>
                         <th>Identificación:</th>
                         <td><input type="text" name="identificacion" id="identificacion"></td>
@@ -57,6 +58,7 @@
                 <!-- MASCOTA  --> 
 
                 <table class="tableDatos">
+                    <th>MASCOTA</th>
                     <tr>
                         <th>Código:</th>
                         <td><input type="text" name="codigo" id="codigo"></td>
@@ -83,7 +85,7 @@
                 </table>
             </div>
 
-            <button class="btn-adicionar" type="button" onclick="abrirFormulario();">Agregar Mascota</button>
+            <button class="btn-adicionar" type="button" onclick="abrirFormulario();">Agregar Otra Mascota</button><br>
 
             <!-- FORMULARIO  -->    
 
@@ -201,42 +203,41 @@
                 <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
                 </body>
             </div>
+
         </div>
     </form>
-
-    <div id="formularioMascota" title="Adoptar otra mascota" style="display:none;">
-        <form name="formularioAdoptar">
-            <table>
-                <tr>
-                    <th>Código:</th>
-                    <td><input type="text" name="codigo" id="codigo"></td>
-                    <td rowspan="5" style="text-align: center; vertical-align: middle;">
-                        <img id="fotoMascotaPreview" src="" alt="Foto de la Mascota" width="125" height="125">
-                    </td>
-                </tr>
-                <tr>
-                    <th>Nombre de la mascota</th>
-                    <td type="text" name="nombreMascota" id="nombreMascota" ></td>
-                </tr>
-                <tr>
-                    <th>Edad Aproximada</th>
-                    <td type="text" name="fechaNacimiento" id="fechaNacimiento" ></td>
-                </tr>
-                <tr>
-                    <th>Género</th>
-                    <td type="text" name="genero" id="genero"></td>
-                </tr>
-                <tr>
-                    <th>Cuidados Especiales</th>
-                    <td type="text" name="cuidadosEspeciales" id="cuidadosEspeciales"></td>
-                </tr>
-            </table>
-            <input class="btn-adicionar" type="button" value="Agregar" onclick="agregarPlan();">
-            <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
-        </form>    
-    </div>
+</body>
+<div id="formulario" title="Apadrinar mascota">
+    <form name="formularioDonacionDetalle">
+       <table class="tableDatos">
+                    <th>MASCOTA</th>
+                    <tr>
+                        <th>Código:</th>
+                        <td><input type="text" name="codigo" id="codigo"></td>
+                        <td rowspan="5" style="text-align: center; vertical-align: middle;">
+                            <img id="fotoMascotaPreview" src="" alt="Foto de la Mascota" width="125" height="125">
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Nombre de la mascota</th>
+                        <td type="text" name="nombreMascota" id="nombreMascota" ></td>
+                    </tr>
+                    <tr>
+                        <th>Edad Aproximada</th>
+                        <td type="text" name="fechaNacimiento" id="fechaNacimiento" ></td>
+                    </tr>
+                    <tr>
+                        <th>Género</th>
+                        <td type="text" name="genero" id="genero"></td>
+                    </tr>
+                    <tr>
+                        <th>Cuidados Especiales</th>
+                        <td type="text" name="cuidadosEspeciales" id="cuidadosEspeciales"></td>
+                    </tr>
+                </table>
+        <input type="button" value="Cancelar" onclick="cerrarFormulario();">
+    </form>    
 </div>
-
 <script>
 
     // BUSCAR PERSONA
@@ -318,7 +319,35 @@
 
     // FORMATO DE FECHA
 
-    function cargarFecha() {
+
+
+    // AGREGAR MASCOTA 
+
+    $(function () {
+        $("#formulario").dialog({
+            autoOpen: false,
+            show: {
+                effect: "blind",
+                duration: 1000
+            },
+            hide: {
+                effect: "explode",
+                duration: 1000
+            },
+            width: 920, // Ancho del diálogo en píxeles
+            height: 440
+        });
+    });
+    function abrirFormulario() {
+        $('#formulario').dialog('open');
+    }
+
+    function cerrarFormulario() {
+        // Cerrar el diálogo
+        $('#formulario').dialog('close');
+
+    }
+  function cargarFecha() {
         var fecha = new Date();
         var dia = String(fecha.getDate()).padStart(2, '0');
         var mes = String(fecha.getMonth() + 1).padStart(2, '0');
@@ -328,25 +357,4 @@
     }
 
     mentById('fecha').innerText = fechaFormateada;
-
-    // AGREGAR MASCOTA 
-
-    $(function () {
-        $("#formularioMascota").dialog({
-            autoOpen: false,
-            show: {
-                effect: "blind",
-                duration: 1000
-            },
-            hide: {
-                effect: "explode",
-                duration: 1000
-            }
-        });
-    });
-
-    function abrirFormulario() {
-        $('#formularioMascota').dialog('open');
-    }
-
 </script>
