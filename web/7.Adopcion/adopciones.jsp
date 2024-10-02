@@ -33,7 +33,7 @@
     <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar">
         <button id="Adicionar" class="btn-adicionar">Realizar Adopción</button>
     </a>
-    <a>
+    <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioSeguimiento.jsp&accion=Adicionar">
         <button id="Adicionar" class="btn-otro">Ver Formularios</button>
     </a>
 </div>
