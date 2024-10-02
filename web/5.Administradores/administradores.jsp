@@ -100,11 +100,12 @@ for (int i = 0; i < datos.size(); i++) {
         </div>
         <% } %>
     </div>
+
     <!-- Añadir botones de navegación -->
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
     <div class="swiper-pagination"></div>
-
+</div>
 <div id="result"></div> <!-- Para mostrar la identificación -->
 <script type="text/javascript">
     function eliminar(identificacion){
