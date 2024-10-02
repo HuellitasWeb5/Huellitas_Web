@@ -9,7 +9,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/estiloAdministradores.css">
+    <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
 
 </head>
 <%
@@ -30,8 +30,8 @@ for (int i = 0; i < datos.size(); i++) {
     lista += "<p><strong>Residencia:</strong> " + administrador.getResidencia() + "</p>";
     lista += "<div class='card-footer'>"; // Contenedor para los botones
     lista += "<a href='principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Modificar&identificacion=" + administrador.getIdentificacion() + "' title='Modificar'>";
-    lista += "<button title='Modificar'>Modificar</button></a>";
-    lista += "<button title='Eliminar' onClick='eliminar(" + administrador.getIdentificacion() + ")'>Eliminar</button>";
+    lista += "<button class='btn-adicionar' title='Modificar'>Modificar</button></a>";
+    lista += "<button class='btn-eliminar'title='Eliminar' onClick='eliminar(" + administrador.getIdentificacion() + ")'>Eliminar</button>";
     lista += "</div>"; // Fin de card-footer
     lista += "</div>"; // Fin de card-body
     lista += "</div>"; // Fin de swiper-slide
@@ -39,22 +39,27 @@ for (int i = 0; i < datos.size(); i++) {
 %>
 
 
+
 <h3>LISTA DE ADMINISTRADORES</h3>
 
 <div class="header-container">
-    <!-- Buscar por nombre -->
-    <form id="searchForm">
-        <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
-        <ul id="nameList"></ul> <!-- Lista de nombres -->
-    </form>
 
+<form id="searchForm">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
+            <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon"> <!-- Cambia la ruta por la de tu icono -->
+        </div>
+        <ul id="nameList"></ul> 
+    </form>
+    <div id="selectedAdminInfo"></div>
+</div>
     <!-- Botón de adicionar -->
-    <div class="btn-adicionar-container">
+    <div class="btn-container">
         <a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Adicionar">
             <button id="Adicionar" class="btn-adicionar">Adicionar</button>
         </a>
     </div>
-</div>
+
 
 
 <div class="swiper-container">
@@ -62,14 +67,17 @@ for (int i = 0; i < datos.size(); i++) {
         <% for (int i = 0; i < datos.size(); i++) {
             Persona administrador = datos.get(i);
         %>
+   
+
         <div class="swiper-slide">
             <div class="card">
+                <div class="card-image">
+                    <img src="presentacion/administrador/<%= administrador.getFoto()%>" alt="Foto de <%= administrador.getNombre()%>" class="profile-image">
+                </div>
                 <div class="card-header">
                     <%= administrador.getNombre() %>
                 </div>
-                <div class="card-image">
-                    <img src="presentacion/administrador/<%= administrador.getFoto() %>" alt="Foto de <%= administrador.getNombre() %>" class="profile-image">
-                </div>
+
                 <div class="card-body">
                     <p><strong>Identificación:</strong> <%= administrador.getIdentificacion() %></p>
                     <p><strong>Género:</strong> <%= administrador.getGenero() %></p>
@@ -79,9 +87,9 @@ for (int i = 0; i < datos.size(); i++) {
                     <p><strong>Dirección:</strong> <%= administrador.getDireccion() %></p>
                     <p><strong>Residencia:</strong> <%= administrador.getResidencia() %></p>
                 </div>
-                <div class="card-footer">
+                <div class="btn-container">
                     <a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Modificar&identificacion=<%= administrador.getIdentificacion() %>">
-                        <button class="btn-modificar">Modificar</button>
+                        <button class="btn-adicionar">Modificar</button>
                     </a>
                     <button class="btn-eliminar" onClick="eliminar(<%= administrador.getIdentificacion() %>)">Eliminar</button>
                 </div>
@@ -137,6 +145,41 @@ window.onload = function() {
             clickable: true,
         }
     });
+    
+   function filterNames() {
+    // Obtener el valor de entrada del campo de búsqueda
+    let input = document.getElementById('searchInput');
+    let filter = input.value.toLowerCase();
+    
+    // Obtener los elementos de las tarjetas
+    let cards = document.getElementsByClassName('card');
+
+    // Iterar sobre todas las tarjetas y filtrar por el texto que se escribió
+    for (let i = 0; i < cards.length; i++) {
+        // Obtener el nombre dentro de la tarjeta
+        let name = cards[i].querySelector('.card-header').innerText;
+
+        if (name.toLowerCase().includes(filter)) {
+            cards[i].style.display = "";  // Mostrar tarjeta si coincide
+        } else {
+            cards[i].style.display = "none";  // Ocultar tarjeta si no coincide
+        }
+    }
+}
+
+// Agregar un evento de clic a cada tarjeta
+const cards = document.querySelectorAll('.card');
+cards.forEach(card => {
+    card.addEventListener('click', function() {
+        const name = this.querySelector('.card-header').innerText;
+        const id = this.dataset.id; // Obtener la identificación de la tarjeta
+
+        // Aquí puedes mostrar el nombre y la identificación como desees
+        alert(`Nombre: ${name}, ID: ${id}`);
+        
+        // O puedes hacer algo más con esta información, como cargarla en otra parte
+    });
+});
 </script>
 
   

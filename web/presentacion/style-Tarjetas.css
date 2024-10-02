@@ -34,9 +34,8 @@
     height: auto; /* Ajusta la altura según el contenido */
 }
 
+/* Estilo general del cuerpo -----------------------------------------------------------------------------------------*/
 
-
-/* Estilo general del cuerpo */
 body {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
@@ -60,7 +59,7 @@ h3 {
     padding: 20px 0;
 }
 
-/* Contenedor para las tarjetas */
+/* Contenedor para las tarjetas --------------------------------------------------------------------------------------*/
 
 .card-carousel {
     transition: transform 0.3s ease-in-out;
@@ -88,7 +87,6 @@ h3 {
     padding-bottom: 200px; /* Espacio adicional en la parte inferior */
 }
 
-
 .swiper-wrapper {
     display: flex;
     align-items: center; /* Alinea las tarjetas en el centro verticalmente */
@@ -98,8 +96,6 @@ h3 {
     margin: 10px; /* Espacio entre tarjetas */
 }
 
-
-.swiper-button-prev,
 .swiper-button-next {
     position: absolute; /* Posicionamiento absoluto */
     top: 45%; /* Cambia este valor para mover las flechas un poco más arriba o abajo */
@@ -107,7 +103,8 @@ h3 {
     z-index: 10; /* Asegúrate de que estén por encima de las tarjetas */
 }
 
-/* Ajustar la posición de las flechas */
+/* Ajustar la posición de las flechas -------------------------------------------------------------------------------*/
+
 .swiper-button-prev {
     left: 10px; /* Puedes ajustar la distancia desde el borde izquierdo */
 }
@@ -147,7 +144,8 @@ h3 {
     justify-content: center; /* Centra los botones de navegación */
     margin-top: 50px; /* Espacio entre las tarjetas y los botones de navegación */
 }
-/* Estilo básico de las tarjetas */
+
+/* Estilo básico de las tarjetas ------------------------------------------------------------------------------------*/
 
 .card {
     background-color: #cce5ff; /* Fondo */
@@ -164,6 +162,7 @@ h3 {
 }
 
 /* Estilos para las imágenes de perfil en las tarjetas */
+
 .profile-image {
     width: 120px; /* Aumentar el tamaño de la imagen */
     height: 120px; /* Aumentar el tamaño de la imagen */
@@ -177,6 +176,7 @@ h3 {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra sutil alrededor de la imagen */
 }
 /* Ajuste del tamaño de la fuente en las tarjetas */
+
 .card-body {
     font-size: 0.85em; /* Reducir el tamaño del texto */
 }
@@ -194,28 +194,14 @@ h3 {
     padding-bottom: 5px; /* Añadir espacio entre el texto y el borde */
 }
 /* Cuerpo de la tarjeta */
+
 .card-body {
     font-size: 0.9em; /* Ajustar el tamaño de la fuente */
     margin-bottom: 15px;
 }
 
-
-/* Estilo de los botones en las tarjetas */
-.card-footer button {
-    margin: 5px; /* Margen uniforme entre botones */
-    padding: 5px 10px; /* Ajustar padding de botones */
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.card-footer button:hover {
-    background-color: #45a049;
-}
-
 /* Botones de navegación (flechas) */
+
 .carousel-prev, .carousel-next {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
@@ -241,16 +227,105 @@ h3 {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* Contenedor para el botón de adicionar */
-.btn-adicionar-container {
-    text-align: right; /* Alinea el botón a la derecha */
-    margin-bottom: 20px; /* Espacio entre el botón y las tarjetas */
+/* Estilo de los formularios -----------------------------------------------------------------------------------*/
+
+.containerFormulario {
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+    border-radius: 18px;
+    padding: 20px 40px;
+    max-width: 1000px;
+
 }
 
-/* Estilo del botón de adicionar */
+.contenedor-tarjetas {
+    display: flex;
+    justify-content: space-between; 
+    flex-wrap: wrap; 
+}
+
+h1 {
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.tableFormulario {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    max-width: 900px;
+    width: 100%; 
+}
+
+.tableDatos {
+    flex: 1 1 45%;
+    margin: 20px 15px;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    max-width: 500px;
+    width: 100%;
+}
+
+label {
+    margin-top: 10px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.container {
+    padding-bottom: 60px;
+}
+
+.tableFormulario td, .tableFormulario th {
+    padding: 8px;
+}
+
+.tableDatos td, .tableDatos th {
+    padding: 5px;
+}
+
+input[type="text"], input[type="number"], textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+fieldset {
+    border: none;
+    margin-top: 15px;
+}
+
+input[type="radio"], input[type="checkbox"] {
+    margin-right: 8px;
+}
+
+img {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .tableDatos {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
+/* Estilo de los botones --------------------------------------------------------------------------------------------*/
+
+.btn-container {
+    margin: auto;
+    text-align: center; /* Alinea el botón a la derecha */
+    margin-bottom: 10px; /* Espacio entre el botón y las tarjetas */
+}
 .btn-adicionar {
     padding: 10px 20px;
-    background-color: #62ff67; /* Color verde para el botón */
+    background-color:#1dba35; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -259,39 +334,53 @@ h3 {
 }
 
 .btn-adicionar:hover {
-    background-color: #62ff67; /* Azul más oscuro al pasar el cursor */
+    background-color: #256f30; 
 }
-
-/* Estilo adicional para el botón "Adicionar" */
-#Adicionar {
-    background-color: #28a745;
+.btn-modificar {
+    padding: 10px 20px;
+    background-color:#1dba35; 
     color: white;
-    padding: 10px;
-    border-radius: 10px;
-     width: 200px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 1em;
 }
 
-#Adicionar:hover {
-    background-color: #218838;
-}#searchForm {
-    display: flex;
-    align-items: center;
+.btn-modificar:hover {
+    background-color: #256f30; 
 }
 
-#searchInput {
-    padding: 8px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    width: 450px;
-    margin-right: 10px;
+
+.btn-eliminar {
+    padding: 10px 20px;
+    background-color: #e3203b; /* Color para el botón de eliminar */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
 }
 
-#nameList {
-    list-style-type: none;
-    padding: 0;
+.btn-eliminar:hover {
+    background-color: #a51529; 
 }
+
+.btn-otro {
+    padding: 10px 20px;
+    background-color: #1994d2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.btn-otro:hover {
+    background-color: #1b668c; 
+}
+
+/* Estilo de los iconos -----------------------------------------------------------------------------------------*/
+
 .header-container {
     display: flex;
     flex-direction: column;
