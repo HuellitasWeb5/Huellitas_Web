@@ -2,6 +2,13 @@
 
 
 
+.card-subtitle {
+    font-size: 15px; /* Ajusta el tamaño de la fuente */
+    color: #005d03; /* Puedes personalizar el color */
+    margin-top: 8px; /* Ajusta el espacio entre el nombre y el rol */
+    text-align: center; /* Centra el subtítulo */
+}
+
 
 .card-body strong {
     font-weight: bold; /* Asegura que el texto esté en negrita */
