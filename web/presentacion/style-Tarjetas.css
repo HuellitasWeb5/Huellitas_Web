@@ -229,52 +229,58 @@ h3 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
     border-radius: 18px;
     padding: 20px 40px;
-    max-width: 1200px; 
+    max-width: 1000px;
+
+}
+
+.contenedor-tarjetas {
+    display: flex;
+    justify-content: space-between; 
+    flex-wrap: wrap; 
 }
 
 h1 {
     text-align: center;
     margin-top: 10px;
-    margin-bottom: 20px; /* Centrar el título */
+    margin-bottom: 20px;
 }
+
 .tableFormulario {
-    width: 100%; /* Hacer que la tabla ocupe el 100% del contenedor */
-    margin-top: 20px;   
-    margin-bottom: 20px; 
+    margin-top: 20px;
+    margin-bottom: 20px;
     border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Margen inferior */
-    max-width: 900px; /* Establece un ancho máximo para la tabla */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    max-width: 900px;
+    width: 100%; 
 }
 
 .tableDatos {
-    width: 50%; /* Hacer que la tabla ocupe el 100% del contenedor */
-    margin-top: 20px;   
-    margin-bottom: 20px; 
+    flex: 1 1 45%;
+    margin: 20px 15px;
     border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Margen inferior */
-    max-width: 500px; 
-    display: inline-block;
-    margin-right: 15px; /* Espacio entre tablas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    max-width: 500px;
+    width: 100%;
 }
 
 label {
- /* Hacer que las etiquetas ocupen una línea completa */
-    margin-top: 10px; /* Margen superior */
+    margin-top: 10px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .container {
-    padding-bottom: 60px; /* Margen inferior para que el contenido no quede tapado por el footer */
+    padding-bottom: 60px;
 }
 
 .tableFormulario td, .tableFormulario th {
-    padding: 10px; /* Ajusta el valor según necesites */
+    padding: 8px;
 }
 
 .tableDatos td, .tableDatos th {
-    padding: 4px; /* Ajusta el valor según necesites */
+    padding: 5px;
 }
 
-/* Estilo para los campos de texto */
 input[type="text"], input[type="number"], textarea {
     width: 100%;
     padding: 8px;
@@ -282,11 +288,6 @@ input[type="text"], input[type="number"], textarea {
     border-radius: 8px;
     border: 1px solid #ccc;
     box-sizing: border-box;
-}
-
-label {
-    font-weight: bold;
-    margin-bottom: 5px;
 }
 
 fieldset {
@@ -301,6 +302,13 @@ input[type="radio"], input[type="checkbox"] {
 img {
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+    .tableDatos {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
 }
 
 /* Estilo de los botones --------------------------------------------------------------------------------------------*/
