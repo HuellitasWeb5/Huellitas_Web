@@ -39,6 +39,7 @@
     min-width: 250px; /* Ajuste del ancho mínimo (antes 250px) */
     max-width: 300px; /* Ajuste del ancho máximo (antes 300px) */
     height: auto; /* Ajusta la altura según el contenido */
+    margin: 5px;
 }
 
 /* Estilo general del cuerpo -----------------------------------------------------------------------------------------*/
@@ -82,7 +83,7 @@ h3 {
 .card-container {
     display: flex;
     overflow: hidden; /* Asegura que no se salgan los elementos */
-    padding: 20px; /* Espacio alrededor del contenedor */
+    padding: 10px; /* Espacio alrededor del contenedor */
     justify-content: center; /* Centra el contenido */
 }
 
@@ -100,7 +101,7 @@ h3 {
 }
 
 .swiper-slide {
-    margin: 10px; /* Espacio entre tarjetas */
+    margin: 5px; /* Espacio entre tarjetas */
 }
 
 .swiper-button-next {
@@ -127,7 +128,6 @@ h3 {
     padding: 20px;
     text-align: center;
     min-width: 150px; /* Puedes ajustar este valor según sea necesario */
-    margin: 10px; /* Espacio entre tarjetas */
     transition: transform 0.3s ease, background-color 0.3s ease; /* Transiciones suaves */
 }
 
@@ -143,7 +143,6 @@ h3 {
 }
 .card {
     min-width: 300px; /* Ajusta el ancho mínimo según tus necesidades */
-    margin: 10px; /* Espaciado entre tarjetas */
     height: auto; /* Ajusta la altura según el contenido */
 }
 .navigation-buttons {
