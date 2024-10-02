@@ -1,3 +1,7 @@
+/* Asegúrate de incluir los estilos de Swiper */
+
+
+
 
 .card-body strong {
     font-weight: bold; /* Asegura que el texto esté en negrita */
@@ -29,6 +33,8 @@
     max-width: 300px; /* Ajuste del ancho máximo (antes 300px) */
     height: auto; /* Ajusta la altura según el contenido */
 }
+
+
 
 /* Estilo general del cuerpo */
 body {
@@ -198,7 +204,7 @@ h3 {
 .card-footer button {
     margin: 5px; /* Margen uniforme entre botones */
     padding: 5px 10px; /* Ajustar padding de botones */
-    background-color: #4CAF50;
+    background-color: #f12727;
     color: white;
     border: none;
     border-radius: 5px;
@@ -235,58 +241,56 @@ h3 {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-/* Estilo del botón */
-
-.btn-container {
-    text-align: center; /* Alinea el botón a la derecha */
+/* Contenedor para el botón de adicionar */
+.btn-adicionar-container {
+    text-align: right; /* Alinea el botón a la derecha */
     margin-bottom: 20px; /* Espacio entre el botón y las tarjetas */
 }
 
-
+/* Estilo del botón de adicionar */
 .btn-adicionar {
     padding: 10px 20px;
-    background-color: #40c328; 
-    color: black;
+    background-color: #62ff67; /* Color verde para el botón */
+    color: white;
     border: none;
-    border-radius: 12px;
+    border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
 }
 
 .btn-adicionar:hover {
-    background-color: #2e8a11; 
-    color: white;
+    background-color: #62ff67; /* Azul más oscuro al pasar el cursor */
 }
 
-.btn-eliminar {
-    padding: 10px 20px;
-    background-color: #f12727;
-    color: black;
+/* Estilo adicional para el botón "Adicionar" */
+#Adicionar {
+    background-color: #28a745;
+    color: white;
+    padding: 10px;
+    border-radius: 10px;
+     width: 200px;
     border: none;
-    border-radius: 12px;
     cursor: pointer;
-    font-size: 1em;
 }
 
-.btn-eliminar:hover {
-    background-color: #9d1e1e;
-    color: white;
+#Adicionar:hover {
+    background-color: #218838;
+}#searchForm {
+    display: flex;
+    align-items: center;
 }
 
-.btn-otro {
-    padding: 10px 20px;
-    background-color: #28c3a4;
-    color: black;
-    border: none;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 1em;
-    }
+#searchInput {
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    width: 450px;
+    margin-right: 10px;
+}
 
-.btn-otro:hover {
-    background-color: #11728a;
-    color: white;
-
+#nameList {
+    list-style-type: none;
+    padding: 0;
 }
 .header-container {
     display: flex;
