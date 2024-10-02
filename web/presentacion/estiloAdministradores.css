@@ -1,5 +1,5 @@
 /* Asegúrate de incluir los estilos de Swiper */
-@import url('https://unpkg.com/swiper/swiper-bundle.min.css');
+
 
 
 
@@ -33,6 +33,7 @@
     max-width: 300px; /* Ajuste del ancho máximo (antes 300px) */
     height: auto; /* Ajusta la altura según el contenido */
 }
+
 
 
 /* Estilo general del cuerpo */
@@ -114,15 +115,23 @@ h3 {
 .swiper-button-next {
     right: 10px; /* Puedes ajustar la distancia desde el borde derecho */
 }
+
 .card {
-    background-color: #62ff67; /* Color de fondo verde */
-    border-radius: 10px; /* Bordes redondeados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
-    padding: 20px; /* Espacio interno */
-    text-align: center; /* Centramos el texto */
-    min-width: 150px; /* Ajusta según sea necesario */
+    background-color: #cce5ff; /* Color inicial de la tarjeta */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    min-width: 150px; /* Puedes ajustar este valor según sea necesario */
+    margin: 10px; /* Espacio entre tarjetas */
+    transition: transform 0.3s ease, background-color 0.3s ease; /* Transiciones suaves */
 }
 
+.card:hover {
+    background-color: #62ff67; /* Color al pasar el cursor */
+    transform: translateY(-10px); /* Mueve la tarjeta hacia arriba */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
+}
 .card-footer {
     display: flex; /* Alinear los botones horizontalmente */
     justify-content: center; /* Centrar los botones */
@@ -175,13 +184,15 @@ h3 {
 .card-header {
     font-size: 1.1em; /* Reducir el tamaño del título */
 }
-/* Encabezado de la tarjeta */
+/* Encabezado de la tarjeta del nombre */
+
 .card-header {
     font-size: 1.3em; /* Ajustar el tamaño de la fuente */
     font-weight: bold;
     margin-bottom: 10px;
+    border-bottom: 3px solid #005d03; /* Cambia el color y el grosor del borde */
+    padding-bottom: 5px; /* Añadir espacio entre el texto y el borde */
 }
-
 /* Cuerpo de la tarjeta */
 .card-body {
     font-size: 0.9em; /* Ajustar el tamaño de la fuente */
@@ -248,7 +259,7 @@ h3 {
 }
 
 .btn-adicionar:hover {
-    background-color: #0056b3; /* Azul más oscuro al pasar el cursor */
+    background-color: #62ff67; /* Azul más oscuro al pasar el cursor */
 }
 
 /* Estilo adicional para el botón "Adicionar" */
