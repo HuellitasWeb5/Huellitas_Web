@@ -30,8 +30,8 @@ for (int i = 0; i < datos.size(); i++) {
     lista += "<p><strong>Residencia:</strong> " + administrador.getResidencia() + "</p>";
     lista += "<div class='card-footer'>"; // Contenedor para los botones
     lista += "<a href='principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Modificar&identificacion=" + administrador.getIdentificacion() + "' title='Modificar'>";
-    lista += "<button title='Modificar'>Modificar</button></a>";
-    lista += "<button title='Eliminar' onClick='eliminar(" + administrador.getIdentificacion() + ")'>Eliminar</button>";
+    lista += "<button class='btn-adicionar' title='Modificar'>Modificar</button></a>";
+    lista += "<button class='btn-eliminar'title='Eliminar' onClick='eliminar(" + administrador.getIdentificacion() + ")'>Eliminar</button>";
     lista += "</div>"; // Fin de card-footer
     lista += "</div>"; // Fin de card-body
     lista += "</div>"; // Fin de swiper-slide
@@ -53,7 +53,7 @@ for (int i = 0; i < datos.size(); i++) {
     <div id="selectedAdminInfo"></div>
 </div>
     <!-- Botón de adicionar -->
-    <div class="btn-adicionar-container">
+    <div class="btn-container">
         <a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Adicionar">
             <button id="Adicionar" class="btn-adicionar">Adicionar</button>
         </a>
@@ -86,7 +86,7 @@ for (int i = 0; i < datos.size(); i++) {
                     <p><strong>Dirección:</strong> <%= administrador.getDireccion() %></p>
                     <p><strong>Residencia:</strong> <%= administrador.getResidencia() %></p>
                 </div>
-                <div class="card-footer">
+                <div class="btn-container">
                     <a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Modificar&identificacion=<%= administrador.getIdentificacion() %>">
                         <button class="btn-modificar">Modificar</button>
                     </a>
