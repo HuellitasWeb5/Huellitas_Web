@@ -16,6 +16,6 @@
             sesion.setAttribute("usuario", usuario);
             response.sendRedirect("principal.jsp?CONTENIDO=inicio.jsp");
         }else {
-        response.sendRedirect("index.jsp?error=1");
+        response.sendRedirect("index-InicioSesion.jsp?error=1");
     }
 %>
