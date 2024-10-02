@@ -197,10 +197,11 @@
             <br><textarea id="descripcion" name="descripcion" rows="4" cols="88" required></textarea><br><br>
 
         </table>
-
+        <div class="btn-container">
         <input class="btn-adicionar" type="submit" value="Enviar">
         <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
         </body>
+        </div>
         </div>>
     </form>
     <script>
