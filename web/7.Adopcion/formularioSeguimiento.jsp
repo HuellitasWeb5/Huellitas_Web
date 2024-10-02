@@ -18,7 +18,7 @@
 <body onload="cargarFecha()">
     <form>    
         <div class="containerFormulario">
-            <h1>Formulario De Seguimiento</h1>
+            <h1>FORMULARIO DE SEGUIMIENTO</h1>
             <input type="hidden" name="accion" value="grabar">
 
             <!-- FECHA -->
@@ -28,6 +28,7 @@
             <!-- ADOPTANTE  --> 
             <div class="contenedor-tarjetas">
                 <table  class="tableDatos">
+                    <th>SAN PATITAS</th>
                     <tr>
                         <th>Identificación:</th>
                         <td><input type="text" name="identificacion" id="identificacion"></td>
@@ -57,6 +58,7 @@
                 <!-- MASCOTA  --> 
 
                 <table class="tableDatos">
+                    <th>MASCOTA</th>
                     <tr>
                         <th>Código:</th>
                         <td><input type="text" name="codigo" id="codigo"></td>
@@ -192,10 +194,15 @@
                 <!-- Descripción -->
                 <label for="descripcion">Descripción adicional:</label>
                 <br><textarea id="descripcion" name="descripcion" rows="4" cols="88" required></textarea><br><br>
+                
+                 </table>
+            <div class="btn-container">
+                <input class="btn-adicionar" type="submit" value="Enviar">
+                <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
+                </body>
+            </div>
         </div>
     </form>
-</div>
-
 <script>
 
     // BUSCAR PERSONA
