@@ -89,7 +89,7 @@ for (int i = 0; i < datos.size(); i++) {
                 </div>
                 <div class="btn-container">
                     <a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Modificar&identificacion=<%= administrador.getIdentificacion() %>">
-                        <button class="btn-modificar">Modificar</button>
+                        <button class="btn-adicionar">Modificar</button>
                     </a>
                     <button class="btn-eliminar" onClick="eliminar(<%= administrador.getIdentificacion() %>)">Eliminar</button>
                 </div>
