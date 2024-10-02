@@ -13,26 +13,23 @@
 String accion=request.getParameter("accion");
 String identificacion=request.getParameter("identificacion");
 Persona clientes=new Persona();
-if (accion.equals("Modificar")) {
-        clientes=new Persona(identificacion);
-    }
 %>
-<h3><%=accion.toUpperCase() %> SANPATITAS</h3>
+<h3>RGISTRATE SANPATITAS</h3>
 <div class="card-carousel">
     <div class="card">
         <div class="card-header">
-            <h2>DATOS DE NUESTRO SANPATITAS</h2>
+            <h2>DATOS PARA NUESTRO SANPATITAS</h2>
         </div>
         <div class="card-body">
             <img src="presentacion/clientes/<%=clientes.getFoto()%>" id="foto" class="profile-image">
-            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp" enctype="multipart/form-data">
+            <form name="formulario" method="post" action="registrarseActualizar.jsp" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="identificacion">Identificación:</label>
-                    <input type="text" name="identificacion" id="identificacion" maxlength="12" value="<%=clientes.getIdentificacion()%>" required>
+                    <input type="text" name="identificacion" id="identificacion" maxlength="12" required>
                 </div>
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" value="<%=clientes.getNombre()%>" size="50" maxlength="50">
+                    <input type="text" name="nombre" id="nombre"  size="50" maxlength="50">
                 </div>
                 <div class="form-group">
                     <label>Género:</label>
@@ -40,23 +37,23 @@ if (accion.equals("Modificar")) {
                 </div>
                 <div class="form-group">
                     <label for="fechaNacimiento">Fecha De Nacimiento:</label>
-                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" value="<%=clientes.getFechaNacimiento()%>" required onchange="calcularEdad()">
+                    <input type="date" id="fechaNacimiento" name="fechaNacimiento"  required onchange="calcularEdad()">
                 </div>
                 <div class="form-group">
                     <label for="email">Correo Electrónico:</label>
-                    <input type="text" name="email" id="email" value="<%=clientes.getEmail() %>" maxlength="80" required>
+                    <input type="text" name="email" id="email"  maxlength="80" required>
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono:</label>
-                    <input type="text" name="telefono" id="telefono" value="<%=clientes.getTelefono()%>" maxlength="12">
+                    <input type="text" name="telefono" id="telefono"  maxlength="12">
                 </div>
                 <div class="form-group">
                     <label for="direccion">Dirección:</label>
-                    <input type="text" name="direccion" id="direccion" value="<%=clientes.getDireccion() %>" size="50" maxlength="100">
+                    <input type="text" name="direccion" id="direccion"  size="50" maxlength="100">
                 </div>
                 <div class="form-group">
                     <label for="residencia">Residencia:</label>
-                    <input type="text" name="residencia" id="residencia" value="<%=clientes.getResidencia() %>" size="50" maxlength="100">
+                    <input type="text" name="residencia" id="residencia"  size="50" maxlength="100">
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto:</label>
@@ -64,11 +61,11 @@ if (accion.equals("Modificar")) {
                 </div>
                 <div class="form-group">
                     <label for="clave">Contraseña:</label>
-                    <input type="password" name="clave" id="clave" required>
+                    <input type="password" name="clave" id="clave"  required>
                 </div>
                 <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
                 <div class="btn-container">
-                    <input class='btn-adicionar'  type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
+                    <input class='btn-adicionar'  type="submit" name="accion" value="Adicionar" class="btn-adicionar">
                     <input class='btn-eliminar' type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
                 </div>
             </form>

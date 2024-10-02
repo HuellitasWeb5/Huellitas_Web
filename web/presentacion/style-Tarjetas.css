@@ -234,17 +234,6 @@ h3 {
     background-color: rgba(0, 0, 0, 0.7);
 }
 
-
-/* Contenedor para el botón de adicionar */
-.btn-container {
-    text-align: right; /* Alinea el botón a la derecha */
-    margin-bottom: 20px; /* Espacio entre el botón y las tarjetas */
-}
-
-
-
-/* Estilo del botón de adicionar */
-
 /* Estilo de los formularios -----------------------------------------------------------------------------------*/
 
 .containerFormulario {
@@ -252,52 +241,58 @@ h3 {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
     border-radius: 18px;
     padding: 20px 40px;
-    max-width: 1200px; 
+    max-width: 1000px;
+
+}
+
+.contenedor-tarjetas {
+    display: flex;
+    justify-content: space-between; 
+    flex-wrap: wrap; 
 }
 
 h1 {
     text-align: center;
     margin-top: 10px;
-    margin-bottom: 20px; /* Centrar el título */
+    margin-bottom: 20px;
 }
+
 .tableFormulario {
-    width: 100%; /* Hacer que la tabla ocupe el 100% del contenedor */
-    margin-top: 20px;   
-    margin-bottom: 20px; 
+    margin-top: 20px;
+    margin-bottom: 20px;
     border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Margen inferior */
-    max-width: 900px; /* Establece un ancho máximo para la tabla */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    max-width: 900px;
+    width: 100%; 
 }
 
 .tableDatos {
-    width: 50%; /* Hacer que la tabla ocupe el 100% del contenedor */
-    margin-top: 20px;   
-    margin-bottom: 20px; 
+    flex: 1 1 45%;
+    margin: 20px 15px;
     border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7); /* Margen inferior */
-    max-width: 500px; 
-    display: inline-block;
-    margin-right: 15px; /* Espacio entre tablas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    max-width: 500px;
+    width: 100%;
 }
 
 label {
- /* Hacer que las etiquetas ocupen una línea completa */
-    margin-top: 10px; /* Margen superior */
+    margin-top: 10px;
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .container {
-    padding-bottom: 60px; /* Margen inferior para que el contenido no quede tapado por el footer */
+    padding-bottom: 60px;
 }
 
 .tableFormulario td, .tableFormulario th {
-    padding: 10px; /* Ajusta el valor según necesites */
+    padding: 8px;
 }
 
 .tableDatos td, .tableDatos th {
-    padding: 4px; /* Ajusta el valor según necesites */
+    padding: 5px;
 }
 
-/* Estilo para los campos de texto */
 input[type="text"], input[type="number"], textarea {
     width: 100%;
     padding: 8px;
@@ -305,11 +300,6 @@ input[type="text"], input[type="number"], textarea {
     border-radius: 8px;
     border: 1px solid #ccc;
     box-sizing: border-box;
-}
-
-label {
-    font-weight: bold;
-    margin-bottom: 5px;
 }
 
 fieldset {
@@ -326,6 +316,13 @@ img {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
+@media (max-width: 768px) {
+    .tableDatos {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
+
 /* Estilo de los botones --------------------------------------------------------------------------------------------*/
 
 .btn-container {
@@ -333,21 +330,22 @@ img {
     text-align: center; /* Alinea el botón a la derecha */
     margin-bottom: 10px; /* Espacio entre el botón y las tarjetas */
 }
-
-
 .btn-adicionar {
     padding: 10px 20px;
-    background-color:#f12727 ; /* Color verde para el botón */
+    background-color:#1dba35; 
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
 }
- /* Estilo del botón de modificar */
+
+.btn-adicionar:hover {
+    background-color: #256f30; 
+}
 .btn-modificar {
     padding: 10px 20px;
-    background-color: #28a745; /* Color para el botón de modificar */
+    background-color:#1dba35; 
     color: white;
     border: none;
     border-radius: 5px;
@@ -355,49 +353,37 @@ img {
     font-size: 1em;
 }
 
-/* Estilo del botón de eliminar */
+.btn-modificar:hover {
+    background-color: #256f30; 
+}
+
+
 .btn-eliminar {
     padding: 10px 20px;
-    background-color: #dc3545; /* Color para el botón de eliminar */
+    background-color: #e3203b; /* Color para el botón de eliminar */
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
 }
-.btn-adicionar:hover {
-    background-color: #62ff67; /* Azul más oscuro al pasar el cursor */
+
+.btn-eliminar:hover {
+    background-color: #a51529; 
 }
 
-/* Estilo adicional para el botón "Adicionar" */
-#Adicionar {
-    background-color: #28a745;
+.btn-otro {
+    padding: 10px 20px;
+    background-color: #1994d2;
     color: white;
-    padding: 10px;
-    border-radius: 10px;
-     width: 200px;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
+    font-size: 1em;
 }
 
-#Adicionar:hover {
-    background-color: #218838;
-}#searchForm {
-    display: flex;
-    align-items: center;
-}
-
-#searchInput {
-    padding: 8px;
-    border-radius: 10px;
-    border: 1px solid #ccc;
-    width: 450px;
-    margin-right: 10px;
-}
-
-#nameList {
-    list-style-type: none;
-    padding: 0;
+.btn-otro:hover {
+    background-color: #1b668c; 
 }
 
 /* Estilo de los iconos -----------------------------------------------------------------------------------------*/
