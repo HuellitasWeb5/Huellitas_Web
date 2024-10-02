@@ -5,7 +5,7 @@
 --%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/estiloAdmiFormulario.css">
+    <link rel="stylesheet" href="presentacion/style-TarjetasModificar.css">
 </head>
 <%@page import="clases.Mascota"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -78,7 +78,7 @@ if (accion.equals("Modificar")) {
                 </div>
                 <div class="btn-container">
                     <input type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
-                    <input type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
+                    <input type="button" value="Cancelar" onClick="window.history.back()" class="btn-eliminar">
                 </div>
             </form>
         </div>
