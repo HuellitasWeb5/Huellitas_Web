@@ -10,7 +10,7 @@
     if (request.getParameter("error") != null) {
         switch (request.getParameter("error")) {
             case "1":
-                mensaje = "Usuario o contaseña no valido";
+                mensaje = "Identificacion o contaseña no valido";
                 break;
             case "2":
                 mensaje = "Acceso denegado";
@@ -35,7 +35,7 @@
         <form name="formulario" method="post" action="validar.jsp">  
             <div id="texto">
                 <table border="0">
-                    <tr><td>Usuario</td><td><input type="text" name="identificacion" id="usuario" required></td></tr>
+                    <tr><td>Identificacion</td><td><input type="text" name="identificacion" id="usuario" required></td></tr>
                     <tr><td>Contraseña</td><td><input type="password" name="clave" id="clave" required></td></tr>
                 </table>
 
