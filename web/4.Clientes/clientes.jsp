@@ -30,7 +30,7 @@
         lista += "<div class='card-body'>"; // Contenedor para el cuerpo de la tarjeta   
         lista += "<p><strong>Identificacion:</strong>" + clientes.getIdentificacion() + "</p>";
         lista += "<p><strong>Genero:</strong>" + clientes.getGeneroPersona() + "</p>";
-        lista += "<p><strong>Edad:</strong>" + clientes.getEdad() + "</p>";
+        lista += "<p><strong>Edad:</strong>" + clientes.getEdad() + " años</p>";
         lista += "<p><strong>Email:</strong>" + clientes.getEmail() + "</p>";
         lista += "<p><strong>Telefono:</strong>" + clientes.getTelefono() + "</p>";
         lista += "<p><strong>Direccion:</strong>" + clientes.getDireccion() + "</p>";
