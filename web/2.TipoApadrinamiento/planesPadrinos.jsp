@@ -53,8 +53,8 @@
             <tr><th>Nombre: </th><td><input type="text" name="Nombre" id="Nombre"></td></tr>
             <tr><th>Descripcion: </th><td><input type="text" name="Descripcion" id="Descripcion" ></td></tr>
         </table>
-        <input type="button" value="Agregar" onclick="agregarPlan();">
-        <input type="button" value="Cancelar" onclick="cerrarFormulario();">
+        <input class="btn-adicionar" type="button" value="Agregar" onclick="agregarPlan();">
+        <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
     </form>    
 </div>
 <script type="text/javascript">

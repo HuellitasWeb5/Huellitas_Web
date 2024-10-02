@@ -16,8 +16,7 @@
 %>
 
 <body onload="cargarFecha()">
-    <form method="post" action="formularioInformacion.jsp" onsubmit="return validarFormulario();">
-
+    <form method="post" action="formularioInformacion.jsp" onsubmit="return validarFormulario();">    
         <div class="containerFormulario">
             <h1>Formulario de Información</h1>
             <input type="hidden" name="accion" value="grabar">
@@ -27,7 +26,7 @@
             <div>Fecha actual: <span id="fecha"></span></div>
 
             <!-- ADOPTANTE  --> 
-
+<div class="contenedor-tarjetas">
             <table  class="tableDatos">
                 <tr>
                     <th>Identificación:</th>
@@ -82,16 +81,17 @@
                 </tr>
 
             </table>
-            </div>
-
+</div>
             <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar">
-                <button id="Adicionar" class="btn-adicionar">Agregar Mascota</button><br>
+                <br><button id="Adicionar" class="btn-adicionar">Agregar Mascota</button><br>
             </a>
 
+        <!-- FORMULARIO  -->    
 
-            <!-- FORMULARIO  -->    
+        <table  class="tableFormulario">
 
             <!-- Ocupación -->
+
             <label for="ocupacion">¿Cuál es su ocupación?</label>
             <input type="text" id="ocupacion" name="ocupacion" maxlength="100" required><br><br>
 
@@ -196,9 +196,13 @@
             <label for="descripcion">Descripción adicional:</label>
             <br><textarea id="descripcion" name="descripcion" rows="4" cols="88" required></textarea><br><br>
 
-            <input class="btn-adicionar" type="submit" value="Enviar">
-            <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
-            </body>
+        </table>
+        <div class="btn-container">
+        <input class="btn-adicionar" type="submit" value="Enviar">
+        <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
+        </body>
+        </div>
+        </div>>
     </form>
     <script>
 
