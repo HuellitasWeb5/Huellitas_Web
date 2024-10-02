@@ -65,6 +65,7 @@ if (!isMultipart) {
         }
     }
 }
+String accion = variables.get("accion");
 
 Mascota mascota = new Mascota();
 mascota.setCodigo(variables.get("codigo"));
