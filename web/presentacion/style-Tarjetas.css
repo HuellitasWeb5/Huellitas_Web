@@ -306,8 +306,9 @@ img {
 /* Estilo de los botones --------------------------------------------------------------------------------------------*/
 
 .btn-container {
+    margin: auto;
     text-align: center; /* Alinea el botón a la derecha */
-    margin-bottom: 20px; /* Espacio entre el botón y las tarjetas */
+    margin-bottom: 10px; /* Espacio entre el botón y las tarjetas */
 }
 
 .btn-adicionar {
