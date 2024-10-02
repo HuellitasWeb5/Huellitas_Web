@@ -271,6 +271,7 @@
         <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
     </form>    
 </div>
+
 <script>
 
     // BUSCAR PERSONA
