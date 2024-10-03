@@ -134,6 +134,7 @@
                 <input type="date" id="fechaProximaVisita" name="fechaProximaVisita" required><br><br>
 
                 <!-- Descripción -->
+
                 <label for="descripcion">Descripción general del seguimiento:</label><br>
                 <textarea id="descripcion" name="descripcion" rows="4" cols="50" required></textarea><br><br>
 

@@ -251,6 +251,7 @@
 </body>
 <div id="formulario" title="Apadrinar mascota">
     <form name="formularioDonacionDetalle">
+<<<<<<< HEAD
         <table class="tableDatos">
             <th>MASCOTA</th>
             <tr>
@@ -281,7 +282,6 @@
         <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
     </form>    
 </div>
-
 <script>
 
     // BUSCAR PERSONA
@@ -363,6 +363,7 @@
 
     // BUSCAR MASCOTA FORMULARIO 
 
+<<<<<<< HEAD
     var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
     var vectorMascotas = new Array();
     for (var i = 0; i < mascotas.length; i++) {
@@ -401,6 +402,11 @@
     });
 
     // AGREGAR MASCOTA A LA ADOPCION
+=======
+
+
+    // AGREGAR MASCOTA 
+>>>>>>> 027640c689a9bf4ba34b99e4563b492b7ac077e8
 
     $(function () {
         $("#formulario").dialog({
@@ -413,21 +419,33 @@
                 effect: "explode",
                 duration: 1000
             },
+<<<<<<< HEAD
             width: 550,
             height: 400
+=======
+            width: 920, // Ancho del diálogo en píxeles
+            height: 440
+>>>>>>> 027640c689a9bf4ba34b99e4563b492b7ac077e8
         });
     });
     function abrirFormulario() {
         $('#formulario').dialog('open');
     }
 
+<<<<<<< HEAD
     // CARGAR FECHA
+=======
+>>>>>>> 027640c689a9bf4ba34b99e4563b492b7ac077e8
     function cerrarFormulario() {
         // Cerrar el diálogo
         $('#formulario').dialog('close');
 
     }
+<<<<<<< HEAD
     function cargarFecha() {
+=======
+  function cargarFecha() {
+>>>>>>> 027640c689a9bf4ba34b99e4563b492b7ac077e8
         var fecha = new Date();
         var dia = String(fecha.getDate()).padStart(2, '0');
         var mes = String(fecha.getMonth() + 1).padStart(2, '0');
@@ -437,5 +455,8 @@
     }
 
     mentById('fecha').innerText = fechaFormateada;
+<<<<<<< HEAD
     
+=======
+>>>>>>> 027640c689a9bf4ba34b99e4563b492b7ac077e8
 </script>
