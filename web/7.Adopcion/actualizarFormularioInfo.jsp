@@ -77,7 +77,7 @@
     }
 %>
 <script type="text/javascript">
-    document.location = "principal.jsp?CONTENIDO=adopciones.jsp";
+   // document.location = "principal.jsp?CONTENIDO=verFormulrioInfo.jsp";
 </script>
 
 
