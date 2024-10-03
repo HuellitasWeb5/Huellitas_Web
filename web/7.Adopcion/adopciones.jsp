@@ -39,10 +39,8 @@
     <a href="principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp&accion=Adicionar">
         <button id="Adicionar" class="btn-otro">Formularios de Adopciones</button>
     </a>
+    <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioSeguimiento.jsp&accion=Adicionar">
+        <button id="Adicionar" class="btn-otro">Realizar seguimiento</button>
+    </a>
 </div>  
-
-<script type="text/javascript">
-
-
-</script>
 
