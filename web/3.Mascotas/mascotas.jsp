@@ -124,25 +124,21 @@
     });
 
     function filterNames() {
-        // Obtener el valor de entrada del campo de búsqueda
-        let input = document.getElementById('searchInput');
-        let filter = input.value.toLowerCase();
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const slides = document.getElementsByClassName('swiper-slide');
 
-        // Obtener la lista de nombres y los elementos de las tarjetas
-        let nameList = document.getElementById('nameList');
-        let cards = document.getElementsByClassName('card');
+    // Recorre cada slide y oculta o muestra dependiendo del filtro
+    for (let i = 0; i < slides.length; i++) {
+        const cardHeader = slides[i].getElementsByClassName('card-header')[0];
+        const textValue = cardHeader.textContent || cardHeader.innerText;
 
-        // Iterar sobre todas las tarjetas y filtrar por el texto que se escribió
-        for (let i = 0; i < cards.length; i++) {
-            // Obtener el nombre dentro de la tarjeta
-            let name = cards[i].querySelector('.card-header').innerText;
-
-            if (name.toLowerCase().includes(filter)) {
-                cards[i].style.display = "";  // Mostrar tarjeta si coincide
-            } else {
-                cards[i].style.display = "none";  // Ocultar tarjeta si no coincide
-            }
+        if (textValue.toLowerCase().indexOf(filter) > -1) {
+            slides[i].style.display = "";
+        } else {
+            slides[i].style.display = "none";
         }
     }
+}
 
 </script>
