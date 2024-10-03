@@ -191,24 +191,26 @@
 
                 <!-- Campo para seleccionar días de la semana -->
 
-                <label>Por favor, indíquenos los días en los que estaría disponible para recibir la visita de seguimiento con respecto al cuidado de la mascota:</label>
+                <label for="horarioVisitaDias">Por favor, indíquenos los días en los que estaría disponible para recibir la visita de seguimiento con respecto al cuidado de la mascota:</label>
                 <br>
-                <label><input type="checkbox" name="horarioVisitaDias" value="Lunes"> Lunes</label>
-                <label><input type="checkbox" name="horarioVisitaDias" value="Martes"> Martes</label>
-                <label><input type="checkbox" name="horarioVisitaDias" value="Miércoles"> Miércoles</label>
-                <label><input type="checkbox" name="horarioVisitaDias" value="Jueves"> Jueves</label>
-                <label><input type="checkbox" name="horarioVisitaDias" value="Viernes"> Viernes</label>
-                <label><input type="checkbox" name="horarioVisitaDias" value="Sábado"> Sábado</label>
-                <label><input type="checkbox" name="horarioVisitaDias" value="Domingo"> Domingo</label><br>
+                <div style="display: flex; gap: 25px;">
+                    <label style="display: flex; align-items: center;"><input type="checkbox" name="horarioVisitaDias" value="Lunes"> Lunes</label>
+                    <label style="display: flex; align-items: center;"><input type="checkbox" name="horarioVisitaDias" value="Martes"> Martes</label>
+                    <label style="display: flex; align-items: center;"><input type="checkbox" name="horarioVisitaDias" value="Miércoles"> Miércoles</label>
+                    <label style="display: flex; align-items: center;"><input type="checkbox" name="horarioVisitaDias" value="Jueves"> Jueves</label>
+                    <label style="display: flex; align-items: center;"><input type="checkbox" name="horarioVisitaDias" value="Viernes"> Viernes</label>
+                    <label style="display: flex; align-items: center;"><input type="checkbox" name="horarioVisitaDias" value="Sábado"> Sábado</label>
+                    <label style="display: flex; align-items: center;"><input type="checkbox" name="horarioVisitaDias" value="Domingo"> Domingo</label>
+                </div>
+                <br>
 
-                <!-- Campo para seleccionar la hora -->
+                <!-- Campo para seleccionar la hora con selector AM/PM -->
                 <label for="horarioVisitaHora">Selecciona la hora:</label>
-                <input type="text" id="horarioVisitaHora" name="horarioVisitaHora" placeholder="HH:MM" maxlength="5">
+                <input type="text" id="horarioVisitaHora" name="horarioVisitaHora" placeholder="HH:MM" maxlength="5" style="width: 80px; text-align: center; margin-right: 20px; ">
                 <select id="horarioVisitaAmPm" name="horarioVisitaAmPm">
                     <option value="AM">AM</option>
                     <option value="PM">PM</option>
                 </select>
-                <br>
 
                 <!-- Campo para subir foto de la vivienda -->
                 <label for="fotoVivienda">Por favor, suba una foto del espacio donde vivirá la mascota (puede incluir foto de la cama, alimento o accesorios):</label>
@@ -229,6 +231,14 @@
                 <label for="descripcion">Descripción adicional:</label>
                 <br><textarea id="descripcion" name="descripcion" rows="4" cols="88" required></textarea><br><br>
 
+                <!-- Autorización -->
+                <div style="display: flex; align-items: center;">
+                    <input type="checkbox" id="autorizacion" name="autorizacion" value="S" required>
+                    <label for="autorizacion" style="margin-left: 8px;">Autorizo el uso de mis datos personales exclusivamente para fines relacionados con la adopción 
+                        y el bienestar de la(s) mascota(s), en cumplimiento con la legislación vigente en materia de protección de datos.</label>
+                </div>
+                <br><br>
+
             </table>
             <div class="btn-container">
                 <input class="btn-adicionar" type="submit" value="Enviar">
@@ -241,32 +251,32 @@
 </body>
 <div id="formulario" title="Apadrinar mascota">
     <form name="formularioDonacionDetalle">
-       <table class="tableDatos">
-                    <th>MASCOTA</th>
-                    <tr>
-                        <th>Código:</th>
-                        <td><input type="text" name="codigoFormulario" id="codigoFormulario"></td>
-                        <td rowspan="5" style="text-align: center; vertical-align: middle;">
-                            <img id="fotoMascotaPreview" src="" alt="Foto de la Mascota" width="125" height="125">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Nombre de la mascota</th>
-                        <td type="text" name="nombreMascotaFormulario" id="nombreMascotaFormulario" ></td>
-                    </tr>
-                    <tr>
-                        <th>Edad Aproximada</th>
-                        <td type="text" name="fechaNacimientoFormulario" id="fechaNacimientoFormulario" ></td>
-                    </tr>
-                    <tr>
-                        <th>Género</th>
-                        <td type="text" name="generoFormulario" id="generoFormulario"></td>
-                    </tr>
-                    <tr>
-                        <th>Cuidados Especiales</th>
-                        <td type="text" name="cuidadosEspecialesFormulario" id="cuidadosEspecialesFormulario"></td>
-                    </tr>
-                </table>
+        <table class="tableDatos">
+            <th>MASCOTA</th>
+            <tr>
+                <th>Código:</th>
+                <td><input type="text" name="codigoFormulario" id="codigoFormulario"></td>
+                <td rowspan="5" style="text-align: center; vertical-align: middle;">
+                    <img id="fotoMascotaPreview" src="" alt="Foto de la Mascota" width="125" height="125">
+                </td>
+            </tr>
+            <tr>
+                <th>Nombre de la mascota</th>
+                <td type="text" name="nombreMascotaFormulario" id="nombreMascotaFormulario" ></td>
+            </tr>
+            <tr>
+                <th>Edad Aproximada</th>
+                <td type="text" name="fechaNacimientoFormulario" id="fechaNacimientoFormulario" ></td>
+            </tr>
+            <tr>
+                <th>Género</th>
+                <td type="text" name="generoFormulario" id="generoFormulario"></td>
+            </tr>
+            <tr>
+                <th>Cuidados Especiales</th>
+                <td type="text" name="cuidadosEspecialesFormulario" id="cuidadosEspecialesFormulario"></td>
+            </tr>
+        </table>
         <input class="btn-adicionar" type="submit" value="Agregar">
         <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
     </form>    
@@ -352,7 +362,7 @@
     });
 
     // BUSCAR MASCOTA FORMULARIO 
-    
+
     var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
     var vectorMascotas = new Array();
     for (var i = 0; i < mascotas.length; i++) {
@@ -403,7 +413,7 @@
                 effect: "explode",
                 duration: 1000
             },
-            width: 550, // Ancho del diálogo en píxeles
+            width: 550,
             height: 400
         });
     });
@@ -417,7 +427,7 @@
         $('#formulario').dialog('close');
 
     }
-  function cargarFecha() {
+    function cargarFecha() {
         var fecha = new Date();
         var dia = String(fecha.getDate()).padStart(2, '0');
         var mes = String(fecha.getMonth() + 1).padStart(2, '0');
@@ -427,4 +437,5 @@
     }
 
     mentById('fecha').innerText = fechaFormateada;
+    
 </script>

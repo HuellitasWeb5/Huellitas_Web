@@ -246,8 +246,8 @@ h3 {
 
 .contenedor-tarjetas {
     display: flex;
-    justify-content: space-between; 
-    flex-wrap: wrap; 
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
 h1 {
@@ -262,7 +262,7 @@ h1 {
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
     max-width: 900px;
-    width: 100%; 
+    width: 100%;
 }
 
 .tableDatos {
@@ -278,6 +278,7 @@ label {
     margin-top: 10px;
     font-weight: bold;
     margin-bottom: 5px;
+    margin-right: 20px; 
 }
 
 .container {
@@ -307,7 +308,7 @@ fieldset {
 }
 
 input[type="radio"], input[type="checkbox"] {
-    margin-right: 8px;
+    margin-right: 10px;
 }
 
 img {
@@ -322,6 +323,34 @@ img {
     }
 }
 
+/* Estilo de la calificación en estrellas */
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+        font-size: 4em;
+        color: gray;
+        cursor: pointer;
+        margin: 0 5px; /* Ajusta la separación entre las estrellas */
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra a las estrellas */
+    }
+
+.rating input:checked ~ label {
+    color: #FFD700;
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+    color: #FFD700;
+}
+
 /* Estilo de los botones --------------------------------------------------------------------------------------------*/
 
 .btn-container {
@@ -331,7 +360,7 @@ img {
 }
 .btn-adicionar {
     padding: 10px 20px;
-    background-color:#1dba35; 
+    background-color:#1dba35;
     color: white;
     border: none;
     border-radius: 5px;
@@ -340,11 +369,11 @@ img {
 }
 
 .btn-adicionar:hover {
-    background-color: #256f30; 
+    background-color: #256f30;
 }
 .btn-modificar {
     padding: 10px 20px;
-    background-color:#1dba35; 
+    background-color:#1dba35;
     color: white;
     border: none;
     border-radius: 5px;
@@ -353,7 +382,7 @@ img {
 }
 
 .btn-modificar:hover {
-    background-color: #256f30; 
+    background-color: #256f30;
 }
 
 
@@ -368,7 +397,7 @@ img {
 }
 
 .btn-eliminar:hover {
-    background-color: #a51529; 
+    background-color: #a51529;
 }
 
 .btn-otro {
@@ -382,7 +411,7 @@ img {
 }
 
 .btn-otro:hover {
-    background-color: #1b668c; 
+    background-color: #1b668c;
 }
 
 /* Estilo de los iconos -----------------------------------------------------------------------------------------*/
@@ -394,12 +423,6 @@ img {
     margin-bottom: 20px; /* Espacio entre el header y el resto del contenido */
 }
 
-.search-container {
-    display: flex; /* Usar flexbox para alinear el input y el icono */
-    align-items: center; /* Centrar verticalmente */
-    margin-top: 30px; /* Espacio entre el título y el campo de búsqueda */
-}
-
 #searchInput {
     padding: 8px;
     border-radius: 15px;
@@ -408,8 +431,14 @@ img {
     margin-right: 10px; /* Espacio entre el input y el icono */
 }
 
+.search-container {
+    display: flex; /* Usar flexbox para alinear el input y el icono */
+    align-items: center; /* Centrar verticalmente */
+    margin-top: 30px; /* Espacio entre el título y el campo de búsqueda */
+}
+
 .search-icon {
-    width: 20px; /* Ajusta el tamaño del icono */
-    height: 20px; /* Ajusta el tamaño del icono */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el icono */
+    width: 25px; /* Ajusta el tamaño del icono */
+    height: 25px;
+    box-shadow: none;/* Ajusta el tamaño del icono */
 }
