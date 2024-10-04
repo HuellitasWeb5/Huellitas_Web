@@ -200,7 +200,7 @@
                 <div class="btn-container">
 
                     <input type="hidden" name="id" value="<%=id%>">
-                    <input class="submit" type="submit" name="accion" value="<%=accion%>">
+                    <input class="btn-adicionar"  type="submit" name="accion" value="<%=accion%>">
                     <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
                     </body>
                 </div>

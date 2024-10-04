@@ -9,7 +9,6 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    // Captura de los parámetros del formulario de adopción
     String accion = request.getParameter("accion");
     String identificacion = request.getParameter("identificacion");
     String nombreAdoptante = request.getParameter("nombreAdoptante");
@@ -35,7 +34,6 @@
     String horarioVisitaHora = request.getParameter("horarioVisitaHora");
     String descripcion = request.getParameter("descripcion");
     
-    // Creación del objeto FormularioDeInformacion para gestionar la adopción
     FormularioDeInformacion formulario = new FormularioDeInformacion();
     formulario.setIdentificacion(identificacion);
     formulario.setNombreAdoptante(nombreAdoptante);
@@ -61,7 +59,6 @@
     formulario.setHorarioVisitaHora(horarioVisitaHora);
     formulario.setDescripcion(descripcion);
 
-    // Dependiendo de la acción (Adicionar, Modificar, Eliminar) ejecuta la función correspondiente
     switch (accion) {
         case "Adicionar":
             formulario.grabar();
@@ -77,7 +74,7 @@
     }
 %>
 <script type="text/javascript">
-   // document.location = "principal.jsp?CONTENIDO=verFormulrioInfo.jsp";
+    document.location="/HuellitasWeb/principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp"
 </script>
 
 
