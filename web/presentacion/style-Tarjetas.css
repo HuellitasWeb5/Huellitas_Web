@@ -1,3 +1,170 @@
+/* Estructura de dos columnas */
+.layout {
+    display: flex;
+    justify-content: space-between;
+}
+
+.col-left {
+    width: 30%; /* Columna izquierda con el 30% de la pantalla */
+    padding: 10px;
+    overflow-y: auto; /* Permite desplazamiento vertical si es necesario */
+}
+
+.col-right {
+    width: 70%; /* Columna derecha con el 70% restante */
+    padding: 10px;
+}
+
+.card {
+    max-width: 100%;
+    box-sizing: border-box; /* Asegura que padding y bordes estén dentro del ancho */
+    background-color: #62ff67;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    width: 100%; /* Asegura que las tarjetas se ajusten al 100% del ancho */
+}
+
+.card-header {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #005d03;
+}
+
+.btn-container {
+    text-align: center;
+}
+
+/* Asegúrate de incluir los estilos de Swiper */
+
+/* Asegúrate de que el contenedor sea lo suficientemente ancho para desplazarse */
+.card-carousel {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+    width: max-content; /* El ancho será el necesario para contener todas las tarjetas */
+    overflow: hidden; /* Oculta el contenido fuera de los límites del contenedor */
+}
+
+/* Asegúrate de que el contenedor del carrusel no desborde */
+.carousel-container {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+/* Ajuste del tamaño y diseño de las tarjetas */
+.card {
+    background-color: #62ff67; /* Fondo */
+    border-radius: 150px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    text-align: center;
+    min-width: 250px; /* Ancho mínimo de las tarjetas */
+    max-width: 300px; /* Ancho máximo de las tarjetas */
+    height: auto; /* Ajusta la altura según el contenido */
+    margin: 5px;
+}
+
+/* Estilo general del cuerpo */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+h3 {
+    text-align: center;
+    color: #333;
+}
+
+/* Contenedor general del carrusel */
+.carousel-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+}
+
+.card-container {
+    display: flex;
+    overflow: hidden;
+    padding: 10px;
+    justify-content: center;
+}
+
+.swiper-container {
+    width: 100%; /* Asegúrate de que el swiper ocupe el 100% del ancho del contenedor */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    padding-bottom: 200px;
+    max-width: 100%;
+     margin: 0 auto; /* Centra el swiper en el contenedor */
+}
+
+.swiper-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    z-index: 10;
+}
+
+.swiper-button-prev {
+    left: 10px;
+}
+
+.swiper-button-next {
+    right: 10px;
+}
+
+/* Estilo del hover de la tarjeta */
+.card:hover {
+    background-color: #62ff67; /* Color al pasar el cursor */
+    transform: translateY(-10px); /* Mueve la tarjeta hacia arriba */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
+}
+
+.card-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.card-subtitle {
+    font-size: 15px;
+    color: #005d03;
+    margin-top: 8px;
+    text-align: center;
+}
+
+/* Estilos para las imágenes de perfil */
+.profile-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 8px solid #027605;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 /* Asegúrate de incluir los estilos de Swiper */
 
 
@@ -44,7 +211,7 @@
 
 /* Estilo general del cuerpo -----------------------------------------------------------------------------------------*/
 
-body {
+body, html {
     font-family: Arial, sans-serif;
     background-color: #f4f4f4;
     margin: 0;
@@ -101,7 +268,7 @@ h3 {
 }
 
 .swiper-slide {
-    margin: 5px; /* Espacio entre tarjetas */
+    margin: 10px; /* Espacio entre tarjetas */
 }
 
 .swiper-button-next {
@@ -127,7 +294,7 @@ h3 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     text-align: center;
-    min-width: 150px; /* Puedes ajustar este valor según sea necesario */
+    max-width: 100%; /* Puedes ajustar este valor según sea necesario */
     transition: transform 0.3s ease, background-color 0.3s ease; /* Transiciones suaves */
 }
 
@@ -236,12 +403,12 @@ h3 {
 /* Estilo de los formularios -----------------------------------------------------------------------------------*/
 
 .containerFormulario {
-    margin: 20px auto;
+    margin: 0 auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
     border-radius: 18px;
-    padding: 20px 40px;
+    padding: 0;
     max-width: 1000px;
-
+    overflow: hidden;
 }
 
 .contenedor-tarjetas {
@@ -432,13 +599,23 @@ img {
 }
 
 .search-container {
-    display: flex; /* Usar flexbox para alinear el input y el icono */
-    align-items: center; /* Centrar verticalmente */
-    margin-top: 30px; /* Espacio entre el título y el campo de búsqueda */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.search-container input {
+    width: 300px; /* Ancho fijo para el input del buscador */
+    padding: 5px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
 }
 
 .search-icon {
     width: 25px; /* Ajusta el tamaño del icono */
     height: 25px;
     box-shadow: none;/* Ajusta el tamaño del icono */
+    margin-left: 10px; /* Deja espacio entre el input y el icono */
+    cursor: pointer;
 }
