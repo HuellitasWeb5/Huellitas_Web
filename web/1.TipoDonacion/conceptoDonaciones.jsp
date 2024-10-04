@@ -11,24 +11,28 @@
 
 <%
     String codigo = request.getParameter("codigo");
+
     TipoDonacion tipoDonacion = new TipoDonacion(codigo);
     ConceptoDonacion conceptoDonacion = new ConceptoDonacion();
-    List<ConceptoDonacion> datos = ConceptoDonacion.getListaEnObjetos(codigo, null);
+    List<ConceptoDonacion> datos = ConceptoDonacion.getListaEnObjetos("codigoTipoDonacion=" + codigo, null);
 %>
 
 <script>
+    // Crear un objeto en JavaScript para almacenar los conceptos de donación
     const conceptoDonacion = {};
-    
+
     <% for (int i = 0; i < datos.size(); i++) {
-        conceptoDonacion = datos.get(i); %>
-        conceptoDonacion["<%= conceptoDonacion.getId() %>"] = {
-            nombre: "<%= conceptoDonacion.getNombre() %>",
-            descripcion: "<%= conceptoDonacion.getDescripcion() %>"
-        };
+            ConceptoDonacion concepto = datos.get(i); %>
+    conceptoDonacion["<%= concepto.getId()%>"] = {
+        nombre: "<%= concepto.getNombre()%>",
+        descripcion: "<%= concepto.getDescripcion()%>",
+        tipoDonacion: "<%= concepto.getTipoDonacion() %>", // Asegúrate de que este campo es correcto
+        idUnidadDeMedida: "<%= concepto.getIdUnidadDeMedida() %>"  // Asegúrate de que este campo también es correcto
+    };
     <% } %>
 </script>
 
-<% 
+<%
     String lista = "";
     for (int i = 0; i < datos.size(); i++) {
         conceptoDonacion = datos.get(i);
@@ -43,8 +47,8 @@
         lista += "<p><strong>Tipo:</strong> " + conceptoDonacion.getTipoDonacion() + "</p>";
         lista += "<p><strong>Unidad de Medida:</strong> " + conceptoDonacion.getIdUnidadDeMedida() + "</p>";
         lista += "<div class='button-container'>";
-        lista += "<button class='btn-modificar' onclick='abrirFormulario(\"Modificar\", \"" + conceptoDonacion.getId() + "\");'>Modificar</button>";
-        lista += "<button class='btn-eliminar' onclick='confirmarEliminacion(\"" + conceptoDonacion.getId() + "\")'>Eliminar</button>";
+        lista += "<button class='btn-modificar' onclick='abrirFormulario(\"Modificar\", \"" + conceptoDonacion.getId() + "\", \"" + codigo + "\");'>Modificar</button>";
+        lista += "<button class='btn-eliminar' onclick='confirmarEliminacion(\"" + conceptoDonacion.getId() + "\", \"" + codigo + "\")'>Eliminar</button>";
         lista += "</div>";
         lista += "</div>";
         lista += "</div>";
@@ -55,7 +59,7 @@
 <html lang="es">
     <h3>CONCEPTOS DE DONACIONES</h3> 
 
-    <button class="add-button" onclick="abrirFormulario('Adicionar', '<%= tipoDonacion.getCodigo() %>');">Agregar Concepto de Donación</button>
+    <button class="add-button" onclick="abrirFormulario('Adicionar', null, '<%= tipoDonacion.getCodigo()%>');">Agregar Concepto de Donación</button>
 
     <div class="swiper-container">
         <div class="swiper-wrapper">
@@ -91,23 +95,25 @@
                     </td>
                 </tr>
             </table>
-            <input type="button" value="Agregar" onclick="agregarConceptoDonacion();">
-            <input type="button" value="Cancelar" onclick="cerrarFormulario();">
+            <input class="btn-adicionar" type="button" value="Agregar" onclick="agregarConceptoDonacion('<%= codigo %>');">
+            <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
         </form>    
     </div>
 </html>
 
 <script>
-    function confirmarEliminacion(id) {
+    function confirmarEliminacion(id, codigo) {
         const respuesta = confirm("¿Realmente desea eliminar el registro?");
         if (respuesta) {
-            document.location = "principal.jsp?CONTENIDO=1.TipoDonacion/conceptosDonacionesActualizar.jsp&accion=Eliminar&id=" + id;
+            document.location = "principal.jsp?CONTENIDO=1.TipoDonacion/conceptosDonacionesActualizar.jsp&accion=Eliminar&id=" + id + "&codigo=" + codigo;
         }
     }
 
     $(function () {
         $("#formulario").dialog({
             autoOpen: false,
+            width: 400,
+            modal: true,
             show: {
                 effect: "blind",
                 duration: 500
@@ -120,44 +126,49 @@
     });
 
     function cargarDatosConceptoDonacion(id) {
-        const concepto = conceptoDonacion[id]; // Cambiado el nombre de la variable aquí
+        const concepto = conceptoDonacion[id]; // Obteniendo el concepto por su ID
 
         if (concepto) {
             document.getElementById('nombre').value = concepto.nombre;
             document.getElementById('descripcion').value = concepto.descripcion;
-            document.getElementById('codigoTipoDonacion').value = concepto.tipoDonacion; // Asegúrate de que este campo se llene correctamente
+            document.getElementById('codigoTipoDonacion').value = concepto.tipoDonacion;
+            document.getElementById('idUnidadDeMedida').value = concepto.idUnidadDeMedida;
+        } else {
+            console.error('No se encontró el concepto con ID: ' + id);
         }
     }
 
-    function abrirFormulario(accion, codigoTipoDonacion = null) {
+    function abrirFormulario(accion, idConcepto = null, codigoTipoDonacion = null) {
         if (accion === "Modificar") {
             $('#formulario').dialog('option', 'title', 'Modificar Concepto de Donación');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Modificar';
-            document.querySelector('input[type="button"][value="Agregar"]').setAttribute('onclick', 'modificarConceptoDonacion("' + codigoTipoDonacion + '");');
-            cargarDatosConceptoDonacion(codigoTipoDonacion); // Asegúrate de pasar el id correcto
-
+            document.querySelector('input[type="button"][value="Modificar"]').setAttribute('onclick', 'modificarConceptoDonacion("' + idConcepto + '", "' + codigoTipoDonacion + '");');
+            cargarDatosConceptoDonacion(idConcepto);  // Precargar datos
         } else if (accion === "Adicionar") {
             $('#formulario').dialog('option', 'title', 'Adicionar Concepto de Donación');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Agregar';
-            document.querySelector('input[type="button"][value="Agregar"]').setAttribute('onclick', 'agregarConceptoDonacion();');
+            document.querySelector('input[type="button"][value="Agregar"]').setAttribute('onclick', 'agregarConceptoDonacion("' + codigoTipoDonacion + '");');
             document.getElementById('nombre').value = '';
             document.getElementById('descripcion').value = '';
+            document.getElementById('codigoTipoDonacion').value = codigoTipoDonacion;
             document.getElementById('idUnidadDeMedida').value = '';
-
-            if (codigoTipoDonacion !== null) {
-                document.getElementById('codigoTipoDonacion').value = codigoTipoDonacion;
-            }
         }
-
         $('#formulario').dialog('open');
     }
 
-    function agregarConceptoDonacion() {
+    function agregarConceptoDonacion(codigo) {
         var nombre = document.getElementById('nombre').value;
         var descripcion = document.getElementById('descripcion').value;
-        var tipo = document.getElementById('codigoTipoDonacion').value;
         var idUnidadDeMedida = document.getElementById('idUnidadDeMedida').value;
-        var url = "1.TipoDonacion/conceptosDonacionesActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + tipo + "&idUnidadDeMedida=" + idUnidadDeMedida;
+        var url = "1.TipoDonacion/conceptosDonacionesActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + codigo + "&idUnidadDeMedida=" + idUnidadDeMedida+ "&codigo=" + codigo;
+        window.location.href = url;
+    }
+
+    function modificarConceptoDonacion(id, codigo) {
+        var nombre = document.getElementById('nombre').value;
+        var descripcion = document.getElementById('descripcion').value;
+        var idUnidadDeMedida = document.getElementById('idUnidadDeMedida').value;
+        var url = "1.TipoDonacion/conceptosDonacionesActualizar.jsp?accion=Modificar&id=" + id + "&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + codigo + "&idUnidadDeMedida=" + idUnidadDeMedida+ "&codigo=" + codigo;
         window.location.href = url;
     }
 
