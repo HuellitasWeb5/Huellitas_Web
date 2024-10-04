@@ -27,7 +27,6 @@
     listaPlan += "<div class='swiper-container carousel'>";
     listaPlan += "<div class='swiper-wrapper'>";
     List<PlanesApadrinamiento> datosPlanes = PlanesApadrinamiento.getListaEnObjetos(null, null);
-    System.out.println("Tamaño de datosPlanes: " + datosPlanes.size());
     for (int j = 0; j < datosPlanes.size(); j++) {
         PlanesApadrinamiento planes2 = datosPlanes.get(j);
         listaPlan += "<div class='swiper-slide'>";
@@ -94,10 +93,10 @@
                         <input type="file" name="fotoCedula" accept="image/*" onchange="mostrarFotoCedula();">
                     </td>
                 </tr>
-
-
             </table>
-
+<input type="hidden" name="numero" value="<%=codigo%>">
+<input type="submit" name="accion" value="<%= accion != null ? accion : "Adicionar" %>">
+<input type="button" value="Cancelar" onClick="window.history.back()">
         </form>
     </td>
 </td><td><img src="presentacion/padripet/<%=apadrinamiento.getFotoRecibo()%>" id="fotoRecibo" width="auto" height="350"></td>
@@ -117,9 +116,7 @@
 </div>
 
 
-<input type="hidden" name="numero" value="<%=codigo%>">
-<input type="submit" name="accion" value="<%=accion%>">
-<input type="button" value="Cancelar" onClick="window.history.back()">
+
 
 <div id="formulario" title="Apadrinar mascota">
     <form name="formularioMascotas">
