@@ -22,6 +22,7 @@
     String codigo = request.getParameter("codigo");
     String lineaModificar = "";
     Apadrinamiento apadrinamiento = new Apadrinamiento();
+
     String listaPlan = "<div class='carousel-container'>";
     listaPlan += "<div class='swiper-container carousel'>";
     listaPlan += "<div class='swiper-wrapper'>";
@@ -169,10 +170,11 @@
     for (var i = 0; i < mascotas.length; i++) {
         vectorMascotas[i] = mascotas[i][1] + " - " + mascotas[i][0];
     }
-    
+
     $("#Mascota").autocomplete({
         source: vectorMascotas,
         minLength: 1
+
     });
 });
 
@@ -242,6 +244,7 @@
             }
         });
 
+
         var fechaInicio = document.getElementById('Fecha').value;
         var fechaFin = document.getElementById('FechaFin').value;
         var lapsoPlan = fechaInicio + " / " + fechaFin;
@@ -272,6 +275,7 @@
         var card = document.createElement('div');
         card.classList.add('card'); 
         
+
         var nombreElemento = document.createElement('h2');
         nombreElemento.textContent = 'Mascota: ' + campos[0];
         
@@ -301,6 +305,7 @@
         contenedor.appendChild(tarjeta);
     });
     
+
     var swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
         spaceBetween: 10,
@@ -311,7 +316,6 @@
         loop: true,  
     });
 }
-
 function eliminar(fila) {
     console.log("Eliminando fila:", fila);
 
@@ -339,7 +343,6 @@ function eliminar(fila) {
     cargarTabla(); 
 }
 
-
     $(function () {
         $("#formulario").dialog({
             autoOpen: false,
@@ -352,6 +355,7 @@ function eliminar(fila) {
                 duration: 1000
             },
             width: 920, 
+
             height: 440
         });
     });
@@ -367,6 +371,7 @@ function eliminar(fila) {
 
         $('#mascotas input[type="text"]').val(''); 
         $('#planes input[type="checkbox"]:checked').prop('checked', false); 
+
     }
     
     
