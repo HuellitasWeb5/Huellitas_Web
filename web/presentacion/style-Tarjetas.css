@@ -654,3 +654,17 @@ input[type="radio"], input[type="checkbox"] {
     margin-left: 10px; /* Deja espacio entre el input y el icono */
     cursor: pointer;
 }
+
+.admin-name {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.admin-role {
+    font-size: 14px;
+    font-weight: normal;
+    color: #005d03; /* Cambia este valor al color que desees */
+    margin: 0;
+    margin-top: 5px; /* Espacio entre el nombre y el rol */
+}

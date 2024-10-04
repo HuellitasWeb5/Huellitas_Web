@@ -23,9 +23,10 @@
         lista += "<div class='card-image'>"; // Contenedor de la imagen
         lista += "<img src='presentacion/administrador/" + administrador.getFoto() + "' alt='Foto de " + administrador.getNombre() + "' class='profile-image' width='30' height='auto'>";
         lista += "</div>"; // Fin de la imagen
-        lista += "<div class='card-header'>"; // Cabecera de la tarjeta
-        lista += administrador.getNombre(); // Nombre del administrador
-        lista += "</div>"; // Fin de la cabecera
+lista += "<div class='card-header'>"; // Cabecera de la tarjeta
+lista += "<h3 class='admin-name'>" + administrador.getNombre() + "</h3>"; // Nombre del administrador
+lista += "<h4 class='admin-role'>" + administrador.getTipoEnObjeto() + "</h4>"; // Rol como subtítulo
+lista += "</div>"; // Fin de la cabecera
         lista += "<div class='card-body'>"; // Cuerpo de la tarjeta
         lista += "<p><strong>Identificación:</strong> " + administrador.getIdentificacion() + "</p>";
         lista += "<p><strong>Género:</strong> " + administrador.getGenero() + "</p>";
