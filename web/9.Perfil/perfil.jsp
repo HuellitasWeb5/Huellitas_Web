@@ -1,114 +1,98 @@
-<%@page import="java.util.List"%>
-<%@page import="clases.Persona"%>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/style-Tarjetas.css"> <!-- Aseg鷕ate de tener el archivo CSS -->
+    <link rel="stylesheet" href="presentacion/style-TarjetasModificar.css">
 </head>
 
+<%@page import="clases.Persona"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    // Obtener la lista de perfiles, ajustando la consulta seg鷑 sea necesario
-    List<Persona> datosPerfil = Persona.getListaEnObjetos("tipo='C'", null);
+    // Obtener el usuario actual de la sesi贸n
+    HttpSession sesion = request.getSession();
+    Persona usuarioActual = (Persona) sesion.getAttribute("usuario");
+
+    if (usuarioActual == null) {
+        // Redirigir a la p谩gina de inicio de sesi贸n si el usuario no est谩 autenticado
+        response.sendRedirect("index-InicioSesion.jsp");
+        return;
+    }
+
+    // Verificar si se han actualizado los datos del usuario
+    if (request.getParameter("accion") != null && request.getParameter("accion").equals("Modificar")) {
+        // Obtener los datos modificados del formulario (simulando que ya se modificaron)
+        String nombre = request.getParameter("nombre");
+        String genero = request.getParameter("genero");
+        String email = request.getParameter("email");
+        String telefono = request.getParameter("telefono");
+        String direccion = request.getParameter("direccion");
+        String residencia = request.getParameter("residencia");
+
+        // Actualizar el objeto usuarioActual con los nuevos datos
+        usuarioActual.setNombre(nombre);
+        usuarioActual.setEmail(email);
+        usuarioActual.setTelefono(telefono);
+        usuarioActual.setDireccion(direccion);
+        usuarioActual.setResidencia(residencia);
+
+        // Guardar los cambios en la sesi贸n (o en la base de datos seg煤n tu l贸gica de persistencia)
+        sesion.setAttribute("usuario", usuarioActual);
+
+        // Redirigir a la misma p谩gina para reflejar los cambios
+        response.sendRedirect("perfil.jsp");
+    }
 %>
 
-<h3>LISTA DE PERFILES</h3>
-
-
-
-<!-- Estructura de Swiper para las tarjetas -->
-<div class="swiper-container">
-    <div class="swiper-wrapper">
-        <%
-        // Generar din醡icamente las tarjetas para cada perfil
-        for (int i = 0; i < datosPerfil.size(); i++) {
-            Persona perfil = datosPerfil.get(i);
-        %>
-        <div class="swiper-slide">
-            <div class="card">
-                <div class="card-image">
-                    <img src="presentacion/perfil/<%= perfil.getFoto() %>" alt="Foto de <%= perfil.getNombre() %>" class="profile-image">
-                </div>
-                <div class="card-header">
-                    <%= perfil.getNombre() %>
-                </div>
-                <div class="card-subtitle">
-                    <p><%= perfil.getTipoEnObjeto().getNombre() %></p>
-                </div>
-                <div class="card-body">
-                    <p><strong>Identificaci髇:</strong> <%= perfil.getIdentificacion() %></p>
-                    <p><strong>G閚ero:</strong> <%= perfil.getGenero() %></p>
-                    <p><strong>Edad:</strong> <%= perfil.getEdad() %></p>
-                    <p><strong>Email:</strong> <%= perfil.getEmail() %></p>
-                    <p><strong>Tel閒ono:</strong> <%= perfil.getTelefono() %></p>
-                    <p><strong>Direcci髇:</strong> <%= perfil.getDireccion() %></p>
-                    <p><strong>Residencia:</strong> <%= perfil.getResidencia() %></p>
-                </div>
-                <div class="btn-container">
-                    <a href="perfilFormulario.jsp?accion=Modificar&identificacion=<%= perfil.getIdentificacion() %>">
-                        <button class="btn-modificar">Modificar</button>
-                    </a>
-                    <button class="btn-eliminar" onClick="eliminar(<%= perfil.getIdentificacion() %>)">Eliminar</button>
-                </div>
-            </div>
+<div class="card-carousel">
+    <div class="card">
+        <div class="card-header">
+            <h2>TUS DATOS SANPATITAS</h2>
         </div>
-        <% } %>
+        <div class="card-body">
+            <!-- Mostrar la foto del usuario -->
+            <img src="presentacion/clientes/<%=usuarioActual.getFoto()%>" id="foto" class="profile-image">
+
+            <p><strong><%= usuarioActual.getNombre()%></strong></p>
+            <p><strong>Identificaci贸n:</strong><%= usuarioActual.getIdentificacion()%> </p>
+            <p><strong>G茅nero:</strong><%= usuarioActual.getGeneroPersona()%> </p>
+            <p><strong>Edad:</strong><%= usuarioActual.getEdad()%> a帽os</p>
+            <p><strong>Email:</strong><%= usuarioActual.getEmail()%> </p>
+            <p><strong>Tel茅fono:</strong><%= usuarioActual.getTelefono()%> </p>
+            <p><strong>Direcci贸n:</strong><%= usuarioActual.getDireccion()%> </p>
+            <p><strong>Residencia:</strong><%= usuarioActual.getResidencia()%> </p>
+        </div>
+        <div class='btn-container'>
+            <a href='principal.jsp?CONTENIDO=9.Perfil/perfilFormulario.jsp&accion=Modificar&identificacion=<%= usuarioActual.getIdentificacion()%>' title='Modificar'>
+                <button class='btn-adicionar' title='Modificar'> Modificar </button>
+            </a>
+            <button class='btn-eliminar' title='Eliminar' onClick='eliminar(<%= usuarioActual.getIdentificacion()%>)'>Eliminar</button>
+        </div>
     </div>
-
-    <!-- Botones de navegaci髇 de Swiper -->
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-pagination"></div>
 </div>
-
-<!-- Resultados -->
-<div id="result"></div>
-
-<!-- Scripts -->
-<script type="text/javascript">
+<script>
+   
     function eliminar(identificacion) {
-        var resultado = confirm("Realmente desea eliminar el perfil con identificaci髇 " + identificacion + "?");
+        resultado = confirm("Realmente desea eliminar tu cuenta?"+identificacion);
         if (resultado) {
-            document.location = "perfilActualizar.jsp?accion=Eliminar&identificacion=" + identificacion;
+            document.location = "principal.jsp?CONTENIDO=9.Perfil/perfilActualizar.jsp&accion=Eliminar&identificacion=" + identificacion;
         }
     }
+    function calcularEdad() {
+        const fechaNacimiento = document.getElementById("fechaNacimiento").value;
+        if (fechaNacimiento) {
+            const fechaActual = new Date();
+            const nacimiento = new Date(fechaNacimiento);
+            let edad = fechaActual.getFullYear() - nacimiento.getFullYear();
+            const mes = fechaActual.getMonth() - nacimiento.getMonth();
 
-    // Inicializar Swiper.js
-    const swiper = new Swiper('.swiper-container', {
-        loop: true,
-        slidesPerView: 3, // Mostrar 3 perfiles por vista
-        spaceBetween: 10,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
-    });
-
-    // Filtrar los nombres en las tarjetas
-    function filterNames() {
-        let input = document.getElementById('searchInput').value.toLowerCase();
-        let cards = document.getElementsByClassName('card');
-        
-        for (let i = 0; i < cards.length; i++) {
-            let name = cards[i].querySelector('.card-header').innerText.toLowerCase();
-            if (name.includes(input)) {
-                cards[i].style.display = ""; // Mostrar tarjeta si coincide
-            } else {
-                cards[i].style.display = "none"; // Ocultar tarjeta si no coincide
+            if (mes < 0 || (mes === 0 && fechaActual.getDate() < nacimiento.getDate())) {
+                edad--;
             }
+
+            document.getElementById("edad").textContent = edad;
         }
     }
 
-    // Mostrar informaci髇 del perfil seleccionado
-    const cards = document.querySelectorAll('.card');
-    cards.forEach(card => {
-        card.addEventListener('click', function() {
-            const name = this.querySelector('.card-header').innerText;
-            const id = this.dataset.id; // Obtener la identificaci髇 de la tarjeta
-            alert(`Nombre: ${name}, ID: ${id}`);
-        });
-    });
+    
+    window.onload = function () {
+        calcularEdad();
+    };
 </script>

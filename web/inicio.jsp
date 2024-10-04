@@ -13,6 +13,5 @@
     </head>
     <body>
         <h1>FUNDACIÓN VILLA ESPERANZA</h1>
-        <a href='principal.jsp?CONTENIDO=2.TiposApadrinamieto/planesPadrinos.jsp&accion=Adicionar'> <button title="Agregar planes">Adicionar plan</button></a>
-    </body>
+       </body>
 </html>

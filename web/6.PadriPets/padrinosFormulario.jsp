@@ -80,7 +80,7 @@
     <td>
         <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
 
-            <input  name="mascotasPlan" id="mascotasPlan">
+            <input type="hidden" name="mascotasPlan" id="mascotasPlan">
             <table border='0'>
                 <%=lineaModificar%>
                 <tr>
@@ -144,11 +144,9 @@
 <div id="formulario" title="Apadrinar mascota">
     <form name="formularioMascotas">
         <table id="mascotas" border="0">
-            <thead>
                 <tr><th>Mascota</th><th><input type="text" name="Mascota" id="Mascota"></th></tr>
                 <tr><th>Fecha Inicio:</th><th><input type="date" name="Fecha" id="Fecha"></th></tr>
                 <tr><th>Fecha Fin:</th><th><input type="date" name="FechaFin" id="FechaFin"></th></tr>
-            </thead>
         </table>
         <%= listaPlan%>
         <input type="button" value="Agregar" onclick="actualizarTabla();">
@@ -186,24 +184,25 @@
         };
     }
 
-
-
-    var mascota = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
-    var vectorMascotas = new Array();
-    for (var i = 0; i < mascota.length; i++) {
-        vectorMascotas[i] = mascota[i][1] + " - " + mascota[i][0];
+  $(document).ready(function() {
+    var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+    var vectorMascotas = [];
+    for (var i = 0; i < mascotas.length; i++) {
+        vectorMascotas[i] = mascotas[i][1] + " - " + mascotas[i][0];
     }
-    ;
+    
+    // Inicializa el autocompletado con una configuración básica
     $("#Mascota").autocomplete({
-        source: vectorMascotas
+        source: vectorMascotas,
+        minLength: 1 // Se activa cuando el usuario escribe al menos 1 carácter
     });
+});
 
     var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
     var vectorPersonas = new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
-    }
-    ;
+    } ;
     $("#identificacion").autocomplete({
         source: vectorPersonas
     });
@@ -344,23 +343,30 @@
 }
 
 
-    function eliminar(fila) {
-        var mascotae = "";
-        var filas = document.formulario.mascotasPlan.value.split("||");
-        var contador = 0;
+   function eliminar(fila) {
+    console.log("Eliminando fila:", fila);
 
-        for (var i = 0; i < filas.length; i++) {
-            if (i !== fila) {
-                if (contador > 0)
-                    mascotae += "||";
-                mascotae += filas[i];
-                contador++;
-            }
+    var mascotae = "";
+    var filas = document.formulario.mascotasPlan.value.split("||");
+    console.log("Filas antes de eliminar:", filas);
+
+    var contador = 0;
+
+    for (var i = 0; i < filas.length; i++) {
+        if (i !== fila) {
+            if (contador > 0)
+                mascotae += "||";
+            mascotae += filas[i];
+            contador++;
         }
-        document.formulario.mascotasPlan.value = mascotae;
-
-        cargarTabla(); // Recarga las tarjetas
     }
+
+    console.log("Filas después de eliminar:", mascotae);
+
+    document.formulario.mascotasPlan.value = mascotae;
+
+    cargarTabla(); // Recarga las tarjetas
+}
 
     $(function () {
         $("#formulario").dialog({
