@@ -1,9 +1,3 @@
-<%-- 
-    Document   : unidadesDeMedida
-    Created on : 28/08/2024, 10:45:02 AM
-    Author     : Luis Eraso
---%>
-
 <%@page import="java.util.List"%>
 <%@page import="clases.UnidadDeMedida"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -28,7 +22,7 @@
         lista += "<p><strong>Código:</strong> " + unidadDeMedida.getId() + "</p>";
         lista += "<p><strong>Notación:</strong> " + unidadDeMedida.getNotacion() + "</p>";
         lista += "<div class='button-container'>";
-        lista += "<button class='btn-modificar' onclick='abrirFormulario(\"Modificar\", " + unidadDeMedida.getId() + ");'>Modificar</button>";
+        lista += "<button class='btn-modificar' onclick='abrirFormulario(\"Modificar\", " + unidadDeMedida.getId() + ", \"" + unidadDeMedida.getNombre() + "\", \"" + unidadDeMedida.getNotacion() + "\");'>Modificar</button>";
         lista += "<button class='btn-eliminar' onclick='confirmarEliminacion(" + unidadDeMedida.getId() + ")'>Eliminar</button>";
         lista += "</div>";
         lista += "</div>";
@@ -45,7 +39,7 @@
 
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <%= lista%>
+            <%= lista %>
             <br><br>
         </div>
         <div class="swiper-button-next"></div>
@@ -94,13 +88,15 @@
         });
     });
 
-    function abrirFormulario(accion, id = null) {
+    function abrirFormulario(accion, id = null, nombre = '', notacion = '') {
         if (accion === "Modificar") {
             $('#formulario').dialog('option', 'title', 'Modificar Unidad de Medida');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Modificar';
-
             document.querySelector('input[type="button"][value="Modificar"]').setAttribute('onclick', 'modificarUnidadDeMedida(' + id + ');');
 
+            // Precargar los datos en los campos del formulario
+            document.getElementById('nombre').value = nombre;
+            document.getElementById('notacion').value = notacion;
 
         } else if (accion === "Adicionar") {
             $('#formulario').dialog('option', 'title', 'Adicionar Unidad de Medida');
@@ -115,7 +111,6 @@
     }
 
     function modificarUnidadDeMedida(id) {
-
         var nombre = document.getElementById('nombre').value;
         var notacion = document.getElementById('notacion').value;
         var url = "1.TipoDonacion/unidadesDeMedidaActualizar.jsp?accion=Modificar&id=" + id + "&nombre=" + nombre + "&notacion=" + notacion;
