@@ -102,8 +102,6 @@
             document.querySelector('input[type="button"][value="Modificar"]').setAttribute('onclick', 'modificarUnidadDeMedida(' + id + ');');
 
 
-            cargarDatosUnidadDeMedida(id);
-
         } else if (accion === "Adicionar") {
             $('#formulario').dialog('option', 'title', 'Adicionar Unidad de Medida');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Agregar';
@@ -115,11 +113,6 @@
 
         $('#formulario').dialog('open');
     }
-
-    function cargarDatosUnidadDeMedida(id) {
-
-    }
-
 
     function modificarUnidadDeMedida(id) {
 
