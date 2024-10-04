@@ -17,7 +17,6 @@ for (int i = 0; i < datos.size(); i++) {
     lista += "<tr>";
     lista += "<td>" +
              "Código: " + apadrinamiento.getCodigo() + "<br>" +
-             "Planes: " + apadrinamiento.getPlanApadrinamiento() + "<br>" +
              "Fecha: " + apadrinamiento.getFecha() + "<br>" +
              "Id Padrino: " + apadrinamiento.getIdentificacionPadrino() + "<br>" +
              "<a href='principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp&accion=Modificar&identificacion=" + apadrinamiento.getCodigo() + "' title='Modificar'>" +
