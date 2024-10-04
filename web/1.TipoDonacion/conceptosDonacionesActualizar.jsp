@@ -7,14 +7,15 @@
 <%@page import="clases.ConceptoDonacion"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<!DOCTYPE html>
 <%
-
     String accion = request.getParameter("accion");
+    String codigo = request.getParameter("codigo");
     String nombre = request.getParameter("nombre");
     String descripcion = request.getParameter("descripcion");
     String codigoTipoDonacion = request.getParameter("codigoTipoDonacion");
-   
     String idUnidadDeMedida = request.getParameter("idUnidadDeMedida");
+
     ConceptoDonacion conceptoDonacion = new ConceptoDonacion();
     conceptoDonacion.setNombre(nombre);
     conceptoDonacion.setDescripcion(descripcion);
@@ -35,6 +36,13 @@
             break;
     }
 %>
+
 <script type="text/javascript">
-    document.location="/HuellitasWeb/principal.jsp?CONTENIDO=1.TipoDonacion/conceptoDonaciones.jsp"
+    // Incrustar las variables JSP en el script JavaScript
+    var codigo = "<%= codigo%>";
+    var accion = "<%= accion%>";
+
+ 
+    document.location = "/HuellitasWeb/principal.jsp?CONTENIDO=1.TipoDonacion/conceptoDonaciones.jsp&codigo=" + codigo;
 </script>
+
