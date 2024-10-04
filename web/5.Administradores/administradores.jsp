@@ -13,100 +13,67 @@
 
 </head>
 <%
-String lista = "";
-List<Persona> datos = Persona.getListaEnObjetos("tipo<>'C'", null);
-for (int i = 0; i < datos.size(); i++) {
-    Persona administrador = datos.get(i);
-    lista += "<div class='swiper-slide card'>"; // Añadido la clase 'card'
-    lista += "<div class='card-body'>"; // Contenedor para el cuerpo de la tarjeta
-    lista += "<img src='presentacion/administrador/" + administrador.getFoto() + "' class='profile-image'/>"; // Imagen de perfil
-    lista += "<p><strong>Identificación:</strong> " + administrador.getIdentificacion() + "</p>";
-    lista += "<p><strong>Nombre:</strong> " + administrador.getNombre() + "</p>";
-    lista += "<p><strong>Género:</strong> " + administrador.getGenero() + "</p>";
-    lista += "<p><strong>Edad:</strong> " + administrador.getEdad() + "</p>";
-    lista += "<p><strong>Email:</strong> " + administrador.getEmail() + "</p>";
-    lista += "<p><strong>Teléfono:</strong> " + administrador.getTelefono() + "</p>";
-    lista += "<p><strong>Dirección:</strong> " + administrador.getDireccion() + "</p>";
-    lista += "<p><strong>Residencia:</strong> " + administrador.getResidencia() + "</p>";
-    lista += "<div class='card-footer'>"; // Contenedor para los botones
-    lista += "<a href='principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Modificar&identificacion=" + administrador.getIdentificacion() + "' title='Modificar'>";
-    lista += "<button class='btn-adicionar' title='Modificar'>Modificar</button></a>";
-    lista += "<button class='btn-eliminar'title='Eliminar' onClick='eliminar(" + administrador.getIdentificacion() + ")'>Eliminar</button>";
-    lista += "</div>"; // Fin de card-footer
-    lista += "</div>"; // Fin de card-body
-    lista += "</div>"; // Fin de swiper-slide
-}
+    String lista = "";
+    List<Persona> datos = Persona.getListaEnObjetos("tipo<>'c'", null);
+    lista += "<div class='swiper-wrapper'>"; // Inicio del swiper-wrapper
+    for (int i = 0; i < datos.size(); i++) {
+        Persona administrador = datos.get(i);
+        lista += "<div class='swiper-slide'>"; // Inicio de la tarjeta
+        lista += "<div class='card'>"; // Añadido la clase 'card'
+        lista += "<div class='card-image'>"; // Contenedor de la imagen
+        lista += "<img src='presentacion/administrador/" + administrador.getFoto() + "' alt='Foto de " + administrador.getNombre() + "' class='profile-image' width='30' height='auto'>";
+        lista += "</div>"; // Fin de la imagen
+        lista += "<div class='card-header'>"; // Cabecera de la tarjeta
+        lista += administrador.getNombre(); // Nombre del administrador
+        lista += "</div>"; // Fin de la cabecera
+        lista += "<div class='card-body'>"; // Cuerpo de la tarjeta
+        lista += "<p><strong>Identificación:</strong> " + administrador.getIdentificacion() + "</p>";
+        lista += "<p><strong>Género:</strong> " + administrador.getGenero() + "</p>";
+        lista += "<p><strong>Edad:</strong> " + administrador.getEdad() + " años</p>";
+        lista += "<p><strong>Email:</strong> " + administrador.getEmail() + "</p>";
+        lista += "<p><strong>Teléfono:</strong> " + administrador.getTelefono() + "</p>";
+        lista += "<p><strong>Dirección:</strong> " + administrador.getDireccion() + "</p>";
+        lista += "<p><strong>Residencia:</strong> " + administrador.getResidencia() + "</p>";
+        lista += "</div>"; // Fin del cuerpo de la tarjeta
+        lista += "<div class='btn-container'>"; // Contenedor de botones
+        lista += "<a href='principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Modificar&identificacion=" + administrador.getIdentificacion() + "' title='Modificar'>";
+        lista += "<button class='btn-adicionar'>Modificar</button></a>";
+        lista += "<button class='btn-eliminar' onClick='eliminar(" + administrador.getIdentificacion() + ")'>Eliminar</button>";
+        lista += "</div>"; // Fin del contenedor de botones
+        lista += "</div>"; // Fin de la tarjeta
+        lista += "</div>"; // Fin de la diapositiva
+    }
+    lista += "</div>"; // Fin del swiper-wrapper
 %>
-
-
 
 <h3>LISTA DE ADMINISTRADORES</h3>
 
 <div class="header-container">
-
-<form id="searchForm">
+    <!-- Buscar por nombre -->
+    <form id="searchForm">
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
-            <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon"> <!-- Cambia la ruta por la de tu icono -->
+            <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
         </div>
-        <ul id="nameList"></ul> 
+        <ul id="nameList"></ul>
     </form>
-    <div id="selectedAdminInfo"></div>
-</div>
+
     <!-- Botón de adicionar -->
     <div class="btn-container">
         <a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Adicionar">
-            <button id="Adicionar" class="btn-adicionar">Adicionar</button>
+            <button class="btn-adicionar">Adicionar</button>
         </a>
     </div>
-
-
+</div>
 
 <div class="swiper-container">
-    <div class="swiper-wrapper">
-        <% for (int i = 0; i < datos.size(); i++) {
-            Persona administrador = datos.get(i);
-        %>
-   
-
-        <div class="swiper-slide">
-            <div class="card">
-                <div class="card-image">
-                    <img src="presentacion/administrador/<%= administrador.getFoto()%>" alt="Foto de <%= administrador.getNombre()%>" class="profile-image">
-                </div>
-                <div class="card-header">
-                    <%= administrador.getNombre() %>
-                </div>
-                 <div class="card-subtitle">
-            <p> <%= administrador.getTipoEnObjeto().getNombre() %></p>
-               </div>
-
-                <div class="card-body">
-                    <p><strong>Identificación:</strong> <%= administrador.getIdentificacion() %></p>
-                    <p><strong>Género:</strong> <%= administrador.getGenero() %></p>
-                    <p><strong>Edad:</strong> <%= administrador.getEdad() %></p>
-                    <p><strong>Email:</strong> <%= administrador.getEmail() %></p>
-                    <p><strong>Teléfono:</strong> <%= administrador.getTelefono() %></p>
-                    <p><strong>Dirección:</strong> <%= administrador.getDireccion() %></p>
-                    <p><strong>Residencia:</strong> <%= administrador.getResidencia() %></p>
-                </div>
-                <div class="btn-container">
-                    <a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Modificar&identificacion=<%= administrador.getIdentificacion() %>">
-                        <button class="btn-adicionar">Modificar</button>
-                    </a>
-                    <button class="btn-eliminar" onClick="eliminar(<%= administrador.getIdentificacion() %>)">Eliminar</button>
-                </div>
-            </div>
-        </div>
-        <% } %>
-    </div>
-
-    <!-- Añadir botones de navegación -->
+    <%= lista %>
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
     <div class="swiper-pagination"></div>
 </div>
-<div id="result"></div> <!-- Para mostrar la identificación -->
+
+<div id="result"></div>
 <script type="text/javascript">
     function eliminar(identificacion){
         resultado=confirm("Realmente desea eliminar el administrador con identificacion"+identificacion+"?");
@@ -151,22 +118,19 @@ window.onload = function() {
     });
     
    function filterNames() {
-    // Obtener el valor de entrada del campo de búsqueda
-    let input = document.getElementById('searchInput');
-    let filter = input.value.toLowerCase();
-    
-    // Obtener los elementos de las tarjetas
-    let cards = document.getElementsByClassName('card');
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const slides = document.getElementsByClassName('swiper-slide');
 
-    // Iterar sobre todas las tarjetas y filtrar por el texto que se escribió
-    for (let i = 0; i < cards.length; i++) {
-        // Obtener el nombre dentro de la tarjeta
-        let name = cards[i].querySelector('.card-header').innerText;
+    // Recorre cada slide y oculta o muestra dependiendo del filtro
+    for (let i = 0; i < slides.length; i++) {
+        const cardHeader = slides[i].getElementsByClassName('card-header')[0];
+        const textValue = cardHeader.textContent || cardHeader.innerText;
 
-        if (name.toLowerCase().includes(filter)) {
-            cards[i].style.display = "";  // Mostrar tarjeta si coincide
+        if (textValue.toLowerCase().indexOf(filter) > -1) {
+            slides[i].style.display = "";
         } else {
-            cards[i].style.display = "none";  // Ocultar tarjeta si no coincide
+            slides[i].style.display = "none";
         }
     }
 }
