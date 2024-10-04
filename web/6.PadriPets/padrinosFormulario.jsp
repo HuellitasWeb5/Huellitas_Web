@@ -22,27 +22,7 @@
     String codigo = request.getParameter("codigo");
     String lineaModificar = "";
     Apadrinamiento apadrinamiento = new Apadrinamiento();
-    String listaDetalle = "";
-    if (accion.equals("Modificar")) {
-        apadrinamiento = new Apadrinamiento(codigo);
-        lineaModificar = "<tr><th>Fecha</th><td>" + apadrinamiento.getFecha() + "</td></tr>";
-        lineaModificar += "<tr><th>Codigo</th><td>" + apadrinamiento.getCodigo() + "</td></tr>";
-        lineaModificar += "<tr><th>Identificacion</th><td>" + apadrinamiento.getIdentificacionPadrino() + "</td></tr>";
-        lineaModificar += "<tr><th>Foto Recibo</th><td>" + apadrinamiento.getFotoRecibo() + "</td></tr>";
-        lineaModificar += "<tr><th>Foto Cedula</th><td>" + apadrinamiento.getFotoCedula() + "</td></tr>";
-        List<ApadrinamientoDetalle> datosDetalle = apadrinamiento.getDetalles();
-        for (int k = 0; k < datosDetalle.size(); k++) {
-            ApadrinamientoDetalle detalle = datosDetalle.get(k);
-            listaDetalle += "<tr>";
-            listaDetalle += "<td align='rigth'>" + detalle.getCodigoMascota() + "</td>";
-            listaDetalle += "<td align='rigth'>" + detalle.getPlanApadrinamiento() + "</td>";
-            listaDetalle += "<td align='rigth'>" + detalle.getLapsoApadrinamiento() + "</td>";
-            listaDetalle += "<td>";
-            listaDetalle += "<input type='button' title='Eliminar'>eliminar";
-            listaDetalle += "</td>";
-            listaDetalle += "</tr>";
-        }
-    }
+
     String listaPlan = "<div class='carousel-container'>";
     listaPlan += "<div class='swiper-container carousel'>";
     listaPlan += "<div class='swiper-wrapper'>";
@@ -157,12 +137,12 @@
 
     document.addEventListener("DOMContentLoaded", function () {
         var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 'auto', // Permite mostrar tantas tarjetas como quepan
-            spaceBetween: 10, // Espacio entre tarjetas
-            loop: false, // Cambia a true si quieres que el carrusel sea cíclico
+            slidesPerView: 'auto',
+            spaceBetween: 10, 
+            loop: false, 
             navigation: {
-                nextEl: '.swiper-button-next', // Selecciona el botón siguiente
-                prevEl: '.swiper-button-prev', // Selecciona el botón anterior
+                nextEl: '.swiper-button-next', 
+                prevEl: '.swiper-button-prev', 
             },
         });
     });
@@ -190,11 +170,11 @@
     for (var i = 0; i < mascotas.length; i++) {
         vectorMascotas[i] = mascotas[i][1] + " - " + mascotas[i][0];
     }
-    
-    // Inicializa el autocompletado con una configuración básica
+
     $("#Mascota").autocomplete({
         source: vectorMascotas,
-        minLength: 1 // Se activa cuando el usuario escribe al menos 1 carácter
+        minLength: 1
+
     });
 });
 
@@ -250,13 +230,12 @@
         var objeto = document.getElementById("mascotasPlan");
 
         if (objeto.value != '')
-            objeto.value += "||";  // Asegúrate de agregar el separador correctamente
+            objeto.value += "||";  
 
         var mascota = document.formularioMascotas.Mascota.value;
-        var nombreMascota = mascota.substring(0, mascota.indexOf("-")).trim();  // Corregido subString
+        var nombreMascota = mascota.substring(0, mascota.indexOf("-")).trim();  
         var codigoMascota = mascota.substring(mascota.indexOf("-") + 1).trim();
 
-        // Obtener la opción seleccionada
         var plan = document.querySelectorAll('input[name="opcionSeleccionada"]');
         var seleccion = '';
         plan.forEach(plan => {
@@ -265,46 +244,38 @@
             }
         });
 
-        // Fechas
+
         var fechaInicio = document.getElementById('Fecha').value;
         var fechaFin = document.getElementById('FechaFin').value;
         var lapsoPlan = fechaInicio + " / " + fechaFin;
 
-        // Guardar el valor en el input "mascotasPlan"
         objeto.value += nombreMascota + "|" + codigoMascota + "|" + seleccion + "|" + lapsoPlan;
 
-        cargarTabla();  // Asegúrate de que esta función exista o esté implementada correctamente
-        cerrarFormulario();  // Cerrar formulario
+        cargarTabla();  
+        cerrarFormulario();  
     }
 
     function cargarTabla() {
-    // Obtener el contenedor de las tarjetas (el swiper-wrapper dentro de la swiper-container)
     var contenedor = document.querySelector('.swiper-wrapper');
-    contenedor.innerHTML = '';  // Limpiar el contenedor antes de agregar nuevas tarjetas
+    contenedor.innerHTML = '';  
 
-    // Obtener el valor del input 'mascotasPlan'
     var datos = document.getElementById('mascotasPlan').value;
     
-    // Verificar que haya datos
     if (datos === '') {
         return;
     }
 
-    // Separar los datos por el delimitador '||'
     var registros = datos.split('||');
     
-    // Iterar sobre cada registro
-    registros.forEach(function(registro) {
+    registros.forEach(function(registro, index) {
         var campos = registro.split('|');
         
-        // Crear los elementos para la tarjeta
         var tarjeta = document.createElement('div');
-        tarjeta.classList.add('swiper-slide');  // Añadir clase de swiper-slide
-        
+        tarjeta.classList.add('swiper-slide');  
         var card = document.createElement('div');
-        card.classList.add('card');  // Añadir clase de tarjeta
+        card.classList.add('card'); 
         
-        // Crear el contenido de la tarjeta
+
         var nombreElemento = document.createElement('h2');
         nombreElemento.textContent = 'Mascota: ' + campos[0];
         
@@ -317,20 +288,24 @@
         var lapsoElemento = document.createElement('p');
         lapsoElemento.innerHTML = '<strong>Lapso:</strong> ' + campos[3];
         
-        // Agregar los elementos a la tarjeta
+        // Crear botón de eliminar
+        var botonEliminar = document.createElement('button');
+        botonEliminar.textContent = 'Eliminar';
+        botonEliminar.onclick = function() {
+            eliminar(index); // Pasar el índice de la tarjeta a la función eliminar
+        };
+
         card.appendChild(nombreElemento);
         card.appendChild(codigoElemento);
         card.appendChild(planElemento);
         card.appendChild(lapsoElemento);
+        card.appendChild(botonEliminar); // Añadir el botón de eliminar a la tarjeta
         
-        // Agregar la tarjeta a la diapositiva
         tarjeta.appendChild(card);
-        
-        // Agregar la tarjeta al contenedor (swiper-wrapper)
         contenedor.appendChild(tarjeta);
     });
     
-    // Reiniciar swiper.js para actualizar el carrusel con las nuevas tarjetas
+
     var swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
         spaceBetween: 10,
@@ -338,12 +313,10 @@
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
         },
-        loop: true,  // Hace que el carrusel sea cíclico
+        loop: true,  
     });
 }
-
-
-   function eliminar(fila) {
+function eliminar(fila) {
     console.log("Eliminando fila:", fila);
 
     var mascotae = "";
@@ -363,9 +336,11 @@
 
     console.log("Filas después de eliminar:", mascotae);
 
+    // Actualizar el campo con los nuevos datos
     document.formulario.mascotasPlan.value = mascotae;
 
-    cargarTabla(); // Recarga las tarjetas
+    // Recargar la tabla de tarjetas para reflejar el cambio
+    cargarTabla(); 
 }
 
     $(function () {
@@ -379,7 +354,8 @@
                 effect: "explode",
                 duration: 1000
             },
-            width: 920, // Ancho del diálogo en píxeles
+            width: 920, 
+
             height: 440
         });
     });
@@ -388,14 +364,14 @@
     }
 
     function cerrarFormulario() {
-        // Cerrar el diálogo
+        
         $('#formulario').dialog('close');
-        // Restaurar valores del formulario
-        document.forms['formularioMascotas'].reset(); // Resetea todos los inputs del formulario
+       
+        document.forms['formularioMascotas'].reset();
 
-        // Limpiar el contenido de la tabla de selección (si es necesario)
-        $('#mascotas input[type="text"]').val(''); // Limpia los campos de texto
-        $('#planes input[type="checkbox"]:checked').prop('checked', false); // Desmarca cualquier checkbox seleccionado en la tabla de planes
+        $('#mascotas input[type="text"]').val(''); 
+        $('#planes input[type="checkbox"]:checked').prop('checked', false); 
+
     }
     
     
