@@ -1,25 +1,17 @@
-<%-- 
-    Document   : actualizarFormularioInfo
-    Created on : 1 oct 2024, 23:02:13
-    Author     : Angie
---%>
-<%@page import="clases.Persona"%>
-<%@page import="clases.Mascota"%>
-<%@page import="clases.FormularioDeInformacion"%>
-<%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
+    <%@page import="clases.Persona"%>
+    <%@page import="clases.Mascota"%>
+    <%@page import="clases.FormularioDeInformacion"%>
+    <%@page import="java.util.List"%>
+    <%@page import="java.sql.Date"%>
+    <%@page contentType="text/html" pageEncoding="UTF-8"%>
+    <%
     String accion = request.getParameter("accion");
-    String identificacion = request.getParameter("identificacion");
-    String nombreAdoptante = request.getParameter("nombreAdoptante");
-    String telefono = request.getParameter("telefono");
-    String direccion = request.getParameter("direccion");
-    String residencia = request.getParameter("residencia");
-    String codigoMascota = request.getParameter("codigoMascota");
-    String nombreMascota = request.getParameter("nombreMascota");
-    String fechaNacimiento = request.getParameter("fechaNacimiento");
-    String genero = request.getParameter("genero");
-    String cuidadosEspeciales = request.getParameter("cuidadosEspeciales");
+    String mensaje = "";
+
+    // Recuperar parámetros del formulario
+    String identificacionAdoptante = request.getParameter("identificacionAdoptante"); 
+    String codigosMascotasConcatenados = String.join(",", codigosMascotas);
+    formulario.setCodigoMascota(codigosMascotasConcatenados);  // Puede haber más de un código de mascota
     String ocupacion = request.getParameter("ocupacion");
     String tiempoLibre = request.getParameter("tiempoLibre");
     String espacio = request.getParameter("espacio");
@@ -30,21 +22,14 @@
     String otrasMascotas = request.getParameter("otrasMascotas");
     String propietario = request.getParameter("propietario");
     String motivacion = request.getParameter("motivacion");
-    String horarioVisitaDias = request.getParameter("horarioVisitaDias");
-    String horarioVisitaHora = request.getParameter("horarioVisitaHora");
+    String fechaVisitaDia = request.getParameter("horarioVisitaDia");
+    String fechaVisitaHora = request.getParameter("horarioVisitaHora");
     String descripcion = request.getParameter("descripcion");
-    
+
     FormularioDeInformacion formulario = new FormularioDeInformacion();
-    formulario.setIdentificacion(identificacion);
-    formulario.setNombreAdoptante(nombreAdoptante);
-    formulario.setTelefono(telefono);
-    formulario.setDireccion(direccion);
-    formulario.setResidencia(residencia);
-    formulario.setCodigoMascota(codigoMascota);
-    formulario.setNombreMascota(nombreMascota);
-    formulario.setFechaNacimiento(Date.valueOf(fechaNacimiento));
-    formulario.setGenero(genero);
-    formulario.setCuidadosEspeciales(cuidadosEspeciales);
+
+    formulario.setIdentificacionAdoptante(identificacionAdoptante);
+    formulario.setCodigosMascotas(codigosMascotasConcatenados);  // Establece la lista de códigos de mascota
     formulario.setOcupacion(ocupacion);
     formulario.setTiempoLibre(tiempoLibre);
     formulario.setEspacio(espacio);
@@ -55,27 +40,47 @@
     formulario.setOtrasMascotas(otrasMascotas);
     formulario.setPropietario(propietario);
     formulario.setMotivacion(motivacion);
-    formulario.setHorarioVisitaDias(horarioVisitaDias);
-    formulario.setHorarioVisitaHora(horarioVisitaHora);
+    formulario.setFechaVisitaDia(fechaVisitaDia);
+    formulario.setFechaVisitaHora(fechaVisitaHora);
     formulario.setDescripcion(descripcion);
 
-    switch (accion) {
+    try {
+        switch(accion){
         case "Adicionar":
-            formulario.grabar();
+            if (formulario.grabarFormularioConProcedimientoAlmacenado()) {
+                mensaje = "Formulario de adopción guardado correctamente.";
+            } else {
+                mensaje = "Error al guardar el formulario de adopción.";
+            }
             break;
         case "Modificar":
-            formulario.setId(request.getParameter("id"));
-            formulario.modificar();
+            formulario.setCodigo(request.getParameter("codigo"));
+            if (formulario.modificar()) {
+                mensaje = "Formulario modificado correctamente.";
+            } else {
+                mensaje = "Error al modificar el formulario.";
+            }
             break;
         case "Eliminar":
-            formulario.setId(request.getParameter("id"));
-            formulario.eliminar();
+            formulario.setCodigo(request.getParameter("codigo"));
+            if (formulario.eliminar()) {
+                mensaje = "Formulario eliminado correctamente.";
+            } else {
+                mensaje = "Error al eliminar el formulario.";
+            }
             break;
+        default:
+            mensaje = "Acción no reconocida.";
+        }
+    } catch (Exception e) {
+        mensaje = "Ocurrió un error: " + e.getMessage();
     }
-%>
-<script type="text/javascript">
-    document.location="/HuellitasWeb/principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp"
-</script>
 
+    if (!mensaje.isEmpty()) {
+        out.println("<script>alert('" + mensaje + "');</script>");
+    }
+    %>
 
-
+    <script type="text/javascript">
+    document.location = "/HuellitasWeb/principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp"
+    </script>
