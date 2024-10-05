@@ -55,6 +55,7 @@ public class TipoPersona {
 
         switch (this.codigo) {
             case "S":
+
                 menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light'>";
                 menu += "<div class='container-fluid'>";
 
@@ -71,9 +72,10 @@ public class TipoPersona {
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Medidas</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp'>Tipos Donacion</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesPadrinos.jsp'>Planes Padrinos</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp'>Mascotas</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" + getNombre() + "'>Mascotas</a></li>";
+
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=4.Clientes/clientes.jsp'>Clientes</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=5.Administradores/administradores.jsp'>Administradores</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=5.Administradores/administradores.jsp'>Adminis1tradores</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp'>Padripet</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a></li>";
@@ -102,14 +104,14 @@ public class TipoPersona {
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Medidas</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp'>Tipos Donacion</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesPadrinos.jsp'>Planes Padrinos</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp'>Mascotas</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" + getNombre() + "'>Mascotas</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=4.Clientes/clientes.jsp'>Clientes</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp'>Padripet</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=91.PerfilAdministradorF/perfil.jsp'>Perfil</a></li>";
                 menu += "<li class='nav-item'><a href='index.jsp'>Salir</a></li>";
-                
+
                 menu += "</ul>";
                 menu += "</div>";
                 menu += "</div>";
@@ -130,13 +132,13 @@ public class TipoPersona {
                 menu += "<ul class='navbar-nav'>";
 
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp'>Mascotas</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" + getNombre() + "'>Mascotas</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp'>Padripet</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/perfil.jsp'>Perfil</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='index.jsp'>Salir</a></li>";
-                
+
                 menu += "</ul>";
                 menu += "</div>";
                 menu += "</div>";
@@ -166,5 +168,11 @@ public class TipoPersona {
         }
         return lista;
 
+    }
+
+    // Método para obtener el tipo de usuario en formato legible
+    public static String obtenerNombrePorCodigo(String codigo) {
+        TipoPersona tipoPersona = new TipoPersona(codigo);
+        return tipoPersona.getNombre();
     }
 }

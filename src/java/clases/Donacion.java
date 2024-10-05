@@ -28,7 +28,19 @@ public class Donacion {
     }
 
     public Donacion(String codigo) {
-        String cadenaSQL = "select codigo,fecha,descripcion,identificacionDonante from donacion where codigo="+codigo;
+        String cadenaSQL = "SELECT "
+                + "    donacion.codigo, "
+                + "    donacion.fecha, "
+                + "    donacion.descripcion, "
+                + "    donacion.identificacionDonante,"
+                + "    donacionesdetalle.id AS detalleId, "
+                + "    donacionesdetalle.idConcepto, "
+                + "    donacionesdetalle.cantidad, "
+                + "    donacionesdetalle.valorUnitarios"
+                + "FROM "
+                + "    donacion"
+                + "INNER JOIN "
+                + "    donacionesdetalle ON donacion.codigo = donacionesdetalle.codigoDonacion where codigo=" + codigo;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             this.codigo = codigo;
@@ -73,7 +85,7 @@ public class Donacion {
     }
 
     @Override
-    
+
     public String toString() {
         return codigo;
     }
@@ -111,13 +123,13 @@ public class Donacion {
     }
 
     public static List<Donacion> getListaEnObjetos(String filtro, String orden) {
-       List<Donacion> lista = new ArrayList<>();
+        List<Donacion> lista = new ArrayList<>();
         ResultSet datos = getLista(filtro, orden);
         if (datos != null) {
             try {
                 while (datos.next()) {
                     Donacion donacion = new Donacion();
-                   donacion.setCodigo(datos.getString("codigo"));
+                    donacion.setCodigo(datos.getString("codigo"));
                     donacion.setFecha(datos.getString("fecha"));
                     donacion.setDescripcion(datos.getString("descripcion"));
                     donacion.setIdentificacionDonante(datos.getString("identificacionDonante"));
@@ -131,5 +143,4 @@ public class Donacion {
         }
         return lista;
     }
-}   
-    
+}
