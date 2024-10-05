@@ -33,7 +33,7 @@ public class ConectorBD {
         puerto = "3306";
         usuario = "adso";
         clave = "utilizar";
-        baseDatos = "HuellitasWeb";
+        baseDatos = "huellitasWeb";
 
     }
 
