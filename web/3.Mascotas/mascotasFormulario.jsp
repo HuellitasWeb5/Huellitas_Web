@@ -13,6 +13,7 @@
 String accion=request.getParameter("accion");
 String codigo=request.getParameter("codigo");
 Mascota mascota=new Mascota();
+mascota.setCodigo("Se autoGenera");
 if (accion.equals("Modificar")) {
         mascota=new Mascota(codigo);
     }
@@ -76,6 +77,7 @@ if (accion.equals("Modificar")) {
                     <textarea name="descripcion" cols="50" rows="5" maxlength="60"  required><%=mascota.getDescripcion()%></textarea>
                 </div>
                 <div class="btn-container">
+                    <input type="hidden" name="codigo" value="<%=mascota.getCodigo()%>">
                     <input type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
                     <input type="button" value="Cancelar" onClick="window.history.back()" class="btn-eliminar">
                 </div>
