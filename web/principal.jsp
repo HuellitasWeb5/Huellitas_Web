@@ -40,16 +40,20 @@ else USUARIO=(Persona) sesion.getAttribute("usuario");
         <footer  >  
 <div class="contenedor-footer">
             <div class="content-foo">
-                <h4>Celular:</h4>
-                <p>3143143142</p>
+                <h4>3162562576</h4>
+                <p>Celular</p>
             </div>
             <div class="content-foo">
-                <h4>Correo:</h4>
-                <p>villaesperanza@gmail.com</p>
+                <h4>Villaesperanza@gmail.com</h4>
+                <p>Correo electrónico</p>
             </div>
             <div class="content-foo">
-                <h4>Dirección:</h4>
-                <p>Parque De Chimayoy</p>
+                <h4>Parque Natural Chimayoy</h4> 
+                <p>Dirección</p>
+            </div>
+            <div class="content-foo">
+                <h4>Pasto, Nariño, Colombia</h4>
+                <p>Ciudad</p>
             </div>
         </div>
         <h2 class="titulo-final">&copy;HUELLITAS WEB</h2>
