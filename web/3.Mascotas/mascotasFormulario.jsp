@@ -18,7 +18,6 @@ if (accion.equals("Modificar")) {
         mascota=new Mascota(codigo);
     }
 %>
-
 <h3><%=accion.toUpperCase() %> MASCOTAS</h3>
 <div class="card-carousel">
     <div class="card">
@@ -29,8 +28,8 @@ if (accion.equals("Modificar")) {
             <img src="presentacion/mascota/<%=mascota.getFoto()%>" id="foto" class="profile-image">
             <form name="formulario" method="post" action="principal.jsp?CONTENIDO=3.Mascotas/mascotasActualizar.jsp" enctype="multipart/form-data">
                 <div class="form-group">
-                            <label for="codigo">Codigo:</label>
-                            <a><%=mascota.getCodigo()%> </a>
+                    <label for="codigo">Codigo:</label>
+                    <a><%=mascota.getCodigo()%></a>
                 </div>
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
@@ -42,15 +41,17 @@ if (accion.equals("Modificar")) {
                 </div>
                 <div class="form-group">
                     <label for="tamano">Tamaño:</label>
-                    <div><select name="tamano" required>
-                    <option value="pequeno">Pequeño</option>
-                    <option value="mediano">Mediano</option>
-                    <option value="grande">Grande</option>
-                </select></div>
+                    <div>
+                        <select name="tamano" required>
+                            <option value="pequeno" <%= mascota.getTamano().equals("pequeno") ? "selected" : "" %>>Pequeño</option>
+                            <option value="mediano" <%= mascota.getTamano().equals("mediano") ? "selected" : "" %>>Mediano</option>
+                            <option value="grande" <%= mascota.getTamano().equals("grande") ? "selected" : "" %>>Grande</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto:</label>
-                    <input type="file" name="foto" accept="image/*" value="<%=mascota.getFoto()%>" onchange="mostrarFoto();" >
+                    <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();">
                 </div>
                 <div class="form-group">
                     <label for="cuidadosEspeciales">Cuidados Especiales:</label>
@@ -66,15 +67,15 @@ if (accion.equals("Modificar")) {
                 </div>
                 <div class="form-group">
                     <label for="estado">Estado:</label>
-                    <td><select id="estado" name="estado"  required>
-                    <option value="disponible">Disponible</option>
-                    <option value="apadrinado">Apadrinado</option>
-                    <option value="adoptado">Adoptado</option>
-                </select>
+                    <select id="estado" name="estado" required>
+                        <option value="disponible" <%= mascota.getEstado().equals("disponible") ? "selected" : "" %>>Disponible</option>
+                        <option value="apadrinado" <%= mascota.getEstado().equals("apadrinado") ? "selected" : "" %>>Apadrinado</option>
+                        <option value="adoptado" <%= mascota.getEstado().equals("adoptado") ? "selected" : "" %>>Adoptado</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="descripcion">Descripcion:</label>
-                    <textarea name="descripcion" cols="50" rows="5" maxlength="60"  required><%=mascota.getDescripcion()%></textarea>
+                    <label for="descripcion">Descripción:</label>
+                    <textarea name="descripcion" cols="50" rows="5" maxlength="60" required><%=mascota.getDescripcion()%></textarea>
                 </div>
                 <div class="btn-container">
                     <input type="hidden" name="codigo" value="<%=mascota.getCodigo()%>">
@@ -85,7 +86,8 @@ if (accion.equals("Modificar")) {
         </div>
     </div>
 </div>
-    
+                    
+                    
 <script> 
     function mostrarFoto(){
         var lector=new FileReader();
