@@ -4,6 +4,7 @@
     Author     : Angie
 --%>
 
+<%@page import="clases.FormularioDeInformacion"%>
 <%@ page import="clases.Persona"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,10 +13,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
 </head>
-
-<%
-    
-%>
 
 <h3>ADOPCIONES</h3>
 
