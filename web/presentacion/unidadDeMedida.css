@@ -5,13 +5,14 @@
     margin: 0 auto; /* Centra el carrusel en la página */
     overflow: hidden; /* Evita que el contenido se desborde fuera del contenedor */
 }
-
+.car
 .swiper-slide {
     flex: 0 0 25%; /* Cada tarjeta ocupa exactamente el 25% del contenedor */
     box-sizing: border-box; /* Asegura que el padding y los bordes se incluyan en el ancho total */
     max-width: 25%; /* Limita el ancho máximo de cada tarjeta al 25% */
     margin-right: 10px; /* Espacio entre las tarjetas */
-}
+} 
+
 
 .swiper-slide:last-child {
     margin-right: 0; /* Elimina el margen a la última tarjeta */
@@ -38,6 +39,10 @@
     margin: 10px auto; /* Reduce el margen alrededor de las tarjetas */
 }
 
+.card-img {
+    text-align: center;
+}
+
 .card-header {
     font-size: 1em; /* Reduce el tamaño de la fuente */
     font-weight: bold;
@@ -53,7 +58,7 @@
 }
 
 /* Estilos de los botones */
-.add-button, .btn-modificar, .btn-eliminar ,.btn-concepto {
+.add-button, .btn-modificar, .btn-eliminar ,.btn-concepto, .btn-apadrinar {
     margin: 15px 20px; /* Reduce el margen vertical */
     padding: 8px 12px; /* Reduce el padding para hacer los botones más pequeños */
     background-color: #4CAF50; 
