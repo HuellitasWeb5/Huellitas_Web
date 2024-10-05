@@ -7,7 +7,6 @@ package clases;
 
 import clasesGenericas.ConectorBD;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,16 +22,16 @@ import java.util.logging.Logger;
 public class FormularioDeInformacion {
 
     private String codigo;
-    private Date fecha;
+    private String fecha;
     private String identificacionAdoptante;
     private String codigoMascota;
     private String ocupacion;
     private String tiempoLibre;
     private String espacio;
     private String compromiso;
-    private int ninos;
-    private int habitantes;
-    private int responsables;
+    private String ninos;
+    private String habitantes;
+    private String responsables;
     private String otrasMascotas;
     private String propietario;
     private String motivacion;
@@ -48,37 +47,39 @@ public class FormularioDeInformacion {
     }
 
     public FormularioDeInformacion(String codigo) {
-        String cadenaSQL = "select fecha, identificacionAdoptante, codigoMascota, ocupacion, tiempoLibre, espacio, compromiso, ninos, habitantes, responsables, otrasMascotas, propietario, motivacion, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos "
-                + "from formularioDeInformacion where codigo = '" + codigo + "'";
+        String cadenaSQL = "select fecha, identificacionAdoptante, codigoMascota, ocupacion, tiempoLibre, espacio, compromiso, ninos, habitantes, responsables, otrasMascotas, "
+                + "propietario, motivacion, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos "
+                + "from formularioDeInformacion where codigo="+codigo ;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
                 this.codigo = codigo;
-                this.fecha = resultado.getDate("fecha");
-                this.identificacionAdoptante = resultado.getString("identificacionAdoptante");
-                this.codigoMascota = resultado.getString("codigoMascota");
-                this.ocupacion = resultado.getString("ocupacion");
-                this.tiempoLibre = resultado.getString("tiempoLibre");
-                this.espacio = resultado.getString("espacio");
-                this.compromiso = resultado.getString("compromiso");
-                this.ninos = resultado.getInt("ninos");
-                this.habitantes = resultado.getInt("habitantes");
-                this.responsables = resultado.getInt("responsables");
-                this.otrasMascotas = resultado.getString("otrasMascotas");
-                this.propietario = resultado.getString("propietario");
-                this.motivacion = resultado.getString("motivacion");
-                this.descripcion = resultado.getString("descripcion");
-                this.fechaVisitaDia = resultado.getString("fechaVisitaDia");
-                this.fechaVisitaHora = resultado.getString("fechaVisitaHora");
-                this.fotoRecibo = resultado.getString("fotoRecibo");
-                this.fotoVivienda = resultado.getString("fotoVivienda");
-                this.fotoCedula = resultado.getString("fotoCedula");
-                this.autorizacionDatos = resultado.getString("autorizacionDatos");
+                fecha = resultado.getString("fecha");
+                identificacionAdoptante = resultado.getString("identificacionAdoptante");
+                codigoMascota = resultado.getString("codigoMascota");
+                ocupacion = resultado.getString("ocupacion");
+                tiempoLibre = resultado.getString("tiempoLibre");
+                espacio = resultado.getString("espacio");
+                compromiso = resultado.getString("compromiso");
+                ninos = resultado.getString("ninos");
+                habitantes = resultado.getString("habitantes");
+                responsables = resultado.getString("responsables");
+                otrasMascotas = resultado.getString("otrasMascotas");
+                propietario = resultado.getString("propietario");
+                motivacion = resultado.getString("motivacion");
+                descripcion = resultado.getString("descripcion");
+                fechaVisitaDia = resultado.getString("fechaVisitaDia");
+                fechaVisitaHora = resultado.getString("fechaVisitaHora");
+                fotoRecibo = resultado.getString("fotoRecibo");
+                fotoVivienda = resultado.getString("fotoVivienda");
+                fotoCedula = resultado.getString("fotoCedula");
+                autorizacionDatos = resultado.getString("autorizacionDatos");
+
             } else {
-                System.out.println("No se encontró el formulario de información con el código: " + codigo);
+                System.out.print("No se encontró el formulario de información con el código: " + codigo);
             }
         } catch (SQLException ex) {
-            System.out.println("Error al consultar el código en formularioDeInformacion: " + ex.getMessage());
+            System.out.print("Error al consultar el código en formularioDeInformacion: " + ex.getMessage());
         }
     }
 
@@ -90,11 +91,11 @@ public class FormularioDeInformacion {
         this.codigo = codigo;
     }
 
-    public Date getFecha() {
+    public String getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -146,27 +147,27 @@ public class FormularioDeInformacion {
         this.compromiso = compromiso;
     }
 
-    public int getNinos() {
+    public String getNinos() {
         return ninos;
     }
 
-    public void setNinos(int ninos) {
+    public void setNinos(String ninos) {
         this.ninos = ninos;
     }
 
-    public int getHabitantes() {
+    public String getHabitantes() {
         return habitantes;
     }
 
-    public void setHabitantes(int habitantes) {
+    public void setHabitantes(String habitantes) {
         this.habitantes = habitantes;
     }
 
-    public int getResponsables() {
+    public String getResponsables() {
         return responsables;
     }
 
-    public void setResponsables(int responsables) {
+    public void setResponsables(String responsables) {
         this.responsables = responsables;
     }
 
@@ -256,40 +257,39 @@ public class FormularioDeInformacion {
     }
 
     public boolean grabar() {
-        String cadenaSQL = "insert into formularioDeInformacion (fecha, identificacionAdoptante, codigoMascota, habitantes, espacio, ninos, tiempoLibre, responsables, otrasMascotas, propietario, ocupacion, motivacion, compromiso, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos) "
-                + "values('" + fecha + "', '" + identificacionAdoptante + "', '" + codigoMascota + "', '" + habitantes + "', '" + espacio + "', '" + ninos + "', '" + tiempoLibre + "', '" + responsables + "', '" + otrasMascotas + "', '" + propietario + "', '" + ocupacion + "', '" + motivacion + "', '" + compromiso + "', '" + descripcion + "', '" + fechaVisitaDia + "', '" + fechaVisitaHora + "', '" + fotoRecibo + "', '" + fotoVivienda + "', '" + fotoCedula + "', '" + autorizacionDatos + "')";
-        System.out.println(cadenaSQL);
+        String cadenaSQL = "insert into formularioDeInformacion (codigo,fecha, identificacionAdoptante, codigoMascota, habitantes, espacio, ninos, tiempoLibre, responsables, otrasMascotas, propietario, ocupacion, motivacion, compromiso, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos) "
+                + "values('1','" + fecha + "', '" + identificacionAdoptante + "', '" + codigoMascota + "', '" + habitantes + "', '" + espacio + "', '" + ninos + "', '" + tiempoLibre + "', '" + responsables + "', '" + otrasMascotas + "', '" + propietario + "', '" + ocupacion + "', '" + motivacion + "', '" + compromiso + "', '" + descripcion + "', '" + fechaVisitaDia + "', '" + fechaVisitaHora + "', '" + fotoRecibo + "', '" + fotoVivienda + "', '" + fotoCedula + "', '" + autorizacionDatos + "')";
+
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
-    
 
-   public boolean grabarFormularioConProcedimientoAlmacenado() {
-    String codigosMascotas = String.join(",", this.codigoMascota);  // Unimos los códigos con comas
-    
-    String cadenaSQL = "CALL insertarFormularioDeInformacion('"
-            + this.fecha + "','"
-            + this.identificacionAdoptante + "','"
-            + codigosMascotas + "','" 
-            + this.ocupacion + "','"
-            + this.tiempoLibre + "','"
-            + this.espacio + "','"
-            + this.compromiso + "',"
-            + this.ninos + ","
-            + this.habitantes + ","
-            + this.responsables + ",'"
-            + this.otrasMascotas + "','"
-            + this.propietario + "','"
-            + this.motivacion + "','"
-            + this.descripcion + "','"
-            + this.fechaVisitaDia + "','"
-            + this.fechaVisitaHora + "','"
-            + this.fotoRecibo + "','"
-            + this.fotoVivienda + "','"
-            + this.fotoCedula + "','"
-            + this.autorizacionDatos + "')";
+   /* public boolean grabarFormularioConProcedimientoAlmacenado() {
+        String codigosMascotas = String.join(",", this.codigoMascota);  // Unimos los códigos con comas
 
-    return ConectorBD.ejecutarQuery(cadenaSQL);
-}
+        String cadenaSQL = "CALL insertarFormularioDeInformacion('"
+                + this.fecha + "','"
+                + this.identificacionAdoptante + "','"
+                + codigosMascotas + "','"
+                + this.ocupacion + "','"
+                + this.tiempoLibre + "','"
+                + this.espacio + "','"
+                + this.compromiso + "',"
+                + this.ninos + ","
+                + this.habitantes + ","
+                + this.responsables + ",'"
+                + this.otrasMascotas + "','"
+                + this.propietario + "','"
+                + this.motivacion + "','"
+                + this.descripcion + "','"
+                + this.fechaVisitaDia + "','"
+                + this.fechaVisitaHora + "','"
+                + this.fotoRecibo + "','"
+                + this.fotoVivienda + "','"
+                + this.fotoCedula + "','"
+                + this.autorizacionDatos + "')";
+
+        return ConectorBD.ejecutarQuery(cadenaSQL);
+    }*/
 
     public boolean modificar() {
         String cadenaSQL = "update formularioDeInformacion set "
@@ -335,16 +335,16 @@ public class FormularioDeInformacion {
                 while (datos.next()) {
                     FormularioDeInformacion formulario = new FormularioDeInformacion();
                     formulario.setCodigo(datos.getString("codigo"));
-                    formulario.setFecha(datos.getDate("fecha"));
+                    formulario.setFecha(datos.getString("fecha"));
                     formulario.setIdentificacionAdoptante(datos.getString("identificacionAdoptante"));
                     formulario.setCodigoMascota(datos.getString("codigoMascota"));
                     formulario.setOcupacion(datos.getString("ocupacion"));
                     formulario.setTiempoLibre(datos.getString("tiempoLibre"));
                     formulario.setEspacio(datos.getString("espacio"));
                     formulario.setCompromiso(datos.getString("compromiso"));
-                    formulario.setNinos(datos.getInt("ninos"));
-                    formulario.setHabitantes(datos.getInt("habitantes"));
-                    formulario.setResponsables(datos.getInt("responsables"));
+                    formulario.setNinos(datos.getString("ninos"));
+                    formulario.setHabitantes(datos.getString("habitantes"));
+                    formulario.setResponsables(datos.getString("responsables"));
                     formulario.setOtrasMascotas(datos.getString("otrasMascotas"));
                     formulario.setPropietario(datos.getString("propietario"));
                     formulario.setMotivacion(datos.getString("motivacion"));
@@ -408,7 +408,7 @@ public class FormularioDeInformacion {
         String cadenaSQL = "SELECT codigo, identificacionCliente, codigoMascota, FROM formularioDeInformacion";
 
         try (PreparedStatement pstmt = conn.prepareStatement(cadenaSQL);
-             ResultSet resultado = pstmt.executeQuery()) {
+                ResultSet resultado = pstmt.executeQuery()) {
 
             while (resultado.next()) {
                 FormularioDeInformacion formulario = new FormularioDeInformacion();
@@ -419,7 +419,7 @@ public class FormularioDeInformacion {
             }
 
         } catch (SQLException ex) {
-            System.out.println("Error al listar formularios: " + ex.getMessage());
+            System.out.print("Error al listar formularios: " + ex.getMessage());
         }
         return formularios;
     }
