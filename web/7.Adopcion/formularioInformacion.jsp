@@ -20,13 +20,14 @@
     </head>
 
     <body onload="cargarFecha()">
-        <form action="/HuellitasWeb/principal.jsp?CONTENIDO=actualizarFormularioInfo.jsp" method="post" enctype="multipart/form-data">
+        <form action="/HuellitasWeb/principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp" method="post" enctype="multipart/form-data">
             <div class="containerFormulario">
                 <h1>FORMULARIO DE ADOPCIÓN</h1>
                 <input type="hidden" name="accion" value="grabar">
 
                 <!-- FECHA -->
                 <div>Fecha actual: <span id="fecha"></span></div>
+                <input type="hidden" name="fechaActual" id="fechaActual">
 
                 <div class="contenedor-tarjetas">
                     <!-- Sección de SAN PATITAS (Adoptante) -->
@@ -35,7 +36,7 @@
                         <div class="datos-con-foto">
                             <div class="datos">
                                 <label>Identificación:</label>
-                                <input type="text" name="identificacion" id="identificacion" placeholder="Digite aquí la identificación del adoptante">
+                                <input type="text" name="identificacionAdoptante" id="identificacion" placeholder="Digite aquí la identificación del adoptante">
                                 <label>Nombre del Adoptante</label>
                                 <input type="text" name="nombre" id="nombre" readonly>
                                 <label>Teléfono</label>
@@ -57,7 +58,8 @@
                         <div class="datos-con-foto">
                             <div class="datos">
                                 <label>Código:</label>
-                                <input type="text" name="codigo" id="codigo" placeholder="Digite aquí el código de la mascota">
+                                <input type="hidden" name="codigosMascotas" id="codigosMascotas" value="">
+                                <input type="text" name="codigoMascota" id="codigo" placeholder="Digite aquí el código de la mascota">
                                 <label>Nombre de la mascota:</label>
                                 <input type="text" name="nombreMascota" id="nombreMascota" readonly>
                                 <label>Fecha de nacimiento Aproximada:</label>
@@ -88,27 +90,27 @@
                     <!-- Tiempo libre (Sí o No) -->
                     <label for="tiempoLibre">¿Cuenta con tiempo de calidad para el cuidado de la mascota?</label>
                     <fieldset>
-                        <input type="radio" id="tiempoLibreSi" name="tiempoLibre" value="si">
+                        <input type="radio" id="tiempoLibreSi" name="tiempoLibre" value="S">
                         <label for="tiempoLibreSi">Sí</label>
-                        <input type="radio" id="tiempoLibreNo" name="tiempoLibre" value="no">
+                        <input type="radio" id="tiempoLibreNo" name="tiempoLibre" value="N">
                         <label for="tiempoLibreNo">No</label>
                     </fieldset>
 
                     <!-- Espacio disponible (Sí o No) -->
                     <label for="espacio">¿Cuenta con un espacio adecuado para el cuidado de la mascota?</label>
                     <fieldset>
-                        <input type="radio" id="espacioSi" name="espacio" value="si">
+                        <input type="radio" id="espacioSi" name="espacio" value="S">
                         <label for="espacioSi">Sí</label>
-                        <input type="radio" id="espacioNo" name="espacio" value="no">
+                        <input type="radio" id="espacioNo" name="espacio" value="N">
                         <label for="espacioNo">No</label>
                     </fieldset>
 
                     <!-- Compromiso (Sí o No) -->
                     <label for="compromiso">¿Está dispuesto a esterilizar a la mascota y proporcionarle atención médica regular?</label>
                     <fieldset>
-                        <input type="radio" id="compromisoSi" name="compromiso" value="si">
+                        <input type="radio" id="compromisoSi" name="compromiso" value="S">
                         <label for="compromisoSi">Sí</label>
-                        <input type="radio" id="compromisoNo" name="compromiso" value="no">
+                        <input type="radio" id="compromisoNo" name="compromiso" value="N">
                         <label for="compromisoNo">No</label>
                     </fieldset>
 
@@ -127,18 +129,18 @@
                     <!-- Otras mascotas (Sí o No) -->
                     <label for="otrasMascotas">¿Tiene otras mascotas a su cargo?</label>
                     <fieldset>
-                        <input type="radio" id="otrasMascotasSi" name="otrasMascotas" value="si">
+                        <input type="radio" id="otrasMascotasSi" name="otrasMascotas" value="S">
                         <label for="otrasMascotasSi">Sí</label>
-                        <input type="radio" id="otrasMascotasNo" name="otrasMascotas" value="no">
+                        <input type="radio" id="otrasMascotasNo" name="otrasMascotas" value="N">
                         <label for="otrasMascotasNo">No</label>
                     </fieldset>
 
                     <!-- Propietario (Sí o No) -->
                     <label for="propietario">¿Es propietario de la vivienda en la que reside?</label>
                     <fieldset>
-                        <input type="radio" id="propietarioSi" name="propietario" value="si">
+                        <input type="radio" id="propietarioSi" name="propietario" value="S">
                         <label for="propietarioSi">Sí</label>
-                        <input type="radio" id="propietarioNo" name="propietario" value="no">
+                        <input type="radio" id="propietarioNo" name="propietario" value="N">
                         <label for="propietarioNo">No</label>
                     </fieldset>
 
@@ -148,26 +150,22 @@
 
                     <!-- Campo para seleccionar días de la semana -->
 
-                    <label for="horarioVisitaDias">Por favor, indíquenos los días en los que estaría disponible para recibir la visita de seguimiento con respecto al cuidado de la mascota:</label>
+                    <label for="fechaVisitaDia">Por favor, indíquenos los días en los que estaría disponible para recibir la visita de seguimiento con respecto al cuidado de la mascota:</label>
                     <br>
                     <div style="display: flex; gap: 25px;">
-                        <label style="display: flex; align-items: center;"><input type="checkbox" name="horarioVisitaDias" value="Lunes"> Lunes</label>
-                        <label style="display: flex; align-items: center;"><input type="checkbox" name="horarioVisitaDias" value="Martes"> Martes</label>
-                        <label style="display: flex; align-items: center;"><input type="checkbox" name="horarioVisitaDias" value="Miércoles"> Miércoles</label>
-                        <label style="display: flex; align-items: center;"><input type="checkbox" name="horarioVisitaDias" value="Jueves"> Jueves</label>
-                        <label style="display: flex; align-items: center;"><input type="checkbox" name="horarioVisitaDias" value="Viernes"> Viernes</label>
-                        <label style="display: flex; align-items: center;"><input type="checkbox" name="horarioVisitaDias" value="Sábado"> Sábado</label>
-                        <label style="display: flex; align-items: center;"><input type="checkbox" name="horarioVisitaDias" value="Domingo"> Domingo</label>
+                        <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Lunes"> Lunes</label>
+                        <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Martes"> Martes</label>
+                        <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Miércoles"> Miércoles</label>
+                        <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Jueves"> Jueves</label>
+                        <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Viernes"> Viernes</label>
+                        <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Sábado"> Sábado</label>
+                        <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Domingo"> Domingo</label>
                     </div>
                     <br>
 
-                    <!-- Campo para seleccionar la hora con selector AM/PM -->
-                    <label for="horarioVisitaHora">Selecciona la hora:</label>
-                    <input type="text" id="horarioVisitaHora" name="horarioVisitaHora" placeholder="HH:MM" maxlength="5" style="width: 80px; text-align: center; margin-right: 20px; ">
-                    <select id="horarioVisitaAmPm" name="horarioVisitaAmPm">
-                        <option value="AM">AM</option>
-                        <option value="PM">PM</option>
-                    </select>
+                    <!-- Campo para seleccionar la hora con selector -->
+                    <label for="fechaVisitaHora">Selecciona la hora estimada de visita:</label>
+                    <input type="time" id="fechaVisitaHora" name="fechaVisitaHora" style="width: 120px; text-align: center;">
 
                     <!-- Campo para subir foto de la vivienda -->
                     <label for="fotoVivienda">Por favor, suba una foto del espacio donde vivirá la mascota (puede incluir foto de la cama, alimento o accesorios):</label>
@@ -281,7 +279,7 @@
             } else if (genero && genero.toLowerCase() === "m") {
                 return "Macho";
             } else {
-                return "";  // Retorna cadena vacía si no es "h" o "m"
+                return "";  
             }
         }
 
@@ -290,10 +288,9 @@
         var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
         var vectorMascotas = new Array();
         for (var i = 0; i < mascotas.length; i++) {
-            vectorMascotas[i] = mascotas[i][0]; // Asumiendo que el índice 0 contiene el código
+            vectorMascotas[i] = mascotas[i][0]; 
         }
 
-        // Autocompletar el código de la mascota
         $("#codigo").autocomplete({
             source: vectorMascotas
         });
@@ -312,26 +309,24 @@
                 return false;
         }
 
-        // Evento que se dispara cuando el código de la mascota cambia
         $('#codigo').change(function () {
             var codigo = this.value.trim();
             var indiceMascota = buscarMascota(codigo, 0);
 
             if (indiceMascota !== false) {
-                var nombreMascota = mascotas[indiceMascota][1]; // Asumiendo que el nombre está en el índice 1
-                var fechaNacimiento = mascotas[indiceMascota][6]; // Asumiendo que la fecha está en el índice 6
-                var genero = mascotas[indiceMascota][2]; // Asumiendo que el género está en el índice 2
-                var cuidadosEspeciales = mascotas[indiceMascota][5]; // Asumiendo que los cuidados están en el índice 5
-                var foto = mascotas[indiceMascota][4]; // Asumiendo que la foto está en el índice 4
+                var nombreMascota = mascotas[indiceMascota][1]; 
+                var fechaNacimiento = mascotas[indiceMascota][6];
+                var genero = mascotas[indiceMascota][2]; 
+                var cuidadosEspeciales = mascotas[indiceMascota][5];
+                var foto = mascotas[indiceMascota][4];
 
-                // Llenar los campos del formulario
                 document.getElementById("nombreMascota").value = nombreMascota;
                 document.getElementById("fechaNacimiento").value = fechaNacimiento;
                 document.getElementById("genero").value = mostrarGenero(genero);
                 document.getElementById("cuidadosEspeciales").value = cuidadosEspeciales;
                 document.getElementById("fotoMascotaPreview").src = foto;
             } else {
-                // Limpiar los campos si no se encuentra la mascota
+
                 document.getElementById("nombreMascota").value = '';
                 document.getElementById("fechaNacimiento").value = '';
                 document.getElementById("genero").value = '';
@@ -340,9 +335,8 @@
             }
         });
 
-        // Función para agregar la nueva mascota a la tabla
         function agregarMascota() {
-            // Obtener los datos de la mascota
+
             var codigo = document.getElementById("codigoFormulario").value;
             var nombre = document.getElementById("nombreMascotaFormulario").value;
             var edad = document.getElementById("fechaNacimientoFormulario").value;
@@ -361,15 +355,12 @@
                 `;
             document.querySelector("#tablaMascotas tbody").innerHTML += nuevaMascota;
 
-            // Limpiar el formulario y cerrar el modal
             cerrarFormulario();
         }
 
-        // Función para capturar todos los datos y enviarlos al servidor
         function actualizarTabla() {
             var formData = new FormData();
 
-            // Capturar los datos del adoptante y mascota principal
             formData.append("identificacion", document.getElementById("identificacion").value);
             formData.append("nombreAdoptante", document.getElementById("nombre").value);
             formData.append("telefono", document.getElementById("telefono").value);
@@ -381,7 +372,6 @@
             formData.append("genero", document.getElementById("genero").value);
             formData.append("cuidadosEspeciales", document.getElementById("cuidadosEspeciales").value);
 
-            // Añadir las mascotas adicionales
             var tablaMascotas = document.querySelectorAll("#tablaMascotas tbody tr");
             tablaMascotas.forEach((row, index) => {
                 var columns = row.getElementsByTagName("td");
@@ -405,16 +395,7 @@
                 }
             };
         }
-
-        // Cargar la fecha actual
-        function cargarFecha() {
-            var fecha = new Date();
-            var dia = String(fecha.getDate()).padStart(2, '0');
-            var mes = String(fecha.getMonth() + 1).padStart(2, '0');
-            var anio = fecha.getFullYear();
-            document.getElementById('fecha').innerText = dia + '/' + mes + '/' + anio;
-        }
-
+   
         function agregarMascota() {
             // Obtener los valores ingresados en el formulario
             var codigo = document.getElementById("codigoFormulario").value;
@@ -423,13 +404,11 @@
             var genero = document.getElementById("generoFormulario").value;
             var cuidadosEspeciales = document.getElementById("cuidadosEspecialesFormulario").value;
 
-            // Validar que los campos requeridos no estén vacíos
             if (codigo === "" || nombreMascota === "" || fechaNacimiento === "" || genero === "") {
                 alert("Por favor, complete todos los campos.");
                 return;
             }
 
-            // Crear el nuevo bloque HTML para la tarjeta de mascota
             var nuevaTarjeta = "<div class='tableDatos'>" +
                     "<h2>MASCOTA</h2>" +
                     "<div class='datos-con-foto'>" +
@@ -446,10 +425,8 @@
                     "</div>" +
                     "</div>";
 
-            // Insertar la nueva tarjeta en el contenedor de tarjetas
             $('.contenedor-tarjetas').append(nuevaTarjeta);
 
-            // Cerrar el formulario y resetear los campos
             cerrarFormulario();
         }
 
@@ -458,7 +435,7 @@
         var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
         var vectorMascotas = new Array();
         for (var i = 0; i < mascotas.length; i++) {
-            vectorMascotas[i] = mascotas[i][0]; // Asumiendo que el índice 0 contiene el código
+            vectorMascotas[i] = mascotas[i][0];
         }
 
         // Autocompletar el código de la mascota
@@ -573,14 +550,32 @@
 
         // CARGAR FECHA
         function cargarFecha() {
-            var fecha = new Date();
-            var dia = String(fecha.getDate()).padStart(2, '0');
-            var mes = String(fecha.getMonth() + 1).padStart(2, '0');
-            var anio = fecha.getFullYear();
-            var fechaActual = dia + '/' + mes + '/' + anio;
-            document.getElementById('fecha').innerText = fechaActual;
-        }
+    var fecha = new Date();
+    var dia = String(fecha.getDate()).padStart(2, '0');
+    var mes = String(fecha.getMonth() + 1).padStart(2, '0');
+    var anio = fecha.getFullYear();
+    var fechaActual = dia + '/' + mes + '/' + anio;
+    document.getElementById('fecha').innerText = fechaActual;  
+    document.getElementById('fechaActual').value = anio + '-' + mes + '-' + dia;  
+}
 
-        mentById('fecha').innerText = fechaFormateada;
+document.addEventListener('DOMContentLoaded', function() {
+    const checkboxes = document.querySelectorAll('input[name="horarioVisitaDias"]');
+    const fechaVisitaDiaInput = document.getElementById('fechaVisitaDia');
+
+    checkboxes.forEach(function(checkbox) {
+        checkbox.addEventListener('change', function() {
+            let diasSeleccionados = [];
+
+            checkboxes.forEach(function(cb) {
+                if (cb.checked) {
+                    diasSeleccionados.push(cb.value);
+                }
+            });
+
+            fechaVisitaDiaInput.value = diasSeleccionados.join(',');
+        });
+    });
+});
 
     </script>

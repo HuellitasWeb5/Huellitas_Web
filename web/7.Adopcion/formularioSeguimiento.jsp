@@ -11,13 +11,14 @@
 </head>
 
 <body onload="cargarFecha()">
-    <form method="POST" action="/guardarFormularioDeSeguimiento" enctype="multipart/form-data">
+      <form action="/HuellitasWeb/principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioSeg.jsp" method="post" enctype="multipart/form-data">
         <div class="containerFormulario">
             <h1>FORMULARIO DE SEGUIMIENTO</h1>
             <input type="hidden" name="accion" value="grabar">
 
             <!-- FECHA -->
             <div>Fecha actual: <span id="fecha"></span></div>
+            <input type="hidden" name="fechaActual" id="fechaActual">
 
             <!-- ADOPTANTE  --> 
             <div class="contenedor-tarjetas">
@@ -27,7 +28,7 @@
                     <div class="datos-con-foto">
                         <div class="datos">
                             <label>Identificación:</label>
-                            <input type="text" name="identificacion" id="identificacion" placeholder="Digite aquí la identificación del adoptante">
+                            <input type="text" name="identificacionAdoptante" id="identificacion" placeholder="Digite aquí la identificación del adoptante">
                             <label>Nombre del Adoptante</label>
                             <input type="text" name="nombre" id="nombre" readonly>
                             <label>Teléfono</label>
@@ -49,7 +50,7 @@
                     <div class="datos-con-foto">
                         <div class="datos">
                             <label>Código:</label>
-                            <input type="text" name="codigo" id="codigo" placeholder="Digite aquí el código de la mascota">
+                            <input type="text" name="codigoMascota" id="codigo" placeholder="Digite aquí el código de la mascota">
                             <label>Nombre de la mascota:</label>
                             <input type="text" name="nombreMascota" id="nombreMascota" readonly>
                             <label>Fecha de nacimiento Aproximada:</label>
@@ -71,23 +72,23 @@
 
                 <!-- Cambio notable en la salud -->
                 <label>¿Se puede apreciar algún cambio notable en la salud de la mascota?</label><br>
-                <input type="radio" id="saludSi" name="cambioSalud" value="Si" required>
+                <input type="radio" id="saludSi" name="evolucionMedica" value="S" required>
                 <label for="saludSi">Sí</label>
-                <input type="radio" id="saludNo" name="cambioSalud" value="No">
+                <input type="radio" id="saludNo" name="evolucionMedica" value="N">
                 <label for="saludNo">No</label><br><br>
 
                 <!-- Cambio en el peso -->
                 <label>¿La mascota ha sufrido algún cambio en el peso desde la adopción?</label><br>
-                <input type="radio" id="pesoSi" name="cambioPeso" value="Si" required>
+                <input type="radio" id="pesoSi" name="masaCorporal" value="S" required>
                 <label for="pesoSi">Sí</label>
-                <input type="radio" id="pesoNo" name="cambioPeso" value="No">
+                <input type="radio" id="pesoNo" name="masaCorporal" value="N">
                 <label for="pesoNo">No</label><br><br>
 
                 <!-- Cambio emocional -->
                 <label>¿La mascota ha presentado algún tipo de cambio emocional?</label><br>
-                <input type="radio" id="emocionalSi" name="cambioEmocional" value="Si" required>
+                <input type="radio" id="emocionalSi" name="estadoEmocional" value="S" required>
                 <label for="emocionalSi">Sí</label>
-                <input type="radio" id="emocionalNo" name="cambioEmocional" value="No">
+                <input type="radio" id="emocionalNo" name="estadoEmocional" value="N">
                 <label for="emocionalNo">No</label><br><br>
 
                 <!-- Adaptación al entorno -->
@@ -103,13 +104,13 @@
 
                 <!-- Relación con el dueño -->
                 <label>¿Cómo es la relación del dueño con la mascota?</label><br>
-                <input type="radio" id="relacionExcelente" name="relacion" value="Excelente" required>
+                <input type="radio" id="relacionExcelente" name="vinculo" value="Excelente" required>
                 <label for="relacionExcelente">Excelente</label>
-                <input type="radio" id="relacionBien" name="relacion" value="Bien">
+                <input type="radio" id="relacionBien" name="vinculo" value="Bien">
                 <label for="relacionBien">Bien</label>
-                <input type="radio" id="relacionRegular" name="relacion" value="Regular">
+                <input type="radio" id="relacionRegular" name="vinculo" value="Regular">
                 <label for="relacionRegular">Regular</label>
-                <input type="radio" id="relacionMal" name="relacion" value="Mal">
+                <input type="radio" id="relacionMal" name="vinculo" value="Mal">
                 <label for="relacionMal">Mal</label><br><br>
 
                 <!-- Subir foto -->
@@ -129,16 +130,17 @@
                 <label for="calificacion">Considerando tus respuestas anteriores, ¿cómo calificarías el bienestar del animal en su nuevo hogar?
                     teniendo en cuenta que 1 estrella es la calificación más baja y 5 la más alta:</label><br>
                 <div class="rating">
-                    <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 estrellas">★</label>
-                    <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 estrellas">★</label>
-                    <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 estrellas">★</label>
-                    <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 estrellas">★</label>
-                    <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 estrella">★</label>
+                    <input type="radio" id="star5" name="calificacion" value="5" /><label for="star5" title="5 estrellas">★</label>
+                    <input type="radio" id="star4" name="calificacion" value="4" /><label for="star4" title="4 estrellas">★</label>
+                    <input type="radio" id="star3" name="calificacion" value="3" /><label for="star3" title="3 estrellas">★</label>
+                    <input type="radio" id="star2" name="calificacion" value="2" /><label for="star2" title="2 estrellas">★</label>
+                    <input type="radio" id="star1" name="calificacion" value="1" /><label for="star1" title="1 estrella">★</label>
                 </div><br><br>
 
                 <!-- Botones de envío -->
                 <div class="btn-container">
-                    <input class="btn-adicionar" type="submit" value="Enviar">
+                   <input type="hidden" name="id" value="<%=id%>">
+                    <input class="btn-adicionar"  type="submit" name="accion" value="<%=accion%>">
                     <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
                 </div>
 
@@ -263,8 +265,25 @@
             var anio = fecha.getFullYear();
             var fechaActual = dia + '/' + mes + '/' + anio;
             document.getElementById('fecha').innerText = fechaActual;
+            document.getElementById('fechaActual').value = anio + '-' + mes + '-' + dia;
         }
 
-        document.getElementById('fecha').innerText = fechaFormateada;
+        document.addEventListener('DOMContentLoaded', function () {
+            const checkboxes = document.querySelectorAll('input[name="horarioVisitaDias"]');
+            const fechaVisitaDiaInput = document.getElementById('fechaVisitaDia');
 
+            checkboxes.forEach(function (checkbox) {
+                checkbox.addEventListener('change', function () {
+                    let diasSeleccionados = [];
+
+                    checkboxes.forEach(function (cb) {
+                        if (cb.checked) {
+                            diasSeleccionados.push(cb.value);
+                        }
+                    });
+
+                    fechaVisitaDiaInput.value = diasSeleccionados.join(',');
+                });
+            });
+        });
     </script>
