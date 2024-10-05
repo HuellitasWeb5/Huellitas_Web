@@ -13,23 +13,24 @@
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
 </head>
 
-<%
+<% 
+    String userRole = (String) session.getAttribute("userRole"); // Obtener el rol del usuario de la sesión
     String lista = "";
     List<Mascota> datos = Mascota.getListaEnObjetos(null, null);
     lista += "<div class='swiper-wrapper'>";
     for (int i = 0; i < datos.size(); i++) {
         Mascota mascotas = datos.get(i);
-        lista += "<div class='swiper-slide'>"; // Añadido la clase 'card'
-        lista += "<div class='card'>"; // Añadido la clase 'card'
+        lista += "<div class='swiper-slide'>";
+        lista += "<div class='card'>";
         lista += "<div class='card-image'>";
-        lista += "<img src='presentacion/mascota/" + mascotas.getFoto() + "' width='auto' height='60'class='profile-image'>";
+        lista += "<img src='presentacion/mascota/" + mascotas.getFoto() + "' width='auto' height='60' class='profile-image'>";
         lista += "</div>";
         lista += "<div class='card-header'>";
         lista += mascotas.getNombre();
         lista += "</div>";
-        lista += "<div class='card-body'>"; // Contenedor para el cuerpo de la tarjeta
+        lista += "<div class='card-body'>";
         lista += "<p><strong>Código:</strong>" + mascotas.getCodigo() + "</p>";
-        lista += "<p><strong>Genero:</strong>" + mascotas.getGeneroEnObjeto() + "</p>";
+        lista += "<p><strong>Género:</strong>" + mascotas.getGeneroEnObjeto() + "</p>";
         lista += "<p><strong>Tamaño:</strong>" + mascotas.getTamano() + "</p>";
         lista += "<p><strong>Cuidado:</strong>" + mascotas.getCuidadosEspeciales() + "</p>";
         lista += "<p><strong>Edad aproximada:</strong>" + mascotas.getEdad() + " años</p>";
@@ -37,13 +38,18 @@
         lista += "<p><strong>Estado:</strong>" + mascotas.getEstado() + "</p>";
         lista += "<p><strong>Descripción:</strong>" + mascotas.getDescripcion() + "</p>";
         lista += "</div>";
-        lista += "<div class='btn-container'>"; // Contenedor para los botones
-        lista += "<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo()
-                + " 'title='Modificar'> <button class='btn-adicionar' title='Modificar'> Modificar </button> </a>";
-        lista += "<a><button class='btn-eliminar' onClick='eliminar(" + mascotas.getCodigo() + ")'>Eliminar</button></a>";
-        lista += "</div>";
-        lista += "<div class='btn-container'>"; // Contenedor para los botones
-        lista += "<a><button class='btn-otro'>padripets</button></a>";
+        
+        // Mostrar botones de Modificar y Eliminar solo si el rol es "admin del sistema (S)" o "admin de la fundación (F)"
+        if (userRole != null && (userRole.equals("S") || userRole.equals("F"))) {
+            lista += "<div class='btn-container'>";
+            lista += "<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo()
+                    + " 'title='Modificar'> <button class='btn-adicionar' title='Modificar'>Modificar</button></a>";
+            lista += "<a><button class='btn-eliminar' onClick='eliminar(" + mascotas.getCodigo() + ")'>Eliminar</button></a>";
+            lista += "</div>";
+        }
+        
+        lista += "<div class='btn-container'>";
+        lista += "<a><button class='btn-otro'>Padripets</button></a>";
         lista += "<a><button class='btn-otro'>Adoptar</button></a>";
         lista += "</div>";
         lista += "</div>";

@@ -41,11 +41,11 @@ Persona clientes=new Persona();
                 </div>
                 <div class="form-group">
                     <label for="email">Correo Electrónico:</label>
-                    <input type="text" name="email" id="email"  maxlength="80" required>
+                    <input type="email" name="email" id="email"  maxlength="80" required>
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono:</label>
-                    <input type="text" name="telefono" id="telefono"  maxlength="12">
+                    <input type="number" name="telefono" id="telefono"  maxlength="12">
                 </div>
                 <div class="form-group">
                     <label for="direccion">Dirección:</label>
