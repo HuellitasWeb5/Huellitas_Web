@@ -57,38 +57,35 @@
     String accion = variables.get("accion");
     String identificacionAnterior = variables.get("identificacionAnterior");
 
-    Persona clientes = new Persona();
-    clientes.setIdentificacion(variables.get("identificacion"));
-    clientes.setNombre(variables.get("nombre"));
-    clientes.setGenero(variables.get("genero"));
-    clientes.setFechaNacimiento(variables.get("fechaNacimiento"));
-    clientes.setEmail(variables.get("email"));
-    clientes.setTelefono(variables.get("telefono"));
-    clientes.setDireccion(variables.get("direccion"));
-    clientes.setResidencia(variables.get("residencia"));
-    clientes.setFoto(variables.get("foto"));
-    clientes.setTipo("C");
-    clientes.setClave(variables.get("clave"));
+    Persona usuarioActual = new Persona();
+    usuarioActual.setIdentificacion(variables.get("identificacion"));
+    usuarioActual.setNombre(variables.get("nombre"));
+    usuarioActual.setGenero(variables.get("genero"));
+    usuarioActual.setFechaNacimiento(variables.get("fechaNacimiento"));
+    usuarioActual.setEmail(variables.get("email"));
+    usuarioActual.setTelefono(variables.get("telefono"));
+    usuarioActual.setDireccion(variables.get("direccion"));
+    usuarioActual.setResidencia(variables.get("residencia"));
+    usuarioActual.setFoto(variables.get("foto"));
+    usuarioActual.setTipo("F");
+    usuarioActual.setClave(variables.get("clave"));
 
     switch (variables.get("accion")) {
-        case "Adicionar":
-            clientes.grabar();
-            break;
         case "Modificar":
             if (!subioArchivo) {
                 Persona auxiliar = new Persona(variables.get("identificacion"));
-                clientes.setFoto(auxiliar.getFoto());
+                usuarioActual.setFoto(auxiliar.getFoto());
 
             }
-            clientes.modificar(identificacionAnterior);
+            usuarioActual.modificar(identificacionAnterior);
             break;
         case "Eliminar":
-            clientes.setIdentificacion(request.getParameter("identificacion"));
-            clientes.eliminar();
+            usuarioActual.setIdentificacion(request.getParameter("identificacion"));
+            usuarioActual.eliminar();
             break;
     }
 %>
 
 <script type="text/javascript">
-    //document.location = "principal.jsp?CONTENIDO=4.Clientes/clientes.jsp"
+    document.location = "index-InicioSesion.jsp";
 </script>
