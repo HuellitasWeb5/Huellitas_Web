@@ -9,24 +9,25 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DonacionDetalle {
+
     private String id;
     private String idConcepto;
     private String cantidad;
-    private String valorUnitarios;
+    private String codigoTipoDonacion;
     private String codigoDonacion;
 
     public DonacionDetalle() {
     }
 
     public DonacionDetalle(String id) {
-        String cadenaSQL = "select id, idConcepto, cantidad, valorUnitarios, codigoDonacion from donacionesdetalle id="+id;
+        String cadenaSQL = "select id, idConcepto, cantidad, codigoTipoDonacion, codigoDonacion from donacionesdetalle id=" + id;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
                 this.id = id;
                 idConcepto = resultado.getString("idConcepto");
                 cantidad = resultado.getString("cantidad");
-                valorUnitarios = resultado.getString("valorUnitarios");
+                codigoTipoDonacion = resultado.getString("codigoTipoDonacion");
                 codigoDonacion = resultado.getString("codigoDonacion");
             }
         } catch (SQLException ex) {
@@ -59,12 +60,12 @@ public class DonacionDetalle {
         this.cantidad = cantidad;
     }
 
-    public String getValorUnitarios() {
-        return valorUnitarios;
+    public String getCodigoTipoDonacion() {
+        return codigoTipoDonacion;
     }
 
-    public void setValorUnitarios(String valorUnitarios) {
-        this.valorUnitarios = valorUnitarios;
+    public void setCodigoTipoDonacion(String codigoTipoDonacion) {
+        this.codigoTipoDonacion = codigoTipoDonacion;
     }
 
     public String getCodigoDonacion() {
@@ -81,13 +82,13 @@ public class DonacionDetalle {
     }
 
     public boolean grabar() {
-        String cadenaSQL = "insert into donacionesdetalle (idConcepto, cantidad, valorUnitarios, codigoDonacion) "
-                + "values ('" + idConcepto + "', '" + cantidad + "', '" + valorUnitarios + "', '" + codigoDonacion + "')";
+        String cadenaSQL = "insert into donacionesdetalle (idConcepto, cantidad, codigoTipoDonacion, codigoDonacion) "
+                + "values ('" + idConcepto + "', '" + cantidad + "', '" + codigoTipoDonacion + "', '" + codigoDonacion + "')";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
     public boolean modificar() {
-        String cadenaSQL = "update donacionesdetalle set idConcepto='" + idConcepto + "', cantidad='" + cantidad + "', valorUnitarios='" + valorUnitarios 
+        String cadenaSQL = "update donacionesdetalle set idConcepto='" + idConcepto + "', cantidad='" + cantidad + "', codigoTipoDonacion='" + codigoTipoDonacion
                 + "', codigoDonacion='" + codigoDonacion + "' where id=" + id;
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
@@ -110,7 +111,19 @@ public class DonacionDetalle {
             orden = "";
         }
 
-        String cadenaSQL = "select id, idConcepto, cantidad, valorUnitarios, codigoDonacion from donacionesdetalle" + filtro + orden;
+        String cadenaSQL = "SELECT "
+                + "    donacion.codigo,"
+                + "    donacion.fecha,"
+                + "    donacion.descripcion,"
+                + "    donacion.identificacionDonante,"
+                + "    donacionesdetalle.id AS detalleId,"
+                + "    donacionesdetalle.idConcepto,"
+                + "    donacionesdetalle.cantidad,"
+                + "    donacionesdetalle.codigoTipoDonacion"
+                + "FROM "
+                + "    donacion"
+                + "INNER JOIN "
+                + "    donacionesdetalle ON donacion.codigo = donacionesdetalle.codigoDonacion;" + filtro + orden;
         return ConectorBD.consultar(cadenaSQL);
     }
 
@@ -124,7 +137,7 @@ public class DonacionDetalle {
                     detalle.setId(datos.getString("id"));
                     detalle.setIdConcepto(datos.getString("idConcepto"));
                     detalle.setCantidad(datos.getString("cantidad"));
-                    detalle.setValorUnitarios(datos.getString("valorUnitarios"));
+                    detalle.setCodigoTipoDonacion(datos.getString("codigoTipoDonacion"));
                     detalle.setCodigoDonacion(datos.getString("codigoDonacion"));
                     lista.add(detalle);
                 }
