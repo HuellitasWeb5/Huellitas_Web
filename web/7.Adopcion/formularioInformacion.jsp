@@ -7,9 +7,9 @@
 <%
     String accion = request.getParameter("accion");
     String id = "Sin generar";
-  
+
     if (accion.equals("Modificar")) {
-      
+
     }
 %>
 

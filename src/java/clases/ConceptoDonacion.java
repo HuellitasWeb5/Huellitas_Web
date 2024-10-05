@@ -162,7 +162,7 @@ public class ConceptoDonacion {
             
             String auxiliar="";
             //if (preseleccionado.equals(tipoDonacion.getCodigo())) auxiliar="selected";           
-            lista+="<option value='" + conceptoDonacion.getId() + "'" + auxiliar + ">" + conceptoDonacion.getNombre() + "</option>";
+            lista+="<option value='" + conceptoDonacion.getId()+"-"+conceptoDonacion.getNombre()+  "'" + auxiliar + ">" + conceptoDonacion.getNombre() + "</option>";
         }
         
         return lista;
