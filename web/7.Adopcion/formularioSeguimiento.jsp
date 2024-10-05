@@ -21,62 +21,49 @@
 
             <!-- ADOPTANTE  --> 
             <div class="contenedor-tarjetas">
-                <table  class="tableDatos">
-                    <th>SAN PATITAS</th>
-                    <tr>
-                        <th>Identificación:</th>
-                        <td><input type="text" name="identificacion" id="identificacion"></td>
-                        <td rowspan="5" style="text-align: center; vertical-align: middle;">
-                            <img id="fotoClientePreview" src="" alt="Foto del Cliente" width="125" height="125">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Nombre del Adoptante</th>
-                        <td type="text" name="nombre" id="nombre"></td>
-                    </tr>
-                    <tr>
-                        <th>Teléfono</th>
-                        <td type="text" name="telefono" id="telefono"></td>
-                    </tr>
-                    <tr>
-                        <th>Dirección</th>
-                        <td type="text" name="direccion" id="direccion"></td>
-                    </tr>
-                    <tr>
-                        <th>Residencia</th>
-                        <td type="text" name="residencia" id="residencia"></td>
-                    </tr>
-                </table>
+                <!-- Sección de SAN PATITAS (Adoptante) -->
+                <div class="tableDatos">
+                    <h2>ADOPTANTE</h2>
+                    <div class="datos-con-foto">
+                        <div class="datos">
+                            <label>Identificación:</label>
+                            <input type="text" name="identificacion" id="identificacion" placeholder="Digite aquí la identificación del adoptante">
+                            <label>Nombre del Adoptante</label>
+                            <input type="text" name="nombre" id="nombre" readonly>
+                            <label>Teléfono</label>
+                            <input type="text" name="telefono" id="telefono" readonly>
+                            <label>Dirección</label>
+                            <input type="text" name="direccion" id="direccion" readonly>
+                            <label>Residencia</label>
+                            <input type="text" name="residencia" id="residencia" readonly>
+                        </div>
+                        <div class="foto">
+                            <img id="fotoClientePreview" class="fotoPreview" src="" alt="Foto del Cliente">
+                        </div>
+                    </div>
+                </div>
 
-
-                <!-- MASCOTA  --> 
-
-                <table class="tableDatos">
-                    <th>MASCOTA</th>
-                    <tr>
-                        <th>Código:</th>
-                        <td><input type="text" name="codigo" id="codigo"></td>
-                        <td rowspan="5" style="text-align: center; vertical-align: middle;">
-                            <img id="fotoMascotaPreview" src="" alt="Foto de la Mascota" width="125" height="125">
-                        </td>
-                    </tr>
-                    <tr>
-                        <th>Nombre de la mascota</th>
-                        <td type="text" name="nombreMascota" id="nombreMascota" ></td>
-                    </tr>
-                    <tr>
-                        <th>Edad Aproximada</th>
-                        <td type="text" name="fechaNacimiento" id="fechaNacimiento" ></td>
-                    </tr>
-                    <tr>
-                        <th>Género</th>
-                        <td type="text" name="genero" id="genero"></td>
-                    </tr>
-                    <tr>
-                        <th>Cuidados Especiales</th>
-                        <td type="text" name="cuidadosEspeciales" id="cuidadosEspeciales"></td>
-                    </tr>
-                </table>
+                <!-- Sección de MASCOTA -->
+                <div class="tableDatos">
+                    <h2>MASCOTA</h2>
+                    <div class="datos-con-foto">
+                        <div class="datos">
+                            <label>Código:</label>
+                            <input type="text" name="codigo" id="codigo" placeholder="Digite aquí el código de la mascota">
+                            <label>Nombre de la mascota:</label>
+                            <input type="text" name="nombreMascota" id="nombreMascota" readonly>
+                            <label>Fecha de nacimiento Aproximada:</label>
+                            <input type="text" name="fechaNacimiento" id="fechaNacimiento" readonly>
+                            <label>Género:</label>
+                            <input type="text" name="genero" id="genero" readonly>
+                            <label>Cuidados Especiales:</label>
+                            <input type="text" name="cuidadosEspeciales" id="cuidadosEspeciales" readonly>
+                        </div>
+                        <div class="foto">
+                            <img id="fotoMascotaPreview" class="fotoPreview" src="" alt="Foto de la Mascota">
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- FORMULARIO  -->    
@@ -140,7 +127,7 @@
 
                 <!-- Calificación general del cuidado (1 a 10) -->
                 <label for="calificacion">Considerando tus respuestas anteriores, ¿cómo calificarías el bienestar del animal en su nuevo hogar?
-                   teniendo en cuenta que 1 estrella es la calificación más baja y 5 la más alta:</label><br>
+                    teniendo en cuenta que 1 estrella es la calificación más baja y 5 la más alta:</label><br>
                 <div class="rating">
                     <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 estrellas">★</label>
                     <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 estrellas">★</label>
@@ -161,7 +148,7 @@
 
     <script>
 
-        // BUSCAR PERSONA
+        // BUSCAR PERSONAS 
 
         var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
         var vectorPersonas = new Array();
@@ -192,27 +179,39 @@
             direccion = personas[indicePersona][3];
             residencia = personas[indicePersona][4];
             foto = personas[indicePersona][6];
-            document.getElementById("nombre").innerHTML = nombre;
-            document.getElementById("telefono").innerHTML = telefono;
-            document.getElementById("direccion").innerHTML = direccion;
-            document.getElementById("residencia").innerHTML = residencia;
-            document.getElementById("fotoClientePreview").src = foto;
+            document.getElementById("nombre").value = nombre;
+            document.getElementById("telefono").value = telefono;
+            document.getElementById("direccion").value = direccion;
+            document.getElementById("residencia").value = residencia;
         });
 
         // BUSCAR MASCOTA PRINCIPAL
 
+        function mostrarGenero(genero) {
+            if (genero && genero.toLowerCase() === "h") {
+                return "Hembra";
+            } else if (genero && genero.toLowerCase() === "m") {
+                return "Macho";
+            } else {
+                return "";  // Retorna cadena vacía si no es "h" o "m"
+            }
+        }
+
         var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
         var vectorMascotas = new Array();
         for (var i = 0; i < mascotas.length; i++) {
-            vectorMascotas[i] = mascotas[i][0];
+            vectorMascotas[i] = mascotas[i][0]; // Asumiendo que el índice 0 contiene el código
         }
+
+        // Autocompletar el código de la mascota
         $("#codigo").autocomplete({
             source: vectorMascotas
         });
+
         function buscarMascota(valor, indice) {
             encontrado = false;
             i = 0;
-            while (!encontrado) {
+            while (!encontrado && i < mascotas.length) {
                 if (valor == mascotas[i][indice])
                     encontrado = true;
                 i++;
@@ -223,19 +222,32 @@
                 return false;
         }
 
+        // Evento que se dispara cuando el código de la mascota cambia
         $('#codigo').change(function () {
-            codigo = this.value.trim();
-            indiceMascota = buscarMascota(codigo, 0);
-            nombreMascota = mascotas[indiceMascota][1];
-            fechaNacimiento = mascotas[indiceMascota][6];
-            genero = mascotas[indiceMascota][2];
-            cuidadosEspeciales = mascotas [indiceMascota][5];
-            foto = mascotas [indiceMascota][4];
-            document.getElementById("nombreMascota").innerHTML = nombreMascota;
-            document.getElementById("fechaNacimiento").innerHTML = fechaNacimiento;
-            document.getElementById("genero").innerHTML = genero;
-            document.getElementById("cuidadosEspeciales").innerHTML = cuidadosEspeciales;
-            document.getElementById("fotoMascotaPreview").src = foto;
+            var codigo = this.value.trim();
+            var indiceMascota = buscarMascota(codigo, 0);
+
+            if (indiceMascota !== false) {
+                var nombreMascota = mascotas[indiceMascota][1]; // Asumiendo que el nombre está en el índice 1
+                var fechaNacimiento = mascotas[indiceMascota][6]; // Asumiendo que la fecha está en el índice 6
+                var genero = mascotas[indiceMascota][2]; // Asumiendo que el género está en el índice 2
+                var cuidadosEspeciales = mascotas[indiceMascota][5]; // Asumiendo que los cuidados están en el índice 5
+                var foto = mascotas[indiceMascota][4]; // Asumiendo que la foto está en el índice 4
+
+                // Llenar los campos del formulario
+                document.getElementById("nombreMascota").value = nombreMascota;
+                document.getElementById("fechaNacimiento").value = fechaNacimiento;
+                document.getElementById("genero").value = mostrarGenero(genero);
+                document.getElementById("cuidadosEspeciales").value = cuidadosEspeciales;
+                document.getElementById("fotoMascotaPreview").src = foto;
+            } else {
+                // Limpiar los campos si no se encuentra la mascota
+                document.getElementById("nombreMascota").value = '';
+                document.getElementById("fechaNacimiento").value = '';
+                document.getElementById("genero").value = '';
+                document.getElementById("cuidadosEspeciales").value = '';
+                document.getElementById("fotoMascotaPreview").src = '';
+            }
         });
 
         // CARGAR FECHA
@@ -253,6 +265,6 @@
             document.getElementById('fecha').innerText = fechaActual;
         }
 
-        mentById('fecha').innerText = fechaFormateada;
+        document.getElementById('fecha').innerText = fechaFormateada;
 
     </script>
