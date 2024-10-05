@@ -1,73 +1,77 @@
-<%-- 
-    Document   : actualizarFormularioDeSeguimiento
-    Created on : 1 oct 2024, 23:02:13
-    Author     : Angie
---%>
+<%@page import="clases.Persona"%>
+<%@page import="clases.Mascota"%>
 <%@page import="clases.FormularioDeSeguimiento"%>
+<%@page import="java.util.List"%>
 <%@page import="java.sql.Date"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-    // Captura de los parámetros del formulario de seguimiento
     String accion = request.getParameter("accion");
-    String identificacion = request.getParameter("identificacion");
-    String nombreAdoptante = request.getParameter("nombre");
-    String telefono = request.getParameter("telefono");
-    String direccion = request.getParameter("direccion");
-    String residencia = request.getParameter("residencia");
+    String mensaje = "";
     
-    String codigoMascota = request.getParameter("codigo");
-    String nombreMascota = request.getParameter("nombreMascota");
-    String fechaNacimiento = request.getParameter("fechaNacimiento");
-    String genero = request.getParameter("genero");
-    String cuidadosEspeciales = request.getParameter("cuidadosEspeciales");
-
-    String cambioSalud = request.getParameter("cambioSalud");
-    String cambioPeso = request.getParameter("cambioPeso");
-    String cambioEmocional = request.getParameter("cambioEmocional");
+    String fecha = new java.sql.Date(System.currentTimeMillis()).toString();
+    String identificacionAdoptante = request.getParameter("identificacionAdoptante"); 
+    String codigoMascota = request.getParameter("codigoMascota");  
+    String evolucionMedica = request.getParameter("evolucionMedica");
+    String masaCorporal = request.getParameter("masaCorporal");
+    String estadoEmocional = request.getParameter("estadoEmocional");
     String adaptacion = request.getParameter("adaptacion");
-    String relacion = request.getParameter("relacion");
-    String fechaProximaVisita = request.getParameter("fechaProximaVisita");
+    String vinculo = request.getParameter("vinculo");
     String descripcion = request.getParameter("descripcion");
-    int calificacion = Integer.parseInt(request.getParameter("rating"));
+    String calificacion = request.getParameter("calificacion");
+    String fechaProximaVisita = request.getParameter("fechaProximaVisita");
+    String foto = request.getParameter("foto");
 
-    // Creación del objeto FormularioDeSeguimiento para gestionar los datos del seguimiento
     FormularioDeSeguimiento formulario = new FormularioDeSeguimiento();
-    formulario.setIdentificacion(identificacion);
-    formulario.setNombreAdoptante(nombreAdoptante);
-    formulario.setTelefono(telefono);
-    formulario.setDireccion(direccion);
-    formulario.setResidencia(residencia);
-    
-    formulario.setCodigoMascota(codigoMascota);
-    formulario.setNombreMascota(nombreMascota);
-    formulario.setFechaNacimiento(Date.valueOf(fechaNacimiento));
-    formulario.setGenero(genero);
-    formulario.setCuidadosEspeciales(cuidadosEspeciales);
-    
-    formulario.setCambioSalud(cambioSalud);
-    formulario.setCambioPeso(cambioPeso);
-    formulario.setCambioEmocional(cambioEmocional);
-    formulario.setAdaptacion(adaptacion);
-    formulario.setRelacion(relacion);
-    formulario.setFechaProximaVisita(Date.valueOf(fechaProximaVisita));
-    formulario.setDescripcion(descripcion);
-    formulario.setCalificacion(calificacion);
 
-    // Dependiendo de la acción (Adicionar, Modificar, Eliminar) ejecuta la función correspondiente
-    switch (accion) {
+    formulario.setIdentificacionAdoptante(identificacionAdoptante);
+    formulario.setCodigoMascota(codigoMascota);  
+    formulario.setEvolucionMedica(evolucionMedica);
+    formulario.setMasaCorporal(masaCorporal);
+    formulario.setEstadoEmocional(estadoEmocional);
+    formulario.setAdaptacion(adaptacion);
+    formulario.setVinculo(vinculo);
+    formulario.setDescripcion(descripcion);
+    formulario.setCalificacion(Integer.parseInt(calificacion));
+    formulario.setFechaProximaVisita(Date.valueOf(fechaProximaVisita));  
+    formulario.setFoto(foto);  
+
+    try {
+        switch(accion){
         case "grabar":
-            formulario.grabar();
+            if (formulario.grabarFormularioConProcedimientoAlmacenado()) {
+                mensaje = "Formulario de seguimiento guardado correctamente.";
+            } else {
+                mensaje = "Error al guardar el formulario de seguimiento.";
+            }
             break;
         case "Modificar":
-            formulario.setId(request.getParameter("id"));
-            formulario.modificar();
+            formulario.setCodigo(request.getParameter("codigo"));
+            if (formulario.modificar()) {
+                mensaje = "Formulario modificado correctamente.";
+            } else {
+                mensaje = "Error al modificar el formulario.";
+            }
             break;
         case "Eliminar":
-            formulario.setId(request.getParameter("id"));
-            formulario.eliminar();
+            formulario.setCodigo(request.getParameter("codigo"));
+            if (formulario.eliminar()) {
+                mensaje = "Formulario eliminado correctamente.";
+            } else {
+                mensaje = "Error al eliminar el formulario.";
+            }
             break;
+        default:
+            mensaje = "Acción no reconocida.";
+        }
+    } catch (Exception e) {
+        mensaje = "Ocurrió un error: " + e.getMessage();
+    }
+
+    if (!mensaje.isEmpty()) {
+        out.println("<script>alert('" + mensaje + "');</script>");
     }
 %>
+
 <script type="text/javascript">
-    document.location = "principal.jsp?CONTENIDO=verFormularioSeg.jsp";
+    document.location = "/HuellitasWeb/principal.jsp?CONTENIDO=7.Adopcion/verFormularioSeg.jsp"
 </script>
