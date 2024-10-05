@@ -14,7 +14,12 @@
 </head>
 
 <% 
-    String userRole = (String) session.getAttribute("userRole"); // Obtener el rol del usuario de la sesión
+    // Obtener el objeto Persona desde la sesión
+    HttpSession sesion = request.getSession();
+    Persona user = (Persona) sesion.getAttribute("tipo");
+    
+    // Asumimos que el rol del usuario está almacenado en un atributo llamado "tipo" en la clase Persona
+    String userRole = user != null ? user.getTipo() : ""; // Obtener el rol del usuario directamente de la clase Persona
     String lista = "";
     List<Mascota> datos = Mascota.getListaEnObjetos(null, null);
     lista += "<div class='swiper-wrapper'>";
@@ -39,7 +44,6 @@
         lista += "<p><strong>Descripción:</strong>" + mascotas.getDescripcion() + "</p>";
         lista += "</div>";
         
-        // Mostrar botones de Modificar y Eliminar solo si el rol es "admin del sistema (S)" o "admin de la fundación (F)"
         if (userRole != null && (userRole.equals("S") || userRole.equals("F"))) {
             lista += "<div class='btn-container'>";
             lista += "<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo()
