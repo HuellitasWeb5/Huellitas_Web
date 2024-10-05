@@ -13,13 +13,18 @@
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
 </head>
 
-<% 
-    // Obtener el objeto Persona desde la sesión
-    HttpSession sesion = request.getSession();
-    Persona user = (Persona) sesion.getAttribute("tipo");
-    
-    // Asumimos que el rol del usuario está almacenado en un atributo llamado "tipo" en la clase Persona
-    String userRole = user != null ? user.getTipo() : ""; // Obtener el rol del usuario directamente de la clase Persona
+<%
+    // Recibir el parámetro "nombre" desde la URL
+    String nombreTipoPersona = request.getParameter("nombre");
+
+    // Si el parámetro no se recibe, asumir que es "Cliente" por defecto
+    if (nombreTipoPersona == null) {
+        nombreTipoPersona = "Cliente";
+    }
+%>
+
+<%
+    // Generar la lista de mascotas
     String lista = "";
     List<Mascota> datos = Mascota.getListaEnObjetos(null, null);
     lista += "<div class='swiper-wrapper'>";
@@ -43,15 +48,17 @@
         lista += "<p><strong>Estado:</strong>" + mascotas.getEstado() + "</p>";
         lista += "<p><strong>Descripción:</strong>" + mascotas.getDescripcion() + "</p>";
         lista += "</div>";
-        
-        if (userRole != null && (userRole.equals("S") || userRole.equals("F"))) {
+
+        // Solo mostrar los botones de Modificar y Eliminar si NO es un cliente
+        if (!"Cliente".equals(nombreTipoPersona)) {
             lista += "<div class='btn-container'>";
-            lista += "<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo()
+            lista += "<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo()+"&nombre="+nombreTipoPersona
                     + " 'title='Modificar'> <button class='btn-adicionar' title='Modificar'>Modificar</button></a>";
             lista += "<a><button class='btn-eliminar' onClick='eliminar(" + mascotas.getCodigo() + ")'>Eliminar</button></a>";
             lista += "</div>";
         }
-        
+
+        // Estos botones siempre se muestran
         lista += "<div class='btn-container'>";
         lista += "<a><button class='btn-otro'>Padripets</button></a>";
         lista += "<a><button class='btn-otro'>Adoptar</button></a>";
@@ -61,7 +68,6 @@
     }
     lista += "</div>";
 %>
-
 <h3>LISTA DE MASCOTAS</h3>
 <div class="header-container">
     <!-- Buscar por nombre -->
@@ -134,21 +140,21 @@
     });
 
     function filterNames() {
-    const input = document.getElementById('searchInput');
-    const filter = input.value.toLowerCase();
-    const slides = document.getElementsByClassName('swiper-slide');
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const slides = document.getElementsByClassName('swiper-slide');
 
-    // Recorre cada slide y oculta o muestra dependiendo del filtro
-    for (let i = 0; i < slides.length; i++) {
-        const cardHeader = slides[i].getElementsByClassName('card-header')[0];
-        const textValue = cardHeader.textContent || cardHeader.innerText;
+        // Recorre cada slide y oculta o muestra dependiendo del filtro
+        for (let i = 0; i < slides.length; i++) {
+            const cardHeader = slides[i].getElementsByClassName('card-header')[0];
+            const textValue = cardHeader.textContent || cardHeader.innerText;
 
-        if (textValue.toLowerCase().indexOf(filter) > -1) {
-            slides[i].style.display = "";
-        } else {
-            slides[i].style.display = "none";
+            if (textValue.toLowerCase().indexOf(filter) > -1) {
+                slides[i].style.display = "";
+            } else {
+                slides[i].style.display = "none";
+            }
         }
     }
-}
 
 </script>

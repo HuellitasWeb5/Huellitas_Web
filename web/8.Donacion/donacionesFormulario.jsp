@@ -1,238 +1,346 @@
-<%@page import="clases.ConceptoDonacion"%>
-<%@page import="clases.TipoDonacion"%>
-<%@page import="clases.DonacionDetalle"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    String accion = request.getParameter("accion");
-    DonacionDetalle donacionDetalle = new DonacionDetalle();
-%>
+        <%@page import="clases.Persona"%>
+        <%@page import="clases.Mascota"%>
+        <%@page import="clases.ConceptoDonacion"%>
+        <%@page import="clases.TipoDonacion"%>
+        <%@page import="clases.DonacionDetalle"%>
+        <%@page contentType="text/html" pageEncoding="UTF-8"%>
+        <%
+            TipoDonacion tipoDonacion = new TipoDonacion();
+            String accion = request.getParameter("accion");
+            DonacionDetalle donacionDetalle = new DonacionDetalle();
+        %>
+        <style>
+            .container {
+                width: 50%;
+                margin: 0 auto;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                position: relative;
+            }
+            .header {
+                background-color: #003366;
+                color: white;
+                padding: 10px;
+                font-size: 20px;
+                text-align: center;
+                border-radius: 8px 8px 0 0;
+            }
+            .close-btn {
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+            }
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 15px;
+            }
+            .form-group label {
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            .form-group input {
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                background-color: #f0f0f0;
+            }
+            .form-group span {
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                background-color: #f0f0f0;
+                height: 45px;
+            }
+            .hidden {
+                display: none; /* Cambia max-height por display para ocultarlo por completo */
+                transition: all 0.3s ease;
+            }
+        </style>
+        <body onload="cargarFecha()">
+            <h3><%=accion.toUpperCase()%> Donaciones</h3>
 
-<h3><%=accion.toUpperCase()%>  Donaciones</h3>
-<!-- Formulario principal -->
-<form name="formulario" method="post" action="principal.jsp?CONTENIDO=8.Donacion/donacionesFormularioActualizar.jsp">
+            <!-- Formulario principal -->
+            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=8.Donacion/donacionesFormularioActualizar.jsp">
+                <div class="container">
+                    <button class="close-btn" onclick="toggleContainer(event)">−</button>
 
-    <div class="container">
-        <button class="close-btn" onclick="toggleContainer()">−</button>
-        <div class="header">Datos del Usuario</div>
-        <div class="content">
-            <div class="form-group">
-                <label>Identificación</label>
-                <input type="text" name="identificacionD" id="identificacionD" value="">
+                    <div class="header">Datos del Usuario</div>
+                    <div class="content">
+
+                         <div class="form-group">
+                            <label>Fecha actual:</label>
+                            <span id="fecha"></span>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Identificación</label>
+                            <input type="text" name="identificacionD" id="identificacionD" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <span name="nombre" id="nombre" value="" readonly></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Número de telefono</label>
+                            <span name="telefono" id="telefono" value="" readonly></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="direccion">Dirección</label>
+                            <span name="direccion" id="direccion" value="" readonly></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="residencia">Residencia</label>
+                            <span name="residencia" id="residencia" value="" readonly></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="correo">Correo Electrónico</label>
+                            <span type="text" id="correo" value="" readonly></span>
+                        </div>
+                    <div class="form-group">
+                        <label>Descripcion</label>
+                        <textarea id="comentarios" name="comentarios" rows="6" cols="40"></textarea>
+                    </div>
+                    </div>
+                    <input name="donacion" id="donacion" > <!-- Input oculto para almacenar las donaciones  type="hidden"-->
+                </div>
+            </form>
+
+            <!-- Botón para abrir el formulario modal -->
+            <button class="add-button" onclick="abrirFormulario();">Abrir ventana</button>
+
+            <!-- Formulario modal para ingresar detalles de donaciones -->
+            <div id="formulario" title="Donaciones">
+                <form name="formularioDonacionDetalle">
+                    <table>
+
+                        <tr>
+                            <th>Tipo de donacion</th>
+                            <td>
+                                <select id="tipoDonacion" name="tipoDonacion">
+                                    <option value="" disabled selected>Seleccione un tipo de donacion</option>
+                                    <%= TipoDonacion.getListaEnOptions(null)%>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Donacion concepto</th>
+                            <td>
+                                <select id="donacionConcepto" name="donacionConcepto">
+                                    <option value="" disabled selected>Seleccione una donacion</option>
+                                    <%= ConceptoDonacion.getListaEnOptions(null)%>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Cantidad</th>
+                            <td><input type="number" name="cantidad" id="cantidad" value="1" required></td>
+                        </tr>
+                    </table>
+                    <input class="btn-adicionar" type="button" value="Agregar" onclick="actualizarTabla();">
+                    <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
+                </form>    
             </div>
-            <div class="form-group">
-                <label for="nombre">Nombre</label>
-                <span name="nombre" id="nombre" value="" readonly></span>
+
+            <!-- Contenedor de las tarjetas -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <!-- aqui va las tarjetas--> 
+                    <br><br>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
             </div>
-            <div class="form-group">
-                <label for="numero">Número</label>
-                <span name="numero" id="numero" value="" readonly></span>
-            </div>
-            <div class="form-group">
-                <label for="direccion">Dirección</label>
-                <span name="direccion" id="direccion" value="" readonly></span>
-            </div>
-            <div class="form-group">
-                <label for="correo">Correo Electrónico</label>
-                <span type="text" id="correo" value="" readonly></span>
-            </div>
-        </div>
-        <input name="donacion" id="donacion" type="hidden"> <!-- Input oculto para almacenar las donaciones -->
-    </div>
-</form>
+        </body>
+        <script>
+            var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
+            var vectorPersonas = new Array();
+            for (var i = 0; i < personas.length; i++) {
+                vectorPersonas[i] = personas[i][0];
+            }
+            $("#identificacionD").autocomplete({
+                source: vectorPersonas
+            });
 
-<!-- Botón para abrir el formulario modal -->
-<button class="add-button" onclick="abrirFormulario();">Abrir ventana</button>
+            function buscarPersona(valor, indice) {
+                encontrado = false;
+                i = 0;
+                while (!encontrado) {
+                    if (valor == personas[i][indice])
+                        encontrado = true;
+                    i++;
+                }
+                if (encontrado)
+                    return i - 1;
+                else
+                    return false;
+            }
 
-<!-- Formulario modal para ingresar detalles de donaciones -->
-<div id="formulario" title="Apadrinar mascota">
-    <form name="formularioDonacionDetalle">
-        <table>
-            <tr>
-                <th>Nombre</th>
-                <td><input type="text" name="nombreDetalle" id="nombreDetalle" required></td>
-            </tr>
-            <tr>
-                <th>Tipo de donacion</th>
-                <td>
-                    <select id="tipoDonacion" name="tipoDonacion">
-                        <option value="" disabled selected>Seleccione un tipo de donacion</option>
-                        <%= TipoDonacion.getListaEnOptions(null)%>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>Donacion concepto</th>
-                <td>
-                    <select id="donacionConcepto" name="donacionConcepto">
-                        <option value="" disabled selected>Seleccione una donacion</option>
-                        <%= ConceptoDonacion.getListaEnOptions(null)%>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>Cantidad</th>
-                <td><input type="number" name="cantidad" id="cantidad" value="1" required></td>
-            </tr>
-        </table>
-        <input class="btn-adicionar" type="button" value="Agregar" onclick="actualizarTabla();">
-        <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
-    </form>    
-</div>
+            $('#identificacionD').change(function () {
+                identificacion = this.value.trim();
+                indicePersona = buscarPersona(identificacion, 0);
+                nombre = personas[indicePersona][1];
+                telefono = personas[indicePersona][2];
+                direccion = personas[indicePersona][3];
+                residencia = personas[indicePersona][4];
+                correo = personas[indicePersona][5];
+                document.getElementById("nombre").innerHTML = nombre;
+                document.getElementById("telefono").innerHTML = telefono;
+                document.getElementById("direccion").innerHTML = direccion;
+                document.getElementById("residencia").innerHTML = residencia;
+                document.getElementById("correo").innerHTML = correo;
+            });
 
-<!-- Contenedor de las tarjetas -->
-<div class="swiper-container">
-    <div class="swiper-wrapper">
-        <!-- aqui va las tarjetas--> 
-        <br><br>
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-</div>
+            function toggleContainer(event) {
+                event.preventDefault();
+                const content = document.querySelector('.content');
+                content.classList.toggle('hidden');
+            }
 
-<script>
+            $(function () {
+                $("#formulario").dialog({
+                    autoOpen: false,
+                    show: {
+                        effect: "blind",
+                        duration: 1000
+                    },
+                    hide: {
+                        effect: "explode",
+                        duration: 1000
+                    },
+                    width: 400,
+                    height: 250
+                });
+            });
 
-    $(function () {
-        $("#formulario").dialog({
-            autoOpen: false,
-            show: {
-                effect: "blind",
-                duration: 1000
-            },
-            hide: {
-                effect: "explode",
-                duration: 1000
-            },
-            width: 400,
-            height: 250
-        });
-    });
+            function abrirFormulario() {
+                $('#formulario').dialog('open');
+            }
 
-    function abrirFormulario() {
-        $('#formulario').dialog('open');
-    }
 
-    function cerrarFormulario() {
-        $('#formulario').dialog('close');
-        limpiarFormulario(); // Llama a la función para limpiar los campos
-    }
+            function cerrarFormulario() {
+                document.getElementById('tipoDonacion').value = "";
+                document.getElementById('donacionConcepto').value = "";
+                document.getElementById('cantidad').value = "";
+                $('#formulario').dialog('close');
+            }
 
-    function actualizarTabla() {
-        var objeto = document.getElementById("donacion");
+            function actualizarTabla() {
+                var objeto = document.getElementById("donacion");
 
-        // Verifica si el campo "donacion" tiene contenido previo
-        if (objeto.value != '')
-            objeto.value += "||"; // Agrega un separador para nuevos registros
+                if (objeto.value != '')
+                    objeto.value += "||";
 
-        // Captura los valores del formulario
-        var nombreDetalle = document.getElementById('nombreDetalle').value;
-        var tipoDonacion = document.getElementById('tipoDonacion').value;
-        var donacionConcepto = document.getElementById('donacionConcepto').value;
-        var cantidad = document.getElementById('cantidad').value;
+                var tipoDonacion = document.getElementById('tipoDonacion').value;
+                var donacionConcepto = document.getElementById('donacionConcepto').value;
+                var cantidad = document.getElementById('cantidad').value;
 
-        // Guarda los valores en el input oculto
-        objeto.value += nombreDetalle + "|" + tipoDonacion + "|" + donacionConcepto + "|" + cantidad;
+                // Guardar en formato tipoDonacion | conceptoDonacion | cantidad
+                objeto.value += tipoDonacion + "|" + donacionConcepto + "|" + cantidad;
 
-        cargarTabla();  // Actualiza las tarjetas
-        cerrarFormulario();  // Cierra el formulario modal
-    }
+                cargarTabla();
+                cerrarFormulario();
+            }
 
-    function cargarTabla() {
-        // Obtiene el contenedor de las tarjetas
-        var contenedor = document.querySelector('.swiper-wrapper');
-        contenedor.innerHTML = '';  // Limpia el contenedor antes de agregar nuevas tarjetas
 
-        // Obtiene los datos almacenados en el input oculto "donacion"
-        var datos = document.getElementById('donacion').value;
+            function cargarTabla() {
+                var contenedor = document.querySelector('.swiper-wrapper');
+                contenedor.innerHTML = '';
 
-        // Verifica si hay datos
-        if (datos === '') {
-            return;
-        }
+                var datos = document.getElementById('donacion').value;
 
-        // Separa los registros usando "||" como delimitador
-        var registros = datos.split('||');
+                if (datos === '') {
+                    return;
+                }
 
-        // Itera sobre cada registro y genera una tarjeta
-        registros.forEach(function (registro, index) {
-            var campos = registro.split('|');
+                var registros = datos.split('||');
 
-            // Crea la tarjeta
-            var tarjeta = document.createElement('div');
-            tarjeta.classList.add('swiper-slide');
+                registros.forEach(function (registro, index) {
+                    var campos = registro.split('|');
 
-            var card = document.createElement('div');
-            card.classList.add('card');
+                    var tarjeta = document.createElement('div');
+                    tarjeta.classList.add('swiper-slide');
 
-            // Agrega el contenido de la tarjeta
-            var nombreElemento = document.createElement('h2');
-            nombreElemento.textContent = 'Nombre: ' + campos[0];
+                    var card = document.createElement('div');
+                    card.classList.add('card');
 
-            var tipoDonacionElemento = document.createElement('p');
-            tipoDonacionElemento.innerHTML = '<strong>Tipo de Donación:</strong> ' + campos[1];
+                    // Agregar título "Donación"
+                    var tituloElemento = document.createElement('h2');
+                    tituloElemento.textContent = 'Donación';
+                    card.appendChild(tituloElemento);
 
-            var conceptoElemento = document.createElement('p');
-            conceptoElemento.innerHTML = '<strong>Donación Concepto:</strong> ' + campos[2];
+                    var tipoDonacionElemento = document.createElement('p');
+                    tipoDonacionElemento.innerHTML = '<strong>Tipo de Donación:</strong> ' + campos[0];
 
-            var cantidadElemento = document.createElement('p');
-            cantidadElemento.innerHTML = '<strong>Cantidad:</strong> ' + campos[3];
+                    var conceptoElemento = document.createElement('p');
+                    conceptoElemento.innerHTML = '<strong>Donación Concepto:</strong> ' + campos[1];
 
-            // Botón para eliminar la tarjeta
-            var botonEliminar = document.createElement('button');
-            botonEliminar.textContent = 'Eliminar';
-            botonEliminar.onclick = function () {
-                eliminarRegistro(index); // Llama a la función eliminar con el índice del registro
-            };
+                    var cantidadElemento = document.createElement('p');
+                    cantidadElemento.innerHTML = '<strong>Cantidad:</strong> ' + campos[2];
 
-            // Añadir elementos a la tarjeta
-            card.appendChild(nombreElemento);
-            card.appendChild(tipoDonacionElemento);
-            card.appendChild(conceptoElemento);
-            card.appendChild(cantidadElemento);
-            card.appendChild(botonEliminar); // Añadir el botón de eliminar
+                    var botonEliminar = document.createElement('button');
+                    botonEliminar.textContent = 'Eliminar';
+                    botonEliminar.onclick = function () {
+                        eliminarRegistro(index);
+                    };
 
-            tarjeta.appendChild(card);
+                    card.appendChild(tipoDonacionElemento);
+                    card.appendChild(conceptoElemento);
+                    card.appendChild(cantidadElemento);
+                    card.appendChild(botonEliminar);
 
-            // Añadir la tarjeta al contenedor
-            contenedor.appendChild(tarjeta);
-        });
-    }
+                    tarjeta.appendChild(card);
+                    contenedor.appendChild(tarjeta);
+                });
+            }
 
-    function limpiarFormulario() {
-        // Limpia los campos del formulario
-        document.getElementById('nombreDetalle').value = '';
-        document.getElementById('tipoDonacion').value = '';
-        document.getElementById('donacionConcepto').value = '';
-        document.getElementById('cantidad').value = '';
-    }
-    function eliminarRegistro(index) {
-        // Obtiene los datos actuales
-        var datos = document.getElementById('donacion').value;
 
-        // Separa los registros
-        var registros = datos.split('||');
 
-        // Elimina el registro en la posición indicada por 'index'
-        registros.splice(index, 1);
 
-        // Vuelve a unir los registros y los guarda en el input oculto
-        document.getElementById('donacion').value = registros.join('||');
+            function limpiarFormulario() {
+                document.getElementById('nombreDetalle').value = '';
+                document.getElementById('tipoDonacion').value = '';
+                document.getElementById('donacionConcepto').value = '';
+                document.getElementById('cantidad').value = '';
+            }
 
-        // Recarga las tarjetas
-        cargarTabla();
-    }
+            function eliminarRegistro(index) {
+                var datos = document.getElementById('donacion').value;
+                var registros = datos.split('||');
+                registros.splice(index, 1);
+                document.getElementById('donacion').value = registros.join('||');
+                cargarTabla();
+            }
 
-    const swiper = new Swiper('.swiper-container', {
-        loop: true,
-        slidesPerView: 4, // ayuda a mostrarme  4 tarjetas a la vez
-        spaceBetween: 10,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        }
-    });
-</script>
+            const swiper = new Swiper('.swiper-container', {
+                loop: true,
+                slidesPerView: 4,
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                }
+            });
+            function cargarFecha() {
+                var fecha = new Date();
+                var dia = String(fecha.getDate()).padStart(2, '0');
+                var mes = String(fecha.getMonth() + 1).padStart(2, '0');
+                var anio = fecha.getFullYear();
+                var fechaActual = dia + '/' + mes + '/' + anio;
+                document.getElementById('fecha').innerText = fechaActual;
+            }
+
+            mentById('fecha').innerText = fechaFormateada;
+        </script>
