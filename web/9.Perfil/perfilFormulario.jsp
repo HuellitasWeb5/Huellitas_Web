@@ -77,8 +77,9 @@
                 <!-- Botón para guardar los cambios -->
                 <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
                 <div class='btn-container'>
-                    <button type="submit" class='btn-adicionar' title='Modificar'name="accion" onClick='modificar(<%= usuarioActual.getIdentificacion()%>)' value="Modificar">Modificar</button>
                     
+                    <button type="submit" class="btn-adicionar" name="accion"  onclick="modificar('<%= usuarioActual.getIdentificacion() %>')"  value="Modificar">Modificar</button>
+
                     <input class='btn-eliminar' type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
                     <!-- Botón para eliminar con llamada a una función JavaScript -->
                     </div>
@@ -89,17 +90,7 @@
 
 <!-- JavaScript para la función de eliminación -->
 <script>
-    function modificar(identificacion) {
-        event.preventDefault(); // Evita que el formulario se envíe automáticamente
-        var resultado = confirm("Cuando modifiques tus datos deberás iniciar sesión de nuevo");
-        if (resultado) {
-            // Redirige para modificar los datos si el usuario confirma
-            document.location = "principal.jsp?CONTENIDO=index-InicioSesion.jsp&accion=Modificar&identificacion=" + identificacion;
-        } else {
-            // Si el usuario cancela, no se hace nada
-            console.log("Modificación cancelada por el usuario.");
-        }
-    }
+ 
     function mostrarFoto(){
         var lector=new FileReader();
         lector.readAsDataURL(document.formulario.foto.files[0]);
@@ -107,4 +98,10 @@
             document.getElementById("foto").src=lector.result;
         }
     }
+    function modificar(identificacion) {
+        resultado = confirm("Realmente desea modificar su perfil identificacion " + identificacion + "?");
+        if (resultado) {
+            document.location="principal.jsp?CONTENIDO=9.Perfil/perfilActualizar.jsp&accion=Modificar&identificacion=" + identificacion;
+        }
+    }
 </script>
