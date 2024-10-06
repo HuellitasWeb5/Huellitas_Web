@@ -89,17 +89,12 @@ public class Apadrinamiento {
         return ApadrinamientoDetalle.getListaEnObjetos("codigoApadrinamiento='" + codigo + "'", null);
     }
     
-    public boolean grabar() {
-        String cadenaSQL = "insert into Apadrinamiento(fecha,identificacionPadrino,fotoRecibo, fotoCedula) "
-                + " values ('" + fecha + "','" + identificacionPadrino + "','" + fotoRecibo + "','" + fotoCedula + "')";
-        // System.out.println(cadenaSQL);
-        return ConectorBD.ejecutarQuery(cadenaSQL);
-    }
     
     public boolean grabarConProcedimientoAlmacenado(String mascotasPlan) {
     String cadenaSQL = "CALL registrarPadripet(" + this.identificacionPadrino + ", '" + mascotasPlan + "', '" + this.fotoRecibo + "', '" + this.fotoCedula + "')";
-    return ConectorBD.ejecutarQuery(cadenaSQL);
-}
+        return ConectorBD.ejecutarQuery(cadenaSQL); 
+        
+        }
 
     
     public boolean modificar() {

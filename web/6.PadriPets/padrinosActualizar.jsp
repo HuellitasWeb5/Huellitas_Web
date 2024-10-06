@@ -59,5 +59,5 @@
 %>
 
 <script type="text/javascript">
-    document.location = "principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp"
+    document.location = "principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp";
 </script>
