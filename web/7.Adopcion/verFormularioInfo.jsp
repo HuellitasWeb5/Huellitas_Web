@@ -4,81 +4,109 @@
 <%@page import="clases.Mascota"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<% 
-    List<FormularioDeInformacion> formularios = FormularioDeInformacion.listarFormularios();
-%>
 
-<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <title>Formularios De Información</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
 </head>
-<body>
-    <h1>Formularios De Información</h1>
-    <div class="header-container">
 
+<%
+    // Obtener la lista de formularios de adopción
+    String listaAdopciones = "";
+    List<FormularioDeInformacion> formularios = FormularioDeInformacion.getListaEnObjetos(null, null); // Ajusta el método según tu implementación
+    listaAdopciones += "<div class='swiper-wrapper'>"; // Inicio del swiper-wrapper
+
+    for (int i = 0; i < formularios.size(); i++) {
+        FormularioDeInformacion formulario = formularios.get(i);
+        
+        listaAdopciones += "<div class='swiper-slide'>"; // Inicio de la tarjeta
+        listaAdopciones += "<div class='card'>"; // Añadido la clase 'card'
+        
+        // Añadir la sección de la mascota
+        listaAdopciones += "<div class='card-header'>" + formulario.getMascota() + "</div>"; // Código de la mascota
+        listaAdopciones += "<div class='card-body'>"; // Cuerpo de la tarjeta
+        listaAdopciones += "<p><strong>Adoptante:</strong> " + formulario.getIdentificacionAdoptante() + "</p>";
+        listaAdopciones += "<p><strong>Ocupación:</strong> " + formulario.getOcupacion() + "</p>";
+        listaAdopciones += "<p><strong>Habitantes:</strong> " + formulario.getHabitantes() + "</p>";
+        listaAdopciones += "<p><strong>Días de visita:</strong> " + formulario.getFechaVisitaDia() + "</p>";
+        listaAdopciones += "<p><strong>Motivación:</strong> " + formulario.getMotivacion() + "</p>";
+        listaAdopciones += "</div>"; // Fin del cuerpo de la tarjeta
+
+        // Botones de acción
+        listaAdopciones += "<div class='btn-container'>";
+        listaAdopciones += "<a href='principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Modificar&codigo=" + formulario.getCodigo() + "'>";
+        listaAdopciones += "<button class='btn-adicionar'>Modificar</button></a>";
+        listaAdopciones += "<button class='btn-eliminar' onClick='eliminar(" + formulario.getCodigo() + ")'>Eliminar</button>";
+        listaAdopciones += "</div>"; // Fin del contenedor de botones
+
+        listaAdopciones += "</div>"; // Fin de la tarjeta
+        listaAdopciones += "</div>"; // Fin de la diapositiva
+    }
+    listaAdopciones += "</div>"; // Fin del swiper-wrapper
+%>
+
+<h3>LISTA DE ADOPCIONES</h3>
+
+<div class="header-container">
+    <!-- Buscar por nombre del adoptante -->
     <form id="searchForm">
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
-            <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon"> 
+            <input type="text" id="searchInput" placeholder="Buscar por adoptante" onkeyup="filterNames()">
+            <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
         </div>
-        <ul id="nameList"></ul> 
+        <ul id="nameList"></ul>
     </form>
+
+    <!-- Botón de adicionar -->
+    <button class="btn-volver" onclick="window.history.back();">Volver Atrás</button>
+
 </div>
-    <div class="contenedor-formularios">
-        <% for (FormularioDeInformacion formulario : formularios) { %>
-        <div class="tarjeta-formulario">
-            <div class="codigo-formulario">Código de Formulario: <%= formulario.getCodigoFormulario() %></div>
-            
-            <!-- Datos del Adoptante -->
-            <div class="adoptante-info">
-                <h2>Adoptante</h2>
-                <img src="<%= formulario.getFotoAdoptante() %>" alt="Foto del Adoptante" class="foto-adoptante">
-                <p><strong><%= formulario.getNombreAdoptante() %></strong></p>
-                <p><%= formulario.getTelefono() %></p>
-                <p><%= formulario.getDireccion() %></p>
-                <p><%= formulario.getResidencia() %></p>
-            </div>
 
-            <!-- Datos de las Mascotas -->
-            <div class="mascotas-info">
-                <h2>Mascotas</h2>
-                <% List<Mascota> mascotas = formulario.getMascotas(); %>
-                <% for (Mascota mascota : mascotas) { %>
-                    <div class="mascota">
-                        <p>Nombre: <%= mascota.getNombre() %></p>
-                        <p>Código: <%= mascota.getCodigo() %></p>
-                        <p>Cuidados Especiales: <%= mascota.getCuidadosEspeciales() %></p>
-                        <p>Fecha de Nacimiento: <%= mascota.getFechaNacimiento() %></p>
-                        <img src="<%= mascota.getFoto() %>" alt="Foto de la Mascota" class="foto-mascota">
-                    </div>
-                <% } %>
-            </div>
+<div class="swiper-container">
+    <%= listaAdopciones %>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-pagination"></div>
+</div>
 
-            <!-- Botones de Acción -->
-            <div class="acciones">
-                <form action="descargarFormulario.jsp" method="post">
-                    <input type="hidden" name="codigoFormulario" value="<%= formulario.getCodigoFormulario() %>">
-                    <button type="submit">Descargar Formulario</button>
-                </form>
-                <button onclick="aceptarFormulario('<%= formulario.getCodigoFormulario() %>')">Aceptar</button>
-                <button onclick="rechazarFormulario('<%= formulario.getCodigoFormulario() %>')">Rechazar</button>
-            </div>
-        </div>
-        <% } %>
-    </div>
+<div id="result"></div>
 
-    <script>
-        function aceptarFormulario(codigoFormulario) {
-            // Lógica para aceptar formulario (llamar a un servlet o función)
-            alert("Formulario " + codigoFormulario + " aceptado");
+<script type="text/javascript">
+    function eliminar(codigo) {
+        resultado = confirm("¿Realmente desea eliminar el formulario con código " + codigo + "?");
+        if (resultado) {
+            document.location = "principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Eliminar&codigo=" + codigo;
         }
+    }
+    
+    function filterNames() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const slides = document.getElementsByClassName('swiper-slide');
 
-        function rechazarFormulario(codigoFormulario) {
-            // Lógica para rechazar formulario (llamar a un servlet o función)
-            alert("Formulario " + codigoFormulario + " rechazado");
+        for (let i = 0; i < slides.length; i++) {
+            const cardHeader = slides[i].getElementsByClassName('card-header')[0];
+            const textValue = cardHeader.textContent || cardHeader.innerText;
+
+            if (textValue.toLowerCase().indexOf(filter) > -1) {
+                slides[i].style.display = "";
+            } else {
+                slides[i].style.display = "none";
+            }
         }
-    </script>
-</body>
-</html>
+    }
+    
+    const swiper = new Swiper('.swiper-container', {
+        loop: true,
+        slidesPerView: 3,
+        spaceBetween: 10,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        }
+    });
+</script>
