@@ -61,7 +61,7 @@
     <td>
         <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
 
-            <input  name="mascotasPlan" id="mascotasPlan">
+            <input type="hidden" name="mascotasPlan" id="mascotasPlan">
             <table border='0'>
                 <%=lineaModificar%>
                 <tr>

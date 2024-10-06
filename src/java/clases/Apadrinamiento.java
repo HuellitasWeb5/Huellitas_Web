@@ -89,6 +89,12 @@ public class Apadrinamiento {
         return ApadrinamientoDetalle.getListaEnObjetos("codigoApadrinamiento='" + codigo + "'", null);
     }
     
+    public boolean grabar() {
+        String cadenaSQL = "insert into Apadrinamiento(fecha,identificacionPadrino,fotoRecibo, fotoCedula) "
+                + " values ('" + fecha + "','" + identificacionPadrino + "','" + fotoRecibo + "','" + fotoCedula + "')";
+        // System.out.println(cadenaSQL);
+        return ConectorBD.ejecutarQuery(cadenaSQL);
+    }
     
     public boolean grabarConProcedimientoAlmacenado(String mascotasPlan) {
     String cadenaSQL = "CALL registrarPadripet(" + this.identificacionPadrino + ", '" + mascotasPlan + "', '" + this.fotoRecibo + "', '" + this.fotoCedula + "')";
@@ -124,24 +130,25 @@ public class Apadrinamiento {
        return ConectorBD.consultar(cadenaSQL);
    }
     
-    public static List<Apadrinamiento> getListaEnObjetos(String filtro, String orden){
-       List<Apadrinamiento> lista=new ArrayList<>();
-       ResultSet datos= Apadrinamiento.getLista(filtro, orden);
-       if (datos != null){
-           try {
-               while(datos.next()){
-                   Apadrinamiento apadrinamiento = new Apadrinamiento();
-                   apadrinamiento.setCodigo("codigo");
-                   apadrinamiento.setFecha("fecha");
-                   apadrinamiento.setIdentificacionPadrino("identidicacionPadrino");
-                   apadrinamiento.setFotoRecibo("fotoRecibo");
-                   apadrinamiento.setFotoCedula("fotoCedula");
-                   lista.add(apadrinamiento);
-               }
-           } catch (SQLException ex) {
-               Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
-           }
-       }
-       return lista;
-   }
+    public static List<Apadrinamiento> getListaEnObjetos(String filtro, String orden) {
+    List<Apadrinamiento> lista = new ArrayList<>();
+    ResultSet datos = Apadrinamiento.getLista(filtro, orden);
+    if (datos != null) {
+        try {
+            while (datos.next()) {
+                Apadrinamiento apadrinamiento = new Apadrinamiento();
+                apadrinamiento.setCodigo(datos.getString("codigo")); // Asegúrate de usar el nombre correcto de la columna
+                apadrinamiento.setFecha(datos.getString("fecha")); // Usa el tipo adecuado
+                apadrinamiento.setIdentificacionPadrino(datos.getString("identificacionPadrino")); // Verifica que el tipo sea correcto
+                apadrinamiento.setFotoRecibo(datos.getString("fotoRecibo"));
+                apadrinamiento.setFotoCedula(datos.getString("fotoCedula"));
+                lista.add(apadrinamiento);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Mascota.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    return lista;
+}
+
 }

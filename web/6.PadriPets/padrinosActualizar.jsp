@@ -49,12 +49,13 @@
     String accion = variables.get("accion");
 
     Apadrinamiento padrino = new Apadrinamiento();
-    padrino.setIdentificacionPadrino(variables.get("identificacion"));
-    padrino.setFotoRecibo(variables.get("fotoRecibo"));
-    padrino.setFotoCedula(variables.get("fotoCedula"));
 
     if ("Adicionar".equals(accion)) {
-         padrino.grabarConProcedimientoAlmacenado(variables.get("mascotasPlan"));
+        padrino.setIdentificacionPadrino( request.getParameter("identificacion"));
+        padrino.setFotoRecibo(request.getParameter("fotoRecibo"));
+        padrino.setFotoCedula(request.getParameter("fotoCedula"));
+        padrino.grabarConProcedimientoAlmacenado(request.getParameter("mascotasPlan"));
+        System.out.println(request.getParameter("mascotasPlan"));
     }
 %>
 
