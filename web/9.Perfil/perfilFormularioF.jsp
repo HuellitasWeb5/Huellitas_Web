@@ -28,7 +28,7 @@
             <h2>MODIFICA TUS DATOS SANPATITAS</h2>
         </div>
         <div class="card-body">
-            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/perfilActualizarF.jsp" enctype="multipart/form-data">
+            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/perfilActualizar.jsp" enctype="multipart/form-data">
                 <!-- Mostrar la foto del usuario -->
                 <img src="presentacion/clientes/<%=usuarioActual.getFoto() != null ? usuarioActual.getFoto() : "default.jpg"%>" id="foto" class="profile-image">
 
@@ -89,12 +89,18 @@
 
 <!-- JavaScript para la función de eliminación -->
 <script>
-    function modificar(identificacion) {
-        resultado = confirm("Cuando modifiques tus datos deberas iniciar sesion de nuevo");
+     function modificar(identificacion) {
+        event.preventDefault(); // Evita que el formulario se envíe automáticamente
+        var resultado = confirm("Cuando modifiques tus datos deberás iniciar sesión de nuevo");
         if (resultado) {
+            // Redirige para modificar los datos si el usuario confirma
             document.location = "principal.jsp?CONTENIDO=index-InicioSesion.jsp&accion=Modificar&identificacion=" + identificacion;
+        } else {
+            // Si el usuario cancela, no se hace nada
+            console.log("Modificación cancelada por el usuario.");
         }
     }
+
     function mostrarFoto(){
         var lector=new FileReader();
         lector.readAsDataURL(document.formulario.foto.files[0]);
