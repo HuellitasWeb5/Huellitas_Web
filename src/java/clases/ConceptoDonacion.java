@@ -19,8 +19,9 @@ import java.util.logging.Logger;
  * @author Luis Eraso
  */
 public class ConceptoDonacion {
+
     /*
-    */
+     */
     private String id;
     private String nombre;
     private String descripcion;
@@ -31,7 +32,7 @@ public class ConceptoDonacion {
     }
 
     public ConceptoDonacion(String id) {
-        String cadenaSQL = "select id, nombre, descripcion,codigoTipoDonacion,idUnidadDeMedida from conceptoDonacion where id="+id;
+        String cadenaSQL = "select id, nombre, descripcion,codigoTipoDonacion,idUnidadDeMedida from conceptoDonacion where id=" + id;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
@@ -42,7 +43,7 @@ public class ConceptoDonacion {
                 idUnidadDeMedida = resultado.getString("idUnidadDeMedida");
             }
         } catch (SQLException ex) {
-            System.out.println("Error en la consulta en conceptoDonacion: "+ex.getMessage());
+            System.out.println("Error en la consulta en conceptoDonacion: " + ex.getMessage());
         }
     }
 
@@ -77,9 +78,10 @@ public class ConceptoDonacion {
     public void setCodigoTipoDonacion(String codigoTipoDonacion) {
         this.codigoTipoDonacion = codigoTipoDonacion;
     }
-    public TipoDonacion getTipoDonacion(){
-        return new TipoDonacion (codigoTipoDonacion);
-     }
+
+    public TipoDonacion getTipoDonacion() {
+        return new TipoDonacion(codigoTipoDonacion);
+    }
 
     public String getIdUnidadDeMedida() {
         return idUnidadDeMedida;
@@ -88,14 +90,14 @@ public class ConceptoDonacion {
     public void setIdUnidadDeMedida(String idUnidadDeMedida) {
         this.idUnidadDeMedida = idUnidadDeMedida;
     }
-     public UnidadDeMedida getUnidadDeMedida(){
-        return new UnidadDeMedida (idUnidadDeMedida);
-     }
-    
-  
+
+    public UnidadDeMedida getUnidadDeMedida() {
+        return new UnidadDeMedida(idUnidadDeMedida);
+    }
+
     @Override
-    
-    public String toString(){
+
+    public String toString() {
         return nombre;
     }
 
@@ -114,57 +116,61 @@ public class ConceptoDonacion {
         String cadenaSQL = "delete from conceptoDonacion where id=" + id;
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
-    
-    public static ResultSet getLista(String filtro, String orden){
-          if (filtro != null && filtro != "") {
-         filtro = " where " + filtro;
-      } else {
-         filtro = "";
-      }
 
-      if (orden != null && orden != "") {
-         orden = " order by " + orden;
-      } else {
-         orden = "";
-      }
-        String cadenaSql = "select id, nombre, descripcion,codigoTipoDonacion,idUnidadDeMedida from conceptoDonacion"+filtro+orden;
+    public static ResultSet getLista(String filtro, String orden) {
+        if (filtro != null && filtro != "") {
+            filtro = " where " + filtro;
+        } else {
+            filtro = "";
+        }
+
+        if (orden != null && orden != "") {
+            orden = " order by " + orden;
+        } else {
+            orden = "";
+        }
+        String cadenaSql = "select id, nombre, descripcion,codigoTipoDonacion,idUnidadDeMedida from conceptoDonacion" + filtro + orden;
         return ConectorBD.consultar(cadenaSql);
     }
-    public static List<ConceptoDonacion> getListaEnObjetos(String filtro, String orden) {
-      List<ConceptoDonacion> lista = new ArrayList();
-      ResultSet datos = getLista(filtro, orden);
-      if (datos != null) {
-         try {
-            while(datos.next()) {
-               ConceptoDonacion conceptoDonacion = new ConceptoDonacion();
-               conceptoDonacion.setId(datos.getString("id"));
-               conceptoDonacion.setNombre(datos.getString("nombre"));
-               conceptoDonacion.setDescripcion(datos.getString("descripcion"));
-               conceptoDonacion.setCodigoTipoDonacion(datos.getString("codigoTipoDonacion"));
-               conceptoDonacion.setIdUnidadDeMedida(datos.getString("idUnidadDeMedida"));
-               lista.add(conceptoDonacion);
-            }
-         } catch (SQLException ex) {
-            Logger.getLogger(ConceptoDonacion.class.getName()).log(Level.SEVERE, (String)null, ex);
-         }
-      }
 
-      return lista;
-   }
-            public static String getListaEnOptions(String preseleccionado){
-        if (preseleccionado==null) preseleccionado="";
-        String lista="";
-        
-        List<ConceptoDonacion> datos= ConceptoDonacion.getListaEnObjetos(null, "nombre");
-        
+    public static List<ConceptoDonacion> getListaEnObjetos(String filtro, String orden) {
+        List<ConceptoDonacion> lista = new ArrayList();
+        ResultSet datos = getLista(filtro, orden);
+        if (datos != null) {
+            try {
+                while (datos.next()) {
+                    ConceptoDonacion conceptoDonacion = new ConceptoDonacion();
+                    conceptoDonacion.setId(datos.getString("id"));
+                    conceptoDonacion.setNombre(datos.getString("nombre"));
+                    conceptoDonacion.setDescripcion(datos.getString("descripcion"));
+                    conceptoDonacion.setCodigoTipoDonacion(datos.getString("codigoTipoDonacion"));
+                    conceptoDonacion.setIdUnidadDeMedida(datos.getString("idUnidadDeMedida"));
+                    lista.add(conceptoDonacion);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(ConceptoDonacion.class.getName()).log(Level.SEVERE, (String) null, ex);
+            }
+        }
+
+        return lista;
+    }
+
+    public static String getListaEnOptions(String preseleccionado) {
+        if (preseleccionado == null) {
+            preseleccionado = "";
+        }
+        String lista = "";
+
+        List<ConceptoDonacion> datos = ConceptoDonacion.getListaEnObjetos(null, "nombre");
+
         for (int i = 0; i < datos.size(); i++) {
             ConceptoDonacion conceptoDonacion = datos.get(i);
-            
-            String auxiliar="";
+
+            String auxiliar = "";
             //if (preseleccionado.equals(tipoDonacion.getCodigo())) auxiliar="selected";           
-            lista+="<option value='" + conceptoDonacion.getId()+"-"+conceptoDonacion.getNombre()+  "'" + auxiliar + ">" + conceptoDonacion.getNombre() + "</option>";
+            lista += "<option value='" + conceptoDonacion.getId() + "' " + auxiliar + ">" + conceptoDonacion.getNombre() + "</option>";
         }
-        
+
         return lista;
     }
 }
