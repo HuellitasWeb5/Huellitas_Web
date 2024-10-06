@@ -58,7 +58,7 @@
 
 /* Ajuste del tamaño y diseño de las tarjetas */
 .card {
-    background-color: #62ff67; /* Fondo */
+    background-color: #99ccff; /* Fondo */
     border-radius: 150px; /* Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 10px;
@@ -133,7 +133,7 @@ h3 {
 
 /* Estilo del hover de la tarjeta */
 .card:hover {
-    background-color: #62ff67; /* Color al pasar el cursor */
+    background-color: #99ccff; /* Color al pasar el cursor */
     transform: translateY(-10px); /* Mueve la tarjeta hacia arriba */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
 }
@@ -299,7 +299,7 @@ h3 {
 }
 
 .card:hover {
-    background-color: #62ff67; /* Color al pasar el cursor */
+    background-color: #99ccff; /* Color al pasar el cursor */
     transform: translateY(-10px); /* Mueve la tarjeta hacia arriba */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
 }

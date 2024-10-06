@@ -28,7 +28,7 @@
             <h2>MODIFICA TUS DATOS SANPATITAS</h2>
         </div>
         <div class="card-body">
-            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/perfilActualizar.jsp" enctype="multipart/form-data">
+            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/perfilActualizarF.jsp" enctype="multipart/form-data">
                 <!-- Mostrar la foto del usuario -->
                 <img src="presentacion/clientes/<%=usuarioActual.getFoto() != null ? usuarioActual.getFoto() : "default.jpg"%>" id="foto" class="profile-image">
 
