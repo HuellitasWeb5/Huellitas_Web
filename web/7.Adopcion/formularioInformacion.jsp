@@ -20,7 +20,7 @@
 %>  
 <body onload="cargarFecha()">
     <h3><%=accion.toUpperCase()%> ADOPCIONES </h3>
-    <form name="formulario" method="post" action="principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp">
+    <form name="formulario" method="post" action="principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp" enctype="multipart/form-data">
         <div class="contenedor-tarjetas">
 
             <!-- Sección de SAN PATITAS (Adoptante) -->
