@@ -24,10 +24,10 @@
 
     for (int i = 0; i < formularios.size(); i++) {
         FormularioDeInformacion formulario = formularios.get(i);
-        
+
         listaAdopciones += "<div class='swiper-slide'>"; // Inicio de la tarjeta
         listaAdopciones += "<div class='card'>"; // Añadido la clase 'card'
-        
+
         // Añadir la sección de la mascota
         listaAdopciones += "<div class='card-header'>" + formulario.getMascota() + "</div>"; // Código de la mascota
         listaAdopciones += "<div class='card-body'>"; // Cuerpo de la tarjeta
@@ -36,7 +36,7 @@
         listaAdopciones += "<p><strong>Habitantes:</strong> " + formulario.getHabitantes() + "</p>";
         listaAdopciones += "<p><strong>Días de visita:</strong> " + formulario.getFechaVisitaDia() + "</p>";
         listaAdopciones += "<p><strong>Motivación:</strong> " + formulario.getMotivacion() + "</p>";
-        
+
         // Mostrar las tres fotos
         if (formulario.getFotoVivienda() != null && !formulario.getFotoVivienda().isEmpty()) {
             listaAdopciones += "<p><strong>Foto Vivienda:</strong></p>";
@@ -81,12 +81,14 @@
     </form>
 
     <!-- Botón de adicionar -->
-    <button class="btn-volver" onclick="window.history.back();">Volver Atrás</button>
+    <button onclick="window.location.href = 'principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp';" class="btn-volver">
+        Volver
+    </button>
 
 </div>
 
 <div class="swiper-container">
-    <%= listaAdopciones %>
+    <%= listaAdopciones%>
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
     <div class="swiper-pagination"></div>
@@ -101,7 +103,7 @@
             document.location = "principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Eliminar&codigo=" + codigo;
         }
     }
-    
+
     function filterNames() {
         const input = document.getElementById('searchInput');
         const filter = input.value.toLowerCase();
@@ -118,7 +120,7 @@
             }
         }
     }
-    
+
     const swiper = new Swiper('.swiper-container', {
         loop: true,
         slidesPerView: 3,
