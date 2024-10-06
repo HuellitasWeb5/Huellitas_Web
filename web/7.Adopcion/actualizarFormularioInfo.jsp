@@ -1,94 +1,122 @@
-<%-- 
-    Document   : actualizarFormularioInfo
-    Created on : 1 oct 2024, 23:02:13
-    Author     : Angie
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*" %>
-<%@ page import="clases.ConectorBD" %>
-<%@ page import="java.util.logging.Level" %>
-<%@ page import="java.util.logging.Logger" %>
+<%@ page import="org.apache.tomcat.util.http.fileupload.FileItem"%>
+<%@ page import="java.util.Iterator"%>
+<%@ page import="java.util.List"%>
+<%@ page import="org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext"%>
+<%@ page import="org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory"%>
+<%@ page import="java.io.File"%>
+<%@ page import="org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload"%>
+<%@ page import="java.util.Map"%>
+<%@ page import="java.util.HashMap"%>
+<%@ page import="clases.FormularioDeInformacion"%>
 
 <%
-    // Obtener los par谩metros del formulario que se env铆an desde la p谩gina anterior
-    String idFormulario = request.getParameter("idFormulario");
-    String identificacionAdoptante = request.getParameter("identificacionAdoptante");
-    String codigoMascota = request.getParameter("codigoMascota");
-    String nuevaInformacion = request.getParameter("nuevaInformacion");
+    // Inicializar variables
+    boolean subioArchivo = false;
+    Map<String, String> variables = new HashMap<String, String>();  // Almacena los datos del formulario
+    boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 
-    Connection con = null;
-    Statement stmt = null;
-    ResultSet rs = null;
-    String mensaje = "";
+    String rutaArchivos = getServletContext().getRealPath("/") + "uploads/";  // Ruta de guardado
+    File destino = new File(rutaArchivos);
 
-    try {
-        // Establecer conexi贸n con la base de datos
-        con = ConectorBD.getConnection();
-        stmt = con.createStatement();
-
-    // Consultar si existe el adoptante en la base de datos
-    String query = "SELECT * FROM Adoptantes WHERE identificacion = '" + identificacionAdoptante + "'";
-    rs = stmt.executeQuery(query);
-
-    if (rs.next()) {
-        // Si el adoptante existe, se procede a insertar o actualizar el formulario
-        String updateQuery = "INSERT INTO FormulariosAdopcion (idFormulario, identificacionAdoptante, codigoMascota, nuevaInformacion) VALUES "
-                + "('" + idFormulario + "', '" + identificacionAdoptante + "', '" + codigoMascota + "', '" + nuevaInformacion + "') "
-                + "ON DUPLICATE KEY UPDATE nuevaInformacion = '" + nuevaInformacion + "'";
-        stmt.executeUpdate(updateQuery);
-        mensaje = "Formulario guardado correctamente";
-    } else {
-        mensaje = "Error: El adoptante no existe en la base de datos.";
+    if (!destino.exists()) {
+        destino.mkdirs();  // Crear el directorio si no existe
     }
 
-        // Consultar si existe el adoptante en la base de datos
-        String consultaAdoptante = "SELECT * FROM adoptante WHERE identificacion = '" + identificacionAdoptante + "'";
-        rs = stmt.executeQuery(consultaAdoptante);
+    if (isMultipart) {
+        // Configuraciones para subir los archivos
+        DiskFileItemFactory factory = new DiskFileItemFactory();
+        ServletFileUpload upload = new ServletFileUpload(factory);
+        List<FileItem> items = upload.parseRequest(new ServletRequestContext(request));
+        Iterator<FileItem> iterador = items.iterator();
 
-        if (rs.next()) {
-            // El adoptante existe
-            String codigoAdopcion = rs.getString("codigoAdopcion");
-
-            // Consultar si existe la mascota con el c贸digo proporcionado
-            String consultaMascota = "SELECT * FROM mascota WHERE codigo = '" + codigoMascota + "'";
-            rs = stmt.executeQuery(consultaMascota);
-
-            if (rs.next()) {
-                // La mascota existe, proceder a actualizar la informaci贸n del formulario
-                String actualizacionFormulario = "UPDATE formulario SET informacion = ? WHERE id = ?";
-                PreparedStatement psFormulario = con.prepareStatement(actualizacionFormulario);
-                psFormulario.setString(1, nuevaInformacion);
-                psFormulario.setString(2, idFormulario);
-                psFormulario.executeUpdate();
-
-                // Actualizar la tabla de adopci贸n con la nueva informaci贸n del formulario
-                String actualizacionAdopcion = "UPDATE adopcionDetalle SET codigoFormularioInformacion = ? WHERE codigoAdopcion = ?";
-                PreparedStatement psAdopcion = con.prepareStatement(actualizacionAdopcion);
-                psAdopcion.setString(1, idFormulario);
-                psAdopcion.setString(2, codigoAdopcion);
-                psAdopcion.executeUpdate();
-
-                mensaje = "Formulario y datos de adopci贸n actualizados correctamente.";
-
+        // Recorrer los elementos del formulario
+        while (iterador.hasNext()) {
+            FileItem item = iterador.next();
+            if (item.isFormField()) {
+                // Si es un campo de formulario, almacenar en el mapa
+                variables.put(item.getFieldName(), item.getString());
             } else {
-                mensaje = "No se encontr贸 ninguna mascota con el c贸digo proporcionado.";
+                // Si es un archivo, manejar la subida del archivo
+                String nombreArchivo = item.getName();
+                if (!nombreArchivo.isEmpty()) {
+                    File archivoGuardado = new File(destino, nombreArchivo);
+                    item.write(archivoGuardado);
+                    variables.put(item.getFieldName(), nombreArchivo);  // Almacenar el nombre del archivo
+                    subioArchivo = true;
+                }
             }
-
-        } else {
-            mensaje = "No se encontr贸 ning煤n adoptante con la identificaci贸n proporcionada.";
         }
+    } else {
+        // No es un formulario de tipo multipart, manejar los datos regulares
+        variables.put("accion", request.getParameter("accion"));
+        variables.put("identificacionAdoptante", request.getParameter("identificacionAdoptante"));
+    }
 
-    } catch (SQLException ex) {
-        Logger.getLogger("actualizarFormularioInfo.jsp").log(Level.SEVERE, null, ex);
-        mensaje = "Error al actualizar la informaci贸n: " + ex.getMessage();
-    } finally {
-        // Cerrar los recursos
-        if (rs != null) try { rs.close(); } catch (SQLException e) { /* Ignorar */ }
-        if (stmt != null) try { stmt.close(); } catch (SQLException e) { /* Ignorar */ }
-        if (con != null) try { con.close(); } catch (SQLException e) { /* Ignorar */ }
+    // Capturar valores del formulario
+    String accion = variables.get("accion");
+    String identificacionAdoptante = variables.get("identificacionAdoptante");
+    String codigoMascota = variables.get("codigoMascota");
+    String ocupacion = variables.get("ocupacion");
+    String tiempoLibre = variables.get("tiempoLibre");
+    String espacio = variables.get("espacio");
+    String compromiso = variables.get("compromiso");
+    String ninos = variables.get("ninos");  // Dejar como String
+    String habitantes = variables.get("habitantes");  // Dejar como String
+    String responsables = variables.get("responsables");  // Dejar como String
+    String otrasMascotas = variables.get("otrasMascotas");
+    String propietario = variables.get("propietario");
+    String motivacion = variables.get("motivacion");
+    String fechaVisitaDia = variables.get("fechaVisitaDia");
+    String fechaVisitaHora = variables.get("fechaVisitaHora");
+    String descripcion = variables.get("descripcion");
+    String autorizacionDatos = variables.get("autorizacion");
+
+    // Fotos subidas
+    String fotoVivienda = variables.get("fotoVivienda");
+    String fotoRecibo = variables.get("fotoRecibo");
+    String fotoCedula = variables.get("fotoCedula");
+
+    // Crear una instancia de FormularioDeInformacion y asignar valores
+    FormularioDeInformacion formularioDeInformacion = new FormularioDeInformacion();
+    formularioDeInformacion.setIdentificacionAdoptante(identificacionAdoptante);
+    formularioDeInformacion.setCodigoMascota(codigoMascota);
+    formularioDeInformacion.setOcupacion(ocupacion);
+    formularioDeInformacion.setTiempoLibre(tiempoLibre);
+    formularioDeInformacion.setEspacio(espacio);
+    formularioDeInformacion.setCompromiso(compromiso);
+    formularioDeInformacion.setNinos(ninos);  // Asignado como String
+    formularioDeInformacion.setHabitantes(habitantes);  // Asignado como String
+    formularioDeInformacion.setResponsables(responsables);  // Asignado como String
+    formularioDeInformacion.setOtrasMascotas(otrasMascotas);
+    formularioDeInformacion.setPropietario(propietario);
+    formularioDeInformacion.setMotivacion(motivacion);
+    formularioDeInformacion.setFechaVisitaDia(fechaVisitaDia);
+    formularioDeInformacion.setFechaVisitaHora(fechaVisitaHora);
+    formularioDeInformacion.setDescripcion(descripcion);
+    formularioDeInformacion.setAutorizacionDatos(autorizacionDatos);
+
+    // Asignar archivos subidos
+    formularioDeInformacion.setFotoVivienda(fotoVivienda);
+    formularioDeInformacion.setFotoRecibo(fotoRecibo);
+    formularioDeInformacion.setFotoCedula(fotoCedula);
+
+    // Acciones del formulario
+    switch (accion) {
+        case "Adicionar":
+            formularioDeInformacion.grabar();
+            break;
+        case "Modificar":
+            formularioDeInformacion.setCodigo(request.getParameter("codigo"));
+            formularioDeInformacion.modificar();
+            break;
+        case "Eliminar":
+            formularioDeInformacion.setCodigo(request.getParameter("codigo"));
+            formularioDeInformacion.eliminar();
+            break;
     }
 %>
 
-
-
+<script type="text/javascript">
+    // Redirigir despu閟 de completar la acci髇
+    document.location = "principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp";
+</script>

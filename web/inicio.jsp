@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="presentacion/prueba.css">
+        <link rel="stylesheet" href="style/index.css">
     </head>
     <body>
         <h1>FUNDACIÓN VILLA ESPERANZA</h1>

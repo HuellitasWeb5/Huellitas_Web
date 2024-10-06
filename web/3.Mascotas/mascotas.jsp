@@ -14,22 +14,33 @@
 </head>
 
 <%
+    // Recibir el parámetro "nombre" desde la URL
+    String nombreTipoPersona = request.getParameter("nombre");
+
+    // Si el parámetro no se recibe, asumir que es "Cliente" por defecto
+    if (nombreTipoPersona == null) {
+        nombreTipoPersona = "Cliente";
+    }
+%>
+
+<%
+    // Generar la lista de mascotas
     String lista = "";
     List<Mascota> datos = Mascota.getListaEnObjetos(null, null);
     lista += "<div class='swiper-wrapper'>";
     for (int i = 0; i < datos.size(); i++) {
         Mascota mascotas = datos.get(i);
-        lista += "<div class='swiper-slide'>"; // Añadido la clase 'card'
-        lista += "<div class='card'>"; // Añadido la clase 'card'
+        lista += "<div class='swiper-slide'>";
+        lista += "<div class='card'>";
         lista += "<div class='card-image'>";
-        lista += "<img src='presentacion/mascota/" + mascotas.getFoto() + "' width='auto' height='60'class='profile-image'>";
+        lista += "<img src='presentacion/mascota/" + mascotas.getFoto() + "' width='auto' height='60' class='profile-image'>";
         lista += "</div>";
         lista += "<div class='card-header'>";
         lista += mascotas.getNombre();
         lista += "</div>";
-        lista += "<div class='card-body'>"; // Contenedor para el cuerpo de la tarjeta
+        lista += "<div class='card-body'>";
         lista += "<p><strong>Código:</strong>" + mascotas.getCodigo() + "</p>";
-        lista += "<p><strong>Genero:</strong>" + mascotas.getGeneroEnObjeto() + "</p>";
+        lista += "<p><strong>Género:</strong>" + mascotas.getGeneroEnObjeto() + "</p>";
         lista += "<p><strong>Tamaño:</strong>" + mascotas.getTamano() + "</p>";
         lista += "<p><strong>Cuidado:</strong>" + mascotas.getCuidadosEspeciales() + "</p>";
         lista += "<p><strong>Edad aproximada:</strong>" + mascotas.getEdad() + " años</p>";
@@ -37,13 +48,19 @@
         lista += "<p><strong>Estado:</strong>" + mascotas.getEstado() + "</p>";
         lista += "<p><strong>Descripción:</strong>" + mascotas.getDescripcion() + "</p>";
         lista += "</div>";
-        lista += "<div class='btn-container'>"; // Contenedor para los botones
-        lista += "<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo()
-                + " 'title='Modificar'> <button class='btn-adicionar' title='Modificar'> Modificar </button> </a>";
-        lista += "<a><button class='btn-eliminar' onClick='eliminar(" + mascotas.getCodigo() + ")'>Eliminar</button></a>";
-        lista += "</div>";
-        lista += "<div class='btn-container'>"; // Contenedor para los botones
-        lista += "<a><button class='btn-otro'>padripets</button></a>";
+
+        // Solo mostrar los botones de Modificar y Eliminar si NO es un cliente
+        if (!"Cliente".equals(nombreTipoPersona)) {
+            lista += "<div class='btn-container'>";
+            lista += "<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo()+"&nombre="+nombreTipoPersona
+                    + " 'title='Modificar'> <button class='btn-adicionar' title='Modificar'>Modificar</button></a>";
+            lista += "<a><button class='btn-eliminar' onClick='eliminar(" + mascotas.getCodigo() + ")'>Eliminar</button></a>";
+            lista += "</div>";
+        }
+
+        // Estos botones siempre se muestran
+        lista += "<div class='btn-container'>";
+        lista += "<a><button class='btn-otro'>Padripets</button></a>";
         lista += "<a><button class='btn-otro'>Adoptar</button></a>";
         lista += "</div>";
         lista += "</div>";
@@ -51,7 +68,6 @@
     }
     lista += "</div>";
 %>
-
 <h3>LISTA DE MASCOTAS</h3>
 <div class="header-container">
     <!-- Buscar por nombre -->
@@ -124,21 +140,21 @@
     });
 
     function filterNames() {
-    const input = document.getElementById('searchInput');
-    const filter = input.value.toLowerCase();
-    const slides = document.getElementsByClassName('swiper-slide');
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const slides = document.getElementsByClassName('swiper-slide');
 
-    // Recorre cada slide y oculta o muestra dependiendo del filtro
-    for (let i = 0; i < slides.length; i++) {
-        const cardHeader = slides[i].getElementsByClassName('card-header')[0];
-        const textValue = cardHeader.textContent || cardHeader.innerText;
+        // Recorre cada slide y oculta o muestra dependiendo del filtro
+        for (let i = 0; i < slides.length; i++) {
+            const cardHeader = slides[i].getElementsByClassName('card-header')[0];
+            const textValue = cardHeader.textContent || cardHeader.innerText;
 
-        if (textValue.toLowerCase().indexOf(filter) > -1) {
-            slides[i].style.display = "";
-        } else {
-            slides[i].style.display = "none";
+            if (textValue.toLowerCase().indexOf(filter) > -1) {
+                slides[i].style.display = "";
+            } else {
+                slides[i].style.display = "none";
+            }
         }
     }
-}
 
 </script>

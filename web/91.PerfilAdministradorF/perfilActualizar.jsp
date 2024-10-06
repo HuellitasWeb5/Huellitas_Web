@@ -1,9 +1,9 @@
 <%-- 
-    Document   : mascotasActualizar
-    Created on : 28/08/2024, 09:13:23 AM
+    Document   : clientesActualizar
+    Created on : 27/05/2024, 03:36:08 PM
     Author     : URB
 --%>
-<%@page import="java.util.UUID"%>
+
 <%@page import="org.apache.tomcat.util.http.fileupload.FileItem"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
@@ -13,7 +13,7 @@
 <%@page import="org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
-<%@page import="clases.Mascota"%>
+<%@page import="clases.Persona"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     boolean subioArchivo = false;
@@ -22,12 +22,12 @@
     if (!isMultipart) {
         //no se pasa por el formulario que corresponde a eliminar
         variables.put("accion", request.getParameter("accion"));
-        variables.put("codigo", request.getParameter("codigo"));
+        variables.put("Identificacion", request.getParameter("Identificacion"));
     } else {
         //configuraciones para subir el archivo 
         String rutaActual = getServletContext().getRealPath("/");
         out.print(rutaActual);
-        File destino = new File(rutaActual + "/presentacion/mascota/");
+        File destino = new File(rutaActual + "/presentacion/clientes/");
         DiskFileItemFactory factory = new DiskFileItemFactory(1024 * 1024, destino);
         ServletFileUpload upload = new ServletFileUpload(factory);
         File archivo = null;
@@ -54,35 +54,38 @@
         }
     }
 
-    Mascota mascota = new Mascota();
-    mascota.setCodigo(variables.get("codigo"));
-    mascota.setNombre(variables.get("nombre"));
-    mascota.setGenero(variables.get("genero"));
-    mascota.setTamano(variables.get("tamano"));
-    mascota.setFoto(variables.get("foto"));
-    mascota.setCuidadosEspeciales(variables.get("cuidadosEspeciales"));
-    mascota.setFechaNacimientoAproximada(variables.get("fechaNacimientoAproximada"));
-    mascota.setFechaIngreso(variables.get("fechaIngreso"));
-    mascota.setEstado(variables.get("estado"));
-    mascota.setDescripcion(variables.get("descripcion"));
+    String accion = variables.get("accion");
+    String identificacionAnterior = variables.get("identificacionAnterior");
+
+    Persona usuarioActual = new Persona();
+    usuarioActual.setIdentificacion(variables.get("identificacion"));
+    usuarioActual.setNombre(variables.get("nombre"));
+    usuarioActual.setGenero(variables.get("genero"));
+    usuarioActual.setFechaNacimiento(variables.get("fechaNacimiento"));
+    usuarioActual.setEmail(variables.get("email"));
+    usuarioActual.setTelefono(variables.get("telefono"));
+    usuarioActual.setDireccion(variables.get("direccion"));
+    usuarioActual.setResidencia(variables.get("residencia"));
+    usuarioActual.setFoto(variables.get("foto"));
+    usuarioActual.setTipo("F");
+    usuarioActual.setClave(variables.get("clave"));
 
     switch (variables.get("accion")) {
-        case "Adicionar":
-            mascota.grabar();
-            break;
         case "Modificar":
             if (!subioArchivo) {
-                Mascota auxiliar = new Mascota(variables.get("codigo"));
-                mascota.setFoto(auxiliar.getFoto());
+                Persona auxiliar = new Persona(variables.get("identificacion"));
+                usuarioActual.setFoto(auxiliar.getFoto());
+
             }
-            mascota.modificar();
+            usuarioActual.modificar(identificacionAnterior);
             break;
         case "Eliminar":
-            mascota.eliminar();
+            usuarioActual.setIdentificacion(request.getParameter("identificacion"));
+            usuarioActual.eliminar();
             break;
     }
 %>
 
 <script type="text/javascript">
-    document.location = "principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=";
+    document.location = "index-InicioSesion.jsp";
 </script>

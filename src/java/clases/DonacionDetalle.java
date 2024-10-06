@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class DonacionDetalle {
+
     private String id;
     private String idConcepto;
     private String cantidad;
@@ -19,7 +20,7 @@ public class DonacionDetalle {
     }
 
     public DonacionDetalle(String id) {
-        String cadenaSQL = "select id, idConcepto, cantidad, valorUnitarios, codigoDonacion from donacionesdetalle id="+id;
+        String cadenaSQL = "select id, idConcepto, cantidad, valorUnitarios, codigoDonacion from donacionesdetalle id=" + id;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
@@ -87,7 +88,7 @@ public class DonacionDetalle {
     }
 
     public boolean modificar() {
-        String cadenaSQL = "update donacionesdetalle set idConcepto='" + idConcepto + "', cantidad='" + cantidad + "', valorUnitarios='" + valorUnitarios 
+        String cadenaSQL = "update donacionesdetalle set idConcepto='" + idConcepto + "', cantidad='" + cantidad + "', valorUnitarios='" + valorUnitarios
                 + "', codigoDonacion='" + codigoDonacion + "' where id=" + id;
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
@@ -110,7 +111,19 @@ public class DonacionDetalle {
             orden = "";
         }
 
-        String cadenaSQL = "select id, idConcepto, cantidad, valorUnitarios, codigoDonacion from donacionesdetalle" + filtro + orden;
+        String cadenaSQL = "SELECT "
+                + "    donacion.codigo,"
+                + "    donacion.fecha,"
+                + "    donacion.descripcion,"
+                + "    donacion.identificacionDonante,"
+                + "    donacionesdetalle.id AS detalleId,"
+                + "    donacionesdetalle.idConcepto,"
+                + "    donacionesdetalle.cantidad,"
+                + "    donacionesdetalle.valorUnitarios"
+                + "FROM "
+                + "    donacion"
+                + "INNER JOIN "
+                + "    donacionesdetalle ON donacion.codigo = donacionesdetalle.codigoDonacion;" + filtro + orden;
         return ConectorBD.consultar(cadenaSQL);
     }
 
