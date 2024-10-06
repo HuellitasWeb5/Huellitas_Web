@@ -6,6 +6,8 @@
 package clases;
 
 import clasesGenericas.ConectorBD;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -263,5 +265,22 @@ public class Mascota {
         lista += "];";
         return lista;
     }
-    
+    public static List<String[]> getMascotasPorFechaIngreso() {
+    List<String[]> lista = new ArrayList<>();
+    String cadenaSQL = "SELECT YEAR(fechaIngreso) AS anio, COUNT(*) AS cantidad "
+            + "FROM Mascota GROUP BY YEAR(fechaIngreso);";
+    ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+    try {
+        while (resultado.next()) {
+            String[] registro = new String[2];
+            registro[0] = resultado.getString("anio"); // Año de ingreso
+            registro[1] = resultado.getString("cantidad"); // Cantidad de mascotas
+            lista.add(registro);
+        }
+    } catch (SQLException ex) {
+        System.out.println("Error en getMascotasPorFechaIngreso. \nCadenaSQL: " + cadenaSQL + "\nError: " + ex.getMessage());
+    }
+    return lista;
+}
+
 }
