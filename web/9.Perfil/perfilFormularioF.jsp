@@ -67,10 +67,6 @@
                     <input type="text" id="residencia" name="residencia" value="<%=usuarioActual.getResidencia()%>">
                 </div>
                 <div class="form-group">
-                    <label for="foto">Foto:</label>
-                    <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();">
-                </div>
-                <div class="form-group">
                     <label for="clave">Contraseña:</label>
                     <input type="password" name="clave" id="clave" required>
                 </div>
@@ -89,18 +85,12 @@
 
 <!-- JavaScript para la función de eliminación -->
 <script>
-     function modificar(identificacion) {
-        event.preventDefault(); // Evita que el formulario se envíe automáticamente
-        var resultado = confirm("Cuando modifiques tus datos deberás iniciar sesión de nuevo");
+    function modificar(identificacion) {
+        resultado = confirm("Tus datos han sido modificados, deberas iniciar sesion de nuevo");
         if (resultado) {
-            // Redirige para modificar los datos si el usuario confirma
             document.location = "principal.jsp?CONTENIDO=index-InicioSesion.jsp&accion=Modificar&identificacion=" + identificacion;
-        } else {
-            // Si el usuario cancela, no se hace nada
-            console.log("Modificación cancelada por el usuario.");
         }
     }
-
     function mostrarFoto(){
         var lector=new FileReader();
         lector.readAsDataURL(document.formulario.foto.files[0]);

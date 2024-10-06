@@ -90,7 +90,7 @@
 <!-- JavaScript para la función de eliminación -->
 <script>
     function modificar(identificacion) {
-        resultado = confirm("Cuando modifiques tus datos deberas iniciar sesion de nuevo");
+        resultado = confirm("Tus datos han sido modificados, deberas iniciar sesion de nuevo");
         if (resultado) {
             document.location = "principal.jsp?CONTENIDO=index-InicioSesion.jsp&accion=Modificar&identificacion=" + identificacion;
         }
