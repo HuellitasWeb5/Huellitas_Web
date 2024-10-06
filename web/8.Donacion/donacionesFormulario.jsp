@@ -112,11 +112,12 @@
 
                 <div class="form-group">
                     <label>Descripción</label>
-                    <textarea id="comentarios" name="comentarios" rows="6" cols="40"></textarea>
+                    <textarea id="descripcion" name="descripcion" rows="6" cols="40"></textarea>
                 </div>
 
                 <!-- Campo oculto para almacenar la cadena de donaciones -->
                 <input  name="donacion" id="donacion">
+                <input type="hidden" name="accion" value="<%=accion%>">
             </div>
 
             <!-- Botón de envío que enviará los datos al archivo donacionesFormularioActualizar.jsp -->
