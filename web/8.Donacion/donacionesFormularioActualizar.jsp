@@ -77,7 +77,7 @@
 
                 // Grabar cada detalle de donación con el ID de la donación principal
                 for (DonacionDetalle detalleDonacion : detallesDonacion) {
-                    detalleDonacion.set(donacionId); // Asignar el ID de la donación principal
+                    detalleDonacion.setCodigoDonacion(donacionId); // Asignar el ID de la donación principal
                     detalleDonacion.grabar(); // Grabar el detalle en la base de datos
                 }
                 break;
