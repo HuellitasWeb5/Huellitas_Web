@@ -72,7 +72,7 @@
     function eliminar(identificacion) {
         resultado = confirm("Realmente desea eliminar tu cuenta?"+identificacion);
         if (resultado) {
-            document.location = "principal.jsp?CONTENIDO=9.Perfil/perfilActualizar.jsp&accion=Eliminar&identificacion=" + identificacion;
+            document.location = "principal.jsp?CONTENIDO=9.Perfil/perfilActualizar.jsp&accion=Modificar&identificacion=&identificacion=" + identificacion;
         }
     }
     function calcularEdad() {
