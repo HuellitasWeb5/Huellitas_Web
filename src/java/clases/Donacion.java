@@ -105,6 +105,18 @@ public class Donacion {
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
+    public boolean grabarProcedimientoAlmacenado(String cadenaDonaciones) {
+        // Usar un procedimiento almacenado que capture los datos necesarios para registrar la donación y sus detalles
+        String cadenaSQL = "CALL registrarDonacion('"
+                + this.identificacionDonante + "', '" // Identificación del donante
+                + this.fecha + "', '" // Fecha de la donación
+                + this.descripcion + "', '" // Descripción de la donación
+                + cadenaDonaciones + "')"; // Cadena de donaciones con IDs y cantidades
+
+        System.out.println("Cadena procedimiento: " + cadenaSQL);
+        return ConectorBD.ejecutarQuery(cadenaSQL);
+    }
+
     public static ResultSet getLista(String filtro, String orden) {
         if (filtro != null & filtro != "") {
             filtro = " where " + filtro;

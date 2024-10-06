@@ -27,7 +27,7 @@ public class TipoDonacion {
     }
 
     public TipoDonacion(String codigo) {
-        String cadenaSQL = "select codigo, nombre, descripcion from tipoDonacion where codigo="+codigo;
+        String cadenaSQL = "select codigo, nombre, descripcion from tipoDonacion where codigo=" + codigo;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
@@ -36,7 +36,7 @@ public class TipoDonacion {
                 descripcion = resultado.getString("descripcion");
             }
         } catch (SQLException ex) {
-            System.out.println("Error en la consulta en tipoDonacion: "+ex.getMessage());
+            System.out.println("Error en la consulta en tipoDonacion: " + ex.getMessage());
         }
     }
 
@@ -63,13 +63,12 @@ public class TipoDonacion {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-    
-     @Override
+
+    @Override
     public String toString() {
-      
+
         return nombre;
     }
-
 
     public boolean grabar() {
         String cadenaSQL = "insert into tipoDonacion (nombre,descripcion) "
@@ -86,58 +85,60 @@ public class TipoDonacion {
         String cadenaSQL = "delete from tipoDonacion where codigo=" + codigo;
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
-    
-    
+
     public static ResultSet getLista(String filtro, String orden) {
-      if (filtro != null && filtro != "") {
-         filtro = " where " + filtro;
-      } else {
-         filtro = "";
-      }
+        if (filtro != null && filtro != "") {
+            filtro = " where " + filtro;
+        } else {
+            filtro = "";
+        }
 
-      if (orden != null && orden != "") {
-         orden = " order by " + orden;
-      } else {
-         orden = "";
-      }
+        if (orden != null && orden != "") {
+            orden = " order by " + orden;
+        } else {
+            orden = "";
+        }
 
-      String cadenaSQL = "select codigo,nombre,descripcion from TipoDonacion" + filtro + orden;
-      return ConectorBD.consultar(cadenaSQL);
-   }
+        String cadenaSQL = "select codigo,nombre,descripcion from TipoDonacion" + filtro + orden;
+        return ConectorBD.consultar(cadenaSQL);
+    }
 
-   public static List<TipoDonacion> getListaEnObjetos(String filtro, String orden) {
-      List<TipoDonacion> lista = new ArrayList();
-      ResultSet datos = getLista(filtro, orden);
-      if (datos != null) {
-         try {
-            while(datos.next()) {
-               TipoDonacion tipoDonacion = new TipoDonacion();
-               tipoDonacion.setCodigo(datos.getString("Codigo"));
-               tipoDonacion.setNombre(datos.getString("nombre"));
-               tipoDonacion.setDescripcion(datos.getString("descripcion"));
-               lista.add(tipoDonacion);
+    public static List<TipoDonacion> getListaEnObjetos(String filtro, String orden) {
+        List<TipoDonacion> lista = new ArrayList();
+        ResultSet datos = getLista(filtro, orden);
+        if (datos != null) {
+            try {
+                while (datos.next()) {
+                    TipoDonacion tipoDonacion = new TipoDonacion();
+                    tipoDonacion.setCodigo(datos.getString("Codigo"));
+                    tipoDonacion.setNombre(datos.getString("nombre"));
+                    tipoDonacion.setDescripcion(datos.getString("descripcion"));
+                    lista.add(tipoDonacion);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(TipoDonacion.class.getName()).log(Level.SEVERE, (String) null, ex);
             }
-         } catch (SQLException ex) {
-            Logger.getLogger(TipoDonacion.class.getName()).log(Level.SEVERE, (String)null, ex);
-         }
-      }
+        }
 
-      return lista;
-   }
-        public static String getListaEnOptions(String preseleccionado){
-        if (preseleccionado==null) preseleccionado="";
-        String lista="";
-        
-        List<TipoDonacion> datos= TipoDonacion.getListaEnObjetos(null, "nombre");
-        
+        return lista;
+    }
+
+    public static String getListaEnOptions(String preseleccionado) {
+        if (preseleccionado == null) {
+            preseleccionado = "";
+        }
+        String lista = "";
+
+        List<TipoDonacion> datos = TipoDonacion.getListaEnObjetos(null, "nombre");
+
         for (int i = 0; i < datos.size(); i++) {
             TipoDonacion tipoDonacion = datos.get(i);
-            
-            String auxiliar="";
+
+            String auxiliar = "";
             //if (preseleccionado.equals(tipoDonacion.getCodigo())) auxiliar="selected";           
-            lista+="<option value='" + tipoDonacion.getCodigo()+"-"+tipoDonacion.getNombre()+ "'" + auxiliar +">"+ tipoDonacion.getNombre()+ "</option>";
+            lista += "<option value='" + tipoDonacion.getCodigo() + "' " + auxiliar + ">" + tipoDonacion.getNombre() + "</option>";
         }
-        
+
         return lista;
     }
 }
