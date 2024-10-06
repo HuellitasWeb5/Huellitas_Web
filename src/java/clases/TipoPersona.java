@@ -170,9 +170,4 @@ public class TipoPersona {
 
     }
 
-    // Método para obtener el tipo de usuario en formato legible
-    public static String obtenerNombrePorCodigo(String codigo) {
-        TipoPersona tipoPersona = new TipoPersona(codigo);
-        return tipoPersona.getNombre();
-    }
 }
