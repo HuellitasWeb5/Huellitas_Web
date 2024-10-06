@@ -169,7 +169,6 @@ public class Mascota {
     }
     
     public String toString() {
-
         String datos="";
         if (codigo!=null){
             datos=nombre+" - "+codigo;
