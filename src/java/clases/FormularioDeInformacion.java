@@ -49,7 +49,7 @@ public class FormularioDeInformacion {
     public FormularioDeInformacion(String codigo) {
         String cadenaSQL = "select fecha, identificacionAdoptante, codigoMascota, ocupacion, tiempoLibre, espacio, compromiso, ninos, habitantes, responsables, otrasMascotas, "
                 + "propietario, motivacion, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos "
-                + "from formularioDeInformacion where codigo="+codigo ;
+                + "from formularioDeInformacion where codigo=" + codigo;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
@@ -92,7 +92,11 @@ public class FormularioDeInformacion {
     }
 
     public String getFecha() {
-        return fecha;
+         String resultado = fecha;
+        if (fecha == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setFecha(String fecha) {
@@ -108,15 +112,28 @@ public class FormularioDeInformacion {
     }
 
     public String getCodigoMascota() {
-        return codigoMascota;
+        String resultado = codigoMascota;
+        if (codigoMascota == null) {
+            resultado = "";
+        }
+
+        return resultado;
     }
 
     public void setCodigoMascota(String codigoMascota) {
         this.codigoMascota = codigoMascota;
     }
+    public Mascota getMascota(){
+        return new Mascota (codigoMascota);
+     }
 
     public String getOcupacion() {
-        return ocupacion;
+        String resultado = ocupacion;
+        if (ocupacion == null) {
+            resultado = "";
+        }
+
+        return resultado;
     }
 
     public void setOcupacion(String ocupacion) {
@@ -124,7 +141,12 @@ public class FormularioDeInformacion {
     }
 
     public String getTiempoLibre() {
-        return tiempoLibre;
+        String resultado = tiempoLibre;
+        if (tiempoLibre == null) {
+            resultado = "";
+        }
+
+        return resultado;
     }
 
     public void setTiempoLibre(String tiempoLibre) {
@@ -132,7 +154,12 @@ public class FormularioDeInformacion {
     }
 
     public String getEspacio() {
-        return espacio;
+        String resultado = espacio;
+        if (espacio == null) {
+            resultado = "";
+        }
+
+        return resultado;
     }
 
     public void setEspacio(String espacio) {
@@ -140,7 +167,12 @@ public class FormularioDeInformacion {
     }
 
     public String getCompromiso() {
-        return compromiso;
+        String resultado = compromiso;
+        if (compromiso == null) {
+            resultado = "";
+        }
+
+        return resultado;
     }
 
     public void setCompromiso(String compromiso) {
@@ -148,7 +180,11 @@ public class FormularioDeInformacion {
     }
 
     public String getNinos() {
-        return ninos;
+        String resultado = ninos;
+        if (ninos == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setNinos(String ninos) {
@@ -156,7 +192,11 @@ public class FormularioDeInformacion {
     }
 
     public String getHabitantes() {
-        return habitantes;
+        String resultado = habitantes;
+        if (habitantes == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setHabitantes(String habitantes) {
@@ -164,7 +204,11 @@ public class FormularioDeInformacion {
     }
 
     public String getResponsables() {
-        return responsables;
+        String resultado = responsables;
+        if (responsables == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setResponsables(String responsables) {
@@ -172,7 +216,11 @@ public class FormularioDeInformacion {
     }
 
     public String getOtrasMascotas() {
-        return otrasMascotas;
+        String resultado = otrasMascotas;
+        if (otrasMascotas == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setOtrasMascotas(String otrasMascotas) {
@@ -180,7 +228,11 @@ public class FormularioDeInformacion {
     }
 
     public String getPropietario() {
-        return propietario;
+        String resultado = propietario;
+        if (propietario == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setPropietario(String propietario) {
@@ -188,7 +240,12 @@ public class FormularioDeInformacion {
     }
 
     public String getMotivacion() {
-        return motivacion;
+         String resultado = motivacion;
+        if (motivacion == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
     public void setMotivacion(String motivacion) {
@@ -196,7 +253,12 @@ public class FormularioDeInformacion {
     }
 
     public String getDescripcion() {
-        return descripcion;
+       String resultado = descripcion;
+        if (descripcion == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
     public void setDescripcion(String descripcion) {
@@ -204,7 +266,12 @@ public class FormularioDeInformacion {
     }
 
     public String getFechaVisitaDia() {
-        return fechaVisitaDia;
+       String resultado = fechaVisitaDia;
+        if (fechaVisitaDia == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
     public void setFechaVisitaDia(String fechaVisitaDia) {
@@ -212,7 +279,12 @@ public class FormularioDeInformacion {
     }
 
     public String getFechaVisitaHora() {
-        return fechaVisitaHora;
+        String resultado = fechaVisitaHora;
+        if (fechaVisitaHora == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
     public void setFechaVisitaHora(String fechaVisitaHora) {
@@ -220,7 +292,11 @@ public class FormularioDeInformacion {
     }
 
     public String getFotoRecibo() {
-        return fotoRecibo;
+        String resultado = fotoRecibo;
+        if (fotoRecibo == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setFotoRecibo(String fotoRecibo) {
@@ -228,7 +304,12 @@ public class FormularioDeInformacion {
     }
 
     public String getFotoVivienda() {
-        return fotoVivienda;
+         String resultado = fotoVivienda;
+        if (fotoVivienda == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
     public void setFotoVivienda(String fotoVivienda) {
@@ -236,7 +317,12 @@ public class FormularioDeInformacion {
     }
 
     public String getFotoCedula() {
-        return fotoCedula;
+        String resultado = fotoCedula;
+        if (fotoCedula == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
     public void setFotoCedula(String fotoCedula) {
@@ -244,7 +330,12 @@ public class FormularioDeInformacion {
     }
 
     public String getAutorizacionDatos() {
-        return autorizacionDatos;
+       String resultado = autorizacionDatos;
+        if (autorizacionDatos == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
     public void setAutorizacionDatos(String autorizacionDatos) {
@@ -258,12 +349,12 @@ public class FormularioDeInformacion {
 
     public boolean grabar() {
         String cadenaSQL = "insert into formularioDeInformacion (codigo,fecha, identificacionAdoptante, codigoMascota, habitantes, espacio, ninos, tiempoLibre, responsables, otrasMascotas, propietario, ocupacion, motivacion, compromiso, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos) "
-                + "values('1','" + fecha + "', '" + identificacionAdoptante + "', '" + codigoMascota + "', '" + habitantes + "', '" + espacio + "', '" + ninos + "', '" + tiempoLibre + "', '" + responsables + "', '" + otrasMascotas + "', '" + propietario + "', '" + ocupacion + "', '" + motivacion + "', '" + compromiso + "', '" + descripcion + "', '" + fechaVisitaDia + "', '" + fechaVisitaHora + "', '" + fotoRecibo + "', '" + fotoVivienda + "', '" + fotoCedula + "', '" + autorizacionDatos + "')";
+                + "values(generar(),curdate(), '" + identificacionAdoptante + "', '" + codigoMascota + "', '" + habitantes + "', '" + espacio + "', '" + ninos + "', '" + tiempoLibre + "', '" + responsables + "', '" + otrasMascotas + "', '" + propietario + "', '" + ocupacion + "', '" + motivacion + "', '" + compromiso + "', '" + descripcion + "', '" + fechaVisitaDia + "', '" + fechaVisitaHora + "', '" + fotoRecibo + "', '" + fotoVivienda + "', '" + fotoCedula + "', '" + autorizacionDatos + "')";
 
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
-   /* public boolean grabarFormularioConProcedimientoAlmacenado() {
+    /* public boolean grabarFormularioConProcedimientoAlmacenado() {
         String codigosMascotas = String.join(",", this.codigoMascota);  // Unimos los códigos con comas
 
         String cadenaSQL = "CALL insertarFormularioDeInformacion('"
@@ -290,7 +381,6 @@ public class FormularioDeInformacion {
 
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }*/
-
     public boolean modificar() {
         String cadenaSQL = "update formularioDeInformacion set "
                 + "fecha = '" + fecha + "', identificacionAdoptante = '" + identificacionAdoptante + "', codigoMascota = '" + codigoMascota + "', "
