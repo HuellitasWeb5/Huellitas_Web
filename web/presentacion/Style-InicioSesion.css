@@ -1,14 +1,15 @@
+/* Estilo base */
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* Asegura que el padding y el borde se incluyan en el ancho y alto */
+    box-sizing: border-box;
     font-family: "Roboto", sans-serif;
 }
 
 body {
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     height: 100vh;
     background-image: url('../IMAGENES/FondoPrincipal.jpg');
     background-size: cover;
@@ -16,60 +17,68 @@ body {
 }
 
 .container {
-    width: 500px; /* Mantén el ancho deseado */
-    background-color: rgba(255, 255, 255, 0.9); /* Fondo blanco más opaco */
-    border: 4px solid #11998e; /* Borde visible */
-    border-radius: 40px; /* Bordes redondeados */
-    padding: 40px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3); /* Sombra para dar profundidad */
-    overflow: hidden; /* Evita que el contenido se salga del cuadro */
+    width: 90%; /* Ancho dinámico para pantallas pequeñas */
+    max-width: 500px; /* Máximo ancho para pantallas grandes */
+    background-color: rgba(255, 255, 255, 0.9);
+    border: 4px solid #11998e;
+    border-radius: 40px;
+    padding: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     display: flex;
-    flex-direction: column; /* Alineación vertical */
-    align-items: center; /* Centrar horizontalmente */
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
 }
 
+/* Video de fondo ajustable */
 video {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Asegura que el video cubra toda el área */
-    z-index: -1; /* Asegura que el video esté detrás de otros elementos */
-    opacity: 0.8; /* Ajusta la opacidad para el efecto deseado */
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.8;
 }
 
+/* Título */
 h3 {
-    font-size: 28px;
-    color: #000; /* Color del título */
-    text-align: center; /* Alineación centrada */
+    font-size: 1.8rem;
+    color: #000;
+    text-align: center;
     margin-bottom: 20px;
 }
 
+/* Mensaje de error */
 p#error {
-    color: red; /* Color para el mensaje de error */
-    text-align: center; /* Alineación centrada */
-    margin-bottom: 20px; /* Margen inferior */
-}
-
-form {
-    width: 100%; /* Asegura que el formulario ocupe todo el ancho del contenedor */
+    color: red;
+    text-align: center;
     margin-bottom: 20px;
 }
 
+/* Formulario */
+form {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+/* Caja de entrada */
 .input-box {
-    width: 100%; /* Asegura que cada caja de entrada ocupe todo el ancho */
-    margin: 20px 0; /* Espacio entre cada campo */
+    width: 100%;
+    margin: 20px 0;
 }
 
-
+/* Etiquetas */
 .input-box label {
-    display: block; /* Muestra la etiqueta en un bloque */
-    margin-bottom: 5px; /* Espacio entre la etiqueta y el input */
-    color: #11998e; /* Color de la etiqueta */
-    text-align: center; /* Alineación centrada */
-    width: 100%; /* Asegura que el ancho de la etiqueta sea el 100% del contenedor */
+    display: block;
+    margin-bottom: 5px;
+    color: #11998e;
+    text-align: center;
+    width: 100%;
 }
+
+/* Input con icono */
 .icon-input {
     position: relative;
     display: flex;
@@ -77,51 +86,87 @@ form {
 }
 
 .icon-input input {
-    width: 100%; /* Asegura que el input ocupe todo el ancho */
-    padding: 10px; /* Espaciado interno */
-    padding-right: 40px; /* Espacio para el icono */
-    border: 2px solid #11998e; /* Borde verde */
-    border-radius: 40px; /* Bordes redondeados */
-    color: #11998e; /* Color de texto */
+    width: 100%;
+    padding: 10px;
+    padding-right: 40px;
+    border: 2px solid #11998e;
+    border-radius: 40px;
+    color: #11998e;
 }
 
 .icon-input .icon {
     position: absolute;
-    right: 10px; /* Coloca el icono en la parte derecha */
-    top: 50%; /* Centra verticalmente */
-    transform: translateY(-50%); /* Ajusta para centrar exactamente */
-    width: 20px;  /* Tamaño pequeño del icono */
-    height: 16px; /* Tamaño pequeño del icono */
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 16px;
 }
 
+/* Botón de enviar */
 input[type="submit"] {
-    width: 100%; /* Botón ocupa todo el ancho */
+    width: 100%;
     padding: 10px;
-    background-color: #1c7430; /* Color del botón */
-    color: white; /* Color del texto del botón */
+    background-color: #1c7430;
+    color: white;
     border: none;
-    border-radius: 20px; /* Bordes redondeados */
+    border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
     margin-top: 10px;
 }
 
+/* Hover del botón */
 input[type="submit"]:hover {
-    background-color: #000; /* Color al pasar el mouse */
+    background-color: #000;
 }
 
+/* Texto adicional */
 .recordar, .registro {
     margin: 15px 0;
-    color: #000; /* Color de los textos */
-    text-align: center; /* Alineación centrada */
+    color: #000;
+    text-align: center;
 }
 
+/* Links */
 .recordar a, .registro a {
     color: #000;
     text-decoration: none;
     font-weight: bold;
 }
 
+/* Hover en links */
 .recordar a:hover, .registro a:hover {
-    text-decoration: underline; /* Subrayado al pasar el mouse */
+    text-decoration: underline;
+}
+
+/* Media Queries para pantallas pequeñas */
+@media only screen and (max-width: 600px) {
+    h3 {
+        font-size: 1.5rem;
+    }
+    .container {
+        padding: 15px;
+    }
+    input[type="submit"] {
+        padding: 8px;
+    }
+}
+
+/* Media Queries para tablets */
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 95%; /* Ancho mayor en tablets */
+        max-width: 600px;
+    }
+}
+
+/* Media Queries para pantallas más grandes */
+@media only screen and (min-width: 1200px) {
+    .container {
+        max-width: 600px; /* Limita el ancho máximo en pantallas grandes */
+    }
+    h3 {
+        font-size: 2rem; /* Aumenta el tamaño del título */
+    }
 }
