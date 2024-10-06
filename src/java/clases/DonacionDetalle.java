@@ -15,7 +15,8 @@ public class DonacionDetalle {
     private String cantidad;
     private String codigoTipoDonacion;
     private String codigoDonacion;
-
+   
+    
     public DonacionDetalle() {
     }
 
