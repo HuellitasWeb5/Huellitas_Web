@@ -67,6 +67,10 @@
                     <input type="text" id="residencia" name="residencia" value="<%=usuarioActual.getResidencia()%>">
                 </div>
                 <div class="form-group">
+                    <label for="foto">Foto:</label>
+                    <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();">
+                </div>
+                <div class="form-group">
                     <label for="clave">Contraseña:</label>
                     <input type="password" name="clave" id="clave" required>
                 </div>
