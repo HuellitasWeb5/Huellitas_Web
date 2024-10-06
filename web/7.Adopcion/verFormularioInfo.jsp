@@ -1,13 +1,19 @@
-<%@page import="java.util.List"%>
-<%@page import="clases.FormularioDeInformacion"%>
-<%@page import="clases.Persona"%>
-<%@page import="clases.Mascota"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-
+<%@ page import="java.util.List"%> 
+<%@ page import="clases.FormularioDeInformacion"%>
+<%@ page import="clases.Persona"%>
+<%@ page import="clases.Mascota"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
+    <style>
+        .foto {
+            width: 100px;
+            height: auto;
+            margin: 10px;
+        }
+    </style>
 </head>
 
 <%
@@ -30,6 +36,23 @@
         listaAdopciones += "<p><strong>Habitantes:</strong> " + formulario.getHabitantes() + "</p>";
         listaAdopciones += "<p><strong>Días de visita:</strong> " + formulario.getFechaVisitaDia() + "</p>";
         listaAdopciones += "<p><strong>Motivación:</strong> " + formulario.getMotivacion() + "</p>";
+        
+        // Mostrar las tres fotos
+        if (formulario.getFotoVivienda() != null && !formulario.getFotoVivienda().isEmpty()) {
+            listaAdopciones += "<p><strong>Foto Vivienda:</strong></p>";
+            listaAdopciones += "<img class='foto' src='uploads/" + formulario.getFotoVivienda() + "' alt='Foto Vivienda'>";
+        }
+
+        if (formulario.getFotoRecibo() != null && !formulario.getFotoRecibo().isEmpty()) {
+            listaAdopciones += "<p><strong>Foto Recibo:</strong></p>";
+            listaAdopciones += "<img class='foto' src='uploads/" + formulario.getFotoRecibo() + "' alt='Foto Recibo'>";
+        }
+
+        if (formulario.getFotoCedula() != null && !formulario.getFotoCedula().isEmpty()) {
+            listaAdopciones += "<p><strong>Foto Cédula:</strong></p>";
+            listaAdopciones += "<img class='foto' src='uploads/" + formulario.getFotoCedula() + "' alt='Foto Cédula'>";
+        }
+
         listaAdopciones += "</div>"; // Fin del cuerpo de la tarjeta
 
         // Botones de acción
