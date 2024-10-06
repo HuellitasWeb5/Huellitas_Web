@@ -31,7 +31,7 @@
                     <div class="datos-con-foto">
                         <div class="datos">
                             <label>Identificación:</label>
-                            <input type="text" name="identificacionAdoptante" id="identificacion" placeholder="Digite aquí la identificación del adoptante">
+                            <input type="text" name="identificacionAdoptante" id="identificacion" placeholder="Digite aquí la identificación del adoptante" required>
                             <label>Nombre del Adoptante</label>
                             <input type="text" name="nombre" id="nombre" readonly>
                             <label>Teléfono</label>
@@ -54,7 +54,7 @@
                         <div class="datos">
                             <label>Código:</label>
                             <input type="hidden" name="codigosMascotas" id="codigosMascotas" value="">
-                            <input type="text" name="codigoMascota" id="codigoMascota" placeholder="Digite aquí el código de la mascota">
+                            <input type="text" name="codigoMascota" id="codigoMascota" placeholder="Digite aquí el código de la mascota" required>
                             <label>Nombre de la mascota:</label>
                             <input type="text" name="nombreMascota" id="nombreMascota" readonly>
                             <label>Fecha de nacimiento Aproximada:</label>
@@ -77,7 +77,7 @@
 
                 <label for="tiempoLibre">¿Cuenta con tiempo de calidad para el cuidado de la mascota?</label>
                 <fieldset>
-                    <input type="radio" id="tiempoLibreSi" name="tiempoLibre" value="S">
+                    <input type="radio" id="tiempoLibreSi" name="tiempoLibre" value="S" required>
                     <label for="tiempoLibreSi">Sí</label>
                     <input type="radio" id="tiempoLibreNo" name="tiempoLibre" value="N">
                     <label for="tiempoLibreNo">No</label>
@@ -85,7 +85,7 @@
 
                 <label for="espacio">¿Cuenta con un espacio adecuado para el cuidado de la mascota?</label>
                 <fieldset>
-                    <input type="radio" id="espacioSi" name="espacio" value="S">
+                    <input type="radio" id="espacioSi" name="espacio" value="S" required>
                     <label for="espacioSi">Sí</label>
                     <input type="radio" id="espacioNo" name="espacio" value="N">
                     <label for="espacioNo">No</label>
@@ -93,32 +93,33 @@
 
                 <label for="compromiso">¿Está dispuesto a esterilizar a la mascota y proporcionarle atención médica regular?</label>
                 <fieldset>
-                    <input type="radio" id="compromisoSi" name="compromiso" value="S">
+                    <input type="radio" id="compromisoSi" name="compromiso" value="S" required>
                     <label for="compromisoSi">Sí</label>
                     <input type="radio" id="compromisoNo" name="compromiso" value="N">
                     <label for="compromisoNo">No</label>
                 </fieldset>
 
                 <label for="ninos">¿En el hogar viven niños? ¿Cuántos?</label>
-                <input type="number" id="ninos" name="ninos" min="0" required placeholder="0"><br><br>
+                <input type="number" id="ninos" name="ninos" min="0" required placeholder="Ingrese un valor numérico (Si la respuesta es negativa digite 0)"><br><br>
 
                 <label for="habitantes">¿Cuántas personas conforman su hogar?</label>
-                <input type="number" id="habitantes" name="habitantes" min="1" required placeholder="0"><br><br>
+                <input type="number" id="habitantes" name="habitantes" min="1" required placeholder="Ingrese un valor numérico"><br><br>
 
                 <label for="responsables">¿Cuántas personas estarán al cuidado de la mascota?</label>
-                <input type="number" id="responsables" name="responsables" min="1" required placeholder="0"><br><br>
+                <input type="number" id="responsables" name="responsables" min="1" required placeholder="Ingrese un valor numérico"><br><br>
 
                 <label for="otrasMascotas">¿Tiene otras mascotas a su cargo?</label>
                 <fieldset>
-                    <input type="radio" id="otrasMascotasSi" name="otrasMascotas" value="S">
+                    <input type="radio" id="otrasMascotasSi" name="otrasMascotas" value="S" required>
                     <label for="otrasMascotasSi">Sí</label>
                     <input type="radio" id="otrasMascotasNo" name="otrasMascotas" value="N">
                     <label for="otrasMascotasNo">No</label>
                 </fieldset>
 
+
                 <label for="propietario">¿Es propietario de la vivienda en la que reside?</label>
                 <fieldset>
-                    <input type="radio" id="propietarioSi" name="propietario" value="S">
+                    <input type="radio" id="propietarioSi" name="propietario" value="S" required>
                     <label for="propietarioSi">Sí</label>
                     <input type="radio" id="propietarioNo" name="propietario" value="N">
                     <label for="propietarioNo">No</label>
@@ -138,21 +139,23 @@
                     <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Sabado"> Sábado</label>
                     <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Domingo"> Domingo</label>
                 </div>
+                <input type="hidden" id="fechaVisitaDiaHidden" name="fechaVisitaDia">
+                <p id="error-message" style="color: red; display: none;">Debe seleccionar al menos un día de la semana</p>
                 <br>
 
                 <label for="fechaVisitaHora">Selecciona la hora estimada de visita:</label>
-                <input type="time" id="fechaVisitaHora" name="fechaVisitaHora" style="width: 120px; text-align: center;">
+                <input type="time" id="fechaVisitaHora" name="fechaVisitaHora" style="width: 120px; text-align: center;" required>
 
                 <label for="fotoVivienda">Por favor, suba una foto del espacio donde vivirá la mascota (puede incluir foto de la cama, alimento o accesorios):</label>
-                <br><input type="file" id="fotoVivienda" name="fotoVivienda" accept="image/*, application/pdf" >
+                <br><input type="file" id="fotoVivienda" name="fotoVivienda" accept="image/*, application/pdf" required>
                 <br>
 
                 <label for="fotoRecibo">Por favor, cargue una foto del recibo de servicios públicos de su vivienda (gas, energía o agua):</label>
-                <br><input type="file" id="fotoRecibo" name="fotoRecibo" accept="image/*, application/pdf">
+                <br><input type="file" id="fotoRecibo" name="fotoRecibo" accept="image/*, application/pdf" required>
                 <br>
 
                 <label for="fotoCedula">Por favor, cargue una foto de su cédula de ciudadanía:</label>
-                <br><input type="file" id="fotoCedula" name="fotoCedula" accept="image/*, application/pdf">
+                <br><input type="file" id="fotoCedula" name="fotoCedula" accept="image/*, application/pdf" required>
                 <br>
 
                 <label for="descripcion">Descripción adicional:</label>
@@ -444,13 +447,43 @@
             height: 600
         });
     });
+
     function abrirFormulario() {
         $('#formulario').dialog('open');
     }
 
+    // VALIDAR DATOS
+
+    function validarFormulario(event) {
+        const checkboxes = document.querySelectorAll('input[name="fechaVisitaDia"]:checked');
+        const errorMessage = document.getElementById('error-message');
+
+        if (checkboxes.length === 0) {
+            errorMessage.style.display = 'block';
+            event.preventDefault();
+        } else {
+            errorMessage.style.display = 'none';
+        }
+    }
+
+    document.querySelector('form').addEventListener('submit', validarFormulario);
+
+    // AGREGAR MÁS DÍAS AL SELECCIONAR 
+
+    function actualizarDiasVisita() {
+        const checkboxes = document.querySelectorAll('input[name="fechaVisitaDia"]:checked');
+        let valoresSeleccionados = [];
+        checkboxes.forEach(checkbox => {
+            valoresSeleccionados.push(checkbox.value);
+        });
+        document.getElementById('fechaVisitaDiaHidden').value = valoresSeleccionados.join('|');
+    }
+
+    document.querySelectorAll('input[name="fechaVisitaDia"]').forEach(checkbox => {
+        checkbox.addEventListener('change', actualizarDiasVisita);
+    });
+
     // GRABAR L0S DATOS 
-
-
 
     $('#identificacion').change(function () {
         var identificacion = this.value.trim();
@@ -489,6 +522,7 @@
     }
 
     // CARGAR FECHA
+
     function cargarFecha() {
         var fecha = new Date();
         var dia = String(fecha.getDate()).padStart(2, '0');
