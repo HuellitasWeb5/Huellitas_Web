@@ -24,13 +24,16 @@ else USUARIO=(Persona) sesion.getAttribute("usuario");
         <script src="recursos/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="recursos/jquery-3.7.1.min.js"></script>
         <script src="recursos/jquery-ui-1.13.3.custom/jquery-ui.min.js"></script>
-       <script src="recursos/swiper-bundle.min.js"></script>   
-       <link rel="stylesheet" href="recursos/swiper-bundle.min.css" />
+        <script src="recursos/swiper-bundle.min.js"></script>   
+        <script src="recursos/amcharts5/index.js"></script>
+        <script src="recursos/amcharts5/xy.js"></script>
+        <script src="recursos/amcharts5/themes/Animated.js"></script>
+        <link rel="stylesheet" href="recursos/swiper-bundle.min.css" />
         <title>HUELLITAS WEB</title>
     </head>
 
 
-<body>
+    <body>
      <div id="banner"></div>
      <div id="menu"><%=USUARIO.getTipoEnObjeto().getMenu()%></div>
      <div id="contenido">
