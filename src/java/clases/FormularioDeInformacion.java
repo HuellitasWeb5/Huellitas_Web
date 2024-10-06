@@ -7,7 +7,6 @@ package clases;
 
 import clasesGenericas.ConectorBD;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -22,15 +21,17 @@ import java.util.logging.Logger;
  */
 public class FormularioDeInformacion {
 
-    private int codigo;
-    private Date fecha;
+    private String codigo;
+    private String fecha;
+    private String identificacionAdoptante;
+    private String codigoMascota;
     private String ocupacion;
     private String tiempoLibre;
     private String espacio;
     private String compromiso;
-    private int ninos;
-    private int habitantes;
-    private int responsables;
+    private String ninos;
+    private String habitantes;
+    private String responsables;
     private String otrasMascotas;
     private String propietario;
     private String motivacion;
@@ -45,57 +46,94 @@ public class FormularioDeInformacion {
     public FormularioDeInformacion() {
     }
 
-    public FormularioDeInformacion(int codigo) {
-        String cadenaSQL = "select fecha, ocupacion, tiempoLibre, espacio, compromiso, ninos, habitantes, responsables, otrasMascotas, propietario, motivacion, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos "
-                + "from formularioDeInformacion where codigo = '" + codigo + "'";
+    public FormularioDeInformacion(String codigo) {
+        String cadenaSQL = "select fecha, identificacionAdoptante, codigoMascota, ocupacion, tiempoLibre, espacio, compromiso, ninos, habitantes, responsables, otrasMascotas, "
+                + "propietario, motivacion, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos "
+                + "from formularioDeInformacion where codigo=" + codigo;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
                 this.codigo = codigo;
-                this.fecha = resultado.getDate("fecha");
-                this.ocupacion = resultado.getString("ocupacion");
-                this.tiempoLibre = resultado.getString("tiempoLibre");
-                this.espacio = resultado.getString("espacio");
-                this.compromiso = resultado.getString("compromiso");
-                this.ninos = resultado.getInt("ninos");
-                this.habitantes = resultado.getInt("habitantes");
-                this.responsables = resultado.getInt("responsables");
-                this.otrasMascotas = resultado.getString("otrasMascotas");
-                this.propietario = resultado.getString("propietario");
-                this.motivacion = resultado.getString("motivacion");
-                this.descripcion = resultado.getString("descripcion");
-                this.fechaVisitaDia = resultado.getString("fechaVisitaDia");
-                this.fechaVisitaHora = resultado.getString("fechaVisitaHora");
-                this.fotoRecibo = resultado.getString("fotoRecibo");
-                this.fotoVivienda = resultado.getString("fotoVivienda");
-                this.fotoCedula = resultado.getString("fotoCedula");
-                this.autorizacionDatos = resultado.getString("autorizacionDatos");
+                fecha = resultado.getString("fecha");
+                identificacionAdoptante = resultado.getString("identificacionAdoptante");
+                codigoMascota = resultado.getString("codigoMascota");
+                ocupacion = resultado.getString("ocupacion");
+                tiempoLibre = resultado.getString("tiempoLibre");
+                espacio = resultado.getString("espacio");
+                compromiso = resultado.getString("compromiso");
+                ninos = resultado.getString("ninos");
+                habitantes = resultado.getString("habitantes");
+                responsables = resultado.getString("responsables");
+                otrasMascotas = resultado.getString("otrasMascotas");
+                propietario = resultado.getString("propietario");
+                motivacion = resultado.getString("motivacion");
+                descripcion = resultado.getString("descripcion");
+                fechaVisitaDia = resultado.getString("fechaVisitaDia");
+                fechaVisitaHora = resultado.getString("fechaVisitaHora");
+                fotoRecibo = resultado.getString("fotoRecibo");
+                fotoVivienda = resultado.getString("fotoVivienda");
+                fotoCedula = resultado.getString("fotoCedula");
+                autorizacionDatos = resultado.getString("autorizacionDatos");
+
             } else {
-                System.out.println("No se encontró el formulario de información con el código: " + codigo);
+                System.out.print("No se encontró el formulario de información con el código: " + codigo);
             }
         } catch (SQLException ex) {
-            System.out.println("Error al consultar el código en formularioDeInformacion: " + ex.getMessage());
+            System.out.print("Error al consultar el código en formularioDeInformacion: " + ex.getMessage());
         }
     }
 
-    public int getCodigo() {
+    public String getCodigo() {
         return codigo;
     }
 
-    public void setCodigo(int codigo) {
+    public void setCodigo(String codigo) {
         this.codigo = codigo;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public String getFecha() {
+         String resultado = fecha;
+        if (fecha == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
+    public String getIdentificacionAdoptante() {
+        return identificacionAdoptante;
+    }
+
+    public void setIdentificacionAdoptante(String identificacionAdoptante) {
+        this.identificacionAdoptante = identificacionAdoptante;
+    }
+
+    public String getCodigoMascota() {
+        String resultado = codigoMascota;
+        if (codigoMascota == null) {
+            resultado = "";
+        }
+
+        return resultado;
+    }
+
+    public void setCodigoMascota(String codigoMascota) {
+        this.codigoMascota = codigoMascota;
+    }
+    public Mascota getMascota(){
+        return new Mascota (codigoMascota);
+     }
+
     public String getOcupacion() {
-        return ocupacion;
+        String resultado = ocupacion;
+        if (ocupacion == null) {
+            resultado = "";
+        }
+
+        return resultado;
     }
 
     public void setOcupacion(String ocupacion) {
@@ -103,7 +141,12 @@ public class FormularioDeInformacion {
     }
 
     public String getTiempoLibre() {
-        return tiempoLibre;
+        String resultado = tiempoLibre;
+        if (tiempoLibre == null) {
+            resultado = "";
+        }
+
+        return resultado;
     }
 
     public void setTiempoLibre(String tiempoLibre) {
@@ -111,7 +154,12 @@ public class FormularioDeInformacion {
     }
 
     public String getEspacio() {
-        return espacio;
+        String resultado = espacio;
+        if (espacio == null) {
+            resultado = "";
+        }
+
+        return resultado;
     }
 
     public void setEspacio(String espacio) {
@@ -119,39 +167,60 @@ public class FormularioDeInformacion {
     }
 
     public String getCompromiso() {
-        return compromiso;
+        String resultado = compromiso;
+        if (compromiso == null) {
+            resultado = "";
+        }
+
+        return resultado;
     }
 
     public void setCompromiso(String compromiso) {
         this.compromiso = compromiso;
     }
 
-    public int getNinos() {
-        return ninos;
+    public String getNinos() {
+        String resultado = ninos;
+        if (ninos == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
-    public void setNinos(int ninos) {
+    public void setNinos(String ninos) {
         this.ninos = ninos;
     }
 
-    public int getHabitantes() {
-        return habitantes;
+    public String getHabitantes() {
+        String resultado = habitantes;
+        if (habitantes == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
-    public void setHabitantes(int habitantes) {
+    public void setHabitantes(String habitantes) {
         this.habitantes = habitantes;
     }
 
-    public int getResponsables() {
-        return responsables;
+    public String getResponsables() {
+        String resultado = responsables;
+        if (responsables == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
-    public void setResponsables(int responsables) {
+    public void setResponsables(String responsables) {
         this.responsables = responsables;
     }
 
     public String getOtrasMascotas() {
-        return otrasMascotas;
+        String resultado = otrasMascotas;
+        if (otrasMascotas == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setOtrasMascotas(String otrasMascotas) {
@@ -159,7 +228,11 @@ public class FormularioDeInformacion {
     }
 
     public String getPropietario() {
-        return propietario;
+        String resultado = propietario;
+        if (propietario == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setPropietario(String propietario) {
@@ -167,7 +240,12 @@ public class FormularioDeInformacion {
     }
 
     public String getMotivacion() {
-        return motivacion;
+         String resultado = motivacion;
+        if (motivacion == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
     public void setMotivacion(String motivacion) {
@@ -175,7 +253,12 @@ public class FormularioDeInformacion {
     }
 
     public String getDescripcion() {
-        return descripcion;
+       String resultado = descripcion;
+        if (descripcion == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
     public void setDescripcion(String descripcion) {
@@ -183,7 +266,12 @@ public class FormularioDeInformacion {
     }
 
     public String getFechaVisitaDia() {
-        return fechaVisitaDia;
+       String resultado = fechaVisitaDia;
+        if (fechaVisitaDia == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
     public void setFechaVisitaDia(String fechaVisitaDia) {
@@ -191,7 +279,12 @@ public class FormularioDeInformacion {
     }
 
     public String getFechaVisitaHora() {
-        return fechaVisitaHora;
+        String resultado = fechaVisitaHora;
+        if (fechaVisitaHora == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
     public void setFechaVisitaHora(String fechaVisitaHora) {
@@ -199,7 +292,11 @@ public class FormularioDeInformacion {
     }
 
     public String getFotoRecibo() {
-        return fotoRecibo;
+        String resultado = fotoRecibo;
+        if (fotoRecibo == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setFotoRecibo(String fotoRecibo) {
@@ -207,7 +304,12 @@ public class FormularioDeInformacion {
     }
 
     public String getFotoVivienda() {
-        return fotoVivienda;
+         String resultado = fotoVivienda;
+        if (fotoVivienda == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
     public void setFotoVivienda(String fotoVivienda) {
@@ -215,7 +317,12 @@ public class FormularioDeInformacion {
     }
 
     public String getFotoCedula() {
-        return fotoCedula;
+        String resultado = fotoCedula;
+        if (fotoCedula == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
     public void setFotoCedula(String fotoCedula) {
@@ -223,7 +330,12 @@ public class FormularioDeInformacion {
     }
 
     public String getAutorizacionDatos() {
-        return autorizacionDatos;
+       String resultado = autorizacionDatos;
+        if (autorizacionDatos == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
     public void setAutorizacionDatos(String autorizacionDatos) {
@@ -232,18 +344,23 @@ public class FormularioDeInformacion {
 
     @Override
     public String toString() {
-        return "FormularioDeInformacion{" + "codigo=" + codigo + ", fecha=" + fecha + ", ocupacion=" + ocupacion + ", tiempoLibre=" + tiempoLibre + ", espacio=" + espacio + ", compromiso=" + compromiso + ", ninos=" + ninos + ", habitantes=" + habitantes + ", responsables=" + responsables + ", otrasMascotas=" + otrasMascotas + ", propietario=" + propietario + ", motivacion=" + motivacion + ", descripcion=" + descripcion + ", fechaVisitaDia=" + fechaVisitaDia + ", fechaVisitaHora=" + fechaVisitaHora + ", fotoRecibo=" + fotoRecibo + ", fotoVivienda=" + fotoVivienda + ", fotoCedula=" + fotoCedula + ", autorizacionDatos=" + autorizacionDatos + '}';
+        return "FormularioDeInformacion{" + "codigo=" + codigo + ", fecha=" + fecha + ", identificacionAdoptante='" + identificacionAdoptante + "', codigoMascota='" + codigoMascota + "', ocupacion=" + ocupacion + ", tiempoLibre=" + tiempoLibre + ", espacio=" + espacio + ", compromiso=" + compromiso + ", ninos=" + ninos + ", habitantes=" + habitantes + ", responsables=" + responsables + ", otrasMascotas=" + otrasMascotas + ", propietario=" + propietario + ", motivacion=" + motivacion + ", descripcion=" + descripcion + ", fechaVisitaDia=" + fechaVisitaDia + ", fechaVisitaHora=" + fechaVisitaHora + ", fotoRecibo=" + fotoRecibo + ", fotoVivienda=" + fotoVivienda + ", fotoCedula=" + fotoCedula + ", autorizacionDatos=" + autorizacionDatos + '}';
     }
 
     public boolean grabar() {
-        String cadenaSQL = "insert into formularioDeInformacion (fecha, habitantes, espacio, ninos, tiempoLibre, responsables, otrasMascotas, propietario, ocupacion, motivacion, compromiso, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos) "
-                + "values('" + fecha + "', '" + habitantes + "', '" + espacio + "', '" + ninos + "', '" + tiempoLibre + "', '" + responsables + "', '" + otrasMascotas + "', '" + propietario + "', '" + ocupacion + "', '" + motivacion + "', '" + compromiso + "', '" + descripcion + "', '" + fechaVisitaDia + "', '" + fechaVisitaHora + "', '" + fotoRecibo + "', '" + fotoVivienda + "', '" + fotoCedula + "', '" + autorizacionDatos + "')";
+        String cadenaSQL = "insert into formularioDeInformacion (codigo,fecha, identificacionAdoptante, codigoMascota, habitantes, espacio, ninos, tiempoLibre, responsables, otrasMascotas, propietario, ocupacion, motivacion, compromiso, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos) "
+                + "values(generar(),curdate(), '" + identificacionAdoptante + "', '" + codigoMascota + "', '" + habitantes + "', '" + espacio + "', '" + ninos + "', '" + tiempoLibre + "', '" + responsables + "', '" + otrasMascotas + "', '" + propietario + "', '" + ocupacion + "', '" + motivacion + "', '" + compromiso + "', '" + descripcion + "', '" + fechaVisitaDia + "', '" + fechaVisitaHora + "', '" + fotoRecibo + "', '" + fotoVivienda + "', '" + fotoCedula + "', '" + autorizacionDatos + "')";
+
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
-    public boolean grabarFormularioConProcedimientoAlmacenado() {
+    /* public boolean grabarFormularioConProcedimientoAlmacenado() {
+        String codigosMascotas = String.join(",", this.codigoMascota);  // Unimos los códigos con comas
+
         String cadenaSQL = "CALL insertarFormularioDeInformacion('"
                 + this.fecha + "','"
+                + this.identificacionAdoptante + "','"
+                + codigosMascotas + "','"
                 + this.ocupacion + "','"
                 + this.tiempoLibre + "','"
                 + this.espacio + "','"
@@ -260,36 +377,25 @@ public class FormularioDeInformacion {
                 + this.fotoRecibo + "','"
                 + this.fotoVivienda + "','"
                 + this.fotoCedula + "','"
-                + this.autorizacionDatos + "', '";
+                + this.autorizacionDatos + "')";
 
         return ConectorBD.ejecutarQuery(cadenaSQL);
-    }
-
+    }*/
     public boolean modificar() {
         String cadenaSQL = "update formularioDeInformacion set "
-                + "fecha = '" + fecha + "', "
-                + "habitantes = '" + habitantes + "', "
-                + "espacio = '" + espacio + "', "
-                + "ninos = '" + ninos + "', "
-                + "tiempoLibre = '" + tiempoLibre + "', "
-                + "responsables = '" + responsables + "', "
-                + "otrasMascotas = '" + otrasMascotas + "', "
-                + "propietario = '" + propietario + "', "
-                + "ocupacion = '" + ocupacion + "', "
-                + "motivacion = '" + motivacion + "', "
-                + "compromiso = '" + compromiso + "', "
-                + "descripcion = '" + descripcion + "', "
-                + "fechaVisitaDia = '" + fechaVisitaDia + "', "
-                + "fechaVisitaHora = '" + fechaVisitaHora + "', "
-                + "fotoRecibo = '" + fotoRecibo + "', "
-                + "fotoVivienda = '" + fotoVivienda + "', "
+                + "fecha = '" + fecha + "', identificacionAdoptante = '" + identificacionAdoptante + "', codigoMascota = '" + codigoMascota + "', "
+                + "habitantes = '" + habitantes + "', espacio = '" + espacio + "', ninos = '" + ninos + "', "
+                + "tiempoLibre = '" + tiempoLibre + "', responsables = '" + responsables + "', otrasMascotas = '" + otrasMascotas + "', "
+                + "propietario = '" + propietario + "', ocupacion = '" + ocupacion + "', motivacion = '" + motivacion + "', "
+                + "compromiso = '" + compromiso + "', descripcion = '" + descripcion + "', fechaVisitaDia = '" + fechaVisitaDia + "', "
+                + "fechaVisitaHora = '" + fechaVisitaHora + "', fotoRecibo = '" + fotoRecibo + "', fotoVivienda = '" + fotoVivienda + "', "
                 + "fotoCedula = '" + fotoCedula + "' "
                 + "where codigo = '" + codigo + "'";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
     public boolean eliminar() {
-        String cadenaSQL = "delete from formularioDeInformacion where codigo=" + codigo;
+        String cadenaSQL = "delete from formularioDeInformacion where codigo = " + codigo;
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
@@ -305,7 +411,7 @@ public class FormularioDeInformacion {
             orden = " ";
         }
 
-        String cadenaSQL = "select codigo, fecha, ocupacion, tiempoLibre, espacio, compromiso, ninos, habitantes, responsables, otrasMascotas, propietario, motivacion, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos "
+        String cadenaSQL = "select codigo, fecha, identificacionAdoptante, codigoMascota, ocupacion, tiempoLibre, espacio, compromiso, ninos, habitantes, responsables, otrasMascotas, propietario, motivacion, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos "
                 + "from formularioDeInformacion" + filtro + orden;
 
         return ConectorBD.consultar(cadenaSQL);
@@ -318,15 +424,17 @@ public class FormularioDeInformacion {
             try {
                 while (datos.next()) {
                     FormularioDeInformacion formulario = new FormularioDeInformacion();
-                    formulario.setCodigo(datos.getInt("codigo"));
-                    formulario.setFecha(datos.getDate("fecha"));
+                    formulario.setCodigo(datos.getString("codigo"));
+                    formulario.setFecha(datos.getString("fecha"));
+                    formulario.setIdentificacionAdoptante(datos.getString("identificacionAdoptante"));
+                    formulario.setCodigoMascota(datos.getString("codigoMascota"));
                     formulario.setOcupacion(datos.getString("ocupacion"));
                     formulario.setTiempoLibre(datos.getString("tiempoLibre"));
                     formulario.setEspacio(datos.getString("espacio"));
                     formulario.setCompromiso(datos.getString("compromiso"));
-                    formulario.setNinos(datos.getInt("ninos"));
-                    formulario.setHabitantes(datos.getInt("habitantes"));
-                    formulario.setResponsables(datos.getInt("responsables"));
+                    formulario.setNinos(datos.getString("ninos"));
+                    formulario.setHabitantes(datos.getString("habitantes"));
+                    formulario.setResponsables(datos.getString("responsables"));
                     formulario.setOtrasMascotas(datos.getString("otrasMascotas"));
                     formulario.setPropietario(datos.getString("propietario"));
                     formulario.setMotivacion(datos.getString("motivacion"));
@@ -357,17 +465,19 @@ public class FormularioDeInformacion {
                 lista += ", ";
             }
             lista += "{"
-                    + "\"codigo\": " + formulario.getCodigo() + ", " 
-                    + "\"fecha\": \"" + formulario.getFecha() + "\", " 
+                    + "\"codigo\": " + formulario.getCodigo() + ", "
+                    + "\"fecha\": \"" + formulario.getFecha() + "\", "
+                    + "\"identificacionAdoptante\": \"" + formulario.getIdentificacionAdoptante() + "\", "
+                    + "\"codigoMascota\": \"" + formulario.getCodigoMascota() + "\", "
                     + "\"ocupacion\": \"" + formulario.getOcupacion() + "\", "
-                    + "\"tiempoLibre\": " + formulario.getTiempoLibre() + ", " 
-                    + "\"espacio\": " + formulario.getEspacio() + ", " 
-                    + "\"compromiso\": " + formulario.getCompromiso() + ", " 
-                    + "\"ninos\": " + formulario.getNinos() + ", " 
-                    + "\"habitantes\": " + formulario.getHabitantes() + ", " 
-                    + "\"responsables\": " + formulario.getResponsables() + ", " 
-                    + "\"otrasMascotas\": " + formulario.getOtrasMascotas() + ", " 
-                    + "\"propietario\": \"" + formulario.getPropietario() + "\", " 
+                    + "\"tiempoLibre\": \"" + formulario.getTiempoLibre() + "\", "
+                    + "\"espacio\": \"" + formulario.getEspacio() + "\", "
+                    + "\"compromiso\": \"" + formulario.getCompromiso() + "\", "
+                    + "\"ninos\": " + formulario.getNinos() + ", "
+                    + "\"habitantes\": " + formulario.getHabitantes() + ", "
+                    + "\"responsables\": " + formulario.getResponsables() + ", "
+                    + "\"otrasMascotas\": \"" + formulario.getOtrasMascotas() + "\", "
+                    + "\"propietario\": \"" + formulario.getPropietario() + "\", "
                     + "\"motivacion\": \"" + formulario.getMotivacion() + "\", "
                     + "\"descripcion\": \"" + formulario.getDescripcion() + "\", "
                     + "\"fechaVisitaDia\": \"" + formulario.getFechaVisitaDia() + "\", "
@@ -375,7 +485,7 @@ public class FormularioDeInformacion {
                     + "\"fotoRecibo\": \"" + formulario.getFotoRecibo() + "\", "
                     + "\"fotoVivienda\": \"" + formulario.getFotoVivienda() + "\", "
                     + "\"fotoCedula\": \"" + formulario.getFotoCedula() + "\", "
-                    + "\"autorizacionDatos\": " + formulario.getAutorizacionDatos() 
+                    + "\"autorizacionDatos\": \"" + formulario.getAutorizacionDatos() + "\""
                     + "}";
         }
 
@@ -385,17 +495,21 @@ public class FormularioDeInformacion {
 
     public static List<FormularioDeInformacion> listarFormularios(Connection conn) {
         List<FormularioDeInformacion> formularios = new ArrayList<>();
-        String cadenaSQL = "SELECT codigo FROM formularioDeInformacion";
+        String cadenaSQL = "SELECT codigo, identificacionCliente, codigoMascota, FROM formularioDeInformacion";
 
-        try ( PreparedStatement pstmt = conn.prepareStatement(cadenaSQL);  ResultSet resultado = pstmt.executeQuery()) {
+        try (PreparedStatement pstmt = conn.prepareStatement(cadenaSQL);
+                ResultSet resultado = pstmt.executeQuery()) {
 
             while (resultado.next()) {
-                int codigo = resultado.getInt("codigo");
-                formularios.add(new FormularioDeInformacion(codigo));
+                FormularioDeInformacion formulario = new FormularioDeInformacion();
+                formulario.setCodigo(resultado.getString("codigo"));
+                formulario.setIdentificacionAdoptante(resultado.getString("identificacionCliente"));
+                formulario.setCodigoMascota(resultado.getString("codigoMascota"));
+                formularios.add(formulario);
             }
 
         } catch (SQLException ex) {
-            System.out.println("Error al listar formularios: " + ex.getMessage());
+            System.out.print("Error al listar formularios: " + ex.getMessage());
         }
         return formularios;
     }

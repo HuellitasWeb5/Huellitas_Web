@@ -1,245 +1,346 @@
-<%@page import="clases.Donacion"%>
-<%@page import="java.util.List"%>
-<%@page import="clases.Persona"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%
-    Donacion donacion = new Donacion();
-    String accion = request.getParameter("accion");
-    String codigo = request.getParameter("codigo");
-    List<Donacion> datos = donacion.getListaEnObjetos(null, null);
-    if ("Modificar".equals(accion)) {
-        donacion = new Donacion(codigo);
-    }
-%>
-<center><h3>Agregar Donación Detalle</h3></center>
-<style>
-    .container {
-        width: 50%;
-        margin: 0 auto;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        position: relative;
-    }
-    .header {
-        background-color: #003366;
-        color: white;
-        padding: 10px;
-        font-size: 20px;
-        text-align: center;
-        border-radius: 8px 8px 0 0;
-    }
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-    }
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 15px;
-    }
-    .form-group label {
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-    .form-group input {
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        background-color: #f0f0f0;
-    }
-    .form-group span{
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        background-color: #f0f0f0;
-        height: 45px;
-    }
-    .hidden {
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.3s ease;
-    }
-</style>
-
-<div class="container">
-    <button class="close-btn" onclick="toggleContainer()">−</button>
-    <div class="header">Datos del Usuario</div>
-    <div class="content">
-
-        <div class="form-group">
-            <label>Identificación</label>
-            <input type="text" name="identificacionD" id="identificacionD" value="">
-        </div>
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-             <span name="nombre" id="nombre" value="" readonly></span>
-        </div>
-        <div class="form-group">
-            <label for="numero">Número</label>
-           <span name="numero" id="numero" value="" readonly></span>
-        </div>
-        <div class="form-group">
-            <label for="direccion">Dirección</label>
-           <span name="direccion" id="direccion" value="" readonly></span>
-        </div>
-        <div class="form-group">
-            <label for="correo">Correo Electrónico</label>
-            <span type="text" id="correo" value="" readonly></span>
-        </div>
-    </div>
-</div>
-
-<!-- Ventana emergente para el formulario de detalle -->
-<div id="formularioDetalle" title="Adicionar Donación Detalle" style="display:none;">
-    <form name="formularioDonacionDetalle">
-        <table>
-            <tr>
-                <th>Nombre</th>
-                <td><input type="text" name="nombreDetalle" id="nombreDetalle" required></td>
-            </tr>
-            <tr>
-                <th>Tipo</th>
-                <td><input type="text" name="tipo" id="tipo" required></td>
-            </tr>
-            <tr>
-                <th>Donación</th>
-                <td><input type="text" name="donacionCatalogo" id="donacion" required></td>
-            </tr>
-            <tr>
-                <th>Cantidad</th>
-                <td><input type="number" name="cantidad" id="cantidad" value="1" required></td>
-            </tr>
-        </table>
-        <input type="button" value="Agregar" onclick="actualizarTabla();">
-        <input type="button" value="Cancelar" onclick="cerrarFormulario();">
-    </form>    
-</div>
-
-<!-- Tabla para mostrar los detalles de la donación -->
-<table id="tablaDonaciones" border="1">
-    <thead>
-        <tr>
-            <th>Nombre</th>
-            <th>Tipo</th>
-            <th>Donación</th>
-            <th>Cantidad</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Las filas se añadirán aquí dinámicamente -->
-    </tbody>
-</table>
-
-<div class="filter-container">
-    <button class="add-button" onclick="abrirFormularioDetalle();">Adicionar Donación</button>
-</div>
-
-<script>
-    var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
-
-    var vectorPersonas = new Array();
-    for (var i = 0; i < personas.length; i++) {
-        vectorPersonas[i] = personas[i][0] ;
-    }
-    $("#identificacionD").autocomplete({
-        source: vectorPersonas
-    });
-    
-    function buscarPersona(valor, indice) {
-        encontrado = false;
-        i = 0;
-        while (!encontrado) {
-            if (valor == personas[i][indice])
-                encontrado = true;
-            i++;
-        }
-        if (encontrado)
-            return i - 1;
-        else
-            return false;
-    }
-    
-    $('#identificacionD').change(function () {
-        identificacion = this.value.trim();
-        indicePersona = buscarPersona(identificacion, 0);
-        nombre = personas[indicePersona][1];
-        numero = personas[indicePersona][2];
-        direccion = personas[indicePersona][3];
-        correo = personas[indicePersona][5];
-
-        document.getElementById("nombre").innerHTML = nombre;
-        document.getElementById("numero").innerHTML = numero;
-        document.getElementById("direccion").innerHTML = direccion;
-        document.getElementById("correo").innerHTML = correo;
-
-
-    });
-    
-    function toggleContainer() {
-        const content = document.querySelector('.content');
-        content.classList.toggle('hidden');
-    }
-
-    $(document).ready(function () {
-        $("#formularioDetalle").dialog({
-            autoOpen: false,
-            modal: true,
-            buttons: {
-                "Cerrar": function () {
-                    $(this).dialog("close");
-                }
+        <%@page import="clases.Persona"%>
+        <%@page import="clases.Mascota"%>
+        <%@page import="clases.ConceptoDonacion"%>
+        <%@page import="clases.TipoDonacion"%>
+        <%@page import="clases.DonacionDetalle"%>
+        <%@page contentType="text/html" pageEncoding="UTF-8"%>
+        <%
+            TipoDonacion tipoDonacion = new TipoDonacion();
+            String accion = request.getParameter("accion");
+            DonacionDetalle donacionDetalle = new DonacionDetalle();
+        %>
+        <style>
+            .container {
+                width: 50%;
+                margin: 0 auto;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                padding: 20px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                position: relative;
             }
-        });
-    });
+            .header {
+                background-color: #003366;
+                color: white;
+                padding: 10px;
+                font-size: 20px;
+                text-align: center;
+                border-radius: 8px 8px 0 0;
+            }
+            .close-btn {
+                position: absolute;
+                top: 10px;
+                right: 20px;
+                background: none;
+                border: none;
+                color: white;
+                font-size: 24px;
+                cursor: pointer;
+            }
+            .form-group {
+                display: flex;
+                flex-direction: column;
+                margin-bottom: 15px;
+            }
+            .form-group label {
+                font-weight: bold;
+                margin-bottom: 5px;
+            }
+            .form-group input {
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                background-color: #f0f0f0;
+            }
+            .form-group span {
+                padding: 8px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                background-color: #f0f0f0;
+                height: 45px;
+            }
+            .hidden {
+                display: none; /* Cambia max-height por display para ocultarlo por completo */
+                transition: all 0.3s ease;
+            }
+        </style>
+        <body onload="cargarFecha()">
+            <h3><%=accion.toUpperCase()%> Donaciones</h3>
 
-    function abrirFormularioDetalle() {
-        $("#formularioDetalle").dialog("open");
-    }
+            <!-- Formulario principal -->
+            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=8.Donacion/donacionesFormularioActualizar.jsp">
+                <div class="container">
+                    <button class="close-btn" onclick="toggleContainer(event)">−</button>
 
-    function cerrarFormulario() {
-        $("#formularioDetalle").dialog("close");
-    }
+                    <div class="header">Datos del Usuario</div>
+                    <div class="content">
 
-    function actualizarTabla() {
-        // Obtener los valores del formulario de detalle
-        var nombre = document.getElementById("nombreCatalogo").value;
-        var tipo = document.getElementById("tipoCatalogo").value;
-        var donacion = document.getElementById("donacionCatalogo").value;
-        var cantidad = document.getElementById("cantidad").value;
+                         <div class="form-group">
+                            <label>Fecha actual:</label>
+                            <span id="fecha"></span>
+                        </div>
 
-        // Crear una nueva fila en la tabla
-        var tabla = document.getElementById("tablaDonaciones").getElementsByTagName('tbody')[0];
-        var nuevaFila = tabla.insertRow();
+                        <div class="form-group">
+                            <label>Identificación</label>
+                            <input type="text" name="identificacionD" id="identificacionD" value="">
+                        </div>
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <span name="nombre" id="nombre" value="" readonly></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Número de telefono</label>
+                            <span name="telefono" id="telefono" value="" readonly></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="direccion">Dirección</label>
+                            <span name="direccion" id="direccion" value="" readonly></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="residencia">Residencia</label>
+                            <span name="residencia" id="residencia" value="" readonly></span>
+                        </div>
+                        <div class="form-group">
+                            <label for="correo">Correo Electrónico</label>
+                            <span type="text" id="correo" value="" readonly></span>
+                        </div>
+                    <div class="form-group">
+                        <label>Descripcion</label>
+                        <textarea id="comentarios" name="comentarios" rows="6" cols="40"></textarea>
+                    </div>
+                    </div>
+                    <input name="donacion" id="donacion" > <!-- Input oculto para almacenar las donaciones  type="hidden"-->
+                </div>
+            </form>
 
-        // Insertar celdas en la fila
-        var celdaNombre = nuevaFila.insertCell(0);
-        var celdaTipo = nuevaFila.insertCell(1);
-        var celdaDonacion = nuevaFila.insertCell(2);
-        var celdaCantidad = nuevaFila.insertCell(3);
+            <!-- Botón para abrir el formulario modal -->
+            <button class="add-button" onclick="abrirFormulario();">Abrir ventana</button>
 
-        // Asignar los valores a las celdas
-        celdaNombre.innerHTML = nombre;
-        celdaTipo.innerHTML = tipo;
-        celdaDonacion.innerHTML = donacion;
-        celdaCantidad.innerHTML = cantidad;
+            <!-- Formulario modal para ingresar detalles de donaciones -->
+            <div id="formulario" title="Donaciones">
+                <form name="formularioDonacionDetalle">
+                    <table>
 
-        // Cerrar el formulario
-        cerrarFormulario();
-    }
+                        <tr>
+                            <th>Tipo de donacion</th>
+                            <td>
+                                <select id="tipoDonacion" name="tipoDonacion">
+                                    <option value="" disabled selected>Seleccione un tipo de donacion</option>
+                                    <%= TipoDonacion.getListaEnOptions(null)%>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Donacion concepto</th>
+                            <td>
+                                <select id="donacionConcepto" name="donacionConcepto">
+                                    <option value="" disabled selected>Seleccione una donacion</option>
+                                    <%= ConceptoDonacion.getListaEnOptions(null)%>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Cantidad</th>
+                            <td><input type="number" name="cantidad" id="cantidad" value="1" required></td>
+                        </tr>
+                    </table>
+                    <input class="btn-adicionar" type="button" value="Agregar" onclick="actualizarTabla();">
+                    <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
+                </form>    
+            </div>
 
-    function AgregarDonacion() {
-        var identificacionDonante = document.getElementById('identificacionDonante').value;
-        var fecha = document.getElementById('fecha').value;
-        var descripcion = document.getElementById('descripcion').value;
-        var url = "8.Donacion/donacionesFormularioActualizar.jsp?accion=Adicionar&identificacionDonante=" + identificacionDonante + "&fecha=" + fecha + "&descripcion=" + descripcion;
-        window.location.href = url;
-    }
-</script>
+            <!-- Contenedor de las tarjetas -->
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <!-- aqui va las tarjetas--> 
+                    <br><br>
+                </div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-pagination"></div>
+            </div>
+        </body>
+        <script>
+            var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
+            var vectorPersonas = new Array();
+            for (var i = 0; i < personas.length; i++) {
+                vectorPersonas[i] = personas[i][0];
+            }
+            $("#identificacionD").autocomplete({
+                source: vectorPersonas
+            });
+
+            function buscarPersona(valor, indice) {
+                encontrado = false;
+                i = 0;
+                while (!encontrado) {
+                    if (valor == personas[i][indice])
+                        encontrado = true;
+                    i++;
+                }
+                if (encontrado)
+                    return i - 1;
+                else
+                    return false;
+            }
+
+            $('#identificacionD').change(function () {
+                identificacion = this.value.trim();
+                indicePersona = buscarPersona(identificacion, 0);
+                nombre = personas[indicePersona][1];
+                telefono = personas[indicePersona][2];
+                direccion = personas[indicePersona][3];
+                residencia = personas[indicePersona][4];
+                correo = personas[indicePersona][5];
+                document.getElementById("nombre").innerHTML = nombre;
+                document.getElementById("telefono").innerHTML = telefono;
+                document.getElementById("direccion").innerHTML = direccion;
+                document.getElementById("residencia").innerHTML = residencia;
+                document.getElementById("correo").innerHTML = correo;
+            });
+
+            function toggleContainer(event) {
+                event.preventDefault();
+                const content = document.querySelector('.content');
+                content.classList.toggle('hidden');
+            }
+
+            $(function () {
+                $("#formulario").dialog({
+                    autoOpen: false,
+                    show: {
+                        effect: "blind",
+                        duration: 1000
+                    },
+                    hide: {
+                        effect: "explode",
+                        duration: 1000
+                    },
+                    width: 400,
+                    height: 250
+                });
+            });
+
+            function abrirFormulario() {
+                $('#formulario').dialog('open');
+            }
+
+
+            function cerrarFormulario() {
+                document.getElementById('tipoDonacion').value = "";
+                document.getElementById('donacionConcepto').value = "";
+                document.getElementById('cantidad').value = "";
+                $('#formulario').dialog('close');
+            }
+
+            function actualizarTabla() {
+                var objeto = document.getElementById("donacion");
+
+                if (objeto.value != '')
+                    objeto.value += "||";
+
+                var tipoDonacion = document.getElementById('tipoDonacion').value;
+                var donacionConcepto = document.getElementById('donacionConcepto').value;
+                var cantidad = document.getElementById('cantidad').value;
+
+                // Guardar en formato tipoDonacion | conceptoDonacion | cantidad
+                objeto.value += tipoDonacion + "|" + donacionConcepto + "|" + cantidad;
+
+                cargarTabla();
+                cerrarFormulario();
+            }
+
+
+            function cargarTabla() {
+                var contenedor = document.querySelector('.swiper-wrapper');
+                contenedor.innerHTML = '';
+
+                var datos = document.getElementById('donacion').value;
+
+                if (datos === '') {
+                    return;
+                }
+
+                var registros = datos.split('||');
+
+                registros.forEach(function (registro, index) {
+                    var campos = registro.split('|');
+
+                    var tarjeta = document.createElement('div');
+                    tarjeta.classList.add('swiper-slide');
+
+                    var card = document.createElement('div');
+                    card.classList.add('card');
+
+                    // Agregar título "Donación"
+                    var tituloElemento = document.createElement('h2');
+                    tituloElemento.textContent = 'Donación';
+                    card.appendChild(tituloElemento);
+
+                    var tipoDonacionElemento = document.createElement('p');
+                    tipoDonacionElemento.innerHTML = '<strong>Tipo de Donación:</strong> ' + campos[0];
+
+                    var conceptoElemento = document.createElement('p');
+                    conceptoElemento.innerHTML = '<strong>Donación Concepto:</strong> ' + campos[1];
+
+                    var cantidadElemento = document.createElement('p');
+                    cantidadElemento.innerHTML = '<strong>Cantidad:</strong> ' + campos[2];
+
+                    var botonEliminar = document.createElement('button');
+                    botonEliminar.textContent = 'Eliminar';
+                    botonEliminar.onclick = function () {
+                        eliminarRegistro(index);
+                    };
+
+                    card.appendChild(tipoDonacionElemento);
+                    card.appendChild(conceptoElemento);
+                    card.appendChild(cantidadElemento);
+                    card.appendChild(botonEliminar);
+
+                    tarjeta.appendChild(card);
+                    contenedor.appendChild(tarjeta);
+                });
+            }
+
+
+
+
+            function limpiarFormulario() {
+                document.getElementById('nombreDetalle').value = '';
+                document.getElementById('tipoDonacion').value = '';
+                document.getElementById('donacionConcepto').value = '';
+                document.getElementById('cantidad').value = '';
+            }
+
+            function eliminarRegistro(index) {
+                var datos = document.getElementById('donacion').value;
+                var registros = datos.split('||');
+                registros.splice(index, 1);
+                document.getElementById('donacion').value = registros.join('||');
+                cargarTabla();
+            }
+
+            const swiper = new Swiper('.swiper-container', {
+                loop: true,
+                slidesPerView: 4,
+                spaceBetween: 10,
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                }
+            });
+            function cargarFecha() {
+                var fecha = new Date();
+                var dia = String(fecha.getDate()).padStart(2, '0');
+                var mes = String(fecha.getMonth() + 1).padStart(2, '0');
+                var anio = fecha.getFullYear();
+                var fechaActual = dia + '/' + mes + '/' + anio;
+                document.getElementById('fecha').innerText = fechaActual;
+            }
+
+            mentById('fecha').innerText = fechaFormateada;
+        </script>

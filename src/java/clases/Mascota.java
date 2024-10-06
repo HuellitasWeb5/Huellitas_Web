@@ -169,7 +169,6 @@ public class Mascota {
     }
     
     public String toString() {
-
         String datos="";
         if (codigo!=null){
             datos=nombre+" - "+codigo;
@@ -187,7 +186,9 @@ public class Mascota {
     // falta el to String con el override
    public boolean modificar(){
        String cadenaSQL="update mascota set nombre='"+nombre+"',genero='"+genero+"',tamano='"+tamano+"',foto='"+foto+"',cuidadosEspeciales='"+cuidadosEspeciales+"',"
-               + "fechaNacimientoAproximada='"+fechaNacimientoAproximada+"',fechaIngreso='"+fechaIngreso+"',estado='"+estado+"',descripcion='"+descripcion+"' where codigo="+codigo;
+               + "fechaNacimientoAproximada='"+fechaNacimientoAproximada+"',fechaIngreso='"
+               +fechaIngreso+"',estado='"+estado+"',descripcion='"+descripcion+"' where codigo="+codigo+";";
+       System.out.println(cadenaSQL);
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }
     // falta el to String con el override

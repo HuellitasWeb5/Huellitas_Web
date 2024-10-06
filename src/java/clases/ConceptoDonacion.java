@@ -31,7 +31,7 @@ public class ConceptoDonacion {
     }
 
     public ConceptoDonacion(String id) {
-        String cadenaSQL = "select id, nombre, descripcion,codigoTipoDonacion,idUnidadDeMedida from conceptoDonacion";
+        String cadenaSQL = "select id, nombre, descripcion,codigoTipoDonacion,idUnidadDeMedida from conceptoDonacion where id="+id;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
@@ -151,4 +151,20 @@ public class ConceptoDonacion {
 
       return lista;
    }
+            public static String getListaEnOptions(String preseleccionado){
+        if (preseleccionado==null) preseleccionado="";
+        String lista="";
+        
+        List<ConceptoDonacion> datos= ConceptoDonacion.getListaEnObjetos(null, "nombre");
+        
+        for (int i = 0; i < datos.size(); i++) {
+            ConceptoDonacion conceptoDonacion = datos.get(i);
+            
+            String auxiliar="";
+            //if (preseleccionado.equals(tipoDonacion.getCodigo())) auxiliar="selected";           
+            lista+="<option value='" + conceptoDonacion.getId()+"-"+conceptoDonacion.getNombre()+  "'" + auxiliar + ">" + conceptoDonacion.getNombre() + "</option>";
+        }
+        
+        return lista;
+    }
 }

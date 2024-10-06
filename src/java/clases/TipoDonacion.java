@@ -135,7 +135,7 @@ public class TipoDonacion {
             
             String auxiliar="";
             //if (preseleccionado.equals(tipoDonacion.getCodigo())) auxiliar="selected";           
-            lista+="<option value='" + tipoDonacion.getCodigo() + "'" + auxiliar + ">" + tipoDonacion.getNombre() + "</option>";
+            lista+="<option value='" + tipoDonacion.getCodigo()+"-"+tipoDonacion.getNombre()+ "'" + auxiliar +">"+ tipoDonacion.getNombre()+ "</option>";
         }
         
         return lista;
