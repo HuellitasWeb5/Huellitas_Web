@@ -265,22 +265,35 @@ public class Mascota {
         lista += "];";
         return lista;
     }
-    public static List<String[]> getMascotasPorFechaIngreso() {
-    List<String[]> lista = new ArrayList<>();
+public static List<String[]> getMascotasPorFechaIngreso() {
+    List<String[]> lista = new ArrayList<>(); // Se inicializa una lista que almacenará arrays de Strings, cada uno con los datos de cada año y su cantidad de mascotas.
+    
+    // Consulta SQL que selecciona el año de la fecha de ingreso (fechaIngreso) y cuenta cuántas mascotas ingresaron en ese año.
     String cadenaSQL = "SELECT YEAR(fechaIngreso) AS anio, COUNT(*) AS cantidad "
             + "FROM Mascota GROUP BY YEAR(fechaIngreso);";
-    ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+    
+    ResultSet resultado = ConectorBD.consultar(cadenaSQL); // Ejecuta la consulta y guarda los resultados en un ResultSet.
+    
     try {
+        // Itera sobre el ResultSet para obtener los datos.
         while (resultado.next()) {
-            String[] registro = new String[2];
-            registro[0] = resultado.getString("anio"); // Año de ingreso
-            registro[1] = resultado.getString("cantidad"); // Cantidad de mascotas
+            String[] registro = new String[2]; // Crea un array de Strings para almacenar el año y la cantidad.
+            
+            // Obtiene el año de la columna 'anio' de la consulta.
+            registro[0] = resultado.getString("anio");
+            
+            // Obtiene la cantidad de la columna 'cantidad' de la consulta.
+            registro[1] = resultado.getString("cantidad");
+            
+            // Agrega el registro (año, cantidad) a la lista.
             lista.add(registro);
         }
     } catch (SQLException ex) {
+        // Captura cualquier error que pueda ocurrir al procesar el ResultSet.
         System.out.println("Error en getMascotasPorFechaIngreso. \nCadenaSQL: " + cadenaSQL + "\nError: " + ex.getMessage());
     }
-    return lista;
+    
+    return lista; // Retorna la lista con los resultados.
 }
 
 }
