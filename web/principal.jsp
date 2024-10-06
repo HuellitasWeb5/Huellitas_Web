@@ -28,7 +28,6 @@ else USUARIO=(Persona) sesion.getAttribute("usuario");
         <script src="recursos/amcharts5/index.js"></script>
         <script src="recursos/amcharts5/xy.js"></script>
         <script src="recursos/amcharts5/themes/Animated.js"></script>
-
         <link rel="stylesheet" href="recursos/swiper-bundle.min.css" />
         <title>HUELLITAS WEB</title>
     </head>
