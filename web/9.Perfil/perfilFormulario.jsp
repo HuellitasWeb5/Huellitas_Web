@@ -90,7 +90,7 @@
 
 <!-- JavaScript para la función de eliminación -->
 <script>
- 
+
     function mostrarFoto(){
         var lector=new FileReader();
         lector.readAsDataURL(document.formulario.foto.files[0]);

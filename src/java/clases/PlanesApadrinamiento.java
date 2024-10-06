@@ -109,5 +109,23 @@ public class PlanesApadrinamiento {
        }
        return lista;
    }
+    public static String getListaCompletaEnArregloJS(String filtro, String orden) {
+    String lista = "[";
+    List<PlanesApadrinamiento> datos = PlanesApadrinamiento.getListaEnObjetos(filtro, orden); 
+
+    for (int i = 0; i < datos.size(); i++) {
+        PlanesApadrinamiento objeto = datos.get(i);
+        if (i > 0) {
+            lista += ", ";
+        }
+        lista += "[";
+        lista += "'" + objeto.getId() + "',";
+        lista += "'" + objeto.getNombre() + "',";
+        lista += "'" + objeto.getDescripcion() + "'";
+        lista += "]";
+    }
+    lista += "];";
+    return lista;
+}
 }
 
