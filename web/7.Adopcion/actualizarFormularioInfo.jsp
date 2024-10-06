@@ -14,21 +14,21 @@
     boolean subioArchivo = false;
     Map<String, String> variables = new HashMap<String, String>();  // Almacena los datos del formulario
     boolean isMultipart = ServletFileUpload.isMultipartContent(request);
-    
+
     String rutaArchivos = getServletContext().getRealPath("/") + "uploads/";  // Ruta de guardado
     File destino = new File(rutaArchivos);
-    
+
     if (!destino.exists()) {
         destino.mkdirs();  // Crear el directorio si no existe
     }
-    
+
     if (isMultipart) {
         // Configuraciones para subir los archivos
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
         List<FileItem> items = upload.parseRequest(new ServletRequestContext(request));
         Iterator<FileItem> iterador = items.iterator();
-        
+
         // Recorrer los elementos del formulario
         while (iterador.hasNext()) {
             FileItem item = iterador.next();
@@ -51,7 +51,7 @@
         variables.put("accion", request.getParameter("accion"));
         variables.put("identificacionAdoptante", request.getParameter("identificacionAdoptante"));
     }
-    
+
     // Capturar valores del formulario
     String accion = variables.get("accion");
     String identificacionAdoptante = variables.get("identificacionAdoptante");
@@ -94,21 +94,23 @@
     formularioDeInformacion.setFechaVisitaHora(fechaVisitaHora);
     formularioDeInformacion.setDescripcion(descripcion);
     formularioDeInformacion.setAutorizacionDatos(autorizacionDatos);
-    
+
     // Asignar archivos subidos
     formularioDeInformacion.setFotoVivienda(fotoVivienda);
     formularioDeInformacion.setFotoRecibo(fotoRecibo);
     formularioDeInformacion.setFotoCedula(fotoCedula);
-    
+
     // Acciones del formulario
     switch (accion) {
         case "Adicionar":
             formularioDeInformacion.grabar();
             break;
         case "Modificar":
+            formularioDeInformacion.setCodigo(request.getParameter("codigo"));
             formularioDeInformacion.modificar();
             break;
         case "Eliminar":
+            formularioDeInformacion.setCodigo(request.getParameter("codigo"));
             formularioDeInformacion.eliminar();
             break;
     }
