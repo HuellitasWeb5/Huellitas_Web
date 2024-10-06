@@ -15,6 +15,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="presentacion/estiloRepetido.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 </head>
 
 <%
@@ -27,7 +29,6 @@
     listaPlan += "<div class='swiper-container carousel'>";
     listaPlan += "<div class='swiper-wrapper'>";
     List<PlanesApadrinamiento> datosPlanes = PlanesApadrinamiento.getListaEnObjetos(null, null);
-    System.out.println("Tamaño de datosPlanes: " + datosPlanes.size());
     for (int j = 0; j < datosPlanes.size(); j++) {
         PlanesApadrinamiento planes2 = datosPlanes.get(j);
         listaPlan += "<div class='swiper-slide'>";
@@ -39,7 +40,7 @@
         listaPlan += "<p><strong>Codigo:</strong> " + planes2.getId() + "</p>";
         listaPlan += "<p><strong>Descripción:</strong> " + planes2.getDescripcion() + "</p>";
         listaPlan += "<div class='button-container'>";
-        listaPlan += "<input type='radio' name='opcionSeleccionada' value='" + planes2.getNombre() + "'>";
+        listaPlan += "<input type='radio' name='opcionSeleccionada' value='" + planes2.getId() + "'>";
         listaPlan += "</div>";
         listaPlan += "</div>";
         listaPlan += "</div>";
@@ -94,16 +95,20 @@
                         <input type="file" name="fotoCedula" accept="image/*" onchange="mostrarFotoCedula();">
                     </td>
                 </tr>
-
-
+                <tr>
+                    <input type="button" value="Seleccionar Mascota" onclick="abrirFormulario();">
+                </tr>
+                 
             </table>
-
+<input type="hidden" name="numero" value="<%=codigo%>">
+<input type="submit" name="accion" value="<%= accion != null ? accion : "Adicionar" %>">
+<input type="button" value="Cancelar" onClick="window.history.back()">
         </form>
     </td>
 </td><td><img src="presentacion/padripet/<%=apadrinamiento.getFotoRecibo()%>" id="fotoRecibo" width="auto" height="350"></td>
 </td><td><img src="presentacion/padripet/<%=apadrinamiento.getFotoCedula()%>" id="fotoCedula" width="auto" height="350"></td>
 </table>
-<input type="button" value="Seleccionar Mascota" onclick="abrirFormulario();">
+
 
 
 <div class="carousel-container">
@@ -117,9 +122,7 @@
 </div>
 
 
-<input type="hidden" name="numero" value="<%=codigo%>">
-<input type="submit" name="accion" value="<%=accion%>">
-<input type="button" value="Cancelar" onClick="window.history.back()">
+
 
 <div id="formulario" title="Apadrinar mascota">
     <form name="formularioMascotas">
@@ -135,9 +138,29 @@
 </div>
 <script>
 
+    
+
+    var planes = <%= PlanesApadrinamiento.getListaCompletaEnArregloJS(null, null) %>;
+
+    function buscarPlanes(valor, indice) {
+        var encontrado = false;
+        var i = 0;
+        while (!encontrado && i < planes.length) {
+            if (valor === planes[i][indice]) {
+                encontrado = true;
+            }
+            i++;
+        }
+        if (encontrado)
+            return i - 1; 
+        else
+            return false; 
+    }
+    
+    
     document.addEventListener("DOMContentLoaded", function () {
         var swiper = new Swiper('.swiper-container', {
-            slidesPerView: 'auto',
+            slidesPerView: 3,
             spaceBetween: 10, 
             loop: false, 
             navigation: {
@@ -211,111 +234,147 @@
         document.getElementById("telefono").innerHTML = telefono;
     });
 
+    
+
+    function actualizarTabla() {
+    var objeto = document.getElementById("mascotasPlan");
+
+    if (objeto.value != '') {
+        objeto.value += "||";  
+    }
+
+    var mascota = document.formularioMascotas.Mascota.value;
+    var codigoMascota = mascota.substring(mascota.indexOf("-") + 1).trim();
+
+    var plan = document.querySelectorAll('input[name="opcionSeleccionada"]');
+    var seleccion = '';
+    plan.forEach(plan => {
+        if (plan.checked) {
+            seleccion = plan.value;
+        }
+    });
+
+    var fechaInicio = document.getElementById('Fecha').value;
+    var fechaFin = document.getElementById('FechaFin').value;
+    var lapsoPlan = fechaInicio + "/" + fechaFin; 
+
+    // Aquí se está creando la cadena para el input
+    objeto.value += codigoMascota + "|" + seleccion + "|" + lapsoPlan;
+
+    // Llamar a cargarTabla después de actualizar el input
+    cargarTabla();  
+    
+    cerrarFormulario();  
+}
+
+
+    var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
     function buscarMascota(valor, indice) {
         var encontrado = false;
         var i = 0;
         while (!encontrado) {
-            if (valor == mascota[i][indice]) {
+            if (valor == mascotas[i][indice]) {
+                encontrado = true;
+            }
+            i++;
+        }
+        if (encontrado){
+            return i - 1;
+        }else
+            return false;
+        }
+
+    var planes = <%= PlanesApadrinamiento.getListaCompletaEnArregloJS(null, null) %>;
+
+    function buscarPlanes(valor, indice) {
+        var encontrado = false;
+        var i = 0;
+        while (!encontrado && i < planes.length) {
+            if (valor === planes[i][indice]) {
                 encontrado = true;
             }
             i++;
         }
         if (encontrado)
-            return i - 1;
+            return i - 1; 
         else
-            return false;
+            return false; 
     }
-
-    function actualizarTabla() {
-        var objeto = document.getElementById("mascotasPlan");
-
-        if (objeto.value != '')
-            objeto.value += "||";  
-
-        var mascota = document.formularioMascotas.Mascota.value;
-        var nombreMascota = mascota.substring(0, mascota.indexOf("-")).trim();  
-        var codigoMascota = mascota.substring(mascota.indexOf("-") + 1).trim();
-
-        var plan = document.querySelectorAll('input[name="opcionSeleccionada"]');
-        var seleccion = '';
-        plan.forEach(plan => {
-            if (plan.checked) {
-                seleccion = plan.value;
-            }
-        });
-
-
-        var fechaInicio = document.getElementById('Fecha').value;
-        var fechaFin = document.getElementById('FechaFin').value;
-        var lapsoPlan = fechaInicio + " / " + fechaFin;
-
-        objeto.value += nombreMascota + "|" + codigoMascota + "|" + seleccion + "|" + lapsoPlan;
-
-        cargarTabla();  
-        cerrarFormulario();  
-    }
-
+    
+    
     function cargarTabla() {
     var contenedor = document.querySelector('.swiper-wrapper');
-    contenedor.innerHTML = '';  
+    contenedor.innerHTML = '';  // Limpiar el contenedor antes de agregar nuevas tarjetas
 
     var datos = document.getElementById('mascotasPlan').value;
-    
-    if (datos === '') {
-        return;
-    }
 
+    // Dividir los registros por '||'
     var registros = datos.split('||');
-    
     registros.forEach(function(registro, index) {
         var campos = registro.split('|');
-        
-        var tarjeta = document.createElement('div');
-        tarjeta.classList.add('swiper-slide');  
-        var card = document.createElement('div');
-        card.classList.add('card'); 
-        
 
-        var nombreElemento = document.createElement('h2');
-        nombreElemento.textContent = 'Mascota: ' + campos[0];
-        
-        var codigoElemento = document.createElement('p');
-        codigoElemento.innerHTML = '<strong>Código:</strong> ' + campos[1];
-        
-        var planElemento = document.createElement('p');
-        planElemento.innerHTML = '<strong>Plan:</strong> ' + campos[2];
-        
-        var lapsoElemento = document.createElement('p');
-        lapsoElemento.innerHTML = '<strong>Lapso:</strong> ' + campos[3];
-        
-        // Crear botón de eliminar
-        var botonEliminar = document.createElement('button');
-        botonEliminar.textContent = 'Eliminar';
-        botonEliminar.onclick = function() {
-            eliminar(index); // Pasar el índice de la tarjeta a la función eliminar
-        };
+        // Buscar el nombre de la mascota
+        var posision = buscarMascota(campos[0], 0);
+        if (posision !== false) {
+            var nombreElemento = document.createElement('h2');
+            nombreElemento.textContent = 'Mascota: ' + mascotas[posision][1];
 
-        card.appendChild(nombreElemento);
-        card.appendChild(codigoElemento);
-        card.appendChild(planElemento);
-        card.appendChild(lapsoElemento);
-        card.appendChild(botonEliminar); // Añadir el botón de eliminar a la tarjeta
-        
-        tarjeta.appendChild(card);
-        contenedor.appendChild(tarjeta);
+            var codigoElemento = document.createElement('p');
+            codigoElemento.innerHTML = '<strong>Código:</strong> ' + campos[0];
+
+            // Buscar el plan
+            var posisionPlan = buscarPlanes(campos[1], 0);
+            if (posisionPlan !== false) {
+                var planElemento = document.createElement('p');
+                planElemento.innerHTML = '<strong>Plan:</strong> ' + planes[posisionPlan][1];
+            } else {
+                var planElemento = document.createElement('p');
+                planElemento.innerHTML = '<strong>Plan:</strong> No encontrado';
+            }
+
+            var lapsoElemento = document.createElement('p');
+            lapsoElemento.innerHTML = '<strong>Lapso:</strong> ' + campos[2];
+
+            // Crear tarjeta
+            var tarjeta = document.createElement('div');
+            tarjeta.classList.add('card'); // Asegúrate de que la clase sea la correcta
+
+            // Crear botón de eliminar
+            var botonEliminar = document.createElement('button');
+            botonEliminar.textContent = 'Eliminar';
+            botonEliminar.onclick = function() {
+                eliminar(index); // Pasar el índice de la tarjeta a la función eliminar
+            };
+
+            // Añadir elementos a la tarjeta
+            tarjeta.appendChild(nombreElemento);
+            tarjeta.appendChild(codigoElemento);
+            tarjeta.appendChild(planElemento);
+            tarjeta.appendChild(lapsoElemento);
+            tarjeta.appendChild(botonEliminar);
+            
+            // Añadir la tarjeta al contenedor
+            contenedor.appendChild(tarjeta);
+        } else {
+            console.warn('Mascota no encontrada para el código: ' + campos[0]);
+        }
     });
-    
 
+    // Inicializar Swiper
     var swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
         spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
+            prevEl: '.swiper-button-prev'
         },
-        loop: true,  
+        loop: true
     });
 }
+
+
+
+
 function eliminar(fila) {
     console.log("Eliminando fila:", fila);
 
