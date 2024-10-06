@@ -87,5 +87,5 @@
 %>
 
 <script type="text/javascript">
-    document.location = "index-InicioSesion.jsp";
+    document.location = "/HuellitasWeb/principal.jsp?CONTENIDO=index-InicioSesion.jsp";
 </script>
