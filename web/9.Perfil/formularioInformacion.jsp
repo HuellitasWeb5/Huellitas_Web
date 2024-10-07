@@ -19,7 +19,7 @@
 
 %>  
 <body onload="cargarFecha()">
-    <h3><%=accion.toUpperCase()%> ADOPCIONES </h3>
+    <h3><%=accion.toUpperCase()%> FORMULARIO DE ADOPCIÓN </h3>
     <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/actualizarFormularioInfo.jsp" enctype="multipart/form-data">
         <div class="containerFormulario">
             <div>Fecha actual: <span id="fecha"></span></div>
@@ -31,7 +31,7 @@
                     <div class="datos-con-foto">
                         <div class="datos">
                             <label>Identificación:</label>
-                            <input type="text" name="identificacionAdoptante" id="identificacion" placeholder="Digite aquí su identificacion">
+                            <input type="text" name="identificacionAdoptante" id="identificacion" placeholder="Digite aquí la identificación del adoptante" required>
                             <label>Nombre del Adoptante</label>
                             <input type="text" name="nombre" id="nombre" readonly>
                             <label>Teléfono</label>
@@ -42,7 +42,7 @@
                             <input type="text" name="residencia" id="residencia" readonly>
                         </div>
                         <div class="foto">
-                            <img id="fotoClientePreview" class="fotoPreview" src="" alt="Foto del Cliente">
+                            <img id="foto" class="fotoPreview" src="" alt="Foto Adoptante">
                         </div>
                     </div>
                 </div>
@@ -54,7 +54,7 @@
                         <div class="datos">
                             <label>Código:</label>
                             <input type="hidden" name="codigosMascotas" id="codigosMascotas" value="">
-                            <input type="text" name="codigoMascota" id="codigoMascota" placeholder="Digite aquí el código de la mascota">
+                            <input type="text" name="codigoMascota" id="codigoMascota" placeholder="Digite aquí el código de la mascota" required>
                             <label>Nombre de la mascota:</label>
                             <input type="text" name="nombreMascota" id="nombreMascota" readonly>
                             <label>Fecha de nacimiento Aproximada:</label>
@@ -65,19 +65,22 @@
                             <input type="text" name="cuidadosEspeciales" id="cuidadosEspeciales" readonly>
                         </div>
                         <div class="foto">
-                            <img id="fotoMascotaPreview" class="fotoPreview" src="" alt="Foto de la Mascota">
+                            <img id="fotoMascotaPreview" class="fotoPreview" src="" alt="Foto Mascota">
                         </div>
                     </div>
                 </div>
             </div>
             <table>
                 <input type="hidden" name="fechaActual" id="fechaActual">
+                
+                <!-- FORMULARIO  -->  
+                
                 <label for="ocupacion">¿Cuál es su ocupación?</label>
                 <input type="text" id="ocupacion" name="ocupacion" maxlength="100" required><br><br>
 
                 <label for="tiempoLibre">¿Cuenta con tiempo de calidad para el cuidado de la mascota?</label>
                 <fieldset>
-                    <input type="radio" id="tiempoLibreSi" name="tiempoLibre" value="S">
+                    <input type="radio" id="tiempoLibreSi" name="tiempoLibre" value="S" required>
                     <label for="tiempoLibreSi">Sí</label>
                     <input type="radio" id="tiempoLibreNo" name="tiempoLibre" value="N">
                     <label for="tiempoLibreNo">No</label>
@@ -85,7 +88,7 @@
 
                 <label for="espacio">¿Cuenta con un espacio adecuado para el cuidado de la mascota?</label>
                 <fieldset>
-                    <input type="radio" id="espacioSi" name="espacio" value="S">
+                    <input type="radio" id="espacioSi" name="espacio" value="S" required>
                     <label for="espacioSi">Sí</label>
                     <input type="radio" id="espacioNo" name="espacio" value="N">
                     <label for="espacioNo">No</label>
@@ -93,32 +96,33 @@
 
                 <label for="compromiso">¿Está dispuesto a esterilizar a la mascota y proporcionarle atención médica regular?</label>
                 <fieldset>
-                    <input type="radio" id="compromisoSi" name="compromiso" value="S">
+                    <input type="radio" id="compromisoSi" name="compromiso" value="S" required>
                     <label for="compromisoSi">Sí</label>
                     <input type="radio" id="compromisoNo" name="compromiso" value="N">
                     <label for="compromisoNo">No</label>
                 </fieldset>
 
                 <label for="ninos">¿En el hogar viven niños? ¿Cuántos?</label>
-                <input type="number" id="ninos" name="ninos" min="0" required placeholder="0"><br><br>
+                <input type="number" id="ninos" name="ninos" min="0" required placeholder="Ingrese un valor numérico (Si la respuesta es negativa digite 0)"><br><br>
 
                 <label for="habitantes">¿Cuántas personas conforman su hogar?</label>
-                <input type="number" id="habitantes" name="habitantes" min="1" required placeholder="0"><br><br>
+                <input type="number" id="habitantes" name="habitantes" min="1" required placeholder="Ingrese un valor numérico"><br><br>
 
                 <label for="responsables">¿Cuántas personas estarán al cuidado de la mascota?</label>
-                <input type="number" id="responsables" name="responsables" min="1" required placeholder="0"><br><br>
+                <input type="number" id="responsables" name="responsables" min="1" required placeholder="Ingrese un valor numérico"><br><br>
 
                 <label for="otrasMascotas">¿Tiene otras mascotas a su cargo?</label>
                 <fieldset>
-                    <input type="radio" id="otrasMascotasSi" name="otrasMascotas" value="S">
+                    <input type="radio" id="otrasMascotasSi" name="otrasMascotas" value="S" required>
                     <label for="otrasMascotasSi">Sí</label>
                     <input type="radio" id="otrasMascotasNo" name="otrasMascotas" value="N">
                     <label for="otrasMascotasNo">No</label>
                 </fieldset>
 
+
                 <label for="propietario">¿Es propietario de la vivienda en la que reside?</label>
                 <fieldset>
-                    <input type="radio" id="propietarioSi" name="propietario" value="S">
+                    <input type="radio" id="propietarioSi" name="propietario" value="S" required>
                     <label for="propietarioSi">Sí</label>
                     <input type="radio" id="propietarioNo" name="propietario" value="N">
                     <label for="propietarioNo">No</label>
@@ -138,21 +142,23 @@
                     <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Sabado"> Sábado</label>
                     <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Domingo"> Domingo</label>
                 </div>
+                <input type="hidden" id="fechaVisitaDiaHidden" name="fechaVisitaDia">
+                <p id="error-message" style="color: red; display: none;">Debe seleccionar al menos un día de la semana</p>
                 <br>
 
                 <label for="fechaVisitaHora">Selecciona la hora estimada de visita:</label>
-                <input type="time" id="fechaVisitaHora" name="fechaVisitaHora" style="width: 120px; text-align: center;">
+                <input type="time" id="fechaVisitaHora" name="fechaVisitaHora" style="width: 120px; text-align: center;" required>
 
                 <label for="fotoVivienda">Por favor, suba una foto del espacio donde vivirá la mascota (puede incluir foto de la cama, alimento o accesorios):</label>
-                <br><input type="file" id="fotoVivienda" name="fotoVivienda" accept="image/*, application/pdf" >
+                <br><input type="file" id="fotoVivienda" name="fotoVivienda" accept="image/*, application/pdf" required>
                 <br>
 
                 <label for="fotoRecibo">Por favor, cargue una foto del recibo de servicios públicos de su vivienda (gas, energía o agua):</label>
-                <br><input type="file" id="fotoRecibo" name="fotoRecibo" accept="image/*, application/pdf">
+                <br><input type="file" id="fotoRecibo" name="fotoRecibo" accept="image/*, application/pdf" required>
                 <br>
 
                 <label for="fotoCedula">Por favor, cargue una foto de su cédula de ciudadanía:</label>
-                <br><input type="file" id="fotoCedula" name="fotoCedula" accept="image/*, application/pdf">
+                <br><input type="file" id="fotoCedula" name="fotoCedula" accept="image/*, application/pdf" required>
                 <br>
 
                 <label for="descripcion">Descripción adicional:</label>
@@ -164,10 +170,10 @@
                         y el bienestar de la(s) mascota(s), en cumplimiento con la legislación vigente en materia de protección de datos.</label>
                 </div>
                 <br><br>
+                 <!-- Botones de envío -->
 
                 <input type="submit" name="accion" class="btn-adicionar" value="Adicionar" onclick="adicionar()">
-
-
+                <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
 
             </table>
         </div>
@@ -207,7 +213,6 @@
                 document.location = "principal.jsp?CONTENIDO=inicio.jsp";
             }
         }
-
     // BUSCAR PERSONA
 
     var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
@@ -243,9 +248,11 @@
         document.getElementById("telefono").innerHTML = telefono;
         document.getElementById("direccion").innerHTML = direccion;
         document.getElementById("residencia").innerHTML = residencia;
-        document.getElementById("fotoClientePreview").src = foto;
+        document.getElementById("foto").src = foto;
     });
 
+  // MOSTRAR GENERO MASCOTA
+  
     function mostrarGenero(genero) {
         if (genero && genero.toLowerCase() === "h") {
             return "Hembra";
@@ -297,14 +304,14 @@
             document.getElementById("fechaNacimiento").value = fechaNacimiento;
             document.getElementById("genero").value = mostrarGenero(genero);
             document.getElementById("cuidadosEspeciales").value = cuidadosEspeciales;
-            document.getElementById("fotoMascotaPreview").src = foto;
+            document.getElementById("fotoMascota").src = foto;
         } else {
 
             document.getElementById("nombreMascota").value = '';
             document.getElementById("fechaNacimiento").value = '';
             document.getElementById("genero").value = '';
             document.getElementById("cuidadosEspeciales").value = '';
-            document.getElementById("fotoMascotaPreview").src = '';
+            document.getElementById("fotoMascota").src = '';
         }
     });
 
@@ -369,6 +376,8 @@
         };
     }
 
+    // ADICIONAR LA NUEVA MASCOTA 
+    
     function agregarMascota() {
         // Obtener los valores ingresados en el formulario
         var codigo = document.getElementById("codigoFormulario").value;
@@ -415,7 +424,7 @@
     $("#codigoFormulario").autocomplete({
         source: vectorMascotas
     });
-
+    
     function buscarMascota(valor, indice) {
         encontrado = false;
         i = 0;
@@ -477,13 +486,43 @@
             height: 600
         });
     });
+
     function abrirFormulario() {
         $('#formulario').dialog('open');
     }
 
+    // VALIDAR DATOS
+
+    function validarFormulario(event) {
+        const checkboxes = document.querySelectorAll('input[name="fechaVisitaDia"]:checked');
+        const errorMessage = document.getElementById('error-message');
+
+        if (checkboxes.length === 0) {
+            errorMessage.style.display = 'block';
+            event.preventDefault();
+        } else {
+            errorMessage.style.display = 'none';
+        }
+    }
+
+    document.querySelector('form').addEventListener('submit', validarFormulario);
+
+    // AGREGAR MÁS DÍAS AL SELECCIONAR 
+
+    function actualizarDiasVisita() {
+        const checkboxes = document.querySelectorAll('input[name="fechaVisitaDia"]:checked');
+        let valoresSeleccionados = [];
+        checkboxes.forEach(checkbox => {
+            valoresSeleccionados.push(checkbox.value);
+        });
+        document.getElementById('fechaVisitaDiaHidden').value = valoresSeleccionados.join('|');
+    }
+
+    document.querySelectorAll('input[name="fechaVisitaDia"]').forEach(checkbox => {
+        checkbox.addEventListener('change', actualizarDiasVisita);
+    });
+
     // GRABAR L0S DATOS 
-
-
 
     $('#identificacion').change(function () {
         var identificacion = this.value.trim();
@@ -513,6 +552,8 @@
     });
 
 
+// CERRAR FORMULARIO
+
     function cerrarFormulario() {
         // Cerrar el diálogo
         $('#formulario').dialog('close');
@@ -522,6 +563,7 @@
     }
 
     // CARGAR FECHA
+
     function cargarFecha() {
         var fecha = new Date();
         var dia = String(fecha.getDate()).padStart(2, '0');
