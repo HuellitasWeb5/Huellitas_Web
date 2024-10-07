@@ -80,14 +80,24 @@ public String getMenu() {
             menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp'>Padripets</a></li>";
             menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesPadrinos.jsp'>Tipos de Padripet</a></li>"; // Asegúrate de tener la ruta correcta
             menu += "</ul></li>";
-
+     // Menú de Adopciones con submenús
+            menu += "<li class='nav-item dropdown'>";
+            menu += "<a class='nav-link dropdown-toggle' href='#' id='adopcionesDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Adopciones</a>";
+            menu += "<ul class='dropdown-menu' aria-labelledby='adopcionesDropdown'>";
+            menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
+            menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar'>Realizar Adopción</a></li>";
+            menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/formularioSeguimiento.jsp&accion=Adicionar'>Realizar Seguimiento</a></li>";
+            menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp'>Formulario de Adopción</a></li>";
+            menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/verFormularioSeg.jsp'>Formulario de Seguimientos</a></li>";
+            menu += "</ul></li>";
+            
             // Menú de Mascotas y Apadrinamientos
             menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" + getNombre() + "'>Mascotas</a></li>";
           
 
             menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=4.Clientes/clientes.jsp'>Clientes</a></li>";
             menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=5.Administradores/administradores.jsp'>Administradores</a></li>";
-            menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
+        
             menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/perfilF.jsp'>Perfil</a></li>";
 
             // Menú de Indicadores
