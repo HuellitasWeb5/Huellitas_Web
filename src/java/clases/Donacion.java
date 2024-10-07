@@ -95,6 +95,11 @@ public class Donacion {
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
+    public boolean grabarProcedimiento(String donaciones){
+        String cadenaSQL = "call registrarDonacion("+ this.identificacionDonante+",'"+ donaciones +"','"+ descripcion+"')";
+        return ConectorBD.ejecutarQuery(cadenaSQL);
+    }
+    
     public boolean modificar() {
         String cadenaSQL = "update donacion set fecha='" + fecha + "',descripcion='" + descripcion + "',identificacionDonante='" + identificacionDonante + "' where codigo=" + codigo;
         return ConectorBD.ejecutarQuery(cadenaSQL);
