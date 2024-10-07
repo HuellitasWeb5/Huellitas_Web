@@ -46,9 +46,6 @@
         lista += "</div>";
     }
 %>
-
-<html lang="es">
-
     <h3>DONADORES</h3> 
 
     <div class="filter-container">
@@ -65,10 +62,6 @@
         <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
     </div>
-
-    
-
-</html>
 
 <script>
     function confirmarEliminacion(codigo) {
