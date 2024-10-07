@@ -36,14 +36,9 @@
             case "Eliminar":
                 donacion.setCodigo(request.getParameter("codigo")); // Obtener el ID de la donación que se va a eliminar
                 donacion.eliminar(); // Elimina la donación y sus detalles en la base de datos
-                break;
-
-            default:
-                out.println("Acción no válida");
-                break;
-        }
+       break;
     }
 %>
 <script type="text/javascript">
-    document.location = "principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp";
+   document.location = "principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp";
 </script>
