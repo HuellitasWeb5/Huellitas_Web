@@ -110,19 +110,7 @@ public class DonacionDetalle {
             orden = "";
         }
 
-        String cadenaSQL = "SELECT "
-                + "    donacion.codigo,"
-                + "    donacion.fecha,"
-                + "    donacion.descripcion,"
-                + "    donacion.identificacionDonante,"
-                + "    donacionesdetalle.id AS detalleId,"
-                + "    donacionesdetalle.idConcepto,"
-                + "    donacionesdetalle.cantidad,"
-                + "    donacionesdetalle.codigoTipoDonacion"
-                + "FROM "
-                + "    donacion"
-                + "INNER JOIN "
-                + "    donacionesdetalle ON donacion.codigo = donacionesdetalle.codigoDonacion;" + filtro + orden;
+        String cadenaSQL = "select id, idConcepto, cantidad, codigoTipoDonacion, codigoDonacion from donacionesdetalle" + filtro + orden;
         return ConectorBD.consultar(cadenaSQL);
     }
 

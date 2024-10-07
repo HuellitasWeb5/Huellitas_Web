@@ -124,7 +124,7 @@
             <!-- Botón de envío que enviará los datos al archivo donacionesFormularioActualizar.jsp -->
             <input type="submit" value="Guardar Donación" class="btn-submit">
 
-        </div>
+        </div>  
     </form>
 
     <!-- Botón para abrir el formulario modal -->
@@ -151,6 +151,12 @@
                             <%= ConceptoDonacion.getListaEnOptions(null)%>
                         </select>
                     </td>
+                          <td>
+                <select name="estado" id="estado" required>
+                    <option value="activa">Activa</option>
+                    <option value="pendiente">Pendiente</option>
+                </select>
+            </td>
                 </tr>
                 <tr>
                     <th>Cantidad</th>

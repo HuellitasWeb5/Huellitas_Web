@@ -74,6 +74,10 @@
     }
 
 
+    function verDetalles(codigo) {
+        var url="principal.jsp?CONTENIDO=8.Donacion/verDetalles.jsp&codigo="+codigo;
+        window.location.href=url;
+    }
     function abrirFormularioAdicionar(codigo) {
         var url="principal.jsp?CONTENIDO=8.Donacion/donacionesFormulario.jsp&accion=Adicionar";
         window.location.href=url;
