@@ -186,7 +186,7 @@
 
     // BUSCAR PERSONA
 
-    var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
+    var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
     var vectorPersonas = new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
