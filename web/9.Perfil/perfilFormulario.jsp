@@ -99,7 +99,7 @@
         }
     }
     function modificar(identificacion) {
-        resultado = confirm("Realmente desea modificar su perfil identificacion " + identificacion + "?");
+        resultado = confirm("Tus datos han sido modificados, deberas iniciar sesion de nuevo");
         if (resultado) {
             document.location="principal.jsp?CONTENIDO=9.Perfil/perfilActualizar.jsp&accion=Modificar&identificacion=" + identificacion;
         }
