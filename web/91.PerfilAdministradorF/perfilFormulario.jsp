@@ -67,6 +67,10 @@
                     <input type="text" id="residencia" name="residencia" value="<%=usuarioActual.getResidencia()%>">
                 </div>
                 <div class="form-group">
+                    <label for="foto">Foto:</label>
+                    <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();">
+                </div>
+                <div class="form-group">
                     <label for="clave">Contraseña:</label>
                     <input type="password" name="clave" id="clave" required>
                 </div>
@@ -86,7 +90,7 @@
 <!-- JavaScript para la función de eliminación -->
 <script>
     function modificar(identificacion) {
-        resultado = confirm("Cuando modifiques tus datos deberas iniciar sesion de nuevo");
+        resultado = confirm("Tus datos han sido modificados, deberas iniciar sesion de nuevo");
         if (resultado) {
             document.location = "principal.jsp?CONTENIDO=index-InicioSesion.jsp&accion=Modificar&identificacion=" + identificacion;
         }

@@ -28,7 +28,7 @@
             <h2>MODIFICA TUS DATOS SANPATITAS</h2>
         </div>
         <div class="card-body">
-            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/perfilActualizar.jsp" enctype="multipart/form-data">
+            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/perfilActualizarF.jsp" enctype="multipart/form-data">
                 <!-- Mostrar la foto del usuario -->
                 <img src="presentacion/clientes/<%=usuarioActual.getFoto() != null ? usuarioActual.getFoto() : "default.jpg"%>" id="foto" class="profile-image">
 
@@ -67,19 +67,14 @@
                     <input type="text" id="residencia" name="residencia" value="<%=usuarioActual.getResidencia()%>">
                 </div>
                 <div class="form-group">
-                    <label for="foto">Foto:</label>
-                    <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();">
-                </div>
-                <div class="form-group">
                     <label for="clave">Contraseña:</label>
                     <input type="password" name="clave" id="clave" required>
                 </div>
                 <!-- Botón para guardar los cambios -->
                 <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
                 <div class='btn-container'>
+                    <button type="submit" class='btn-adicionar' title='Modificar'name="accion" onClick='modificar(<%= usuarioActual.getIdentificacion()%>)' value="Modificar">Modificar</button>
                     
-                    <button type="submit" class="btn-adicionar" name="accion"  onclick="modificar('<%= usuarioActual.getIdentificacion() %>')"  value="Modificar">Modificar</button>
-
                     <input class='btn-eliminar' type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
                     <!-- Botón para eliminar con llamada a una función JavaScript -->
                     </div>
@@ -90,7 +85,12 @@
 
 <!-- JavaScript para la función de eliminación -->
 <script>
-
+    function modificar(identificacion) {
+        resultado = confirm("Tus datos han sido modificados, deberas iniciar sesion de nuevo");
+        if (resultado) {
+            document.location = "principal.jsp?CONTENIDO=index-InicioSesion.jsp&accion=Modificar&identificacion=" + identificacion;
+        }
+    }
     function mostrarFoto(){
         var lector=new FileReader();
         lector.readAsDataURL(document.formulario.foto.files[0]);
@@ -98,10 +98,4 @@
             document.getElementById("foto").src=lector.result;
         }
     }
-    function modificar(identificacion) {
-        resultado = confirm("Tus datos han sido modificados, deberas iniciar sesion de nuevo");
-        if (resultado) {
-            document.location="principal.jsp?CONTENIDO=9.Perfil/perfilActualizar.jsp&accion=Modificar&identificacion=" + identificacion;
-        }
-    }
 </script>

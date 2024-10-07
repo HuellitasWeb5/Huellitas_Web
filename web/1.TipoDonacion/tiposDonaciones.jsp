@@ -49,7 +49,7 @@
         lista += "<div class='button-container'>";
         lista += "<button class='btn-modificar' onclick='abrirFormulario(\"Modificar\", \"" + tipoDonacion.getCodigo() + "\");'>Modificar</button>";
         lista += "<button class='btn-eliminar' onclick='confirmarEliminacion(\"" + tipoDonacion.getCodigo() + "\")'>Eliminar</button>";
-        lista += "<button class='btn-concepto' onclick='abrirFormularioConceptoDonacion(\"" + tipoDonacion.getCodigo() + "\")'>Concepto de Donaciones</button>";
+        lista += "<button class='btn-otro' onclick='abrirFormularioConceptoDonacion(\"" + tipoDonacion.getCodigo() + "\")'>Concepto de Donaciones</button>";
         lista += "</div>";
         lista += "</div>";
         lista += "</div>";
@@ -61,7 +61,7 @@
 
     <h3>TIPOS DE DONACIONES</h3> 
 
-    <button class="add-button" onclick="abrirFormulario('Adicionar');">Agregar Tipo de donacion</button>
+    <button class="btn-adicionar" onclick="abrirFormulario('Adicionar');">Agregar Tipo de donacion</button>
 
     <div class="swiper-container">
         <div class="swiper-wrapper">
@@ -85,8 +85,8 @@
                     <td><input type="text" name="descripcion" id="descripcion"></td>
                 </tr>
             </table>
-            <input type="button" value="Agregar" onclick="agregarTipoDonacion();">
-            <input type="button" value="Cancelar" onclick="cerrarFormulario();">
+            <input class="btn-adicionar" type="button" value="Agregar" onclick="agregarTipoDonacion();">
+            <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
         </form>    
     </div>
 

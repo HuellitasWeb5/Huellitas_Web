@@ -101,6 +101,7 @@
                 </div>
 
                 <div class="form-group">
+                    
                     <label for="residencia">Residencia</label>
                     <span name="residencia" id="residencia" value="" readonly></span>
                 </div>
@@ -112,11 +113,12 @@
 
                 <div class="form-group">
                     <label>Descripción</label>
-                    <textarea id="comentarios" name="comentarios" rows="6" cols="40"></textarea>
+                    <textarea id="descripcion" name="descripcion" rows="6" cols="40"></textarea>
                 </div>
 
                 <!-- Campo oculto para almacenar la cadena de donaciones -->
                 <input  name="donacion" id="donacion">
+                <input type="hidden" name="accion" value="<%=accion%>">
             </div>
 
             <!-- Botón de envío que enviará los datos al archivo donacionesFormularioActualizar.jsp -->
@@ -146,7 +148,7 @@
                     <td>
                         <select id="donacionConcepto" name="donacionConcepto">
                             <option value="" disabled selected>Seleccione un concepto de donación</option>
-                            <%= ConceptoDonacion.getListaEnOptions(null)%>
+                            <%= ConceptoDonacion.getListaEnOptions(null,1%>
                         </select>
                     </td>
                 </tr>
@@ -323,7 +325,7 @@
         document.getElementById('nombreDetalle').value = '';
         document.getElementById('tipoDonacion').value = '';
         document.getElementById('donacionConcepto').value = '';
-        document.getElementById('cantidad').value = '';
+        document.getElementById('cantidad').value = '0';
     }
 
     function eliminarRegistro(index) {

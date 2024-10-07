@@ -60,7 +60,7 @@
             <p><strong>Residencia:</strong><%= usuarioActual.getResidencia()%> </p>
         </div>
         <div class='btn-container'>
-            <a href='principal.jsp?CONTENIDO=9.Perfil/perfilFormulario.jsp&accion=Modificar&identificacion=<%= usuarioActual.getIdentificacion()%>' title='Modificar'>
+            <a href='principal.jsp?CONTENIDO=9.Perfil/perfilFormularioF.jsp&accion=Modificar&identificacion=<%= usuarioActual.getIdentificacion()%>' title='Modificar'>
                 <button class='btn-adicionar' title='Modificar'> Modificar </button>
             </a>
             <button class='btn-eliminar' title='Eliminar' onClick='eliminar(<%= usuarioActual.getIdentificacion()%>)'>Eliminar</button>
@@ -72,7 +72,7 @@
     function eliminar(identificacion) {
         resultado = confirm("Realmente desea eliminar tu cuenta?"+identificacion);
         if (resultado) {
-            document.location = "principal.jsp?CONTENIDO=9.Perfil/perfilActualizar.jsp&accion=Modificar&identificacion=&identificacion=" + identificacion;
+            document.location = "principal.jsp?CONTENIDO=9.Perfil/perfilActualizarF.jsp&accion=Eliminar&identificacion=" + identificacion;
         }
     }
     function calcularEdad() {
