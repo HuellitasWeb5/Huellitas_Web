@@ -296,4 +296,37 @@ public static List<String[]> getMascotasPorFechaIngreso() {
     return lista; // Retorna la lista con los resultados.
 }
 
+public static List<String[]> getMascotasPorMes(String anio) {
+    List<String[]> lista = new ArrayList<>();
+    String cadenaSQL = "SELECT DATE_FORMAT(fechaIngreso, '%Y-%m') AS mes, COUNT(*) AS cantidad "
+                     + "FROM Mascota "
+                     + "WHERE YEAR(fechaIngreso) = " + anio + " "
+                     + "GROUP BY DATE_FORMAT(fechaIngreso, '%Y-%m') "
+                     + "ORDER BY mes "
+                     + "LIMIT 0, 200;";
+    ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+    try {
+        while (resultado != null && resultado.next()) {
+            String[] registro = new String[2];
+            registro[0] = resultado.getString("mes"); // Mes y año de ingreso (YYYY-MM)
+            registro[1] = resultado.getString("cantidad"); // Cantidad de mascotas
+            lista.add(registro);
+        }
+    } catch (SQLException ex) {
+        System.err.println("Error en getMascotasPorMes.");
+        System.err.println("Consulta SQL: " + cadenaSQL);
+        System.err.println("Error: " + ex.getMessage());
+    } finally {
+        try {
+            if (resultado != null) {
+                resultado.close();
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
+        }
+    }
+    return lista;
+}
+
+
 }
