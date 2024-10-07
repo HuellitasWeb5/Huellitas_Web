@@ -6,7 +6,7 @@
 package clases;
 
 import clasesGenericas.ConectorBD;
-import java.sql.ResultSet;
+import java.sql.ResultSet;https://github.com/HuellitasWeb5/Huellitas_Web/blob/YandarY/src/java/clases/PlanesApadrinamiento.java
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
