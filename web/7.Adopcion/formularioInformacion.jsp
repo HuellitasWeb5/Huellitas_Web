@@ -19,7 +19,7 @@
 
 %>  
 <body onload="cargarFecha()">
-    <h3><%=accion.toUpperCase()%> ADOPCIONES </h3>
+    <h3><%=accion.toUpperCase()%> FORMULARIO DE ADOPCIÓN </h3>
     <form name="formulario" method="post" action="principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp" enctype="multipart/form-data">
         <div class="containerFormulario">
             <div>Fecha actual: <span id="fecha"></span></div>
@@ -42,7 +42,7 @@
                             <input type="text" name="residencia" id="residencia" readonly>
                         </div>
                         <div class="foto">
-                            <img id="fotoClientePreview" class="fotoPreview" src="" alt="Foto del Cliente">
+                            <img id="foto" class="fotoPreview" src="" alt="Foto Adoptante">
                         </div>
                     </div>
                 </div>
@@ -65,13 +65,16 @@
                             <input type="text" name="cuidadosEspeciales" id="cuidadosEspeciales" readonly>
                         </div>
                         <div class="foto">
-                            <img id="fotoMascotaPreview" class="fotoPreview" src="" alt="Foto de la Mascota">
+                            <img id="fotoMascotaPreview" class="fotoPreview" src="" alt="Foto Mascota">
                         </div>
                     </div>
                 </div>
             </div>
             <table>
                 <input type="hidden" name="fechaActual" id="fechaActual">
+                
+                <!-- FORMULARIO  -->  
+                
                 <label for="ocupacion">¿Cuál es su ocupación?</label>
                 <input type="text" id="ocupacion" name="ocupacion" maxlength="100" required><br><br>
 
@@ -167,10 +170,11 @@
                         y el bienestar de la(s) mascota(s), en cumplimiento con la legislación vigente en materia de protección de datos.</label>
                 </div>
                 <br><br>
+                
+                 <!-- Botones de envío -->
 
-                <input type="submit" name="accion" value="<%=accion%>">
-
-
+                <input class="btn-adicionar" type="submit" name="accion" value="<%=accion%>">
+                <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
 
             </table>
         </div>
@@ -213,9 +217,11 @@
         document.getElementById("telefono").innerHTML = telefono;
         document.getElementById("direccion").innerHTML = direccion;
         document.getElementById("residencia").innerHTML = residencia;
-        document.getElementById("fotoClientePreview").src = foto;
+        document.getElementById("foto").src = foto;
     });
 
+  // MOSTRAR GENERO MASCOTA
+  
     function mostrarGenero(genero) {
         if (genero && genero.toLowerCase() === "h") {
             return "Hembra";
@@ -267,14 +273,14 @@
             document.getElementById("fechaNacimiento").value = fechaNacimiento;
             document.getElementById("genero").value = mostrarGenero(genero);
             document.getElementById("cuidadosEspeciales").value = cuidadosEspeciales;
-            document.getElementById("fotoMascotaPreview").src = foto;
+            document.getElementById("fotoMascota").src = foto;
         } else {
 
             document.getElementById("nombreMascota").value = '';
             document.getElementById("fechaNacimiento").value = '';
             document.getElementById("genero").value = '';
             document.getElementById("cuidadosEspeciales").value = '';
-            document.getElementById("fotoMascotaPreview").src = '';
+            document.getElementById("fotoMascota").src = '';
         }
     });
 
@@ -339,6 +345,8 @@
         };
     }
 
+    // ADICIONAR LA NUEVA MASCOTA 
+    
     function agregarMascota() {
         // Obtener los valores ingresados en el formulario
         var codigo = document.getElementById("codigoFormulario").value;
@@ -385,7 +393,7 @@
     $("#codigoFormulario").autocomplete({
         source: vectorMascotas
     });
-
+    
     function buscarMascota(valor, indice) {
         encontrado = false;
         i = 0;
@@ -512,6 +520,8 @@
         }
     });
 
+
+// CERRAR FORMULARIO
 
     function cerrarFormulario() {
         // Cerrar el diálogo

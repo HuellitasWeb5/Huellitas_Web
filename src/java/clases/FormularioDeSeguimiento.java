@@ -6,7 +6,6 @@
 package clases;
 
 import clasesGenericas.ConectorBD;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -21,36 +20,47 @@ import java.util.logging.Logger;
 public class FormularioDeSeguimiento {
 
     private String codigo;
-    private Date fecha;
+    private String fecha;
     private String identificacionAdoptante;
     private String codigoMascota;
     private String foto;
-    private Date fechaProximaVisita;
+    private String fechaProximaVisita;
     private String descripcion;
     private String evolucionMedica;
     private String masaCorporal;
     private String estadoEmocional;
     private String adaptacion;
     private String vinculo;
-    private int calificacion;
+    private String calificacion;
 
     public FormularioDeSeguimiento() {
     }
 
-    public FormularioDeSeguimiento(String codigo, Date fecha, String identificacionAdoptante, String codigoMascota, String foto, Date fechaProximaVisita, String descripcion, String evolucionMedica, String masaCorporal, String estadoEmocional, String adaptacion, String vinculo, int calificacion) {
-        this.codigo = codigo;
-        this.fecha = fecha;
-        this.identificacionAdoptante = identificacionAdoptante;
-        this.codigoMascota = codigoMascota;
-        this.foto = foto;
-        this.fechaProximaVisita = fechaProximaVisita;
-        this.descripcion = descripcion;
-        this.evolucionMedica = evolucionMedica;
-        this.masaCorporal = masaCorporal;
-        this.estadoEmocional = estadoEmocional;
-        this.adaptacion = adaptacion;
-        this.vinculo = vinculo;
-        this.calificacion = calificacion;
+    public FormularioDeSeguimiento(String codigo) {
+        String cadenaSQL = "SELECT fecha, identificacionAdoptante, codigoMascota, foto, fechaProximaVisita, descripcion, evolucionMedica, masaCorporal, estadoEmocional, adaptacion, vinculo, calificacion "
+                + "FROM formularioDeSeguimiento WHERE codigo = " + codigo;
+        ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+        try {
+            if (resultado.next()) {
+                this.codigo = codigo;
+                this.fecha = resultado.getString("fecha");
+                this.identificacionAdoptante = resultado.getString("identificacionAdoptante");
+                this.codigoMascota = resultado.getString("codigoMascota");
+                this.foto = resultado.getString("foto");
+                this.fechaProximaVisita = resultado.getString("fechaProximaVisita");
+                this.descripcion = resultado.getString("descripcion");
+                this.evolucionMedica = resultado.getString("evolucionMedica");
+                this.masaCorporal = resultado.getString("masaCorporal");
+                this.estadoEmocional = resultado.getString("estadoEmocional");
+                this.adaptacion = resultado.getString("adaptacion");
+                this.vinculo = resultado.getString("vinculo");
+                this.calificacion = resultado.getString("calificacion");
+            } else {
+                System.out.print("No se encontró el formulario de seguimiento con el código: " + codigo);
+            }
+        } catch (SQLException ex) {
+            System.out.print("Error al consultar el código en formularioDeSeguimiento: " + ex.getMessage());
+        }
     }
 
     public String getCodigo() {
@@ -61,11 +71,16 @@ public class FormularioDeSeguimiento {
         this.codigo = codigo;
     }
 
-    public Date getFecha() {
-        return fecha;
+    public String getFecha() {
+        String resultado = fecha;
+        if (fecha == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(String fecha) {
         this.fecha = fecha;
     }
 
@@ -78,31 +93,54 @@ public class FormularioDeSeguimiento {
     }
 
     public String getCodigoMascota() {
-        return codigoMascota;
+        String resultado = codigoMascota;
+        if (codigoMascota == null) {
+            resultado = "";
+        }
+
+        return resultado;
     }
 
     public void setCodigoMascota(String codigoMascota) {
         this.codigoMascota = codigoMascota;
     }
 
+    public Mascota getMascota() {
+        return new Mascota(codigoMascota);
+    }
+
     public String getFoto() {
-        return foto;
+        String resultado = foto;
+        if (foto == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setFoto(String foto) {
         this.foto = foto;
     }
 
-    public Date getFechaProximaVisita() {
-        return fechaProximaVisita;
+    public String getFechaProximaVisita() {
+        String resultado = fechaProximaVisita;
+        if (fechaProximaVisita == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
-    public void setFechaProximaVisita(Date fechaProximaVisita) {
+    public void setFechaProximaVisita(String fechaProximaVisita) {
         this.fechaProximaVisita = fechaProximaVisita;
     }
 
     public String getDescripcion() {
-        return descripcion;
+        String resultado = descripcion;
+        if (descripcion == null) {
+            resultado = "";
+        }
+        return resultado;
+
     }
 
     public void setDescripcion(String descripcion) {
@@ -110,7 +148,11 @@ public class FormularioDeSeguimiento {
     }
 
     public String getEvolucionMedica() {
-        return evolucionMedica;
+        String resultado = evolucionMedica;
+        if (evolucionMedica == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setEvolucionMedica(String evolucionMedica) {
@@ -118,7 +160,11 @@ public class FormularioDeSeguimiento {
     }
 
     public String getMasaCorporal() {
-        return masaCorporal;
+        String resultado = masaCorporal;
+        if (masaCorporal == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setMasaCorporal(String masaCorporal) {
@@ -126,7 +172,11 @@ public class FormularioDeSeguimiento {
     }
 
     public String getEstadoEmocional() {
-        return estadoEmocional;
+        String resultado = estadoEmocional;
+        if (estadoEmocional == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setEstadoEmocional(String estadoEmocional) {
@@ -134,7 +184,11 @@ public class FormularioDeSeguimiento {
     }
 
     public String getAdaptacion() {
-        return adaptacion;
+        String resultado = adaptacion;
+        if (adaptacion == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setAdaptacion(String adaptacion) {
@@ -142,18 +196,26 @@ public class FormularioDeSeguimiento {
     }
 
     public String getVinculo() {
-        return vinculo;
+        String resultado = vinculo;
+        if (vinculo == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setVinculo(String vinculo) {
         this.vinculo = vinculo;
     }
 
-    public int getCalificacion() {
-        return calificacion;
+    public String getCalificacion() {
+        String resultado = calificacion;
+        if (calificacion == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
-    public void setCalificacion(int calificacion) {
+    public void setCalificacion(String calificacion) {
         this.calificacion = calificacion;
     }
 
@@ -164,13 +226,17 @@ public class FormularioDeSeguimiento {
     }
 
     public boolean grabar() {
-        String cadenaSQL = "INSERT INTO formularioDeSeguimiento "
-                + "(fecha, identificacionAdoptante, codigoMascota, foto, fechaProximaVisita, descripcion, evolucionMedica, masaCorporal, estadoEmocional, adaptacion, vinculo, calificacion) "
-                + "VALUES ('" + fecha + "', '" + identificacionAdoptante + "', '" + codigoMascota + "', '" + foto + "', '" + fechaProximaVisita + "', '" + descripcion + "', '" + evolucionMedica + "', '" + masaCorporal + "', '" + estadoEmocional + "', '" + adaptacion + "', '" + vinculo + "', " + calificacion + ")";
+        String cadenaSQL = "INSERT INTO formularioDeSeguimiento (codigo, fecha, identificacionAdoptante, codigoMascota, foto, fechaProximaVisita, descripcion, evolucionMedica, masaCorporal, estadoEmocional, adaptacion, vinculo, calificacion) "
+                + "VALUES (generar(),curdate(), '" + identificacionAdoptante + "', '" + codigoMascota + "', '" + foto + "', '" + fechaProximaVisita + "', '" + descripcion + "', '" + evolucionMedica + "', '" + masaCorporal + "', '" + estadoEmocional + "', '" + adaptacion + "', '" + vinculo + "', " + calificacion + ")";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
-    public boolean grabarFormularioConProcedimientoAlmacenado() {
+    public boolean eliminar() {
+        String cadenaSQL = "DELETE FROM formularioDeSeguimiento WHERE codigo = " + codigo;
+        return ConectorBD.ejecutarQuery(cadenaSQL);
+    }
+
+    /*public boolean grabarFormularioConProcedimientoAlmacenado() {
         String cadenaSQL = "CALL insertarFormularioDeSeguimiento('"
                 + this.fecha + "','"
                 + this.identificacionAdoptante + "','"
@@ -185,8 +251,7 @@ public class FormularioDeSeguimiento {
                 + this.vinculo + "',"
                 + this.calificacion + ")";
         return ConectorBD.ejecutarQuery(cadenaSQL);
-    }
-
+    }*/
     public boolean modificar() {
         String cadenaSQL = "UPDATE formularioDeSeguimiento SET "
                 + "fecha = '" + fecha + "', "
@@ -230,18 +295,18 @@ public class FormularioDeSeguimiento {
                 while (datos.next()) {
                     FormularioDeSeguimiento formulario = new FormularioDeSeguimiento();
                     formulario.setCodigo(datos.getString("codigo"));
-                    formulario.setFecha(datos.getDate("fecha"));
+                    formulario.setFecha(datos.getString("fecha"));
                     formulario.setIdentificacionAdoptante(datos.getString("identificacionAdoptante"));
                     formulario.setCodigoMascota(datos.getString("codigoMascota"));
                     formulario.setFoto(datos.getString("foto"));
-                    formulario.setFechaProximaVisita(datos.getDate("fechaProximaVisita"));
+                    formulario.setFechaProximaVisita(datos.getString("fechaProximaVisita"));
                     formulario.setDescripcion(datos.getString("descripcion"));
                     formulario.setEvolucionMedica(datos.getString("evolucionMedica"));
                     formulario.setMasaCorporal(datos.getString("masaCorporal"));
                     formulario.setEstadoEmocional(datos.getString("estadoEmocional"));
                     formulario.setAdaptacion(datos.getString("adaptacion"));
                     formulario.setVinculo(datos.getString("vinculo"));
-                    formulario.setCalificacion(datos.getInt("calificacion"));
+                    formulario.setCalificacion(datos.getString("calificacion"));
 
                     lista.add(formulario);
                 }
@@ -256,13 +321,13 @@ public class FormularioDeSeguimiento {
         String lista = "[";
 
         List<FormularioDeSeguimiento> datos = FormularioDeSeguimiento.getListaEnObjetos(filtro, orden);
-        for (int i = 0; i < datos.size(); i++) {
+        for (int i = 0; i < datos.size(); i++) { // Cambiado de String a int
             FormularioDeSeguimiento formulario = datos.get(i);
             if (i > 0) {
                 lista += ", ";
             }
             lista += "{"
-                    + "\"codigo\": " + formulario.getCodigo() + ", "
+                    + "\"codigo\": \"" + formulario.getCodigo() + "\", "
                     + "\"fecha\": \"" + formulario.getFecha() + "\", "
                     + "\"identificacionAdoptante\": \"" + formulario.getIdentificacionAdoptante() + "\", "
                     + "\"codigoMascota\": \"" + formulario.getCodigoMascota() + "\", "
@@ -274,10 +339,11 @@ public class FormularioDeSeguimiento {
                     + "\"estadoEmocional\": \"" + formulario.getEstadoEmocional() + "\", "
                     + "\"adaptacion\": \"" + formulario.getAdaptacion() + "\", "
                     + "\"vinculo\": \"" + formulario.getVinculo() + "\", "
-                    + "\"calificacion\": " + formulario.getCalificacion()
+                    + "\"calificacion\": \"" + formulario.getCalificacion() + "\""
                     + "}";
         }
         lista += "]";
         return lista;
     }
+
 }
