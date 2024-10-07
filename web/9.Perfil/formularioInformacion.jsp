@@ -20,7 +20,7 @@
 %>  
 <body onload="cargarFecha()">
     <h3><%=accion.toUpperCase()%> FORMULARIO DE ADOPCIÓN </h3>
-    <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/actualizarFormularioInfo.jsp" enctype="multipart/form-data">
+    <form name="formulario" method="post" action="principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp" enctype="multipart/form-data">
         <div class="containerFormulario">
             <div>Fecha actual: <span id="fecha"></span></div>
             <div class="contenedor-tarjetas">
@@ -180,33 +180,7 @@
     </form>
 </body>
 <script>
-    // Función que valida si todos los campos requeridos están completos
-        function validarFormulario() {
-            var formulario = document.forms["formulario"];
-            var esValido = true;
-
-            // Verifica si todos los campos requeridos están llenos
-            for (var i = 0; i < formulario.elements.length; i++) {
-                var elemento = formulario.elements[i];
-                if (elemento.hasAttribute('required') && elemento.value.trim() === "") {
-                    esValido = false;
-                    break;
-                }
-            }
-
-            // Si el formulario es válido, agrega el onclick
-            var botonSubmit = document.querySelector('input[type="submit"]');
-            if (esValido) {
-                botonSubmit.setAttribute('onclick', 'adicionar()');
-            } else {
-                botonSubmit.removeAttribute('onclick');  // Elimina el onclick si no está completo
-            }
-        }
-
-        // Ejecuta la validación cuando cambian los campos del formulario
-        document.getElementById("formularioAdopcion").addEventListener('change', validarFormulario);
-
-        // Función adicionar para la confirmación y redirección
+    
         function adicionar() {
             var resultado = confirm("Tu formulario ha sido guardado correctamente, alguien de la fundación se comunicará contigo.");
             if (resultado) {
