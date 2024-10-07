@@ -4,8 +4,6 @@
     Author     : Luis Eraso
 --%>
 
-
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
     String mensaje = "";
@@ -23,24 +21,47 @@
     }
 %>
 <!DOCTYPE html>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet"  href="presentacion/style-Index.css">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Huellitas Web</title>
-    <link rel="shortcut icon" href="LogoPequeï¿½o.png" type="image/x-icon">
-    <link rel="stylesheet" href="Principal.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;1,300;1,500;1,600;1,800&display=swap"
-        rel="stylesheet">
-      <title>VIdeo</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet"  href="presentacion/style-Index.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huellitas Web</title>
+<link rel="shortcut icon" href="LogoPequeï¿½o.png" type="image/x-icon">
+<link rel="stylesheet" href="Principal.css">
+<style>
+    /* Estilo para los enlaces del menú */
+    .navbar-nav .nav-item .nav-link {
+        position: relative;
+        display: inline-block;
+        padding: 8px 12px; /* Ajusta el espaciado según sea necesario */
+        text-decoration: none; /* Quita el subrayado predeterminado */
+    }
+
+    /* Efecto de subrayado al pasar el cursor */
+    .navbar-nav .nav-item .nav-link::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        background-color: #000; /* Cambia el color según tus necesidades */
+        left: 0;
+        bottom: 0;
+        transition: width 0.3s ease;
+    }
+
+    .navbar-nav .nav-item .nav-link:hover::after {
+        width: 100%;
+    }
+
+</style>
+
+<title>VIdeo</title>
 </head>
 
 <body>
     <header>
         <nav>
-            <a href="#" onclick="window.location.href='index-InicioSesion.jsp'">INICIAR SESION</a>
+            <a href="#" onclick="window.location.href = 'index-InicioSesion.jsp'">INICIAR SESION</a>
         </nav>
         <section class="textos-header">
             <h2>FUNDACION</h2>
@@ -48,14 +69,14 @@
             <h2>Huellitas De Amor</h2>
         </section>
         <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
-                style="height: 100%; width: 100%;">
-                <path d="M0.28,50.83 C138.54,164.31 349.20,-49.98 500.00,49.98 L500.00,150.00 L-1.97,153.47 Z"
-                    style="stroke: none; fill: rgb(255, 255, 255);"></path>
+                                                                        style="height: 100%; width: 100%;">
+            <path d="M0.28,50.83 C138.54,164.31 349.20,-49.98 500.00,49.98 L500.00,150.00 L-1.97,153.47 Z"
+                  style="stroke: none; fill: rgb(255, 255, 255);"></path>
             </svg></div>
     </header>
     <main>
-       <center> <iframe width="990" height="715" src="https://www.youtube.com/embed/uUoWTZW3ugw?si=93vZ8npeOHSEsO11?autoplay=1" title="YouTube video player" frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></center>
+        <center> <iframe width="990" height="715" src="https://www.youtube.com/embed/uUoWTZW3ugw?si=93vZ8npeOHSEsO11?autoplay=1" title="YouTube video player" frameborder="0" 
+                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></center>
 
         <section class="historias contenedor">
             <h2 class="titulo">NUESTRAS HISTORIAS</h2>
@@ -98,12 +119,12 @@
         <section>
             <h1 class="titulo">OBJETIVO</h1>
             <div class="historia">
-                
-                 <img src="presentacion/mascota/perrito1.jpg" alt="">
-                    <div class="HistoriaObjetivo">
-                        <p>Nuestro objetivo es poder rescatar a los perritos que no se encuentran en buen estado intentando poder ayudarles a velar por la seguridad de estos animales, tambien asi ayudando a conseguirles un hogar donde puedan vivir en condiciones ï¿½ptimas para el cuidado de ellos, la adopciï¿½n no es algo tan sencillo, primero debe mirar si la persona interesada en adopciï¿½n cumple con las condiciones necesarias para poder cuidar a una mascota y si el trato que le van a dar es el correcto.
-                
-            </div>
+
+                <img src="presentacion/mascota/perrito1.jpg" alt="">
+                <div class="HistoriaObjetivo">
+                    <p>Nuestro objetivo es poder rescatar a los perritos que no se encuentran en buen estado intentando poder ayudarles a velar por la seguridad de estos animales, tambien asi ayudando a conseguirles un hogar donde puedan vivir en condiciones ï¿½ptimas para el cuidado de ellos, la adopciï¿½n no es algo tan sencillo, primero debe mirar si la persona interesada en adopciï¿½n cumple con las condiciones necesarias para poder cuidar a una mascota y si el trato que le van a dar es el correcto.
+
+                </div>
         </section>
     </main>     <footer>
         <div class="contenedor-footer">
@@ -127,9 +148,9 @@
 
 </html>
 
-    </center>	
+</center>	
 </body>
- <script>
+<script>
     var swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
         spaceBetween: 30,
@@ -141,7 +162,7 @@
             el: '.swiper-pagination',
             clickable: true,
         },
-        loop: true,  // Hace que las tarjetas roten en un bucle
+        loop: true, // Hace que las tarjetas roten en un bucle
     });
 </script>
 </html>

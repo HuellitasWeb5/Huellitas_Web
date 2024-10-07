@@ -4,6 +4,7 @@
     Author     : Luis Eraso
 --%>
 
+<%@page import="clases.TipoDonacion"%>
 <%@page import="clases.Persona"%>
 <%@page import="java.util.List"%>
 <%@page import="clases.Donacion"%>
@@ -21,7 +22,8 @@
     List<Donacion> datos = Donacion.getListaEnObjetos(null, null);
     for (int i = 0; i < datos.size(); i++) {
         donacion = datos.get(i);
-
+        Persona persona = new Persona(donacion.getIdentificacionDonante());
+        TipoDonacion tipoDonacion = new TipoDonacion(donacion.getCodigo());
         lista += "<div class='swiper-slide'>";
         lista += "<div class='card'>";
         lista += "<div class='card-header'>";
@@ -29,12 +31,12 @@
         lista += "</div>";
         lista += "<div class='card-body'>";
         lista += "<p><strong>Donacion</strong></p>";
-        lista += "<p>" + donacion.getPersona()+ "</p>";
-        lista += "<p>" + donacion.getCodigo() + "</p>";
-        lista += "<p><strong>Teléfono:</strong> " + donacion.getCodigo() + "</p>";
-        lista += "<p><strong>Ubicación:</strong> " + donacion.getCodigo() + "</p>";
-        lista += "<p><strong>Correo:</strong> " + donacion.getCodigo() + "</p>";
-        lista += "<p><strong>Donación:</strong> " + donacion.getCodigo() + "</p>";
+        lista += "<p>" + persona.getNombre()+ "</p>";
+        lista += "<p>" + persona.getIdentificacion()+ "</p>";
+        lista += "<p><strong>Teléfono:</strong> " + persona.getTelefono() + "</p>";
+        lista += "<p><strong>Ubicación:</strong> " + persona.getResidencia() + "-" + persona.getDireccion() + "</p>";
+        lista += "<p><strong>Correo:</strong> " + persona.getEmail() + "</p>";
+        lista += "<p><strong>Donación:</strong> " + tipoDonacion.getNombre() + "</p>";
         lista += "<p><strong>Descripción:</strong> " + donacion.getDescripcion() + "</p>";
         lista += "<div class='button-container'>";
         lista += "<button class='btn-otro' onclick='verDetalles(\"" + donacion.getCodigo() + "\");'>Detalles</button>";
