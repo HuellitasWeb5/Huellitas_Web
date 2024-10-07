@@ -101,6 +101,7 @@
                 </div>
 
                 <div class="form-group">
+                    
                     <label for="residencia">Residencia</label>
                     <span name="residencia" id="residencia" value="" readonly></span>
                 </div>
@@ -147,7 +148,7 @@
                     <td>
                         <select id="donacionConcepto" name="donacionConcepto">
                             <option value="" disabled selected>Seleccione un concepto de donación</option>
-                            <%= ConceptoDonacion.getListaEnOptions(null)%>
+                            <%= ConceptoDonacion.getListaEnOptions(null,1%>
                         </select>
                     </td>
                 </tr>
@@ -324,7 +325,7 @@
         document.getElementById('nombreDetalle').value = '';
         document.getElementById('tipoDonacion').value = '';
         document.getElementById('donacionConcepto').value = '';
-        document.getElementById('cantidad').value = '';
+        document.getElementById('cantidad').value = '0';
     }
 
     function eliminarRegistro(index) {
