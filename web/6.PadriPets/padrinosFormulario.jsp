@@ -15,7 +15,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="presentacion/estiloRepetido.css">
-    
 </head>
 
 <%
@@ -23,7 +22,7 @@
     String codigo = request.getParameter("codigo");
     String lineaModificar = "";
     Apadrinamiento apadrinamiento = new Apadrinamiento();
-
+    
     String listaPlan = "<div class='carousel-container'>";
     listaPlan += "<div class='swiper-container carousel'>";
     listaPlan += "<div class='swiper-wrapper'>";
@@ -54,59 +53,55 @@
 
 
 %>
-
+<center>
 <h3><%=accion.toUpperCase()%>  PADRIPET</h3>
-<table border="0">
-    <td>
-        <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
+<!--<table border="0">
+    <td>-->
+<form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
 
-            <input type="hidden" name="mascotasPlan" id="mascotasPlan">
-            <table border='0'>
-                <%=lineaModificar%>
-                <tr>
-                    <th>Código</th><td id="codigoPadrino"></td>
-                </tr>
-                <tr>
-                    <th>Identificacion</th>
-                    <td><input type="text" name="identificacion" id="identificacion"></td>
-                </tr>
-                <tr>
-                    <th>Nombre</th>
-                    <td type="text" name="nombre" id="nombre"></td>
-                </tr>
-                <tr>
-                    <th>Direccion</th>
-                    <td type="text" name="direccion" id="direccion"></td>
-                </tr>
-                <tr>
-                    <th>Telefono</th>
-                    <td type="text" name="telefono" id="telefono"></td>
-                </tr>
-                <tr>
-                    <th>Foto recibo</th>
-                    <td>
-                        <input type="file" name="fotoRecibo" accept="image/*" onchange="mostrarFotoRecibo();">
-                    </td>
-                </tr>
-                <tr>
-                    <th>Foto cedula</th>
-                    <td>
-                        <input type="file" name="fotoCedula" accept="image/*" onchange="mostrarFotoCedula();">
-                    </td>
-                </tr>
-                <tr>
-                    <input type="button" value="Seleccionar Mascota" onclick="abrirFormulario();">
-                </tr>
-                 
-            </table>
-<input type="hidden" name="numero" value="<%=codigo%>">
-<input type="submit" name="accion" value="<%= accion != null ? accion : "Adicionar" %>">
-<input type="button" value="Cancelar" onClick="window.history.back()">
-        </form>
-    </td>
+    <input type="hidden" name="mascotasPlan" id="mascotasPlan">
+    <table border='0'>
+        <tr>
+            <th>Identificacion</th>
+            <td><input type="text" name="identificacion" id="identificacion" required></td>
+        </tr>
+        <tr>
+            <th>Nombre</th>
+            <td type="text" name="nombre" id="nombre"></td>
+        </tr>
+        <tr>
+            <th>Direccion</th>
+            <td type="text" name="direccion" id="direccion"></td>
+        </tr>
+        <tr>
+            <th>Telefono</th>
+            <td type="text" name="telefono" id="telefono"></td>
+        </tr>
+        <tr>
+            <th>Foto recibo</th>
+            <td>
+                <input type="file" name="fotoRecibo" accept="image/*" onchange="mostrarFotoRecibo();">
+            </td>
+        </tr>
+        <tr>
+            <th>Foto cedula</th>
+            <td>
+                <input type="file" name="fotoCedula" accept="image/*" onchange="mostrarFotoCedula();">
+            </td>
+        </tr>
+        <tr>
+            <td><input type="button" value="Seleccionar Mascota" onclick="abrirFormulario();"></td>
+        </tr>
+
+    </table>
+    <input type="hidden" name="numero" value="<%=codigo%>">
+    <input type="submit" name="accion" value="<%= accion != null ? accion : "Adicionar"%>">
+    <input type="button" value="Cancelar" onClick="window.history.back()">
+</form>
+<!--</td>
 </td><td><img src="presentacion/padripet/<%=apadrinamiento.getFotoRecibo()%>" id="fotoRecibo" width="auto" height="350"></td>
 </td><td><img src="presentacion/padripet/<%=apadrinamiento.getFotoCedula()%>" id="fotoCedula" width="auto" height="350"></td>
-</table>
+</table>-->
 
 
 
@@ -126,20 +121,21 @@
 <div id="formulario" title="Apadrinar mascota">
     <form name="formularioMascotas">
         <table id="mascotas" border="0">
-                <tr><th>Mascota</th><th><input type="text" name="Mascota" id="Mascota"></th></tr>
-                <tr><th>Fecha Inicio:</th><th><input type="date" name="Fecha" id="Fecha"></th></tr>
-                <tr><th>Fecha Fin:</th><th><input type="date" name="FechaFin" id="FechaFin"></th></tr>
+            <tr><th>Mascota</th><th><input type="text" name="Mascota" id="Mascota" required></th></tr>
+            <tr><th>Fecha Inicio:</th><th><input type="date" name="Fecha" id="Fecha" required></th></tr>
+            <tr><th>Fecha Fin:</th><th><input type="date" name="FechaFin" id="FechaFin" required></th></tr>
         </table>
         <%= listaPlan%>
         <input type="button" value="Agregar" onclick="actualizarTabla();">
         <input type="button" value="Cancelar" onclick="cerrarFormulario();">
     </form>
 </div>
+</center>
 <script>
 
-    
 
-    var planes = <%= PlanesApadrinamiento.getListaCompletaEnArregloJS(null, null) %>;
+
+    var planes = <%= PlanesApadrinamiento.getListaCompletaEnArregloJS(null, null)%>;
 
     function buscarPlanes(valor, indice) {
         var encontrado = false;
@@ -151,20 +147,20 @@
             i++;
         }
         if (encontrado)
-            return i - 1; 
+            return i - 1;
         else
-            return false; 
+            return false;
     }
-    
-    
+
+
     document.addEventListener("DOMContentLoaded", function () {
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 3,
-            spaceBetween: 10, 
-            loop: false, 
+            spaceBetween: 5,
+            loop: false,
             navigation: {
-                nextEl: '.swiper-button-next', 
-                prevEl: '.swiper-button-prev', 
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
             },
         });
     });
@@ -186,25 +182,26 @@
         };
     }
 
-  $(document).ready(function() {
-    var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
-    var vectorMascotas = [];
-    for (var i = 0; i < mascotas.length; i++) {
-        vectorMascotas[i] = mascotas[i][1] + " - " + mascotas[i][0];
-    }
+    $(document).ready(function () {
+        var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+        var vectorMascotas = [];
+        for (var i = 0; i < mascotas.length; i++) {
+            vectorMascotas[i] = mascotas[i][1] + " - " + mascotas[i][0];
+        }
 
-    $("#Mascota").autocomplete({
-        source: vectorMascotas,
-        minLength: 1
+        $("#Mascota").autocomplete({
+            source: vectorMascotas,
+            minLength: 1
 
+        });
     });
-});
 
     var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
     var vectorPersonas = new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
-    } ;
+    }
+    ;
     $("#identificacion").autocomplete({
         source: vectorPersonas
     });
@@ -233,38 +230,38 @@
         document.getElementById("telefono").innerHTML = telefono;
     });
 
-    
+
 
     function actualizarTabla() {
-    var objeto = document.getElementById("mascotasPlan");
+        var objeto = document.getElementById("mascotasPlan");
 
-    if (objeto.value != '') {
-        objeto.value += "||";  
-    }
-
-    var mascota = document.formularioMascotas.Mascota.value;
-    var codigoMascota = mascota.substring(mascota.indexOf("-") + 1).trim();
-
-    var plan = document.querySelectorAll('input[name="opcionSeleccionada"]');
-    var seleccion = '';
-    plan.forEach(plan => {
-        if (plan.checked) {
-            seleccion = plan.value;
+        if (objeto.value != '') {
+            objeto.value += "||";
         }
-    });
 
-    var fechaInicio = document.getElementById('Fecha').value;
-    var fechaFin = document.getElementById('FechaFin').value;
-    var lapsoPlan = fechaInicio + "/" + fechaFin; 
+        var mascota = document.formularioMascotas.Mascota.value;
+        var codigoMascota = mascota.substring(mascota.indexOf("-") + 1).trim();
 
-    // Aquí se está creando la cadena para el input
-    objeto.value += codigoMascota + "|" + seleccion + "|" + lapsoPlan;
+        var plan = document.querySelectorAll('input[name="opcionSeleccionada"]');
+        var seleccion = '';
+        plan.forEach(plan => {
+            if (plan.checked) {
+                seleccion = plan.value;
+            }
+        });
 
-    // Llamar a cargarTabla después de actualizar el input
-    cargarTabla();  
-    
-    cerrarFormulario();  
-}
+        var fechaInicio = document.getElementById('Fecha').value;
+        var fechaFin = document.getElementById('FechaFin').value;
+        var lapsoPlan = fechaInicio + "/" + fechaFin;
+
+        // Aquí se está creando la cadena para el input
+        objeto.value += codigoMascota + "|" + seleccion + "|" + lapsoPlan;
+
+        // Llamar a cargarTabla después de actualizar el input
+        cargarTabla();
+
+        cerrarFormulario();
+    }
 
 
     var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
@@ -277,13 +274,13 @@
             }
             i++;
         }
-        if (encontrado){
+        if (encontrado) {
             return i - 1;
-        }else
+        } else
             return false;
-        }
+    }
 
-    var planes = <%= PlanesApadrinamiento.getListaCompletaEnArregloJS(null, null) %>;
+    var planes = <%= PlanesApadrinamiento.getListaCompletaEnArregloJS(null, null)%>;
 
     function buscarPlanes(valor, indice) {
         var encontrado = false;
@@ -295,111 +292,111 @@
             i++;
         }
         if (encontrado)
-            return i - 1; 
+            return i - 1;
         else
-            return false; 
+            return false;
     }
-    
-    
+
+
     function cargarTabla() {
-    var contenedor = document.querySelector('.swiper-wrapper');
-    contenedor.innerHTML = '';  // Limpiar el contenedor antes de agregar nuevas tarjetas
+        var contenedor = document.querySelector('.swiper-wrapper');
+        contenedor.innerHTML = '';  // Limpiar el contenedor antes de agregar nuevas tarjetas
 
-    var datos = document.getElementById('mascotasPlan').value;
+        var datos = document.getElementById('mascotasPlan').value;
 
-    // Dividir los registros por '||'
-    var registros = datos.split('||');
-    registros.forEach(function(registro, index) {
-        var campos = registro.split('|');
+        // Dividir los registros por '||'
+        var registros = datos.split('||');
+        registros.forEach(function (registro, index) {
+            var campos = registro.split('|');
 
-        // Buscar el nombre de la mascota
-        var posision = buscarMascota(campos[0], 0);
-        if (posision !== false) {
-            var nombreElemento = document.createElement('h2');
-            nombreElemento.textContent = 'Mascota: ' + mascotas[posision][1];
+            // Buscar el nombre de la mascota
+            var posision = buscarMascota(campos[0], 0);
+            if (posision !== false) {
+                var nombreElemento = document.createElement('h2');
+                nombreElemento.textContent = 'Mascota: ' + mascotas[posision][1];
 
-            var codigoElemento = document.createElement('p');
-            codigoElemento.innerHTML = '<strong>Código:</strong> ' + campos[0];
+                var codigoElemento = document.createElement('p');
+                codigoElemento.innerHTML = '<strong>Código:</strong> ' + campos[0];
 
-            // Buscar el plan
-            var posisionPlan = buscarPlanes(campos[1], 0);
-            if (posisionPlan !== false) {
-                var planElemento = document.createElement('p');
-                planElemento.innerHTML = '<strong>Plan:</strong> ' + planes[posisionPlan][1];
+                // Buscar el plan
+                var posisionPlan = buscarPlanes(campos[1], 0);
+                if (posisionPlan !== false) {
+                    var planElemento = document.createElement('p');
+                    planElemento.innerHTML = '<strong>Plan:</strong> ' + planes[posisionPlan][1];
+                } else {
+                    var planElemento = document.createElement('p');
+                    planElemento.innerHTML = '<strong>Plan:</strong> No encontrado';
+                }
+
+                var lapsoElemento = document.createElement('p');
+                lapsoElemento.innerHTML = '<strong>Lapso:</strong> ' + campos[2];
+
+                // Crear tarjeta
+                var tarjeta = document.createElement('div');
+                tarjeta.classList.add('card'); // Asegúrate de que la clase sea la correcta
+
+                // Crear botón de eliminar
+                var botonEliminar = document.createElement('button');
+                botonEliminar.textContent = 'Eliminar';
+                botonEliminar.onclick = function () {
+                    eliminar(index); // Pasar el índice de la tarjeta a la función eliminar
+                };
+
+                // Añadir elementos a la tarjeta
+                tarjeta.appendChild(nombreElemento);
+                tarjeta.appendChild(codigoElemento);
+                tarjeta.appendChild(planElemento);
+                tarjeta.appendChild(lapsoElemento);
+                tarjeta.appendChild(botonEliminar);
+
+                // Añadir la tarjeta al contenedor
+                contenedor.appendChild(tarjeta);
             } else {
-                var planElemento = document.createElement('p');
-                planElemento.innerHTML = '<strong>Plan:</strong> No encontrado';
+                console.warn('Mascota no encontrada para el código: ' + campos[0]);
             }
+        });
 
-            var lapsoElemento = document.createElement('p');
-            lapsoElemento.innerHTML = '<strong>Lapso:</strong> ' + campos[2];
-
-            // Crear tarjeta
-            var tarjeta = document.createElement('div');
-            tarjeta.classList.add('card'); // Asegúrate de que la clase sea la correcta
-
-            // Crear botón de eliminar
-            var botonEliminar = document.createElement('button');
-            botonEliminar.textContent = 'Eliminar';
-            botonEliminar.onclick = function() {
-                eliminar(index); // Pasar el índice de la tarjeta a la función eliminar
-            };
-
-            // Añadir elementos a la tarjeta
-            tarjeta.appendChild(nombreElemento);
-            tarjeta.appendChild(codigoElemento);
-            tarjeta.appendChild(planElemento);
-            tarjeta.appendChild(lapsoElemento);
-            tarjeta.appendChild(botonEliminar);
-            
-            // Añadir la tarjeta al contenedor
-            contenedor.appendChild(tarjeta);
-        } else {
-            console.warn('Mascota no encontrada para el código: ' + campos[0]);
-        }
-    });
-
-    // Inicializar Swiper
-    var swiper = new Swiper('.swiper-container', {
-        slidesPerView: 3,
-        spaceBetween: 10,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
-        },
-        loop: true
-    });
-}
-
-
-
-
-function eliminar(fila) {
-    console.log("Eliminando fila:", fila);
-
-    var mascotae = "";
-    var filas = document.formulario.mascotasPlan.value.split("||");
-    console.log("Filas antes de eliminar:", filas);
-
-    var contador = 0;
-
-    for (var i = 0; i < filas.length; i++) {
-        if (i !== fila) {
-            if (contador > 0)
-                mascotae += "||";
-            mascotae += filas[i];
-            contador++;
-        }
+        // Inicializar Swiper
+        var swiper = new Swiper('.swiper-container', {
+            slidesPerView: 3,
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev'
+            },
+            loop: true
+        });
     }
 
-    console.log("Filas después de eliminar:", mascotae);
 
-    // Actualizar el campo con los nuevos datos
-    document.formulario.mascotasPlan.value = mascotae;
 
-    // Recargar la tabla de tarjetas para reflejar el cambio
-    cargarTabla(); 
-}
+
+    function eliminar(fila) {
+        console.log("Eliminando fila:", fila);
+
+        var mascotae = "";
+        var filas = document.formulario.mascotasPlan.value.split("||");
+        console.log("Filas antes de eliminar:", filas);
+
+        var contador = 0;
+
+        for (var i = 0; i < filas.length; i++) {
+            if (i !== fila) {
+                if (contador > 0)
+                    mascotae += "||";
+                mascotae += filas[i];
+                contador++;
+            }
+        }
+
+        console.log("Filas después de eliminar:", mascotae);
+
+        // Actualizar el campo con los nuevos datos
+        document.formulario.mascotasPlan.value = mascotae;
+
+        // Recargar la tabla de tarjetas para reflejar el cambio
+        cargarTabla();
+    }
 
     $(function () {
         $("#formulario").dialog({
@@ -412,25 +409,30 @@ function eliminar(fila) {
                 effect: "explode",
                 duration: 1000
             },
-            width: 920, 
-
-            height: 440
+            width: 920,
+            height: 'auto', // Cambia '440' por 'auto' para ajustar a la altura del contenido
+            maxHeight: 440, // Establece un máximo si necesitas limitar la altura
+            modal: true, // Opcional, si deseas que el fondo se oscurezca
+            open: function (event, ui) {
+                $(this).dialog('option', 'height', $(this).outerHeight());
+            }
         });
     });
+
     function abrirFormulario() {
         $('#formulario').dialog('open');
     }
 
     function cerrarFormulario() {
-        
+
         $('#formulario').dialog('close');
-       
+
         document.forms['formularioMascotas'].reset();
 
-        $('#mascotas input[type="text"]').val(''); 
-        $('#planes input[type="checkbox"]:checked').prop('checked', false); 
+        $('#mascotas input[type="text"]').val('');
+        $('#planes input[type="checkbox"]:checked').prop('checked', false);
 
     }
-    
-    
+
+
 </script>

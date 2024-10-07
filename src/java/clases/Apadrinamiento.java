@@ -109,7 +109,7 @@ public class Apadrinamiento {
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
-    public boolean eliminar() {
+    public boolean eliminar( String codigo) {
         String cadenaSQL = "delete from Apadrinamiento where codigo=" + codigo;
         System.out.println("cadenaSQL " + cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
