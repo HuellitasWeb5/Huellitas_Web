@@ -7,6 +7,7 @@ package clases;
 
 import clasesGenericas.ConectorBD;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -92,7 +93,7 @@ public class FormularioDeInformacion {
     }
 
     public String getFecha() {
-         String resultado = fecha;
+        String resultado = fecha;
         if (fecha == null) {
             resultado = "";
         }
@@ -123,9 +124,10 @@ public class FormularioDeInformacion {
     public void setCodigoMascota(String codigoMascota) {
         this.codigoMascota = codigoMascota;
     }
-    public Mascota getMascota(){
-        return new Mascota (codigoMascota);
-     }
+
+    public Mascota getMascota() {
+        return new Mascota(codigoMascota);
+    }
 
     public String getOcupacion() {
         String resultado = ocupacion;
@@ -240,7 +242,7 @@ public class FormularioDeInformacion {
     }
 
     public String getMotivacion() {
-         String resultado = motivacion;
+        String resultado = motivacion;
         if (motivacion == null) {
             resultado = "";
         }
@@ -253,7 +255,7 @@ public class FormularioDeInformacion {
     }
 
     public String getDescripcion() {
-       String resultado = descripcion;
+        String resultado = descripcion;
         if (descripcion == null) {
             resultado = "";
         }
@@ -266,7 +268,7 @@ public class FormularioDeInformacion {
     }
 
     public String getFechaVisitaDia() {
-       String resultado = fechaVisitaDia;
+        String resultado = fechaVisitaDia;
         if (fechaVisitaDia == null) {
             resultado = "";
         }
@@ -304,7 +306,7 @@ public class FormularioDeInformacion {
     }
 
     public String getFotoVivienda() {
-         String resultado = fotoVivienda;
+        String resultado = fotoVivienda;
         if (fotoVivienda == null) {
             resultado = "";
         }
@@ -330,7 +332,7 @@ public class FormularioDeInformacion {
     }
 
     public String getAutorizacionDatos() {
-       String resultado = autorizacionDatos;
+        String resultado = autorizacionDatos;
         if (autorizacionDatos == null) {
             resultado = "";
         }
@@ -497,8 +499,7 @@ public class FormularioDeInformacion {
         List<FormularioDeInformacion> formularios = new ArrayList<>();
         String cadenaSQL = "SELECT codigo, identificacionCliente, codigoMascota, FROM formularioDeInformacion";
 
-        try (PreparedStatement pstmt = conn.prepareStatement(cadenaSQL);
-                ResultSet resultado = pstmt.executeQuery()) {
+        try ( PreparedStatement pstmt = conn.prepareStatement(cadenaSQL);  ResultSet resultado = pstmt.executeQuery()) {
 
             while (resultado.next()) {
                 FormularioDeInformacion formulario = new FormularioDeInformacion();
@@ -513,4 +514,5 @@ public class FormularioDeInformacion {
         }
         return formularios;
     }
+
 }
