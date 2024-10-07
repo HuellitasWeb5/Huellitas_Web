@@ -278,15 +278,26 @@ public class Persona {
         return lista;
     }
 
-    public static Persona validar(String identificacion, String clave) {
-        Persona persona = null;
-        List<Persona> lista = Persona.getListaEnObjetos("identificacion='" + identificacion
-                + "' and clave=md5('" + clave + "')", null);
-        if (lista.size() > 0) {
-            persona = lista.get(0); 
-        }
-        return persona;
+public static Persona validar(String identificacion, String clave) {
+    Persona persona = null;
+    String query = "identificacion='" + identificacion + "' and clave=";
+
+    // Verificar si la clave ya es un hash MD5
+    if (clave.length() == 32 && clave.matches("[a-fA-F0-9]+")) {
+        // Si la clave ya está encriptada, la usamos directamente
+        query += "'" + clave + "'";
+    } else {
+        // Si la clave no está encriptada, la encriptamos
+        query += "md5('" + clave + "')";
     }
+
+    List<Persona> lista = Persona.getListaEnObjetos(query, null);
+    if (lista.size() > 0) {
+        persona = lista.get(0); // Obtener el primer elemento de la lista
+    }
+    return persona;
+}
+
 
     public static String getListaEnArreglosJS(String filtro, String orden) {
         String lista = "[";
