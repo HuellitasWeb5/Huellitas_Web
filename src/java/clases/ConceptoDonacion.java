@@ -155,7 +155,7 @@ public class ConceptoDonacion {
         return lista;
     }
 
-     public static String getListaEnOptions(String preseleccionado) {
+  public static String getListaEnOptions(String preseleccionado) {
         if (preseleccionado == null) {
             preseleccionado = "";
         }
