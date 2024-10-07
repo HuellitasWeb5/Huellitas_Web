@@ -27,14 +27,13 @@ public class ApadrinamientoDetalle {
 
     public ApadrinamientoDetalle() {
     }
-    public ApadrinamientoDetalle(String id) {
-        String cadenaSQL = "select id,codigoApadrinamiento,planApadrinamiento,idPlanApadrinamiento,codigoMascota,lapsoApadrinamiento from apadrinamientoDetalle where id=" + id;
+    public ApadrinamientoDetalle(String CodPadripet) {
+        String cadenaSQL = "select id,codigoApadrinamiento,idPlanApadrinamiento,codigoMascota,lapsoApadrinamiento from apadrinamientoDetalles where codigoApadrinamiento=" + CodPadripet;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
-                this.id = id;
-                codigoApadrinamiento = resultado.getString("codigoApadrinamiento");
-                planApadrinamiento = resultado.getString("planApadrinamiento");
+                this.codigoApadrinamiento = CodPadripet;
+                id = resultado.getString("id");
                 idPlanApadrinamiento = resultado.getString("idPlanApadrinamiento");
                 codigoMascota = resultado.getString("codigoMascota");
                 lapsoApadrinamiento = resultado.getString("lapsoApadrinamiento");
@@ -46,6 +45,20 @@ public class ApadrinamientoDetalle {
         }
     }
 
+    public String getFechaInicio() {
+        // Divide la cadena por '/'
+        String[] fechas = lapsoApadrinamiento.split("/");
+        // Retorna la primera fecha
+        return fechas.length > 0 ? fechas[0] : null;
+    }
+
+    public String getFechaFin() {
+        // Divide la cadena por '/'
+        String[] fechas = lapsoApadrinamiento.split("/");
+        // Retorna la segunda fecha
+        return fechas.length > 1 ? fechas[1] : null;
+    }
+    
     public String getId() {
         return id;
     }
