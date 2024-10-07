@@ -118,5 +118,5 @@
 
 <script type="text/javascript">
     // Redirigir después de completar la acción
-    document.location = "/HuellitasWeb/principal.jsp?CONTENIDO=inicio.jsp";
+    document.location = "index-InicioSesion.jsp";
 </script>
