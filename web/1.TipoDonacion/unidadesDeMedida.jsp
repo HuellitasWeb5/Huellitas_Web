@@ -35,7 +35,7 @@
 
     <h3>UNIDADES DE MEDIDA</h3> 
 
-    <button class="add-button" onclick="abrirFormulario('Adicionar');">Agregar Tipo de Medida</button>
+    <button class="btn-adicionar" onclick="abrirFormulario('Adicionar');">Agregar Tipo de Medida</button>
 
     <div class="swiper-container">
         <div class="swiper-wrapper">
@@ -59,8 +59,8 @@
                     <td><input type="text" name="notacion" id="notacion"></td>
                 </tr>
             </table>
-            <input type="button" value="Agregar" onclick="agregarUnidadDeMedida();">
-            <input type="button" value="Cancelar" onclick="cerrarFormulario();">
+            <input class="btn-adicionar" type="button" value="Agregar" onclick="agregarUnidadDeMedida();">
+            <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
         </form>    
     </div>
 

@@ -218,7 +218,6 @@ public class Persona {
         String cadenaSQL = "insert into Persona(identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave) "
                 + "values ('" + identificacion + "', '" + nombre + "','" + genero + "','" + fechaNacimiento + "', '" + email + "',"
                 + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "'," + this.getClave() + ")";
-        System.out.println(cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
@@ -227,13 +226,11 @@ public class Persona {
         String cadenaSQL = " update persona set identificacion='" + identificacion + "',nombre='" + nombre + "', "
                 + "genero='" + genero + "',fechaNacimiento='" + fechaNacimiento + "',email='" + email + "',telefono='" + telefono + "',"
                 + " direccion='" + direccion + "',residencia='" + residencia + "',foto='" + foto + "',tipo='" + tipo + "',clave=" + this.getClave() + "  where identificacion=" + identificacionAnterior;
-        System.out.println("Modificar" + cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
     public boolean eliminar() {
         String cadenaSQL = "delete from Persona where identificacion=" + identificacion;
-        System.out.println("Eliminar " + cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
@@ -273,7 +270,6 @@ public class Persona {
                     persona.setClave(datos.getString("clave"));
 
                     lista.add(persona);
-                    System.out.println(persona);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Persona.class.getName()).log(Level.SEVERE, null, ex);

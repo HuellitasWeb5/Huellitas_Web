@@ -59,7 +59,7 @@
 <html lang="es">
     <h3>CONCEPTOS DE DONACIONES</h3> 
 
-    <button class="add-button" onclick="abrirFormulario('Adicionar', null, '<%= tipoDonacion.getCodigo()%>');">Agregar Concepto de Donación</button>
+    <button class="btn-adicionar" onclick="abrirFormulario('Adicionar', null, '<%= tipoDonacion.getCodigo()%>');">Agregar Concepto de Donación</button>
 
     <div class="swiper-container">
         <div class="swiper-wrapper">
