@@ -31,7 +31,7 @@
                     <div class="datos-con-foto">
                         <div class="datos">
                             <label>Identificación:</label>
-                            <input type="text" name="identificacionAdoptante" id="identificacion" placeholder="Digite aquí la identificación del adoptante">
+                            <input type="text" name="identificacionAdoptante" id="identificacion" placeholder="Digite aquí su identificacion">
                             <label>Nombre del Adoptante</label>
                             <input type="text" name="nombre" id="nombre" readonly>
                             <label>Teléfono</label>
