@@ -55,7 +55,7 @@
             </form>
             <!-- Nueva sección para recordar contraseña y registro -->
             <div class="recordar">
-                ¿Olvidó su contraseña?
+                <a href="10.RecuperarContraseña/recuperarContrase.jsp">¿Olvidó su contraseña?</a>
             </div>
             <div class="registro">
                 ¿Aún no tienes una cuenta? <a href="registrarseFormulario.jsp">Registrarse</a>
