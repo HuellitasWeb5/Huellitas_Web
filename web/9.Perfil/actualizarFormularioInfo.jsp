@@ -84,9 +84,9 @@
     formularioDeInformacion.setTiempoLibre(tiempoLibre);
     formularioDeInformacion.setEspacio(espacio);
     formularioDeInformacion.setCompromiso(compromiso);
-    formularioDeInformacion.setNinos(ninos);  // Asignado como String
-    formularioDeInformacion.setHabitantes(habitantes);  // Asignado como String
-    formularioDeInformacion.setResponsables(responsables);  // Asignado como String
+    formularioDeInformacion.setNinos(ninos);  
+    formularioDeInformacion.setHabitantes(habitantes);  
+    formularioDeInformacion.setResponsables(responsables);  
     formularioDeInformacion.setOtrasMascotas(otrasMascotas);
     formularioDeInformacion.setPropietario(propietario);
     formularioDeInformacion.setMotivacion(motivacion);
@@ -117,6 +117,5 @@
 %>
 
 <script type="text/javascript">
-    // Redirigir después de completar la acción
-    document.location = "index-InicioSesion.jsp";
+    document.location = "principal.jsp?CONTENIDO=inicio.jsp";
 </script>
