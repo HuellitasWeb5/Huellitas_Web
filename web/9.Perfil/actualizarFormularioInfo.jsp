@@ -118,5 +118,5 @@
 
 <script type="text/javascript">
     // Redirigir después de completar la acción
-    document.location = "index-InicioSesion.jsp";
+    document.location = "principal.jsp?CONTENIDO=inicio.jsp";
 </script>

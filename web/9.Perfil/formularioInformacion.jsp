@@ -21,56 +21,56 @@
 <body onload="cargarFecha()">
     <h3><%=accion.toUpperCase()%> ADOPCIONES </h3>
     <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/actualizarFormularioInfo.jsp" enctype="multipart/form-data">
-        <div class="contenedor-tarjetas">
-
-            <!-- Sección de SAN PATITAS (Adoptante) -->
-            <div class="tableDatos">
-                <h2>ADOPTANTE</h2>
-                <div class="datos-con-foto">
-                    <div class="datos">
-                        <label>Identificación:</label>
-                        <input type="text" name="identificacionAdoptante" id="identificacion" placeholder="Digite aquí la identificación del adoptante">
-                        <label>Nombre del Adoptante</label>
-                        <input type="text" name="nombre" id="nombre" readonly>
-                        <label>Teléfono</label>
-                        <input type="text" name="telefono" id="telefono" readonly>
-                        <label>Dirección</label>
-                        <input type="text" name="direccion" id="direccion" readonly>
-                        <label>Residencia</label>
-                        <input type="text" name="residencia" id="residencia" readonly>
-                    </div>
-                    <div class="foto">
-                        <img id="fotoClientePreview" class="fotoPreview" src="" alt="Foto del Cliente">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sección de MASCOTA -->
-            <div class="tableDatos">
-                <h2>MASCOTA</h2>
-                <div class="datos-con-foto">
-                    <div class="datos">
-                        <label>Código:</label>
-                        <input type="hidden" name="codigosMascotas" id="codigosMascotas" value="">
-                        <input type="text" name="codigoMascota" id="codigoMascota" placeholder="Digite aquí el código de la mascota">
-                        <label>Nombre de la mascota:</label>
-                        <input type="text" name="nombreMascota" id="nombreMascota" readonly>
-                        <label>Fecha de nacimiento Aproximada:</label>
-                        <input type="text" name="fechaNacimiento" id="fechaNacimiento" readonly>
-                        <label>Género:</label>
-                        <input type="text" name="genero" id="genero" readonly>
-                        <label>Cuidados Especiales:</label>
-                        <input type="text" name="cuidadosEspeciales" id="cuidadosEspeciales" readonly>
-                    </div>
-                    <div class="foto">
-                        <img id="fotoMascotaPreview" class="fotoPreview" src="" alt="Foto de la Mascota">
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="containerFormulario">
-            <table >
-                <div>Fecha actual: <span id="fecha"></span></div>
+            <div>Fecha actual: <span id="fecha"></span></div>
+            <div class="contenedor-tarjetas">
+
+                <!-- Sección de SAN PATITAS (Adoptante) -->
+                <div class="tableDatos">
+                    <h2>ADOPTANTE</h2>
+                    <div class="datos-con-foto">
+                        <div class="datos">
+                            <label>Identificación:</label>
+                            <input type="text" name="identificacionAdoptante" id="identificacion" placeholder="Digite aquí la identificación del adoptante">
+                            <label>Nombre del Adoptante</label>
+                            <input type="text" name="nombre" id="nombre" readonly>
+                            <label>Teléfono</label>
+                            <input type="text" name="telefono" id="telefono" readonly>
+                            <label>Dirección</label>
+                            <input type="text" name="direccion" id="direccion" readonly>
+                            <label>Residencia</label>
+                            <input type="text" name="residencia" id="residencia" readonly>
+                        </div>
+                        <div class="foto">
+                            <img id="fotoClientePreview" class="fotoPreview" src="" alt="Foto del Cliente">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección de MASCOTA -->
+                <div class="tableDatos">
+                    <h2>MASCOTA</h2>
+                    <div class="datos-con-foto">
+                        <div class="datos">
+                            <label>Código:</label>
+                            <input type="hidden" name="codigosMascotas" id="codigosMascotas" value="">
+                            <input type="text" name="codigoMascota" id="codigoMascota" placeholder="Digite aquí el código de la mascota">
+                            <label>Nombre de la mascota:</label>
+                            <input type="text" name="nombreMascota" id="nombreMascota" readonly>
+                            <label>Fecha de nacimiento Aproximada:</label>
+                            <input type="text" name="fechaNacimiento" id="fechaNacimiento" readonly>
+                            <label>Género:</label>
+                            <input type="text" name="genero" id="genero" readonly>
+                            <label>Cuidados Especiales:</label>
+                            <input type="text" name="cuidadosEspeciales" id="cuidadosEspeciales" readonly>
+                        </div>
+                        <div class="foto">
+                            <img id="fotoMascotaPreview" class="fotoPreview" src="" alt="Foto de la Mascota">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <table>
                 <input type="hidden" name="fechaActual" id="fechaActual">
                 <label for="ocupacion">¿Cuál es su ocupación?</label>
                 <input type="text" id="ocupacion" name="ocupacion" maxlength="100" required><br><br>
@@ -165,7 +165,7 @@
                 </div>
                 <br><br>
 
-                <input type="submit" name="accion" value="Adicionar" onclick="adicionar()">
+                <input type="submit" name="accion" class="btn-adicionar" value="Adicionar" onclick="adicionar()">
 
 
 
@@ -207,6 +207,7 @@
                 document.location = "principal.jsp?CONTENIDO=inicio.jsp";
             }
         }
+
     // BUSCAR PERSONA
 
     var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
