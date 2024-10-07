@@ -31,19 +31,31 @@
         // Añadir la sección del formulario de seguimiento
         Persona persona = new Persona(formulario.getIdentificacionAdoptante());
         Mascota mascota = new Mascota(formulario.getCodigoMascota());
-
-        // Añadir la sección de la mascota
+        
         listaSeguimientos += "<div class='card-header'>Código de formulario: " + formulario.getCodigo() + "</div>"; // Código de la mascota
         listaSeguimientos += "<div class='card-body'>"; // Cuerpo de la tarjeta
         listaSeguimientos += "<p><strong>Fecha de solicitud:</strong> " + formulario.getFecha() + "</p>";
+        
+
+        // Aquí se añade la foto
+        listaSeguimientos += "<div style='margin-right: 20px;'>";
+        listaSeguimientos += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' style='width: 100px; height: auto;'/>";
+        listaSeguimientos += "</div>"; // Fin del cuerpo de la tarjeta
+        
         listaSeguimientos += "<p><strong>Nombre adoptante:</strong> " + persona.getNombre() + "</p>";
         listaSeguimientos += "<p><strong>Identificación:</strong> " + formulario.getIdentificacionAdoptante() + "</p>";
         listaSeguimientos += "<p><strong>Contacto:</strong> " + persona.getTelefono() + "</p>";
         listaSeguimientos += "<p><strong>Direccion:</strong> " + persona.getDireccion() + "</p>";
+         // Aquí se añade la foto
+        listaSeguimientos += "<div style='margin-right: 20px;'>";
+        listaSeguimientos += "<img src='presentacion/mascota/" + mascota.getFoto() + "' alt='Foto de " + mascota.getNombre() + "' style='width: 100px; height: auto;'/>";
+        listaSeguimientos += "</div>"; // Fin del cuerpo de la tarjeta
+        
         listaSeguimientos += "<p><strong>Nombre mascota:</strong> " + formulario.getMascota() + "</p>";
+        listaSeguimientos += "<p><strong>Edad:</strong> " + mascota.getEdad() + " años</p>";
         listaSeguimientos += "<p><strong>Cuidados Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
 
-        listaSeguimientos += "</div>"; // Fin del cuerpo de la tarjeta
+       
 
         // Botones de acción
         listaSeguimientos += "<div class='btn-container'>";
