@@ -155,22 +155,27 @@ public class ConceptoDonacion {
         return lista;
     }
 
-    public static String getListaEnOptions(String preseleccionado) {
-        if (preseleccionado == null) {
-            preseleccionado = "";
-        }
-        String lista = "";
-
-        List<ConceptoDonacion> datos = ConceptoDonacion.getListaEnObjetos(null, "nombre");
-
-        for (int i = 0; i < datos.size(); i++) {
-            ConceptoDonacion conceptoDonacion = datos.get(i);
-
-            String auxiliar = "";
-            //if (preseleccionado.equals(tipoDonacion.getCodigo())) auxiliar="selected";           
-            lista += "<option value='" + conceptoDonacion.getId() + "' " + auxiliar + ">" + conceptoDonacion.getNombre() + "</option>";
-        }
-
-        return lista;
+   public static String getListaEnOptions(String preseleccionado, int codigoTipoDonacion) {
+    if (preseleccionado == null) {
+        preseleccionado = "";
     }
+    String lista = "";
+
+    // Obtener la lista de ConceptoDonacion filtrada por codigoTipoDonacion
+    List<ConceptoDonacion> datos = ConceptoDonacion.getListaEnObjetos("codigoTipoDonacion = " + codigoTipoDonacion, "nombre");
+
+    for (int i = 0; i < datos.size(); i++) {
+        ConceptoDonacion conceptoDonacion = datos.get(i);
+
+        String auxiliar = "";
+        if (preseleccionado.equals(String.valueOf(conceptoDonacion.getId()))) {
+            auxiliar = "selected";
+        }
+
+        lista += "<option value='" + conceptoDonacion.getId() + "' " + auxiliar + ">" + conceptoDonacion.getNombre() + "</option>";
+    }
+
+    return lista;
+}
+
 }

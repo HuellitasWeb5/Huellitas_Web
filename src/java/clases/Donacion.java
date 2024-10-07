@@ -83,6 +83,9 @@ public class Donacion {
     public void setIdentificacionDonante(String identificacionDonante) {
         this.identificacionDonante = identificacionDonante;
     }
+    public Persona getPersona(){
+        return new Persona (identificacionDonante);
+     }
 
     @Override
 
@@ -95,11 +98,10 @@ public class Donacion {
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
-    public boolean grabarProcedimiento(String donaciones){
-        String cadenaSQL = "call registrarDonacion("+ this.identificacionDonante+",'"+ donaciones +"','"+ descripcion+"')";
+    /* public boolean grabarProcedimiento(String donaciones){
+        String cadenaSQL = "call registrarDonacion("+ this.identificacionDonante+",'"+ descripcion+"')";
         return ConectorBD.ejecutarQuery(cadenaSQL);
-    }
-    
+    }*/
     public boolean modificar() {
         String cadenaSQL = "update donacion set fecha='" + fecha + "',descripcion='" + descripcion + "',identificacionDonante='" + identificacionDonante + "' where codigo=" + codigo;
         return ConectorBD.ejecutarQuery(cadenaSQL);
@@ -112,11 +114,9 @@ public class Donacion {
 
     public boolean grabarProcedimientoAlmacenado(String cadenaDonaciones) {
         // Usar un procedimiento almacenado que capture los datos necesarios para registrar la donación y sus detalles
-        String cadenaSQL = "CALL registrarDonacion('"
-                + this.identificacionDonante + "', '" // Identificación del donante
-                + this.fecha + "', '" // Fecha de la donación
-                + this.descripcion + "', '" // Descripción de la donación
-                + cadenaDonaciones + "')"; // Cadena de donaciones con IDs y cantidades
+        String cadenaSQL = "CALL registrarDonacion(" + this.identificacionDonante + ", '" 
+                + this.descripcion + "', '" 
+                + cadenaDonaciones + "')"; 
 
         System.out.println("Cadena procedimiento: " + cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
