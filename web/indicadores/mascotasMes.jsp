@@ -1,9 +1,8 @@
 <%-- 
-    Document   : mascotas
+    Document   : mascotasMes
     Created on : 6/10/2024, 09:12:35 PM
     Author     : URB
 --%>
-
 <%@page import="clases.Mascota"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,21 +11,24 @@
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
 </head>
 <%
-    // Obtén los datos de las mascotas por fecha de ingreso
-    List<String[]> datos = Mascota.getMascotasPorFechaIngreso();
-        StringBuilder lista = new StringBuilder();
-        StringBuilder datosGraficos = new StringBuilder("[");
-        for (int i = 0; i < datos.size(); i++) {
-            String[] registro = datos.get(i);
-            lista.append("<tr>");
-            lista.append("<td><a href='principal.jsp?CONTENIDO=indicadores/mascotasMes.jsp?anio=")
-                    .append(registro[0].substring(0, 4))
-                    .append("'>").append(registro[0]).append("</a></td>");
-            lista.append("<td>").append(registro[1]).append("</td>");
-            lista.append("</tr>");
+    // Obtén el año como parámetro desde la URL o un valor predeterminado
+    String anio = request.getParameter("anio");
+    if (anio == null || anio.isEmpty()) {
+        anio = "2024"; // Valor predeterminado si no se proporciona el año
+    }
 
-            if (i > 0)
-                datosGraficos.append(", ");
+    // Obtén los datos de las mascotas por mes para el año especificado
+    List<String[]> datos = Mascota.getMascotasPorMes(anio);
+    StringBuilder lista = new StringBuilder();
+    StringBuilder datosGraficos = new StringBuilder("[");
+    for (int i = 0; i < datos.size(); i++) {
+        String[] registro = datos.get(i);
+        lista.append("<tr>");
+        lista.append("<td>").append(registro[0]).append("</td>");
+        lista.append("<td>").append(registro[1]).append("</td>");
+        lista.append("</tr>");
+
+        if (i > 0) datosGraficos.append(", ");
         datosGraficos.append("{");
         datosGraficos.append("\"category\": \"").append(registro[0]).append("\",");
         datosGraficos.append("\"value\": ").append(registro[1]);
@@ -35,21 +37,24 @@
     datosGraficos.append("]");
 %>
 
-<h3>INDICADOR DE MASCOTAS POR FECHA DE INGRESO</h3>
-<p></p>
+
+<h3>INDICADOR DE MASCOTAS POR MES PARA EL AÑO <%= anio %></h3>
+
+
 <table border="0">
     <tr>
         <td>
             <table border="1">
-                <tr><th>Fecha de Ingreso</th><th>Cantidad de Mascotas</th></tr>
+                <tr><th>Mes de Ingreso</th><th>Cantidad de Mascotas</th></tr>
                 <%=lista.toString()%>
             </table>
         </td>
         <td>
-            <!-- Contenedor para la gráfica -->
-            <div id="chartdiv" style="width: 5vw; height: 500px; max-width: 900px; margin: auto;"></div>
+            <!-- Contenedor para la gráfica con un tamaño ajustado -->
+            <div id="chartdiv" style="width: 60vw; height: 500px; max-width: 900px; margin: auto;"></div>
         </td>
     </tr>
+    <input type="button" value="Atras" class="btn-otro" onClick="window.history.back()">
 </table>
             
 <script type="text/javascript">
@@ -108,12 +113,17 @@
             })
         }));
 
+        // Ajustar el ancho de las columnas para hacer la gráfica más delgada
         series.columns.template.setAll({
+            width: am5.percent(40), // Reduce el ancho de las barras para hacer la gráfica más delgada
             cornerRadiusTL: 5,
             cornerRadiusTR: 5,
             strokeOpacity: 0,
             fill: am5.color("#7fbc95")
         });
+
+        // Verifica los datos enviados al gráfico
+        console.log("Datos para la gráfica:", <%=datosGraficos.toString()%>);
 
         var data = <%=datosGraficos.toString()%>;
 
