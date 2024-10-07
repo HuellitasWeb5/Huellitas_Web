@@ -18,7 +18,6 @@ else USUARIO=(Persona) sesion.getAttribute("usuario");
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="presentacion/style-Proyecto.css">
         <link rel="stylesheet" href="recursos/jquery-ui-1.13.3.custom/jquery-ui.css">
         <link rel="stylesheet" href="presentacion/style-Index.css">
         <link rel="stylesheet" href="recursos/bootstrap/css/bootstrap.min.css">
