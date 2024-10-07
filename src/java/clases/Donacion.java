@@ -86,6 +86,7 @@ public class Donacion {
     public Persona getPersona(){
         return new Persona (identificacionDonante);
      }
+    
 
     @Override
 

@@ -23,6 +23,7 @@
         <link rel="stylesheet" href="presentacion/style-Proyecto.css">
         <link rel="stylesheet" href="recursos/jquery-ui-1.13.3.custom/jquery-ui.css">
         <link rel="stylesheet" href="presentacion/style-Index.css">
+        <link rel="stylesheet" href="presentacion/Banner.css">
         <link rel="stylesheet" href="recursos/bootstrap/css/bootstrap.min.css">
         <script src="recursos/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script src="recursos/jquery-3.7.1.min.js"></script>

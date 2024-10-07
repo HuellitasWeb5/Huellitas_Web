@@ -148,7 +148,7 @@
                     <td>
                         <select id="donacionConcepto" name="donacionConcepto">
                             <option value="" disabled selected>Seleccione un concepto de donación</option>
-                            <%= ConceptoDonacion.getListaEnOptions(null,1%>
+                            <%= ConceptoDonacion.getListaEnOptions(null)%>
                         </select>
                     </td>
                 </tr>
