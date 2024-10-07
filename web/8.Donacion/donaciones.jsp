@@ -29,7 +29,7 @@
         lista += "</div>";
         lista += "<div class='card-body'>";
         lista += "<p><strong>Donacion</strong></p>";
-        lista += "<p>" + donacion.getCodigo() + "</p>";
+        lista += "<p>" + donacion.getPersona()+ "</p>";
         lista += "<p>" + donacion.getCodigo() + "</p>";
         lista += "<p><strong>Teléfono:</strong> " + donacion.getCodigo() + "</p>";
         lista += "<p><strong>Ubicación:</strong> " + donacion.getCodigo() + "</p>";
@@ -37,7 +37,7 @@
         lista += "<p><strong>Donación:</strong> " + donacion.getCodigo() + "</p>";
         lista += "<p><strong>Descripción:</strong> " + donacion.getDescripcion() + "</p>";
         lista += "<div class='button-container'>";
-        lista += "<button class='btn-detalles' onclick='verDetalles(\"" + donacion.getCodigo() + "\");'>Detalles</button>";
+        lista += "<button class='btn-otro' onclick='verDetalles(\"" + donacion.getCodigo() + "\");'>Detalles</button>";
         lista += "<button class='btn-modificar' onclick='abrirFormularioAdicionar(\"" + donacion.getCodigo() + "\");'>Modificar</button>";
         lista += "<button class='btn-eliminar' onclick='confirmarEliminacion(\"" + donacion.getCodigo() + "\")'>Eliminar</button>";
         lista += "</div>";
@@ -78,9 +78,7 @@
         }
     }
 
-    function verDetalles(codigo) {
-        // Debo hacer el boton de ver detalles
-    }
+
     function abrirFormularioAdicionar(codigo) {
         var url="principal.jsp?CONTENIDO=8.Donacion/donacionesFormulario.jsp&accion=Adicionar";
         window.location.href=url;
