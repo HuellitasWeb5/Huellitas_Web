@@ -16,6 +16,8 @@
     String accion = request.getParameter("accion");
     String codigo = request.getParameter("codigo");
     FormularioDeInformacion formularioDeInformacion = new FormularioDeInformacion();
+    Mascota mascota = new Mascota(formularioDeInformacion.getCodigoMascota());
+    Persona persona = new Persona(formularioDeInformacion.getIdentificacionAdoptante());
 
 %>  
 <body onload="cargarFecha()">
@@ -42,7 +44,7 @@
                             <input type="text" name="residencia" id="residencia" readonly>
                         </div>
                         <div class="foto">
-                            <img id="foto" class="fotoPreview" src="" alt="Foto Adoptante">
+                            <img id="foto" class="fotoPreview" src="presentacion/clientes/<%= persona.getFoto()%>" alt="Foto de <%= persona.getNombre()%>" style="width: 100px; height: auto;">
                         </div>
                     </div>
                 </div>
@@ -64,17 +66,17 @@
                             <label>Cuidados Especiales:</label>
                             <input type="text" name="cuidadosEspeciales" id="cuidadosEspeciales" readonly>
                         </div>
-                        <div class="foto">
-                            <img id="fotoMascotaPreview" class="fotoPreview" src="" alt="Foto Mascota">
+                          <div class="foto">
+                            <img id="foto" class="fotoPreview" src="presentacion/mascota/<%= mascota.getFoto()%>" alt="Foto de <%= mascota.getNombre()%>" style="width: 100px; height: auto;">
                         </div>
                     </div>
                 </div>
             </div>
             <table>
                 <input type="hidden" name="fechaActual" id="fechaActual">
-                
+
                 <!-- FORMULARIO  -->  
-                
+
                 <label for="ocupacion">¿Cuál es su ocupación?</label>
                 <input type="text" id="ocupacion" name="ocupacion" maxlength="100" required><br><br>
 
@@ -170,8 +172,8 @@
                         y el bienestar de la(s) mascota(s), en cumplimiento con la legislación vigente en materia de protección de datos.</label>
                 </div>
                 <br><br>
-                
-                 <!-- Botones de envío -->
+
+                <!-- Botones de envío -->
 
                 <input class="btn-adicionar" type="submit" name="accion" value="<%=accion%>">
                 <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
@@ -220,8 +222,8 @@
         document.getElementById("foto").src = foto;
     });
 
-  // MOSTRAR GENERO MASCOTA
-  
+    // MOSTRAR GENERO MASCOTA
+
     function mostrarGenero(genero) {
         if (genero && genero.toLowerCase() === "h") {
             return "Hembra";
@@ -346,7 +348,7 @@
     }
 
     // ADICIONAR LA NUEVA MASCOTA 
-    
+
     function agregarMascota() {
         // Obtener los valores ingresados en el formulario
         var codigo = document.getElementById("codigoFormulario").value;
@@ -393,7 +395,7 @@
     $("#codigoFormulario").autocomplete({
         source: vectorMascotas
     });
-    
+
     function buscarMascota(valor, indice) {
         encontrado = false;
         i = 0;
