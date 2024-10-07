@@ -22,12 +22,12 @@
     const conceptoDonacion = {};
 
     <% for (int i = 0; i < datos.size(); i++) {
-            ConceptoDonacion concepto = datos.get(i); %>
+            ConceptoDonacion concepto = datos.get(i);%>
     conceptoDonacion["<%= concepto.getId()%>"] = {
         nombre: "<%= concepto.getNombre()%>",
         descripcion: "<%= concepto.getDescripcion()%>",
-        tipoDonacion: "<%= concepto.getTipoDonacion() %>", // Asegúrate de que este campo es correcto
-        idUnidadDeMedida: "<%= concepto.getIdUnidadDeMedida() %>"  // Asegúrate de que este campo también es correcto
+        tipoDonacion: "<%= concepto.getTipoDonacion()%>", // Asegúrate de que este campo es correcto
+        idUnidadDeMedida: "<%= concepto.getIdUnidadDeMedida()%>"  // Asegúrate de que este campo también es correcto
     };
     <% } %>
 </script>
@@ -55,51 +55,49 @@
         lista += "</div>";
     }
 %>
+<h3>CONCEPTOS DE DONACIONES</h3> 
 
-<html lang="es">
-    <h3>CONCEPTOS DE DONACIONES</h3> 
+<button class="btn-adicionar" onclick="abrirFormulario('Adicionar', null, '<%= tipoDonacion.getCodigo()%>');">Agregar Concepto de Donación</button>
 
-    <button class="btn-adicionar" onclick="abrirFormulario('Adicionar', null, '<%= tipoDonacion.getCodigo()%>');">Agregar Concepto de Donación</button>
-
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <%= lista %>
-        </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <%= lista %>
     </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
 
-    <div id="formulario" title="Adicionar Concepto de Donación">
-        <form name="formularioConceptoDonacion"> 
-            <table>
-                <tr>
-                    <th>Nombre</th>
-                    <td><input type="text" name="nombre" id="nombre"></td>
-                </tr>
-                <tr>
-                    <th>Descripción</th>
-                    <td><input type="text" name="descripcion" id="descripcion"></td>
-                </tr>
-                <tr>
-                    <th>Tipo de Donación</th>
-                    <td><input type="text" id="codigoTipoDonacion" name="codigoTipoDonacion" readonly></td>
-                </tr>
-                <tr>
-                    <th>Unidad de Medida</th>
-                    <td>
-                        <select id="idUnidadDeMedida" name="idUnidadDeMedida">
-                            <option value="" disabled selected>Seleccione una unidad de medida</option>
-                            <%= UnidadDeMedida.getListaEnOptions(null) %>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-            <input class="btn-adicionar" type="button" value="Agregar" onclick="agregarConceptoDonacion('<%= codigo %>');">
-            <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
-        </form>    
-    </div>
-</html>
+<div id="formulario" title="Adicionar Concepto de Donación">
+    <form name="formularioConceptoDonacion"> 
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <td><input type="text" name="nombre" id="nombre"></td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td><input type="text" name="descripcion" id="descripcion"></td>
+            </tr>
+            <tr>
+                <th>Tipo de Donación</th>
+                <td><input type="text" id="codigoTipoDonacion" name="codigoTipoDonacion" readonly></td>
+            </tr>
+            <tr>
+                <th>Unidad de Medida</th>
+                <td>
+                    <select id="idUnidadDeMedida" name="idUnidadDeMedida">
+                        <option value="" disabled selected>Seleccione una unidad de medida</option>
+                        <%= UnidadDeMedida.getListaEnOptions(null) %>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <input class="btn-adicionar" type="button" value="Agregar" onclick="agregarConceptoDonacion('<%= codigo %>');">
+        <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
+    </form>    
+</div>
+
 
 <script>
     function confirmarEliminacion(id, codigo) {
@@ -160,7 +158,7 @@
         var nombre = document.getElementById('nombre').value;
         var descripcion = document.getElementById('descripcion').value;
         var idUnidadDeMedida = document.getElementById('idUnidadDeMedida').value;
-        var url = "1.TipoDonacion/conceptosDonacionesActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + codigo + "&idUnidadDeMedida=" + idUnidadDeMedida+ "&codigo=" + codigo;
+        var url = "1.TipoDonacion/conceptosDonacionesActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + codigo + "&idUnidadDeMedida=" + idUnidadDeMedida + "&codigo=" + codigo;
         window.location.href = url;
     }
 
@@ -168,7 +166,7 @@
         var nombre = document.getElementById('nombre').value;
         var descripcion = document.getElementById('descripcion').value;
         var idUnidadDeMedida = document.getElementById('idUnidadDeMedida').value;
-        var url = "1.TipoDonacion/conceptosDonacionesActualizar.jsp?accion=Modificar&id=" + id + "&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + codigo + "&idUnidadDeMedida=" + idUnidadDeMedida+ "&codigo=" + codigo;
+        var url = "1.TipoDonacion/conceptosDonacionesActualizar.jsp?accion=Modificar&id=" + id + "&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + codigo + "&idUnidadDeMedida=" + idUnidadDeMedida + "&codigo=" + codigo;
         window.location.href = url;
     }
 
