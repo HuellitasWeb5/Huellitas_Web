@@ -1,69 +1,24 @@
+<%@page import="clases.Donacion"%>
 <%@page import="clases.Persona"%>
 <%@page import="clases.Mascota"%>
 <%@page import="clases.ConceptoDonacion"%>
 <%@page import="clases.TipoDonacion"%>
 <%@page import="clases.DonacionDetalle"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<head>
+ <link rel="stylesheet" href="presentacion/Donacion.css">
+</head>
 <%
     TipoDonacion tipoDonacion = new TipoDonacion();
     String accion = request.getParameter("accion");
+    Donacion donacion = new Donacion();
     DonacionDetalle donacionDetalle = new DonacionDetalle();
+     String codigo = request.getParameter("codigo");
+     if (accion.equals("Modificar")) {
+        donacion = new Donacion(codigo);
+    }
 %>
-<style>
-    .container {
-        width: 50%;
-        margin: 0 auto;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        position: relative;
-    }
-    .header {
-        background-color: #003366;
-        color: white;
-        padding: 10px;
-        font-size: 20px;
-        text-align: center;
-        border-radius: 8px 8px 0 0;
-    }
-    .close-btn {
-        position: absolute;
-        top: 10px;
-        right: 20px;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-    }
-    .form-group {
-        display: flex;
-        flex-direction: column;
-        margin-bottom: 15px;
-    }
-    .form-group label {
-        font-weight: bold;
-        margin-bottom: 5px;
-    }
-    .form-group input {
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        background-color: #f0f0f0;
-    }
-    .form-group span {
-        padding: 8px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        background-color: #f0f0f0;
-        height: 45px;
-    }
-    .hidden {
-        display: none; /* Cambia max-height por display para ocultarlo por completo */
-        transition: all 0.3s ease;
-    }
-</style>
 <body onload="cargarFecha()">
     <h3><%=accion.toUpperCase()%> Donaciones</h3>
 
