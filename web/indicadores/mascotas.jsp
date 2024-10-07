@@ -47,7 +47,7 @@
         </td>
         <td>
             <!-- Contenedor para la gráfica -->
-            <div id="chartdiv" style="width: 5vw; height: 500px; max-width: 900px; margin: auto;"></div>
+            <div id="chartdiv" style="width: 50vw; height: 500px; max-width: 900px; margin: auto;"></div>
         </td>
     </tr>
 </table>
