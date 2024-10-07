@@ -78,7 +78,10 @@ public class TipoPersona {
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/perfilF.jsp'>Perfil</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=indicadores/mascotas.jsp'>Indicadores</a></li>";
+                menu += "<li class='nav-item'>Indicadores</li>";
+                menu += "<ul>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=indicadores/mascotas.jsp'>Ingreso de mascotas</a></li>";
+                menu += "</ul>";
                 menu += "<li class='nav-item'><a class='nav-link' href='index.jsp'>Salir</a></li>";
 
                 menu += "</ul>";
