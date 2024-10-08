@@ -78,8 +78,8 @@ if (accion.equals("Modificar")) {
                 </div>
                 <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
                 <div class="btn-container">
-                    <input class='btn-adicionar'  type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
-                    <input class='btn-eliminar' type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
+                    <input class="btn-adicionar" type="submit" name="accion" value="<%=accion%>">
+                    <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
                 </div>
             </form>
         </div>
