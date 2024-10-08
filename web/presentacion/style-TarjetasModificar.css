@@ -4,52 +4,67 @@ input[type="text"], input[type="date"], input[type="file"], select, input[type="
     border: 1px solid #ccc; /* Borde gris claro */
     border-radius: 5px; /* Bordes redondeados */
     padding: 5px; /* Espacio interno */
-    font-size: 0.9em; /* Tamaño de fuente más pequeño */
+    font-size: 0.9em; /* Tamaño de fuente */
     width: calc(100% - 10px); /* Ancho del campo */
 }
 
-/* Estilo para las etiquetas de los radios */
+/* Estilo para las etiquetas */
 label {
     margin-right: 15px; /* Espacio entre las opciones de género */
 }
 
-/* Opcional: ajustar la alineación de los campos */
+/* Alineación de los campos */
 td {
     vertical-align: middle; /* Alinear verticalmente los elementos */
 }
+
+/* Contenedor de botones */
 .btn-container {
-    display: flex; /* Utiliza Flexbox para alinear los botones */
-    justify-content: center; /* Centra los botones en el contenedor */
-    margin-top: 20px; /* Espacio entre el formulario y los botones */
-}
-.card-header {
-    background-color: #9effa1; /* Fondo azul claro para el encabezado */
-    color: white; /* Texto blanco */
-    padding: 8px; /* Espacio interno alrededor del texto */
-    border-top-left-radius: 5px; /* Bordes redondeados en la parte superior izquierda */
-    border-top-right-radius: 5px; /* Bordes redondeados en la parte superior derecha */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-    text-align: center; /* Centrar el texto */
-    font-size: 1.2em; /* Tamaño de la fuente reducido */
-    font-weight: bold; /* Hacer el texto en negrita */
-    letter-spacing: 1px; /* Espaciado entre letras */
-    margin-bottom: 10px; /* Espacio debajo del encabezado */
+    display: flex; /* Flexbox para alinear los botones */
+    justify-content: center; /* Centrar los botones en el contenedor */
+    margin-top: 20px; /* Espacio superior */
+    gap: 15px; /* Espacio entre los botones */
 }
 
-.profile-image {
-    width: 150px; /* Aumentar el tamaño de la imagen */
-    height: 150px; /* Aumentar el tamaño de la imagen */
-    border-radius: 50%; /* Hace la imagen redonda */
-    object-fit: cover; /* Asegura que la imagen se recorte adecuadamente */
-    margin-bottom: 15px; /* Espacio debajo de la imagen */
-    display: block; /* Asegura que la imagen se trate como un bloque */
-    margin-left: auto; /* Centra la imagen */
-    margin-right: auto; /* Centra la imagen */
-    border: 8px solid #ffffff; /* Aumentar el grosor del borde blanco alrededor de la imagen */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra sutil alrededor de la imagen */
+/* Estilo para los botones */
+.btn-adicionar, .btn-eliminar {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1em;
+    color: white;
 }
+
+.btn-adicionar {
+    background-color: #40c328; /* Color del botón adicionar */
+}
+
+.btn-adicionar:hover {
+    background-color: #2e8a11; /* Hover botón adicionar */
+}
+
+.btn-eliminar {
+    background-color: #f12727; /* Color del botón eliminar */
+}
+
+.btn-eliminar:hover {
+    background-color: #9d1e1e; /* Hover botón eliminar */
+}
+
+/* Estilo del contenedor de la tarjeta */
+.card {
+    background-color: #cce5ff; /* Fondo verde */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: left; /* Alineación del texto a la izquierda */
+    min-width: 300px; /* Ancho mínimo para la tarjeta */
+}
+
+/* Ajustes generales */
 body {
-    font-family: Arial, sans-serif; /* Estilo de fuente */
+    font-family: Arial, sans-serif; /* Fuente */
 }
 
 h3 {
@@ -63,24 +78,17 @@ h3 {
     padding: 20px; /* Espacio alrededor de la tarjeta */
 }
 
-.card {
-    background-color: #cce5ff; /* Color de fondo verde */
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    text-align: left; /* Alineación del texto a la izquierda */
-    min-width: 300px; /* Ancho mínimo para la tarjeta */
-}
-
-.card-header {
-    font-size: 1.5em; /* Tamaño de fuente para el encabezado */
-    font-weight: bold;
-    text-align: center; /* Centrar el encabezado */
-}
-
-.card-body {
-    font-size: 1em; /* Tamaño de fuente para el cuerpo */
-    margin-bottom: 15px;
+.profile-image {
+    width: 150px; /* Tamaño de la imagen */
+    height: 150px;
+    border-radius: 50%; /* Imagen redonda */
+    object-fit: cover; /* Recorte adecuado de la imagen */
+    margin-bottom: 15px; /* Espacio inferior de la imagen */
+    display: block;
+    margin-left: auto; /* Centrar horizontalmente */
+    margin-right: auto;
+    border: 8px solid #ffffff; /* Borde blanco grueso */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra sutil */
 }
 
 .form-group {
@@ -89,7 +97,7 @@ h3 {
 
 .form-group label {
     font-weight: bold; /* Negrita para las etiquetas */
-    display: block; /* Asegurar que la etiqueta ocupa una línea */
+    display: block; /* Asegurar que la etiqueta ocupe una línea */
 }
 
 .form-group input, .form-group select {
@@ -99,24 +107,9 @@ h3 {
     border: 1px solid #ccc; /* Borde suave */
 }
 
-.card-footer {
-    display: flex;
-    justify-content: space-between; /* Espacio entre botones */
-}
-
-.card-footer input {
-    background-color: #4CAF50; /* Color de fondo para el botón */
-    color: white; /* Color del texto */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    padding: 10px; /* Espacio interno */
-    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
-}
-
 .card-footer input:hover {
     background-color: #45a049; /* Cambio de color al pasar el cursor */
 }
-
 /* Estilo del botón */
 
 .btn-container {

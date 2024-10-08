@@ -516,3 +516,9 @@ input[type="radio"], input[type="checkbox"] {
     margin-left: 10px; /* Deja espacio entre el input y el icono */
     cursor: pointer;
 }
+
+    .stars {
+        color: gold;
+        font-size: 18px; /* Tamaño de las estrellas */
+        vertical-align: middle;
+    }

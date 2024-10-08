@@ -57,6 +57,11 @@ nav > a:hover{
     text-decoration: underline;
 } 
 
+.nav-link {
+    color: #000000;
+}
+
+
 header .textos-header{
     display: flex;
     height: 430px;
