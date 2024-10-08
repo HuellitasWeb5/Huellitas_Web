@@ -92,8 +92,8 @@
                 <tr>
                     <th>Tipo de donación</th>
                     <td>
-                        <select id="tipoDonacion" name="tipoDonacion">
-                            <option value="" disabled selected>Seleccione un tipo de donación</option>
+                        <select id="tipoDonacion" name="tipoDonacion" onChange="actualizarConceptos(this.value)">
+                            <option value="">Seleccione un tipo de donación</option>
                             <%= TipoDonacion.getListaEnOptions(null)%>
                         </select>
                     </td>
@@ -103,14 +103,11 @@
                     <td>
                         <select id="donacionConcepto" name="donacionConcepto">
                             <option value="" disabled selected>Seleccione un concepto de donación</option>
-                            <%= ConceptoDonacion.getListaEnOptions(null)%>
+                          
                         </select>
                     </td>
                           <td>
-                <select name="estado" id="estado" required>
-                    <option value="activa">Activa</option>
-                    <option value="pendiente">Pendiente</option>
-                </select>
+                
             </td>
                 </tr>
                 <tr>
@@ -121,7 +118,7 @@
             <input class="btn-adicionar" type="button" value="Agregar" onclick="actualizarTabla();">
             <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
         </form>
-    </div>
+ j   </div>
 
     <!-- Contenedor de las tarjetas de detalles -->
     <div class="swiper-container">
@@ -137,6 +134,7 @@
 
 <script>
     var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
+    var conceptoDonacion = <%=ConceptoDonacion.getListaEnArreglosJS(null, null)%>;
     var vectorPersonas = new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
@@ -145,6 +143,17 @@
         source: vectorPersonas
     });
 
+    function actualizarConceptos(codigoTipoDonacion){
+        document.formularioDonacionDetalle.donacionConcepto.length=1;
+        for (var i = 0; i < conceptoDonacion.length; i++) {
+            if(conceptoDonacion[i][2]==codigoTipoDonacion){
+                document.formularioDonacionDetalle.donacionConcepto.length++;
+                document.formularioDonacionDetalle.donacionConcepto.options[document.formularioDonacionDetalle.donacionConcepto.length-1].value= [i][0];
+                document.formularioDonacionDetalle.donacionConcepto.options[document.formularioDonacionDetalle.donacionConcepto.length-1].text=conceptoDonacion[i][1];
+            }
+        }
+    }
+    
     function buscarPersona(valor, indice) {
         encontrado = false;
         i = 0;
@@ -320,4 +329,6 @@
     }
 
     mentById('fecha').innerText = fechaFormateada;
+    
+
 </script>
