@@ -14,7 +14,7 @@ String accion=request.getParameter("accion");
 String identificacion=request.getParameter("identificacion");
 Persona clientes=new Persona();
 %>
-<h3>RGISTRATE SANPATITAS</h3>
+<h3>REGISTRATE SANPATITAS</h3>
 <div class="card-carousel">
     <div class="card">
         <div class="card-header">

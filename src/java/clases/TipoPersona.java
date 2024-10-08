@@ -4,7 +4,6 @@ package clases;
  *
  * @author Luis Eraso
  */
-
 public class TipoPersona {
 
     private String codigo;
@@ -45,6 +44,7 @@ public class TipoPersona {
     public String toString() {
         return getNombre();
     }
+
 public String getMenu() {
     String menu = "<ul>";
 
@@ -147,6 +147,8 @@ public String getMenu() {
             menu += "</div>";
             menu += "</nav>";
             break;
+
+
 
             case "C":
                 menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light'>";
