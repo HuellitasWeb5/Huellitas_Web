@@ -107,7 +107,7 @@ public String getMenu() {
             menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/mascotas.jsp'>Mascotas</a></li>";
             menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/apadrinamiento.jsp'>Apadrinamientos</a></li>"; // Asegúrate de tener la ruta correcta
             menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/donaciones.jsp'>Donaciones</a></li>";
-            menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/cuidados.jsp'>Cuidados</a></li>"; // Asegúrate de tener la ruta correcta
+            menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/calificacionesXAnio.jsp'>Cuidados</a></li>"; // Asegúrate de tener la ruta correcta
             menu += "</ul></li>";
 
             menu += "<li class='nav-item'><a class='nav-link' href='index.jsp'>Salir</a></li>";
