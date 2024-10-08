@@ -45,40 +45,41 @@ public class TipoPersona {
         return getNombre();
     }
 
-public String getMenu() {
-    String menu = "<ul>";
-  
-        case "F":
-            menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light'>";
-            menu += "<div class='container-fluid'>";
-
-            // Botón para colapsar el menú en pantallas pequeñas
-            menu += "<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>";
-            menu += "<span class='navbar-toggler-icon'></span>";
-            menu += "</button>";
-
-            // Menú desplegable y alineado a la derecha
-            menu += "<div class='collapse navbar-collapse justify-content-end' id='navbarNav'>"; // justify-content-end alinea a la derecha
-            menu += "<ul class='navbar-nav'>";
-            menu += "<li class='nav-item'><a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
-            menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Medidas</a></li>";
-            menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp'>Tipos Donacion</a></li>";
-            menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesPadrinos.jsp'>Planes Padrinos</a></li>";
-            menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" + getNombre() + "'>Mascotas</a></li>";
-            menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=4.Clientes/clientes.jsp'>Clientes</a></li>";
-            menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp'>Padripet</a></li>";
-            menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
-            menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a></li>";
-            menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=91.PerfilAdministradorF/perfil.jsp'>Perfil</a></li>";
-            menu += "<li class='nav-item'><a href='index.jsp'>Salir</a></li>";
-
-            menu += "</ul>";
-            menu += "</div>";
-            menu += "</div>";
-            menu += "</nav>";
-            break;
+    public String getMenu() {
+        String menu = "<ul>";
 
         switch (this.codigo) {
+
+            case "F":
+                menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light'>";
+                menu += "<div class='container-fluid'>";
+
+                // Botón para colapsar el menú en pantallas pequeñas
+                menu += "<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>";
+                menu += "<span class='navbar-toggler-icon'></span>";
+                menu += "</button>";
+
+                // Menú desplegable y alineado a la derecha
+                menu += "<div class='collapse navbar-collapse justify-content-end' id='navbarNav'>"; // justify-content-end alinea a la derecha
+                menu += "<ul class='navbar-nav'>";
+                menu += "<li class='nav-item'><a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Medidas</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp'>Tipos Donacion</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesPadrinos.jsp'>Planes Padrinos</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" + getNombre() + "'>Mascotas</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=4.Clientes/clientes.jsp'>Clientes</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp'>Padripet</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=91.PerfilAdministradorF/perfil.jsp'>Perfil</a></li>";
+                menu += "<li class='nav-item'><a href='index.jsp'>Salir</a></li>";
+
+                menu += "</ul>";
+                menu += "</div>";
+                menu += "</div>";
+                menu += "</nav>";
+                break;
+
             case "S":
                 menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light'>";
                 menu += "<div class='container-fluid'>";
