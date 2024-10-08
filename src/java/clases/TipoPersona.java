@@ -52,19 +52,19 @@ public class TipoPersona {
             case "S":
                 menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light'>";
                 menu += "<div class='container-fluid'>";
-                
+
                 menu += "<img src='presentacion/imagenes/Logo-Fundacion.png' alt='Logo' width='90' height='90' class='d-inline-block align-text-top'>"; // Aquí se agrega el logo
-                
+
                 // Botón para colapsar el menú en pantallas pequeñas
                 menu += "<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>";
                 menu += "<span class='navbar-toggler-icon'></span>";
                 menu += "</button>";
 
                 // Menú desplegable y alineado a la derecha
-              menu += "<div class='collapse navbar-collapse justify-content-center' id='navbarNav'>"; // Cambiado a justify-content-center para centrar el contenido
-menu += "<ul class='navbar-nav'>";
+                menu += "<div class='collapse navbar-collapse justify-content-center' id='navbarNav'>"; // Cambiado a justify-content-center para centrar el contenido
+                menu += "<ul class='navbar-nav'>";
 
-menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
 
                 // Menú de Donaciones
                 menu += "<li class='nav-item dropdown'>";
@@ -109,7 +109,7 @@ menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=
                 menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/cuidados.jsp'>Cuidados</a></li>"; // Asegúrate de tener la ruta correcta
                 menu += "</ul></li>";
 
-                menu += "<li class='nav-item'><a class='nav-link' href='index.jsp'>Salir</a></li>";    
+                menu += "<li class='nav-item'><a class='nav-link' href='index.jsp'>Salir</a></li>";
                 menu += "</ul>";
                 menu += "</div>";
                 menu += "<img src='presentacion/imagenes/Logo.png' alt='Logo' width='80' height='80' class='d-inline-block align-text-top'>"; // Aquí se agrega el logo
