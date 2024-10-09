@@ -32,7 +32,7 @@ if (accion.equals("Modificar")) {
                 </div>
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" value="<%=clientes.getNombre()%>" size="50" maxlength="50">
+                    <input type="text" name="nombre" id="nombre" value="<%=clientes.getNombre()%>" size="50" maxlength="50" required>
                 </div>
                 <div class="form-group">
                     <label>Género:</label>
@@ -48,19 +48,19 @@ if (accion.equals("Modificar")) {
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono:</label>
-                    <input type="tel" name="telefono" id="telefono" value="<%=clientes.getTelefono()%>" maxlength="12">
+                    <input type="tel" name="telefono" id="telefono" value="<%=clientes.getTelefono()%>" maxlength="12" required>
                 </div>
                 <div class="form-group">
                     <label for="direccion">Dirección:</label>
-                    <input type="text" name="direccion" id="direccion" value="<%=clientes.getDireccion() %>" size="50" maxlength="100">
+                    <input type="text" name="direccion" id="direccion" value="<%=clientes.getDireccion() %>" size="50" maxlength="100" required>
                 </div>
                 <div class="form-group">
                     <label for="residencia">Residencia:</label>
-                    <input type="text" name="residencia" id="residencia" value="<%=clientes.getResidencia() %>" size="50" maxlength="100">
+                    <input type="text" name="residencia" id="residencia" value="<%=clientes.getResidencia() %>" size="50" maxlength="100" required>
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto:</label>
-                    <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();">
+                    <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();" required>
                 </div>
                 <div class="form-group">
                     <label for="clave">Contraseña:</label>
