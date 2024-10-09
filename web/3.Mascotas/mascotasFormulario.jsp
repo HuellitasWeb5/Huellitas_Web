@@ -13,7 +13,7 @@
 String accion=request.getParameter("accion");
 String codigo=request.getParameter("codigo");
 Mascota mascota=new Mascota();
-mascota.setCodigo("Se autoGenera");
+mascota.setCodigo("Por generar");
 if (accion.equals("Modificar")) {
         mascota=new Mascota(codigo);
     }
