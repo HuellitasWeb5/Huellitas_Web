@@ -34,17 +34,25 @@
 <html lang="es">
 
     <h3>UNIDADES DE MEDIDA</h3> 
-
-    <button class="btn-adicionar" onclick="abrirFormulario('Adicionar');">Agregar Tipo de Medida</button>
+    <div class="header-container">
+        <form id="searchForm">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
+                <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
+            </div>
+            <ul id="nameList"></ul>
+        </form>
+        <button class="btn-adicionar" onclick="abrirFormulario('Adicionar');">Agregar Unidad De Medida</button>
+    </div>
 
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <%= lista %>
+            <%= lista%>
             <br><br>
         </div>
         <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
         <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
     </div>
 
     <div id="formulario" title="Adicionar unidad de medida">
@@ -118,16 +126,45 @@
     }
 
     function agregarUnidadDeMedida() {
+        // Obtener los valores de los campos
         var nombre = document.getElementById('nombre').value;
         var notacion = document.getElementById('notacion').value;
-        var url = "1.TipoDonacion/unidadesDeMedidaActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&notacion=" + notacion;
+
+        // Validar que los campos no estén vacíos
+        if (!nombre || !notacion) {
+            alert("Por favor, complete todos los campos.");
+            return; // Detiene la ejecución si los campos están vacíos
+        }
+
+        // Construir la URL si los campos están completos
+        var url = "1.TipoDonacion/unidadesDeMedidaActualizar.jsp?accion=Adicionar&nombre=" + encodeURIComponent(nombre) + "&notacion=" + encodeURIComponent(notacion);
+
+        // Redirigir a la nueva URL
         window.location.href = url;
     }
+
 
     function cerrarFormulario() {
         document.getElementById("nombre").value = "";
         document.getElementById("notacion").value = "";
         $('#formulario').dialog('close');
+    }
+    function filterNames() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const slides = document.getElementsByClassName('swiper-slide');
+
+        // Recorre cada slide y oculta o muestra dependiendo del filtro
+        for (let i = 0; i < slides.length; i++) {
+            const cardHeader = slides[i].getElementsByClassName('card-header')[0];
+            const textValue = cardHeader.textContent || cardHeader.innerText;
+
+            if (textValue.toLowerCase().indexOf(filter) > -1) {
+                slides[i].style.display = "";
+            } else {
+                slides[i].style.display = "none";
+            }
+        }
     }
 
     const swiper = new Swiper('.swiper-container', {
