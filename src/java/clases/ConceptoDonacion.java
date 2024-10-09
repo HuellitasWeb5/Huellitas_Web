@@ -173,5 +173,18 @@ public class ConceptoDonacion {
 
         return lista;
     }
+    public static String getListaEnArreglosJS(String filtro, String orden) {
+        String lista = "[";
+        List<ConceptoDonacion> datos = ConceptoDonacion.getListaEnObjetos(filtro, orden);
+        for (int i = 0; i < datos.size(); i++) {
+            ConceptoDonacion conceptoDonacion = datos.get(i);
+            if (i > 0) {
+                lista += ", ";
+            }
+            lista += "['" + conceptoDonacion.getId()+ "', '" + conceptoDonacion.getNombre()  + "', '" + conceptoDonacion.getCodigoTipoDonacion() + "']"; 
+        }
+        lista += "]";
+        return lista;
+    }
 
 }

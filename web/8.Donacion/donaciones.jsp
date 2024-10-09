@@ -31,8 +31,8 @@
         lista += "</div>";
         lista += "<div class='card-body'>";
         lista += "<p><strong>Donacion</strong></p>";
-        lista += "<p>" + persona.getNombre()+ "</p>";
-        lista += "<p>" + persona.getIdentificacion()+ "</p>";
+        lista += "<p>" + persona.getNombre() + "</p>";
+        lista += "<p>" + persona.getIdentificacion() + "</p>";
         lista += "<p><strong>Teléfono:</strong> " + persona.getTelefono() + "</p>";
         lista += "<p><strong>Ubicación:</strong> " + persona.getResidencia() + "-" + persona.getDireccion() + "</p>";
         lista += "<p><strong>Correo:</strong> " + persona.getEmail() + "</p>";
@@ -48,22 +48,33 @@
         lista += "</div>";
     }
 %>
-    <h3>DONADORES</h3> 
+<h3>DONACIONES</h3> 
 
-    <div class="filter-container">
-        <input type="text" id="filtroDonacions" placeholder="Filtrar donacions...">
+
+
+<div class="header-container">
+    <form id="searchForm">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
+            <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
+        </div>
+        <ul id="nameList"></ul>
+    </form>
+    <div style="display: flex; gap: 10px;">
         <button class="btn-adicionar" onclick="abrirFormularioAdicionar();">Adicionar Donacion</button>
         <button class="btn-adicionar" onclick="agregarTipoDonacion();">Adicionar Tipo de Donación</button>
     </div>
+</div>
 
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <%=lista%>
-        </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <%=lista%>
     </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
 
 <script>
     function confirmarEliminacion(codigo) {
@@ -75,13 +86,13 @@
 
 
     function verDetalles(codigo) {
-        var url="principal.jsp?CONTENIDO=8.Donacion/verDetalles.jsp&codigo="+codigo;
-        window.location.href=url;
+        var url = "principal.jsp?CONTENIDO=8.Donacion/verDetalles.jsp&codigo=" + codigo;
+        window.location.href = url;
     }
     function abrirFormularioAdicionar(codigo) {
-        
-        var url="principal.jsp?CONTENIDO=8.Donacion/donacionesFormulario.jsp&accion=Adicionar";
-        window.location.href=url;
+
+        var url = "principal.jsp?CONTENIDO=8.Donacion/donacionesFormulario.jsp&accion=Adicionar";
+        window.location.href = url;
     }
     function agregarTipoDonacion() {
         var url = "principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp?"

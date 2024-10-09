@@ -59,7 +59,7 @@ for (int j = 0; j < datosApadrinamiento.size(); j++) {
     listaApadrinamiento += "<p><strong>Plan:</strong> " + plan.getNombre() + "</p>";
     listaApadrinamiento += "</div>"; // div para los detalles
     
-    listaApadrinamiento += "<button class='btn btn-danger' onclick='eliminar(" + apadrinamiento.getCodigo() + ")'>Eliminar</button>";
+    listaApadrinamiento += "<button class='btn-eliminar' onclick='eliminar(" + apadrinamiento.getCodigo() + ")'>Eliminar</button>";
     listaApadrinamiento += "</div>"; 
     listaApadrinamiento += "</div>"; 
     listaApadrinamiento += "</div>";
@@ -70,8 +70,8 @@ listaApadrinamiento += "</div>";
 %>
 
 <h3>PADRIPETS</h3>
-<a href="principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp&accion=Adicionar">
-    <button type="button">Adicionar Padripet</button>
+<a href="principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp&accion=Adicionar" >
+    <button class="btn-adicionar" type="button">Adicionar Padripet</button>
 </a>
 
 <!-- Aquí puedes incluir el carrusel fuera de la tabla -->

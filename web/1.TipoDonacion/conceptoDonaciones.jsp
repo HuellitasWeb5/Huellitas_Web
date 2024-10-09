@@ -22,12 +22,12 @@
     const conceptoDonacion = {};
 
     <% for (int i = 0; i < datos.size(); i++) {
-            ConceptoDonacion concepto = datos.get(i); %>
+            ConceptoDonacion concepto = datos.get(i);%>
     conceptoDonacion["<%= concepto.getId()%>"] = {
         nombre: "<%= concepto.getNombre()%>",
         descripcion: "<%= concepto.getDescripcion()%>",
-        tipoDonacion: "<%= concepto.getTipoDonacion() %>", // Asegúrate de que este campo es correcto
-        idUnidadDeMedida: "<%= concepto.getIdUnidadDeMedida() %>"  // Asegúrate de que este campo también es correcto
+        tipoDonacion: "<%= concepto.getTipoDonacion()%>", // Asegúrate de que este campo es correcto
+        idUnidadDeMedida: "<%= concepto.getIdUnidadDeMedida()%>"  // Asegúrate de que este campo también es correcto
     };
     <% } %>
 </script>
@@ -55,51 +55,57 @@
         lista += "</div>";
     }
 %>
-
-<html lang="es">
-    <h3>CONCEPTOS DE DONACIONES</h3> 
-
-    <button class="btn-adicionar" onclick="abrirFormulario('Adicionar', null, '<%= tipoDonacion.getCodigo()%>');">Agregar Concepto de Donación</button>
-
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <%= lista %>
+<h3>CONCEPTOS DE DONACIONES</h3> 
+<div class="header-container">
+    <form id="searchForm">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
+            <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
         </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
-    </div>
+        <ul id="nameList"></ul>
+    </form>
+    <button class="btn-adicionar" onclick="abrirFormulario('Adicionar', null, '<%= tipoDonacion.getCodigo()%>');">Agregar Concepto de Donación</button>
+</div>
 
-    <div id="formulario" title="Adicionar Concepto de Donación">
-        <form name="formularioConceptoDonacion"> 
-            <table>
-                <tr>
-                    <th>Nombre</th>
-                    <td><input type="text" name="nombre" id="nombre"></td>
-                </tr>
-                <tr>
-                    <th>Descripción</th>
-                    <td><input type="text" name="descripcion" id="descripcion"></td>
-                </tr>
-                <tr>
-                    <th>Tipo de Donación</th>
-                    <td><input type="text" id="codigoTipoDonacion" name="codigoTipoDonacion" readonly></td>
-                </tr>
-                <tr>
-                    <th>Unidad de Medida</th>
-                    <td>
-                        <select id="idUnidadDeMedida" name="idUnidadDeMedida">
-                            <option value="" disabled selected>Seleccione una unidad de medida</option>
-                            <%= UnidadDeMedida.getListaEnOptions(null) %>
-                        </select>
-                    </td>
-                </tr>
-            </table>
-            <input class="btn-adicionar" type="button" value="Agregar" onclick="agregarConceptoDonacion('<%= codigo %>');">
-            <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
-        </form>    
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <%= lista%>
     </div>
-</html>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
+
+<div id="formulario" title="Adicionar Concepto de Donación">
+    <form name="formularioConceptoDonacion"> 
+        <table>
+            <tr>
+                <th>Nombre</th>
+                <td><input type="text" name="nombre" id="nombre"></td>
+            </tr>
+            <tr>
+                <th>Descripción</th>
+                <td><input type="text" name="descripcion" id="descripcion"></td>
+            </tr>
+            <tr>
+                <th>Tipo de Donación</th>
+                <td><input type="text" id="codigoTipoDonacion" name="codigoTipoDonacion" readonly></td>
+            </tr>
+            <tr>
+                <th>Unidad de Medida</th>
+                <td>
+                    <select id="idUnidadDeMedida" name="idUnidadDeMedida">
+                        <option value="" disabled selected>Seleccione una unidad de medida</option>
+                        <%= UnidadDeMedida.getListaEnOptions(null)%>
+                    </select>
+                </td>
+            </tr>
+        </table>
+        <input class="btn-adicionar" type="button" value="Agregar" onclick="agregarConceptoDonacion('<%= codigo%>');">
+        <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
+    </form>    
+</div>
+
 
 <script>
     function confirmarEliminacion(id, codigo) {
@@ -156,19 +162,28 @@
         $('#formulario').dialog('open');
     }
 
+
     function agregarConceptoDonacion(codigo) {
+        // Obtener los valores de los campos
         var nombre = document.getElementById('nombre').value;
         var descripcion = document.getElementById('descripcion').value;
         var idUnidadDeMedida = document.getElementById('idUnidadDeMedida').value;
-        var url = "1.TipoDonacion/conceptosDonacionesActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + codigo + "&idUnidadDeMedida=" + idUnidadDeMedida+ "&codigo=" + codigo;
+
+        // Validar que los campos no estén vacíos y que se seleccione una unidad de medida
+        if (!nombre || !descripcion || !idUnidadDeMedida) {
+            alert("Por favor, complete todos los campos ");
+            return; // Detiene la ejecución si los campos están vacíos o no se ha seleccionado la unidad de medida
+        }
+        var url = "1.TipoDonacion/conceptosDonacionesActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + codigo + "&idUnidadDeMedida=" + idUnidadDeMedida + "&codigo=" + codigo;
         window.location.href = url;
     }
+
 
     function modificarConceptoDonacion(id, codigo) {
         var nombre = document.getElementById('nombre').value;
         var descripcion = document.getElementById('descripcion').value;
         var idUnidadDeMedida = document.getElementById('idUnidadDeMedida').value;
-        var url = "1.TipoDonacion/conceptosDonacionesActualizar.jsp?accion=Modificar&id=" + id + "&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + codigo + "&idUnidadDeMedida=" + idUnidadDeMedida+ "&codigo=" + codigo;
+        var url = "1.TipoDonacion/conceptosDonacionesActualizar.jsp?accion=Modificar&id=" + id + "&nombre=" + nombre + "&descripcion=" + descripcion + "&codigoTipoDonacion=" + codigo + "&idUnidadDeMedida=" + idUnidadDeMedida + "&codigo=" + codigo;
         window.location.href = url;
     }
 
@@ -193,4 +208,21 @@
             clickable: true,
         }
     });
+    function filterNames() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const slides = document.getElementsByClassName('swiper-slide');
+
+        // Recorre cada slide y oculta o muestra dependiendo del filtro
+        for (let i = 0; i < slides.length; i++) {
+            const cardHeader = slides[i].getElementsByClassName('card-header')[0];
+            const textValue = cardHeader.textContent || cardHeader.innerText;
+
+            if (textValue.toLowerCase().indexOf(filter) > -1) {
+                slides[i].style.display = "";
+            } else {
+                slides[i].style.display = "none";
+            }
+        }
+    }
 </script>
