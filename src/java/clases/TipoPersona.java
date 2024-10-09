@@ -95,7 +95,7 @@ public class TipoPersona {
                 menu += "<div class='collapse navbar-collapse justify-content-center' id='navbarNav'>"; // Cambiado a justify-content-center para centrar el contenido
                 menu += "<ul class='navbar-nav'>";
 
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
+                menu += "<li class='nav-item'><a class='dropdown-item' href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
 
                 // Menú de Donaciones
                 menu += "<li class='nav-item dropdown'>";
@@ -140,7 +140,7 @@ public class TipoPersona {
             menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/calificacionesXAnio.jsp'>Cuidados</a></li>"; // Asegúrate de tener la ruta correcta
             menu += "</ul></li>";
 
-                menu += "<li class='nav-item'><a class='nav-link' href='index.jsp'>Salir</a></li>";
+                menu += "<li class='nav-item'><a class='dropdown-item' href='index.jsp'>Salir</a></li>";
                 menu += "</ul>";
                 menu += "</div>";
                 menu += "<img src='presentacion/imagenes/Logo.png' alt='Logo' width='80' height='80' class='d-inline-block align-text-top'>"; // Aquí se agrega el logo
