@@ -14,6 +14,13 @@
 </head>
 
 <%
+    // Recibir el parámetro "nombre" desde la URL
+    String nombreTipoPersona = request.getParameter("nombre");
+
+    // Si el parámetro no se recibe, asumir que es "Cliente" por defecto
+    if (nombreTipoPersona == null) {
+        nombreTipoPersona = "AdministradorFundacion";
+    }
     String lista = "";
     List<Persona> datos = Persona.getListaEnObjetos("tipo<>'S' && tipo<>'F'", null);
     lista += "<div class='swiper-wrapper'>";
@@ -37,8 +44,10 @@
         lista += "<p><strong>Residencia:</strong>" + clientes.getResidencia() + "</p>";
         lista += "</div>";
         lista += "<div class='btn-container'>"; // Contenedor para los botones
+        if (!"AdministradorFundacion".equals(nombreTipoPersona)) {
         lista += "<a href='principal.jsp?CONTENIDO=4.Clientes/clientesFormulario.jsp&accion=Modificar&identificacion=" + clientes.getIdentificacion()
                 + " 'title='Modificar'> <button class='btn-adicionar' title='Modificar'> Modificar </button> </a>";
+        }
         lista += "<button class='btn-eliminar' title='Eliminar' onClick='eliminar(" + clientes.getIdentificacion() + ")'>Eliminar</button>";
         lista += "</div>";
         lista += "</div>";
