@@ -51,7 +51,7 @@ if (accion.equals("Modificar")) {
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto:</label>
-                    <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();">
+                    <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();" required>
                 </div>
                 <div class="form-group">
                     <label for="cuidadosEspeciales">Cuidados Especiales:</label>
