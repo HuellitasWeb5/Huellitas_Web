@@ -11,8 +11,6 @@
 
 <%
     String accion = request.getParameter("accion");
-    String codigo = request.getParameter("codigo");
-    FormularioDeSeguimiento formularioDeSeguimiento = new FormularioDeSeguimiento();
 %>  
 
 <body onload="cargarFecha()">
@@ -72,23 +70,35 @@
 
                 <!-- FORMULARIO  -->    
 
-                <label>¿Se puede apreciar algún cambio notable en la salud de la mascota?</label><br>
-                <input type="radio" id="saludSi" name="evolucionMedica" value="S" required>
-                <label for="saludSi">Sí</label>
-                <input type="radio" id="saludNo" name="evolucionMedica" value="N">
-                <label for="saludNo">No</label><br><br>
+                <label>¿Cómo describirías el estado actual de la salud de la mascota?</label><br>
+                <input type="radio" id="saludExcelente" name="evolucionMedica" value="Excelente" required>
+                <label for="saludExcelente">Excelente</label>
+                <input type="radio" id="saludBueno" name="evolucionMedica" value="Bueno">
+                <label for="saludBueno">Bueno</label>
+                <input type="radio" id="saludRegular" name="evolucionMedica" value="Regular">
+                <label for="saludRegular">Regular</label>
+                <input type="radio" id="saludMalo" name="evolucionMedica" value="Malo">
+                <label for="saludMalo">Malo</label><br><br>
 
-                <label>¿La mascota ha sufrido algún cambio en el peso desde la adopción?</label><br>
-                <input type="radio" id="pesoSi" name="masaCorporal" value="S" required>
-                <label for="pesoSi">Sí</label>
-                <input type="radio" id="pesoNo" name="masaCorporal" value="N">
-                <label for="pesoNo">No</label><br><br>
+                <label> ¿Cómo ha sido la evolución del peso de la mascota desde la adopción?</label><br>
+                <input type="radio" id="pesoExcelente" name="masaCorporal" value="Excelente" required>
+                <label for="pesoExcelente">Excelente</label>
+                <input type="radio" id="pesoBien" name="masaCorporal" value="Bueno">
+                <label for="pesoBueno">Bueno</label>
+                <input type="radio" id="pesoRegular" name="masaCorporal" value="Regular">
+                <label for="pesoRegular">Regular</label>
+                <input type="radio" id="pesoMal" name="masaCorporal" value="Malo">
+                <label for="pesoMalo">Malo</label><br><br>
 
-                <label>¿La mascota ha presentado algún tipo de cambio emocional?</label><br>
-                <input type="radio" id="emocionalSi" name="estadoEmocional" value="S" required>
-                <label for="emocionalSi">Sí</label>
-                <input type="radio" id="emocionalNo" name="estadoEmocional" value="N">
-                <label for="emocionalNo">No</label><br><br>
+                <label>¿Cómo describirías el estado emocional de la mascota?</label><br>
+                <input type="radio" id="emocionalExcelente" name="estadoEmocional" value="Excelente" required>
+                <label for="emocionalExcelente">Excelente</label>
+                <input type="radio" id="emocionalBien" name="estadoEmocional" value="Bueno">
+                <label for="emocionalBueno">Bueno</label>
+                <input type="radio" id="emocionalRegular" name="estadoEmocional" value="Regular">
+                <label for="emocionalRegular">Regular</label>
+                <input type="radio" id="emocionalMal" name="estadoEmocional" value="Malo">
+                <label for="emocionalMalo">Malo</label><br><br>
 
                 <label>¿Cómo se ha adaptado la mascota en su nuevo hogar?</label><br>
                 <input type="radio" id="adaptacionExcelente" name="adaptacion" value="Excelente" required>
@@ -103,24 +113,24 @@
                 <label>¿Cómo es la relación del dueño con la mascota?</label><br>
                 <input type="radio" id="relacionExcelente" name="vinculo" value="Excelente" required>
                 <label for="relacionExcelente">Excelente</label>
-                <input type="radio" id="relacionBien" name="vinculo" value="Bien">
-                <label for="relacionBien">Bien</label>
+                <input type="radio" id="relacionBien" name="vinculo" value="Buena">
+                <label for="relacionBuena">Buena</label>
                 <input type="radio" id="relacionRegular" name="vinculo" value="Regular">
                 <label for="relacionRegular">Regular</label>
-                <input type="radio" id="relacionMal" name="vinculo" value="Mal">
-                <label for="relacionMal">Mal</label><br><br>
+                <input type="radio" id="relacionMal" name="vinculo" value="Mala">
+                <label for="relacionMala">Mala</label><br><br>
 
                 <label for="foto">Sube una foto del estado actual de la mascota:</label>
                 <br><input type="file" id="foto" name="foto" accept="image/*, application/pdf" required>
                 <br>
-                
+
                 <label for="fechaProximaVisita">Fecha de la próxima visita:</label><br>
                 <input type="date" id="fechaProximaVisita" name="fechaProximaVisita" required><br><br>
 
                 <label for="descripcion">Descripción general del seguimiento:</label><br>
                 <textarea id="descripcion" name="descripcion" rows="4" cols="50" required></textarea><br><br>
 
-                <label for="calificacion">Considerando tus respuestas anteriores, ¿cómo calificarías el bienestar del animal en su nuevo hogar?
+                <label for="calificacionForm">Considerando tus respuestas anteriores, ¿cómo calificarías el bienestar del animal en su nuevo hogar?
                     teniendo en cuenta que 1 estrella es la calificación más baja y 5 la más alta:</label><br>
                 <div class="rating">
                     <input type="radio" id="star5" name="calificacion" value="5" required /><label for="star5" title="5 estrellas">★</label>
@@ -128,7 +138,8 @@
                     <input type="radio" id="star3" name="calificacion" value="3" /><label for="star3" title="3 estrellas">★</label>
                     <input type="radio" id="star2" name="calificacion" value="2" /><label for="star2" title="2 estrellas">★</label>
                     <input type="radio" id="star1" name="calificacion" value="1" /><label for="star1" title="1 estrella">★</label>
-                </div><br><br>
+                </div>
+                <br><br>
 
                 <!-- Botones de envío -->
 
@@ -194,7 +205,7 @@
 
     // BUSCAR MASCOTA 
 
-     var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+    var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
     var vectorMascotas = new Array();
     for (var i = 0; i < mascotas.length; i++) {
         vectorMascotas[i] = mascotas[i][0];
@@ -235,7 +246,6 @@
             document.getElementById("cuidadosEspeciales").value = cuidadosEspeciales;
             document.getElementById("fotoMascota").src = foto;
         } else {
-
             document.getElementById("nombreMascota").value = '';
             document.getElementById("fechaNacimiento").value = '';
             document.getElementById("genero").value = '';
@@ -243,6 +253,8 @@
             document.getElementById("fotoMascota").src = '';
         }
     });
+
+    // MENSAJE DE QUE DEBE SELECCIONAR UNA CALIFICACIÓN 
 
     // CARGAR FECHA
 
@@ -254,8 +266,8 @@
         var fechaActual = dia + '/' + mes + '/' + anio;
         document.getElementById('fecha').innerText = fechaActual;
         document.getElementById('fechaActual').value = anio + '-' + mes + '-' + dia;
-        
+
         console.log(document.getElementById('fechaActual').value);
-    }  
+    }
 
 </script>
