@@ -14,7 +14,6 @@
 </head>
 <%
     String accion = request.getParameter("accion");
-    String codigo = request.getParameter("codigo");
     FormularioDeInformacion formularioDeInformacion = new FormularioDeInformacion();
     Mascota mascota = new Mascota(formularioDeInformacion.getCodigoMascota());
     Persona persona = new Persona(formularioDeInformacion.getIdentificacionAdoptante());
