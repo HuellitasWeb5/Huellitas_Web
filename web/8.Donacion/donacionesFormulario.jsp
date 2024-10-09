@@ -7,20 +7,20 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <head>
- <link rel="stylesheet" href="presentacion/Donacion.css">
+    <link rel="stylesheet" href="presentacion/Donacion.css">
 </head>
 <%
     TipoDonacion tipoDonacion = new TipoDonacion();
     String accion = request.getParameter("accion");
     Donacion donacion = new Donacion();
     DonacionDetalle donacionDetalle = new DonacionDetalle();
-     String codigo = request.getParameter("codigo");
-     if (accion.equals("Modificar")) {
+    String codigo = request.getParameter("codigo");
+    if (accion.equals("Modificar")) {
         donacion = new Donacion(codigo);
     }
 %>
 <body onload="cargarFecha()">
-    <h3><%=accion.toUpperCase()%> Donaciones</h3>
+    <h3><%=accion.toUpperCase()%> DONACIONES</h3>
 
     <!-- Formulario principal -->
     <form name="formulario" method="post" action="principal.jsp?CONTENIDO=8.Donacion/donacionesFormularioActualizar.jsp">
@@ -37,7 +37,7 @@
 
                 <div class="form-group">
                     <label>Identificación</label>
-                    <input type="text" name="identificacionD" id="identificacionD" value="">
+                    <input type="text" name="identificacionD" id="identificacionD" value="" required>
                 </div>
 
                 <div class="form-group">
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="form-group">
-                    
+
                     <label for="residencia">Residencia</label>
                     <span name="residencia" id="residencia" value="" readonly></span>
                 </div>
@@ -68,16 +68,18 @@
 
                 <div class="form-group">
                     <label>Descripción</label>
-                    <textarea id="descripcion" name="descripcion" rows="6" cols="40"></textarea>
+                    <textarea id="descripcion" name="descripcion" rows="6" cols="40" required></textarea>
                 </div>
 
                 <!-- Campo oculto para almacenar la cadena de donaciones -->
-                <input  name="donacion" id="donacion">
+                <input  type="hidden" name="donacion" id="donacion" required>
                 <input type="hidden" name="accion" value="<%=accion%>">
             </div>
 
             <!-- Botón de envío que enviará los datos al archivo donacionesFormularioActualizar.jsp -->
-            <input type="submit" value="Guardar Donación" class="btn-submit">
+            <!-- Botón de envío que enviará los datos al archivo donacionesFormularioActualizar.jsp -->
+            <input type="submit" value="Guardar Donación" class="btn-submit" onclick="return validarFormularioPrincipal();">
+
 
         </div>  
     </form>
@@ -103,12 +105,12 @@
                     <td>
                         <select id="donacionConcepto" name="donacionConcepto">
                             <option value="" disabled selected>Seleccione un concepto de donación</option>
-                          
+
                         </select>
                     </td>
-                          <td>
-                
-            </td>
+                    <td>
+
+                    </td>
                 </tr>
                 <tr>
                     <th>Cantidad</th>
@@ -118,7 +120,7 @@
             <input class="btn-adicionar" type="button" value="Agregar" onclick="actualizarTabla();">
             <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
         </form>
- j   </div>
+    </div>
 
     <!-- Contenedor de las tarjetas de detalles -->
     <div class="swiper-container">
@@ -142,18 +144,38 @@
     $("#identificacionD").autocomplete({
         source: vectorPersonas
     });
+    function validarFormularioPrincipal() {
+        // Obtiene el valor del campo oculto que almacena los detalles de la donación
+        const donacionDetalles = document.getElementById('donacion').value;
 
-    function actualizarConceptos(codigoTipoDonacion){
-        document.formularioDonacionDetalle.donacionConcepto.length=1;
+        // Verifica si el campo está vacío
+        if (donacionDetalles === '') {
+            alert('Por favor, agregue al menos un detalle de donación antes de guardar el formulario.');
+            return false; // Evita que el formulario se envíe
+        }
+
+        // Si hay detalles de donación, permite el envío del formulario
+        return true;
+    }
+
+
+    function agregarDonacionDetalle() {
+        // Aquí va la lógica para adicionar la donación
+        console.log('Donación añadida con éxito');
+    }
+
+
+    function actualizarConceptos(codigoTipoDonacion) {
+        document.formularioDonacionDetalle.donacionConcepto.length = 1;
         for (var i = 0; i < conceptoDonacion.length; i++) {
-            if(conceptoDonacion[i][2]==codigoTipoDonacion){
+            if (conceptoDonacion[i][2] == codigoTipoDonacion) {
                 document.formularioDonacionDetalle.donacionConcepto.length++;
-                document.formularioDonacionDetalle.donacionConcepto.options[document.formularioDonacionDetalle.donacionConcepto.length-1].value= [i][0];
-                document.formularioDonacionDetalle.donacionConcepto.options[document.formularioDonacionDetalle.donacionConcepto.length-1].text=conceptoDonacion[i][1];
+                document.formularioDonacionDetalle.donacionConcepto.options[document.formularioDonacionDetalle.donacionConcepto.length - 1].value = [i][0];
+                document.formularioDonacionDetalle.donacionConcepto.options[document.formularioDonacionDetalle.donacionConcepto.length - 1].text = conceptoDonacion[i][1];
             }
         }
     }
-    
+
     function buscarPersona(valor, indice) {
         encontrado = false;
         i = 0;
@@ -218,16 +240,23 @@
     }
 
     function actualizarTabla() {
-        var objeto = document.getElementById("donacion");
+        // Obtén los valores de los campos del formulario modal
+        const tipoDonacionId = document.getElementById('tipoDonacion').value;
+        const donacionConceptoId = document.getElementById('donacionConcepto').value;
+        const cantidad = document.getElementById('cantidad').value;
 
-        if (objeto.value != '') {
-            objeto.value += "||"; // separador para múltiples entradas
+        // Verifica si alguno de los campos está vacío
+        if (tipoDonacionId === '' || donacionConceptoId === '' || cantidad === '' || cantidad <= 0) {
+            alert('Por favor, completa todos los campos antes de agregar el detalle de la donación.');
+            return; // Salimos de la función si la validación no pasa
         }
 
-        // Obtener solo los IDs de tipoDonacion y donacionConcepto
-        var tipoDonacionId = document.getElementById('tipoDonacion').value;
-        var donacionConceptoId = document.getElementById('donacionConcepto').value;
-        var cantidad = document.getElementById('cantidad').value;
+        // Continúa con el proceso si todos los campos están llenos
+        const objeto = document.getElementById("donacion");
+
+        if (objeto.value !== '') {
+            objeto.value += "||"; // separador para múltiples entradas
+        }
 
         // Guardar solo los IDs en el formato: tipoDonacionId|donacionConceptoId|cantidad
         objeto.value += tipoDonacionId + "|" + donacionConceptoId + "|" + cantidad;
@@ -329,6 +358,6 @@
     }
 
     mentById('fecha').innerText = fechaFormateada;
-    
+
 
 </script>

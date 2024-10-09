@@ -134,20 +134,6 @@ window.onload = function() {
         }
     }
 }
-
-// Agregar un evento de clic a cada tarjeta
-const cards = document.querySelectorAll('.card');
-cards.forEach(card => {
-    card.addEventListener('click', function() {
-        const name = this.querySelector('.card-header').innerText;
-        const id = this.dataset.id; // Obtener la identificación de la tarjeta
-
-        // Aquí puedes mostrar el nombre y la identificación como desees
-        alert(`Nombre: ${name}, ID: ${id}`);
-        
-        // O puedes hacer algo más con esta información, como cargarla en otra parte
-    });
-});
 </script>
 
   
