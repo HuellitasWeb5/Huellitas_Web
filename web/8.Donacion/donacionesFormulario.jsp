@@ -15,12 +15,10 @@
     Donacion donacion = new Donacion();
     DonacionDetalle donacionDetalle = new DonacionDetalle();
     String codigo = request.getParameter("codigo");
-    if (accion.equals("Modificar")) {
-        donacion = new Donacion(codigo);
-    }
+    
 %>
 <body onload="cargarFecha()">
-    <h3><%=accion.toUpperCase()%> DONACIONES</h3>
+    <h3>DONACIONES</h3>
 
     <!-- Formulario principal -->
     <form name="formulario" method="post" action="principal.jsp?CONTENIDO=8.Donacion/donacionesFormularioActualizar.jsp">
@@ -145,16 +143,14 @@
         source: vectorPersonas
     });
     function validarFormularioPrincipal() {
-        // Obtiene el valor del campo oculto que almacena los detalles de la donación
+
         const donacionDetalles = document.getElementById('donacion').value;
 
-        // Verifica si el campo está vacío
         if (donacionDetalles === '') {
             alert('Por favor, agregue al menos un detalle de donación antes de guardar el formulario.');
             return false; // Evita que el formulario se envíe
         }
 
-        // Si hay detalles de donación, permite el envío del formulario
         return true;
     }
 

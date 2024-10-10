@@ -17,21 +17,6 @@
     TipoDonacion tipoDonacion = new TipoDonacion();
     String lista = "";
     List<TipoDonacion> datos = TipoDonacion.getListaEnObjetos(null, null);
-%>
-
-<script>
-    const tiposDonacion = {};
-
-    <% for (int i = 0; i < datos.size(); i++) {
-            tipoDonacion = datos.get(i);%>
-    tiposDonacion["<%= tipoDonacion.getCodigo()%>"] = {
-        nombre: "<%= tipoDonacion.getNombre()%>",
-        descripcion: "<%= tipoDonacion.getDescripcion()%>"
-    };
-    <% } %>
-</script>
-
-<%
     // Generar la lista de tarjetas para el Swiper
     for (int i = 0; i < datos.size(); i++) {
         tipoDonacion = datos.get(i);
@@ -45,7 +30,10 @@
         lista += "<p><strong>Código:</strong> " + tipoDonacion.getCodigo() + "</p>";
         lista += "<p><strong>Descripción:</strong> " + tipoDonacion.getDescripcion() + "</p>";
         lista += "<div class='button-container'>";
-        lista += "<button class='btn-modificar' onclick='abrirFormulario(\"Modificar\", \"" + tipoDonacion.getCodigo() + "\");'>Modificar</button>";
+        lista += "<button class='btn-modificar' onclick='abrirFormulario(\"Modificar\", \""
+                + tipoDonacion.getCodigo() + "\", \""
+                + tipoDonacion.getNombre() + "\", \""
+                + tipoDonacion.getDescripcion() + "\")'>Modificar</button>";
         lista += "<button class='btn-eliminar' onclick='confirmarEliminacion(\"" + tipoDonacion.getCodigo() + "\")'>Eliminar</button>";
         lista += "<button class='btn-otro' onclick='abrirFormularioConceptoDonacion(\"" + tipoDonacion.getCodigo() + "\")'>Concepto de Donaciones</button>";
         lista += "</div>";
@@ -53,6 +41,8 @@
         lista += "</div>";
         lista += "</div>";
     }
+%>
+
 %>
 
 <html lang="es">
@@ -123,19 +113,22 @@
     });
 
 
-    function abrirFormulario(accion, codigo = null) {
+    function abrirFormulario(accion, codigo = null, nombre = '', descripcion = '') {
         if (accion === "Modificar") {
             $('#formulario').dialog('option', 'title', 'Modificar Tipo de Donación');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Modificar';
-            document.querySelector('input[type="button"][value="Modificar"]').setAttribute('onclick', 'modificarTipoDonacion(' + codigo + ');');
+            document.querySelector('input[type="button"][value="Modificar"]').setAttribute('onclick', 'modificarTipoDonacion("' + codigo + '");');
 
-            cargarDatosTipoDonacion(codigo); // Precargar datos
+            // Precargar los datos en los campos del formulario
+            document.getElementById('nombre').value = nombre;
+            document.getElementById('descripcion').value = descripcion;
 
         } else if (accion === "Adicionar") {
             $('#formulario').dialog('option', 'title', 'Adicionar Tipo de Donación');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Agregar';
             document.querySelector('input[type="button"][value="Agregar"]').setAttribute('onclick', 'agregarTipoDonacion();');
 
+            // Limpiar los campos del formulario para una nueva entrada
             document.getElementById('nombre').value = '';
             document.getElementById('descripcion').value = '';
         }
@@ -143,20 +136,11 @@
         $('#formulario').dialog('open');
     }
 
+
     function abrirFormularioConceptoDonacion(codigo) {
         var url = "principal.jsp?CONTENIDO=1.TipoDonacion/conceptoDonaciones.jsp&codigo=" + codigo;
         window.location.href = url;
     }
-
-    function cargarDatosTipoDonacion(codigo) {
-        const tipoDonacion = tiposDonacion[codigo];
-
-        if (tipoDonacion) {
-            document.getElementById('nombre').value = tipoDonacion.nombre;
-            document.getElementById('descripcion').value = tipoDonacion.descripcion;
-        }
-    }
-
     function modificarTipoDonacion(codigo) {
         var nombre = document.getElementById('nombre').value;
         var descripcion = document.getElementById('descripcion').value;
@@ -164,7 +148,7 @@
         window.location.href = url;
     }
 
-  
+
     function agregarTipoDonacion() {
         // Obtener los valores de los campos
         var nombre = document.getElementById('nombre').value;
