@@ -7,13 +7,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
-    <style>
-        .foto {
-            width: 100px;
-            height: auto;
-            margin: 10px;
-        }
-    </style>
 </head>
 
 <%
