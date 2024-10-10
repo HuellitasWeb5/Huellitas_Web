@@ -26,7 +26,8 @@
         lista.append("<tr>");
         lista.append("<td><a href='principal.jsp?CONTENIDO=indicadores/calificacionesXMes.jsp&anio=")
                 .append(registro[0])  // Año
-                .append("'>").append(registro[0]).append("</a></td>");  // Año con enlace
+                .append("&codigoMascota=").append(registro[1]).append("'>")  // Código de Mascota
+                .append(registro[0]).append("</a></td>");  // Año con enlace
         lista.append("<td>").append(registro[1]).append("</td>");  // Código de Mascota
         lista.append("<td>").append(estrellas.toString()).append("</td>");  // Calificación con estrellas
         lista.append("<td>").append(registro[3]).append("</td>");  // Total de Calificaciones
@@ -42,10 +43,12 @@
         datosGraficos.append("\"value\": ").append(calificacion);  // Usar la calificación como el valor de la gráfica
         datosGraficos.append("}");
     }
-    datosGraficos.append("]");
+    datosGraficos.append("]"); 
 %>
 <h3>INDICADOR DE CALIFICACIONES POR AÑO</h3>
 <p></p>
+
+
 <table border="0">
     <tr>
         <td>
@@ -61,11 +64,8 @@
     </tr>
 </table>
 
-
-
 <script type="text/javascript">
     am5.ready(function() {
-
         var root = am5.Root.new("chartdiv");
 
         root.setThemes([
@@ -80,7 +80,7 @@
             pinchZoomX: true,
             paddingLeft: 0,
             paddingRight: 15
-        }));            
+        }));
 
         var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
         cursor.lineY.set("visible", false);
@@ -139,4 +139,6 @@
         chart.appear(1000, 100);
         
     }); // end am5.ready()
+
+   
 </script>
