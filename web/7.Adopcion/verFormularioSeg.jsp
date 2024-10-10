@@ -96,6 +96,10 @@
 
 <div id="result"></div>
 
+    <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioSeguimiento.jsp&accion=Adicionar">
+        <button id="Adicionar" class="btn-adicionar">Realizar seguimiento</button>
+    </a>
+
 <script type="text/javascript">
     function eliminar(codigo) {
         resultado = confirm("¿Realmente desea eliminar el formulario con código " + codigo + "?");
@@ -134,4 +138,16 @@
             clickable: true,
         }
     });
+    
+    function cambiarEstadoAceptado() {
+        document.getElementById('estado').value = 'aceptado';
+    }
+    
+    function redirigirAdopciones() {
+    // Espera un momento antes de redirigir para asegurarse de que el formulario se envíe
+    setTimeout(function() {
+        window.location.href = 'adopciones.jsp';
+    }, 1000); // Retraso de 1 segundo antes de redirigir
+    }
+    
 </script>
