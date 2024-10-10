@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label for="nombre">Nombre:</label>
-                        <input type="text" name="nombre" id="nombre" size="50" maxlength="50">
+                        <input type="text" name="nombre" id="nombre" size="50" maxlength="50" required>
                     </div>
                     <div class="form-group">
                         <label>Género:</label>
@@ -46,15 +46,15 @@
                     </div>
                     <div class="form-group">
                         <label for="telefono">Teléfono:</label>
-                        <input type="number" name="telefono" id="telefono" maxlength="12">
+                        <input type="number" name="telefono" id="telefono" maxlength="12" required>
                     </div>
                     <div class="form-group">
                         <label for="direccion">Dirección:</label>
-                        <input type="text" name="direccion" id="direccion" size="50" maxlength="100">
+                        <input type="text" name="direccion" id="direccion" size="50" maxlength="100" required>
                     </div>
                     <div class="form-group">
                         <label for="residencia">Residencia:</label>
-                        <input type="text" name="residencia" id="residencia" size="50" maxlength="100">
+                        <input type="text" name="residencia" id="residencia" size="50" maxlength="100" required>
                     </div>
                     <div class="form-group">
                         <label for="foto">Foto:</label>
