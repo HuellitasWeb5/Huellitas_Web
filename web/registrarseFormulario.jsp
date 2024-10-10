@@ -10,9 +10,9 @@
 <%@page import="clases.Persona"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%
-String accion = request.getParameter("accion");
-String identificacion = request.getParameter("identificacion");
-Persona clientes = new Persona();
+    String accion = request.getParameter("accion");
+    String identificacion = request.getParameter("identificacion");
+    Persona clientes = new Persona();
 %>
 <h3>REGÍSTRATE SANPATITAS</h3>
 <div class="card-carousel">
@@ -23,49 +23,51 @@ Persona clientes = new Persona();
         <div class="card-body">
             <img src="presentacion/clientes/<%=clientes.getFoto()%>" id="foto" class="profile-image">
             <form name="formulario" method="post" action="registrarseActualizar.jsp" enctype="multipart/form-data" onsubmit="return validarContraseña();">
-                <div class="form-group">
-                    <label for="identificacion">Identificación:</label>
-                    <input type="text" name="identificacion" id="identificacion" maxlength="12" required>
-                </div>
-                <div class="form-group">
-                    <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" size="50" maxlength="50">
-                </div>
-                <div class="form-group">
-                    <label>Género:</label>
-                    <div><%=clientes.getGeneroEnObjeto().getRadioButtons() %></div>
-                </div>
-                <div class="form-group">
-                    <label for="fechaNacimiento">Fecha De Nacimiento:</label>
-                    <input type="date" id="fechaNacimiento" name="fechaNacimiento" required onchange="calcularEdad()">
-                </div>
-                <div class="form-group">
-                    <label for="email">Correo Electrónico:</label>
-                    <input type="email" name="email" id="email" maxlength="80" required>
-                </div>
-                <div class="form-group">
-                    <label for="telefono">Teléfono:</label>
-                    <input type="number" name="telefono" id="telefono" maxlength="12">
-                </div>
-                <div class="form-group">
-                    <label for="direccion">Dirección:</label>
-                    <input type="text" name="direccion" id="direccion" size="50" maxlength="100">
-                </div>
-                <div class="form-group">
-                    <label for="residencia">Residencia:</label>
-                    <input type="text" name="residencia" id="residencia" size="50" maxlength="100">
-                </div>
-                <div class="form-group">
-                    <label for="foto">Foto:</label>
-                    <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();">
-                </div>
-                <div class="form-group">
-                    <label for="clave">Contraseña:</label>
-                    <input type="password" name="clave" id="clave" required onkeyup="mostrarRequisitos();">
-                </div>
-                <div class="form-group">
-                    <label for="confirmarClave">Confirmar Contraseña:</label>
-                    <input type="password" name="confirmarClave" id="confirmarClave" required onkeyup="verificarCoincidencia();">
+                <div class="form-container">
+                    <div class="form-group">
+                        <label for="identificacion">Identificación:</label>
+                        <input type="text" name="identificacion" id="identificacion" maxlength="12" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre:</label>
+                        <input type="text" name="nombre" id="nombre" size="50" maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label>Género:</label>
+                        <div><%=clientes.getGeneroEnObjeto().getRadioButtons()%></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fechaNacimiento">Fecha De Nacimiento:</label>
+                        <input type="date" id="fechaNacimiento" name="fechaNacimiento" required onchange="calcularEdad()">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Correo Electrónico:</label>
+                        <input type="email" name="email" id="email" maxlength="80" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="number" name="telefono" id="telefono" maxlength="12">
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" name="direccion" id="direccion" size="50" maxlength="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="residencia">Residencia:</label>
+                        <input type="text" name="residencia" id="residencia" size="50" maxlength="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="foto">Foto:</label>
+                        <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();">
+                    </div>
+                    <div class="form-group">
+                        <label for="clave">Contraseña:</label>
+                        <input type="password" name="clave" id="clave" required onkeyup="mostrarRequisitos();">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmarClave">Confirmar Contraseña:</label>
+                        <input type="password" name="confirmarClave" id="confirmarClave" required onkeyup="verificarCoincidencia();">
+                    </div>
                 </div>
                 <div id="requisitosClave">
                     <p>La contraseña debe cumplir los siguientes requisitos:</p>
@@ -79,11 +81,12 @@ Persona clientes = new Persona();
                 </div>
                 <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
                 <div class="btn-container">
-                    <input class='btn-adicionar' type="submit" name="accion" value="Adicionar" class="btn-adicionar">
-                    <input class='btn-eliminar' type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
+                    <input class='btn-adicionar' type="submit" name="accion" value="Adicionar">
+                    <input class='btn-eliminar' type="button" value="Cancelar" onClick="window.history.back()">
                 </div>
             </form>
         </div>
+
     </div>
 </div>
 
