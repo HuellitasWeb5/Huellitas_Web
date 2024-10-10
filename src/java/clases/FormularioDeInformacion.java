@@ -535,5 +535,81 @@ public class FormularioDeInformacion {
         }
         return formularios;
     }
+    
+    public static List<String[]> getAdopcionesPorFechaSolicitud() {
+    List<String[]> lista = new ArrayList<>(); // Se inicializa una lista que almacenará arrays de Strings, cada uno con los datos de cada año y su cantidad de formularios de adopción.
+
+    // Consulta SQL que selecciona el año de la fecha de solicitud y cuenta cuántos formularios de adopción se realizaron en ese año.
+    String cadenaSQL = "SELECT YEAR(fecha) AS anio, COUNT(*) AS cantidad "
+                     + "FROM FormularioDeInformacion GROUP BY YEAR(fecha);";
+
+    ResultSet resultado = ConectorBD.consultar(cadenaSQL); // Ejecuta la consulta y guarda los resultados en un ResultSet.
+
+    try {
+        // Itera sobre el ResultSet para obtener los datos.
+        while (resultado.next()) {
+            String[] registro = new String[2]; // Crea un array de Strings para almacenar el año y la cantidad.
+            
+            // Obtiene el año de la columna 'anio' de la consulta.
+            registro[0] = resultado.getString("anio");
+            
+            // Obtiene la cantidad de la columna 'cantidad' de la consulta.
+            registro[1] = resultado.getString("cantidad");
+            
+            // Agrega el registro (año, cantidad) a la lista.
+            lista.add(registro);
+        }
+    } catch (SQLException ex) {
+        // Captura cualquier error que pueda ocurrir al procesar el ResultSet.
+        System.out.println("Error en getAdopcionesPorFechaSolicitud. \nCadenaSQL: " + cadenaSQL + "\nError: " + ex.getMessage());
+    } finally {
+        // Asegura el cierre del ResultSet para liberar recursos.
+        try {
+            if (resultado != null && !resultado.isClosed()) {
+                resultado.close();
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al cerrar el ResultSet en getAdopcionesPorFechaSolicitud. \nError: " + ex.getMessage());
+        }
+    }
+
+    // Retorna la lista de arrays con los datos de año y cantidad de formularios de adopción.
+    return lista;
+}
+
+public static List<String[]> getAdopcionesPorMes(String anio) {
+    List<String[]> lista = new ArrayList<>();
+    String cadenaSQL = "SELECT DATE_FORMAT(fecha, '%Y-%m') AS mes, COUNT(*) AS cantidad "
+                     + "FROM FormularioDeInformacion "
+                     + "WHERE YEAR(fecha) = " + anio + " "
+                     + "GROUP BY DATE_FORMAT(fecha, '%Y-%m') "
+                     + "ORDER BY mes "
+                     + "LIMIT 0, 200;";
+    
+    ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+
+    try {
+        while (resultado != null && resultado.next()) {
+            String[] registro = new String[2];
+            registro[0] = resultado.getString("mes"); // Mes y año de solicitud (YYYY-MM)
+            registro[1] = resultado.getString("cantidad"); // Cantidad de formularios de adopción
+            lista.add(registro);
+        }
+    } catch (SQLException ex) {
+        System.err.println("Error en getFormulariosPorMes.");
+        System.err.println("Consulta SQL: " + cadenaSQL);
+        System.err.println("Error: " + ex.getMessage());
+    } finally {
+        try {
+            if (resultado != null) {
+                resultado.close();
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
+        }
+    }
+    return lista;
+}
+
 
 }
