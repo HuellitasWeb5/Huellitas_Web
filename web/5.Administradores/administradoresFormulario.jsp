@@ -3,15 +3,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="presentacion/style-TarjetasModificar.css">
-    <script>
-        function mostrarFoto() {
-            var lector = new FileReader();
-            lector.readAsDataURL(document.formulario.foto.files[0]);
-            lector.onloadend = function() {
-                document.getElementById("foto").src = lector.result;
-            }
-        }
-    </script>
 </head>
 <%
 String accion = request.getParameter("accion");
@@ -76,12 +67,82 @@ if (accion.equals("Modificar")) {
                     <label for="clave">Contraseña:</label>
                     <input type="password" name="clave" id="clave" required>
                 </div>
+                <div class="form-group">
+                    <label for="confirmarClave">Confirmar Contraseña:</label>
+                    <input type="password" name="confirmarClave" id="confirmarClave" required onkeyup="verificarCoincidencia();">
+                </div>
+                <div id="requisitosClave">
+                    <p>La contraseña debe cumplir los siguientes requisitos:</p>
+                    <ul>
+                        <li id="minimoCaracteres">Al menos 8 caracteres</li>
+                        <li id="letraMayuscula">Al menos una letra mayúscula</li>
+                        <li id="letraMinuscula">Al menos una letra minúscula</li>
+                        <li id="numero">Al menos un número</li>
+                        <li id="coincidencia">Las contraseñas deben coincidir</li>
+                    </ul>
+                </div>
                 <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
                 <div class="btn-container">
-                    <input class="btn-adicionar" type="submit" name="accion" value="<%=accion%>">
-                    <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
+                    <input class='btn-adicionar' type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
+                    <input class='btn-eliminar' type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
                 </div>
             </form>
         </div>
     </div>
 </div>
+
+<script>
+    function mostrarFoto() {
+        var lector = new FileReader();
+        lector.readAsDataURL(document.formulario.foto.files[0]);
+        lector.onloadend = function () {
+            document.getElementById("foto").src = lector.result;
+        }
+    }
+
+    function mostrarRequisitos() {
+        const clave = document.getElementById("clave").value;
+        document.getElementById("minimoCaracteres").style.color = clave.length >= 8 ? "green" : "red";
+        document.getElementById("letraMayuscula").style.color = /[A-Z]/.test(clave) ? "green" : "red";
+        document.getElementById("letraMinuscula").style.color = /[a-z]/.test(clave) ? "green" : "red";
+        document.getElementById("numero").style.color = /\d/.test(clave) ? "green" : "red";
+    }
+
+    function verificarCoincidencia() {
+        const clave = document.getElementById("clave").value;
+        const confirmarClave = document.getElementById("confirmarClave").value;
+        document.getElementById("coincidencia").style.color = (clave === confirmarClave) ? "green" : "red";
+    }
+
+    function validarContraseña() {
+        const clave = document.getElementById("clave").value;
+        const confirmarClave = document.getElementById("confirmarClave").value;
+
+        let mensajeError = '';
+
+        // Verificar requisitos de la contraseña
+        if (clave.length < 8) {
+            mensajeError += 'La contraseña debe tener al menos 8 caracteres.\n';
+        }
+        if (!/[A-Z]/.test(clave)) {
+            mensajeError += 'La contraseña debe contener al menos una letra mayúscula.\n';
+        }
+        if (!/[a-z]/.test(clave)) {
+            mensajeError += 'La contraseña debe contener al menos una letra minúscula.\n';
+        }
+        if (!/\d/.test(clave)) {
+            mensajeError += 'La contraseña debe contener al menos un número.\n';
+        }
+        if (clave !== confirmarClave) {
+            mensajeError += 'Las contraseñas no coinciden.\n';
+        }
+
+        // Si hay errores, mostrar la alerta y evitar el envío del formulario
+        if (mensajeError !== '') {
+            alert(mensajeError);
+            return false; // Evitar que el formulario se envíe
+        }
+
+        return true; // Permitir que el formulario se envíe si todo está correcto
+    }
+</script>
