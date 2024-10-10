@@ -40,7 +40,7 @@
         lista += "<p><strong>Descripción:</strong> " + donacion.getDescripcion() + "</p>";
         lista += "<div class='button-container'>";
         lista += "<button class='btn-otro' onclick='verDetalles(\"" + donacion.getCodigo() + "\");'>Detalles</button>";
-        lista += "<button class='btn-modificar' onclick='abrirFormularioAdicionar(\"" + donacion.getCodigo() + "\");'>Modificar</button>";
+       // lista += "<button class='btn-modificar' onclick='abrirFormularioAdicionar(\"" + donacion.getCodigo() + "\");'>Modificar</button>";
         lista += "<button class='btn-eliminar' onclick='confirmarEliminacion(\"" + donacion.getCodigo() + "\")'>Eliminar</button>";
         lista += "</div>";
         lista += "</div>";
