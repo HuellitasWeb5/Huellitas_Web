@@ -5,7 +5,7 @@
 --%>
 <%@page import="java.util.List"%>
 <%@page import="clases.FormularioDeInformacion"%>
-
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <head>
     
@@ -13,13 +13,13 @@
 </head>
 
 <%
-    // Obtén el año como parámetro desde la URL o usa un valor predeterminado
+    // ObtÃ©n el aÃ±o como parÃ¡metro desde la URL o usa un valor predeterminado
     String anio = request.getParameter("anio");
     if (anio == null || anio.isEmpty()) {
-        anio = "2024"; // Valor predeterminado si no se proporciona el año
+        anio = "2024"; // Valor predeterminado si no se proporciona el aÃ±o
     }
 
-    // Obtén los datos de los formularios de adopción por mes para el año especificado
+    // ObtÃ©n los datos de los formularios de adopciÃ³n por mes para el aÃ±o especificado
     List<String[]> datos = FormularioDeInformacion.getAdopcionesPorMes(anio);
     StringBuilder lista = new StringBuilder();
     StringBuilder datosGraficos = new StringBuilder("[");
@@ -27,7 +27,7 @@
     for (int i = 0; i < datos.size(); i++) {
         String[] registro = datos.get(i);
         lista.append("<tr>");
-        lista.append("<td>").append(registro[0]).append("</td>"); // Mes y año
+        lista.append("<td>").append(registro[0]).append("</td>"); // Mes y aÃ±o
         lista.append("<td>").append(registro[1]).append("</td>"); // Cantidad de formularios
         lista.append("</tr>");
 
@@ -40,7 +40,7 @@
     datosGraficos.append("]");
 %>
 
-<h3>Indicador de Formularios de Adopción <%= anio %></h3>
+<h3>Indicador de Formularios de AdopciÃ³n <%= anio %></h3>
 
 <table border="0">
     <tr>
@@ -51,7 +51,7 @@
             </table>
         </td>
         <td>
-            <!-- Contenedor para la gráfica -->
+            <!-- Contenedor para la grÃ¡fica -->
             <div id="chartdiv" style="width: 60vw; height: 500px; max-width: 900px; margin: auto;"></div>
         </td>
     </tr>
@@ -98,7 +98,7 @@
 
         var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
             min: 0, // Asegura que el eje Y comience en 0
-            strictMinMax: false, // Permite que el eje Y se ajuste automáticamente al valor máximo
+            strictMinMax: false, // Permite que el eje Y se ajuste automÃ¡ticamente al valor mÃ¡ximo
             renderer: am5xy.AxisRendererY.new(root, {})
         }));
 
@@ -113,17 +113,17 @@
             })
         }));
 
-        // Ajustar el ancho de las columnas para hacer la gráfica más delgada
+        // Ajustar el ancho de las columnas para hacer la grÃ¡fica mÃ¡s delgada
         series.columns.template.setAll({
-            width: am5.percent(40), // Reduce el ancho de las barras para hacer la gráfica más delgada
+            width: am5.percent(40), // Reduce el ancho de las barras para hacer la grÃ¡fica mÃ¡s delgada
             cornerRadiusTL: 5,
             cornerRadiusTR: 5,
             strokeOpacity: 0,
             fill: am5.color("#7fbc95")
         });
 
-        // Verifica los datos enviados al gráfico
-        console.log("Datos para la gráfica:", <%=datosGraficos.toString()%>);
+        // Verifica los datos enviados al grÃ¡fico
+        console.log("Datos para la grÃ¡fica:", <%=datosGraficos.toString()%>);
 
         var data = <%=datosGraficos.toString()%>;
 

@@ -6,9 +6,10 @@
 
 <%@page import="java.util.List"%>
 <%@page import="clases.FormularioDeInformacion"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
-    // ObtÈn los datos de los formularios por fecha de solicitud.
+    // Obt√©n los datos de los formularios por fecha de solicitud.
     List<String[]> datos = FormularioDeInformacion.getAdopcionesPorFechaSolicitud();
     StringBuilder lista = new StringBuilder();
     StringBuilder datosGraficos = new StringBuilder("[");
@@ -33,7 +34,7 @@
     datosGraficos.append("]");
 %>
 
-<h3>Indicador de Formularios de AdopciÛn </h3>
+<h3>Indicador de Formularios de Adopci√≥n </h3>
 <table border="0">
     <tr>
         <td>
@@ -43,7 +44,7 @@
             </table>
         </td>
         <td>
-            <!-- Contenedor para la gr·fica -->
+            <!-- Contenedor para la gr√°fica -->
             <div id="chartdiv" style="width: 50vw; height: 500px; max-width: 900px; margin: auto;"></div>
         </td>
     </tr>
@@ -90,7 +91,7 @@
 
         var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
             min: 0, // Asegura que el eje Y comience en 0
-            strictMinMax: false, // Permite que el eje Y se ajuste autom·ticamente al valor m·ximo
+            strictMinMax: false, // Permite que el eje Y se ajuste autom√°ticamente al valor m√°ximo
             renderer: am5xy.AxisRendererY.new(root, {})
         }));
 

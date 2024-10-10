@@ -4,7 +4,7 @@
 </head>
 
 <%@page import="clases.Persona"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     // Obtener el usuario actual de la sesión
     HttpSession sesion = request.getSession();
