@@ -349,47 +349,48 @@ public class FormularioDeSeguimiento {
         lista += "]";
         return lista;
     }
- public static List<String[]> getCalificacionesPorMes(String anio) {
-        List<String[]> lista = new ArrayList<>();
-        
-        // Consulta SQL para obtener las calificaciones por mes
-        String cadenaSQL = "SELECT DATE_FORMAT(fecha, '%Y-%m') AS mes, "
-                         + "codigoMascota, "
-                         + "calificacion, "
-                         + "COUNT(calificacion) AS totalCalificaciones "
-                         + "FROM formularioDeSeguimiento "
-                         + "WHERE YEAR(fecha) = " + anio + " "
-                         + "GROUP BY DATE_FORMAT(fecha, '%Y-%m'), codigoMascota, calificacion "
-                         + "ORDER BY mes "
-                         + "LIMIT 0, 200;"; // Ajusta el límite según sea necesario
+ public static List<String[]> getCalificacionesPorMes(String anio, String codigoMascota) {
+    List<String[]> lista = new ArrayList<>();
 
-        ResultSet resultado = ConectorBD.consultar(cadenaSQL);
-        
+    // Consulta SQL para obtener las calificaciones por mes
+    String cadenaSQL = "SELECT DATE_FORMAT(fecha, '%Y-%m') AS mes, "
+                     + "codigoMascota, "
+                     + "calificacion, "
+                     + "COUNT(calificacion) AS totalCalificaciones "
+                     + "FROM formularioDeSeguimiento "
+                     + "WHERE YEAR(fecha) = " + anio + " "
+                     + (codigoMascota != null && !codigoMascota.isEmpty() ? "AND codigoMascota = '" + codigoMascota + "' " : "")
+                     + "GROUP BY DATE_FORMAT(fecha, '%Y-%m'), codigoMascota, calificacion "
+                     + "ORDER BY mes "
+                     + "LIMIT 0, 200;"; // Ajusta el límite según sea necesario
+
+    ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+
+    try {
+        while (resultado != null && resultado.next()) {
+            String[] registro = new String[4];
+            registro[0] = resultado.getString("mes"); // Mes y año (YYYY-MM)
+            registro[1] = resultado.getString("codigoMascota"); // Código de mascota
+            registro[2] = resultado.getString("calificacion"); // Calificación
+            registro[3] = resultado.getString("totalCalificaciones"); // Total de calificaciones
+            lista.add(registro);
+        }
+    } catch (SQLException ex) {
+        System.err.println("Error en getCalificacionesPorMes.");
+        System.err.println("Consulta SQL: " + cadenaSQL);
+        System.err.println("Error: " + ex.getMessage());
+    } finally {
         try {
-            while (resultado != null && resultado.next()) {
-                String[] registro = new String[4];
-                registro[0] = resultado.getString("mes"); // Mes y año (YYYY-MM)
-                registro[1] = resultado.getString("codigoMascota"); // Código de mascota
-                registro[2] = resultado.getString("calificacion"); // Calificación
-                registro[3] = resultado.getString("totalCalificaciones"); // Total de calificaciones
-                lista.add(registro);
+            if (resultado != null) {
+                resultado.close();
             }
         } catch (SQLException ex) {
-            System.err.println("Error en getCalificacionesPorMes.");
-            System.err.println("Consulta SQL: " + cadenaSQL);
-            System.err.println("Error: " + ex.getMessage());
-        } finally {
-            try {
-                if (resultado != null) {
-                    resultado.close();
-                }
-            } catch (SQLException ex) {
-                System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
-            }
+            System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
         }
-        
-        return lista;
     }
+
+    return lista;
+}
  public static List<String[]> getCalificacionesPorAnio() {
     List<String[]> lista = new ArrayList<>(); // Inicializa una lista para almacenar los resultados.
 
