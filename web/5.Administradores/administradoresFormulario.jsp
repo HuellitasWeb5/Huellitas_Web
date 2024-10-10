@@ -34,7 +34,7 @@ if (accion.equals("Modificar")) {
             <form name="formulario" method="post" action="principal.jsp?CONTENIDO=5.Administradores/administradoresActualizar.jsp" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="identificacion">Identificación:</label>
-                    <input type="text" name="identificacion" id="identificacion" maxlength="12" value="<%=administrador.getIdentificacion()%>" required>
+                    <input type="text" name="identificacion" id="identificacion" maxlength="11" value="<%=administrador.getIdentificacion()%>" required>
                 </div>
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
