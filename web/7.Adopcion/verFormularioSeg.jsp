@@ -34,40 +34,46 @@
         
         listaSeguimientos += "<div class='card-header'>Código de formulario: " + formulario.getCodigo() + "</div>"; // Código de la mascota
         listaSeguimientos += "<div class='card-body'>"; // Cuerpo de la tarjeta
-        listaSeguimientos += "<p><strong>Fecha de solicitud:</strong> " + formulario.getFecha() + "</p>";
+        listaSeguimientos += "<p><strong>Fecha de visita:</strong> " + formulario.getFecha() + "</p>";
         
-
-        // Aquí se añade la foto
+        // Datos Adoptante
+        listaSeguimientos += "<div style='display: flex; align-items: center; margin-bottom: 20px;'>";
         listaSeguimientos += "<div style='margin-right: 20px;'>";
         listaSeguimientos += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' style='width: 100px; height: auto;'/>";
-        listaSeguimientos += "</div>"; // Fin del cuerpo de la tarjeta
-        
+        listaSeguimientos += "</div>";
+        listaSeguimientos += "<div>";
         listaSeguimientos += "<p><strong>Nombre adoptante:</strong> " + persona.getNombre() + "</p>";
         listaSeguimientos += "<p><strong>Identificación:</strong> " + formulario.getIdentificacionAdoptante() + "</p>";
         listaSeguimientos += "<p><strong>Contacto:</strong> " + persona.getTelefono() + "</p>";
-        listaSeguimientos += "<p><strong>Direccion:</strong> " + persona.getDireccion() + "</p>";
-         // Aquí se añade la foto
+        listaSeguimientos += "</div>"; 
+        listaSeguimientos += "</div>"; 
+
+         // Datos Mascota
+        listaSeguimientos += "<div style='display: flex; align-items: center; margin-bottom: 20px;'>";
         listaSeguimientos += "<div style='margin-right: 20px;'>";
         listaSeguimientos += "<img src='presentacion/mascota/" + mascota.getFoto() + "' alt='Foto de " + mascota.getNombre() + "' style='width: 100px; height: auto;'/>";
-        listaSeguimientos += "</div>"; // Fin del cuerpo de la tarjeta
-        
+        listaSeguimientos += "</div>"; 
+        listaSeguimientos += "<div>"; 
         listaSeguimientos += "<p><strong>Nombre mascota:</strong> " + formulario.getMascota() + "</p>";
         listaSeguimientos += "<p><strong>Edad:</strong> " + mascota.getEdad() + " años</p>";
         listaSeguimientos += "<p><strong>Cuidados Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
-
-       
+        listaSeguimientos += "</div>"; 
+        listaSeguimientos += "</div>"; 
 
         // Botones de acción
         listaSeguimientos += "<div class='btn-container'>";
         listaSeguimientos += "<a href='principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioSeg.jsp&accion=Modificar&codigo=" + formulario.getCodigo() + "'>";
-        listaSeguimientos += "<button class='btn-otro'>Descargar Formulario</button></a>";
+        listaSeguimientos += "<form action='7.Adopcion/formularioSegPDF.jsp' method='post' target='_blank'>";
+        listaSeguimientos += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
+        listaSeguimientos += "<input type='submit' value='Descargar PDF' class='btn-otro'>";
+        listaSeguimientos += "</form>";
         listaSeguimientos += "<button class='btn-eliminar' onClick='eliminar(" + formulario.getCodigo() + ")'>Eliminar</button>";
-        listaSeguimientos += "</div>"; // Fin del contenedor de botones
+        listaSeguimientos += "</div>"; 
 
-        listaSeguimientos += "</div>"; // Fin de la tarjeta
-        listaSeguimientos += "</div>"; // Fin de la diapositiva
+        listaSeguimientos += "</div>";
+        listaSeguimientos += "</div>"; 
     }
-    listaSeguimientos += "</div>"; // Fin del swiper-wrapper
+    listaSeguimientos += "</div>"; 
 %>
 
 <h3>LISTA DE FORMULARIOS DE SEGUIMIENTO</h3>

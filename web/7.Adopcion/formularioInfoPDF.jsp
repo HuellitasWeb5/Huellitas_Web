@@ -1,52 +1,110 @@
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Paragraph;
-import com.itextpdf.text.pdf.PdfWriter;
-import java.io.IOException;
-import java.io.OutputStream;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+<%@page import="com.itextpdf.text.Element"%>
+<%@page import="com.itextpdf.text.Image"%>
+<%@page import="com.itextpdf.text.Document"%>
+<%@page import="com.itextpdf.text.Paragraph"%>
+<%@page import="com.itextpdf.text.pdf.PdfPCell"%>
+<%@page import="com.itextpdf.text.pdf.PdfPTable"%>
+<%@page import="com.itextpdf.text.pdf.PdfWriter"%>
+<%@page import="java.io.OutputStream"%>
+<%@page import="clases.Persona"%>
+<%@page import="clases.Mascota"%>
+<%@page import="clases.FormularioDeInformacion"%>
+<%@page contentType="application/pdf" pageEncoding="UTF-8"%>
 
-@WebServlet("/GenerarPDF")
-public class GenerarPDF extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Configurar el tipo de respuesta como PDF
+<%
+    response.reset();
+
+    try {
+
         response.setContentType("application/pdf");
-        response.setHeader("Content-Disposition", "attachment; filename=formulario_adopcion.pdf");
+        response.setHeader("Content-Disposition", "inline; filename=\"formularioDeAdopcion.pdf\"");
 
-        // Crear un documento PDF
-        Document document = new Document();
+        OutputStream os = response.getOutputStream();
+        Document documento = new Document();
+        PdfWriter.getInstance(documento, os);
+
+        documento.open();
+
         try {
-            // Obtener el flujo de salida para escribir el PDF
-            OutputStream out = response.getOutputStream();
-            PdfWriter.getInstance(document, out);
-            document.open();
 
-            // Agregar contenido al PDF
-            document.add(new Paragraph("Formulario de Adopci髇"));
-            document.add(new Paragraph("Identificaci髇 del Adoptante: " + request.getParameter("identificacionAdoptante")));
-            document.add(new Paragraph("C骴igo de Mascota: " + request.getParameter("codigoMascota")));
-            document.add(new Paragraph("Ocupaci髇: " + request.getParameter("ocupacion")));
-            document.add(new Paragraph("Tiempo Libre: " + request.getParameter("tiempoLibre")));
-            document.add(new Paragraph("Espacio: " + request.getParameter("espacio")));
-            document.add(new Paragraph("Compromiso: " + request.getParameter("compromiso")));
-            document.add(new Paragraph("Ni駉s: " + request.getParameter("ninos")));
-            document.add(new Paragraph("Habitantes: " + request.getParameter("habitantes")));
-            document.add(new Paragraph("Responsables: " + request.getParameter("responsables")));
-            document.add(new Paragraph("Otras Mascotas: " + request.getParameter("otrasMascotas")));
-            document.add(new Paragraph("Propietario: " + request.getParameter("propietario")));
-            document.add(new Paragraph("Motivaci髇: " + request.getParameter("motivacion")));
-            document.add(new Paragraph("Descripci髇: " + request.getParameter("descripcion")));
-            document.add(new Paragraph("Fecha de Visita: " + request.getParameter("fechaVisitaDia")));
-            document.add(new Paragraph("Hora de Visita: " + request.getParameter("fechaVisitaHora")));
-            document.add(new Paragraph("Autorizaci髇 de Datos: " + request.getParameter("autorizacion")));
+            PdfPTable table = new PdfPTable(2);
+            table.setWidthPercentage(100); 
+            
+            // Logo Fundaci贸n Villa Esperanza
+            
+            String relativeWebPath1 = "/presentacion/imagenes/Logo-Fundacion.png";
+            String absoluteDiskPath1 = application.getRealPath(relativeWebPath1);
+            Image logo1 = Image.getInstance(absoluteDiskPath1);
+            logo1.scaleToFit(60, 60);
 
-            document.close();
-        } catch (DocumentException e) {
-            throw new IOException(e.getMessage());
+            PdfPCell cell1 = new PdfPCell(logo1);
+            cell1.setBorder(PdfPCell.NO_BORDER); 
+            cell1.setHorizontalAlignment(Element.ALIGN_LEFT); 
+            table.addCell(cell1);
+
+             // Logo Huellitas Web
+             
+            String relativeWebPath2 = "/presentacion/imagenes/Logo.png";
+            String absoluteDiskPath2 = application.getRealPath(relativeWebPath2);
+            Image logo2 = Image.getInstance(absoluteDiskPath2);
+            logo2.scaleToFit(50, 50);
+
+            PdfPCell cell2 = new PdfPCell(logo2);
+            cell2.setBorder(PdfPCell.NO_BORDER); 
+            cell2.setHorizontalAlignment(Element.ALIGN_RIGHT); 
+            table.addCell(cell2);
+
+            documento.add(table);
+            
+        } catch (Exception e) {
+            documento.add(new Paragraph("Error al cargar el logo: " + e.getMessage()));
         }
+
+        // T铆tulo del documento
+        Paragraph title = new Paragraph("Formulario de Adopci贸n\n\n");
+        title.setAlignment(Element.ALIGN_CENTER);
+        documento.add(title);
+
+        // Simulaci贸n de datos del formulario
+        FormularioDeInformacion formularioDeInformacion = new FormularioDeInformacion();
+        Persona persona = new Persona(formularioDeInformacion.getIdentificacionAdoptante());
+        Mascota mascota = new Mascota(formularioDeInformacion.getCodigoMascota());
+
+        // Informaci贸n del adoptante
+        documento.add(new Paragraph("Adoptante:\n\n"));
+        PdfPTable tablaAdoptante = new PdfPTable(2);
+        tablaAdoptante.addCell("Identificaci贸n:");
+        tablaAdoptante.addCell(persona.getIdentificacion());
+        tablaAdoptante.addCell("Nombre:");
+        tablaAdoptante.addCell(persona.getNombre());
+        tablaAdoptante.addCell("Tel茅fono:");
+        tablaAdoptante.addCell(persona.getTelefono());
+        tablaAdoptante.addCell("Direcci贸n:");
+        tablaAdoptante.addCell(persona.getDireccion());
+        tablaAdoptante.addCell("Residencia:");
+        tablaAdoptante.addCell(persona.getResidencia());
+        documento.add(tablaAdoptante);
+        documento.add(new Paragraph("\n"));
+
+        // Informaci贸n de la mascota
+        documento.add(new Paragraph("Mascota:\n\n"));
+        PdfPTable tablaMascota = new PdfPTable(2);
+        tablaMascota.addCell("C贸digo:");
+        tablaMascota.addCell(mascota.getCodigo());
+        tablaMascota.addCell("Nombre:");
+        tablaMascota.addCell(mascota.getNombre());
+        tablaMascota.addCell("Fecha de Nacimiento Aproximada:");
+        tablaMascota.addCell(mascota.getFechaNacimientoAproximada());
+        tablaMascota.addCell("G茅nero:");
+        tablaMascota.addCell(mascota.getGenero());
+        tablaMascota.addCell("Cuidados Especiales:");
+        tablaMascota.addCell(mascota.getCuidadosEspeciales());
+        documento.add(tablaMascota);
+        documento.add(new Paragraph("\n"));
+
+        documento.close();
+    } catch (Exception e) {
+        e.printStackTrace();
+        out.println("Error al generar el PDF: " + e.getMessage());
     }
-}
+%>
