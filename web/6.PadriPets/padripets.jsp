@@ -60,6 +60,7 @@ for (int j = 0; j < datosApadrinamiento.size(); j++) {
     listaApadrinamiento += "</div>"; 
     
     listaApadrinamiento += "<button class='btn-eliminar' onclick='eliminar(" + apadrinamiento.getCodigo() + ")'>Eliminar</button>";
+    listaApadrinamiento += "<button class='btn-otro' onclick='detalles(" + apadrinamiento.getCodigo() + ")'>Detalles</button>";
     listaApadrinamiento += "</div>"; 
     listaApadrinamiento += "</div>"; 
     listaApadrinamiento += "</div>";
@@ -88,6 +89,11 @@ listaApadrinamiento += "</div>";
 </div>
 
 <script type="text/javascript">
+    
+    function detalles(codigo) {  
+    window.location.href = "principal.jsp?CONTENIDO=6.PadriPets/verDetallesPadripets.jsp&codigo=" + codigo;
+}
+    
     var swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
         spaceBetween: 10,
