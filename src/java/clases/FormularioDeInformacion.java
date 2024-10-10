@@ -43,13 +43,14 @@ public class FormularioDeInformacion {
     private String fotoVivienda;
     private String fotoCedula;
     private String autorizacionDatos;
+    private String estado;
 
     public FormularioDeInformacion() {
     }
 
     public FormularioDeInformacion(String codigo) {
         String cadenaSQL = "select fecha, identificacionAdoptante, codigoMascota, ocupacion, tiempoLibre, espacio, compromiso, ninos, habitantes, responsables, otrasMascotas, "
-                + "propietario, motivacion, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos "
+                + "propietario, motivacion, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos, estado "
                 + "from formularioDeInformacion where codigo=" + codigo;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
@@ -75,7 +76,7 @@ public class FormularioDeInformacion {
                 fotoVivienda = resultado.getString("fotoVivienda");
                 fotoCedula = resultado.getString("fotoCedula");
                 autorizacionDatos = resultado.getString("autorizacionDatos");
-
+                estado = resultado.getString("estado");  // Obtener el valor del campo estado
             } else {
                 System.out.print("No se encontró el formulario de información con el código: " + codigo);
             }
@@ -337,22 +338,40 @@ public class FormularioDeInformacion {
             resultado = "";
         }
         return resultado;
-
     }
 
     public void setAutorizacionDatos(String autorizacionDatos) {
         this.autorizacionDatos = autorizacionDatos;
     }
 
+    public String getEstado() {
+        String resultado = estado;
+        if (estado == null) {
+            resultado = "";
+        }
+        return resultado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
-        return "FormularioDeInformacion{" + "codigo=" + codigo + ", fecha=" + fecha + ", identificacionAdoptante='" + identificacionAdoptante + "', codigoMascota='" + codigoMascota + "', ocupacion=" + ocupacion + ", tiempoLibre=" + tiempoLibre + ", espacio=" + espacio + ", compromiso=" + compromiso + ", ninos=" + ninos + ", habitantes=" + habitantes + ", responsables=" + responsables + ", otrasMascotas=" + otrasMascotas + ", propietario=" + propietario + ", motivacion=" + motivacion + ", descripcion=" + descripcion + ", fechaVisitaDia=" + fechaVisitaDia + ", fechaVisitaHora=" + fechaVisitaHora + ", fotoRecibo=" + fotoRecibo + ", fotoVivienda=" + fotoVivienda + ", fotoCedula=" + fotoCedula + ", autorizacionDatos=" + autorizacionDatos + '}';
+        return "FormularioDeInformacion{" + "codigo=" + codigo + ", fecha=" + fecha + ", identificacionAdoptante='" + identificacionAdoptante + "', codigoMascota='" + codigoMascota + "', ocupacion=" + ocupacion + ", tiempoLibre=" + tiempoLibre + ", espacio=" + espacio + ", compromiso=" + compromiso + ", ninos=" + ninos + ", habitantes="
+                + habitantes + ", responsables=" + responsables + ", otrasMascotas=" + otrasMascotas + ", propietario=" + propietario + ", motivacion=" + motivacion + ", descripcion=" + descripcion + ", fechaVisitaDia=" + fechaVisitaDia + ", fechaVisitaHora=" + fechaVisitaHora + ", fotoRecibo=" + fotoRecibo + ", fotoVivienda=" + fotoVivienda
+                + ", fotoCedula=" + fotoCedula + ", autorizacionDatos=" + autorizacionDatos + ", estado=" + estado + '}';
     }
 
     public boolean grabar() {
-        String cadenaSQL = "insert into formularioDeInformacion (codigo,fecha, identificacionAdoptante, codigoMascota, habitantes, espacio, ninos, tiempoLibre, responsables, otrasMascotas, propietario, ocupacion, motivacion, compromiso, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos) "
-                + "values(generar(),curdate(), '" + identificacionAdoptante + "', '" + codigoMascota + "', '" + habitantes + "', '" + espacio + "', '" + ninos + "', '" + tiempoLibre + "', '" + responsables + "', '" + otrasMascotas + "', '" + propietario + "', '" + ocupacion + "', '" + motivacion + "', '" + compromiso + "', '" + descripcion + "', '" + fechaVisitaDia + "', '" + fechaVisitaHora + "', '" + fotoRecibo + "', '" + fotoVivienda + "', '" + fotoCedula + "', '" + autorizacionDatos + "')";
+        String cadenaSQL = "insert into formularioDeInformacion (codigo, fecha, identificacionAdoptante, codigoMascota, habitantes, espacio, ninos, tiempoLibre, responsables, otrasMascotas, propietario, ocupacion, motivacion, compromiso, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos, estado) "
+                + "values(generar(), curdate(), '" + identificacionAdoptante + "', '" + codigoMascota + "', '" + habitantes + "', '" + espacio + "', '" + ninos + "', '" + tiempoLibre + "', '" + responsables + "', '" + otrasMascotas + "', '" + propietario + "', '" + ocupacion + "', '" + motivacion + "', '" + compromiso + "', '" + descripcion + "', '" + fechaVisitaDia + "', '" + fechaVisitaHora + "', '" + fotoRecibo + "', '" + fotoVivienda + "', '" + fotoCedula + "', '" + autorizacionDatos + "', 'pendiente')";
 
+        return ConectorBD.ejecutarQuery(cadenaSQL);
+    }
+
+    public boolean aceptarFormulario(String codigo) {
+        String cadenaSQL = "update formularioDeInformacion set estado = 'aceptado' where codigo = '" + codigo + "'";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
@@ -391,7 +410,7 @@ public class FormularioDeInformacion {
                 + "propietario = '" + propietario + "', ocupacion = '" + ocupacion + "', motivacion = '" + motivacion + "', "
                 + "compromiso = '" + compromiso + "', descripcion = '" + descripcion + "', fechaVisitaDia = '" + fechaVisitaDia + "', "
                 + "fechaVisitaHora = '" + fechaVisitaHora + "', fotoRecibo = '" + fotoRecibo + "', fotoVivienda = '" + fotoVivienda + "', "
-                + "fotoCedula = '" + fotoCedula + "' "
+                + "fotoCedula = '" + fotoCedula + "', estado = '" + estado + "' "
                 + "where codigo = '" + codigo + "'";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
@@ -413,7 +432,7 @@ public class FormularioDeInformacion {
             orden = " ";
         }
 
-        String cadenaSQL = "select codigo, fecha, identificacionAdoptante, codigoMascota, ocupacion, tiempoLibre, espacio, compromiso, ninos, habitantes, responsables, otrasMascotas, propietario, motivacion, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos "
+        String cadenaSQL = "select codigo, fecha, identificacionAdoptante, codigoMascota, ocupacion, tiempoLibre, espacio, compromiso, ninos, habitantes, responsables, otrasMascotas, propietario, motivacion, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos, estado "
                 + "from formularioDeInformacion" + filtro + orden;
 
         return ConectorBD.consultar(cadenaSQL);
@@ -447,6 +466,7 @@ public class FormularioDeInformacion {
                     formulario.setFotoVivienda(datos.getString("fotoVivienda"));
                     formulario.setFotoCedula(datos.getString("fotoCedula"));
                     formulario.setAutorizacionDatos(datos.getString("autorizacionDatos"));
+                    formulario.setEstado(datos.getString("estado")); // Campo estado añadido
 
                     lista.add(formulario);
                 }
@@ -467,7 +487,7 @@ public class FormularioDeInformacion {
                 lista += ", ";
             }
             lista += "{"
-                    + "\"codigo\": " + formulario.getCodigo() + ", "
+                    + "\"codigo\": \"" + formulario.getCodigo() + "\", "
                     + "\"fecha\": \"" + formulario.getFecha() + "\", "
                     + "\"identificacionAdoptante\": \"" + formulario.getIdentificacionAdoptante() + "\", "
                     + "\"codigoMascota\": \"" + formulario.getCodigoMascota() + "\", "
@@ -487,7 +507,8 @@ public class FormularioDeInformacion {
                     + "\"fotoRecibo\": \"" + formulario.getFotoRecibo() + "\", "
                     + "\"fotoVivienda\": \"" + formulario.getFotoVivienda() + "\", "
                     + "\"fotoCedula\": \"" + formulario.getFotoCedula() + "\", "
-                    + "\"autorizacionDatos\": \"" + formulario.getAutorizacionDatos() + "\""
+                    + "\"autorizacionDatos\": \"" + formulario.getAutorizacionDatos() + "\", "
+                    + "\"estado\": \"" + formulario.getEstado() + "\"" // Campo estado añadido
                     + "}";
         }
 

@@ -112,7 +112,7 @@ listaAdopciones += "</div>"; // Fin del swiper-wrapper
         <button id="Adicionar" class="btn-otro">Formularios de Adopciones</button>
     </a>
     <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioSeguimiento.jsp&accion=Adicionar">
-        <button id="Adicionar" class="btn-otro">Realizar seguimiento</button>
+        <button id="Adicionar" class="btn-adicionar">Realizar seguimiento</button>
     </a>
 </div>  
 
