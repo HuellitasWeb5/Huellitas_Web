@@ -62,7 +62,6 @@
     </form>
     <div style="display: flex; gap: 10px;">
         <button class="btn-adicionar" onclick="abrirFormularioAdicionar();">Adicionar Donacion</button>
-        <button class="btn-adicionar" onclick="agregarTipoDonacion();">Adicionar Tipo de Donación</button>
     </div>
 </div>
 
