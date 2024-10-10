@@ -40,7 +40,7 @@
     datosGraficos.append("]");
 %>
 
-<h3>Indicador de Formularios de Adopción por Mes para el Año <%= anio %></h3>
+<h3>Indicador de Formularios de Adopción <%= anio %></h3>
 
 <table border="0">
     <tr>
