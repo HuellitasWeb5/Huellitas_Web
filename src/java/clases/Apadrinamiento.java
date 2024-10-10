@@ -150,5 +150,73 @@ public class Apadrinamiento {
     }
     return lista;
 }
+    public static List<String[]> getApadrinamientosPorMes() {
+    List<String[]> lista = new ArrayList<>();
+    
+    // Consulta SQL para obtener el total de apadrinamientos por mes
+    String cadenaSQL = "SELECT MONTH(fecha) AS mes, COUNT(*) AS total_apadrinamientos "
+                     + "FROM apadrinamiento "
+                     + "GROUP BY MONTH(fecha) "
+                     + "ORDER BY mes DESC;";
+
+    ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+
+    try {
+        while (resultado != null && resultado.next()) {
+            String[] registro = new String[2]; // Array para mes y total de apadrinamientos
+            registro[0] = resultado.getString("mes"); // Mes
+            registro[1] = resultado.getString("total_apadrinamientos"); // Total de apadrinamientos
+            lista.add(registro);
+        }
+    } catch (SQLException ex) {
+        System.err.println("Error en getApadrinamientosPorMes.");
+        System.err.println("Consulta SQL: " + cadenaSQL);
+        System.err.println("Error: " + ex.getMessage());
+    } finally {
+        try {
+            if (resultado != null) {
+                resultado.close();
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
+        }
+    }
+    
+    return lista;
+}
+    public static List<String[]> getApadrinamientosPorAnio() {
+    List<String[]> lista = new ArrayList<>();
+    
+    // Consulta SQL para obtener el total de apadrinamientos por año
+    String cadenaSQL = "SELECT YEAR(fecha) AS anio, COUNT(*) AS total_apadrinamientos "
+                     + "FROM apadrinamiento "
+                     + "GROUP BY YEAR(fecha) "
+                     + "ORDER BY anio DESC;";
+
+    ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+
+    try {
+        while (resultado != null && resultado.next()) {
+            String[] registro = new String[2]; // Array para año y total de apadrinamientos
+            registro[0] = resultado.getString("anio"); // Año
+            registro[1] = resultado.getString("total_apadrinamientos"); // Total de apadrinamientos
+            lista.add(registro);
+        }
+    } catch (SQLException ex) {
+        System.err.println("Error en getApadrinamientosPorAnio.");
+        System.err.println("Consulta SQL: " + cadenaSQL);
+        System.err.println("Error: " + ex.getMessage());
+    } finally {
+        try {
+            if (resultado != null) {
+                resultado.close();
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
+        }
+    }
+    
+    return lista;
+}
 
 }
