@@ -83,7 +83,7 @@ public class ConceptoDonacion {
         return new TipoDonacion(codigoTipoDonacion);
     }
 
-    public String getIdUnidadDeMedida() {
+     public String getIdUnidadDeMedida() {
         return idUnidadDeMedida;
     }
 
