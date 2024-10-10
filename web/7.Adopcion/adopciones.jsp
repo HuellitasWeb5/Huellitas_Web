@@ -65,12 +65,8 @@
         listaAdopciones += "<a href='principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Modificar&codigo=" + formulario.getCodigo() + "'>";
         listaAdopciones += "<form action='7.Adopcion/formularioInfoPDF.jsp' method='post' target='_blank'>";
         listaAdopciones += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
-        listaAdopciones += "<input type='submit' value='Descargar PDF' class='btn-otro'>";
+        listaAdopciones += "<input type='submit' value='Descargar formulario de informacion' class='btn-otro'>";
         listaAdopciones += "</form>";
-
-        listaAdopciones += "<button class='btn-adicionar' onClick='aceptarFormulario(" + formulario.getCodigo() + ")'>Aceptar</button>";
-        listaAdopciones += "<button class='btn-eliminar' onClick='eliminar(" + formulario.getCodigo() + ")'>Rechazar</button>";
-        listaAdopciones += "</div>"; // Fin del contenedor de botones
 
         listaAdopciones += "</div>"; // Fin de la tarjeta
         listaAdopciones += "</div>"; // Fin de la diapositiva
@@ -94,15 +90,6 @@
     <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar">
         <button id="Adicionar" class="btn-adicionar">Realizar Adopción</button>
     </a>
-    <a href="principal.jsp?CONTENIDO=7.Adopcion/verFormularioSeg.jsp&accion=Adicionar">
-        <button id="Adicionar" class="btn-otro">Formularios de Seguimiento</button>
-    </a>
-    <a href="principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp&accion=Adicionar">
-        <button id="Adicionar" class="btn-otro">Formularios de Adopciones</button>
-    </a>
-    <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioSeguimiento.jsp&accion=Adicionar">
-        <button id="Adicionar" class="btn-adicionar">Realizar seguimiento</button>
-    </a>
 </div>  
 
 <div class="swiper-container">
@@ -111,12 +98,3 @@
     <div class="swiper-button-next"></div>
     <div class="swiper-pagination"></div>
 </div>
-
-<script type="text/javascript">
-    function eliminar(codigo) {
-        resultado = confirm("¿Realmente desea eliminar el formulario con código " + codigo + "?");
-        if (resultado) {
-            document.location = "principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Eliminar&codigo=" + codigo;
-        }
-    }
-</script>
