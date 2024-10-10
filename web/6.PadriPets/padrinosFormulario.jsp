@@ -20,15 +20,14 @@
 
 <style>
     .card.selected {
-        border: 2px solid #007BFF; /* Cambia el color del borde */
-        background-color: #E9F5FF; /* Cambia el color de fondo */
+        border: 2px solid #007BFF;
+        background-color: #E9F5FF;
     }
 
-
     .ui-autocomplete {
-        z-index: 1000; /* Asegura que la lista esté por encima de otros elementos */
-        max-height: 200px; /* Controla el alto máximo de la lista desplegable */
-        overflow-y: auto; /* Habilita el scroll si hay muchas opciones */
+        z-index: 1000; 
+        max-height: 200px; 
+        overflow-y: auto; 
         overflow-x: hidden;
     </style>
 
@@ -115,14 +114,14 @@
                             </div>
 
                             <tr>
-                                <td><input type="button" value="Seleccionar Mascota" onclick="abrirFormulario();" required=""></td>
+                                <td><input type="button" class="btn-otro" value="Seleccionar Mascota" onclick="abrirFormulario();" required=""></td>
                             </tr>
 
                         </table>
                         <div class='btn-container'>
                             <input type="hidden" name="numero" value="<%=codigo%>">
                             <input type="submit" name="accion" class="btn-adicionar" value="<%= accion != null ? accion : "Adicionar"%>">
-                            <input type="button" class="btn-cancelar" value="Cancelar" onClick="window.history.back()">
+                            <input type="button" class="btn-eliminar" value="Cancelar" onClick="window.history.back()">
                         </div>
                     </form>
                 </div>
@@ -151,7 +150,7 @@
                     <%= listaPlan%>
                     <div class='btn-container'>
                         <input type="button" class="btn-adicionar" value="Agregar" onclick="actualizarTabla();">
-                        <input type="button" class="btn-cancelar" value="Cancelar" onclick="cerrarFormulario();">
+                        <input type="button" class="btn-eliminar" value="Cancelar" onclick="cerrarFormulario();">
                     </div>
                 </form>
             </div>
