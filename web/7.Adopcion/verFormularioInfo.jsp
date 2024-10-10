@@ -36,30 +36,38 @@
         listaAdopciones += "<div class='card-body'>"; // Cuerpo de la tarjeta
         listaAdopciones += "<p><strong>Fecha de solicitud:</strong> " + formulario.getFecha() + "</p>";
         
-         // Aquí se añade la foto
+    // Datos Adoptante
+        listaAdopciones += "<div style='display: flex; align-items: center; margin-bottom: 20px;'>";
         listaAdopciones += "<div style='margin-right: 20px;'>";
         listaAdopciones += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' style='width: 100px; height: auto;'/>";
-        listaAdopciones += "</div>"; // Fin del cuerpo de la tarjeta
-        
+        listaAdopciones += "</div>";
+        listaAdopciones += "<div>";
         listaAdopciones += "<p><strong>Nombre adoptante:</strong> " + persona.getNombre() + "</p>";
         listaAdopciones += "<p><strong>Identificación:</strong> " + formulario.getIdentificacionAdoptante() + "</p>";
         listaAdopciones += "<p><strong>Contacto:</strong> " + persona.getTelefono() + "</p>";
-        listaAdopciones += "<p><strong>Direccion:</strong> " + persona.getDireccion() + "</p>";
-         // Aquí se añade la foto
+        listaAdopciones += "</div>"; 
+        listaAdopciones += "</div>"; 
+
+         // Datos Mascota
+        listaAdopciones += "<div style='display: flex; align-items: center; margin-bottom: 20px;'>";
         listaAdopciones += "<div style='margin-right: 20px;'>";
         listaAdopciones += "<img src='presentacion/mascota/" + mascota.getFoto() + "' alt='Foto de " + mascota.getNombre() + "' style='width: 100px; height: auto;'/>";
-        listaAdopciones += "</div>"; // Fin del cuerpo de la tarjeta
-        
+        listaAdopciones += "</div>"; 
+        listaAdopciones += "<div>"; 
         listaAdopciones += "<p><strong>Nombre mascota:</strong> " + formulario.getMascota() + "</p>";
         listaAdopciones += "<p><strong>Edad:</strong> " + mascota.getEdad() + " años</p>";
         listaAdopciones += "<p><strong>Cuidados Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
-
-       
+        listaAdopciones += "</div>"; 
+        listaAdopciones += "</div>"; 
 
         // Botones de acción
         listaAdopciones += "<div class='btn-container'>";
         listaAdopciones += "<a href='principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Modificar&codigo=" + formulario.getCodigo() + "'>";
-        listaAdopciones += "<button class='btn-otro' href='exportaciones/formulario_informacion.pdf'>Descargar PDF</button></a>";
+        listaAdopciones += "<form action='7.Adopcion/formularioInfoPDF.jsp' method='post' target='_blank'>";
+        listaAdopciones += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
+        listaAdopciones += "<input type='submit' value='Descargar PDF' class='btn-otro'>";
+        listaAdopciones += "</form>";
+
         listaAdopciones += "<button class='btn-adicionar' onclick='document.getElementById(\"formAceptar" + formulario.getCodigo() + "\").submit();'>Aceptar</button>";
         listaAdopciones += "<button class='btn-eliminar' onClick='eliminar(" + formulario.getCodigo() + ")'>Rechazar</button>";
         listaAdopciones += "</div>"; // Fin del contenedor de botones
