@@ -20,26 +20,27 @@
     // Obtener la lista de formularios de adopción
     String listaAdopciones = "";
 
-    List<FormularioDeInformacion> formularios = FormularioDeInformacion.getListaEnObjetos("estado='Aceptado'", null); // Ajusta el método según tu implementación
+    List<FormularioDeInformacion> formularios = FormularioDeInformacion.getListaEnObjetos("estado='Aceptado'", null);
     listaAdopciones += "<div class='swiper-wrapper'>"; // Inicio del swiper-wrapper
 
     for (int i = 0; i < formularios.size(); i++) {
         FormularioDeInformacion formulario = formularios.get(i);
-
-        listaAdopciones += "<div class='swiper-slide'>"; // Inicio de la tarjeta
-        listaAdopciones += "<div class='card'>"; // Añadido la clase 'card'
         Persona persona = new Persona(formulario.getIdentificacionAdoptante());
         Mascota mascota = new Mascota(formulario.getCodigoMascota());
 
-        // Añadir la sección de la mascota
-        listaAdopciones += "<div class='card-header'>Código de formulario: " + formulario.getCodigo() + "</div>"; // Código de la mascota
-        listaAdopciones += "<div class='card-body'>"; // Cuerpo de la tarjeta
-        listaAdopciones += "<p><strong>Fecha de solicitud:</strong> " + formulario.getFecha() + "</p>";
+        listaAdopciones += "<div class='swiper-slide'>"; // Inicio de la tarjeta
+        listaAdopciones += "<div class='card'>"; // Añadido la clase 'card'
 
-        // Datos Adoptante
-        listaAdopciones += "<div style='display: flex; align-items: center; margin-bottom: 20px;'>";
-        listaAdopciones += "<div style='margin-right: 20px;'>";
-        listaAdopciones += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' style='width: 100px; height: auto;'/>";
+        // Añadir la sección del encabezado de la tarjeta
+        listaAdopciones += "<div class='card-header'>Código de formulario: " + formulario.getCodigo() + "</div>";
+
+        // Cuerpo de la tarjeta
+        listaAdopciones += "<div class='card-body'>";
+
+        // Datos del adoptante
+        listaAdopciones += "<div style='display: flex; align-items: center; margin-bottom: 10px;'>";
+        listaAdopciones += "<div style='margin-right: 10px;'>";
+        listaAdopciones += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' class='profile-image'/>";
         listaAdopciones += "</div>";
         listaAdopciones += "<div>";
         listaAdopciones += "<p><strong>Nombre adoptante:</strong> " + persona.getNombre() + "</p>";
@@ -48,10 +49,10 @@
         listaAdopciones += "</div>";
         listaAdopciones += "</div>";
 
-        // Datos Mascota
-        listaAdopciones += "<div style='display: flex; align-items: center; margin-bottom: 20px;'>";
-        listaAdopciones += "<div style='margin-right: 20px;'>";
-        listaAdopciones += "<img src='presentacion/mascota/" + mascota.getFoto() + "' alt='Foto de " + mascota.getNombre() + "' style='width: 100px; height: auto;'/>";
+        // Datos de la mascota
+        listaAdopciones += "<div style='display: flex; align-items: center; margin-bottom: 10px;'>";
+        listaAdopciones += "<div style='margin-right: 10px;'>";
+        listaAdopciones += "<img src='presentacion/mascota/" + mascota.getFoto() + "' alt='Foto de " + mascota.getNombre() + "' class='profile-image'/>";
         listaAdopciones += "</div>";
         listaAdopciones += "<div>";
         listaAdopciones += "<p><strong>Nombre mascota:</strong> " + formulario.getMascota() + "</p>";
@@ -60,13 +61,16 @@
         listaAdopciones += "</div>";
         listaAdopciones += "</div>";
 
+        listaAdopciones += "</div>"; // Fin del cuerpo de la tarjeta
+
         // Botones de acción
         listaAdopciones += "<div class='btn-container'>";
-        listaAdopciones += "<a href='principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Modificar&codigo=" + formulario.getCodigo() + "'>";
         listaAdopciones += "<form action='7.Adopcion/formularioInfoPDF.jsp' method='post' target='_blank'>";
         listaAdopciones += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
-        listaAdopciones += "<input type='submit' value='Descargar formulario de informacion' class='btn-otro'>";
+        listaAdopciones += "<input type='submit' value='Descargar formulario información' class='btn-otro'>";
         listaAdopciones += "</form>";
+        listaAdopciones += "</div>"; // Fin de la sección de botones
+        // Fin de la sección de botones
 
         listaAdopciones += "</div>"; // Fin de la tarjeta
         listaAdopciones += "</div>"; // Fin de la diapositiva
@@ -77,7 +81,6 @@
 <h3>ADOPCIONES</h3>
 
 <div class="header-container">
-
     <form id="searchForm">
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
@@ -86,6 +89,7 @@
         <ul id="nameList"></ul> 
     </form>
 </div>
+
 <div class="btn-container">
     <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar">
         <button id="Adicionar" class="btn-adicionar">Realizar Adopción</button>
