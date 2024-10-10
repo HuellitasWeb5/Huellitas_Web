@@ -24,47 +24,61 @@
 %>
 
 <%
-    // Generar la lista de mascotas
+    // Generar la lista de mascotas según el tipo de usuario
     String lista = "";
     List<Mascota> datos = Mascota.getListaEnObjetos(null, null);
     lista += "<div class='swiper-wrapper'>";
-    for (int i = 0; i < datos.size(); i++) {
-        Mascota mascotas = datos.get(i);
-        lista += "<div class='swiper-slide'>";
-        lista += "<div class='card'>";
-        lista += "<div class='card-image'>";
-        lista += "<img src='presentacion/mascota/" + mascotas.getFoto() + "' width='auto' height='60' class='profile-image'>";
-        lista += "</div>";
-        lista += "<div class='card-header'>";
-        lista += mascotas.getNombre();
-        lista += "</div>";
-        lista += "<div class='card-body'>";
-        lista += "<p><strong>Código:</strong>" + mascotas.getCodigo() + "</p>";
-        lista += "<p><strong>Género:</strong>" + mascotas.getGeneroEnObjeto() + "</p>";
-        lista += "<p><strong>Tamaño:</strong>" + mascotas.getTamano() + "</p>";
-        lista += "<p><strong>Cuidado:</strong>" + mascotas.getCuidadosEspeciales() + "</p>";
-        lista += "<p><strong>Edad aproximada:</strong>" + mascotas.getEdad() + " años</p>";
-        lista += "<p><strong>Fecha de ingreso:</strong>" + mascotas.getFechaIngreso() + "</p>";
-        lista += "<p><strong>Estado:</strong>" + mascotas.getEstado() + "</p>";
-        lista += "<p><strong>Descripción:</strong>" + mascotas.getDescripcion() + "</p>";
-        lista += "</div>";
 
-        // Solo mostrar los botones de Modificar y Eliminar si NO es un cliente
-        if (!"Cliente".equals(nombreTipoPersona)) {
-            lista += "<div class='btn-container'>";
-            lista += "<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascotas.getCodigo()+"&nombre="+nombreTipoPersona
-                    + " 'title='Modificar'> <button class='btn-adicionar' title='Modificar'>Modificar</button></a>";
-            lista += "<a><button class='btn-eliminar' onClick='eliminar(" + mascotas.getCodigo() + ")'>Eliminar</button></a>";
-            lista += "</div>";
+    for (int i = 0; i < datos.size(); i++) {
+        Mascota mascota = datos.get(i);
+
+        // Filtrar mascotas según el tipo de usuario
+        boolean mostrarMascota = true;
+        if ("Cliente".equals(nombreTipoPersona)) {
+            // Si es un cliente, solo mostrar las mascotas disponibles y apadrinadas
+            if (!mascota.getEstado().equalsIgnoreCase("disponible") && 
+                !mascota.getEstado().equalsIgnoreCase("apadrinada")) {
+                mostrarMascota = false;
+            }
         }
 
-        // Estos botones siempre se muestran
-        lista += "<div class='btn-container'>";
-        lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/padrinosFormulario.jsp&accion=Adicionar'><button class='btn-otro'>Padripets</button></a>";
-        lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/formularioInformacion.jsp&accion=Adicionar'><button class='btn-otro'>Adoptar</button></a>";
-        lista += "</div>";
-        lista += "</div>";
-        lista += "</div>";
+        if (mostrarMascota) {
+            lista += "<div class='swiper-slide'>";
+            lista += "<div class='card'>";
+            lista += "<div class='card-image'>";
+            lista += "<img src='presentacion/mascota/" + mascota.getFoto() + "' width='auto' height='60' class='profile-image'>";
+            lista += "</div>";
+            lista += "<div class='card-header'>";
+            lista += mascota.getNombre();
+            lista += "</div>";
+            lista += "<div class='card-body'>";
+            lista += "<p><strong>Código:</strong>" + mascota.getCodigo() + "</p>";
+            lista += "<p><strong>Género:</strong>" + mascota.getGeneroEnObjeto() + "</p>";
+            lista += "<p><strong>Tamaño:</strong>" + mascota.getTamano() + "</p>";
+            lista += "<p><strong>Cuidado:</strong>" + mascota.getCuidadosEspeciales() + "</p>";
+            lista += "<p><strong>Edad aproximada:</strong>" + mascota.getEdad() + " años</p>";
+            lista += "<p><strong>Fecha de ingreso:</strong>" + mascota.getFechaIngreso() + "</p>";
+            lista += "<p><strong>Estado:</strong>" + mascota.getEstado() + "</p>";
+            lista += "<p><strong>Descripción:</strong>" + mascota.getDescripcion() + "</p>";
+            lista += "</div>";
+
+            // Solo mostrar los botones de Modificar y Eliminar si NO es un cliente
+            if (!"Cliente".equals(nombreTipoPersona)) {
+                lista += "<div class='btn-container'>";
+                lista += "<a href='principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Modificar&codigo=" + mascota.getCodigo() + "&nombre=" + nombreTipoPersona
+                        + " 'title='Modificar'> <button class='btn-adicionar' title='Modificar'>Modificar</button></a>";
+                lista += "<a><button class='btn-eliminar' onClick='eliminar(" + mascota.getCodigo() + ")'>Eliminar</button></a>";
+                lista += "</div>";
+            }
+
+            // Estos botones siempre se muestran
+            lista += "<div class='btn-container'>";
+            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/padrinosFormulario.jsp&accion=Adicionar'><button class='btn-otro'>Padripets</button></a>";
+            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/formularioInformacion.jsp&accion=Adicionar'><button class='btn-otro'>Adoptar</button></a>";
+            lista += "</div>";
+            lista += "</div>";
+            lista += "</div>";
+        }
     }
     lista += "</div>";
 %>
