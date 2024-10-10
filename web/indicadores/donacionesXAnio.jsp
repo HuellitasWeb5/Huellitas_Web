@@ -119,19 +119,5 @@
         chart.appear(1000, 100);
     });
 
-    function filterNames() {
-        const input = document.getElementById('searchInput');
-        const filter = input.value.toLowerCase();
-        const rows = document.querySelectorAll('table tr:not(:first-child)'); // Ignora la primera fila (encabezados)
-
-        rows.forEach(row => {
-            const cells = row.querySelectorAll('td');
-            const yearCell = cells[0];
-            if (yearCell && yearCell.textContent.toLowerCase().indexOf(filter) > -1) {
-                row.style.display = "";
-            } else {
-                row.style.display = "none";
-            }
-        });
-    }
+   
 </script>
