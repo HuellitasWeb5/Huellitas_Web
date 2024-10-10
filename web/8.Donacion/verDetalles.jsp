@@ -1,17 +1,54 @@
+<%@page import="clases.Donacion"%>
+<%@page import="clases.Persona"%>
 <%@page import="clases.TipoDonacion"%>
 <%@page import="clases.ConceptoDonacion"%>
 <%@page import="java.util.List"%>
 <%@page import="clases.DonacionDetalle"%>
 <%@page import="clases.DonacionDetalle"%>
+<head>
+    <link rel="stylesheet" href="presentacion/Donacion.css">
+</head>
 <%
+    String lista = "";
+    String listaDonante = "";
     String codigo = request.getParameter("codigo");
     DonacionDetalle donacionDetalle = new DonacionDetalle();
-    String lista = "";
+    Donacion donacion = new Donacion();
+    List<Donacion> datos = Donacion.getListaEnObjetos(null, null);
     List<DonacionDetalle> detalles = DonacionDetalle.getListaEnObjetos("codigoDonacion=" + codigo, null); // Método para obtener la lista de DonacionDetalle
+    for (int i = 0; i < datos.size(); i++) {
+        donacion = datos.get(i);
+        Persona persona = new Persona(donacion.getIdentificacionDonante());
+        listaDonante += "<div class='container'>";
+        listaDonante += "<div class='header'>Datos del Usuario</div>";
+        listaDonante += "<div class='content'>";
+        
+        listaDonante += "<div class='form-group'>";
+        listaDonante += "<label>Identificación</label>";
+        listaDonante += "<span>" + persona.getIdentificacion()+ "</span>";
+        listaDonante += "</div>";
+        
+        listaDonante += "<div class='form-group'>";
+        listaDonante += "<label>Nombre</label>";
+        listaDonante += "<span>" + persona.getNombre()+ "</span>";
+        listaDonante += "</div>";
+        
+        listaDonante += "<div class='form-group'>";
+        listaDonante += "<label>Fecha</label>";
+        listaDonante += "<span>" + donacion.getFecha()+ "</span>";
+        listaDonante += "</div>";
+        
+        listaDonante += "<div class='form-group'>";
+        listaDonante += "<label>Descripcion</label>";
+        listaDonante += "<span>" + donacion.getDescripcion()+ "</span>";
+        listaDonante += "</div>";
+        listaDonante += "</div>";
+        listaDonante += "</div>";
+   
+
+    }
     for (int i = 0; i < detalles.size(); i++) {
         donacionDetalle = detalles.get(i);
-        ConceptoDonacion conceptoDonacion = new ConceptoDonacion(donacionDetalle.getId());
-        TipoDonacion tipoDonacion = new TipoDonacion(donacionDetalle.getIdConcepto());
 
         lista += "<div class='swiper-slide'>";
         lista += "<div class='card'>";
@@ -19,13 +56,13 @@
         lista += "<h2>ID: " + donacionDetalle.getId() + "</h2>";
         lista += "</div>";
         lista += "<div class='card-body'>";
-        lista += "<p><strong>ID Concepto:</strong> " + conceptoDonacion.getNombre()+ "</p>";
-        lista += "<p><strong>Código Tipo Donación:</strong> " + tipoDonacion.getNombre() + "</p>";
+        lista += "<p><strong>Código Tipo Donación:</strong> " + donacionDetalle.getTipoDonacion() + "</p>";
+        lista += "<p><strong>ID Concepto:</strong> " + donacionDetalle.getConceptoDonacion() + "</p>";
         lista += "<p><strong>Cantidad:</strong> " + donacionDetalle.getCantidad() + "</p>";
         lista += "<p><strong>Código Donación:</strong> " + donacionDetalle.getCodigoDonacion() + "</p>";
-        lista += "</div>"; // Fin de card-body
-        lista += "</div>"; // Fin de card
-        lista += "</div>"; // Fin de swiper-slide
+        lista += "</div>";
+        lista += "</div>";
+        lista += "</div>";
     }
 %>
 <h3>Detalles de Donaciones</h3> 
@@ -34,6 +71,7 @@
     <button class="btn-regresar" onclick="window.history.back();">Regresar</button>
 </div>
 
+        <%=listaDonante%>
 <div class="swiper-container">
     <div class="swiper-wrapper">
         <%=lista%>
@@ -58,3 +96,5 @@
     });
 
 </script>
+
+    
