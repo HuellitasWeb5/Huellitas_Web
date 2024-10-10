@@ -54,7 +54,7 @@ td {
 
 /* Estilo del contenedor de la tarjeta */
 .card {
-    background-color: #cce5ff; /* Fondo verde */
+    background-color: #cce5ff;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -92,6 +92,7 @@ h3 {
 }
 
 .form-group {
+    
     margin-bottom: 15px; /* Espacio entre grupos de formulario */
 }
 
@@ -107,14 +108,21 @@ h3 {
     border: 1px solid #ccc; /* Borde suave */
 }
 
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas de igual tamaño */
+    gap: 20px; /* Espacio entre las columnas */
+}
+
 .card-footer input:hover {
     background-color: #45a049; /* Cambio de color al pasar el cursor */
 }
 /* Estilo del botón */
 
 .btn-container {
-    text-align: center; /* Alinea el botón a la derecha */
-    margin-bottom: 20px; /* Espacio entre el botón y las tarjetas */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
 
@@ -161,7 +169,4 @@ h3 {
 .btn-otro:hover {
     background-color: #11728a;
     color: white;
-}
-.card {
-    transition: none; /* Desactiva cualquier transición para la tarjeta */
 }
