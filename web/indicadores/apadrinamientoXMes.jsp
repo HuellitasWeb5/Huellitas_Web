@@ -48,6 +48,7 @@
             <div id="chartdivMes" style="width: 50vw; height: 500px; max-width: 900px; margin: auto;"></div>
         </td>
     </tr>
+        <input type="button" value="Atras" class="btn-otro" onClick="window.history.back()">
 </table>
 
 <script type="text/javascript">

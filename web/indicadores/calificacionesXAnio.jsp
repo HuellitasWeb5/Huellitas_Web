@@ -46,6 +46,14 @@
 %>
 <h3>INDICADOR DE CALIFICACIONES POR AÑO</h3>
 <p></p>
+
+    <form id="searchForm">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar codigo de mascota" onkeyup="filterNames()">
+            <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
+        </div>
+        <ul id="nameList"></ul>
+    </form>
 <table border="0">
     <tr>
         <td>
@@ -139,4 +147,23 @@
         chart.appear(1000, 100);
         
     }); // end am5.ready()
+    
+  function filterNames() {
+    const input = document.getElementById('searchInput');
+    const filter = input.value.toLowerCase();
+    const slides = document.getElementsByClassName('swiper-slide');
+
+    // Recorre cada slide y oculta o muestra dependiendo del filtro
+    for (let i = 0; i < slides.length; i++) {
+        // Cambia 'card-code' a la clase correcta que contiene el código de la mascota
+        const cardCodeElement = slides[i].getElementsByClassName('card-code')[0]; 
+        const textValue = cardCodeElement.textContent || cardCodeElement.innerText;
+
+        if (textValue.toLowerCase().indexOf(filter) > -1) {
+            slides[i].style.display = "";
+        } else {
+            slides[i].style.display = "none";
+        }
+    }
+}
 </script>
