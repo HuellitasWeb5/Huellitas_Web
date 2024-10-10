@@ -20,6 +20,7 @@
     String lista = "";
     for (int i = 0; i < datos.size(); i++) {
         conceptoDonacion = datos.get(i);
+    //    UnidadDeMedida unidadDeMedida = new UnidadDeMedida(conceptoDonacion.getIdUnidadDeMedida());
         lista += "<div class='swiper-slide'>";
         lista += "<div class='card'>";
         lista += "<div class='card-header'>";
@@ -29,7 +30,7 @@
         lista += "<p><strong>ID:</strong> " + conceptoDonacion.getId() + "</p>";
         lista += "<p><strong>Descripción:</strong> " + conceptoDonacion.getDescripcion() + "</p>";
         lista += "<p><strong>Tipo:</strong> " + conceptoDonacion.getTipoDonacion() + "</p>";
-        lista += "<p><strong>Unidad de Medida:</strong> " + conceptoDonacion.getIdUnidadDeMedida() + "</p>";
+        lista += "<p><strong>Unidad de Medida:</strong> " + conceptoDonacion.getUnidadDeMedida()+ "</p>";
         lista += "<div class='button-container'>";
         lista += "<button class='btn-modificar' onclick='abrirFormulario(\"Modificar\", \""
                 + conceptoDonacion.getId() + "\", \""
@@ -86,7 +87,7 @@
                 <th>Unidad de Medida</th>
                 <td>
                     <select id="idUnidadDeMedida" name="idUnidadDeMedida">
-                        <option value="" disabled selected>Seleccione una unidad de medida</option>
+                        <option  disabled selected>Seleccione una unidad de medida</option>
                         <%= UnidadDeMedida.getListaEnOptions(null)%>
                     </select>
                 </td>
