@@ -80,17 +80,17 @@
         <tr>
             <th>Foto recibo</th>
             <td>
-                <input type="file" name="fotoRecibo" accept="image/*" onchange="mostrarFotoRecibo();">
+                <input type="file" name="fotoRecibo" accept="image/*" onchange="mostrarFotoRecibo();" required="">
             </td>
         </tr>
         <tr>
             <th>Foto cedula</th>
             <td>
-                <input type="file" name="fotoCedula" accept="image/*" onchange="mostrarFotoCedula();">
+                <input type="file" name="fotoCedula" accept="image/*" onchange="mostrarFotoCedula();" required="">
             </td>
         </tr>
         <tr>
-            <td><input type="button" value="Seleccionar Mascota" onclick="abrirFormulario();"></td>
+            <td><input type="button" value="Seleccionar Mascota" onclick="abrirFormulario();" required=""></td>
         </tr>
 
     </table>

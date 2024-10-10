@@ -74,7 +74,6 @@ listaApadrinamiento += "</div>";
     <button class="btn-adicionar" type="button">Adicionar Padripet</button>
 </a>
 
-<!-- Aquí puedes incluir el carrusel fuera de la tabla -->
 <div class='carousel-container'>
     <div class='swiper-container carousel'>
         <%= listaApadrinamiento %>

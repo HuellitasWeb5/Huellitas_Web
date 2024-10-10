@@ -8,13 +8,30 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
+
 <%
-    //subido ahora
-    String accion = request.getParameter("accion");
-    String codigo = request.getParameter("codigo");
     PlanesApadrinamiento planes=new PlanesApadrinamiento();
     String lista="";
     List<PlanesApadrinamiento> datos=PlanesApadrinamiento.getListaEnObjetos(null, null);
+
+    // Crear objeto de JavaScript con los datos de tipos de donación
+%>
+
+<script>
+    const planesP = {};
+
+    <% for (int i = 0; i < datos.size(); i++) {
+            planes = datos.get(i);%>
+    planesP["<%= planes.getId() %>"] = {
+        nombre: "<%= planes.getNombre()%>",
+        descripcion: "<%= planes.getDescripcion()%>"
+    };
+    <% } %>
+</script>
+
+
+<%
+    
     for (int i = 0; i < datos.size(); i++) {
         planes = datos.get(i);
         lista += "<div class='swiper-slide'>";
@@ -36,8 +53,16 @@
 %>
 
 <h3>PLANES PARA PADRINOS</h3>
-<button class="add-button" onclick="abrirFormulario('Adicionar');">Agregar Plan padripets</button>
-
+<div class="header-container">
+        <form id="searchForm">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
+                <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
+            </div>
+            <ul id="nameList"></ul>
+        </form>
+        <button class="btn-adicionar" onclick="abrirFormulario('Adicionar');">Agregar Tipo de donacion</button>
+    </div>
 <div class="swiper-container">
         <div class="swiper-wrapper">
             <%= lista %>
@@ -50,8 +75,8 @@
 <div id="formularioPlan" title="Adicionar Planes para Padrinos" >
     <form name="formularioPlanes">
         <table>
-            <tr><th>Nombre: </th><td><input type="text" name="Nombre" id="Nombre"></td></tr>
-            <tr><th>Descripcion: </th><td><input type="text" name="Descripcion" id="Descripcion" ></td></tr>
+            <tr><th>Nombre: </th><td><input type="text" name="Nombre" id="Nombre" required> </td></tr>
+            <tr><th>Descripcion: </th><td><input type="text" name="Descripcion" id="Descripcion" required></td></tr>
         </table>
         <input class="btn-adicionar" type="button" value="Agregar" onclick="agregarPlan();">
         <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
@@ -106,7 +131,19 @@
         var descripcion = document.getElementById('Descripcion').value;
         var url = "principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesActualizar.jsp?accion=Modificar&id=" + id + "&Nombre=" + nombre + "&Descripcion=" + descripcion;
         window.location.href = url;
+        
+        cargarDatos(codigo);
     }
+    
+    function cargarDatos(codigo) {
+        const planes = planesP[codigo];
+
+        if (tipoDonacion) {
+            document.getElementById('nombre').value = planes.nombre;
+            document.getElementById('descripcion').value = planes.descripcion;
+        }
+    }
+    
     function agregarPlan() {
         var nombre = document.getElementById('Nombre').value;
         var descripcion = document.getElementById('Descripcion').value;
@@ -131,5 +168,21 @@
             el: '.swiper-pagination',
             clickable: true
         }
-    });
+    });function filterNames() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const slides = document.getElementsByClassName('swiper-slide');
+
+        // Recorre cada slide y oculta o muestra dependiendo del filtro
+        for (let i = 0; i < slides.length; i++) {
+            const cardHeader = slides[i].getElementsByClassName('card-header')[0];
+            const textValue = cardHeader.textContent || cardHeader.innerText;
+
+            if (textValue.toLowerCase().indexOf(filter) > -1) {
+                slides[i].style.display = "";
+            } else {
+                slides[i].style.display = "none";
+            }
+        }
+    }
 </script>
