@@ -1,3 +1,5 @@
+<%@page import="clases.TipoDonacion"%>
+<%@page import="clases.ConceptoDonacion"%>
 <%@page import="java.util.List"%>
 <%@page import="clases.DonacionDetalle"%>
 <%@page import="clases.DonacionDetalle"%>
@@ -5,18 +7,21 @@
     String codigo = request.getParameter("codigo");
     DonacionDetalle donacionDetalle = new DonacionDetalle();
     String lista = "";
-    List<DonacionDetalle> detalles = DonacionDetalle.getListaEnObjetos("codigoDonacion="+codigo, null); // Método para obtener la lista de DonacionDetalle
+    List<DonacionDetalle> detalles = DonacionDetalle.getListaEnObjetos("codigoDonacion=" + codigo, null); // Método para obtener la lista de DonacionDetalle
     for (int i = 0; i < detalles.size(); i++) {
         donacionDetalle = detalles.get(i);
+        ConceptoDonacion conceptoDonacion = new ConceptoDonacion(donacionDetalle.getId());
+        TipoDonacion tipoDonacion = new TipoDonacion(donacionDetalle.getIdConcepto());
+
         lista += "<div class='swiper-slide'>";
         lista += "<div class='card'>";
         lista += "<div class='card-header'>";
         lista += "<h2>ID: " + donacionDetalle.getId() + "</h2>";
         lista += "</div>";
         lista += "<div class='card-body'>";
-        lista += "<p><strong>ID Concepto:</strong> " + donacionDetalle.getIdConcepto() + "</p>";
+        lista += "<p><strong>ID Concepto:</strong> " + conceptoDonacion.getNombre()+ "</p>";
+        lista += "<p><strong>Código Tipo Donación:</strong> " + tipoDonacion.getNombre() + "</p>";
         lista += "<p><strong>Cantidad:</strong> " + donacionDetalle.getCantidad() + "</p>";
-        lista += "<p><strong>Código Tipo Donación:</strong> " + donacionDetalle.getCodigoTipoDonacion() + "</p>";
         lista += "<p><strong>Código Donación:</strong> " + donacionDetalle.getCodigoDonacion() + "</p>";
         lista += "</div>"; // Fin de card-body
         lista += "</div>"; // Fin de card
