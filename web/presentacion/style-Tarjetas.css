@@ -465,8 +465,8 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .btn-otro {
-    padding: 10px 20px;
-    background-color: #1994d2;
+    padding: 5px 15px;
+    background-color: #1dba35;
     color: white;
     border: none;
     border-radius: 5px;
@@ -491,7 +491,7 @@ input[type="radio"], input[type="checkbox"] {
     padding: 8px;
     border-radius: 15px;
     border: 1px solid #ccc;
-    width: 500px; /* Ajusta el ancho como desees */
+    width: 300px; /* Ajusta el ancho como desees */
     margin-right: 10px; /* Espacio entre el input y el icono */
 }
 
