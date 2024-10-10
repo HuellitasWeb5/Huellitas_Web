@@ -9,30 +9,14 @@
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
 </head>
 
+
+
 <%
     String codigo = request.getParameter("codigo");
 
     TipoDonacion tipoDonacion = new TipoDonacion(codigo);
     ConceptoDonacion conceptoDonacion = new ConceptoDonacion();
     List<ConceptoDonacion> datos = ConceptoDonacion.getListaEnObjetos("codigoTipoDonacion=" + codigo, null);
-%>
-
-<script>
-    // Crear un objeto en JavaScript para almacenar los conceptos de donación
-    const conceptoDonacion = {};
-
-    <% for (int i = 0; i < datos.size(); i++) {
-            ConceptoDonacion concepto = datos.get(i);%>
-    conceptoDonacion["<%= concepto.getId()%>"] = {
-        nombre: "<%= concepto.getNombre()%>",
-        descripcion: "<%= concepto.getDescripcion()%>",
-        tipoDonacion: "<%= concepto.getTipoDonacion()%>", // Asegúrate de que este campo es correcto
-        idUnidadDeMedida: "<%= concepto.getIdUnidadDeMedida()%>"  // Asegúrate de que este campo también es correcto
-    };
-    <% } %>
-</script>
-
-<%
     String lista = "";
     for (int i = 0; i < datos.size(); i++) {
         conceptoDonacion = datos.get(i);
@@ -47,7 +31,13 @@
         lista += "<p><strong>Tipo:</strong> " + conceptoDonacion.getTipoDonacion() + "</p>";
         lista += "<p><strong>Unidad de Medida:</strong> " + conceptoDonacion.getIdUnidadDeMedida() + "</p>";
         lista += "<div class='button-container'>";
-        lista += "<button class='btn-modificar' onclick='abrirFormulario(\"Modificar\", \"" + conceptoDonacion.getId() + "\", \"" + codigo + "\");'>Modificar</button>";
+        lista += "<button class='btn-modificar' onclick='abrirFormulario(\"Modificar\", \""
+                + conceptoDonacion.getId() + "\", \""
+                + conceptoDonacion.getCodigoTipoDonacion() + "\", \""
+                + conceptoDonacion.getNombre() + "\", \""
+                + conceptoDonacion.getDescripcion() + "\", \""
+                + conceptoDonacion.getTipoDonacion() + "\", \""
+                + conceptoDonacion.getIdUnidadDeMedida() + "\")'>Modificar</button>";
         lista += "<button class='btn-eliminar' onclick='confirmarEliminacion(\"" + conceptoDonacion.getId() + "\", \"" + codigo + "\")'>Eliminar</button>";
         lista += "</div>";
         lista += "</div>";
@@ -55,6 +45,7 @@
         lista += "</div>";
     }
 %>
+
 <h3>CONCEPTOS DE DONACIONES</h3> 
 <div class="header-container">
     <form id="searchForm">
@@ -108,6 +99,7 @@
 
 
 <script>
+
     function confirmarEliminacion(id, codigo) {
         const respuesta = confirm("¿Realmente desea eliminar el registro?");
         if (respuesta) {
@@ -130,38 +122,32 @@
             }
         });
     });
-
-    function cargarDatosConceptoDonacion(id) {
-        const concepto = conceptoDonacion[id]; // Obteniendo el concepto por su ID
-
-        if (concepto) {
-            document.getElementById('nombre').value = concepto.nombre;
-            document.getElementById('descripcion').value = concepto.descripcion;
-            document.getElementById('codigoTipoDonacion').value = concepto.tipoDonacion;
-            document.getElementById('idUnidadDeMedida').value = concepto.idUnidadDeMedida;
-        } else {
-            console.error('No se encontró el concepto con ID: ' + id);
-        }
-    }
-
-    function abrirFormulario(accion, idConcepto = null, codigoTipoDonacion = null) {
+    function abrirFormulario(accion, idConcepto = null, codigoTipoDonacion = null, nombre = '', descripcion = '', tipoDonacion = '', idUnidadDeMedida = '') {
         if (accion === "Modificar") {
             $('#formulario').dialog('option', 'title', 'Modificar Concepto de Donación');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Modificar';
             document.querySelector('input[type="button"][value="Modificar"]').setAttribute('onclick', 'modificarConceptoDonacion("' + idConcepto + '", "' + codigoTipoDonacion + '");');
-            cargarDatosConceptoDonacion(idConcepto);  // Precargar datos
+
+            // Precargar los datos en los campos del formulario
+            document.getElementById('nombre').value = nombre;
+            document.getElementById('descripcion').value = descripcion;
+            document.getElementById('codigoTipoDonacion').value = codigoTipoDonacion;
+            document.getElementById('idUnidadDeMedida').value = idUnidadDeMedida;
+
         } else if (accion === "Adicionar") {
             $('#formulario').dialog('option', 'title', 'Adicionar Concepto de Donación');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Agregar';
             document.querySelector('input[type="button"][value="Agregar"]').setAttribute('onclick', 'agregarConceptoDonacion("' + codigoTipoDonacion + '");');
+
+            // Limpiar los campos del formulario para una nueva entrada
             document.getElementById('nombre').value = '';
             document.getElementById('descripcion').value = '';
             document.getElementById('codigoTipoDonacion').value = codigoTipoDonacion;
             document.getElementById('idUnidadDeMedida').value = '';
         }
+
         $('#formulario').dialog('open');
     }
-
 
     function agregarConceptoDonacion(codigo) {
         // Obtener los valores de los campos
@@ -226,3 +212,4 @@
         }
     }
 </script>
+
