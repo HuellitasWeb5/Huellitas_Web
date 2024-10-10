@@ -6,11 +6,14 @@
 </head>
 <%
     String anio = request.getParameter("anio");
+    String codigoMascota = request.getParameter("codigoMascota");
+
     if (anio == null || anio.isEmpty()) {
         anio = "2024"; // Valor predeterminado si no se proporciona el año
     }
-    // Obtén los datos de calificaciones por mes
-    List<String[]> datos = FormularioDeSeguimiento.getCalificacionesPorMes(anio);
+
+    // Obtén los datos de calificaciones por mes filtrando por código de mascota y año
+    List<String[]> datos = FormularioDeSeguimiento.getCalificacionesPorMes(anio, codigoMascota);
     StringBuilder lista = new StringBuilder();
     StringBuilder datosGraficos = new StringBuilder("[");
 
@@ -36,23 +39,26 @@
 
         if (i > 0) datosGraficos.append(", ");
         datosGraficos.append("{");
-        datosGraficos.append("\"category\": \"").append(registro[0]).append("\",");
-        datosGraficos.append("\"value\": ").append(calificacion); // Total Calificaciones
+        datosGraficos.append("\"category\": \"").append(registro[0]).append("\","); // Mes
+        datosGraficos.append("\"value\": ").append(calificacion); // Calificación total
         datosGraficos.append("}");
     }
     datosGraficos.append("]");
 %>
 
 <h3>INDICADOR DE CUIDADOS POR MES</h3>
+
+
 <table border="0">
     <tr>
         <td>
             <table border="1">
-                <th>Mes</th>
-                <th>Código de Mascota</th>
-                <th>Calificación</th>
-                <th>Total Calificaciones</th>
-
+                <tr>
+                    <th>Mes</th>
+                    <th>Código de Mascota</th>
+                    <th>Calificación</th>
+                    <th>Total Calificaciones</th>
+                </tr>
                 <%= lista.toString() %>
             </table>
         </td>
@@ -60,14 +66,16 @@
             <div id="chartdiv" style="width: 60vw; height: 500px; max-width: 900px; margin: auto;"></div>
         </td>
     </tr>
-    <input type="button" value="Atras" class="btn-otro" onClick="window.history.back()">
-</table>
 
+<input type="button" value="Atras" class="btn-otro" onClick="window.history.back()">
+</table>
 <script type="text/javascript">
     am5.ready(function() {
         var root = am5.Root.new("chartdiv");
 
-        root.setThemes([am5themes_Animated.new(root)]);
+        root.setThemes([
+            am5themes_Animated.new(root)
+        ]);
 
         var chart = root.container.children.push(am5xy.XYChart.new(root, {
             panX: true,
@@ -94,44 +102,48 @@
         });
 
         var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
-            categoryField: "category",
+            categoryField: "category",  // Año - Código de Mascota
             renderer: xRenderer,
             tooltip: am5.Tooltip.new(root, {})
         }));
 
+        // Configuración del eje Y con el rango de 0 a 5
         var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
-            min: 0, // Asegura que el eje Y comience en 0
-            max: 5, // Establece el máximo en 5
-            strictMinMax: true, // Evita que el rango se ajuste automáticamente
+            min: 0,  // Valor mínimo en el eje Y
+            max: 5,  // Valor máximo en el eje Y
+            strictMinMax: true,  // Mantener el rango fijo
             renderer: am5xy.AxisRendererY.new(root, {})
         }));
 
+        // Serie para el total de calificaciones (calificación por estrellas)
         var series = chart.series.push(am5xy.ColumnSeries.new(root, {
-            name: "Mascotas",
+            name: "Calificación",
             xAxis: xAxis,
             yAxis: yAxis,
             valueYField: "value",
             categoryXField: "category",
             tooltip: am5.Tooltip.new(root, {
-                labelText: "{valueY} estrellas"
+                labelText: "{valueY} estrellas"  // Mostrar número de estrellas en el tooltip
             })
         }));
 
-        // Ajustar el ancho de las columnas para hacer la gráfica más delgada
         series.columns.template.setAll({
-            width: am5.percent(40), // Reduce el ancho de las barras para hacer la gráfica más delgada
             cornerRadiusTL: 5,
             cornerRadiusTR: 5,
             strokeOpacity: 0,
             fill: am5.color("#7fbc95")
         });
 
-        var data = <%= datosGraficos.toString() %>;
+        // Datos de la gráfica
+        var data = <%=datosGraficos.toString()%>;
 
         xAxis.data.setAll(data);
         series.data.setAll(data);
 
         series.appear(1000);
         chart.appear(1000, 100);
-    });
+        
+    }); // end am5.ready()
+
+
 </script>
