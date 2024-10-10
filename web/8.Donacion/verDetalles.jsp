@@ -19,20 +19,37 @@
     for (int i = 0; i < datos.size(); i++) {
         donacion = datos.get(i);
         Persona persona = new Persona(donacion.getIdentificacionDonante());
-        listaDonante += "<div class='donante-card'>";
-        listaDonante += "    <div class='donante-header'>";
-        listaDonante += "        <h3 class='donante-titulo'>Datos del Adoptante</h3>";
-        listaDonante += "    </div>";
-        listaDonante += "    <div class='donante-body'>";
-        listaDonante += "        <p><strong>Nombre del Adoptante:</strong> <span class='donante-nombre'>" + persona.getNombre() + "</span></p>";
-        listaDonante += "        <p><strong>Identificación:</strong> <span class='donante-identificacion'>" + persona.getIdentificacion() + "</span></p>";
-        listaDonante += "        <p><strong>Contacto:</strong> <span class='donante-contacto'>" + persona.getTelefono() + "</span></p>";
-        listaDonante += "    </div>";
+        listaDonante += "<div class='container'>";
+        listaDonante += "<div class='header'>Datos del Usuario</div>";
+        listaDonante += "<div class='content'>";
+        
+        listaDonante += "<div class='form-group'>";
+        listaDonante += "<label>Identificación</label>";
+        listaDonante += "<span>" + persona.getIdentificacion()+ "</span>";
         listaDonante += "</div>";
+        
+        listaDonante += "<div class='form-group'>";
+        listaDonante += "<label>Nombre</label>";
+        listaDonante += "<span>" + persona.getNombre()+ "</span>";
+        listaDonante += "</div>";
+        
+        listaDonante += "<div class='form-group'>";
+        listaDonante += "<label>Fecha</label>";
+        listaDonante += "<span>" + donacion.getFecha()+ "</span>";
+        listaDonante += "</div>";
+        
+        listaDonante += "<div class='form-group'>";
+        listaDonante += "<label>Descripcion</label>";
+        listaDonante += "<span>" + donacion.getDescripcion()+ "</span>";
+        listaDonante += "</div>";
+        listaDonante += "</div>";
+        listaDonante += "</div>";
+   
 
     }
     for (int i = 0; i < detalles.size(); i++) {
         donacionDetalle = detalles.get(i);
+
         lista += "<div class='swiper-slide'>";
         lista += "<div class='card'>";
         lista += "<div class='card-header'>";
@@ -54,8 +71,7 @@
     <button class="btn-regresar" onclick="window.history.back();">Regresar</button>
 </div>
 
-<%=listaDonante%>
-
+        <%=listaDonante%>
 <div class="swiper-container">
     <div class="swiper-wrapper">
         <%=lista%>
@@ -81,3 +97,4 @@
 
 </script>
 
+    
