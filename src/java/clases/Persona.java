@@ -168,6 +168,9 @@ public class Persona {
     }
 
     public TipoPersona getTipoEnObjeto() {
+         if (tipo == null) {
+            tipo = "";
+        }
         return new TipoPersona(tipo);
     }
 
