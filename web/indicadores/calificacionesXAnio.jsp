@@ -26,7 +26,8 @@
         lista.append("<tr>");
         lista.append("<td><a href='principal.jsp?CONTENIDO=indicadores/calificacionesXMes.jsp&anio=")
                 .append(registro[0])  // Año
-                .append("'>").append(registro[0]).append("</a></td>");  // Año con enlace
+                .append("&codigoMascota=").append(registro[1]).append("'>")  // Código de Mascota
+                .append(registro[0]).append("</a></td>");  // Año con enlace
         lista.append("<td>").append(registro[1]).append("</td>");  // Código de Mascota
         lista.append("<td>").append(estrellas.toString()).append("</td>");  // Calificación con estrellas
         lista.append("<td>").append(registro[3]).append("</td>");  // Total de Calificaciones
@@ -42,18 +43,11 @@
         datosGraficos.append("\"value\": ").append(calificacion);  // Usar la calificación como el valor de la gráfica
         datosGraficos.append("}");
     }
-    datosGraficos.append("]");
+    datosGraficos.append("]"); 
 %>
 <h3>INDICADOR DE CALIFICACIONES POR AÑO</h3>
 <p></p>
 
-<form id="searchForm">
-    <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Buscar codigo de mascota" onkeyup="filterNames()">
-        <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
-    </div>
-    <ul id="nameList"></ul>
-</form>
 
 <table border="0">
     <tr>
@@ -146,36 +140,5 @@
         
     }); // end am5.ready()
 
-    function filterNames() {
-        const input = document.getElementById('searchInput');
-        const filter = input.value.toLowerCase();
-        const slides = document.getElementsByClassName('swiper-slide');
-        const datosOriginales = <%=datosGraficos.toString()%>; // Almacena los datos originales
-
-        // Recorre cada slide y oculta o muestra dependiendo del filtro
-        for (let i = 0; i < slides.length; i++) {
-            const cardCodeElement = slides[i].getElementsByClassName('card-code')[0]; 
-            const textValue = cardCodeElement.textContent || cardCodeElement.innerText;
-
-            if (textValue.toLowerCase().indexOf(filter) > -1) {
-                slides[i].style.display = "";
-                // Aquí se puede agregar lógica para actualizar la gráfica
-                updateChartForCode(textValue);
-            } else {
-                slides[i].style.display = "none";
-            }
-        }
-    }
-
-    function updateChartForCode(codigoMascota) {
-        // Filtrar los datos originales por el código de mascota
-        const filteredData = datosOriginales.filter(data => data.category.includes(codigoMascota));
-
-        // Actualiza la gráfica con los datos filtrados
-        const xAxis = chart.xAxes.getIndex(0);
-        const series = chart.series.getIndex(0);
-        
-        xAxis.data.setAll(filteredData);
-        series.data.setAll(filteredData);
-    }
+   
 </script>

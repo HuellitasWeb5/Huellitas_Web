@@ -3,15 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="presentacion/style-TarjetasModificar.css">
-    <script>
-        function mostrarFoto() {
-            var lector = new FileReader();
-            lector.readAsDataURL(document.formulario.foto.files[0]);
-            lector.onloadend = function() {
-                document.getElementById("foto").src = lector.result;
-            }
-        }
-    </script>
+   
 </head>
 <%
 String accion = request.getParameter("accion");
@@ -85,3 +77,12 @@ if (accion.equals("Modificar")) {
         </div>
     </div>
 </div>
+       <script>
+        function mostrarFoto() {
+            var lector = new FileReader();
+            lector.readAsDataURL(document.formulario.foto.files[0]);
+            lector.onloadend = function() {
+                document.getElementById("foto").src = lector.result;
+            }
+        }
+    </script>

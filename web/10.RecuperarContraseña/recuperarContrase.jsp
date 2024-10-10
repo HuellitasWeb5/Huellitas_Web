@@ -23,16 +23,19 @@
     <title>Recuperar Contraseña</title>
 </head>
 <body>
+    <h1>RECUPERAR CONTRASEÑA</h1>
+<h2 class="subtitulo">Ingrese su número de identificación y se le enviará un código al correo vinculado a su cuenta.</h2> <!-- Subtítulo con clase CSS -->
 
-    <h1>Formulario de recuperación de contraseña</h1>
-    <form action="" method="post">
-        <label for="identificacion">Número de Identificación:</label>
-        <input type="text" id="identificacionD" name="identificacion" required><br>
+<form action="" method="post">
+    <label for="identificacion">Número de Identificación:</label>
+    <input type="text" id="identificacionD" name="identificacion" required><br>
 
-        <input type="submit" value="Recuperar Contraseña">
-    </form>
-    <a href='../index-InicioSesion.jsp'>Regresar al inicio</a>
-       
+    <input type="submit" value="Recuperar Contraseña">
+</form>
+<a href='../index-InicioSesion.jsp'>Regresar al inicio</a>
+
+
+
 <% 
     if (request.getMethod().equalsIgnoreCase("POST")) {
         String identificacion = request.getParameter("identificacion");
