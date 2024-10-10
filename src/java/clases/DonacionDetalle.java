@@ -74,6 +74,12 @@ public class DonacionDetalle {
     public void setCodigoDonacion(String codigoDonacion) {
         this.codigoDonacion = codigoDonacion;
     }
+    public TipoDonacion getTipoDonacion() {
+        return new TipoDonacion(codigoTipoDonacion);
+    }
+    public ConceptoDonacion getConceptoDonacion() {
+        return new ConceptoDonacion(idConcepto);
+    }
 
     @Override
     public String toString() {
@@ -134,4 +140,5 @@ public class DonacionDetalle {
         }
         return lista;
     }
+
 }

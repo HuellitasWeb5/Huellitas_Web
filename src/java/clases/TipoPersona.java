@@ -137,7 +137,7 @@ public class TipoPersona {
             menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/mascotasXAnio.jsp'>Mascotas</a></li>";
             menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/adopcionesXAnio.jsp'>Adopciones</a></li>";
             menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/apadrinamientoXAnio.jsp'>Apadrinamientos</a></li>"; // Asegúrate de tener la ruta correcta
-            menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/donaciones.jsp'>Donaciones</a></li>";
+            menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/donacionesXAnio.jsp'>Donaciones</a></li>";
             menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/calificacionesXAnio.jsp'>Cuidados</a></li>"; // Asegúrate de tener la ruta correcta
             menu += "</ul></li>";
 

@@ -33,7 +33,7 @@
     datosGraficos.append("]");
 %>
 
-<h3>Indicador de Formularios de Adopción por Fecha de Solicitud</h3>
+<h3>Indicador de Formularios de Adopción </h3>
 <table border="0">
     <tr>
         <td>
