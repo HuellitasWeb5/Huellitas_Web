@@ -20,7 +20,7 @@
     max-width: 100%;
     box-sizing: border-box; /* Asegura que padding y bordes estén dentro del ancho */
     margin-bottom: 10px;
-    transition: transform 0.3s ease, background-color 0.3s ease;
+
     width: 100%; /* Asegura que las tarjetas se ajusten al 100% del ancho */
     background-color: #cce5ff; /* Fondo */
     border-radius: 10px;
@@ -191,7 +191,7 @@ h3 {
 
 .card:hover {
     background-color: #99ccff; /* Color al pasar el cursor */
-    transform: translateY(-10px); /* Mueve la tarjeta hacia arriba */
+   
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
 }
 .card-footer {
@@ -341,7 +341,7 @@ input[type="text"], input[type="number"], textarea {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     font-size: 1em; /* Tamaño de fuente */
     background-color: #fff; /* Color de fondo blanco */
-    transition: border-color 0.3s ease-in-out; /* Transición suave para el cambio de borde */
+  
 }
 
 
