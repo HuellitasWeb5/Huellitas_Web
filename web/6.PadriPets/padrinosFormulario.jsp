@@ -3,7 +3,7 @@
     Created on : 02-sep-2024, 16:58:56
     Author     : SENA
 --%>
-
+    
 <%@page import="clases.Persona"%>
 <%@page import="clases.Mascota"%>
 <%@page import="clases.PlanesApadrinamiento"%>
@@ -14,126 +14,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="presentacion/estiloRepetido.css">
+    <link rel="stylesheet" href="presentacion/estiloyandar.css">
+    
 </head>
+
+<style>
+.card.selected {
+    border: 2px solid #007BFF; /* Cambia el color del borde */
+    background-color: #E9F5FF; /* Cambia el color de fondo */
+}
+
+
+.ui-autocomplete {
+    z-index: 1000; /* Asegura que la lista esté por encima de otros elementos */
+    max-height: 200px; /* Controla el alto máximo de la lista desplegable */
+    overflow-y: auto; /* Habilita el scroll si hay muchas opciones */
+    overflow-x: hidden;
+</style>
 
 <%
     String accion = request.getParameter("accion");
     String codigo = request.getParameter("codigo");
-    String lineaModificar = "";
     Apadrinamiento apadrinamiento = new Apadrinamiento();
-    
-    String listaPlan = "<div class='carousel-container'>";
-    listaPlan += "<div class='swiper-container carousel'>";
-    listaPlan += "<div class='swiper-wrapper'>";
-    List<PlanesApadrinamiento> datosPlanes = PlanesApadrinamiento.getListaEnObjetos(null, null);
-    for (int j = 0; j < datosPlanes.size(); j++) {
-        PlanesApadrinamiento planes2 = datosPlanes.get(j);
-        listaPlan += "<div class='swiper-slide'>";
-        listaPlan += "<div class='card'>";
-        listaPlan += "<div class='card-header'>";
-        listaPlan += "<h2>" + planes2.getNombre() + "</h2>";
-        listaPlan += "</div>";
-        listaPlan += "<div class='card-body'>";
-        listaPlan += "<p><strong>Codigo:</strong> " + planes2.getId() + "</p>";
-        listaPlan += "<p><strong>Descripción:</strong> " + planes2.getDescripcion() + "</p>";
-        listaPlan += "<div class='button-container'>";
-        listaPlan += "<input type='radio' name='opcionSeleccionada' value='" + planes2.getId() + "'>";
-        listaPlan += "</div>";
-        listaPlan += "</div>";
-        listaPlan += "</div>";
-        listaPlan += "</div>";
-    }
-    listaPlan += "</div>";
 
-    listaPlan += "<div class='swiper-button-prev'></div>";
-    listaPlan += "<div class='swiper-button-next'></div>";
+    String listaPlan = "<div class='carousel-container'>";
+listaPlan += "<div class='swiper-container carousel'>";
+listaPlan += "<div class='swiper-wrapper'>";
+List<PlanesApadrinamiento> datosPlanes = PlanesApadrinamiento.getListaEnObjetos(null, null);
+for (int j = 0; j < datosPlanes.size(); j++) {
+    PlanesApadrinamiento planes2 = datosPlanes.get(j);
+    listaPlan += "<div class='swiper-slide'>";
+    listaPlan += "<div class='card'>";
+    listaPlan += "<div class='card-header'>";
+    listaPlan += "<h2>" + planes2.getNombre() + "</h2>";
+    listaPlan += "</div>";
+    listaPlan += "<div class='card-body'>";
+    
+    // Aquí se agrega el label alrededor de la tarjeta
+    listaPlan += "<label style='display: block; cursor: pointer;'>";
+    listaPlan += "<p><strong>Codigo:</strong> " + planes2.getId() + "</p>";
+    listaPlan += "<p><strong>Descripción:</strong> " + planes2.getDescripcion() + "</p>";
+    listaPlan += "<div class='button-container'>";
+    listaPlan += "<input type='radio' name='opcionSeleccionada' value='" + planes2.getId() + "' style='display: none;'>";
+    listaPlan += "</div>";
+    listaPlan += "</label>"; // Cierra el label
+
     listaPlan += "</div>";
     listaPlan += "</div>";
+    listaPlan += "</div>";
+}
+listaPlan += "</div>";
+
+listaPlan += "<div class='swiper-button-prev'></div>";
+listaPlan += "<div class='swiper-button-next'></div>";
+listaPlan += "</div>";
+listaPlan += "</div>";
+
 
 
 %>
 <center>
-<h3><%=accion.toUpperCase()%>  PADRIPET</h3>
-<!--<table border="0">
-    <td>-->
-<form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
+    <div class="card-carousel">
+        <div class="card">
+            <div class="card-header">
+                <h3><%=accion.toUpperCase()%>  PADRIPET</h3>
+            </div>
+            <div class="card-body">
 
-    <input type="hidden" name="mascotasPlan" id="mascotasPlan">
-    <table border='0'>
-        <tr>
-            <th>Identificacion</th>
-            <td><input type="text" name="identificacion" id="identificacion" required></td>
-        </tr>
-        <tr>
-            <th>Nombre</th>
-            <td type="text" name="nombre" id="nombre"></td>
-        </tr>
-        <tr>
-            <th>Direccion</th>
-            <td type="text" name="direccion" id="direccion"></td>
-        </tr>
-        <tr>
-            <th>Telefono</th>
-            <td type="text" name="telefono" id="telefono"></td>
-        </tr>
-        <tr>
-            <th>Foto recibo</th>
-            <td>
-                <input type="file" name="fotoRecibo" accept="image/*" onchange="mostrarFotoRecibo();" required="">
-            </td>
-        </tr>
-        <tr>
-            <th>Foto cedula</th>
-            <td>
-                <input type="file" name="fotoCedula" accept="image/*" onchange="mostrarFotoCedula();" required="">
-            </td>
-        </tr>
-        <tr>
-            <td><input type="button" value="Seleccionar Mascota" onclick="abrirFormulario();" required=""></td>
-        </tr>
+                <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
 
-    </table>
-    <input type="hidden" name="numero" value="<%=codigo%>">
-    <input type="submit" name="accion" value="<%= accion != null ? accion : "Adicionar"%>">
-    <input type="button" value="Cancelar" onClick="window.history.back()">
-</form>
-<!--</td>
-</td><td><img src="presentacion/padripet/<%=apadrinamiento.getFotoRecibo()%>" id="fotoRecibo" width="auto" height="350"></td>
-</td><td><img src="presentacion/padripet/<%=apadrinamiento.getFotoCedula()%>" id="fotoCedula" width="auto" height="350"></td>
-</table>-->
+                    <input type="hidden" name="mascotasPlan" id="mascotasPlan">
+                    <table border='0'>
+                        <tr>
+                            <th>Identificacion</th>
+                            <td><input type="text" name="identificacion" id="identificacion" required></td>
+                        </tr>
+                        <tr>
+                            <th>Nombre</th>
+                            <td type="text" name="nombre" id="nombre"></td>
+                        </tr>
+                        <tr>
+                            <th>Direccion</th>
+                            <td type="text" name="direccion" id="direccion"></td>
+                        </tr>
+                        <tr>
+                            <th>Telefono</th>
+                            <td type="text" name="telefono" id="telefono"></td>
+                        </tr>
+                        <tr>
+                            <th>Foto recibo</th>
+                            <td>
+                                <input type="file" name="fotoRecibo" accept="image/*" onchange="mostrarFotoRecibo();" required="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Foto cedula</th>
+                            <td>
+                                <input type="file" name="fotoCedula" accept="image/*" onchange="mostrarFotoCedula();" required="">
+                            </td>
+                        </tr>
+                        </div>
+
+                        <tr>
+                            <td><input type="button" value="Seleccionar Mascota" onclick="abrirFormulario();" required=""></td>
+                        </tr>
+
+                    </table>
+                    <input type="hidden" name="numero" value="<%=codigo%>">
+                    <input type="submit" name="accion" value="<%= accion != null ? accion : "Adicionar"%>">
+                    <input type="button" value="Cancelar" onClick="window.history.back()">
+                </form>
+            </div>
 
 
+            <div class="carousel-container">
+                <div class="swiper-container" id="contenedorTarjetas">
+                    <div class="swiper-wrapper">
+                        <!-- Aquí se generarán dinámicamente las tarjetas -->
+                    </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+            </div>
 
-<div class="carousel-container">
-    <div class="swiper-container" id="contenedorTarjetas">
-        <div class="swiper-wrapper">
-            <!-- Aquí se generarán dinámicamente las tarjetas -->
+
         </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-    </div>
-</div>
 
-
-
-
-<div id="formulario" title="Apadrinar mascota">
-    <form name="formularioMascotas">
-        <table id="mascotas" border="0">
-            <tr><th>Mascota</th><th><input type="text" name="Mascota" id="Mascota" required></th></tr>
-            <tr><th>Fecha Inicio:</th><th><input type="date" name="Fecha" id="Fecha" required></th></tr>
-            <tr><th>Fecha Fin:</th><th><input type="date" name="FechaFin" id="FechaFin" required></th></tr>
-        </table>
-        <%= listaPlan%>
-        <input type="button" value="Agregar" onclick="actualizarTabla();">
-        <input type="button" value="Cancelar" onclick="cerrarFormulario();">
-    </form>
-</div>
+        <div id="formulario" title="Apadrinar mascota">
+            <form name="formularioMascotas">
+                <table id="mascotas" border="0">
+                    <tr><th>Mascota</th><th><input type="text" name="Mascota" id="Mascota" required></th></tr>
+                    <tr><th>Fecha Inicio:</th><th><input type="date" name="Fecha" id="Fecha" required></th></tr>
+                    <tr><th>Fecha Fin:</th><th><input type="date" name="FechaFin" id="FechaFin" required></th></tr>
+                </table>
+                <%= listaPlan%>
+                <input type="button" value="Agregar" onclick="actualizarTabla();">
+                <input type="button" value="Cancelar" onclick="cerrarFormulario();">
+            </form>
+        </div>
 </center>
 <script>
 
+    document.querySelectorAll('input[name="opcionSeleccionada"]').forEach(function(radio) {
+    radio.addEventListener('change', function() {
+        // Quitar la clase 'selected' de todas las tarjetas
+        document.querySelectorAll('.card').forEach(function(card) {
+            card.classList.remove('selected');
+        });
 
+        // Agregar la clase 'selected' a la tarjeta correspondiente
+        const card = this.closest('.card');
+        if (card) {
+            card.classList.add('selected');
+        }
+    });
+});
 
     var planes = <%= PlanesApadrinamiento.getListaCompletaEnArregloJS(null, null)%>;
 
