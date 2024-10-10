@@ -17,8 +17,6 @@
     TipoDonacion tipoDonacion = new TipoDonacion();
     String lista = "";
     List<TipoDonacion> datos = TipoDonacion.getListaEnObjetos(null, null);
-
-    // Crear objeto de JavaScript con los datos de tipos de donación
 %>
 
 <script>
