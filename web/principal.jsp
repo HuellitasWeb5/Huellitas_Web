@@ -8,16 +8,20 @@
 <%@page import="clases.Persona"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<% 
-HttpSession sesion=request.getSession();
-Persona USUARIO=null;
-if (sesion.getAttribute("usuario")==null) response.sendRedirect("index.jsp?error=2");
-else USUARIO=(Persona) sesion.getAttribute("usuario");
+<%
+    HttpSession sesion = request.getSession();
+    Persona USUARIO = null;
+    if (sesion.getAttribute("usuario") == null) {
+        response.sendRedirect("index.jsp?error=2");
+    } else {
+        USUARIO = (Persona) sesion.getAttribute("usuario");
+    }
 %>
 
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="presentacion/style-TarjetasModificar.css">
         <link rel="stylesheet" href="recursos/jquery-ui-1.13.3.custom/jquery-ui.css">
         <link rel="stylesheet" href="presentacion/style-Index.css">
         <link rel="stylesheet" href="recursos/bootstrap/css/bootstrap.min.css">
@@ -29,9 +33,9 @@ else USUARIO=(Persona) sesion.getAttribute("usuario");
         <script src="recursos/amcharts5/xy.js"></script>
         <script src="recursos/amcharts5/themes/Animated.js"></script>
         <link rel="stylesheet" href="recursos/swiper-bundle.min.css" />
-      
+
         <title>HUELLITAS WEB</title>
-        
+
         <style>
             /* Estilos para el menú desplegable */
             .navbar {
@@ -75,25 +79,25 @@ else USUARIO=(Persona) sesion.getAttribute("usuario");
     </head>
 
     <body>
-    <nav class="navbar">
-    <ul class="navbar-nav">
-        <li class="nav-item">
+        <nav class="navbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
 
-        </li>
-        <li class="nav-item dropdown">
-          
-        </li>
-      
-    </ul>
-</nav>
-  
+                </li>
+                <li class="nav-item dropdown">
+
+                </li>
+
+            </ul>
+        </nav>
+
 
         <div id="banner"></div>
         <div id="menu"><%=USUARIO.getTipoEnObjeto().getMenu()%></div>
         <div id="contenido">
             <jsp:include page='<%=request.getParameter("CONTENIDO")%>' flush="true" />
         </div>
-        
+
         <footer>  
             <div class="contenedor-footer">
                 <div class="content-foo">

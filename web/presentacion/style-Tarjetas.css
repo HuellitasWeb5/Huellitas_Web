@@ -522,3 +522,10 @@ input[type="radio"], input[type="checkbox"] {
         font-size: 18px; /* Tamaño de las estrellas */
         vertical-align: middle;
     }
+
+    .ui-autocomplete {
+    z-index: 1000; /* Asegura que la lista esté por encima de otros elementos */
+    max-height: 200px; /* Controla el alto máximo de la lista desplegable */
+    overflow-y: auto; /* Habilita el scroll si hay muchas opciones */
+    overflow-x: hidden;
+}
