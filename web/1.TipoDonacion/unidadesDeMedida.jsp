@@ -12,7 +12,7 @@
     List<UnidadDeMedida> datos = UnidadDeMedida.getListaEnObjetos(null, null);
     for (int i = 0; i < datos.size(); i++) {
         unidadDeMedida = datos.get(i);
-
+        
         lista += "<div class='swiper-slide'>";
         lista += "<div class='card'>";
         lista += "<div class='card-header'>";
