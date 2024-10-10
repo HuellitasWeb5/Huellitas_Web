@@ -154,13 +154,6 @@
         return true;
     }
 
-
-    function agregarDonacionDetalle() {
-        // Aquí va la lógica para adicionar la donación
-        console.log('Donación añadida con éxito');
-    }
-
-
     function actualizarConceptos(codigoTipoDonacion) {
         document.formularioDonacionDetalle.donacionConcepto.length = 1;
         for (var i = 0; i < conceptoDonacion.length; i++) {
