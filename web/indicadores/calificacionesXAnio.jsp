@@ -47,13 +47,14 @@
 <h3>INDICADOR DE CALIFICACIONES POR AÑO</h3>
 <p></p>
 
-    <form id="searchForm">
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar codigo de mascota" onkeyup="filterNames()">
-            <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
-        </div>
-        <ul id="nameList"></ul>
-    </form>
+<form id="searchForm">
+    <div class="search-container">
+        <input type="text" id="searchInput" placeholder="Buscar codigo de mascota" onkeyup="filterNames()">
+        <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
+    </div>
+    <ul id="nameList"></ul>
+</form>
+
 <table border="0">
     <tr>
         <td>
@@ -69,11 +70,8 @@
     </tr>
 </table>
 
-
-
 <script type="text/javascript">
     am5.ready(function() {
-
         var root = am5.Root.new("chartdiv");
 
         root.setThemes([
@@ -88,7 +86,7 @@
             pinchZoomX: true,
             paddingLeft: 0,
             paddingRight: 15
-        }));            
+        }));
 
         var cursor = chart.set("cursor", am5xy.XYCursor.new(root, {}));
         cursor.lineY.set("visible", false);
@@ -147,23 +145,37 @@
         chart.appear(1000, 100);
         
     }); // end am5.ready()
-    
-  function filterNames() {
-    const input = document.getElementById('searchInput');
-    const filter = input.value.toLowerCase();
-    const slides = document.getElementsByClassName('swiper-slide');
 
-    // Recorre cada slide y oculta o muestra dependiendo del filtro
-    for (let i = 0; i < slides.length; i++) {
-        // Cambia 'card-code' a la clase correcta que contiene el código de la mascota
-        const cardCodeElement = slides[i].getElementsByClassName('card-code')[0]; 
-        const textValue = cardCodeElement.textContent || cardCodeElement.innerText;
+    function filterNames() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const slides = document.getElementsByClassName('swiper-slide');
+        const datosOriginales = <%=datosGraficos.toString()%>; // Almacena los datos originales
 
-        if (textValue.toLowerCase().indexOf(filter) > -1) {
-            slides[i].style.display = "";
-        } else {
-            slides[i].style.display = "none";
+        // Recorre cada slide y oculta o muestra dependiendo del filtro
+        for (let i = 0; i < slides.length; i++) {
+            const cardCodeElement = slides[i].getElementsByClassName('card-code')[0]; 
+            const textValue = cardCodeElement.textContent || cardCodeElement.innerText;
+
+            if (textValue.toLowerCase().indexOf(filter) > -1) {
+                slides[i].style.display = "";
+                // Aquí se puede agregar lógica para actualizar la gráfica
+                updateChartForCode(textValue);
+            } else {
+                slides[i].style.display = "none";
+            }
         }
     }
-}
+
+    function updateChartForCode(codigoMascota) {
+        // Filtrar los datos originales por el código de mascota
+        const filteredData = datosOriginales.filter(data => data.category.includes(codigoMascota));
+
+        // Actualiza la gráfica con los datos filtrados
+        const xAxis = chart.xAxes.getIndex(0);
+        const series = chart.series.getIndex(0);
+        
+        xAxis.data.setAll(filteredData);
+        series.data.setAll(filteredData);
+    }
 </script>
