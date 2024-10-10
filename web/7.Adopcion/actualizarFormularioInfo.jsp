@@ -99,7 +99,7 @@
     formularioDeInformacion.setFotoVivienda(fotoVivienda);
     formularioDeInformacion.setFotoRecibo(fotoRecibo);
     formularioDeInformacion.setFotoCedula(fotoCedula);
-
+    
     // Acciones del formulario
     switch (accion) {
         case "Adicionar":
@@ -113,9 +113,15 @@
             formularioDeInformacion.setCodigo(request.getParameter("codigo"));
             formularioDeInformacion.eliminar();
             break;
+            case "Aceptar":
+           // factura.setNumero(request.getParameter("numero"));
+            formularioDeInformacion.setCodigo(request.getParameter("codigo"));
+            formularioDeInformacion.aceptarFormulario();
+            
+            break;
     }
 %>
 
 <script type="text/javascript">
-    document.location = "principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp";
+    document.location = "principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp&estado=Pendiente";
 </script>

@@ -17,10 +17,10 @@
 </head>
 
 <%
-
     // Obtener la lista de formularios de adopción
     String listaAdopciones = "";
-    List<FormularioDeInformacion> formularios = FormularioDeInformacion.getListaEnObjetos(null, null); // Ajusta el método según tu implementación
+   String estado = request.getParameter("estado");
+    List<FormularioDeInformacion> formularios = FormularioDeInformacion.getListaEnObjetos("estado<>'Aceptado'", null); // Ajusta el método según tu implementación
     listaAdopciones += "<div class='swiper-wrapper'>"; // Inicio del swiper-wrapper
 
     for (int i = 0; i < formularios.size(); i++) {
@@ -35,8 +35,8 @@
         listaAdopciones += "<div class='card-header'>Código de formulario: " + formulario.getCodigo() + "</div>"; // Código de la mascota
         listaAdopciones += "<div class='card-body'>"; // Cuerpo de la tarjeta
         listaAdopciones += "<p><strong>Fecha de solicitud:</strong> " + formulario.getFecha() + "</p>";
-        
-    // Datos Adoptante
+
+        // Datos Adoptante
         listaAdopciones += "<div style='display: flex; align-items: center; margin-bottom: 20px;'>";
         listaAdopciones += "<div style='margin-right: 20px;'>";
         listaAdopciones += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' style='width: 100px; height: auto;'/>";
@@ -45,20 +45,20 @@
         listaAdopciones += "<p><strong>Nombre adoptante:</strong> " + persona.getNombre() + "</p>";
         listaAdopciones += "<p><strong>Identificación:</strong> " + formulario.getIdentificacionAdoptante() + "</p>";
         listaAdopciones += "<p><strong>Contacto:</strong> " + persona.getTelefono() + "</p>";
-        listaAdopciones += "</div>"; 
-        listaAdopciones += "</div>"; 
+        listaAdopciones += "</div>";
+        listaAdopciones += "</div>";
 
-         // Datos Mascota
+        // Datos Mascota
         listaAdopciones += "<div style='display: flex; align-items: center; margin-bottom: 20px;'>";
         listaAdopciones += "<div style='margin-right: 20px;'>";
         listaAdopciones += "<img src='presentacion/mascota/" + mascota.getFoto() + "' alt='Foto de " + mascota.getNombre() + "' style='width: 100px; height: auto;'/>";
-        listaAdopciones += "</div>"; 
-        listaAdopciones += "<div>"; 
+        listaAdopciones += "</div>";
+        listaAdopciones += "<div>";
         listaAdopciones += "<p><strong>Nombre mascota:</strong> " + formulario.getMascota() + "</p>";
         listaAdopciones += "<p><strong>Edad:</strong> " + mascota.getEdad() + " años</p>";
         listaAdopciones += "<p><strong>Cuidados Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
-        listaAdopciones += "</div>"; 
-        listaAdopciones += "</div>"; 
+        listaAdopciones += "</div>";
+        listaAdopciones += "</div>";
 
         // Botones de acción
         listaAdopciones += "<div class='btn-container'>";
@@ -68,7 +68,7 @@
         listaAdopciones += "<input type='submit' value='Descargar PDF' class='btn-otro'>";
         listaAdopciones += "</form>";
 
-        listaAdopciones += "<button class='btn-adicionar' onclick='document.getElementById(\"formAceptar" + formulario.getCodigo() + "\").submit();'>Aceptar</button>";
+        listaAdopciones += "<button class='btn-adicionar' onClick='aceptarFormulario(" + formulario.getCodigo() + ")'>Aceptar</button>";
         listaAdopciones += "<button class='btn-eliminar' onClick='eliminar(" + formulario.getCodigo() + ")'>Rechazar</button>";
         listaAdopciones += "</div>"; // Fin del contenedor de botones
 
@@ -118,6 +118,13 @@
         resultado = confirm("¿Realmente desea eliminar el formulario con código " + codigo + "?");
         if (resultado) {
             document.location = "principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Eliminar&codigo=" + codigo;
+        }
+    }
+    function aceptarFormulario(codigo) {
+        respuesta = confirm("¿Realmente quieres aceptar la donacion con codigo: " + codigo + "?");
+        if (respuesta) {
+            document.location = "principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Aceptar&codigo=" + codigo;
+
         }
     }
 
