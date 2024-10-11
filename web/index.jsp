@@ -4,13 +4,13 @@
     Author     : Luis Eraso
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     String mensaje = "";
     if (request.getParameter("error") != null) {
         switch (request.getParameter("error")) {
             case "1":
-                mensaje = "Identificacion o contaseÃ±a no valido";
+                mensaje = "Identificacion o contaseña no valido";
                 break;
             case "2":
                 mensaje = "Acceso denegado";

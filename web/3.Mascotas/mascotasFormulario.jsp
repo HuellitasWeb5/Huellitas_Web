@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="presentacion/style-TarjetasModificar.css">
 </head>
 <%@page import="clases.Mascota"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 String accion=request.getParameter("accion");
 String codigo=request.getParameter("codigo");

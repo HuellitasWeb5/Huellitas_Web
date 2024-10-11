@@ -1,6 +1,6 @@
 <%@page import="clases.Donacion"%>
 <%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <head>
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
 </head>
@@ -119,19 +119,5 @@
         chart.appear(1000, 100);
     });
 
-    function filterNames() {
-        const input = document.getElementById('searchInput');
-        const filter = input.value.toLowerCase();
-        const rows = document.querySelectorAll('table tr:not(:first-child)'); // Ignora la primera fila (encabezados)
-
-        rows.forEach(row => {
-            const cells = row.querySelectorAll('td');
-            const yearCell = cells[0];
-            if (yearCell && yearCell.textContent.toLowerCase().indexOf(filter) > -1) {
-                row.style.display = "";
-            } else {
-                row.style.display = "none";
-            }
-        });
-    }
+   
 </script>

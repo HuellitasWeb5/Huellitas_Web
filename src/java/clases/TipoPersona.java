@@ -118,28 +118,29 @@ public class TipoPersona {
                 menu += "<a class='nav-link dropdown-toggle' href='#' id='adopcionesDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Adopciones</a>";
                 menu += "<ul class='dropdown-menu' aria-labelledby='adopcionesDropdown'>";
                 menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar'>Realizar Adopción</a></li>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/formularioSeguimiento.jsp&accion=Adicionar'>Realizar Seguimiento</a></li>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp'>Formulario de Adopción</a></li>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/verFormularioSeg.jsp'>Formulario de Seguimientos</a></li>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp'>Formularios de adopción</a></li>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/verFormularioSeg.jsp'>Formularios de seguimientos</a></li>";
                 menu += "</ul></li>";
 
                 // Menú de Mascotas y Apadrinamientos
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" + getNombre() + "'>Mascotas</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=4.Clientes/clientes.jsp&nombre=" + getNombre() + "'>Clientes</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=4.Clientes/clientes.jsp&nombre=" + getNombre() + "'>San Patitas</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=5.Administradores/administradores.jsp'>Administradores</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/perfilF.jsp'>Perfil</a></li>";
+              
 
                 // Menú de Indicadores
-                 menu += "<li class='nav-item dropdown'>";
-            menu += "<a class='nav-link dropdown-toggle' href='#' id='indicadoresDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Indicadores</a>";
-            menu += "<ul class='dropdown-menu' aria-labelledby='indicadoresDropdown'>";
-            menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/mascotasXAnio.jsp'>Mascotas</a></li>";
-            menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/adopcionesXAnio.jsp'>Adopciones</a></li>";
-            menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/apadrinamientoXAnio.jsp'>Apadrinamientos</a></li>"; // Asegúrate de tener la ruta correcta
-            menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/donacionesXAnio.jsp'>Donaciones</a></li>";
-            menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/calificacionesXAnio.jsp'>Cuidados</a></li>"; // Asegúrate de tener la ruta correcta
-            menu += "</ul></li>";
+                menu += "<li class='nav-item dropdown'>";
+                menu += "<a class='nav-link dropdown-toggle' href='#' id='indicadoresDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Indicadores</a>";
+                menu += "<ul class='dropdown-menu' aria-labelledby='indicadoresDropdown'>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/donacionesXAnio.jsp'>Donaciones</a></li>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/apadrinamientoXAnio.jsp'>Apadrinamientos</a></li>"; // Asegúrate de tener la ruta correcta
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/adopcionesXAnio.jsp'>Adopciones</a></li>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/mascotasXAnio.jsp'>Mascotas</a></li>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/calificacionesXAnio.jsp'>Cuidados</a></li>"; // Asegúrate de tener la ruta correcta
+                menu += "</ul></li>";
+
+                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/perfilF.jsp'>Perfil</a></li>";
+
 
                 menu += "<li class='nav-item'><a class='dropdown-item' href='index.jsp'>Salir</a></li>";
                 menu += "</ul>";

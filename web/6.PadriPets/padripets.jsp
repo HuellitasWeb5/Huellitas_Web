@@ -4,7 +4,7 @@
 <%@page import="clases.Apadrinamiento"%>
 <%@page import="clases.Persona"%>
 <%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
 String listaApadrinamiento = "<div class='swiper-wrapper'>";
