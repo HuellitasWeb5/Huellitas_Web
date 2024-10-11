@@ -97,7 +97,7 @@ public class Adopcion {
     }
 
     public boolean grabar() {
-        String cadenaSQL = "insert into adopcion (identificacionAdoptante, codigoMascota, fechaAdopcion, actaAdopcion) values ('" + identificacionAdoptante + "','" + codigoMascota + "','" + fechaAdopcion + "','" + actaAdopcion + "')";
+        String cadenaSQL = "insert into adopcion (identificacionAdoptante, codigoMascota, fechaAdopcion, actaAdopcion) values ('" + identificacionAdoptante + "','" + codigoMascota + "',curdate(),'" + actaAdopcion + "')";
 
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
@@ -111,6 +111,10 @@ public class Adopcion {
     public boolean eliminar() {
         String cadenaSQL = "delete from adopcion where codigo=" + codigo;
 
+        return ConectorBD.ejecutarQuery(cadenaSQL);
+    }
+     public boolean SubirArchivo() {
+        String cadenaSQL = "update adopcion set actaAdopcion='"+actaAdopcion+"' where codigo='" + codigo + "'";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
