@@ -8,9 +8,10 @@
 <%@page import="java.util.Map"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="clases.Persona"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     boolean subioArchivo = false;
-    Map<String, String> variables = new HashMap<String, String>(); // Aquí se almacenan los datos enviados por el formulario
+    Map<String, String> variables = new HashMap<String, String>(); // AquÃ­ se almacenan los datos enviados por el formulario
     boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 
     if (!isMultipart) {

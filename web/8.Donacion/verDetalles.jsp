@@ -5,6 +5,7 @@
 <%@page import="java.util.List"%>
 <%@page import="clases.DonacionDetalle"%>
 <%@page import="clases.DonacionDetalle"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <head>
     <link rel="stylesheet" href="presentacion/Donacion.css">
 </head>
@@ -15,7 +16,7 @@
     DonacionDetalle donacionDetalle = new DonacionDetalle();
     Donacion donacion = new Donacion();
     List<Donacion> datos = Donacion.getListaEnObjetos(null, null);
-    List<DonacionDetalle> detalles = DonacionDetalle.getListaEnObjetos("codigoDonacion=" + codigo, null); // M閠odo para obtener la lista de DonacionDetalle
+    List<DonacionDetalle> detalles = DonacionDetalle.getListaEnObjetos("codigoDonacion=" + codigo, null); // M茅todo para obtener la lista de DonacionDetalle
     for (int i = 0; i < datos.size(); i++) {
         donacion = datos.get(i);
         Persona persona = new Persona(donacion.getIdentificacionDonante());
@@ -24,7 +25,7 @@
         listaDonante += "<div class='content'>";
         
         listaDonante += "<div class='form-group'>";
-        listaDonante += "<label>Identificaci髇</label>";
+        listaDonante += "<label>Identificaci贸n</label>";
         listaDonante += "<span>" + persona.getIdentificacion()+ "</span>";
         listaDonante += "</div>";
         
@@ -56,10 +57,10 @@
         lista += "<h2>ID: " + donacionDetalle.getId() + "</h2>";
         lista += "</div>";
         lista += "<div class='card-body'>";
-        lista += "<p><strong>C骴igo Tipo Donaci髇:</strong> " + donacionDetalle.getTipoDonacion() + "</p>";
+        lista += "<p><strong>C贸digo Tipo Donaci贸n:</strong> " + donacionDetalle.getTipoDonacion() + "</p>";
         lista += "<p><strong>ID Concepto:</strong> " + donacionDetalle.getConceptoDonacion() + "</p>";
         lista += "<p><strong>Cantidad:</strong> " + donacionDetalle.getCantidad() + "</p>";
-        lista += "<p><strong>C骴igo Donaci髇:</strong> " + donacionDetalle.getCodigoDonacion() + "</p>";
+        lista += "<p><strong>C贸digo Donaci贸n:</strong> " + donacionDetalle.getCodigoDonacion() + "</p>";
         lista += "</div>";
         lista += "</div>";
         lista += "</div>";

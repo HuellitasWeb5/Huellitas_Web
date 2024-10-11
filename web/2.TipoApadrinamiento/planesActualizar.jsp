@@ -5,7 +5,7 @@
 --%>
 
 <%@page import="clases.PlanesApadrinamiento"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
     String accion = request.getParameter("accion");

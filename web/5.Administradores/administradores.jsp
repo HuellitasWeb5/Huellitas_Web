@@ -6,6 +6,7 @@
 
 <%@page import="java.util.List"%>
 <%@page import="clases.Persona"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -19,7 +20,7 @@
     for (int i = 0; i < datos.size(); i++) {
         Persona administrador = datos.get(i);
         lista += "<div class='swiper-slide'>"; // Inicio de la tarjeta
-        lista += "<div class='card'>"; // A馻dido la clase 'card'
+        lista += "<div class='card'>"; // A帽adido la clase 'card'
         lista += "<div class='card-image'>"; // Contenedor de la imagen
         lista += "<img src='presentacion/administrador/" + administrador.getFoto() + "' alt='Foto de " + administrador.getNombre() + "' class='profile-image' width='30' height='auto'>";
         lista += "</div>"; // Fin de la imagen
@@ -27,12 +28,12 @@
         lista += administrador.getNombre(); // Nombre del administrador
         lista += "</div>"; // Fin de la cabecera
         lista += "<div class='card-body'>"; // Cuerpo de la tarjeta
-        lista += "<p><strong>Identificaci髇:</strong> " + administrador.getIdentificacion() + "</p>";
-        lista += "<p><strong>G閚ero:</strong> " + administrador.getGenero() + "</p>";
-        lista += "<p><strong>Edad:</strong> " + administrador.getEdad() + " a駉s</p>";
+        lista += "<p><strong>Identificaci贸n:</strong> " + administrador.getIdentificacion() + "</p>";
+        lista += "<p><strong>G茅nero:</strong> " + administrador.getGenero() + "</p>";
+        lista += "<p><strong>Edad:</strong> " + administrador.getEdad() + " a帽os</p>";
         lista += "<p><strong>Email:</strong> " + administrador.getEmail() + "</p>";
-        lista += "<p><strong>Tel閒ono:</strong> " + administrador.getTelefono() + "</p>";
-        lista += "<p><strong>Direcci髇:</strong> " + administrador.getDireccion() + "</p>";
+        lista += "<p><strong>Tel茅fono:</strong> " + administrador.getTelefono() + "</p>";
+        lista += "<p><strong>Direcci贸n:</strong> " + administrador.getDireccion() + "</p>";
         lista += "<p><strong>Residencia:</strong> " + administrador.getResidencia() + "</p>";
         lista += "</div>"; // Fin del cuerpo de la tarjeta
         lista += "<div class='btn-container'>"; // Contenedor de botones
@@ -58,7 +59,7 @@
         <ul id="nameList"></ul>
     </form>
 
-    <!-- Bot髇 de adicionar -->
+    <!-- Bot贸n de adicionar -->
     <div class="btn-container">
         <a href="principal.jsp?CONTENIDO=5.Administradores/administradoresFormulario.jsp&accion=Adicionar">
             <button class="btn-adicionar">Adicionar</button>
@@ -98,7 +99,7 @@
     }
 }
 
-// Llamar a la funci髇 al cargar la p醙ina si ya hay una fecha de nacimiento
+// Llamar a la funci贸n al cargar la p谩gina si ya hay una fecha de nacimiento
 window.onload = function() {
     calcularEdad();
 }
