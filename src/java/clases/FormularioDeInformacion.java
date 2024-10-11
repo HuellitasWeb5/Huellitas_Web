@@ -378,6 +378,8 @@ public class FormularioDeInformacion {
         String cadenaSQL = "update formularioDeInformacion set estado='Aceptado' where codigo='" + codigo + "'";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
+    
+
 
     /* public boolean grabarFormularioConProcedimientoAlmacenado() {
         String codigosMascotas = String.join(",", this.codigoMascota);  // Unimos los códigos con comas
