@@ -28,7 +28,7 @@ public class Apadrinamiento {
     public Apadrinamiento() {
     }
     public Apadrinamiento(String codigo) {
-        String cadenaSQL = "select codigo,planApadrinamiento,fecha,identificacionPadrino, fotoRecibo, fotoCedula where codigo=" + codigo;
+        String cadenaSQL = "select codigo,fecha,identificacionPadrino, fotoRecibo, fotoCedula from apadrinamiento where codigo=" + codigo;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {

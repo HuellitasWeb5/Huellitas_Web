@@ -35,8 +35,8 @@ for (int j = 0; j < datosApadrinamiento.size(); j++) {
     listaApadrinamiento += "<p><strong>Identificación:</strong> " + apadrinamiento.getIdentificacionPadrino() + "</p>";
     listaApadrinamiento += "<p><strong>Teléfono:</strong> " + persona.getTelefono() + "</p>";
     listaApadrinamiento += "<p><strong>Dirección:</strong> " + persona.getDireccion() + "</p>";
-    listaApadrinamiento += "</div>"; // div para los datos de la persona
-    listaApadrinamiento += "</div>"; // div para la sección de la persona
+    listaApadrinamiento += "</div>"; 
+    listaApadrinamiento += "</div>"; 
 
     // Información de la mascota con su foto
     listaApadrinamiento += "<div style='display: flex; margin-bottom: 20px;'>";
@@ -49,17 +49,18 @@ for (int j = 0; j < datosApadrinamiento.size(); j++) {
     listaApadrinamiento += "<p><strong>Identificación:</strong> " + mascota.getCodigo() + "</p>";
     listaApadrinamiento += "<p><strong>C. Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
     listaApadrinamiento += "<p><strong>Edad:</strong> " + mascota.getEdad() + "</p>";
-    listaApadrinamiento += "</div>"; // div para los datos de la mascota
-    listaApadrinamiento += "</div>"; // div para la sección de la mascota
+    listaApadrinamiento += "</div>"; 
+    listaApadrinamiento += "</div>"; 
 
     // Datos de los detalles
     listaApadrinamiento += "<div>";
     listaApadrinamiento += "<p><strong>Fecha inicio:</strong> " + detalle.getFechaInicio() + "</p>";
     listaApadrinamiento += "<p><strong>Fecha Fin:</strong> " + detalle.getFechaFin() + "</p>";
     listaApadrinamiento += "<p><strong>Plan:</strong> " + plan.getNombre() + "</p>";
-    listaApadrinamiento += "</div>"; // div para los detalles
+    listaApadrinamiento += "</div>"; 
     
     listaApadrinamiento += "<button class='btn-eliminar' onclick='eliminar(" + apadrinamiento.getCodigo() + ")'>Eliminar</button>";
+    listaApadrinamiento += "<button class='btn-otro' onclick='detalles(" + apadrinamiento.getCodigo() + ")'>Detalles</button>";
     listaApadrinamiento += "</div>"; 
     listaApadrinamiento += "</div>"; 
     listaApadrinamiento += "</div>";
@@ -69,10 +70,15 @@ listaApadrinamiento += "</div>";
 
 %>
 
+
+
 <h3>PADRIPETS</h3>
+<div class='btn-container'>
 <a href="principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp&accion=Adicionar" >
-    <button class="btn-adicionar" type="button">Adicionar Padripet</button>
+    <button class="btn-adicionar">Adicionar Padripet</button>
 </a>
+</div>
+
 
 <div class='carousel-container'>
     <div class='swiper-container carousel'>
@@ -83,6 +89,11 @@ listaApadrinamiento += "</div>";
 </div>
 
 <script type="text/javascript">
+    
+    function detalles(codigo) {  
+    window.location.href = "principal.jsp?CONTENIDO=6.PadriPets/verDetallesPadripets.jsp&codigo=" + codigo;
+}
+    
     var swiper = new Swiper('.swiper-container', {
         slidesPerView: 3,
         spaceBetween: 10,
