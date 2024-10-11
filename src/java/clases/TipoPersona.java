@@ -24,10 +24,10 @@ public class TipoPersona {
         String nombre = null;
         switch (codigo) {
             case "S":
-                nombre = "AdministradorSistema";
+                nombre = "Administrador  Sistema";
                 break;
             case "F":
-                nombre = "AdministradorFundacion";
+                nombre = "Administrador  Fundacion";
                 break;
             case "C":
                 nombre = "Cliente";
