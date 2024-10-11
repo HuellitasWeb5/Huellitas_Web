@@ -6,7 +6,7 @@
 
 <%@page import="clases.Apadrinamiento"%>
 <%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <head>
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
 </head>
