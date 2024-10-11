@@ -26,14 +26,17 @@
         // Mes
         lista.append("<td>").append(registro[0]).append("</td>"); // Mes como texto
         
+        // Nombre de mascota (suponiendo que está en la posición 1 del arreglo)
+        lista.append("<td>").append(registro[1]).append("</td>"); // Nombre de mascota
+        
         // Código de mascota
-        lista.append("<td>").append(registro[1]).append("</td>"); // Código de mascota
+        lista.append("<td>").append(registro[2]).append("</td>"); // Código de mascota (en caso de necesitarlo)
         
         // Total calificaciones
         lista.append("<td>").append(registro[3]).append("</td>"); // Total calificaciones
         
         // Representar calificaciones con estrellas
-        double calificacion = (double) Double.parseDouble(registro[2]); // Convertir el promedio a double
+        double calificacion = (double) Double.parseDouble(registro[4]); // Convertir el promedio a double
         lista.append("<td>");
         for (int j = 0; j < 5; j++) {
             if (j < calificacion) {
@@ -43,9 +46,9 @@
             }
         }
         // Añadir el promedio al lado de las estrellas
-        lista.append(" (").append(registro[2]).append(")"); // Promedio como decimal
+        lista.append(" (").append(registro[4]).append(")"); // Promedio como decimal
         lista.append("</td>");
-        
+       
         lista.append("</tr>");
 
         // Datos para gráficos
@@ -53,8 +56,8 @@
             datosGraficos.append(", ");
         }
         datosGraficos.append("{");
-        datosGraficos.append("\"category\": \"").append(registro[0]).append(" - ").append(registro[1]).append("\",");
-        datosGraficos.append("\"value\": ").append(registro[2]); // Promedio calificaciones para la gráfica
+        datosGraficos.append("\"category\": \"").append(registro[0]).append(" - ").append(registro[1]).append("\","); // Mes y nombre de mascota
+        datosGraficos.append("\"value\": ").append(registro[4]); // Promedio calificaciones para la gráfica
         
         // Añadir las estrellas al tooltip
         StringBuilder estrellasTooltip = new StringBuilder();
@@ -65,7 +68,7 @@
                 estrellasTooltip.append("☆"); // Estrella vacía
             }
         }
-        datosGraficos.append(", \"tooltip\": \"").append(estrellasTooltip.toString()).append(" (").append(registro[2]).append(")\""); // Tooltip
+        datosGraficos.append(", \"tooltip\": \"").append(estrellasTooltip.toString()).append(" (").append(registro[4]).append(")\""); // Tooltip
         datosGraficos.append("}");
     }
     datosGraficos.append("]");
@@ -80,6 +83,7 @@
                 <tr>
                     <th>Mes</th>
                     <th>Código de Mascota</th>
+                    <th>Nombre de Mascota</th>
                     <th>Promedio Calificación</th>
                     <th>Total Calificaciones</th>
                 </tr>
