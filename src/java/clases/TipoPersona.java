@@ -51,7 +51,7 @@ public class TipoPersona {
         switch (this.codigo) {
 
             case "F":
-                menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light'>";
+                menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light' >";
                 menu += "<div class='container-fluid'>";
 
                 // Botón para colapsar el menú en pantallas pequeñas
@@ -153,7 +153,6 @@ public class TipoPersona {
             case "C":
                 menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light'>";
                 menu += "<div class='container-fluid'>";
-
                 // Botón para colapsar el menú en pantallas pequeñas
                 menu += "<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>";
                 menu += "<span class='navbar-toggler-icon'></span>";
