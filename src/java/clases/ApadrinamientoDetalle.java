@@ -144,7 +144,7 @@ public class ApadrinamientoDetalle {
        }else {
            orden = " ";
        }
-       String cadenaSQL="select id,codigoApadrinamiento,planApadrinamiento,idPlanApadrinamiento,codigoMascota,lapsoApadrinamiento from apadrinamientoDetalle" +filtro+orden;
+       String cadenaSQL="select id,codigoApadrinamiento,idPlanApadrinamiento,codigoMascota,lapsoApadrinamiento from apadrinamientoDetalles" +filtro+orden;
        return ConectorBD.consultar(cadenaSQL);
    }
     
@@ -157,7 +157,6 @@ public class ApadrinamientoDetalle {
                    ApadrinamientoDetalle detalles = new ApadrinamientoDetalle();
                    detalles.setId(datos.getString("id"));
                    detalles.setCodigoApadrinamiento(datos.getString("codigoApadrinamiento"));
-                   detalles.setPlanApadrinamiento(datos.getString("planApadrinamiento"));
                    detalles.setIdPlanApadrinamiento(datos.getString("idPlanApadrinamiento"));
                    detalles.setCodigoMascota(datos.getString("codigoMascota"));
                    detalles.setLapsoApadrinamiento(datos.getString("lapsoApadrinamiento"));
