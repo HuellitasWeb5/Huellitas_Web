@@ -521,12 +521,27 @@ input[type="radio"], input[type="checkbox"] {
         font-size: 18px; /* Tamaño de las estrellas */
         vertical-align: middle;
     }
+    
+.rol-administrador {
+    font-size: 20px; /* Tamaño de fuente para el subtítulo */
+    color: white; /* Color de texto blanco */
+    
+    padding: 10px; /* Espaciado interno */
+    border-radius: 30px; /* Bordes redondeados */
+    margin: 10px auto; /* Margen superior e inferior, centrado horizontalmente */
+    text-align: center; /* Centra el texto */
+    background: linear-gradient(to right, #4CAF50, #2196F3); /* Gradiente de verde apagado a azul apagado */
+    max-width: 300px; /* Ancho máximo del subtítulo */
+    width: 80%; /* Ancho del subtítulo (opcional) */
+}
 
 h3 {
-    text-align: center;
-    color: #4CAF50; /* Color verde */
-    font-family: Arial, sans-serif;
-    margin-bottom: 20px;
+      font-size: 35px; /* Tamaño de fuente grande */
+    color: #333; /* Color de texto blanco */
+    text-align: center; /* Centra el texto */
+    margin: 20px 0; /* Margen superior e inferior */
+    font-weight: bold; /* Negrita para el texto */
+
 }
 
 table {
