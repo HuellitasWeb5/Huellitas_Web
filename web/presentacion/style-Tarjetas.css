@@ -521,3 +521,57 @@ input[type="radio"], input[type="checkbox"] {
         font-size: 18px; /* Tamaño de las estrellas */
         vertical-align: middle;
     }
+h3 {
+    text-align: center;
+    color: #4CAF50; /* Color verde */
+    font-family: Arial, sans-serif;
+    margin-bottom: 20px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+table, th, td {
+    border: 2px solid #4CAF50; /* Borde verde y más grueso */
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+
+td {
+    background-color: #f2f2f2; /* Color de fondo claro para las celdas */
+}
+
+tr:nth-child(even) {
+    background-color: #eaf5ea; /* Color de fondo alternado */
+}
+
+.btn-otro {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+.btn-otro:hover {
+    background-color: white;
+    color: #4CAF50;
+    border: 2px solid #4CAF50;
+}
