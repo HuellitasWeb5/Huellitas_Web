@@ -15,6 +15,7 @@
 
 <body onload="cargarFecha()">
     <h3><%=accion.toUpperCase()%> FORMULARIO DE SEGUIMIENTO </h3>
+    <a href="formularioSeguimiento.jsp"></a>
     <form name="formulario" method="post" action="principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioSeg.jsp" enctype="multipart/form-data">
         <div class="containerFormulario">
             <div>Fecha actual: <span id="fecha"></span></div>
@@ -139,6 +140,7 @@
                     <input type="radio" id="star2" name="calificacion" value="2" /><label for="star2" title="2 estrellas">★</label>
                     <input type="radio" id="star1" name="calificacion" value="1" /><label for="star1" title="1 estrella">★</label>
                 </div>
+                <span id="calificacionError" style="color: red; display: none;">Por favor, selecciona al menos una estrella.</span>
                 <br><br>
 
                 <!-- Botones de envío -->
@@ -205,7 +207,7 @@
 
     // BUSCAR MASCOTA 
 
-    var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+    var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado='adoptado'", null)%>;
     var vectorMascotas = new Array();
     for (var i = 0; i < mascotas.length; i++) {
         vectorMascotas[i] = mascotas[i][0];
@@ -255,6 +257,31 @@
     });
 
     // MENSAJE DE QUE DEBE SELECCIONAR UNA CALIFICACIÓN 
+    
+    function validarCalificacion() {
+        // Obtener todos los radio buttons con el nombre "calificacion"
+        const calificaciones = document.getElementsByName('calificacion');
+        let seleccionada = false;
+
+        // Verificar si al menos una opción está seleccionada
+        for (let i = 0; i < calificaciones.length; i++) {
+            if (calificaciones[i].checked) {
+                seleccionada = true;
+                break;
+            }
+        }
+
+        // Mostrar el mensaje de error si ninguna opción está seleccionada
+        const errorMensaje = document.getElementById('calificacionError');
+        if (!seleccionada) {
+            errorMensaje.style.display = 'block';
+        } else {
+            errorMensaje.style.display = 'none';
+            // Enviar el formulario si la calificación está seleccionada
+            alert('Formulario enviado correctamente.');
+            // Aquí puedes agregar el código para enviar el formulario
+        }
+    }
 
     // CARGAR FECHA
 
