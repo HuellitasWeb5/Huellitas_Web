@@ -1,0 +1,74 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 11 oct 2024, 17:48:30
+    Author     : Angie
+*/
+
+.cardAdop {
+    margin: 5px;
+    max-width: 500px; /* Ajusta el ancho máximo para que sea más pequeño */
+    width: 100%;
+    box-sizing: border-box; /* Asegura que el padding y los bordes estén dentro del ancho */
+    background: linear-gradient(90deg, #80c1ff, #66cca3, #b3e6b3);
+    border-radius: 20px; /* Ajusta el radio de borde para que las esquinas sean menos redondeadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 15px; /* Reduce el padding para ajustar el contenido */
+    text-align: left; /* Cambia a izquierda para alinear el texto con más precisión */
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Estilo para el carrusel de tarjetas */
+.cardAdop-carousel {
+    display: flex; /* Organiza las tarjetas en una fila */
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+    scroll-behavior: smooth;
+    overflow: hidden;
+    width: max-content; /* Permite que el carrusel se ajuste al contenido */
+    gap: 20px; /* Espacio entre las tarjetas para evitar que se superpongan */
+}
+
+.cardAdop-container {
+    display: flex;
+    overflow: hidden;
+    padding: 10px;
+    justify-content: center;
+}
+
+.cardAdop:hover {
+    background-color: #99ccff; /* Color al pasar el cursor */
+    transform: translateY(-10px); /* Mueve la tarjeta hacia arriba */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
+}
+
+.cardAdop-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.cardAdop-subtitle {
+    font-size: 15px;
+    color: #005d03;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.cardAdop-subtitle {
+    font-size: 15px; /* Ajusta el tamaño de la fuente */
+    color: #005d03; /* Puedes personalizar el color */
+    margin-top: 8px; /* Ajusta el espacio entre el nombre y el rol */
+    text-align: center; /* Centra el subtítulo */
+}
+
+.cardAdop-body strong {
+    font-weight: bold; /* Asegura que el texto esté en negrita */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+}

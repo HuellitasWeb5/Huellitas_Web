@@ -3,7 +3,7 @@
     Created on : 5/10/2024, 02:37:31 PM
     Author     : Luis Eraso
 --%>
-<%@page import="javafx.scene.control.Alert"%>
+
 <%@page import="clases.Adopcion"%>
 <%@ page import="org.apache.tomcat.util.http.fileupload.FileItem"%>
 <%@ page import="java.util.Iterator"%>
@@ -95,3 +95,4 @@
     alert('<%= mensaje %>');  // Muestra un mensaje al usuario
     document.location = "principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp";
 </script>
+

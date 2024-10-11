@@ -14,6 +14,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
+    <link rel="stylesheet" href="presentacion/style-Adopciones.css" />
 </head>
 <%
     // Obtener la lista de formularios de adopción
@@ -29,9 +30,9 @@
         Persona persona = new Persona(formulario.getIdentificacionAdoptante());
         Mascota mascota = new Mascota(formulario.getCodigoMascota());
         listaAdopciones += "<div class='swiper-slide'>"; // Inicio de la tarjeta
-        listaAdopciones += "<div class='card'>"; // Añadido la clase 'card'
-        listaAdopciones += "<div class='card-header'>Código de formulario: " + formulario.getCodigo() + "</div>";
-        listaAdopciones += "<div class='card-body'>";
+        listaAdopciones += "<div class='cardAdop'>"; 
+        listaAdopciones += "<div class='cardAdop-header'>Código de formulario: " + formulario.getCodigo() + "</div>";
+        listaAdopciones += "<div class='cardAdop-body'>";
         listaAdopciones += "<div class='adoptante-section' style='display: flex; align-items: center; margin-bottom: 10px;'>";
         listaAdopciones += "<div class='image-container' style='margin-right: 10px;'>";
         listaAdopciones += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' class='profile-image'/>";
