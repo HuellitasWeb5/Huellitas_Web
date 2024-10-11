@@ -5,6 +5,7 @@
 <%@page import="java.util.List"%>
 <%@page import="clases.DonacionDetalle"%>
 <%@page import="clases.DonacionDetalle"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <head>
     <link rel="stylesheet" href="presentacion/Donacion.css">
 </head>
@@ -15,34 +16,51 @@
     DonacionDetalle donacionDetalle = new DonacionDetalle();
     Donacion donacion = new Donacion();
     List<Donacion> datos = Donacion.getListaEnObjetos(null, null);
-    List<DonacionDetalle> detalles = DonacionDetalle.getListaEnObjetos("codigoDonacion=" + codigo, null); // M閠odo para obtener la lista de DonacionDetalle
+    List<DonacionDetalle> detalles = DonacionDetalle.getListaEnObjetos("codigoDonacion=" + codigo, null); // M茅todo para obtener la lista de DonacionDetalle
     for (int i = 0; i < datos.size(); i++) {
         donacion = datos.get(i);
         Persona persona = new Persona(donacion.getIdentificacionDonante());
-        listaDonante += "<div class='donante-card'>";
-        listaDonante += "    <div class='donante-header'>";
-        listaDonante += "        <h3 class='donante-titulo'>Datos del Adoptante</h3>";
-        listaDonante += "    </div>";
-        listaDonante += "    <div class='donante-body'>";
-        listaDonante += "        <p><strong>Nombre del Adoptante:</strong> <span class='donante-nombre'>" + persona.getNombre() + "</span></p>";
-        listaDonante += "        <p><strong>Identificaci髇:</strong> <span class='donante-identificacion'>" + persona.getIdentificacion() + "</span></p>";
-        listaDonante += "        <p><strong>Contacto:</strong> <span class='donante-contacto'>" + persona.getTelefono() + "</span></p>";
-        listaDonante += "    </div>";
+        listaDonante += "<div class='container'>";
+        listaDonante += "<div class='header'>Datos del Usuario</div>";
+        listaDonante += "<div class='content'>";
+        
+        listaDonante += "<div class='form-group'>";
+        listaDonante += "<label>Identificaci贸n</label>";
+        listaDonante += "<span>" + persona.getIdentificacion()+ "</span>";
         listaDonante += "</div>";
+        
+        listaDonante += "<div class='form-group'>";
+        listaDonante += "<label>Nombre</label>";
+        listaDonante += "<span>" + persona.getNombre()+ "</span>";
+        listaDonante += "</div>";
+        
+        listaDonante += "<div class='form-group'>";
+        listaDonante += "<label>Fecha</label>";
+        listaDonante += "<span>" + donacion.getFecha()+ "</span>";
+        listaDonante += "</div>";
+        
+        listaDonante += "<div class='form-group'>";
+        listaDonante += "<label>Descripcion</label>";
+        listaDonante += "<span>" + donacion.getDescripcion()+ "</span>";
+        listaDonante += "</div>";
+        listaDonante += "</div>";
+        listaDonante += "</div>";
+   
 
     }
     for (int i = 0; i < detalles.size(); i++) {
         donacionDetalle = detalles.get(i);
+
         lista += "<div class='swiper-slide'>";
         lista += "<div class='card'>";
         lista += "<div class='card-header'>";
         lista += "<h2>ID: " + donacionDetalle.getId() + "</h2>";
         lista += "</div>";
         lista += "<div class='card-body'>";
-        lista += "<p><strong>C骴igo Tipo Donaci髇:</strong> " + donacionDetalle.getTipoDonacion() + "</p>";
+        lista += "<p><strong>C贸digo Tipo Donaci贸n:</strong> " + donacionDetalle.getTipoDonacion() + "</p>";
         lista += "<p><strong>ID Concepto:</strong> " + donacionDetalle.getConceptoDonacion() + "</p>";
         lista += "<p><strong>Cantidad:</strong> " + donacionDetalle.getCantidad() + "</p>";
-        lista += "<p><strong>C骴igo Donaci髇:</strong> " + donacionDetalle.getCodigoDonacion() + "</p>";
+        lista += "<p><strong>C贸digo Donaci贸n:</strong> " + donacionDetalle.getCodigoDonacion() + "</p>";
         lista += "</div>";
         lista += "</div>";
         lista += "</div>";
@@ -54,8 +72,7 @@
     <button class="btn-regresar" onclick="window.history.back();">Regresar</button>
 </div>
 
-<%=listaDonante%>
-
+        <%=listaDonante%>
 <div class="swiper-container">
     <div class="swiper-wrapper">
         <%=lista%>
@@ -81,3 +98,4 @@
 
 </script>
 
+    

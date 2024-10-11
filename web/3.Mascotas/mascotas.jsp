@@ -6,7 +6,7 @@
 <%@page import="clases.Persona"%>
 <%@page import="clases.Mascota"%>
 <%@page import="java.util.List"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -73,7 +73,7 @@
 
             // Estos botones siempre se muestran
             lista += "<div class='btn-container'>";
-            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/padrinosFormulario.jsp&accion=Adicionar'><button class='btn-otro'>Padripets</button></a>";
+            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/padrinosFormulario.jsp&accion=Adicionar'><button class='btn-otro'>Apadrinar</button></a>";
             lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/formularioInformacion.jsp&accion=Adicionar'><button class='btn-otro'>Adoptar</button></a>";
             lista += "</div>";
             lista += "</div>";

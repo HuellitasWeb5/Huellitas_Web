@@ -22,7 +22,7 @@
         try {
 
             response.setContentType("application/pdf");
-            response.setHeader("Content-Disposition", "inline; filename=\"formularioDeSeguimiento.pdf\"");
+            response.setHeader("Content-Disposition", "inline; filename=\"formularioSeguimiento.pdf\"");
 
             OutputStream os = response.getOutputStream();
             Document documento = new Document();
@@ -63,13 +63,15 @@
                 documento.add(new Paragraph("Error al cargar el logo: " + e.getMessage()));
             }
 
-            // Título del documento
-            Paragraph title = new Paragraph("Formulario de Seguimiento\n\n");
+            Paragraph title = new Paragraph("FUNDACIÓN VILLA ESPERANZA\n");
             title.setAlignment(Element.ALIGN_CENTER);
             documento.add(title);
 
-            // Simulación de datos del formulario
- // Información del adoptante
+            Paragraph title2 = new Paragraph("Formulario de Seguimiento\n\n");
+            title2.setAlignment(Element.ALIGN_CENTER);
+            documento.add(title2);
+
+            // Información del adoptante
             documento.add(new Paragraph("Adoptante:\n\n"));
             PdfPTable tablaAdoptante = new PdfPTable(2);
             tablaAdoptante.addCell("Identificación:");
@@ -99,6 +101,40 @@
             tablaMascota.addCell("Cuidados Especiales:");
             tablaMascota.addCell(mascota.getCuidadosEspeciales());
             documento.add(tablaMascota);
+            documento.add(new Paragraph("\n"));
+
+            //Contenido del formulario
+            documento.add(new Paragraph("Evaluación del estado y bienestar de la Mascota:\n\n"));
+
+            PdfPTable tablaPreguntas = new PdfPTable(2);
+            tablaPreguntas.setWidthPercentage(100);
+
+            tablaPreguntas.addCell("¿Cómo describirías el estado actual de la salud de la mascota?");
+            tablaPreguntas.addCell(formulario.getEvolucionMedica());
+
+            tablaPreguntas.addCell("¿Cómo ha sido la evolución del peso de la mascota desde la adopción?");
+            tablaPreguntas.addCell(formulario.getMasaCorporal());
+
+            tablaPreguntas.addCell("¿Cómo describirías el estado emocional de la mascota?");
+            tablaPreguntas.addCell(formulario.getEstadoEmocional());
+
+            tablaPreguntas.addCell("¿Cómo se ha adaptado la mascota en su nuevo hogar?");
+            tablaPreguntas.addCell(formulario.getAdaptacion());
+
+            tablaPreguntas.addCell("¿Cómo es la relación del dueño con la mascota?");
+            tablaPreguntas.addCell(formulario.getVinculo());
+
+            tablaPreguntas.addCell("Fecha de la próxima visita:");
+            tablaPreguntas.addCell(formulario.getFechaProximaVisita()); 
+            
+            tablaPreguntas.addCell("Descripción general del seguimiento:");
+            tablaPreguntas.addCell(formulario.getDescripcion()); 
+            
+            tablaPreguntas.addCell("Calificación del bienestar del animal en su nuevo hogar:");
+            String calificacion = formulario.getCalificacion();
+            tablaPreguntas.addCell(calificacion + " estrellas");
+            
+            documento.add(tablaPreguntas);
             documento.add(new Paragraph("\n"));
 
             documento.close();

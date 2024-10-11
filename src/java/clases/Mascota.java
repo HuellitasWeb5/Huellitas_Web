@@ -328,7 +328,4 @@ public static List<String[]> getMascotasPorMes(String anio) {
     return lista;
 }
 
-
-
-
 }
