@@ -25,10 +25,11 @@
              .append("'>").append(registro[0]).append("</a></td>"); // Año como texto del enlace
         
         lista.append("<td>").append(registro[1]).append("</td>"); // Código de mascota
-        lista.append("<td>").append(registro[2]).append("</td>"); // Total Calificaciones
+        lista.append("<td>").append(registro[2]).append("</td>"); // Nombre de la mascota
+        lista.append("<td>").append(registro[3]).append("</td>"); // Total Calificaciones
         
         // Representar calificaciones con estrellas
-        double calificacion = Double.parseDouble(registro[3]); // Convertir la calificación a double
+        double calificacion = Double.parseDouble(registro[4]); // Convertir la calificación a double
         lista.append("<td>");
         for (int j = 0; j < 5; j++) {
             if (j < calificacion) {
@@ -37,7 +38,7 @@
                 lista.append("☆"); // Estrella vacía
             }
         }
-        lista.append(" (").append(registro[3]).append(")"); // Promedio como decimal
+        lista.append(" (").append(registro[4]).append(")"); // Promedio como decimal
         lista.append("</td>");
         lista.append("</tr>");
 
@@ -45,8 +46,8 @@
             datosGraficos.append(", ");
         }
         datosGraficos.append("{");
-        datosGraficos.append("\"category\": \"").append(registro[0]).append(" - ").append(registro[1]).append("\",");
-        datosGraficos.append("\"value\": ").append(registro[3]); // Promedio calificaciones para la gráfica
+        datosGraficos.append("\"category\": \"").append(registro[0]).append(" - ").append(registro[1]).append(" - ").append(registro[2]).append("\","); // Añadir el nombre de la mascota al tooltip
+        datosGraficos.append("\"value\": ").append(registro[4]); // Promedio calificaciones para la gráfica
         
         // Añadir las estrellas al tooltip
         StringBuilder estrellasTooltip = new StringBuilder();
@@ -57,7 +58,7 @@
                 estrellasTooltip.append("☆"); // Estrella vacía
             }
         }
-        datosGraficos.append(", \"tooltip\": \"").append(estrellasTooltip.toString()).append(" (").append(registro[3]).append(")\""); // Tooltip
+        datosGraficos.append(", \"tooltip\": \"").append(estrellasTooltip.toString()).append(" (").append(registro[4]).append(")\""); // Tooltip
         datosGraficos.append("}");
     }
     datosGraficos.append("]");
@@ -72,6 +73,7 @@
                 <tr>
                     <th>Año</th>
                     <th>Código de Mascota</th>
+                    <th>Nombre de Mascota</th> <!-- Nueva columna para el nombre de la mascota -->
                     <th>Total Calificaciones</th>
                     <th>Promedio Calificaciones</th>
                 </tr>
@@ -110,9 +112,8 @@
 
         // Configurar el eje X (categoría)
         var xRenderer = am5xy.AxisRendererX.new(root, {
-    minGridDistance: 50 // Aumenta este valor si es necesario
-});
-
+            minGridDistance: 50 // Aumenta este valor si es necesario
+        });
 
         xRenderer.labels.template.setAll({
             rotation: -45,

@@ -352,26 +352,29 @@ public class FormularioDeSeguimiento {
 public static List<String[]> getCalificacionesXMes(String anio, String codigoMascota) {
     List<String[]> lista = new ArrayList<>();
     
-    // Consulta SQL para obtener calificaciones por mes y mascota
+    // Consulta SQL para obtener calificaciones por mes, mascota y nombre de mascota
     String cadenaSQL = "SELECT MONTH(fecha) AS mes, "
-                     + "codigoMascota, "
-                     + "SUM(calificacion) / COUNT(*) AS promedio_calificacion, "  // Promedio calculado
+                     + "fs.codigoMascota, "
+                     + "m.nombre AS nombreMascota, "
+                     + "SUM(fs.calificacion) / COUNT(*) AS promedio_calificacion, "  // Promedio calculado
                      + "COUNT(*) AS total_calificaciones "  // Total de calificaciones
-                     + "FROM formularioDeSeguimiento "
+                     + "FROM formularioDeSeguimiento fs "
+                     + "LEFT JOIN mascota m ON fs.codigoMascota = m.codigo " // Unir con la tabla mascota
                      + "WHERE YEAR(fecha) = '" + anio + "' "
-                     + (codigoMascota != null && !codigoMascota.isEmpty() ? "AND codigoMascota = '" + codigoMascota + "' " : "")
-                     + "GROUP BY MONTH(fecha), codigoMascota "  // Agrupado por mes y mascota
-                     + "ORDER BY mes, codigoMascota;";  // Ordenado por mes y código de mascota
+                     + (codigoMascota != null && !codigoMascota.isEmpty() ? "AND fs.codigoMascota = '" + codigoMascota + "' " : "")
+                     + "GROUP BY MONTH(fecha), fs.codigoMascota, nombreMascota "  // Agrupado por mes, mascota y nombre
+                     + "ORDER BY mes, fs.codigoMascota;";  // Ordenado por mes y código de mascota
 
     ResultSet resultado = ConectorBD.consultar(cadenaSQL); // Usar tu método de conexión
 
     try {
         while (resultado != null && resultado.next()) {
-            String[] registro = new String[4]; // Array para mes, código de mascota, promedio y total
+            String[] registro = new String[5]; // Array para mes, código de mascota, nombre de mascota, promedio y total
             registro[0] = resultado.getString("mes"); // Mes
             registro[1] = resultado.getString("codigoMascota"); // Código de mascota
-            registro[2] = String.valueOf((int) Math.round(resultado.getDouble("promedio_calificacion"))); // Promedio redondeado
-            registro[3] = resultado.getString("total_calificaciones"); // Total de calificaciones
+            registro[2] = resultado.getString("nombreMascota"); // Nombre de mascota
+            registro[3] = String.valueOf((int) Math.round(resultado.getDouble("promedio_calificacion"))); // Promedio redondeado
+            registro[4] = resultado.getString("total_calificaciones"); // Total de calificaciones
             lista.add(registro);
         }
     } catch (SQLException ex) {
@@ -393,23 +396,27 @@ public static List<String[]> getCalificacionesXMes(String anio, String codigoMas
 public static List<String[]> getCalificacionXAnio() {
     List<String[]> lista = new ArrayList<>();
     
-    // Consulta SQL para obtener calificaciones por año y mascota
-    String cadenaSQL = "SELECT YEAR(fecha) AS anio, "
-                     + "IFNULL(codigoMascota, 'Sin asignar') AS codigoMascota, "
-                     + "COUNT(calificacion) AS totalCalificaciones, "
-                     + "AVG(calificacion) AS calificaciones "
-                     + "FROM formularioDeSeguimiento "
-                     + "GROUP BY anio, codigoMascota "
-                     + "ORDER BY anio, codigoMascota;";
+    // Consulta SQL para obtener calificaciones por año, mascota y nombre de mascota
+    String cadenaSQL = "SELECT YEAR(fs.fecha) AS anio, "
+                     + "IFNULL(fs.codigoMascota, 'Sin asignar') AS codigoMascota, "
+                     + "m.nombre AS nombreMascota, "
+                     + "COUNT(fs.calificacion) AS totalCalificaciones, "
+                     + "AVG(fs.calificacion) AS calificaciones "
+                     + "FROM formularioDeSeguimiento fs "
+                     + "LEFT JOIN mascota m ON fs.codigoMascota = m.codigo " // Unir con la tabla mascota
+                     + "GROUP BY anio, fs.codigoMascota, nombreMascota "
+                     + "ORDER BY anio, fs.codigoMascota;";
+    
     ResultSet resultado = ConectorBD.consultar(cadenaSQL);
 
     try {
         while (resultado != null && resultado.next()) {
-            String[] registro = new String[4]; // Array para año, código de mascota, total de calificaciones y promedio
+            String[] registro = new String[5]; // Array para año, código de mascota, nombre de mascota, total de calificaciones y promedio
             registro[0] = resultado.getString("anio"); // Año
             registro[1] = resultado.getString("codigoMascota"); // Código de mascota
-            registro[2] = resultado.getString("totalCalificaciones"); // Total de calificaciones
-            registro[3] = resultado.getString("calificaciones"); // Promedio de calificaciones
+            registro[2] = resultado.getString("nombreMascota"); // Nombre de mascota
+            registro[3] = resultado.getString("totalCalificaciones"); // Total de calificaciones
+            registro[4] = resultado.getString("calificaciones"); // Promedio de calificaciones
             lista.add(registro);
         }
     } catch (SQLException ex) {
@@ -428,5 +435,4 @@ public static List<String[]> getCalificacionXAnio() {
     
     return lista;
 }
- 
 }
