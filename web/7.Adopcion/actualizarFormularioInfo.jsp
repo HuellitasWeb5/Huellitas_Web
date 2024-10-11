@@ -1,3 +1,4 @@
+<%@page import="clases.Adopcion"%>
 <%@ page import="org.apache.tomcat.util.http.fileupload.FileItem"%>
 <%@ page import="java.util.Iterator"%>
 <%@ page import="java.util.List"%>
@@ -79,6 +80,11 @@
 
     // Crear una instancia de FormularioDeInformacion y asignar valores
     FormularioDeInformacion formularioDeInformacion = new FormularioDeInformacion();
+    Adopcion adopcion = new Adopcion();
+    adopcion.setIdentificacionAdoptante(identificacionAdoptante);
+    adopcion.setCodigoMascota(codigoMascota);
+
+    
     formularioDeInformacion.setIdentificacionAdoptante(identificacionAdoptante);
     formularioDeInformacion.setCodigoMascota(codigoMascota);
     formularioDeInformacion.setOcupacion(ocupacion);
@@ -115,9 +121,11 @@
             formularioDeInformacion.eliminar();
             break;
             case "Aceptar":
-           // factura.setNumero(request.getParameter("numero"));
             formularioDeInformacion.setCodigo(request.getParameter("codigo"));
-            formularioDeInformacion.aceptarFormulario();
+                formularioDeInformacion.aceptarFormulario();
+            adopcion.setIdentificacionAdoptante(request.getParameter("identificacionAdoptante"));
+            adopcion.setCodigoMascota(request.getParameter("codigoMascota"));
+            adopcion.grabar();
             
             break;
     }

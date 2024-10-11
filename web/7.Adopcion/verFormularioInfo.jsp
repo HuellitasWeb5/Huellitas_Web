@@ -63,7 +63,8 @@
         listaAdopciones += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
         listaAdopciones += "<input type='submit' value='Descargar PDF' class='btn-otro'>";
         listaAdopciones += "</form>";
-        listaAdopciones += "<button class='btn-adicionar' onClick='aceptarFormulario(" + formulario.getCodigo() + ")'>Aceptar</button>";
+        listaAdopciones += "<button class='btn-adicionar' onClick='aceptarFormulario(\"" + formulario.getCodigo() + "\", \"" + persona.getIdentificacion() + "\", \"" + formulario.getCodigoMascota() + "\")'>Aceptar</button>";
+
         listaAdopciones += "<button class='btn-eliminar' onClick='eliminar(" + formulario.getCodigo() + ")'>Rechazar</button>";
         listaAdopciones += "</div>"; // Fin del contenedor de botones
 
@@ -92,7 +93,7 @@
 </div>
 
 <div class="swiper-container">
-    <%= listaAdopciones %>
+    <%= listaAdopciones%>
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
     <div class="swiper-pagination"></div>
@@ -108,10 +109,10 @@
         }
     }
 
-    function aceptarFormulario(codigo) {
+    function aceptarFormulario(codigo,identificacion,codigoMascota) {
         let respuesta = confirm("¿Realmente quieres aceptar el formulario con código: " + codigo + "?");
         if (respuesta) {
-            document.location = "principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Aceptar&codigo=" + codigo;
+           document.location = "principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Aceptar&codigo=" + codigo + "&identificacionAdoptante=" + identificacion + "&codigoMascota="+codigoMascota;
         }
     }
 
