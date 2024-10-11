@@ -1,68 +1,119 @@
-<%-- 
-    Document   : verDetallesPadripets
-    Created on : 10-oct-2024, 10:30:47
-    Author     : SENA
---%>
-
+<%-- Definiciones y dependencias --%>
+<%@page import="clases.ApadrinamientoDetalle"%>
+<%@page import="clases.Persona"%>
 <%@page import="clases.Mascota"%>
 <%@page import="clases.Apadrinamiento"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="clases.PlanesApadrinamiento"%>
 <%@page import="java.util.List"%>
-<!DOCTYPE html>
-<%
-        String codigo = request.getParameter("codigo");
-        Apadrinamiento apadrinamiento = new Apadrinamiento(codigo);
 
+<%
+    String codigo = request.getParameter("codigo");
+    Apadrinamiento apadrinamiento = new Apadrinamiento(codigo);
+    Persona persona = new Persona(apadrinamiento.getIdentificacionPadrino());
+    List<ApadrinamientoDetalle> detalles = ApadrinamientoDetalle.getListaEnObjetos("CodigoApadrinamiento = " + codigo, null);
+    String fotoCedula= apadrinamiento.getFotoCedula();
+    String fotoRecibo= apadrinamiento.getFotoRecibo();
+    String listaDetalle = "<div class='carousel-container'>";
+    listaDetalle += "<div class='swiper-container carousel'>";
+    listaDetalle += "<div class='swiper-wrapper'>";
+    
+    for (int idx = 0; idx < detalles.size()-1; idx++) {
+        System.out.println(detalles.size());
+        ApadrinamientoDetalle ADetalle = detalles.get(idx);
+        Mascota mascota = new Mascota(ADetalle.getCodigoMascota());
+        PlanesApadrinamiento plan = new PlanesApadrinamiento(ADetalle.getPlanApadrinamiento());
+
+        listaDetalle += "<div class='swiper-slide'>";
+        listaDetalle += "<div class='card'>";
+        listaDetalle += "<div class='card-header'>";
+        listaDetalle += "<h2>" + mascota.getNombre() + "</h2>"; // Nombre de la mascota
+        listaDetalle += "</div>";
+        listaDetalle += "<div class='card-body'>";
+
+        // Información de la tarjeta
+        listaDetalle += "<p><strong>Código:</strong> " + mascota.getCodigo() + "</p>";
+        listaDetalle += "<p><strong>Plan:</strong> " + plan.getNombre() + "</p>";
+        listaDetalle += "<p><strong>Lapso:</strong> " + ADetalle.getLapsoApadrinamiento() + "</p>";
+
+        listaDetalle += "</div>"; // Cierra el card-body
+        listaDetalle += "</div>"; // Cierra el card
+        listaDetalle += "</div>"; // Cierra el swiper-slide
+    }
+
+    listaDetalle += "</div>"; // Cierra el swiper-wrapper
+    listaDetalle += "<div class='swiper-button-prev'></div>";
+    listaDetalle += "<div class='swiper-button-next'></div>";
+    listaDetalle += "</div>"; // Cierra el swiper-container
+    listaDetalle += "</div>"; // Cierra el carousel-container
 %>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="presentacion/estiloyandar.css">
     <title>Detalles de Padripet</title>
+    <style>
+        .swiper-container {
+            width: 100%; /* Asegúrate de que ocupe todo el ancho */
+            height: 400px; /* Ajusta la altura según lo necesites */
+        }
+        .swiper-slide {
+            display: flex; /* Flex para centrar el contenido */
+            justify-content: center; /* Centrado horizontal */
+            align-items: center; /* Centrado vertical */
+        }
+        .card {
+            width: 300px; /* Ajusta el ancho según tus necesidades */
+            margin: 10px; /* Espacio entre tarjetas */
+            background-color: #fff; /* Color de fondo */
+            border: 1px solid #ddd; /* Bordes */
+            border-radius: 5px; /* Bordes redondeados */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
+            padding: 15px; /* Espaciado interno */
+            box-sizing: border-box; /* Incluye padding y border en el total del ancho */
+        }
+    </style>
 </head>
-<center>
+
+<body>
+    <center>
         <div class="card-carousel">
             <div class="card">
                 <div class="card-header">
                     <h3>DETALLES PADRIPET</h3>
                 </div>
                 <div class="card-body">
-
                     <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
-
                         <input type="hidden" name="mascotasPlan" id="mascotasPlan">
                         <table border='0'>
                             <tr>
                                 <th>Identificacion</th>
-                                <td><input type="text" name="identificacion" id="identificacion" required disabled> <%= apadrinamiento.getIdentificacionPadrino() %> </td>
+                                <td><a><%= persona.getIdentificacion() %></a></td>
                             </tr>
                             <tr>
                                 <th>Nombre</th>
-                                <td type="text" name="nombre" id="nombre"></td>
+                                <td><a><%= persona.getNombre() %></a></td>
                             </tr>
                             <tr>
                                 <th>Direccion</th>
-                                <td type="text" name="direccion" id="direccion"></td>
+                                <td><a><%= persona.getDireccion() %></a></td>
                             </tr>
                             <tr>
                                 <th>Telefono</th>
-                                <td type="text" name="telefono" id="telefono"></td>
+                                <td><a><%= persona.getTelefono() %></a></td>
                             </tr>
                             <tr>
                                 <th>Foto recibo</th>
                                 <td>
-                                    <input type="file" name="fotoRecibo" accept="image/*" onchange="mostrarFotoRecibo();" required="" disabled>
+                                    <button type="button" class="btn-otro" onclick="mostrarFotoRecibo();">Ver</button>
                                 </td>
                             </tr>
                             <tr>
                                 <th>Foto cedula</th>
                                 <td>
-                                    <input type="file" name="fotoCedula" accept="image/*" onchange="mostrarFotoCedula();" required=""  disabled>
+                                    <button type="button" class="btn-otro" onclick="mostrarFotoCedula();">Ver</button>
                                 </td>
                             </tr>
-                            </div>
-
                         </table>
                         <div class='btn-container'>
                             <input type="hidden" name="numero" value="<%=codigo%>">
@@ -70,42 +121,17 @@
                         </div>
                     </form>
                 </div>
-
-
-                <div class="carousel-container">
-                    <div class="swiper-container" id="contenedorTarjetas">
-                        <div class="swiper-wrapper">
-                        </div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                    </div>
-                </div>
+                
             </div>
+        </div>
+                            <%= listaDetalle %>
     </center>
 
-<script>
-var planes = <%= PlanesApadrinamiento.getListaCompletaEnArregloJS(null, null)%>;
-
-        function buscarPlanes(valor, indice) {
-            var encontrado = false;
-            var i = 0;
-            while (!encontrado && i < planes.length) {
-                if (valor === planes[i][indice]) {
-                    encontrado = true;
-                }
-                i++;
-            }
-            if (encontrado)
-                return i - 1;
-            else
-                return false;
-        }
-
-
+    <script>
         document.addEventListener("DOMContentLoaded", function () {
             var swiper = new Swiper('.swiper-container', {
-                slidesPerView: 3,
-                spaceBetween: 5,
+                slidesPerView: 3, // Ajusta el número de tarjetas visibles
+                spaceBetween: 10, // Espacio entre tarjetas
                 loop: false,
                 navigation: {
                     nextEl: '.swiper-button-next',
@@ -113,7 +139,6 @@ var planes = <%= PlanesApadrinamiento.getListaCompletaEnArregloJS(null, null)%>;
                 },
             });
         });
-
 
         function mostrarFotoRecibo() {
             var lector = new FileReader();
@@ -130,153 +155,5 @@ var planes = <%= PlanesApadrinamiento.getListaCompletaEnArregloJS(null, null)%>;
                 document.getElementById("fotoCedula").src = lector.result;
             };
         }
-        
-        function buscarPersona(valor, indice) {
-            encontrado = false;
-            i = 0;
-            while (!encontrado) {
-                if (valor == personas[i][indice])
-                    encontrado = true;
-                i++;
-            }
-            if (encontrado)
-                return i - 1;
-            else
-                return false;
-        }
-        $('#identificacion').change(function () {
-            identificacion = this.value.trim();
-            indicePersona = buscarPersona(identificacion, 0);
-            nombres = personas[indicePersona][1];
-            direccion = personas[indicePersona][3];
-            telefono = personas[indicePersona][2];
-            document.getElementById("nombre").innerHTML = nombres;
-            document.getElementById("direccion").innerHTML = direccion;
-            document.getElementById("telefono").innerHTML = telefono;
-        });
-        
-        
-        function actualizarTabla() {
-            var objeto = document.getElementById("mascotasPlan");
-
-            if (objeto.value != '') {
-                objeto.value += "||";
-            }
-
-            var mascota = document.formularioMascotas.Mascota.value;
-            var codigoMascota = mascota.substring(mascota.indexOf("-") + 1).trim();
-
-            var plan = document.querySelectorAll('input[name="opcionSeleccionada"]');
-            var seleccion = '';
-            plan.forEach(plan => {
-                if (plan.checked) {
-                    seleccion = plan.value;
-                }
-            });
-
-            var fechaInicio = document.getElementById('Fecha').value;
-            var fechaFin = document.getElementById('FechaFin').value;
-            var lapsoPlan = fechaInicio + "/" + fechaFin;
-
-            // AquÃ­ se estÃ¡ creando la cadena para el input
-            objeto.value += codigoMascota + "|" + seleccion + "|" + lapsoPlan;
-
-            // Llamar a cargarTabla despuÃ©s de actualizar el input
-            cargarTabla();
-
-            cerrarFormulario();
-        }
-        
-        var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
-        function buscarMascota(valor, indice) {
-            var encontrado = false;
-            var i = 0;
-            while (!encontrado) {
-                if (valor == mascotas[i][indice]) {
-                    encontrado = true;
-                }
-                i++;
-            }
-            if (encontrado) {
-                return i - 1;
-            } else
-                return false;
-        }
-    function buscarPlanes(valor, indice) {
-            var encontrado = false;
-            var i = 0;
-            while (!encontrado && i < planes.length) {
-                if (valor === planes[i][indice]) {
-                    encontrado = true;
-                }
-                i++;
-            }
-            if (encontrado)
-                return i - 1;
-            else
-                return false;
-        }
-
-
-        function cargarTabla() {
-            var contenedor = document.querySelector('.swiper-wrapper');
-            contenedor.innerHTML = '';  // Limpiar el contenedor antes de agregar nuevas tarjetas
-
-            var datos = document.getElementById('mascotasPlan').value;
-
-            // Dividir los registros por '||'
-            var registros = datos.split('||');
-            registros.forEach(function (registro, index) {
-                var campos = registro.split('|');
-
-                // Buscar el nombre de la mascota
-                var posision = buscarMascota(campos[0], 0);
-                if (posision !== false) {
-                    var nombreElemento = document.createElement('h2');
-                    nombreElemento.textContent = 'Mascota: ' + mascotas[posision][1];
-
-                    var codigoElemento = document.createElement('p');
-                    codigoElemento.innerHTML = '<strong>CÃ³digo:</strong> ' + campos[0];
-
-                    // Buscar el plan
-                    var posisionPlan = buscarPlanes(campos[1], 0);
-                    if (posisionPlan !== false) {
-                        var planElemento = document.createElement('p');
-                        planElemento.innerHTML = '<strong>Plan:</strong> ' + planes[posisionPlan][1];
-                    } else {
-                        var planElemento = document.createElement('p');
-                        planElemento.innerHTML = '<strong>Plan:</strong> No encontrado';
-                    }
-
-                    var lapsoElemento = document.createElement('p');
-                    lapsoElemento.innerHTML = '<strong>Lapso:</strong> ' + campos[2];
-
-                    // Crear tarjeta
-                    var tarjeta = document.createElement('div');
-                    tarjeta.classList.add('card'); // AsegÃºrate de que la clase sea la correcta
-
-                    // AÃ±adir elementos a la tarjeta
-                    tarjeta.appendChild(nombreElemento);
-                    tarjeta.appendChild(codigoElemento);
-                    tarjeta.appendChild(planElemento);
-                    tarjeta.appendChild(lapsoElemento);
-                    // AÃ±adir la tarjeta al contenedor
-                    contenedor.appendChild(tarjeta);
-                } else {
-                    console.warn('Mascota no encontrada para el cÃ³digo: ' + campos[0]);
-                }
-            });
-
-            // Inicializar Swiper
-            var swiper = new Swiper('.swiper-container', {
-                slidesPerView: 3,
-                spaceBetween: 10,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev'
-                },
-                loop: true
-            });
-        }
-    
-</script>
+    </script>
+</body>
