@@ -71,8 +71,11 @@
 
 /* Estilo general del cuerpo */
 body, html {
+    font-family: 'Playfair Display', serif;
     background-color: #f4f4f4;
     margin: 0;
+    padding: 20px;
+    overflow-x: hidden;
 }
 
 h3 {
@@ -292,7 +295,7 @@ h1 {
 
 .tableDatos {
     flex: 1;
-    margin: 20px auto; /* Asegura que esté centrado */
+    margin: 10px auto; /* Asegura que esté centrado */
     padding: 15px; /* Ajusta el padding para reducir el espacio interno */
     border-radius: 15px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
@@ -322,7 +325,7 @@ label {
 
 input[type="text"], input[type="number"], textarea {
     width: 100%; /* Ancho completo del contenedor */
-    padding: 5px; /* Espacio interior */ /* Espacio entre los campos */
+    padding: 5px; /* Espacio interior / / Espacio entre los campos */
     border-radius: 10px; /* Bordes redondeados */
     border: 2px solid #ccc; /* Borde gris claro */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
