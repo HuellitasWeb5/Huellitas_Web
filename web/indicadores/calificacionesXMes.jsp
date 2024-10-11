@@ -1,53 +1,78 @@
+<%@page import="java.util.Locale"%>
 <%@page import="clases.FormularioDeSeguimiento"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <head>
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 </head>
+
 <%
+    // Obtener el año desde la solicitud
     String anio = request.getParameter("anio");
-    String codigoMascota = request.getParameter("codigoMascota");
+    String codigoMascota = request.getParameter("codigoMascota"); // Puedes modificar esto si tienes el parámetro
 
-    if (anio == null || anio.isEmpty()) {
-        anio = "2024"; // Valor predeterminado si no se proporciona el año
-    }
-
-    // Obtén los datos de calificaciones por mes filtrando por código de mascota y año
-    List<String[]> datos = FormularioDeSeguimiento.getCalificacionesPorMes(anio, codigoMascota);
+    // Obtener los datos de calificaciones por mes y mascota
+    List<String[]> datos = FormularioDeSeguimiento.getCalificacionesXMes(anio, codigoMascota);
     StringBuilder lista = new StringBuilder();
     StringBuilder datosGraficos = new StringBuilder("[");
 
     for (int i = 0; i < datos.size(); i++) {
         String[] registro = datos.get(i);
-
-        // Generar estrellas para la calificación
-        int calificacion = Integer.parseInt(registro[2]);
-        StringBuilder estrellas = new StringBuilder();
-        for (int j = 0; j < calificacion; j++) {
-            estrellas.append("★");  // Estrellas llenas
-        }
-        for (int j = calificacion; j < 5; j++) {
-            estrellas.append("☆");  // Estrellas vacías
-        }
-
         lista.append("<tr>");
-        lista.append("<td>").append(registro[0]).append("</td>"); // Mes
-        lista.append("<td>").append(registro[1]).append("</td>"); // Código de Mascota
-        lista.append("<td>").append(estrellas.toString()).append("</td>"); // Calificación con estrellas
-        lista.append("<td>").append(registro[3]).append("</td>"); // Total Calificaciones
+        
+        // Mes
+        lista.append("<td>").append(registro[0]).append("</td>"); // Mes como texto
+        
+        // Código de mascota
+        lista.append("<td>").append(registro[1]).append("</td>"); // Código de mascota
+        
+        // Total calificaciones
+        lista.append("<td>").append(registro[3]).append("</td>"); // Total calificaciones
+        
+        // Representar calificaciones con estrellas
+        double calificacion = (double) Double.parseDouble(registro[2]); // Convertir el promedio a double
+        lista.append("<td>");
+        for (int j = 0; j < 5; j++) {
+            if (j < calificacion) {
+                lista.append("★"); // Estrella llena
+            } else {
+                lista.append("☆"); // Estrella vacía
+            }
+        }
+        // Añadir el promedio al lado de las estrellas
+        lista.append(" (").append(registro[2]).append(")"); // Promedio como decimal
+        lista.append("</td>");
+        
         lista.append("</tr>");
 
-        if (i > 0) datosGraficos.append(", ");
+        // Datos para gráficos
+        if (i > 0) {
+            datosGraficos.append(", ");
+        }
         datosGraficos.append("{");
-        datosGraficos.append("\"category\": \"").append(registro[0]).append("\","); // Mes
-        datosGraficos.append("\"value\": ").append(calificacion); // Calificación total
+        datosGraficos.append("\"category\": \"").append(registro[0]).append(" - ").append(registro[1]).append("\",");
+        datosGraficos.append("\"value\": ").append(registro[2]); // Promedio calificaciones para la gráfica
+        
+        // Añadir las estrellas al tooltip
+        StringBuilder estrellasTooltip = new StringBuilder();
+        for (int j = 0; j < 5; j++) {
+            if (j < calificacion) {
+                estrellasTooltip.append("★"); // Estrella llena
+            } else {
+                estrellasTooltip.append("☆"); // Estrella vacía
+            }
+        }
+        datosGraficos.append(", \"tooltip\": \"").append(estrellasTooltip.toString()).append(" (").append(registro[2]).append(")\""); // Tooltip
         datosGraficos.append("}");
     }
     datosGraficos.append("]");
 %>
 
 <h3>INDICADOR DE CUIDADOS POR MES</h3>
-
 
 <table border="0">
     <tr>
@@ -56,7 +81,7 @@
                 <tr>
                     <th>Mes</th>
                     <th>Código de Mascota</th>
-                    <th>Calificación</th>
+                    <th>Promedio Calificación</th>
                     <th>Total Calificaciones</th>
                 </tr>
                 <%= lista.toString() %>
@@ -69,6 +94,7 @@
 
 <input type="button" value="Atras" class="btn-otro" onClick="window.history.back()">
 </table>
+
 <script type="text/javascript">
     am5.ready(function() {
         var root = am5.Root.new("chartdiv");
@@ -102,7 +128,7 @@
         });
 
         var xAxis = chart.xAxes.push(am5xy.CategoryAxis.new(root, {
-            categoryField: "category",  // Año - Código de Mascota
+            categoryField: "category",  // Mes
             renderer: xRenderer,
             tooltip: am5.Tooltip.new(root, {})
         }));
@@ -115,15 +141,15 @@
             renderer: am5xy.AxisRendererY.new(root, {})
         }));
 
-        // Serie para el total de calificaciones (calificación por estrellas)
+        // Serie para el promedio de calificaciones
         var series = chart.series.push(am5xy.ColumnSeries.new(root, {
-            name: "Calificación",
+            name: "Promedio Calificación",
             xAxis: xAxis,
             yAxis: yAxis,
             valueYField: "value",
             categoryXField: "category",
             tooltip: am5.Tooltip.new(root, {
-                labelText: "{valueY} estrellas"  // Mostrar número de estrellas en el tooltip
+                labelText: "{valueY} estrellas"
             })
         }));
 
@@ -144,6 +170,5 @@
         chart.appear(1000, 100);
         
     }); // end am5.ready()
-
 
 </script>
