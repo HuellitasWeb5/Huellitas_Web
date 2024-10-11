@@ -349,30 +349,29 @@ public class FormularioDeSeguimiento {
         lista += "]";
         return lista;
     }
- public static List<String[]> getCalificacionesPorMes(String anio, String codigoMascota) {
+public static List<String[]> getCalificacionesXMes(String anio, String codigoMascota) {
     List<String[]> lista = new ArrayList<>();
-
-    // Consulta SQL para obtener las calificaciones por mes
-    String cadenaSQL = "SELECT DATE_FORMAT(fecha, '%Y-%m') AS mes, "
+    
+    // Consulta SQL para obtener calificaciones por mes y mascota
+    String cadenaSQL = "SELECT MONTH(fecha) AS mes, "
                      + "codigoMascota, "
-                     + "calificacion, "
-                     + "COUNT(calificacion) AS totalCalificaciones "
+                     + "SUM(calificacion) / COUNT(*) AS promedio_calificacion, "  // Promedio calculado
+                     + "COUNT(*) AS total_calificaciones "  // Total de calificaciones
                      + "FROM formularioDeSeguimiento "
-                     + "WHERE YEAR(fecha) = " + anio + " "
+                     + "WHERE YEAR(fecha) = '" + anio + "' "
                      + (codigoMascota != null && !codigoMascota.isEmpty() ? "AND codigoMascota = '" + codigoMascota + "' " : "")
-                     + "GROUP BY DATE_FORMAT(fecha, '%Y-%m'), codigoMascota, calificacion "
-                     + "ORDER BY mes "
-                     + "LIMIT 0, 200;"; // Ajusta el límite según sea necesario
+                     + "GROUP BY MONTH(fecha), codigoMascota "  // Agrupado por mes y mascota
+                     + "ORDER BY mes, codigoMascota;";  // Ordenado por mes y código de mascota
 
-    ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+    ResultSet resultado = ConectorBD.consultar(cadenaSQL); // Usar tu método de conexión
 
     try {
         while (resultado != null && resultado.next()) {
-            String[] registro = new String[4];
-            registro[0] = resultado.getString("mes"); // Mes y año (YYYY-MM)
+            String[] registro = new String[4]; // Array para mes, código de mascota, promedio y total
+            registro[0] = resultado.getString("mes"); // Mes
             registro[1] = resultado.getString("codigoMascota"); // Código de mascota
-            registro[2] = resultado.getString("calificacion"); // Calificación
-            registro[3] = resultado.getString("totalCalificaciones"); // Total de calificaciones
+            registro[2] = String.valueOf((int) Math.round(resultado.getDouble("promedio_calificacion"))); // Promedio redondeado
+            registro[3] = resultado.getString("total_calificaciones"); // Total de calificaciones
             lista.add(registro);
         }
     } catch (SQLException ex) {
@@ -388,55 +387,46 @@ public class FormularioDeSeguimiento {
             System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
         }
     }
-
+    
     return lista;
 }
- public static List<String[]> getCalificacionesPorAnio() {
-    List<String[]> lista = new ArrayList<>(); // Inicializa una lista para almacenar los resultados.
-
-    // Consulta SQL para obtener el año, código de mascota, calificación y total de calificaciones.
-    String cadenaSQL = "SELECT YEAR(fecha) AS anio, codigoMascota, calificacion, COUNT(*) AS totalCalificaciones "
+public static List<String[]> getCalificacionXAnio() {
+    List<String[]> lista = new ArrayList<>();
+    
+    // Consulta SQL para obtener calificaciones por año y mascota
+    String cadenaSQL = "SELECT YEAR(fecha) AS anio, "
+                     + "IFNULL(codigoMascota, 'Sin asignar') AS codigoMascota, "
+                     + "COUNT(calificacion) AS totalCalificaciones, "
+                     + "AVG(calificacion) AS calificaciones "
                      + "FROM formularioDeSeguimiento "
-                     + "GROUP BY YEAR(fecha), codigoMascota, calificacion "
-                     + "ORDER BY anio, codigoMascota, calificacion;"; // Agrupa por año, código de mascota y calificación.
-
-    ResultSet resultado = ConectorBD.consultar(cadenaSQL); // Ejecuta la consulta y guarda los resultados en un ResultSet.
+                     + "GROUP BY anio, codigoMascota "
+                     + "ORDER BY anio, codigoMascota;";
+    ResultSet resultado = ConectorBD.consultar(cadenaSQL);
 
     try {
-        // Itera sobre el ResultSet para obtener los datos.
         while (resultado != null && resultado.next()) {
-            String[] registro = new String[4]; // Crea un array de Strings para almacenar año, código de mascota, calificación y total de calificaciones.
-            
-            // Obtiene el año de la columna 'anio' de la consulta.
-            registro[0] = resultado.getString("anio");
-            
-            // Obtiene el código de mascota de la columna 'codigoMascota' de la consulta.
-            registro[1] = resultado.getString("codigoMascota");
-            
-            // Obtiene la calificación de la columna 'calificacion' de la consulta.
-            registro[2] = resultado.getString("calificacion");
-            
-            // Obtiene el total de calificaciones de la columna 'totalCalificaciones' de la consulta.
-            registro[3] = resultado.getString("totalCalificaciones");
-            
-            // Agrega el registro (año, código de mascota, calificación, total de calificaciones) a la lista.
+            String[] registro = new String[4]; // Array para año, código de mascota, total de calificaciones y promedio
+            registro[0] = resultado.getString("anio"); // Año
+            registro[1] = resultado.getString("codigoMascota"); // Código de mascota
+            registro[2] = resultado.getString("totalCalificaciones"); // Total de calificaciones
+            registro[3] = resultado.getString("calificaciones"); // Promedio de calificaciones
             lista.add(registro);
         }
     } catch (SQLException ex) {
-        System.err.println("Error en getCalificacionesPorAnio.");
+        System.err.println("Error en getCalificacionXAnio.");
         System.err.println("Consulta SQL: " + cadenaSQL);
         System.err.println("Error: " + ex.getMessage());
     } finally {
         try {
             if (resultado != null) {
-                resultado.close(); // Cierra el ResultSet.
+                resultado.close();
             }
         } catch (SQLException ex) {
             System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
         }
     }
-
-    return lista; // Retorna la lista con los resultados.
+    
+    return lista;
 }
  
 }
