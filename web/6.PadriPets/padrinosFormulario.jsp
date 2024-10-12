@@ -117,14 +117,14 @@
                             </tr>
 
                         </table>
-                        <div class='btn-container'>
+                        
+                    </form>
+                </div>
+                <div class='btn-container'>
                             <input type="hidden" name="numero" value="<%=codigo%>">
                             <input type="submit" name="accion" class="btn-adicionar" value="<%= accion != null ? accion : "Adicionar"%>">
                             <input type="button" class="btn-eliminar" value="Cancelar" onClick="window.history.back()">
                         </div>
-                    </form>
-                </div>
-
 
                 <div class="carousel-container">
                     <div class="swiper-container" id="contenedorTarjetas">

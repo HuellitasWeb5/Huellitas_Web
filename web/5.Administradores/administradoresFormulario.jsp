@@ -2,22 +2,22 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="stylesheet" href="presentacion/style-TarjetasModificar.css">
+    <link rel="stylesheet" href="presentacion/style-TarjetasFormularios.css">
 </head>
 <%
-String accion = request.getParameter("accion");
-String identificacion = request.getParameter("identificacion");
-Persona administrador = new Persona();
-if (accion.equals("Modificar")) {
-    administrador = new Persona(identificacion);
-}
+    String accion = request.getParameter("accion");
+    String identificacion = request.getParameter("identificacion");
+    Persona administrador = new Persona();
+    if (accion.equals("Modificar")) {
+        administrador = new Persona(identificacion);
+    }
 %>
 
-<h3><%= accion.toUpperCase() %> ADMINISTRADOR </h3>
+<h3><%= accion.toUpperCase()%> ADMINISTRADOR </h3>
 
 <div class="card-carousel">
     <div class="card">
-        <div class="card-header">
+        <div class="titulo">
             <h2>DATOS DEL ADMINISTRADOR</h2>
         </div>
         <div class="card-body">
@@ -25,15 +25,15 @@ if (accion.equals("Modificar")) {
             <form name="formulario" method="post" action="principal.jsp?CONTENIDO=5.Administradores/administradoresActualizar.jsp" enctype="multipart/form-data" onsubmit="return validarContraseña();">
                 <div class="form-group">
                     <label for="identificacion">Identificación:</label>
-                    <input type="text" name="identificacion" id="identificacion" maxlength="11" value="<%=administrador.getIdentificacion()%>" required>
+                    <input type="text" name="identificacion" id="identificacion" maxlength="12" value="<%=administrador.getIdentificacion()%>" required>
                 </div>
                 <div class="form-group">
                     <label for="nombre">Nombre:</label>
-                    <input type="text" name="nombre" id="nombre" value="<%=administrador.getNombre()%>" size="50" maxlength="50">
+                    <input type="text" name="nombre" id="nombre" value="<%=administrador.getNombre()%>" size="50" maxlength="50" required>
                 </div>
                 <div class="form-group">
                     <label>Género:</label>
-                    <div><%=administrador.getGeneroEnObjeto().getRadioButtons() %></div>
+                    <div><%=administrador.getGeneroEnObjeto().getRadioButtons()%></div>
                 </div>
                 <div class="form-group">
                     <label for="fechaNacimiento">Fecha De Nacimiento:</label>
@@ -41,19 +41,19 @@ if (accion.equals("Modificar")) {
                 </div>
                 <div class="form-group">
                     <label for="email">Correo Electrónico:</label>
-                    <input type="text" name="email" id="email" value="<%=administrador.getEmail() %>" maxlength="80" required>
+                    <input type="email" name="email" id="email" value="<%=administrador.getEmail()%>" maxlength="80" required>
                 </div>
                 <div class="form-group">
                     <label for="telefono">Teléfono:</label>
-                    <input type="text" name="telefono" id="telefono" value="<%=administrador.getTelefono()%>" maxlength="12">
+                    <input type="tel" name="telefono" id="telefono" value="<%=administrador.getTelefono()%>" maxlength="12" required>
                 </div>
                 <div class="form-group">
                     <label for="direccion">Dirección:</label>
-                    <input type="text" name="direccion" id="direccion" value="<%=administrador.getDireccion() %>" size="50" maxlength="100">
+                    <input type="text" name="direccion" id="direccion" value="<%=administrador.getDireccion()%>" size="50" maxlength="100" required>
                 </div>
                 <div class="form-group">
                     <label for="residencia">Residencia:</label>
-                    <input type="text" name="residencia" id="residencia" value="<%=administrador.getResidencia() %>" size="50" maxlength="100">
+                    <input type="text" name="residencia" id="residencia" value="<%=administrador.getResidencia()%>" size="50" maxlength="100" required>
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto:</label>
@@ -65,7 +65,7 @@ if (accion.equals("Modificar")) {
                 </div>
                 <div class="form-group">
                     <label for="clave">Contraseña:</label>
-                    <input type="password" name="clave" id="clave" required>
+                    <input type="password" name="clave" id="clave" required onkeyup="mostrarRequisitos();">
                 </div>
                 <div class="form-group">
                     <label for="confirmarClave">Confirmar Contraseña:</label>
@@ -81,12 +81,12 @@ if (accion.equals("Modificar")) {
                         <li id="coincidencia">Las contraseñas deben coincidir</li>
                     </ul>
                 </div>
-                <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
-                <div class="btn-container">
-                    <input class='btn-adicionar' type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
-                    <input class='btn-eliminar' type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
-                </div>
             </form>
+        </div>
+        <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
+        <div class="btn-container">
+            <input class='btn-adicionar' type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
+            <input class='btn-eliminar' type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
         </div>
     </div>
 </div>
@@ -146,3 +146,4 @@ if (accion.equals("Modificar")) {
         return true; // Permitir que el formulario se envíe si todo está correcto
     }
 </script>
+
