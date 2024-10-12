@@ -43,9 +43,10 @@
 
 <div class="card-carousel">
     <div class="card">
-        <div class="card-header">
-            <h2>TUS DATOS SANPATITAS</h2>
-        </div>
+        <div class="card">
+    <div class="titulo">
+        <h2>TUS DATOS SANPATITAS</h2>
+    </div>
         <div class="card-body">
             <!-- Mostrar la foto del usuario -->
             <img src="presentacion/clientes/<%=usuarioActual.getFoto()%>" id="foto" class="profile-image">
