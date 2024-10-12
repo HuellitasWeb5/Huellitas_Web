@@ -5,7 +5,7 @@
 --%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/style-TarjetasModificar.css">
+    <link rel="stylesheet" href="presentacion/style-TarjetasFormularios.css">
 </head>
 <%@page import="clases.Mascota"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -21,7 +21,7 @@ if (accion.equals("Modificar")) {
 <h3><%=accion.toUpperCase() %> MASCOTAS</h3>
 <div class="card-carousel">
     <div class="card">
-        <div class="card-header">
+        <div class="titulo">
             <h2>DATOS DE LA MASCOTA</h2>
         </div>   
         <div class="card-body">
@@ -77,12 +77,12 @@ if (accion.equals("Modificar")) {
                     <label for="descripcion">Descripción:</label>
                     <textarea name="descripcion" cols="50" rows="5" maxlength="60" required><%=mascota.getDescripcion()%></textarea>
                 </div>
-                <div class="btn-container">
-                    <input type="hidden" name="codigo" value="<%=mascota.getCodigo()%>">
-                    <input type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
-                    <input type="button" value="Cancelar" onClick="window.history.back()" class="btn-eliminar">
-                </div>
             </form>
+        </div>
+        <div class="btn-container">
+            <input type="hidden" name="codigo" value="<%=mascota.getCodigo()%>">
+            <input type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
+            <input type="button" value="Cancelar" onClick="window.history.back()" class="btn-eliminar">
         </div>
     </div>
 </div>
