@@ -126,7 +126,6 @@ public class TipoPersona {
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" + getNombre() + "'>Mascotas</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=4.Clientes/clientes.jsp&nombre=" + getNombre() + "'>San Patitas</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=5.Administradores/administradores.jsp'>Administradores</a></li>";
-              
 
                 // Menú de Indicadores
                 menu += "<li class='nav-item dropdown'>";
@@ -139,8 +138,7 @@ public class TipoPersona {
                 menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/calificacionesXAnio.jsp'>Cuidados</a></li>"; // Asegúrate de tener la ruta correcta
                 menu += "</ul></li>";
 
-                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/perfilF.jsp'>Perfil</a></li>";
-
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/perfilF.jsp'>Perfil</a></li>";
 
                 menu += "<li class='nav-item'><a class='dropdown-item' href='index.jsp'>Salir</a></li>";
                 menu += "</ul>";
@@ -153,28 +151,37 @@ public class TipoPersona {
             case "C":
                 menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light'>";
                 menu += "<div class='container-fluid'>";
+
+                // Imagen del logo a la izquierda
+                menu += "<img src='presentacion/imagenes/Logo-Fundacion.png' alt='Logo' width='90' height='90' class='d-inline-block align-text-top'>";
+
                 // Botón para colapsar el menú en pantallas pequeñas
                 menu += "<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>";
                 menu += "<span class='navbar-toggler-icon'></span>";
                 menu += "</button>";
 
-                // Menú desplegable y alineado a la derecha
-                menu += "<div class='collapse navbar-collapse justify-content-end' id='navbarNav'>"; // justify-content-end alinea a la derecha
+                // Menú desplegable centrado
+                menu += "<div class='collapse navbar-collapse justify-content-center' id='navbarNav'>"; // justify-content-center para centrar el menú
                 menu += "<ul class='navbar-nav'>";
 
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" + getNombre() + "'>Mascotas</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp'>Padripet</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/padrinosFormulario.jsp&accion=Adicionar'>Padripet</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/formularioInformacion.jsp&accion=Adicionar'>Adopciones</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/donacionesFormulario.jsp&accion=Adicionar'>Donaciones</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/perfil.jsp'>Perfil</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link' href='index.jsp'>Salir</a></li>";
 
                 menu += "</ul>";
                 menu += "</div>";
+
+                // Imagen del logo a la derecha
+                menu += "<img src='presentacion/imagenes/Logo.png' alt='Logo' width='80' height='80' class='d-inline-block align-text-top'>";
+
                 menu += "</div>";
                 menu += "</nav>";
                 break;
+
         }
 
         menu += "</ul>";
@@ -191,7 +198,7 @@ public class TipoPersona {
                 lista = "<option value='S'> Administrador  Sistema</option><option value='F' selected>Administrador  Fundacion</option>";
                 break;
             case "C":
-                lista = "<option value='S'> Administrador  Sistema</option><option value='F'>Administrador  Fundacion</option>";
+                lista = "<option value='S'> Administrador  Sistema</option><option value='F'>Administrador  Fundacion</option><option value='C' selected>Cliente</option>";
                 break;
             default:
                 lista = "<option value='S' selected> Administrador  Sistema</option><option value='F'>Administrador  Fundacion</option>";
