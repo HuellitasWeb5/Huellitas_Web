@@ -369,7 +369,7 @@ public class FormularioDeInformacion {
 
     public boolean grabar() {
         String cadenaSQL = "insert into formularioDeInformacion (codigo, fecha, identificacionAdoptante, codigoMascota, habitantes, espacio, ninos, tiempoLibre, responsables, otrasMascotas, propietario, ocupacion, motivacion, compromiso, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos, estado) "
-                + "values(generar(), curdate(), '" + identificacionAdoptante + "', '" + codigoMascota + "', '" + habitantes + "', '" + espacio + "', '" + ninos + "', '" + tiempoLibre + "', '" + responsables + "', '" + otrasMascotas + "', '" + propietario + "', '" + ocupacion + "', '" + motivacion + "', '" + compromiso + "', '" + descripcion + "', '" + fechaVisitaDia + "', '" + fechaVisitaHora + "', '" + fotoRecibo + "', '" + fotoVivienda + "', '" + fotoCedula + "', '" + autorizacionDatos + "', 'pendiente')";
+                + "values(generarCodigoFormularioInformacion(), curdate(), '" + identificacionAdoptante + "', '" + codigoMascota + "', '" + habitantes + "', '" + espacio + "', '" + ninos + "', '" + tiempoLibre + "', '" + responsables + "', '" + otrasMascotas + "', '" + propietario + "', '" + ocupacion + "', '" + motivacion + "', '" + compromiso + "', '" + descripcion + "', '" + fechaVisitaDia + "', '" + fechaVisitaHora + "', '" + fotoRecibo + "', '" + fotoVivienda + "', '" + fotoCedula + "', '" + autorizacionDatos + "', 'pendiente')";
 
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
