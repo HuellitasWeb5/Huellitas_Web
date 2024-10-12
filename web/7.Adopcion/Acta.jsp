@@ -18,43 +18,40 @@
 
 <%
     boolean subioArchivo = false;
-    Map<String, String> variables = new HashMap<String, String>();  // Almacena los datos del formulario
+    Map<String, String> variables = new HashMap<String, String>();  
     boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 
-    String rutaArchivos = getServletContext().getRealPath("/") + "uploads/";  // Ruta para guardar archivos
+    String rutaArchivos = getServletContext().getRealPath("/") + "uploads/"; 
     File destino = new File(rutaArchivos);
 
     if (!destino.exists()) {
-        destino.mkdirs();  // Crear el directorio si no existe
+        destino.mkdirs(); 
     }
 
-    String codigoFormulario = null; // Variable para almacenar el código del formulario
-
+    String codigoFormulario = null; 
     if (isMultipart) {
-        // Configuración para la subida de archivos
+     
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
         List<FileItem> items = upload.parseRequest(new ServletRequestContext(request));
         Iterator<FileItem> iterador = items.iterator();
 
-        // Procesar los elementos del formulario
         while (iterador.hasNext()) {
             FileItem item = iterador.next();
             if (item.isFormField()) {
-                // Si es un campo de formulario, almacenar en el mapa
+           
                 variables.put(item.getFieldName(), item.getString());
 
-                // Extraer específicamente el valor de 'codigoFormulario'
                 if ("codigoFormulario".equals(item.getFieldName())) {
                     codigoFormulario = item.getString();
                 }
             } else {
-                // Si es un archivo, manejar la subida del archivo
-                String nombreArchivo = new File(item.getName()).getName(); // Extraer solo el nombre del archivo
+                
+                String nombreArchivo = new File(item.getName()).getName(); 
                 if (!nombreArchivo.isEmpty()) {
                     File archivoGuardado = new File(destino, nombreArchivo);
                     item.write(archivoGuardado);
-                    variables.put(item.getFieldName(), nombreArchivo);  // Guardar el nombre del archivo
+                    variables.put(item.getFieldName(), nombreArchivo);  
                     subioArchivo = true;
                 }
             }
@@ -65,34 +62,32 @@
         variables.put("identificacionAdoptante", request.getParameter("identificacionAdoptante"));
     }
 
-    // Capturar valores del formulario
     String accion = variables.get("accion");
     String identificacionAdoptante = variables.get("identificacionAdoptante");
     String codigoMascota = variables.get("codigoMascota");
 
-    // Archivos subidos
     String acta = variables.get("acta");
 
     // Crear una instancia de Adopcion y asignar valores
     Adopcion adopcion = new Adopcion();
     adopcion.setIdentificacionAdoptante(identificacionAdoptante);
     adopcion.setCodigoMascota(codigoMascota);
-    adopcion.setActaAdopcion(acta);  // Asignar el nombre del archivo acta
+    adopcion.setActaAdopcion(acta);  
 
     String mensaje = "";
     // Acciones del formulario
     if ("Acta".equals(accion)) {
-        adopcion.setCodigo(codigoFormulario);  // Asignar el código del formulario extraído correctamente
+        adopcion.setCodigo(codigoFormulario);  
         System.out.println("Código del formulario: " + codigoFormulario);
         adopcion.SubirArchivo(); 
-        mensaje = "Acta subida correctamente.";
+        mensaje = "Contrato de adopción subido correctamente.";
     } else {
-        mensaje = "Error al subir el acta.";
+        mensaje = "Error al subir el contrato de adopción.";
     }
 %>
 
 <script type="text/javascript">
-    alert('<%= mensaje %>');  // Muestra un mensaje al usuario
+    alert('<%= mensaje %>');  
     document.location = "principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp";
 </script>
 
