@@ -167,7 +167,7 @@ h3 {
 /* Asegúrate de que las tarjetas no tengan bordes adicionales */
 .card {
     margin: 10px auto; /* Espacio entre tarjetas y centrado horizontal */
-    max-width: 800px; /* Ajusta este valor al tamaño máximo que deseas */
+    max-width: 600px; /* Ajusta este valor al tamaño máximo que deseas */
     width: auto; /* Para que la tarjeta se ajuste al contenido */
     box-sizing: border-box; /* Asegura que padding y bordes estén dentro del ancho */
     background: linear-gradient(90deg, #80c1ff, #66cca3, #b3e6b3); /* Degradado de fondo */
@@ -194,7 +194,7 @@ h3 {
     margin: 10px auto; /* Margen centrado */
     text-align: center; /* Centra el texto */
     background: linear-gradient(to right, #4CAF50, #2196F3); /* Gradiente de verde a azul */
-    max-width: 300px; /* Ancho máximo */
+    max-width: 400px; /* Ancho máximo */
     width: 80%; /* Ancho del subtítulo (opcional) */
     padding: 10px; /* Espaciado interno */
 }
@@ -296,9 +296,9 @@ label {
 }
 
 input[type="text"], input[type="number"], textarea, input[type="date"], input[type="tel"],
-input[type="password"], input[type="file"], input[type="email"] {
+input[type="password"], input[type="file"], input[type="email"], select {
     display: block; /* Asegura que los inputs ocupen el 100% del ancho */
-    width: 50%; /* Ancho completo del contenedor */
+    width: 100%; /* Ancho completo del contenedor */
     padding: 5px; /* Espacio interior / / Espacio entre los campos */
     border-radius: 10px; /* Bordes redondeados */
     border: 2px solid #ccc; /* Borde gris claro */

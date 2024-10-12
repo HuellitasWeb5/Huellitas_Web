@@ -5,7 +5,7 @@
 --%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/style-TarjetasModificar.css">
+    <link rel="stylesheet" href="presentacion/style-TarjetasFormularios.css">
 </head>
 <%@page import="clases.Persona"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -20,7 +20,7 @@ if (accion.equals("Modificar")) {
 <h3><%=accion.toUpperCase() %> SANPATITAS</h3>
 <div class="card-carousel">
     <div class="card">
-        <div class="card-header">
+        <div class="titulo">
             <h2>DATOS DE NUESTRO SANPATITAS</h2>
         </div>
         <div class="card-body">
@@ -80,13 +80,13 @@ if (accion.equals("Modificar")) {
                         <li id="coincidencia">Las contraseñas deben coincidir</li>
                     </ul>
                 </div>
+            </form>
+        </div>
                 <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
                 <div class="btn-container">
                     <input class='btn-adicionar' type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
                     <input class='btn-eliminar' type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
                 </div>
-            </form>
-        </div>
     </div>
 </div>
 
