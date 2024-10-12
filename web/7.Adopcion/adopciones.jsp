@@ -14,12 +14,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
-    <link rel="stylesheet" href="presentacion/style-Adopciones.css" />
 </head>
 <%
     // Obtener la lista de formularios de adopción
     String listaAdopciones = "";
-    String listaAdopcion = "";
     List<FormularioDeInformacion> formularios = FormularioDeInformacion.getListaEnObjetos("estado='Aceptado'", null);
     List<Adopcion> adopciones = Adopcion.getListaEnObjetos(null, null);
 
@@ -30,9 +28,9 @@
         Persona persona = new Persona(formulario.getIdentificacionAdoptante());
         Mascota mascota = new Mascota(formulario.getCodigoMascota());
         listaAdopciones += "<div class='swiper-slide'>"; // Inicio de la tarjeta
-        listaAdopciones += "<div class='cardAdop'>"; 
-        listaAdopciones += "<div class='cardAdop-header'>Código de formulario: " + formulario.getCodigo() + "</div>";
-        listaAdopciones += "<div class='cardAdop-body'>";
+        listaAdopciones += "<div class='card'>"; // Añadido la clase 'card'
+        listaAdopciones += "<div class='card-header'>Código de formulario: " + formulario.getCodigo() + "</div>";
+        listaAdopciones += "<div class='card-body'>";
         listaAdopciones += "<div class='adoptante-section' style='display: flex; align-items: center; margin-bottom: 10px;'>";
         listaAdopciones += "<div class='image-container' style='margin-right: 10px;'>";
         listaAdopciones += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' class='profile-image'/>";
@@ -90,12 +88,6 @@
         </div>
         <ul id="nameList"></ul> 
     </form>
-</div>
-
-<div class="btn-container">
-    <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar">
-        <button id="Adicionar" class="btn-adicionar">Realizar Adopción</button>
-    </a>
 </div>  
 
 <div class="swiper-container">
@@ -105,3 +97,20 @@
     <div class="swiper-button-next"></div>
     <div class="swiper-pagination"></div>
 </div>
+    <script>
+        const swiper = new Swiper('.swiper-container', {
+        loop: true,
+        slidesPerView: 3, // ayuda a mostrarme  4 tarjetas a la vez
+        spaceBetween: 20,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        }
+    });
+        
+        
+    </script>

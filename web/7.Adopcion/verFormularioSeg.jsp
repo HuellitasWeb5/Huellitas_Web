@@ -83,10 +83,9 @@
         <ul id="nameList"></ul>
     </form>
 
-    <!-- Botón de regresar -->
-    <button onclick="window.location.href = 'principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp';" class="btn-otro">
-        Volver
-    </button>
+   <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioSeguimiento.jsp&accion=Adicionar">
+    <button id="Adicionar" class="btn-adicionar">Realizar seguimiento</button>
+</a>
 </div>
 
 <div class="swiper-container">
@@ -97,11 +96,6 @@
 </div>
 
 <div id="result"></div>
-
-<!-- Botón de adicionar seguimiento -->
-<a href="principal.jsp?CONTENIDO=7.Adopcion/formularioSeguimiento.jsp&accion=Adicionar">
-    <button id="Adicionar" class="btn-adicionar">Realizar seguimiento</button>
-</a>
 
 <script type="text/javascript">
     function eliminar(codigo) {
