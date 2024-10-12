@@ -34,6 +34,8 @@
         listaAdopciones += "<div class='card'>"; // Añadido la clase 'card'
         listaAdopciones += "<div class='card-header'>Código de adopción: " + adopcion.getCodigo() + "</div>";
         listaAdopciones += "<div class='card-body'>";
+
+        // Sección de adoptante
         listaAdopciones += "<div class='adoptante-section' style='display: flex; align-items: center; margin-bottom: 10px;'>";
         listaAdopciones += "<div class='image-container' style='margin-right: 10px;'>";
         listaAdopciones += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' class='profile-image'/>";
@@ -43,7 +45,9 @@
         listaAdopciones += "<p><strong>Identificación:</strong> " + formulario.getIdentificacionAdoptante() + "</p>";
         listaAdopciones += "<p><strong>Contacto:</strong> " + persona.getTelefono() + "</p>";
         listaAdopciones += "</div>";
-        listaAdopciones += "</div>";
+        listaAdopciones += "</div>"; // Fin de la sección de adoptante
+
+        // Sección de mascota
         listaAdopciones += "<div class='mascota-section' style='display: flex; align-items: center; margin-bottom: 10px;'>";
         listaAdopciones += "<div class='image-container' style='margin-right: 10px;'>";
         listaAdopciones += "<img src='presentacion/mascota/" + mascota.getFoto() + "' alt='Foto de " + mascota.getNombre() + "' class='profile-image'/>";
@@ -53,30 +57,31 @@
         listaAdopciones += "<p><strong>Edad:</strong> " + mascota.getEdad() + " años</p>";
         listaAdopciones += "<p><strong>Cuidados Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
         listaAdopciones += "</div>";
-        listaAdopciones += "</div>"; 
+        listaAdopciones += "</div>"; // Fin de la sección de datos de la mascota
 
-    }
-    for (int i = 0; i < adopciones.size(); i++) {
-        Adopcion adopcion = adopciones.get(i);
+        // Formulario para subir acta
         listaAdopciones += "<form name='formulario' method='post' action='principal.jsp?CONTENIDO=7.Adopcion/Acta.jsp' enctype='multipart/form-data'>";
-        listaAdopciones += "<label for='acta'>Por favor, suba el contrato de adoción de la mascota:</label>";
+        listaAdopciones += "<label for='acta'>Por favor, suba el contrato de adopción de la mascota:</label>";
         listaAdopciones += "<br><input type='file' id='acta' name='acta' accept='application/pdf, image/*' required>";
         listaAdopciones += "<br>";
-        listaAdopciones += "<input type='hidden' name='accion' value='Acta'>";  
+        listaAdopciones += "<input type='hidden' name='accion' value='Acta'>";
         listaAdopciones += "<input type='hidden' id='codigoFormulario' name='codigoFormulario' value='" + adopcion.getCodigo() + "'>";
-        System.out.println(adopcion.getCodigo());
-        listaAdopciones += "<input type='submit' value='Guardar' class='btn-otro'>";  
+        listaAdopciones += "<input type='submit' value='Guardar' class='btn-otro'>";
         listaAdopciones += "</form>";
 
+        // Verificar si hay acta para mostrar el enlace
         if (adopcion.getActaAdopcion() != null && !adopcion.getActaAdopcion().isEmpty()) {
             String rutaArchivo = "uploads/" + adopcion.getActaAdopcion();
             listaAdopciones += "<a href='" + rutaArchivo + "' target='_blank' class='btn-otro'>Ver Contrato de adopción</a>";
         }
+
+        listaAdopciones += "</div>"; // Fin de card-body
+        listaAdopciones += "</div>"; // Fin de card
+        listaAdopciones += "</div>"; // Fin de swiper-slide
     }
 
-    listaAdopciones += "</div>"; 
-    listaAdopciones += "</div>"; 
-    listaAdopciones += "</div>"; 
+    listaAdopciones += "</div>"; // Fin de swiper-wrapper
+
 %>
 
 
@@ -99,10 +104,10 @@
     <div class="swiper-button-next"></div>
     <div class="swiper-pagination"></div>
 </div>
-    <script>
-        const swiper = new Swiper('.swiper-container', {
+<script>
+    const swiper = new Swiper('.swiper-container', {
         loop: true,
-        slidesPerView: 3, 
+        slidesPerView: 3,
         spaceBetween: 20,
         navigation: {
             nextEl: '.swiper-button-next',
@@ -113,6 +118,6 @@
             clickable: true,
         }
     });
-        
-        
-    </script>
+
+
+</script>

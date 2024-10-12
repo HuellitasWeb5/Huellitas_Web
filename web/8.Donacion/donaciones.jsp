@@ -40,7 +40,7 @@
         lista += "<p><strong>Descripción:</strong> " + donacion.getDescripcion() + "</p>";
         lista += "<div class='button-container'>";
         lista += "<button class='btn-otro' onclick='verDetalles(\"" + donacion.getCodigo() + "\");'>Detalles</button>";
-       // lista += "<button class='btn-modificar' onclick='abrirFormularioAdicionar(\"" + donacion.getCodigo() + "\");'>Modificar</button>";
+        // lista += "<button class='btn-modificar' onclick='abrirFormularioAdicionar(\"" + donacion.getCodigo() + "\");'>Modificar</button>";
         lista += "<button class='btn-eliminar' onclick='confirmarEliminacion(\"" + donacion.getCodigo() + "\")'>Eliminar</button>";
         lista += "</div>";
         lista += "</div>";
@@ -55,7 +55,7 @@
 <div class="header-container">
     <form id="searchForm">
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
+            <input type="text" id="searchInput" placeholder="Buscar" onkeyup="filterNames()">
             <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
         </div>
         <ul id="nameList"></ul>
@@ -88,8 +88,7 @@
         var url = "principal.jsp?CONTENIDO=8.Donacion/verDetalles.jsp&codigo=" + codigo;
         window.location.href = url;
     }
-    function abrirFormularioAdicionar(codigo) {
-
+    function abrirFormularioAdicionar() {
         var url = "principal.jsp?CONTENIDO=8.Donacion/donacionesFormulario.jsp&accion=Adicionar";
         window.location.href = url;
     }
@@ -110,5 +109,22 @@
             clickable: true,
         }
     });
+    function filterNames() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const slides = document.getElementsByClassName('swiper-slide');
+
+        // Recorre cada slide y oculta o muestra dependiendo del filtro
+        for (let i = 0; i < slides.length; i++) {
+            const cardHeader = slides[i].getElementsByClassName('card-header')[0];
+            const textValue = cardHeader.textContent || cardHeader.innerText;
+
+            if (textValue.toLowerCase().indexOf(filter) > -1) {
+                slides[i].style.display = "";
+            } else {
+                slides[i].style.display = "none";
+            }
+        }
+    }
 
 </script>
