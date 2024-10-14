@@ -10,15 +10,15 @@
 <%@page import="clases.Mascota"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
-String accion=request.getParameter("accion");
-String codigo=request.getParameter("codigo");
-Mascota mascota=new Mascota();
-mascota.setCodigo("Por generar");
-if (accion.equals("Modificar")) {
-        mascota=new Mascota(codigo);
+    String accion = request.getParameter("accion");
+    String codigo = request.getParameter("codigo");
+    Mascota mascota = new Mascota();
+    mascota.setCodigo("Por generar");
+    if (accion.equals("Modificar")) {
+        mascota = new Mascota(codigo);
     }
 %>
-<h3><%=accion.toUpperCase() %> MASCOTAS</h3>
+<h3><%=accion.toUpperCase()%> MASCOTAS</h3>
 <div class="card-carousel">
     <div class="card">
         <div class="titulo">
@@ -37,15 +37,15 @@ if (accion.equals("Modificar")) {
                 </div>
                 <div class="form-group">
                     <label for="genero">Genero:</label>
-                    <div><%=mascota.getGeneroEnObjeto().getRadioButtons() %></div>
+                    <div><%=mascota.getGeneroEnObjeto().getRadioButtons()%></div>
                 </div>
                 <div class="form-group">
                     <label for="tamano">Tamaño:</label>
                     <div>
                         <select name="tamano" required>
-                            <option value="pequeno" <%= mascota.getTamano().equals("pequeno") ? "selected" : "" %>>Pequeño</option>
-                            <option value="mediano" <%= mascota.getTamano().equals("mediano") ? "selected" : "" %>>Mediano</option>
-                            <option value="grande" <%= mascota.getTamano().equals("grande") ? "selected" : "" %>>Grande</option>
+                            <option value="pequeno" <%= mascota.getTamano().equals("pequeno") ? "selected" : ""%>>Pequeño</option>
+                            <option value="mediano" <%= mascota.getTamano().equals("mediano") ? "selected" : ""%>>Mediano</option>
+                            <option value="grande" <%= mascota.getTamano().equals("grande") ? "selected" : ""%>>Grande</option>
                         </select>
                     </div>
                 </div>
@@ -68,32 +68,32 @@ if (accion.equals("Modificar")) {
                 <div class="form-group">
                     <label for="estado">Estado:</label>
                     <select id="estado" name="estado" required>
-                        <option value="disponible" <%= mascota.getEstado().equals("disponible") ? "selected" : "" %>>Disponible</option>
-                        <option value="apadrinado" <%= mascota.getEstado().equals("apadrinado") ? "selected" : "" %>>Apadrinado</option>
-                        <option value="adoptado" <%= mascota.getEstado().equals("adoptado") ? "selected" : "" %>>Adoptado</option>
+                        <option value="disponible" <%= mascota.getEstado().equals("disponible") ? "selected" : ""%>>Disponible</option>
+                        <option value="apadrinado" <%= mascota.getEstado().equals("apadrinado") ? "selected" : ""%>>Apadrinado</option>
+                        <option value="adoptado" <%= mascota.getEstado().equals("adoptado") ? "selected" : ""%>>Adoptado</option>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="descripcion">Descripción:</label>
                     <textarea name="descripcion" cols="50" rows="5" maxlength="60" required><%=mascota.getDescripcion()%></textarea>
                 </div>
+                <div class="btn-container">
+                    <input type="hidden" name="codigo" value="<%=mascota.getCodigo()%>">
+                    <input type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
+                    <input type="button" value="Cancelar" onClick="window.history.back()" class="btn-eliminar">
+                </div>
             </form>
-        </div>
-        <div class="btn-container">
-            <input type="hidden" name="codigo" value="<%=mascota.getCodigo()%>">
-            <input type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
-            <input type="button" value="Cancelar" onClick="window.history.back()" class="btn-eliminar">
         </div>
     </div>
 </div>
-                    
-                    
-<script> 
-    function mostrarFoto(){
-        var lector=new FileReader();
+
+
+<script>
+    function mostrarFoto() {
+        var lector = new FileReader();
         lector.readAsDataURL(document.formulario.foto.files[0]);
-        lector.onloadend= function(){
-            document.getElementById("foto").src=lector.result;
+        lector.onloadend = function () {
+            document.getElementById("foto").src = lector.result;
         }
     }
 </script>
