@@ -10,23 +10,19 @@
     <link rel="stylesheet" href="presentacion/Donacion.css">
 </head>
 <%
-    TipoDonacion tipoDonacion = new TipoDonacion();
     String accion = request.getParameter("accion");
-    Donacion donacion = new Donacion();
-    DonacionDetalle donacionDetalle = new DonacionDetalle();
-    String codigo = request.getParameter("codigo");
-    
 %>
 <body onload="cargarFecha()">
-    <h3>DONACIONES</h3>
+<center><h3>DONACIONES</h3></center>
 
-    <!-- Formulario principal -->
-    <form name="formulario" method="post" action="principal.jsp?CONTENIDO=8.Donacion/donacionesFormularioActualizar.jsp">
-        <div class="container">
-            <button class="close-btn" onclick="toggleContainer(event)">−</button>
-
-            <div class="header">Datos del Usuario</div>
-            <div class="content">
+<!-- Formulario principal -->
+<div class="card-carousel">
+    <div class="card">
+        <div class="titulo">
+            <h2>DATOS DEL USUARIO</h2>
+        </div>
+        <div class="card-body">
+            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=8.Donacion/donacionesFormularioActualizar.jsp">
 
                 <div class="form-group">
                     <label>Fecha actual:</label>
@@ -54,14 +50,13 @@
                 </div>
 
                 <div class="form-group">
-
                     <label for="residencia">Residencia</label>
                     <span name="residencia" id="residencia" value="" readonly></span>
                 </div>
 
                 <div class="form-group">
                     <label for="correo">Correo Electrónico</label>
-                    <span type="text" id="correo" value="" readonly></span>
+                    <span id="correo" value="" readonly></span>
                 </div>
 
                 <div class="form-group">
@@ -70,66 +65,67 @@
                 </div>
 
                 <!-- Campo oculto para almacenar la cadena de donaciones -->
-                <input  type="hidden" name="donacion" id="donacion" required>
+                <input type="hidden" name="donacion" id="donacion" required>
                 <input type="hidden" name="accion" value="<%=accion%>">
-            </div>
 
-            <!-- Botón de envío que enviará los datos al archivo donacionesFormularioActualizar.jsp -->
-            <!-- Botón de envío que enviará los datos al archivo donacionesFormularioActualizar.jsp -->
-            <input type="submit" value="Guardar Donación" class="btn-submit" onclick="return validarFormularioPrincipal();">
-
-
-        </div>  
-    </form>
-
-    <!-- Botón para abrir el formulario modal -->
-    <button class="add-button" onclick="abrirFormulario();">Agregar Detalles de Donación</button>
-
-    <!-- Formulario modal para ingresar detalles de donaciones -->
-    <div id="formulario" title="Donaciones">
-        <form name="formularioDonacionDetalle">
-            <table>
-                <tr>
-                    <th>Tipo de donación</th>
-                    <td>
-                        <select id="tipoDonacion" name="tipoDonacion" onChange="actualizarConceptos(this.value)">
-                            <option value="">Seleccione un tipo de donación</option>
-                            <%= TipoDonacion.getListaEnOptions(null)%>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th>Donación concepto</th>
-                    <td>
-                        <select id="donacionConcepto" name="donacionConcepto">
-                            <option value="" disabled selected>Seleccione un concepto de donación</option>
-
-                        </select>
-                    </td>
-                    <td>
-
-                    </td>
-                </tr>
-                <tr>
-                    <th>Cantidad</th>
-                    <td><input type="number" name="cantidad" id="cantidad" value="1" required></td>
-                </tr>
-            </table>
-            <input class="btn-adicionar" type="button" value="Agregar" onclick="actualizarTabla();">
-            <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
-        </form>
-    </div>
-
-    <!-- Contenedor de las tarjetas de detalles -->
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <!-- aquí van las tarjetas -->
-            <br><br>
+                <div class="btn-container">
+                    <input class="btn-adicionar" type="submit" value="Guardar Donación" onclick="return validarFormularioPrincipal();">
+                    <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
+                </div>
+            </form>
         </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
     </div>
+</div>
+
+
+<!-- Botón para abrir el formulario modal -->
+<button class="btn-otro" onclick="abrirFormulario();">Agregar Detalles de Donación</button>
+
+<!-- Formulario modal para ingresar detalles de donaciones -->
+<div id="formulario" title="Donaciones">
+    <form name="formularioDonacionDetalle">
+        <table>
+            <tr>
+                <th>Tipo de donación</th>
+                <td>
+                    <select id="tipoDonacion" name="tipoDonacion" onChange="actualizarConceptos(this.value)">
+                        <option value="">Seleccione un tipo de donación</option>
+                        <%= TipoDonacion.getListaEnOptions(null)%>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <th>Donación concepto</th>
+                <td>
+                    <select id="donacionConcepto" name="donacionConcepto">
+                        <option value="" disabled selected>Seleccione un concepto de donación</option>
+
+                    </select>
+                </td>
+                <td>
+
+                </td>
+            </tr>
+            <tr>
+                <th>Cantidad</th>
+                <td><input type="number" name="cantidad" id="cantidad" value="1" required></td>
+            </tr>
+        </table>
+        <input class="btn-adicionar" type="button" value="Agregar" onclick="actualizarTabla();">
+        <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
+    </form>
+</div>
+
+<!-- Contenedor de las t,nvhvjhglikuhglñihjlkjlhjn,  oliyjnpñou5trgpparjetas de detalles -->
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+        <!-- aquí van las tarjetas -->
+        <br><br>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-pagination"></div>
+</div>
 </body>
 
 <script>
@@ -211,8 +207,8 @@
                 effect: "explode",
                 duration: 1000
             },
-            width: 400,
-            height: 250
+            width: 560,
+            height: 294
         });
     });
 
@@ -333,8 +329,7 @@
             prevEl: '.swiper-button-prev',
         },
         pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
+       
         }
     });
     function cargarFecha() {
