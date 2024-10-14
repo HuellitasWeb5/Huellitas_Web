@@ -97,7 +97,7 @@
         window.location.href = url;
     }
     const swiper = new Swiper('.swiper-container', {
-        loop: true,
+        loop: false,
         slidesPerView: 3, // Ayuda a mostrarme 3 tarjetas a la vez
         spaceBetween: 20, // poner el espacio entre las tarjetas
         navigation: {
