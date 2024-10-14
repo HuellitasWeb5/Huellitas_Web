@@ -84,3 +84,51 @@ footer {
     padding-bottom: 8px;
     border-bottom: 2px solid #ccc;
 }
+.navbar {
+    background-color: #f8f9fa; /* Color de fondo de la barra de navegación */
+    padding: 10px 20px; /* Espaciado interno */
+}
+
+.nav-link {
+    color: #007bff; /* Color de los enlaces */
+    text-decoration: none; /* Sin subrayado */
+}
+
+.nav-link:hover {
+    color: #0056b3; /* Color de los enlaces al pasar el mouse */
+}
+
+.dropdown-menu {
+    display: none; /* Oculta el menú por defecto */
+    position: absolute; /* Posiciona el menú desplegable */
+    background-color: #ffffff; /* Color de fondo del menú */
+    border: 1px solid #dee2e6; /* Borde del menú */
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block; /* Muestra el menú al pasar el mouse */
+}
+
+.dropdown-item {
+    color: #26c330; /* Color de los elementos del menú */
+    padding: 10px; /* Espaciado interno */
+}
+
+.dropdown-item:hover {
+    background-color: #26c330; /* Color de fondo al pasar el mouse */
+    color: #ffffff; /* Color del texto al pasar el mouse */
+}
+
+.dropdown-item:focus {
+    background-color: #26c330; /* Color de fondo al seleccionar */
+    color: #ffffff; /* Color del texto al seleccionar */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column; /* Muestra los elementos del menú en columnas en pantallas pequeñas */
+    }
+
+}
