@@ -23,10 +23,11 @@
     <title>Recuperar Contraseña</title>
 </head>
 <body>
-    <h1>RECUPERAR CONTRASEÑA</h1>
-<h2 class="subtitulo">Ingrese su número de identificación y se le enviará un código al correo vinculado a su cuenta.</h2> <!-- Subtítulo con clase CSS -->
-
+    
 <form action="" method="post">
+    <h1>RECUPERAR CONTRASEÑA</h1>
+    <h2 class="subtitulo">Por favor, ingrese su número de identificación y se enviará </h2> <!-- Subtítulo con clase CSS -->
+    <h2 class="subtitulo">un código al correo electrónico asociado a su cuenta.</h2> <!-- Subtítulo con clase CSS -->
     <label for="identificacion">Número de Identificación:</label>
     <input type="text" id="identificacionD" name="identificacion" required><br>
 

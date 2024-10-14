@@ -230,7 +230,7 @@ public class FormularioDeSeguimiento {
 
     public boolean grabar() {
         String cadenaSQL = "INSERT INTO formularioDeSeguimiento (codigo, fecha, identificacionAdoptante, codigoMascota, foto, fechaProximaVisita, descripcion, evolucionMedica, masaCorporal, estadoEmocional, adaptacion, vinculo, calificacion) "
-                + "VALUES (generar(),curdate(), '" + identificacionAdoptante + "', '" + codigoMascota + "', '" + foto + "', '" + fechaProximaVisita + "', '" + descripcion + "', '" + evolucionMedica + "', '" + masaCorporal + "', '" + estadoEmocional + "', '" + adaptacion + "', '" + vinculo + "', " + calificacion + ")";
+                + "VALUES (generarCodigoFormularioSeguimiento(),curdate(), '" + identificacionAdoptante + "', '" + codigoMascota + "', '" + foto + "', '" + fechaProximaVisita + "', '" + descripcion + "', '" + evolucionMedica + "', '" + masaCorporal + "', '" + estadoEmocional + "', '" + adaptacion + "', '" + vinculo + "', " + calificacion + ")";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
@@ -239,22 +239,6 @@ public class FormularioDeSeguimiento {
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
-    /*public boolean grabarFormularioConProcedimientoAlmacenado() {
-        String cadenaSQL = "CALL insertarFormularioDeSeguimiento('"
-                + this.fecha + "','"
-                + this.identificacionAdoptante + "','"
-                + this.codigoMascota + "','"
-                + this.foto + "','"
-                + this.fechaProximaVisita + "','"
-                + this.descripcion + "','"
-                + this.evolucionMedica + "','"
-                + this.masaCorporal + "','"
-                + this.estadoEmocional + "','"
-                + this.adaptacion + "','"
-                + this.vinculo + "',"
-                + this.calificacion + ")";
-        return ConectorBD.ejecutarQuery(cadenaSQL);
-    }*/
     public boolean modificar() {
         String cadenaSQL = "UPDATE formularioDeSeguimiento SET "
                 + "fecha = '" + fecha + "', "

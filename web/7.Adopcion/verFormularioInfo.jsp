@@ -86,10 +86,11 @@
         <ul id="nameList"></ul>
     </form>
 
-    <!-- Botón de regresar -->
-    <button onclick="window.location.href = 'principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp';" class="btn-otro">
-        Volver
-    </button>
+    <div class="btn-container">
+    <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar">
+        <button id="Adicionar" class="btn-adicionar">Realizar Adopción</button>
+    </a>
+</div>
 </div>
 
 <div class="swiper-container">
@@ -134,7 +135,7 @@
     }
 
     const swiper = new Swiper('.swiper-container', {
-        loop: true,
+        loop: false,
         slidesPerView: 3,
         spaceBetween: 10,
         navigation: {
