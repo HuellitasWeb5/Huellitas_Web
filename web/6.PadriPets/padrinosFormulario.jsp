@@ -48,9 +48,9 @@
     }
 
     .ui-autocomplete {
-        z-index: 1000; 
-        max-height: 200px; 
-        overflow-y: auto; 
+        z-index: 1000;
+        max-height: 200px;
+        overflow-y: auto;
         overflow-x: hidden;
     }
 </style>
@@ -94,75 +94,62 @@
     listaPlan += "</div>";
 
 
-    %>
-    <center>
-        <div class="card-carousel">
-            <div class="card">
-                <div class="card-header">
-                    <h3><%=accion.toUpperCase()%>  PADRIPET</h3>
-                </div>
-                <div class="card-body">
-
-                    <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
-
-                        <input type="hidden" name="mascotasPlan" id="mascotasPlan">
-                        <table border='0'>
-                            <tr>
-                                <th>Identificacion</th>
-                                <td><input type="text" name="identificacion" id="identificacion" required></td>
-                            </tr>
-                            <tr>
-                                <th>Nombre</th>
-                                <td type="text" name="nombre" id="nombre"></td>
-                            </tr>
-                            <tr>
-                                <th>Direccion</th>
-                                <td type="text" name="direccion" id="direccion"></td>
-                            </tr>
-                            <tr>
-                                <th>Telefono</th>
-                                <td type="text" name="telefono" id="telefono"></td>
-                            </tr>
-                            <tr>
-                                <th>Foto recibo</th>
-                                <td>
-                                    <input type="file" name="fotoRecibo" accept="image/*" onchange="mostrarFotoRecibo();" required="">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Foto cedula</th>
-                                <td>
-                                    <input type="file" name="fotoCedula" accept="image/*" onchange="mostrarFotoCedula();" required="">
-                                </td>
-                            </tr>
-                            </div>
-
-                            <tr>
-                                <td><input type="button" class="btn-otro" value="Seleccionar Mascota" onclick="abrirFormulario();" required=""></td>
-                            </tr>
-
-                        </table>
-                        
-                    </form>
-                </div>
-                <div class='btn-container'>
-                            <input type="hidden" name="numero" value="<%=codigo%>">
-                            <input type="submit" name="accion" class="btn-adicionar" value="<%= accion != null ? accion : "Adicionar"%>">
-                            <input type="button" class="btn-eliminar" value="Cancelar" onClick="window.history.back()">
-                        </div>
-
-                <div class="carousel-container">
-                    <div class="swiper-container" id="contenedorTarjetas">
-                        <div class="swiper-wrapper">
-                            <!-- Aquí se generarán dinámicamente las tarjetas -->
-                        </div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-button-next"></div>
-                    </div>
-                </div>
-
-
+%>
+<center>
+    <div class="card-carousel">
+        <div class="card">
+            <div class="card-header">
+                <h3><%=accion.toUpperCase()%>  PADRIPET</h3>
             </div>
+            <div class="card-body">
+
+                <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
+
+                    <input type="hidden" name="mascotasPlan" id="mascotasPlan">
+                    <table border='0'>
+                        <tr>
+                            <th>Identificacion</th>
+                            <td><input type="text" name="identificacion" id="identificacion" required></td>
+                        </tr>
+                        <tr>
+                            <th>Nombre</th>
+                            <td type="text" name="nombre" id="nombre"></td>
+                        </tr>
+                        <tr>
+                            <th>Direccion</th>
+                            <td type="text" name="direccion" id="direccion"></td>
+                        </tr>
+                        <tr>
+                            <th>Telefono</th>
+                            <td type="text" name="telefono" id="telefono"></td>
+                        </tr>
+                        <tr>
+                            <th>Foto recibo</th>
+                            <td>
+                                <input type="file" name="fotoRecibo" accept="image/*" onchange="mostrarFotoRecibo();" required="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>Foto cedula</th>
+                            <td>
+                                <input type="file" name="fotoCedula" accept="image/*" onchange="mostrarFotoCedula();" required="">
+                            </td>
+                        </tr>
+                        </div>
+
+                        <tr>
+                            <td><input type="button" class="btn-otro" value="Seleccionar Mascota" onclick="abrirFormulario();" required=""></td>
+                        </tr>
+
+                    </table>
+                    <div class='btn-container'>
+                        <input type="hidden" name="numero" value="<%=codigo%>">
+                        <input type="submit" name="accion" class="btn-adicionar" value="<%= accion != null ? accion : "Adicionar"%>">
+                        <input type="button" class="btn-eliminar" value="Cancelar" onClick="window.history.back()">
+                    </div>
+                </form>
+            </div>
+
 
             <div class="carousel-container">
                 <div class="swiper-container" id="contenedorTarjetas">
@@ -174,23 +161,36 @@
                 </div>
             </div>
 
-        </div>  
-    </div>
 
-    <div id="formulario" title="Apadrinar mascota">
-        <form name="formularioMascotas">
-            <table id="mascotas" border="0">
-                <tr><th>Mascota</th><th><input type="text" name="Mascota" id="Mascota" required></th></tr>
-                <tr><th>Fecha Inicio:</th><th><input type="date" name="Fecha" id="Fecha" required></th></tr>
-                <tr><th>Fecha Fin:</th><th><input type="date" name="FechaFin" id="FechaFin" required></th></tr>
-            </table>
-            <%= listaPlan%>
-            <div class='btn-container'>
-                <input type="button" class="btn-adicionar" value="Agregar" onclick="actualizarTabla();">
-                <input type="button" class="btn-eliminar" value="Cancelar" onclick="cerrarFormulario();">
+        </div>
+
+        <div class="carousel-container">
+            <div class="swiper-container" id="contenedorTarjetas">
+                <div class="swiper-wrapper">
+                    <!-- Aquí se generarán dinámicamente las tarjetas -->
+                </div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
-        </form>
-    </div>
+        </div>
+
+    </div>  
+</div>
+
+<div id="formulario" title="Apadrinar mascota">
+    <form name="formularioMascotas">
+        <table id="mascotas" border="0">
+            <tr><th>Mascota</th><th><input type="text" name="Mascota" id="Mascota" required></th></tr>
+            <tr><th>Fecha Inicio:</th><th><input type="date" name="Fecha" id="Fecha" required></th></tr>
+            <tr><th>Fecha Fin:</th><th><input type="date" name="FechaFin" id="FechaFin" required></th></tr>
+        </table>
+        <%= listaPlan%>
+        <div class='btn-container'>
+            <input type="button" class="btn-adicionar" value="Agregar" onclick="actualizarTabla();">
+            <input type="button" class="btn-eliminar" value="Cancelar" onclick="cerrarFormulario();">
+        </div>
+    </form>
+</div>
 
 </center>
 <script>
