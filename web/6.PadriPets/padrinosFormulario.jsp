@@ -126,13 +126,13 @@
                         <tr>
                             <th>Foto recibo</th>
                             <td>
-                                <input type="file" name="fotoRecibo" accept="image/*" onchange="mostrarFotoRecibo();" required="">
+                                <input type="file" name="fotoRecibo" accept="image/*"  required="">
                             </td>
                         </tr>
                         <tr>
-                            <th>Foto cedula</th>
+                            <th>Pdf cedula (ambos lados)</th>
                             <td>
-                                <input type="file" name="fotoCedula" accept="image/*" onchange="mostrarFotoCedula();" required="">
+                                <input type="file" name="pdfCedula" accept="application/pdf" required="">
                             </td>
                         </tr>
                         </div>
@@ -195,6 +195,17 @@
 </center>
 <script>
 
+document.forms['formulario'].onsubmit = function() {
+    var objeto = document.getElementById("mascotasPlan").value;
+
+    // Validar que mascotasPlan no esté vacío
+    if (!objeto || objeto.trim() === '') {
+        alert("Debes agregar al menos una mascota antes de continuar.");
+        return false; // Detener el envío del formulario
+    }
+
+    return true; // Permitir el envío si todo es correcto
+};
 
 
     $(function () {
