@@ -94,62 +94,75 @@
     listaPlan += "</div>";
 
 
-%>
-<center>
-    <div class="card-carousel">
-        <div class="card">
-            <div class="card-header">
-                <h3><%=accion.toUpperCase()%>  PADRIPET</h3>
-            </div>
-            <div class="card-body">
+    %>
+    <center>
+        <div class="card-carousel">
+            <div class="card">
+                <div class="card-header">
+                    <h3><%=accion.toUpperCase()%>  PADRIPET</h3>
+                </div>
+                <div class="card-body">
 
-                <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
+                    <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
 
-                    <input type="hidden" name="mascotasPlan" id="mascotasPlan">
-                    <table border='0'>
-                        <tr>
-                            <th>Identificacion</th>
-                            <td><input type="text" name="identificacion" id="identificacion" required></td>
-                        </tr>
-                        <tr>
-                            <th>Nombre</th>
-                            <td type="text" name="nombre" id="nombre"></td>
-                        </tr>
-                        <tr>
-                            <th>Direccion</th>
-                            <td type="text" name="direccion" id="direccion"></td>
-                        </tr>
-                        <tr>
-                            <th>Telefono</th>
-                            <td type="text" name="telefono" id="telefono"></td>
-                        </tr>
-                        <tr>
-                            <th>Foto recibo</th>
-                            <td>
-                                <input type="file" name="fotoRecibo" accept="image/*"  required="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Foto cedula</th>
-                            <td>
-                                <input type="file" name="fotoCedula" accept="image/*"  required="">
-                            </td>
-                        </tr>
+                        <input type="hidden" name="mascotasPlan" id="mascotasPlan">
+                        <table border='0'>
+                            <tr>
+                                <th>Identificacion</th>
+                                <td><input type="text" name="identificacion" id="identificacion" required></td>
+                            </tr>
+                            <tr>
+                                <th>Nombre</th>
+                                <td type="text" name="nombre" id="nombre"></td>
+                            </tr>
+                            <tr>
+                                <th>Direccion</th>
+                                <td type="text" name="direccion" id="direccion"></td>
+                            </tr>
+                            <tr>
+                                <th>Telefono</th>
+                                <td type="text" name="telefono" id="telefono"></td>
+                            </tr>
+                            <tr>
+                                <th>Foto recibo</th>
+                                <td>
+                                    <input type="file" name="fotoRecibo" accept="image/*" onchange="mostrarFotoRecibo();" required="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Foto cedula</th>
+                                <td>
+                                    <input type="file" name="fotoCedula" accept="image/*" onchange="mostrarFotoCedula();" required="">
+                                </td>
+                            </tr>
+                            </div>
+
+                            <tr>
+                                <td><input type="button" class="btn-otro" value="Seleccionar Mascota" onclick="abrirFormulario();" required=""></td>
+                            </tr>
+
+                        </table>
+                        
+                    </form>
+                </div>
+                <div class='btn-container'>
+                            <input type="hidden" name="numero" value="<%=codigo%>">
+                            <input type="submit" name="accion" class="btn-adicionar" value="<%= accion != null ? accion : "Adicionar"%>">
+                            <input type="button" class="btn-eliminar" value="Cancelar" onClick="window.history.back()">
                         </div>
 
-                        <tr>
-                            <td><input type="button" class="btn-otro" value="Seleccionar Mascota" onclick="abrirFormulario();" required=""></td>
-                        </tr>
-
-                    </table>
-                    <div class='btn-container'>
-                        <input type="hidden" name="numero" value="<%=codigo%>">
-                        <input type="submit" name="accion" class="btn-adicionar" value="<%= accion != null ? accion : "Adicionar"%>">
-                        <input type="button" class="btn-eliminar" value="Cancelar" onClick="window.history.back()">
+                <div class="carousel-container">
+                    <div class="swiper-container" id="contenedorTarjetas">
+                        <div class="swiper-wrapper">
+                            <!-- Aquí se generarán dinámicamente las tarjetas -->
+                        </div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
                     </div>
-                </form>
-            </div>
+                </div>
 
+
+            </div>
 
             <div class="carousel-container">
                 <div class="swiper-container" id="contenedorTarjetas">
@@ -161,7 +174,7 @@
                 </div>
             </div>
 
-        </div>
+        </div>  
     </div>
 
     <div id="formulario" title="Apadrinar mascota">

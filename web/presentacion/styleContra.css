@@ -1,123 +1,98 @@
-/*
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
-*/
-/* 
-    Created on : 7/10/2024, 03:34:42 PM
-    Author     : VALEN
-*/
+ /* Estilo general del cuerpo */
+        body {
+            background-image: url('../presentacion/imagenes/fondocontra.png');
+            background-size: cover;
+            background-position: center;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-/* Estilo general del cuerpo */
-body {
-    background-image: url('../presentacion/imagenes/fondocontra.png'); /* Reemplaza con la ruta de tu imagen de fondo */
-    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
-    background-position: center; /* Centra la imagen */
-    color: #333; /* Color de texto general */
-    display: flex; /* Usa Flexbox para centrar el contenido */
-    flex-direction: column; /* Dirección de los elementos en columna */
-    justify-content: center; /* Centra verticalmente */
-    align-items: center; /* Centra horizontalmente */
-    min-height: 100vh; /* Altura mínima de la vista del puerto */
-}
+        /* Estilo general del formulario */
+        form {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px; /* Ancho máximo del formulario reducido */
+            margin: 20px auto;
+            padding: 30px;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            background-color: rgba(249, 249, 249, 0.7);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            background-clip: padding-box;
+            border-image: linear-gradient(to right, green, blue) 1;
+        }
 
-/* Estilo general del formulario */
-form {
-    display: flex;
-    flex-direction: column; /* Alinea los elementos en columna */
-    max-width: 800px; /* Aumenta el ancho máximo del formulario */
-    margin: 20px auto; /* Centra el formulario horizontalmente */
-    padding: 80px; /* Aumenta el espacio interior */
-    border: 1px solid rgba(255, 255, 255, 0.8); /* Borde blanco semi-transparente */
-    border-radius: 15px; /* Bordes redondeados */
-    background-color: rgba(249, 249, 249, 0.9); /* Color de fondo semi-transparente */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); /* Sombra sutil */
-}
+        /* Centrar el título y cambiar el color */
+        h1 {
+            text-align: center;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, green, blue);
+            -webkit-background-clip: text;
+            color: transparent;
+        }
 
-/* Centrar el título y cambiar el color */
-h1 {
-    text-align: center; /* Centra el texto del título */
-    font-size: 2.5em; /* Aumenta el tamaño de la fuente del título */
-    margin-bottom: 20px; /* Espacio debajo del título */
-    color: white; /* Color del título en blanco */
-}
+        /* Estilo del subtítulo en color negro */
+        .subtitulo {
+            text-align: center;
+            font-size: 1.2em;
+            color: black; /* Cambia el color a negro */
+        }
 
-/* Aumentar el tamaño de los campos de entrada */
-input[type="text"], input[type="submit"] {
-    font-size: 1.5em; /* Aumenta el tamaño de la fuente */
-    padding: 15px; /* Aumenta el espacio interior de los campos de entrada */
-    margin-top: 10px; /* Espacio superior */
-    border: 2px solid #ccc; /* Borde gris claro */
-    border-radius: 5px; /* Bordes redondeados */
-}
+        /* Ajustar el tamaño de los campos de entrada */
+        input[type="text"], input[type="submit"] {
+            font-size: 1.2em;
+            padding: 10px;
+            margin-top: 10px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
 
-/* Estilo del botón de enviar */
-input[type="submit"] {
-    background-color: #005d03; /* Color de fondo verde */
-    color: white; /* Color de texto blanco */
-    cursor: pointer; /* Cambia el cursor al pasar por encima */
-    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
-}
+        /* Estilo del botón de enviar con degradado y borde redondeado */
+        input[type="submit"] {
+            background: linear-gradient(to right, blue, green); /* Degradado de azul a verde */
+            color: white;
+            border: none;
+            border-radius: 25px; /* Borde redondeado */
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
 
-/* Efecto al pasar el cursor sobre el botón */
-input[type="submit"]:hover {
-    background-color: #004d02; /* Color más oscuro al hacer hover */
-}
+        /* Efecto al pasar el cursor sobre el botón */
+        input[type="submit"]:hover {
+            background: linear-gradient(to right, darkblue, darkgreen);
+        }
 
-/* Estilo de las etiquetas */
-label {
-    margin-bottom: 5px; /* Espacio debajo de la etiqueta */
-    font-weight: bold; /* Negrita */
-}
+        /* Estilo del enlace para regresar */
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            text-align: center;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 15px 30px;
+            border-radius: 25px;
+            background: linear-gradient(to right, blue, green);
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
 
-/* Estilo del enlace para regresar */
-a {
-    display: block; /* Se muestra como bloque */
-    margin-top: 15px; /* Espacio superior */
-    text-align: center; /* Centra el texto */
-    color: #f2f2f2; /* Color del enlace */
-    text-decoration: none; /* Sin subrayado */
-    font-size: 1.5em; /* Aumenta el tamaño de la fuente */
-    padding: 10px; /* Espacio interior adicional */
-    border-radius: 5px; /* Bordes redondeados opcionales */
-    background-color: rgba(0, 93, 3, 0.7); /* Fondo semi-transparente opcional */
-    transition: background-color 0.3s ease; /* Transición suave para el color de fondo */
-}
+        /* Efecto al pasar el cursor sobre el enlace */
+        a:hover {
+            background-color: #218838;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
 
-a:hover {
-    text-decoration: underline; /* Subrayado al pasar el cursor */
-    background-color: rgba(0, 93, 3, 0.9); /* Fondo más oscuro al hacer hover */
-}
-
-/* Estilo de la tabla */
-table {
-    width: 100%; /* Ancho completo para la tabla */
-    border-collapse: collapse; /* Combina bordes de celda */
-    margin-top: 20px; /* Espacio superior de la tabla */
-}
-
-th, td {
-    padding: 12px; /* Espacio interior de celdas */
-    border: 1px solid #ccc; /* Borde gris claro */
-    text-align: left; /* Alinea el texto a la izquierda */
-}
-
-th {
-    background-color: #f2f2f2; /* Color de fondo de la cabecera */
-}
-
-/* Estilo para mensajes de notificación */
-.notification-message {
-    font-size: 1.5em; /* Aumenta el tamaño de la fuente */
-    color: #333; /* Color del texto */
-    background-color: white; /* Fondo blanco */
-    padding: 10px; /* Espacio interior */
-    border-radius: 5px; /* Bordes redondeados */
-    margin-top: 15px; /* Espacio superior */
-    text-align: center; /* Centra el texto */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra sutil */
-}
-.subtitulo {
-    color: white;
-}
-
+        /* Efecto al hacer clic en el enlace */
+        a:active {
+            background-color: #1e7e34;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }

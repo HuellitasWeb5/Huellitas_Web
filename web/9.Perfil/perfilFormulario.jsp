@@ -5,7 +5,7 @@
 --%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/style-TarjetasModificar.css">
+    <link rel="stylesheet" href="presentacion/style-TarjetasFormularios.css">
 </head>
 <%@page import="clases.Persona"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -28,7 +28,7 @@
             <h2>MODIFICA TUS DATOS SANPATITAS</h2>
         </div>
         <div class="card-body">
-            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp" enctype="multipart/form-data" onsubmit="return validarContraseña();">
+            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/perfilActualizar.jsp" enctype="multipart/form-data" onsubmit="return validarContraseña();">
                 <!-- Mostrar la foto del usuario -->
                 <img src="presentacion/clientes/<%=usuarioActual.getFoto() != null ? usuarioActual.getFoto() : "default.jpg"%>" id="foto" class="profile-image">
 
