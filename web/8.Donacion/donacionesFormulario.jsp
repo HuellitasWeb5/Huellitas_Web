@@ -79,7 +79,7 @@
 
 
 <!-- Botón para abrir el formulario modal -->
-<button class="add-button" onclick="abrirFormulario();">Agregar Detalles de Donación</button>
+<button class="btn-otro" onclick="abrirFormulario();">Agregar Detalles de Donación</button>
 
 <!-- Formulario modal para ingresar detalles de donaciones -->
 <div id="formulario" title="Donaciones">
