@@ -41,9 +41,8 @@ public class ConectorBD {
         boolean conectado = false;
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            System.out.println("Driver ok");String cadenaConexion = "jdbc:mysql://" + servidor + ":" + puerto + "/" + baseDatos + "?characterEncoding=utf8";
+            String cadenaConexion = "jdbc:mysql://" + servidor + ":" + puerto + "/" + baseDatos + "?characterEncoding=utf8";
             conexion = (Connection) DriverManager.getConnection(cadenaConexion, usuario, clave);
-            System.out.println("Conectado a la BD");
             conectado = true;
         } catch (ClassNotFoundException ex) {
             System.out.println("Error en el controlador en la base de datos" + ex.getMessage());
@@ -56,7 +55,6 @@ public class ConectorBD {
     public void desconectar() {
         try {
             conexion.close();
-            System.out.println("Desconectado de la BD");
         } catch (SQLException ex) {
             System.out.println("Error al desconectar la BD" + ex.getMessage());
         }
