@@ -126,13 +126,13 @@
                         <tr>
                             <th>Foto recibo</th>
                             <td>
-                                <input type="file" name="fotoRecibo" accept="image/*" onchange="mostrarFotoRecibo();" required="">
+                                <input type="file" name="fotoRecibo" accept="image/*"  required="">
                             </td>
                         </tr>
                         <tr>
                             <th>Foto cedula</th>
                             <td>
-                                <input type="file" name="fotoCedula" accept="image/*" onchange="mostrarFotoCedula();" required="">
+                                <input type="file" name="fotoCedula" accept="image/*"  required="">
                             </td>
                         </tr>
                         </div>
@@ -249,22 +249,6 @@
         });
     });
 
-
-    function mostrarFotoRecibo() {
-        var lector = new FileReader();
-        lector.readAsDataURL(document.formulario.fotoRecibo.files[0]);
-        lector.onloadend = function () {
-            document.getElementById("fotoRecibo").src = lector.result;
-        };
-    }
-
-    function mostrarFotoCedula() {
-        var lector = new FileReader();
-        lector.readAsDataURL(document.formulario.fotoCedula.files[0]);
-        lector.onloadend = function () {
-            document.getElementById("fotoCedula").src = lector.result;
-        };
-    }
 
     $(document).ready(function () {
         var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
