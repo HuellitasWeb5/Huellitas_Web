@@ -38,11 +38,8 @@
 %>
 
 <script type="text/javascript">
-    // Incrustar las variables JSP en el script JavaScript
     var codigo = "<%= codigo%>";
     var accion = "<%= accion%>";
-
- 
     document.location = "/HuellitasWeb/principal.jsp?CONTENIDO=1.TipoDonacion/conceptoDonaciones.jsp&codigo=" + codigo;
 </script>
 
