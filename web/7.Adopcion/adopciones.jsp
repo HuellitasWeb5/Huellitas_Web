@@ -13,7 +13,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
+    <link rel="stylesheet" href="presentacion/style-Adopcion.css" />
 </head>
 
 <%
@@ -90,7 +90,7 @@
 <div class="header-container">
     <form id="searchForm">
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
+            <input type="text" id="searchInput" placeholder="Buscar por nombre de mascota o adoptante" onkeyup="filterNames()">
             <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon"> 
         </div>
         <ul id="nameList"></ul> 
@@ -98,17 +98,18 @@
 </div>  
 
 <div class="swiper-container">
-    <%= listaAdopciones%>
+    <%= listaAdopciones %>
 
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
     <div class="swiper-pagination"></div>
 </div>
+
 <script>
     const swiper = new Swiper('.swiper-container', {
-        loop: true,
-        slidesPerView: 3,
-        spaceBetween: 20,
+        loop: false,
+        slidesPerView: 3, 
+        spaceBetween: 20, 
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
@@ -119,5 +120,21 @@
         }
     });
 
+    function filterNames() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const slides = document.getElementsByClassName('swiper-slide');
 
+        // Filtrar por nombre del adoptante o mascota
+        for (let i = 0; i < slides.length; i++) {
+            const cardBody = slides[i].getElementsByClassName('card-body')[0];
+            const textValue = cardBody.textContent || cardBody.innerText;
+
+            if (textValue.toLowerCase().indexOf(filter) > -1) {
+                slides[i].style.display = "";
+            } else {
+                slides[i].style.display = "none";
+            }
+        }
+    }
 </script>
