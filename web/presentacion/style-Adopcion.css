@@ -1,0 +1,77 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 13 oct 2024, 22:46:30
+    Author     : Angie
+*/
+
+.card {
+    margin: 5px;
+    max-width: 100%;
+    box-sizing: border-box; /* Asegura que padding y bordes estén dentro del ancho */
+    margin-bottom: 10px;
+    width: 100%; /* Asegura que las tarjetas se ajusten al 100% del ancho */
+    background: linear-gradient(90deg, #80c1ff, #66cca3, #b3e6b3); /* Degradado de azul a verde con tonos menos saturados */
+    border-radius: 50px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    min-width: 300px; /* Ajuste de ancho */
+    margin: 10px;
+    height: auto; /* Altura automática para adaptarse al contenido */
+    display: flex;
+    flex-direction: column; /* Mantener el contenido en columna */
+    justify-content: space-between; /* Para que botones queden abajo */
+}
+
+.card-carousel {
+    display: flex; /* Organiza las tarjetas en una fila */
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease-in-out;
+    scroll-behavior: smooth;
+    overflow: hidden;
+    width: max-content; /* Permite que el carrusel se ajuste al contenido */
+    gap: 20px; /* Espacio entre las tarjetas para evitar que se superpongan */
+}
+
+.card-container {
+    display: flex;
+    overflow: hidden;
+    padding: 10px;
+    justify-content: center;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.card:hover {
+    background-color: #99ccff; /* Color al pasar el cursor */
+   
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
+}
+
+.card-header {
+    font-size: 1.5em; /* Ajusta el tamaño del texto a 1.5 veces el tamaño de la fuente base, haciendo que la cabecera se vea más grande y destacada */
+    font-weight: bold; /* Hace que el texto sea más grueso y visible, resaltando la importancia de la cabecera */
+    margin-bottom: 10px; /* Añade un margen de 10 píxeles debajo del texto para crear espacio entre la cabecera y el contenido siguiente */
+    border-bottom: 3px solid #c7f1c7; /* Crea un borde sólido de 3 píxeles de grosor en la parte inferior con un color verde claro, para separar visualmente la cabecera del contenido */
+    padding-bottom: 5px; /* Añade un espacio de 5 píxeles entre el texto y el borde inferior para evitar que el texto esté muy cerca del borde */
+    color: #d3fed3; /* Define el color del texto a un tono verde claro para que combine con el diseño general de la tarjeta */
+}
+
+.swiper-container {
+    width: 100%; /* Asegúrate de que el swiper ocupe el 100% del ancho del contenedor */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    padding-bottom: 80px;
+    max-width: 100%;
+    margin: 0 auto; /* Centra el swiper en el contenedor */
+}
