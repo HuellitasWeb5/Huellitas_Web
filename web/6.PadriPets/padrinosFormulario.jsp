@@ -28,11 +28,11 @@
     .btn-container {
         display: flex;
         justify-content: center; /* Centra los botones */
-        gap: 20px; /* Añade espacio entre los botones */
-        margin-top: 20px; /* Añade margen superior para mayor separación */
+        gap: 20px; /* AÃ±ade espacio entre los botones */
+        margin-top: 20px; /* AÃ±ade margen superior para mayor separaciÃ³n */
     }
     .ui-dialog {
-        max-height: 90vh; /* Limita la altura máxima del diálogo al 90% de la altura de la ventana */
+        max-height: 90vh; /* Limita la altura mÃ¡xima del diÃ¡logo al 90% de la altura de la ventana */
         overflow-y: auto; /* Permite el desplazamiento solo si es absolutamente necesario */
     }
     .swiper-container {
@@ -43,7 +43,7 @@
 
 
     .card.selected {
-        border: 2px solid #007BFF;
+        border: 4px solid #F07BFF;
         background-color: #E9F5FF;
     }
 
@@ -73,10 +73,10 @@
         listaPlan += "</div>";
         listaPlan += "<div class='card-body'>";
 
-        // Aquí se agrega el label alrededor de la tarjeta
+        // AquÃ­ se agrega el label alrededor de la tarjeta
         listaPlan += "<label style='display: block; cursor: pointer;'>";
         listaPlan += "<p><strong>Codigo:</strong> " + planes2.getId() + "</p>";
-        listaPlan += "<p><strong>Descripción:</strong> " + planes2.getDescripcion() + "</p>";
+        listaPlan += "<p><strong>DescripciÃ³n:</strong> " + planes2.getDescripcion() + "</p>";
         listaPlan += "<div class='button-container'>";
         listaPlan += "<input type='radio' name='opcionSeleccionada' value='" + planes2.getId() + "' style='display: none;'>";
         listaPlan += "</div>";
@@ -105,7 +105,7 @@
 
                 <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
 
-                    <input type="hidden" name="mascotasPlan" id="mascotasPlan">
+                    <input type="hidden" name="mascotasPlan" id="mascotasPlan" required="">
                     <table border='0'>
                         <tr>
                             <th>Identificacion</th>
@@ -154,7 +154,7 @@
             <div class="carousel-container">
                 <div class="swiper-container" id="contenedorTarjetas">
                     <div class="swiper-wrapper">
-                        <!-- Aquí se generarán dinámicamente las tarjetas -->
+                        <!-- AquÃ­ se generarÃ¡n dinÃ¡micamente las tarjetas -->
                     </div>
                     <div class="swiper-button-prev"></div>
                     <div class="swiper-button-next"></div>
@@ -167,7 +167,7 @@
         <div class="carousel-container">
             <div class="swiper-container" id="contenedorTarjetas">
                 <div class="swiper-wrapper">
-                    <!-- Aquí se generarán dinámicamente las tarjetas -->
+                    <!-- AquÃ­ se generarÃ¡n dinÃ¡micamente las tarjetas -->
                 </div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
@@ -196,6 +196,7 @@
 <script>
 
 
+
     $(function () {
         $("#formulario").dialog({
             autoOpen: false,
@@ -208,10 +209,10 @@
                 duration: 1000
             },
             width: 950,
-            height: 'auto', // Cambiar de un valor fijo a 'auto' para ajustar dinámicamente la altura
+            height: 'auto', // Cambiar de un valor fijo a 'auto' para ajustar dinÃ¡micamente la altura
             modal: true,
             open: function (event, ui) {
-                $(this).dialog('option', 'height', 'auto'); // Ajusta automáticamente la altura del modal al contenido
+                $(this).dialog('option', 'height', 'auto'); // Ajusta automÃ¡ticamente la altura del modal al contenido
                 $(this).dialog('option', 'position', {my: 'center', at: 'center', of: window}); // Centra el modal
             }
         });
@@ -254,7 +255,7 @@
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 3,
             spaceBetween: 5,
-            loop: false,
+            loop: true,
             navigation: {
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
@@ -314,35 +315,41 @@
 
 
     function actualizarTabla() {
-        var objeto = document.getElementById("mascotasPlan");
-
-        if (objeto.value != '') {
-            objeto.value += "||";
-        }
-
-        var mascota = document.formularioMascotas.Mascota.value;
-        var codigoMascota = mascota.substring(mascota.indexOf("-") + 1).trim();
-
-        var plan = document.querySelectorAll('input[name="opcionSeleccionada"]');
-        var seleccion = '';
-        plan.forEach(plan => {
-            if (plan.checked) {
-                seleccion = plan.value;
-            }
-        });
-
-        var fechaInicio = document.getElementById('Fecha').value;
-        var fechaFin = document.getElementById('FechaFin').value;
-        var lapsoPlan = fechaInicio + "/" + fechaFin;
-
-        // Aquí se está creando la cadena para el input
-        objeto.value += codigoMascota + "|" + seleccion + "|" + lapsoPlan;
-
-        // Llamar a cargarTabla después de actualizar el input
-        cargarTabla();
-
-        cerrarFormulario();
+    // Obtener los valores de los campos de mascotas
+    var mascota = document.formularioMascotas.Mascota.value.trim();
+    var fechaInicio = document.getElementById('Fecha').value.trim();
+    var fechaFin = document.getElementById('FechaFin').value.trim();
+    
+    // Validar que los campos no estén vacíos
+    if (!mascota || !fechaInicio || !fechaFin) {
+        alert("Todos los campos del formulario de mascotas deben estar llenos.");
+        return; // Detener la ejecución si hay campos vacíos
     }
+
+    var objeto = document.getElementById("mascotasPlan");
+
+    if (objeto.value != '') {
+        objeto.value += "||";
+    }
+
+    var codigoMascota = mascota.substring(mascota.indexOf("-") + 1).trim();
+
+    var plan = document.querySelectorAll('input[name="opcionSeleccionada"]');
+    var seleccion = '';
+    plan.forEach(plan => {
+        if (plan.checked) {
+            seleccion = plan.value;
+        }
+    });
+
+    var lapsoPlan = fechaInicio + "/" + fechaFin;
+
+    objeto.value += codigoMascota + "|" + seleccion + "|" + lapsoPlan;
+
+    cargarTabla();
+    cerrarFormulario();
+}
+
 
 
     var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
@@ -397,7 +404,7 @@
                 nombreElemento.textContent = 'Mascota: ' + mascotas[posision][1];
 
                 var codigoElemento = document.createElement('p');
-                codigoElemento.innerHTML = '<strong>Código:</strong> ' + campos[0];
+                codigoElemento.innerHTML = '<strong>CÃ³digo:</strong> ' + campos[0];
 
                 // Buscar el plan
                 var posisionPlan = buscarPlanes(campos[1], 0);
@@ -414,26 +421,27 @@
 
                 // Crear tarjeta
                 var tarjeta = document.createElement('div');
-                tarjeta.classList.add('card'); // Asegúrate de que la clase sea la correcta
+                tarjeta.classList.add('card'); // AsegÃºrate de que la clase sea la correcta
 
-                // Crear botón de eliminar
+                // Crear botÃ³n de eliminar
                 var botonEliminar = document.createElement('button');
                 botonEliminar.textContent = 'Eliminar';
+                botonEliminar.classList.add('btn-eliminar'); // Añadir la clase para el estilo
                 botonEliminar.onclick = function () {
-                    eliminar(index); // Pasar el índice de la tarjeta a la función eliminar
+                    eliminar(index); // Pasar el Ã­ndice de la tarjeta a la funciÃ³n eliminar
                 };
 
-                // Añadir elementos a la tarjeta
+                // AÃ±adir elementos a la tarjeta
                 tarjeta.appendChild(nombreElemento);
                 tarjeta.appendChild(codigoElemento);
                 tarjeta.appendChild(planElemento);
                 tarjeta.appendChild(lapsoElemento);
                 tarjeta.appendChild(botonEliminar);
 
-                // Añadir la tarjeta al contenedor
+                // AÃ±adir la tarjeta al contenedor
                 contenedor.appendChild(tarjeta);
             } else {
-                console.warn('Mascota no encontrada para el código: ' + campos[0]);
+                console.warn('Mascota no encontrada para el cÃ³digo: ' + campos[0]);
             }
         });
 
@@ -470,7 +478,7 @@
             }
         }
 
-        console.log("Filas después de eliminar:", mascotae);
+        console.log("Filas despuÃ©s de eliminar:", mascotae);
 
         // Actualizar el campo con los nuevos datos
         document.formulario.mascotasPlan.value = mascotae;
