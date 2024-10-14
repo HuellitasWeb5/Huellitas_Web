@@ -61,7 +61,7 @@
             </div>
             <ul id="nameList"></ul>
         </form>
-        <button class="btn-adicionar" onclick="abrirFormulario('Adicionar');">Agregar Tipo de donacion</button>
+        <button class="btn-adicionar" onclick="abrirFormulario('Adicionar');">Agregar Plan Padripet</button>
     </div>
 <div class="swiper-container">
         <div class="swiper-wrapper">
@@ -94,7 +94,7 @@
         $("#formularioPlan").dialog({
             autoOpen: false,
             width: 500, // Ajusta el ancho 
-            height: 200, // Ajusta la altura 
+            height: 400, // Ajusta la altura 
             show: {
                 effect: "blind",
                 duration: 1000
