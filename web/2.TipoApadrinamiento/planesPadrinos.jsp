@@ -94,7 +94,7 @@
         $("#formularioPlan").dialog({
             autoOpen: false,
             width: 500, // Ajusta el ancho 
-            height: 400, // Ajusta la altura 
+            height: 300, // Ajusta la altura 
             show: {
                 effect: "blind",
                 duration: 1000
