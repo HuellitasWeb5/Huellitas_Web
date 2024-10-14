@@ -13,14 +13,12 @@
 
 <%
     String codigo = request.getParameter("codigo");
-
     TipoDonacion tipoDonacion = new TipoDonacion(codigo);
     ConceptoDonacion conceptoDonacion = new ConceptoDonacion();
     List<ConceptoDonacion> datos = ConceptoDonacion.getListaEnObjetos("codigoTipoDonacion=" + codigo, null);
     String lista = "";
     for (int i = 0; i < datos.size(); i++) {
         conceptoDonacion = datos.get(i);
-    //    UnidadDeMedida unidadDeMedida = new UnidadDeMedida(conceptoDonacion.getIdUnidadDeMedida());
         lista += "<div class='swiper-slide'>";
         lista += "<div class='card'>";
         lista += "<div class='card-header'>";

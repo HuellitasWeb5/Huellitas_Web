@@ -14,10 +14,9 @@
 </head>
 
 <%
-    TipoDonacion tipoDonacion = new TipoDonacion();
     String lista = "";
+    TipoDonacion tipoDonacion = new TipoDonacion();
     List<TipoDonacion> datos = TipoDonacion.getListaEnObjetos(null, null);
-    // Generar la lista de tarjetas para el Swiper
     for (int i = 0; i < datos.size(); i++) {
         tipoDonacion = datos.get(i);
 
@@ -117,8 +116,6 @@
             $('#formulario').dialog('option', 'title', 'Modificar Tipo de Donación');
             document.querySelector('input[type="button"][value="Agregar"]').value = 'Modificar';
             document.querySelector('input[type="button"][value="Modificar"]').setAttribute('onclick', 'modificarTipoDonacion("' + codigo + '");');
-
-            // Precargar los datos en los campos del formulario
             document.getElementById('nombre').value = nombre;
             document.getElementById('descripcion').value = descripcion;
 
@@ -149,17 +146,14 @@
 
 
     function agregarTipoDonacion() {
-        // Obtener los valores de los campos
         var nombre = document.getElementById('nombre').value;
         var descripcion = document.getElementById('descripcion').value;
 
-        // Validar que los campos no estén vacíos
+
         if (!nombre || !descripcion) {
             alert("Por favor, complete todos los campos.");
-            return; // Detiene la ejecución si los campos están vacíos
+            return;
         }
-
-        // Construir la URL si los campos están completos
         var url = "1.TipoDonacion/tiposDeDonacionesActualizar.jsp?accion=Adicionar&nombre=" + nombre + "&descripcion=" + descripcion;
         window.location.href = url;
     }
@@ -184,12 +178,12 @@
             clickable: true,
         }
     });
+
     function filterNames() {
         const input = document.getElementById('searchInput');
-        const filter = input.value.toLowerCase();
+        const filter = input.value.toLowerCase(); //toLowerCase pone en minuscular el texto que reciba
         const slides = document.getElementsByClassName('swiper-slide');
 
-        // Recorre cada slide y oculta o muestra dependiendo del filtro
         for (let i = 0; i < slides.length; i++) {
             const cardHeader = slides[i].getElementsByClassName('card-header')[0];
             const textValue = cardHeader.textContent || cardHeader.innerText;
