@@ -86,7 +86,8 @@ if (accion.equals("Modificar")) {
                     <input class='btn-eliminar' type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
                 </div>
             </form>
-        </div>    
+        </div>
+                
     </div>
 </div>
 
