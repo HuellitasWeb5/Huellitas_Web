@@ -65,10 +65,11 @@
     Apadrinamiento padrino = new Apadrinamiento();
 
     if ("Adicionar".equals(accion)) {
-        padrino.setIdentificacionPadrino(request.getParameter("identificacion"));
+        padrino.setIdentificacionPadrino(variables.get("identificacion"));
         padrino.setFotoRecibo(variables.get("fotoRecibo")); // Usar la ruta guardada
-        padrino.setFotoCedula(variables.get("pdfCedula")); // Usar la ruta guardada
-        padrino.grabarConProcedimientoAlmacenado(request.getParameter("mascotasPlan"));
+        padrino.setFotoCedula(variables.get("fotoCedula")); // Usar la ruta guardada
+        padrino.grabarConProcedimientoAlmacenado(variables.get("mascotasPlan"));
+        System.out.println("mascotasPlan: " + variables.get("mascotasPlan"));
         
         // Mostrar las rutas guardadas
         System.out.println("Foto Recibo: " + variables.get("fotoRecibo"));
