@@ -1,7 +1,7 @@
 /* Estilos para el carrusel y las tarjetas */
 .swiper-container {
     width: 100%; /* Ocupa el 100% del contenedor padre */
-    max-width: 1200px; /* Limita el ancho máximo del carrusel */
+    max-width: 1500px; /* Limita el ancho máximo del carrusel */
     margin: 0 auto; /* Centra el carrusel en la página */
     overflow: hidden; /* Evita que el contenido se desborde fuera del contenedor */
 }
@@ -27,22 +27,70 @@
     width: 100%; /* La tarjeta ocupa todo el ancho del slide */
     padding: 10px; /* Espaciado interno de la tarjeta */
 }
-
-/* Estilos de las tarjetas */
-.card {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    padding: 10px; /* Reduce el padding para hacer la tarjeta más compacta */
-    max-width: 250px; /* Disminuye el ancho máximo de la tarjeta */
-    margin: 10px auto; /* Reduce el margen alrededor de las tarjetas */
+.card:hover {
+    background-color: #99ccff; /* Color al pasar el cursor */
+    transform: translateY(-10px); /* Mueve la tarjeta hacia arriba */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
 }
 
-.card-img {
+.card-footer {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.card-subtitle {
+    font-size: 15px;
+    color: #005d03;
+    margin-top: 8px;
     text-align: center;
 }
 
+.card-subtitle {
+    font-size: 15px; /* Ajusta el tamaño de la fuente */
+    color: #005d03; /* Puedes personalizar el color */
+    margin-top: 8px; /* Ajusta el espacio entre el nombre y el rol */
+    text-align: center; /* Centra el subtítulo */
+}
+
+
+.card-body strong {
+    font-weight: bold; /* Asegura que el texto esté en negrita */
+    text-transform: uppercase; /* Convierte el texto a mayúsculas */
+}
+/* Estilos de las tarjetas */
+.card {
+    margin: 10px auto; /* Espacio entre tarjetas y centrado horizontal */
+    max-width: 600px; /* Ajusta este valor al tamaño máximo que deseas */
+    width: auto; /* Para que la tarjeta se ajuste al contenido */
+    box-sizing: border-box; /* Asegura que padding y bordes estén dentro del ancho */
+    background: linear-gradient(90deg, #80c1ff, #66cca3, #b3e6b3); /* Degradado de fondo */
+    border-radius: 50px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para darle profundidad */
+    padding: 20px; /* Espacio interno */
+    text-align: center; /* Centrar el texto */
+    height: auto; /* Ajuste automático al contenido */
+    display: flex;
+    flex-direction: column; /* Mantener el contenido en columna */
+    justify-content: space-between; /* Para que botones queden abajo */
+}
+.card:hover {
+    background-color: #99ccff; /* Color al pasar el cursor */
+
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
+}
+.card-footer {
+    display: flex; /* Alinear los botones horizontalmente */
+    justify-content: center; /* Centrar los botones */
+    margin-top: 10px; /* Espacio entre el contenido y los botones */
+}
+.card-body {
+    text-align: start;
+    font-size: 0.85em; /* Reducir el tamaño del texto */
+    font-size: 0.9em; /* Ajustar el tamaño de la fuente */
+    margin-bottom: 15px;
+}
 .card-header {
     font-size: 1em; /* Reduce el tamaño de la fuente */
     font-weight: bold;
@@ -88,4 +136,118 @@
     .card {
         max-width: 100%;
     }
+}
+
+
+.btn-adicionar {
+    display: inline-block; /* Hace que los botones se muestren uno al lado del otro */
+    margin-right: 20px; /* Espaciado entre los botones */
+    padding: 10px 20px; /* Aumenta el espacio interno del botón */
+    background-color:#1dba35;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1em; /* Aumenta el tamaño de la fuente para hacer el botón más grande */
+}
+
+.btn-adicionar:hover {
+    background-color: #256f30;
+}
+.btn-modificar {
+    display: inline-block; /* Hace que los botones se muestren uno al lado del otro */
+    margin-right: 20px; /* Espaciado entre los botones */
+    padding: 10px 20px; /* Aumenta el espacio interno del botón */
+    background-color:#1dba35;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.btn-modificar:hover {
+    background-color: #256f30;
+}
+
+
+.btn-eliminar {
+    display: inline-block; /* Hace que los botones se muestren uno al lado del otro */
+    margin-right: 10px; /* Espaciado entre los botones */
+    margin-left: 20px; /* Espaciado entre los botones */
+    padding: 10px 20px; /* Aumenta el espacio interno del botón */
+    background-color: #e3203b; /* Color para el botón de eliminar */
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.btn-eliminar:hover {
+    background-color: #a51529;
+}
+
+.btn-otro {
+    display: inline-block; /* Hace que los botones se muestren uno al lado del otro */
+    margin-right: 5px; /* Espaciado entre los botones */
+    padding: 10px 20px; /* Aumenta el espacio interno del botón */
+    background-color: #00cccc;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1em; /* Aumenta el tamaño de la fuente para hacer el botón más grande */
+}
+
+.btn-otro:hover {
+    background-color: #1b668c;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra horizontalmente el contenido */
+    margin-bottom: 20px; /* Espacio entre el header y el resto del contenido */
+}
+
+#searchInput {
+    padding: 8px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    width: 300px; /* Ajusta el ancho como desees */
+    margin-right: 10px; /* Espacio entre el input y el icono */
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.search-container input {
+    width: 300px; /* Ancho fijo para el input del buscador */
+    padding: 5px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+.search-icon {
+    width: 25px; /* Ajusta el tamaño del icono */
+    height: 25px;
+    box-shadow: none;/* Ajusta el tamaño del icono */
+    margin-left: 10px; /* Deja espacio entre el input y el icono */
+    cursor: pointer;
+}
+
+
+
+h3 {
+    font-size: 35px; /* Tamaño de fuente grande */
+    color: #333; /* Color de texto blanco */
+    text-align: center; /* Centra el texto */
+    margin: 20px 0; /* Margen superior e inferior */
+    font-weight: bold; /* Negrita para el texto */
+
 }
