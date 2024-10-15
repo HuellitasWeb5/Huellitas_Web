@@ -14,6 +14,7 @@
     String identificacion = request.getParameter("identificacion");
     Persona clientes = new Persona();
 %>
+<body>
 <h3>REGÍSTRATE SANPATITAS</h3>
 <div class="card-carousel">
     <div class="card">
@@ -145,4 +146,4 @@
         return true; // Permitir que el formulario se envíe si todo está correcto
     }
 </script>
-
+</body>
