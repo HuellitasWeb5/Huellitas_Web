@@ -69,6 +69,7 @@
         padrino.setFotoRecibo(variables.get("fotoRecibo")); // Usar la ruta guardada
         padrino.setFotoCedula(variables.get("fotoCedula")); // Usar la ruta guardada
         padrino.grabarConProcedimientoAlmacenado(variables.get("mascotasPlan"));
+        System.out.println("mascotasPlan: " + variables.get("mascotasPlan"));
         
         // Mostrar las rutas guardadas
         System.out.println("Foto Recibo: " + variables.get("fotoRecibo"));
