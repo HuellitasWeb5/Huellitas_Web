@@ -11,17 +11,19 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
+    <link rel="stylesheet" href="presentacion/style-Formularios.css" />
 </head>
 <%
     String accion = request.getParameter("accion");
-    String codigo = request.getParameter("codigo");
     FormularioDeInformacion formularioDeInformacion = new FormularioDeInformacion();
+    Mascota mascota = new Mascota(formularioDeInformacion.getCodigoMascota());
+    Persona persona = new Persona(formularioDeInformacion.getIdentificacionAdoptante());
 
 %>  
 <body onload="cargarFecha()">
     <h3><%=accion.toUpperCase()%> FORMULARIO DE ADOPCIÓN </h3>
     <form name="formulario" method="post" action="principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp" enctype="multipart/form-data">
-        <div class="containerFormulario">
+       <div  class="formulario-adopcion">
             <div>Fecha actual: <span id="fecha"></span></div>
             <div class="contenedor-tarjetas">
 
@@ -42,7 +44,7 @@
                             <input type="text" name="residencia" id="residencia" readonly>
                         </div>
                         <div class="foto">
-                            <img id="foto" class="fotoPreview" src="" alt="Foto Adoptante">
+                            <img id="foto" class="fotoPreview" src="presentacion/clientes/<%= persona.getFoto()%>" alt="Foto de <%= persona.getNombre()%>" style="width: 100px; height: auto;">
                         </div>
                     </div>
                 </div>
@@ -64,17 +66,17 @@
                             <label>Cuidados Especiales:</label>
                             <input type="text" name="cuidadosEspeciales" id="cuidadosEspeciales" readonly>
                         </div>
-                        <div class="foto">
-                            <img id="fotoMascotaPreview" class="fotoPreview" src="" alt="Foto Mascota">
+                          <div class="foto">
+                            <img id="foto" class="fotoPreview" src="presentacion/mascota/<%= mascota.getFoto()%>" alt="Foto de <%= mascota.getNombre()%>" style="width: 100px; height: auto;">
                         </div>
                     </div>
                 </div>
             </div>
             <table>
                 <input type="hidden" name="fechaActual" id="fechaActual">
-                
+
                 <!-- FORMULARIO  -->  
-                
+
                 <label for="ocupacion">¿Cuál es su ocupación?</label>
                 <input type="text" id="ocupacion" name="ocupacion" maxlength="100" required><br><br>
 
@@ -170,9 +172,10 @@
                         y el bienestar de la(s) mascota(s), en cumplimiento con la legislación vigente en materia de protección de datos.</label>
                 </div>
                 <br><br>
-                 <!-- Botones de envío -->
 
-                <input type="submit" name="accion" class="btn-adicionar" value="Adicionar" onclick="adicionar()">
+                <!-- Botones de envío -->
+
+                <input class="btn-adicionar" type="submit" name="accion" value="<%=accion%>">
                 <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
 
             </table>
@@ -180,16 +183,10 @@
     </form>
 </body>
 <script>
-    
-        function adicionar() {
-            var resultado = confirm("Tu formulario ha sido guardado correctamente, alguien de la fundación se comunicará contigo.");
-            if (resultado) {
-                document.location = "principal.jsp?CONTENIDO=inicio.jsp";
-            }
-        }
+
     // BUSCAR PERSONA
 
-    var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
+    var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
     var vectorPersonas = new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
@@ -225,8 +222,8 @@
         document.getElementById("foto").src = foto;
     });
 
-  // MOSTRAR GENERO MASCOTA
-  
+    // MOSTRAR GENERO MASCOTA
+
     function mostrarGenero(genero) {
         if (genero && genero.toLowerCase() === "h") {
             return "Hembra";
@@ -239,7 +236,7 @@
 
     // BUSCAR MASCOTA PRINCIPAL
 
-    var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+    var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado != 'adoptado'", null)%>;
     var vectorMascotas = new Array();
     for (var i = 0; i < mascotas.length; i++) {
         vectorMascotas[i] = mascotas[i][0];
@@ -278,193 +275,24 @@
             document.getElementById("fechaNacimiento").value = fechaNacimiento;
             document.getElementById("genero").value = mostrarGenero(genero);
             document.getElementById("cuidadosEspeciales").value = cuidadosEspeciales;
-            document.getElementById("fotoMascota").src = foto;
+            document.getElementById("fotoPreview").src = foto;
         } else {
-
             document.getElementById("nombreMascota").value = '';
             document.getElementById("fechaNacimiento").value = '';
             document.getElementById("genero").value = '';
             document.getElementById("cuidadosEspeciales").value = '';
-            document.getElementById("fotoMascota").src = '';
+            document.getElementById("fotoPreview").src = '';
         }
     });
 
-    function agregarMascota() {
-
-        var codigo = document.getElementById("codigoFormulario").value;
-        var nombre = document.getElementById("nombreMascotaFormulario").value;
-        var edad = document.getElementById("fechaNacimientoFormulario").value;
-        var genero = document.getElementById("generoFormulario").value;
-        var cuidados = document.getElementById("cuidadosEspecialesFormulario").value;
-
-        // Agregar la nueva mascota a la tabla
-        var nuevaMascota = `
-                   <tr>
-                       <td>${codigo}</td>
-                       <td>${nombre}</td>
-                       <td>${edad}</td>
-                       <td>${genero}</td>
-                       <td>${cuidados}</td>
-                   </tr>
-               `;
-        document.querySelector("#tablaMascotas tbody").innerHTML += nuevaMascota;
-
-        cerrarFormulario();
+    function limpiarCamposFormulario() {
+        document.getElementById("nombreMascota").value = '';
+        document.getElementById("fechaNacimiento").value = '';
+        document.getElementById("genero").value = '';
+        document.getElementById("cuidadosEspeciales").value = '';
+        document.getElementById("fotoPreview").src = '';
     }
-
-    function actualizarTabla() {
-        var formData = new FormData();
-
-        formData.append("identificacion", document.getElementById("identificacion").value);
-        formData.append("nombreAdoptante", document.getElementById("nombre").value);
-        formData.append("telefono", document.getElementById("telefono").value);
-        formData.append("direccion", document.getElementById("direccion").value);
-        formData.append("residencia", document.getElementById("residencia").value);
-        formData.append("codigoMascota", document.getElementById("codigo").value);
-        formData.append("nombreMascota", document.getElementById("nombreMascota").value);
-        formData.append("edadAproximada", document.getElementById("fechaNacimiento").value);
-        formData.append("genero", document.getElementById("genero").value);
-        formData.append("cuidadosEspeciales", document.getElementById("cuidadosEspeciales").value);
-
-        var tablaMascotas = document.querySelectorAll("#tablaMascotas tbody tr");
-        tablaMascotas.forEach((row, index) => {
-            var columns = row.getElementsByTagName("td");
-            formData.append(`mascotas[${index}][codigo]`, columns[0].innerText);
-            formData.append(`mascotas[${index}][nombre]`, columns[1].innerText);
-            formData.append(`mascotas[${index}][edad]`, columns[2].innerText);
-            formData.append(`mascotas[${index}][genero]`, columns[3].innerText);
-            formData.append(`mascotas[${index}][cuidados]`, columns[4].innerText);
-        });
-
-        // Enviar los datos al backend (AJAX)
-        var xhr = new XMLHttpRequest();
-        xhr.open("POST", "ruta_al_backend", true);
-        xhr.send(formData);
-
-        xhr.onload = function () {
-            if (xhr.status === 200) {
-                alert("Datos guardados correctamente.");
-            } else {
-                alert("Error al guardar los datos.");
-            }
-        };
-    }
-
-    // ADICIONAR LA NUEVA MASCOTA 
-    
-    function agregarMascota() {
-        // Obtener los valores ingresados en el formulario
-        var codigo = document.getElementById("codigoFormulario").value;
-        var nombreMascota = document.getElementById("nombreMascotaFormulario").value;
-        var fechaNacimiento = document.getElementById("fechaNacimientoFormulario").value;
-        var genero = document.getElementById("generoFormulario").value;
-        var cuidadosEspeciales = document.getElementById("cuidadosEspecialesFormulario").value;
-
-        if (codigo === "" || nombreMascota === "" || fechaNacimiento === "" || genero === "") {
-            alert("Por favor, complete todos los campos.");
-            return;
-        }
-
-        var nuevaTarjeta = "<div class='tableDatos'>" +
-                "<h2>MASCOTA</h2>" +
-                "<div class='datos-con-foto'>" +
-                "<div class='datos'>" +
-                "<label>Código:</label><input type='text' name='codigo' value='" + codigo + "' readonly>" +
-                "<label>Nombre de la mascota:</label><input type='text' name='nombreMascota' value='" + nombreMascota + "' readonly>" +
-                "<label>Fecha de nacimiento Aproximada:</label><input type='text' name='fechaNacimiento' value='" + fechaNacimiento + "' readonly>" +
-                "<label>Género:</label><input type='text' name='genero' value='" + genero + "' readonly>" +
-                "<label>Cuidados Especiales:</label><input type='text' name='cuidadosEspeciales' value='" + cuidadosEspeciales + "' readonly>" +
-                "</div>" +
-                "<div class='foto'>" +
-                "<img id='fotoMascotaPreview' class='fotoPreview' src='' alt='Foto de la Mascota'>" +
-                "</div>" +
-                "</div>" +
-                "</div>";
-
-        $('.contenedor-tarjetas').append(nuevaTarjeta);
-
-        cerrarFormulario();
-    }
-
-    // BUSCAR MASCOTA FORMULARIO 
-
-    var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
-    var vectorMascotas = new Array();
-    for (var i = 0; i < mascotas.length; i++) {
-        vectorMascotas[i] = mascotas[i][0];
-    }
-
-    // Autocompletar el código de la mascota
-    $("#codigoFormulario").autocomplete({
-        source: vectorMascotas
-    });
-    
-    function buscarMascota(valor, indice) {
-        encontrado = false;
-        i = 0;
-        while (!encontrado && i < mascotas.length) {
-            if (valor == mascotas[i][indice])
-                encontrado = true;
-            i++;
-        }
-        if (encontrado)
-            return i - 1;
-        else
-            return false;
-    }
-
-    // Evento que se dispara cuando el código de la mascota cambia
-    $('#codigoFormulario').change(function () {
-        var codigo = this.value.trim();
-        var indiceMascota = buscarMascota(codigo, 0);
-
-        if (indiceMascota !== false) {
-            var nombreMascota = mascotas[indiceMascota][1]; // Asumiendo que el nombre está en el índice 1
-            var fechaNacimiento = mascotas[indiceMascota][6]; // Asumiendo que la fecha está en el índice 6
-            var genero = mascotas[indiceMascota][2]; // Asumiendo que el género está en el índice 2
-            var cuidadosEspeciales = mascotas[indiceMascota][5]; // Asumiendo que los cuidados están en el índice 5
-            var foto = mascotas[indiceMascota][4]; // Asumiendo que la foto está en el índice 4
-
-            // Llenar los campos del formulario
-            document.getElementById("nombreMascotaFormulario").value = nombreMascota;
-            document.getElementById("fechaNacimientoFormulario").value = fechaNacimiento;
-            document.getElementById("generoFormulario").value = mostrarGenero(genero);
-
-
-            document.getElementById("cuidadosEspecialesFormulario").value = cuidadosEspeciales;
-            document.getElementById("fotoMascotaPreviewFormulario").src = foto;
-        } else {
-            // Limpiar los campos si no se encuentra la mascota
-            document.getElementById("nombreMascotaFormulario").value = '';
-            document.getElementById("fechaNacimientoFormulario").value = '';
-            document.getElementById("generoFormulario").value = '';
-            document.getElementById("cuidadosEspecialesFormulario").value = '';
-            document.getElementById("fotoMascotaPreviewFormulario").src = '';
-        }
-    });
-
-    // AGREGAR MASCOTA A LA ADOPCION
-
-    $(function () {
-        $("#formulario").dialog({
-            autoOpen: false,
-            show: {
-                effect: "blind",
-                duration: 1000
-            },
-            hide: {
-                effect: "explode",
-                duration: 1000
-            },
-            width: 600,
-            height: 600
-        });
-    });
-
-    function abrirFormulario() {
-        $('#formulario').dialog('open');
-    }
-
+   
     // VALIDAR DATOS
 
     function validarFormulario(event) {

@@ -1,6 +1,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/style-TarjetasModificar.css">
+    <link rel="stylesheet" href="presentacion/style-TarjetasFormularios.css">
 </head>
 
 <%@page import="clases.Persona"%>
@@ -40,7 +40,11 @@
         response.sendRedirect("perfil.jsp");
     }
 %>
-
+<style>
+    body{
+        text-align: center;
+    }
+</style>
 <div class="card-carousel">
     <div class="card">
         <div class="card-header">

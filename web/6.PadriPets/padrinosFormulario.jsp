@@ -19,26 +19,26 @@
 
 <style>
     .swiper-container {
-        overflow: hidden; 
+        overflow: hidden;
     }
     .swiper-wrapper {
         display: flex;
-        justify-content: center; 
+        justify-content: center;
     }
 
     .btn-container {
         display: flex;
-        justify-content: center; 
-        gap: 20px; 
-        margin-top: 20px; 
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
     }
     .ui-dialog {
-        max-height: 90vh; 
-        overflow-y: auto; 
+        max-height: 90vh;
+        overflow-y: auto;
     }
     .swiper-container {
-        height: auto; 
-        overflow: hidden; 
+        height: auto;
+        overflow: hidden;
     }
 
 
@@ -80,7 +80,7 @@
         listaPlan += "<div class='button-container'>";
         listaPlan += "<input type='radio' name='opcionSeleccionada' value='" + planes2.getId() + "' style='display: none;'>";
         listaPlan += "</div>";
-        listaPlan += "</label>"; 
+        listaPlan += "</label>";
 
         listaPlan += "</div>";
         listaPlan += "</div>";
@@ -106,45 +106,45 @@
                 <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
 
                     <input type="hidden" name="mascotasPlan" id="mascotasPlan" required="">
-                   <div class="form-group">
-                    <label for="identificacion">Identificación</label>
-                    <input type="text" name="identificacion" id="identificacion" required>
-                </div>
+                    <div class="form-group">
+                        <label for="identificacion">Identificación</label>
+                        <input type="text" name="identificacion" id="identificacion" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="nombre">Nombre</label> <br>
-                    <span id="nombre" style="display: inline-block; border-bottom: 1px solid #ccc; padding: 5px;"></span>
-                </div>
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label> <br>
+                        <span id="nombre" style="display: inline-block; border-bottom: 1px solid #ccc; padding: 5px;"></span>
+                    </div>
 
-                <div class="form-group">
-                    <label for="direccion">Dirección</label><br>
-                    <span id="direccion" style="display: inline-block; border-bottom: 1px solid #ccc; padding: 5px;"></span>
-                </div>
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label><br>
+                        <span id="direccion" style="display: inline-block; border-bottom: 1px solid #ccc; padding: 5px;"></span>
+                    </div>
 
-                <div class="form-group">
-                    <label for="telefono">Teléfono</label><br>
-                    <span id="telefono" style="display: inline-block; border-bottom: 1px solid #ccc; padding: 5px;"></span>
-                </div>
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label><br>
+                        <span id="telefono" style="display: inline-block; border-bottom: 1px solid #ccc; padding: 5px;"></span>
+                    </div>
 
-                <div class="form-group">
-                    <label for="fotoRecibo">Foto recibo</label>
-                    <input type="file" name="fotoRecibo" id="fotoRecibo" accept="image/*" required>
-                </div>
+                    <div class="form-group">
+                        <label for="fotoRecibo">Foto recibo</label>
+                        <input type="file" name="fotoRecibo" id="fotoRecibo" accept="image/*" required>
+                    </div>
 
-                <div class="form-group">
-                    <label for="pdfCedula">Pdf cédula (ambos lados)</label>
-                    <input type="file" name="pdfCedula" id="pdfCedula" accept="application/pdf" required>
-                </div>
+                    <div class="form-group">
+                        <label for="pdfCedula">Pdf cédula (ambos lados)</label>
+                        <input type="file" name="pdfCedula" id="pdfCedula" accept="application/pdf" required>
+                    </div>
 
-                <div class="form-group">
-                    <input type="button" class="btn-otro" value="Seleccionar Mascota" onclick="abrirFormulario();" required>
-                </div>
+                    <div class="form-group">
+                        <input type="button" class="btn-otro" value="Seleccionar Mascota" onclick="abrirFormulario();" required>
+                    </div>
 
-                <div class='btn-container'>
-                    <input type="hidden" name="numero" value="<%=codigo%>">
-                    <input type="submit" name="accion" class="btn-adicionar" value="<%= accion != null ? accion : "Adicionar"%>">
-                    <input type="button" class="btn-eliminar" value="Cancelar" onClick="window.history.back()">
-                </div>
+                    <div class='btn-container'>
+                        <input type="hidden" name="numero" value="<%=codigo%>">
+                        <input type="submit" name="accion" class="btn-adicionar" value="<%= accion != null ? accion : "Adicionar"%>">
+                        <input type="button" class="btn-eliminar" value="Cancelar" onClick="window.history.back()">
+                    </div>
                 </form>
             </div>
 
@@ -161,35 +161,35 @@
         </div>
     </div>
 
-<div id="formulario" title="Apadrinar mascota">
-    <form name="formularioMascotas">
-        <table id="mascotas" border="0">
-            <tr><th>Mascota</th><th><input type="text" name="Mascota" id="Mascota" required></th></tr>
-            <tr><th>Fecha Inicio:</th><th><input type="date" name="Fecha" id="Fecha" required></th></tr>
-            <tr><th>Fecha Fin:</th><th><input type="date" name="FechaFin" id="FechaFin" required></th></tr>
-        </table>
-        <%= listaPlan%>
-        <div class='btn-container'>
-            <input type="button" class="btn-adicionar" value="Agregar" onclick="actualizarTabla();">
-            <input type="button" class="btn-eliminar" value="Cancelar" onclick="cerrarFormulario();">
-        </div>
-    </form>
-</div>
+    <div id="formulario" title="Apadrinar mascota">
+        <form name="formularioMascotas">
+            <table id="mascotas" border="0">
+                <tr><th>Mascota</th><th><input type="text" name="Mascota" id="Mascota" required></th></tr>
+                <tr><th>Fecha Inicio:</th><th><input type="date" name="Fecha" id="Fecha" required></th></tr>
+                <tr><th>Fecha Fin:</th><th><input type="date" name="FechaFin" id="FechaFin" required></th></tr>
+            </table>
+            <%= listaPlan%>
+            <div class='btn-container'>
+                <input type="button" class="btn-adicionar" value="Agregar" onclick="actualizarTabla();">
+                <input type="button" class="btn-eliminar" value="Cancelar" onclick="cerrarFormulario();">
+            </div>
+        </form>
+    </div>
 
 </center>
 <script>
 
-document.forms['formulario'].onsubmit = function() {
-    var objeto = document.getElementById("mascotasPlan").value;
+    document.forms['formulario'].onsubmit = function () {
+        var objeto = document.getElementById("mascotasPlan").value;
 
-    // Validar que mascotasPlan no esté vacío
-    if (!objeto || objeto.trim() === '') {
-        alert("Debes agregar al menos una mascota antes de continuar.");
-        return false; // Detener el envío del formulario
-    }
+        // Validar que mascotasPlan no esté vacío
+        if (!objeto || objeto.trim() === '') {
+            alert("Debes agregar al menos una mascota antes de continuar.");
+            return false; // Detener el envío del formulario
+        }
 
-    return true; // Permitir el envío si todo es correcto
-};
+        return true; // Permitir el envío si todo es correcto
+    };
 
 
     $(function () {
@@ -310,40 +310,40 @@ document.forms['formulario'].onsubmit = function() {
 
 
     function actualizarTabla() {
-    // Obtener los valores de los campos de mascotas
-    var mascota = document.formularioMascotas.Mascota.value.trim();
-    var fechaInicio = document.getElementById('Fecha').value.trim();
-    var fechaFin = document.getElementById('FechaFin').value.trim();
-    
-    // Validar que los campos no estén vacíos
-    if (!mascota || !fechaInicio || !fechaFin) {
-        alert("Todos los campos del formulario de mascotas deben estar llenos.");
-        return; // Detener la ejecución si hay campos vacíos
-    }
+        // Obtener los valores de los campos de mascotas
+        var mascota = document.formularioMascotas.Mascota.value.trim();
+        var fechaInicio = document.getElementById('Fecha').value.trim();
+        var fechaFin = document.getElementById('FechaFin').value.trim();
 
-    var objeto = document.getElementById("mascotasPlan");
-
-    if (objeto.value != '') {
-        objeto.value += "||";
-    }
-
-    var codigoMascota = mascota.substring(mascota.indexOf("-") + 1).trim();
-
-    var plan = document.querySelectorAll('input[name="opcionSeleccionada"]');
-    var seleccion = '';
-    plan.forEach(plan => {
-        if (plan.checked) {
-            seleccion = plan.value;
+        // Validar que los campos no estén vacíos
+        if (!mascota || !fechaInicio || !fechaFin) {
+            alert("Todos los campos del formulario de mascotas deben estar llenos.");
+            return; // Detener la ejecución si hay campos vacíos
         }
-    });
 
-    var lapsoPlan = fechaInicio + "/" + fechaFin;
+        var objeto = document.getElementById("mascotasPlan");
 
-    objeto.value += codigoMascota + "|" + seleccion + "|" + lapsoPlan;
+        if (objeto.value != '') {
+            objeto.value += "||";
+        }
 
-    cargarTabla();
-    cerrarFormulario();
-}
+        var codigoMascota = mascota.substring(mascota.indexOf("-") + 1).trim();
+
+        var plan = document.querySelectorAll('input[name="opcionSeleccionada"]');
+        var seleccion = '';
+        plan.forEach(plan => {
+            if (plan.checked) {
+                seleccion = plan.value;
+            }
+        });
+
+        var lapsoPlan = fechaInicio + "/" + fechaFin;
+
+        objeto.value += codigoMascota + "|" + seleccion + "|" + lapsoPlan;
+
+        cargarTabla();
+        cerrarFormulario();
+    }
 
 
 
