@@ -126,24 +126,63 @@
 
                 </div>
         </section>
-    </main>     <footer>
-        <div class="contenedor-footer">
-            <div class="content-foo">
-                <h4>Celular:</h4>
-                <p>3143143142</p>
-            </div>
+    </main>   
+      <footer>
+            <div class="contenedor-footer">
+                <div class="content-foo">
+                    <h4><img src="presentacion/imagenes/celular.png" alt="Celular" width="24" height="24"> Celular</h4>
+                    <p>3162562576</p>
+                </div>
+                <div class="content-foo">
+                    <h4><img src="presentacion/imagenes/email.png" alt="Correo" width="24" height="24"> Correo electrónico</h4>
+                    <p>Villaesperanza@gmail.com</p>
+                </div>
+                <div class="content-foo">
+                    <h4>
+                        <img src="presentacion/imagenes/mapa.png" alt="Dirección" width="24" height="24"> Dirección
+                    </h4>
+                    <p>
+                        <a href="https://maps.app.goo.gl/Rgo3wTyBEUH4Fsvt5" target="_blank" style="text-decoration: none; color: blue;">
+                            Parque Natural Chimayoy
+                        </a>
+                    </p>
+                    <p style="font-size: small; color: #000;">
+                        Haga clic en el enlace para ver la ubicación
+                    </p>
+                </div>
 
-            <div class="content-foo">
-                <h4>Correo:</h4>
-                <p>villaesperanza@gmail.com</p>
+                <div class="content-foo">
+                    <h4>
+                        <img src="presentacion/imagenes/ciudad.png" alt="Ciudad" width="24" height="24"> Ciudad
+                    </h4>
+                    <p>
+                        <a href="https://maps.app.goo.gl/G3CdcyUxiZ2aXAvf9" target="_blank" style="text-decoration: none; color: blue;">
+                            Pasto, Nariño, Colombia
+                        </a>
+                    </p>
+                    <p style="font-size: small; color: #000;">
+                        Haga clic en el enlace para ver la ubicación
+                    </p>
+                </div>
+
+                <div class="content-foo">
+                    <h4>
+                        <img src="presentacion/imagenes/tiktok.png" alt="tiktok" width="24" height="24"> TikTok
+                    </h4>
+                    <p>
+                        <a href="https://www.tiktok.com/@villa.esperanza.28" target="_blank" style="text-decoration: none; color: blue;">
+                            villa.esperanza.28
+                        </a>
+                    </p>
+                    <p style="font-size: small; color: #000;">
+                        Haga clic en el enlace para ir a TikTok
+                    </p>
+                </div>
+
+
             </div>
-            <div class="content-foo">
-                <h4>Direcciï¿½n:</h4>
-                <p>Parque De Chimayoy</p>
-            </div>
-        </div>
-        <h2 class="titulo-final">&copy;HUELLITAS WEB</h2>
-    </footer>
+            <h2 class="titulo-final">&copy;HUELLITAS WEB</h2>
+        </footer>
 </body>
 
 </html>
