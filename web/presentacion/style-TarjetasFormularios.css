@@ -1,4 +1,6 @@
-/* Estructura de dos columnas */
+
+
+
 .layout {
     display: flex;
     justify-content: center; /* Centra horizontalmente el contenido */
