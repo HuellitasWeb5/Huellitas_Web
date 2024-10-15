@@ -14,7 +14,7 @@ body{
 }
 
 .transparent-navbar {
-    background-color: rgba(255, 255, 255, 0.8); /* Trasparencia */
+    background-color: rgba(245, 245, 245, 0.8); /* Trasparencia */
     border-radius: 10px;
 }
 
@@ -42,7 +42,7 @@ body{
     width: 50%; /* Tamaño del contenedor, ajusta según necesidad */
     margin: 0 auto; /* Centrar el contenedor */
     padding: 20px;  /* Espaciado alrededor de la imagen */
-    border: 2px solid #000; /* Opcional, para visualizar el borde */
+    border: 2px solid #1dba35; /* Opcional, para visualizar el borde */
 }
 
 /* Estilo de la imagen */
