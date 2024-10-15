@@ -16,6 +16,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<%
+    request.setCharacterEncoding("UTF-8");
+%>
 
 <style>
     .swiper-container {
@@ -103,7 +106,7 @@
             </div>
             <div class="card-body">
 
-                <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp" enctype="multipart/form-data">
+                <form name="formulario" method="post" accept-charset="UTF-8" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp" enctype="multipart/form-data">
 
                     <input type="hidden" name="mascotasPlan" id="mascotasPlan" required="">
                     <div class="form-group">
