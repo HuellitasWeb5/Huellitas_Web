@@ -4,6 +4,7 @@
 */
 body{
     font-family: 'Open Sans';
+     text-align: center;
 }
 
 .transparent-navbar {
@@ -27,22 +28,29 @@ body{
     color: #000;    /* Color al pasar el mouse */
 }
 
-h1 {
-    font-size: 3em; /* Tamaño grande del título */
-    font-family: 'Arial', sans-serif; /* Fuente elegante y legible */
-    color: #0f6e29; /* Color atractivo */
-    text-align: center; /* Centrado en la página */
-    margin-top: 30px;
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.4); /* Sombra para un efecto más atractivo */
-    animation: slide-in 2s ease-in-out infinite alternate;
+
+/* Estilo para el título */
+.titulo-principal {
+    font-size: 36px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
 }
 
-@keyframes slide-in {
-    0% {
-        transform: translateX(-10px);
-    }
-    100% {
-        transform: translateX(10px);
-    }
+/* Contenedor de la imagen */
+.contenedor-imagen {
+    width: 50%; /* Tamaño del contenedor, ajusta según necesidad */
+    margin: 0 auto; /* Centrar el contenedor */
+    padding: 20px;  /* Espaciado alrededor de la imagen */
+    border: 2px solid #000; /* Opcional, para visualizar el borde */
 }
+
+/* Estilo de la imagen */
+.contenedor-imagen img {
+    width: 100%;  /* Ajusta la imagen al tamaño del contenedor */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+
+
 
