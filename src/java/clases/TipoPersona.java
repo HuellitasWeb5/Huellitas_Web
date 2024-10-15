@@ -80,73 +80,74 @@ public class TipoPersona {
                 menu += "</nav>";
                 break;
 
-            case "S":
-                menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light'>";
-                menu += "<div class='container-fluid'>";
+case "S":
+    menu += "<nav class='navbar navbar-expand-lg navbar-light transparent-navbar'>"; // Clase personalizada para transparencia y bordes redondeados
+    menu += "<div class='container-fluid'>";
 
-                menu += "<img src='presentacion/imagenes/Logo-Fundacion.png' alt='Logo' width='90' height='90' class='d-inline-block align-text-top'>"; // Aquí se agrega el logo
+    menu += "<img src='presentacion/imagenes/Logo-Fundacion.png' alt='Logo' width='90' height='90' class='d-inline-block align-text-top'>"; // Aquí se agrega el logo
 
-                // Botón para colapsar el menú en pantallas pequeñas
-                menu += "<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>";
-                menu += "<span class='navbar-toggler-icon'></span>";
-                menu += "</button>";
+    // Botón para colapsar el menú en pantallas pequeñas
+    menu += "<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>";
+    menu += "<span class='navbar-toggler-icon'></span>";
+    menu += "</button>";
 
-                // Menú desplegable y alineado a la derecha
-                menu += "<div class='collapse navbar-collapse justify-content-center' id='navbarNav'>"; // Cambiado a justify-content-center para centrar el contenido
-                menu += "<ul class='navbar-nav'>";
+    // Menú desplegable y alineado a la derecha
+    menu += "<div class='collapse navbar-collapse justify-content-center' id='navbarNav'>"; // Cambiado a justify-content-center para centrar el contenido
+    menu += "<ul class='navbar-nav'>";
 
-                menu += "<li class='nav-item'><a class='dropdown-item' href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
+    menu += "<li class='nav-item'><a class='dropdown-item' href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
 
-                // Menú de Donaciones
-                menu += "<li class='nav-item dropdown'>";
-                menu += "<a class='nav-link dropdown-toggle' href='#' id='donacionesDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Donaciones</a>";
-                menu += "<ul class='dropdown-menu' aria-labelledby='donacionesDropdown'>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a></li>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Unidades de Medida</a></li>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp'>Tipos de Donación</a></li>";
-                menu += "</ul></li>";
+    // Menú de Donaciones
+    menu += "<li class='nav-item dropdown'>";
+    menu += "<a class='nav-link dropdown-toggle' href='#' id='donacionesDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Donaciones</a>";
+    menu += "<ul class='dropdown-menu' aria-labelledby='donacionesDropdown'>";
+    menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a></li>";
+    menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Unidades de Medida</a></li>";
+    menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp'>Tipos de Donación</a></li>";
+    menu += "</ul></li>";
 
-                // Menú de Padripets
-                menu += "<li class='nav-item dropdown'>";
-                menu += "<a class='nav-link dropdown-toggle' href='#' id='padripetsDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Padripets</a>";
-                menu += "<ul class='dropdown-menu' aria-labelledby='padripetsDropdown'>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp'>Padripets</a></li>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesPadrinos.jsp'>Tipos de Padripet</a></li>"; // Asegúrate de tener la ruta correcta
-                menu += "</ul></li>";
-                // Menú de Adopciones con submenús
-                menu += "<li class='nav-item dropdown'>";
-                menu += "<a class='nav-link dropdown-toggle' href='#' id='adopcionesDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Adopciones</a>";
-                menu += "<ul class='dropdown-menu' aria-labelledby='adopcionesDropdown'>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp'>Formularios de adopción</a></li>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/verFormularioSeg.jsp'>Formularios de seguimientos</a></li>";
-                menu += "</ul></li>";
+    // Menú de Padripets
+    menu += "<li class='nav-item dropdown'>";
+    menu += "<a class='nav-link dropdown-toggle' href='#' id='padripetsDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Padripets</a>";
+    menu += "<ul class='dropdown-menu' aria-labelledby='padripetsDropdown'>";
+    menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp'>Padripets</a></li>";
+    menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesPadrinos.jsp'>Tipos de Padripet</a></li>";
+    menu += "</ul></li>";
 
-                // Menú de Mascotas y Apadrinamientos
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" + getNombre() + "'>Mascotas</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=4.Clientes/clientes.jsp&nombre=" + getNombre() + "'>San Patitas</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=5.Administradores/administradores.jsp'>Administradores</a></li>";
+    // Menú de Adopciones con submenús
+    menu += "<li class='nav-item dropdown'>";
+    menu += "<a class='nav-link dropdown-toggle' href='#' id='adopcionesDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Adopciones</a>";
+    menu += "<ul class='dropdown-menu' aria-labelledby='adopcionesDropdown'>";
+    menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
+    menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp'>Formularios de adopción</a></li>";
+    menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/verFormularioSeg.jsp'>Formularios de seguimientos</a></li>";
+    menu += "</ul></li>";
 
-                // Menú de Indicadores
-                menu += "<li class='nav-item dropdown'>";
-                menu += "<a class='nav-link dropdown-toggle' href='#' id='indicadoresDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Indicadores</a>";
-                menu += "<ul class='dropdown-menu' aria-labelledby='indicadoresDropdown'>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/donacionesXAnio.jsp'>Donaciones</a></li>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/apadrinamientoXAnio.jsp'>Apadrinamientos</a></li>"; // Asegúrate de tener la ruta correcta
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/adopcionesXAnio.jsp'>Adopciones</a></li>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/mascotasXAnio.jsp'>Mascotas</a></li>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/calificacionesXAnio.jsp'>Cuidados</a></li>"; // Asegúrate de tener la ruta correcta
-                menu += "</ul></li>";
+    // Menú de Mascotas y Apadrinamientos
+    menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" + getNombre() + "'>Mascotas</a></li>";
+    menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=4.Clientes/clientes.jsp&nombre=" + getNombre() + "'>San Patitas</a></li>";
+    menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=5.Administradores/administradores.jsp'>Administradores</a></li>";
 
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/perfilF.jsp'>Perfil</a></li>";
+    // Menú de Indicadores
+    menu += "<li class='nav-item dropdown'>";
+    menu += "<a class='nav-link dropdown-toggle' href='#' id='indicadoresDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Indicadores</a>";
+    menu += "<ul class='dropdown-menu' aria-labelledby='indicadoresDropdown'>";
+    menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/donacionesXAnio.jsp'>Donaciones</a></li>";
+    menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/apadrinamientoXAnio.jsp'>Apadrinamientos</a></li>";
+    menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/adopcionesXAnio.jsp'>Adopciones</a></li>";
+    menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/mascotasXAnio.jsp'>Mascotas</a></li>";
+    menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=indicadores/calificacionesXAnio.jsp'>Cuidados</a></li>";
+    menu += "</ul></li>";
 
-                menu += "<li class='nav-item'><a class='dropdown-item' href='index.jsp'>Salir</a></li>";
-                menu += "</ul>";
-                menu += "</div>";
-                menu += "<img src='presentacion/imagenes/Logo.png' alt='Logo' width='80' height='80' class='d-inline-block align-text-top'>"; // Aquí se agrega el logo
-                menu += "</div>";
-                menu += "</nav>";
-                break;
+    menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/perfilF.jsp'>Perfil</a></li>";
+
+    menu += "<li class='nav-item'><a class='dropdown-item' href='index.jsp'>Salir</a></li>";
+    menu += "</ul>";
+    menu += "</div>";
+    menu += "<img src='presentacion/imagenes/Logo.png' alt='Logo' width='80' height='80' class='d-inline-block align-text-top'>"; // Aquí se agrega el logo
+    menu += "</div>";
+    menu += "</nav>";
+    break;
 
             case "C":
                 menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light'>";
