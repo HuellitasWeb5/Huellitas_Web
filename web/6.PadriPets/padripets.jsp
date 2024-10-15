@@ -5,7 +5,9 @@
 <%@page import="clases.Persona"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%
+    response.setContentType("text/html; charset=UTF-8");
+%>
 <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
 
 <%
@@ -75,12 +77,23 @@ listaApadrinamiento += "</div>";
 
 
 <h3>PADRIPETS</h3>
-<div class='btn-container'>
-<a href="principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp&accion=Adicionar" >
-    <button class="btn-adicionar">Adicionar Padripet</button>
-</a>
-</div>
+<div class="header-container">
+    <!-- Buscar por nombre -->
+    <form id="searchForm">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar por persona o mascota" onkeyup="filterNames()">
+            <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
+        </div>
+        <ul id="nameList"></ul>
+    </form>
 
+    <!-- Botón de adicionar -->
+    <div class="btn-container">
+        <a href="principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp&accion=Adicionar" >
+            <button class="btn-adicionar">Adicionar</button>
+        </a>
+    </div>
+</div>
 
 <div class='carousel-container'>
     <div class='swiper-container carousel'>
@@ -110,6 +123,23 @@ listaApadrinamiento += "</div>";
         resultado = confirm("Realmente desea eliminar el registro padripet con el codigo: " + codigo + "?");
         if (resultado) {
             document.location = "principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp&accion=Eliminar&codigo=" + codigo;
+        }
+    }
+    function filterNames() {
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const slides = document.getElementsByClassName('swiper-slide');
+
+        // Filtrar por nombre del adoptante o mascota
+        for (let i = 0; i < slides.length; i++) {
+            const cardBody = slides[i].getElementsByClassName('card-body')[0];
+            const textValue = cardBody.textContent || cardBody.innerText;
+
+            if (textValue.toLowerCase().indexOf(filter) > -1) {
+                slides[i].style.display = "";
+            } else {
+                slides[i].style.display = "none";
+            }
         }
     }
 </script>
