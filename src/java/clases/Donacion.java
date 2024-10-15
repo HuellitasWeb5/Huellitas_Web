@@ -28,18 +28,17 @@ public class Donacion {
     }
 
     public Donacion(String codigo) {
-        String cadenaSQL = "SELECT "
-                + "    donacion.codigo, "
-                + "    donacion.fecha, "
-                + "    donacion.descripcion, "
-                + "    donacion.identificacionDonante,"
-                + "    donacionesdetalle.id AS detalleId, "
-                + "    donacionesdetalle.idConcepto, "
-                + "    donacionesdetalle.cantidad, "
-                + "    donacionesdetalle.valorUnitarios"
-                + "FROM "
-                + "    donacion"
-                + "INNER JOIN "
+        String cadenaSQL = "SELECT \n"
+                + "    donacion.codigo, \n"
+                + "    donacion.fecha, \n"
+                + "    donacion.descripcion, \n"
+                + "    donacion.identificacionDonante, \n"
+                + "    donacionesdetalle.id AS detalleId, \n"
+                + "    donacionesdetalle.idConcepto, \n"
+                + "    donacionesdetalle.cantidad\n"
+                + "FROM \n"
+                + "    donacion\n"
+                + "INNER JOIN \n"
                 + "    donacionesdetalle ON donacion.codigo = donacionesdetalle.codigoDonacion where codigo=" + codigo;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
@@ -83,10 +82,10 @@ public class Donacion {
     public void setIdentificacionDonante(String identificacionDonante) {
         this.identificacionDonante = identificacionDonante;
     }
-    public Persona getPersona(){
-        return new Persona (identificacionDonante);
-     }
-    
+
+    public Persona getPersona() {
+        return new Persona(identificacionDonante);
+    }
 
     @Override
 
@@ -115,9 +114,9 @@ public class Donacion {
 
     public boolean grabarProcedimientoAlmacenado(String cadenaDonaciones) {
         // Usar un procedimiento almacenado que capture los datos necesarios para registrar la donación y sus detalles
-        String cadenaSQL = "CALL registrarDonacion(" + this.identificacionDonante + ", '" 
-                + this.descripcion + "', '" 
-                + cadenaDonaciones + "')"; 
+        String cadenaSQL = "CALL registrarDonacion(" + this.identificacionDonante + ", '"
+                + this.descripcion + "', '"
+                + cadenaDonaciones + "')";
 
         System.out.println("Cadena procedimiento: " + cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
@@ -135,7 +134,18 @@ public class Donacion {
         } else {
             orden = "";
         }
-        String cadenSQL = "select codigo,fecha,descripcion,identificacionDonante from donacion ";
+        String cadenSQL = "SELECT \n"
+                + "    donacion.codigo, \n"
+                + "    donacion.fecha, \n"
+                + "    donacion.descripcion, \n"
+                + "    donacion.identificacionDonante, \n"
+                + "    donacionesdetalle.id AS detalleId, \n"
+                + "    donacionesdetalle.idConcepto, \n"
+                + "    donacionesdetalle.cantidad\n"
+                + "FROM \n"
+                + "    donacion\n"
+                + "INNER JOIN \n"
+                + "    donacionesdetalle ON donacion.codigo = donacionesdetalle.codigoDonacion" + filtro + orden;
         return ConectorBD.consultar(cadenSQL);
 
     }
@@ -161,75 +171,76 @@ public class Donacion {
         }
         return lista;
     }
-public static List<String[]> getDonacionesPorMes() {
-    List<String[]> lista = new ArrayList<>();
-    
-    // Consulta SQL para obtener el total de donaciones por mes
-    String cadenaSQL = "SELECT MONTH(d.fecha) AS mes, SUM(dd.cantidad) AS total_donaciones "
-                     + "FROM donacion d "
-                     + "JOIN donacionesDetalle dd ON d.codigo = dd.codigoDonacion "
-                     + "GROUP BY MONTH(d.fecha) "
-                     + "ORDER BY mes DESC;";
 
-    ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+    public static List<String[]> getDonacionesPorMes() {
+        List<String[]> lista = new ArrayList<>();
 
-    try {
-        while (resultado != null && resultado.next()) {
-            String[] registro = new String[2]; // Array para mes y total de donaciones
-            registro[0] = resultado.getString("mes"); // Mes
-            registro[1] = resultado.getString("total_donaciones"); // Total de donaciones
-            lista.add(registro);
-        }
-    } catch (SQLException ex) {
-        System.err.println("Error en getDonacionesPorMes.");
-        System.err.println("Consulta SQL: " + cadenaSQL);
-        System.err.println("Error: " + ex.getMessage());
-    } finally {
+        // Consulta SQL para obtener el total de donaciones por mes
+        String cadenaSQL = "SELECT MONTH(d.fecha) AS mes, SUM(dd.cantidad) AS total_donaciones "
+                + "FROM donacion d "
+                + "JOIN donacionesDetalle dd ON d.codigo = dd.codigoDonacion "
+                + "GROUP BY MONTH(d.fecha) "
+                + "ORDER BY mes DESC;";
+
+        ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+
         try {
-            if (resultado != null) {
-                resultado.close();
+            while (resultado != null && resultado.next()) {
+                String[] registro = new String[2]; // Array para mes y total de donaciones
+                registro[0] = resultado.getString("mes"); // Mes
+                registro[1] = resultado.getString("total_donaciones"); // Total de donaciones
+                lista.add(registro);
             }
         } catch (SQLException ex) {
-            System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
+            System.err.println("Error en getDonacionesPorMes.");
+            System.err.println("Consulta SQL: " + cadenaSQL);
+            System.err.println("Error: " + ex.getMessage());
+        } finally {
+            try {
+                if (resultado != null) {
+                    resultado.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
+            }
         }
+
+        return lista;
     }
-    
-    return lista;
-}
 
-public static List<String[]> getDonacionesPorAnio() {
-    List<String[]> lista = new ArrayList<>();
-    
-    // Consulta SQL para obtener el total de donaciones por año
-    String cadenaSQL = "SELECT YEAR(d.fecha) AS anio, SUM(dd.cantidad) AS total_donaciones "
-                     + "FROM donacion d "
-                     + "JOIN donacionesDetalle dd ON d.codigo = dd.codigoDonacion "
-                     + "GROUP BY YEAR(d.fecha) "
-                     + "ORDER BY anio DESC;";
+    public static List<String[]> getDonacionesPorAnio() {
+        List<String[]> lista = new ArrayList<>();
 
-    ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+        // Consulta SQL para obtener el total de donaciones por año
+        String cadenaSQL = "SELECT YEAR(d.fecha) AS anio, SUM(dd.cantidad) AS total_donaciones "
+                + "FROM donacion d "
+                + "JOIN donacionesDetalle dd ON d.codigo = dd.codigoDonacion "
+                + "GROUP BY YEAR(d.fecha) "
+                + "ORDER BY anio DESC;";
 
-    try {
-        while (resultado != null && resultado.next()) {
-            String[] registro = new String[2]; // Array para año y total de donaciones
-            registro[0] = resultado.getString("anio"); // Año
-            registro[1] = resultado.getString("total_donaciones"); // Total de donaciones
-            lista.add(registro);
-        }
-    } catch (SQLException ex) {
-        System.err.println("Error en getDonacionesPorAnio.");
-        System.err.println("Consulta SQL: " + cadenaSQL);
-        System.err.println("Error: " + ex.getMessage());
-    } finally {
+        ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+
         try {
-            if (resultado != null) {
-                resultado.close();
+            while (resultado != null && resultado.next()) {
+                String[] registro = new String[2]; // Array para año y total de donaciones
+                registro[0] = resultado.getString("anio"); // Año
+                registro[1] = resultado.getString("total_donaciones"); // Total de donaciones
+                lista.add(registro);
             }
         } catch (SQLException ex) {
-            System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
+            System.err.println("Error en getDonacionesPorAnio.");
+            System.err.println("Consulta SQL: " + cadenaSQL);
+            System.err.println("Error: " + ex.getMessage());
+        } finally {
+            try {
+                if (resultado != null) {
+                    resultado.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
+            }
         }
+
+        return lista;
     }
-    
-    return lista;
-}
 }
