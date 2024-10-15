@@ -379,35 +379,35 @@ public class FormularioDeInformacion {
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
     
+   /* public boolean grabarFormularioConProcedimientoAlmacenado() {
+    String codigosMascotas = String.join(",", this.codigoMascota); // Este es el arreglo que contiene los códigos de las mascotas
+    String fecha = (this.fecha != null && !this.fecha.isEmpty()) ? this.fecha : "CURDATE()";
 
+    String cadenaSQL = "CALL insertarFormularioDeInformacion("
+            + fecha + ",'"
+            + this.identificacionAdoptante + "','"
+            + codigosMascotas + "','"
+            + this.ocupacion + "','"
+            + this.tiempoLibre + "','"
+            + this.espacio + "','"
+            + this.compromiso + "',"
+            + this.ninos + ","
+            + this.habitantes + ","
+            + this.responsables + ",'"
+            + this.otrasMascotas + "','"
+            + this.propietario + "','"
+            + this.motivacion + "','"
+            + this.descripcion + "','"
+            + this.fechaVisitaDia + "','"
+            + this.fechaVisitaHora + "','"
+            + this.fotoRecibo + "','"
+            + this.fotoVivienda + "','"
+            + this.fotoCedula + "','"
+            + this.autorizacionDatos + "')";
 
-    /* public boolean grabarFormularioConProcedimientoAlmacenado() {
-        String codigosMascotas = String.join(",", this.codigoMascota);  // Unimos los códigos con comas
-
-        String cadenaSQL = "CALL insertarFormularioDeInformacion('"
-                + this.fecha + "','"
-                + this.identificacionAdoptante + "','"
-                + codigosMascotas + "','"
-                + this.ocupacion + "','"
-                + this.tiempoLibre + "','"
-                + this.espacio + "','"
-                + this.compromiso + "',"
-                + this.ninos + ","
-                + this.habitantes + ","
-                + this.responsables + ",'"
-                + this.otrasMascotas + "','"
-                + this.propietario + "','"
-                + this.motivacion + "','"
-                + this.descripcion + "','"
-                + this.fechaVisitaDia + "','"
-                + this.fechaVisitaHora + "','"
-                + this.fotoRecibo + "','"
-                + this.fotoVivienda + "','"
-                + this.fotoCedula + "','"
-                + this.autorizacionDatos + "')";
-
-        return ConectorBD.ejecutarQuery(cadenaSQL);
+    return ConectorBD.ejecutarQuery(cadenaSQL);
     }*/
+        
     public boolean modificar() {
         String cadenaSQL = "update formularioDeInformacion set "
                 + "fecha = '" + fecha + "', identificacionAdoptante = '" + identificacionAdoptante + "', codigoMascota = '" + codigoMascota + "', "

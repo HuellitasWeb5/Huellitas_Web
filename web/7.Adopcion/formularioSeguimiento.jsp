@@ -7,6 +7,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
+    <link rel="stylesheet" href="presentacion/style-Formularios.css" />
 </head>
 
 <%
@@ -17,7 +18,7 @@
     <h3><%=accion.toUpperCase()%> FORMULARIO DE SEGUIMIENTO </h3>
     <a href="formularioSeguimiento.jsp"></a>
     <form name="formulario" method="post" action="principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioSeg.jsp" enctype="multipart/form-data">
-        <div class="containerFormulario">
+        <div class="formulario-adopcion">
             <div>Fecha actual: <span id="fecha"></span></div>
             <div class="contenedor-tarjetas">
 
