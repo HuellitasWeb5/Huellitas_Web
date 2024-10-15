@@ -26,7 +26,7 @@
 
                 <div class="form-group">
                     <label>Fecha actual:</label>
-                    <span id="fecha"></span>
+                    <span id="fecha"></span> <!-- Aquí no se usa value, se cambiará el contenido con JavaScript -->
                 </div>
 
                 <div class="form-group">
@@ -36,27 +36,27 @@
 
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <span name="nombre" id="nombre" value="" readonly></span>
+                    <span id="nombre" readonly></span> <!-- Se elimina el atributo "value" en span -->
                 </div>
 
                 <div class="form-group">
                     <label for="telefono">Número de teléfono</label>
-                    <span name="telefono" id="telefono" value="" readonly></span>
+                    <span id="telefono" readonly></span> <!-- Se elimina el atributo "value" en span -->
                 </div>
 
                 <div class="form-group">
                     <label for="direccion">Dirección</label>
-                    <span name="direccion" id="direccion" value="" readonly></span>
+                    <span id="direccion" readonly></span> <!-- Se elimina el atributo "value" en span -->
                 </div>
 
                 <div class="form-group">
                     <label for="residencia">Residencia</label>
-                    <span name="residencia" id="residencia" value="" readonly></span>
+                    <span id="residencia" readonly></span> <!-- Se elimina el atributo "value" en span -->
                 </div>
 
                 <div class="form-group">
                     <label for="correo">Correo Electrónico</label>
-                    <span id="correo" value="" readonly></span>
+                    <span id="correo" readonly></span> <!-- Se elimina el atributo "value" en span -->
                 </div>
 
                 <div class="form-group">
@@ -99,11 +99,7 @@
                 <td>
                     <select id="donacionConcepto" name="donacionConcepto">
                         <option value="" disabled selected>Seleccione un concepto de donación</option>
-
                     </select>
-                </td>
-                <td>
-
                 </td>
             </tr>
             <tr>
@@ -116,11 +112,10 @@
     </form>
 </div>
 
-<!-- Contenedor de las t,nvhvjhglikuhglñihjlkjlhjn,  oliyjnpñou5trgpparjetas de detalles -->
+<!-- Contenedor para mostrar los detalles de donaciones -->
 <div class="swiper-container">
     <div class="swiper-wrapper">
-        <!-- aquí van las tarjetas -->
-        <br><br>
+        <!-- Aquí se cargan dinámicamente las tarjetas de donaciones -->
     </div>
     <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
@@ -138,8 +133,8 @@
     $("#identificacionD").autocomplete({
         source: vectorPersonas
     });
-    function validarFormularioPrincipal() {
 
+    function validarFormularioPrincipal() {
         const donacionDetalles = document.getElementById('donacion').value;
 
         if (donacionDetalles === '') {
@@ -155,45 +150,38 @@
         for (var i = 0; i < conceptoDonacion.length; i++) {
             if (conceptoDonacion[i][2] == codigoTipoDonacion) {
                 document.formularioDonacionDetalle.donacionConcepto.length++;
-                document.formularioDonacionDetalle.donacionConcepto.options[document.formularioDonacionDetalle.donacionConcepto.length - 1].value = [i][0];
+                document.formularioDonacionDetalle.donacionConcepto.options[document.formularioDonacionDetalle.donacionConcepto.length - 1].value = conceptoDonacion[i][0];
                 document.formularioDonacionDetalle.donacionConcepto.options[document.formularioDonacionDetalle.donacionConcepto.length - 1].text = conceptoDonacion[i][1];
             }
         }
     }
 
-    function buscarPersona(valor, indice) {
-        encontrado = false;
-        i = 0;
-        while (!encontrado) {
-            if (valor == personas[i][indice])
-                encontrado = true;
-            i++;
-        }
-        if (encontrado)
-            return i - 1;
-        else
-            return false;
-    }
-
     $('#identificacionD').change(function () {
-        identificacion = this.value.trim();
-        indicePersona = buscarPersona(identificacion, 0);
-        nombre = personas[indicePersona][1];
-        telefono = personas[indicePersona][2];
-        direccion = personas[indicePersona][3];
-        residencia = personas[indicePersona][4];
-        correo = personas[indicePersona][5];
-        document.getElementById("nombre").innerHTML = nombre;
-        document.getElementById("telefono").innerHTML = telefono;
-        document.getElementById("direccion").innerHTML = direccion;
-        document.getElementById("residencia").innerHTML = residencia;
-        document.getElementById("correo").innerHTML = correo;
+        let identificacion = this.value.trim();
+        let indicePersona = buscarPersona(identificacion, 0);
+        let nombre = personas[indicePersona][1];
+        let telefono = personas[indicePersona][2];
+        let direccion = personas[indicePersona][3];
+        let residencia = personas[indicePersona][4];
+        let correo = personas[indicePersona][5];
+
+        document.getElementById("nombre").innerText = nombre;
+        document.getElementById("telefono").innerText = telefono;
+        document.getElementById("direccion").innerText = direccion;
+        document.getElementById("residencia").innerText = residencia;
+        document.getElementById("correo").innerText = correo;
     });
 
-    function toggleContainer(event) {
-        event.preventDefault();
-        const content = document.querySelector('.content');
-        content.classList.toggle('hidden');
+    function buscarPersona(valor, indice) {
+        let encontrado = false;
+        let i = 0;
+        while (!encontrado && i < personas.length) {
+            if (valor == personas[i][indice]) {
+                encontrado = true;
+            }
+            i++;
+        }
+        return encontrado ? i - 1 : false;
     }
 
     $(function () {
@@ -216,7 +204,6 @@
         $('#formulario').dialog('open');
     }
 
-
     function cerrarFormulario() {
         document.getElementById('tipoDonacion').value = "";
         document.getElementById('donacionConcepto').value = "";
@@ -225,34 +212,26 @@
     }
 
     function actualizarTabla() {
-        // Obtén los valores de los campos del formulario modal
         const tipoDonacionId = document.getElementById('tipoDonacion').value;
         const donacionConceptoId = document.getElementById('donacionConcepto').value;
         const cantidad = document.getElementById('cantidad').value;
 
-        // Verifica si alguno de los campos está vacío
         if (tipoDonacionId === '' || donacionConceptoId === '' || cantidad === '' || cantidad <= 0) {
             alert('Por favor, completa todos los campos antes de agregar el detalle de la donación.');
-            return; // Salimos de la función si la validación no pasa
+            return;
         }
 
-        // Continúa con el proceso si todos los campos están llenos
         const objeto = document.getElementById("donacion");
 
         if (objeto.value !== '') {
             objeto.value += "||"; // separador para múltiples entradas
         }
 
-        // Guardar solo los IDs en el formato: tipoDonacionId|donacionConceptoId|cantidad
         objeto.value += tipoDonacionId + "|" + donacionConceptoId + "|" + cantidad;
 
-        // Actualizar la tabla y cerrar el formulario
         cargarTabla();
         cerrarFormulario();
     }
-
-
-
 
     function cargarTabla() {
         var contenedor = document.querySelector('.swiper-wrapper');
@@ -274,11 +253,6 @@
 
             var card = document.createElement('div');
             card.classList.add('card');
-
-            // Agregar título "Donación"
-            var tituloElemento = document.createElement('h2');
-            tituloElemento.textContent = 'Donación';
-            card.appendChild(tituloElemento);
 
             var tipoDonacionElemento = document.createElement('p');
             tipoDonacionElemento.innerHTML = '<strong>Tipo de Donación:</strong> ' + campos[0];
@@ -305,13 +279,6 @@
         });
     }
 
-    function limpiarFormulario() {
-        document.getElementById('nombreDetalle').value = '';
-        document.getElementById('tipoDonacion').value = '';
-        document.getElementById('donacionConcepto').value = '';
-        document.getElementById('cantidad').value = '0';
-    }
-
     function eliminarRegistro(index) {
         var datos = document.getElementById('donacion').value;
         var registros = datos.split('||');
@@ -320,18 +287,6 @@
         cargarTabla();
     }
 
-    const swiper = new Swiper('.swiper-container', {
-        loop: true,
-        slidesPerView: 4,
-        spaceBetween: 10,
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-       
-        }
-    });
     function cargarFecha() {
         var fecha = new Date();
         var dia = String(fecha.getDate()).padStart(2, '0');
@@ -341,7 +296,19 @@
         document.getElementById('fecha').innerText = fechaActual;
     }
 
-    mentById('fecha').innerText = fechaFormateada;
+    cargarFecha();
 
-
+    const swiper = new Swiper('.swiper-container', {
+        loop: false,
+        slidesPerView: 3,
+        spaceBetween: 20,
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        }
+    });
 </script>
