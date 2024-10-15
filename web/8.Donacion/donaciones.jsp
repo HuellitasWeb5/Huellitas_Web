@@ -39,7 +39,7 @@
         lista += "<p><strong>Donación:</strong> " + tipoDonacion.getNombre() + "</p>";
         lista += "<p><strong>Descripción:</strong> " + donacion.getDescripcion() + "</p>";
         lista += "<div class='button-container'>";
-        lista += "<button class='btn-otro' onclick='verDetalles(\"" + donacion.getCodigo() + "\");'>Detalles</button>";
+        lista += "<button class='btn-otro' onclick='verDetalles(\"" + donacion.getCodigo() + "\", \"" + persona.getIdentificacion() + "\");'>Detalles</button>";
         // lista += "<button class='btn-modificar' onclick='abrirFormularioAdicionar(\"" + donacion.getCodigo() + "\");'>Modificar</button>";
         lista += "<button class='btn-eliminar' onclick='confirmarEliminacion(\"" + donacion.getCodigo() + "\")'>Eliminar</button>";
         lista += "</div>";
@@ -84,8 +84,8 @@
     }
 
 
-    function verDetalles(codigo) {
-        var url = "principal.jsp?CONTENIDO=8.Donacion/verDetalles.jsp&codigo=" + codigo;
+    function verDetalles(codigo,iden) {
+        var url = "principal.jsp?CONTENIDO=8.Donacion/verDetalles.jsp&codigo=" + codigo+"&identificacion="+iden;
         window.location.href = url;
     }
     function abrirFormularioAdicionar() {
@@ -96,19 +96,6 @@
         var url = "principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp?"
         window.location.href = url;
     }
-    const swiper = new Swiper('.swiper-container', {
-        loop: false,
-        slidesPerView: 3, // Ayuda a mostrarme 3 tarjetas a la vez
-        spaceBetween: 20, // poner el espacio entre las tarjetas
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        }
-    });
     function filterNames() {
         const input = document.getElementById('searchInput');
         const filter = input.value.toLowerCase();
@@ -127,4 +114,17 @@
         }
     }
 
+    const swiper = new Swiper('.swiper-container', {
+        loop: false,
+        slidesPerView: 3, // Ayuda a mostrarme 3 tarjetas a la vez
+        spaceBetween: 20, // poner el espacio entre las tarjetas
+        navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+        },
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        }
+    });
 </script>
