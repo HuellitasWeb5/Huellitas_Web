@@ -84,8 +84,8 @@
     }
 
 
-    function verDetalles(codigo,iden) {
-        var url = "principal.jsp?CONTENIDO=8.Donacion/verDetalles.jsp&codigo=" + codigo+"&identificacion="+iden;
+    function verDetalles(codigo, iden) {
+        var url = "principal.jsp?CONTENIDO=8.Donacion/verDetalles.jsp&codigo=" + codigo + "&identificacion=" + iden;
         window.location.href = url;
     }
     function abrirFormularioAdicionar() {
@@ -101,10 +101,10 @@
         const filter = input.value.toLowerCase();
         const slides = document.getElementsByClassName('swiper-slide');
 
-        // Recorre cada slide y oculta o muestra dependiendo del filtro
+        // Filtrar por nombre del adoptante o mascota
         for (let i = 0; i < slides.length; i++) {
-            const cardHeader = slides[i].getElementsByClassName('card-header')[0];
-            const textValue = cardHeader.textContent || cardHeader.innerText;
+            const cardBody = slides[i].getElementsByClassName('card-body')[0];
+            const textValue = cardBody.textContent || cardBody.innerText;
 
             if (textValue.toLowerCase().indexOf(filter) > -1) {
                 slides[i].style.display = "";
