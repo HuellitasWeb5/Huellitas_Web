@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -378,36 +379,41 @@ public class FormularioDeInformacion {
         String cadenaSQL = "update formularioDeInformacion set estado='Aceptado' where codigo='" + codigo + "'";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
-    
-   /* public boolean grabarFormularioConProcedimientoAlmacenado() {
-    String codigosMascotas = String.join(",", this.codigoMascota); // Este es el arreglo que contiene los códigos de las mascotas
-    String fecha = (this.fecha != null && !this.fecha.isEmpty()) ? this.fecha : "CURDATE()";
 
-    String cadenaSQL = "CALL insertarFormularioDeInformacion("
-            + fecha + ",'"
-            + this.identificacionAdoptante + "','"
-            + codigosMascotas + "','"
-            + this.ocupacion + "','"
-            + this.tiempoLibre + "','"
-            + this.espacio + "','"
-            + this.compromiso + "',"
-            + this.ninos + ","
-            + this.habitantes + ","
-            + this.responsables + ",'"
-            + this.otrasMascotas + "','"
-            + this.propietario + "','"
-            + this.motivacion + "','"
-            + this.descripcion + "','"
-            + this.fechaVisitaDia + "','"
-            + this.fechaVisitaHora + "','"
-            + this.fotoRecibo + "','"
-            + this.fotoVivienda + "','"
-            + this.fotoCedula + "','"
-            + this.autorizacionDatos + "')";
+    public boolean grabarFormularioConProcedimientoAlmacenado(String formularioInfo) {
+        // Validación de la fecha para que CURDATE() sea manejado correctamente
+        String fecha = (this.fecha != null && !this.fecha.isEmpty()) ? "'" + this.fecha + "'" : "CURDATE()";
 
-    return ConectorBD.ejecutarQuery(cadenaSQL);
-    }*/
-        
+        // Construcción del SQL con los datos y la cadena de detalles de mascotas
+        String cadenaSQL = "CALL insertarFormularioDeInformacion("
+                + fecha + ",'"
+                + this.identificacionAdoptante + "','"
+                + formularioInfo + "','"
+                + this.ocupacion + "','"
+                + this.tiempoLibre + "','"
+                + this.espacio + "','"
+                + this.compromiso + "',"
+                + this.ninos + ","
+                + this.habitantes + ","
+                + this.responsables + ",'"
+                + this.otrasMascotas + "','"
+                + this.propietario + "','"
+                + this.motivacion + "','"
+                + this.descripcion + "','"
+                + this.fechaVisitaDia + "','"
+                + this.fechaVisitaHora + "','"
+                + this.fotoRecibo + "','"
+                + this.fotoVivienda + "','"
+                + this.fotoCedula + "','"
+                + this.autorizacionDatos + "')";
+
+        // Mostrar la cadena generada para depuración
+        System.out.println("Cadena procedimiento: " + cadenaSQL);
+
+        // Ejecutar el query usando el conector a la base de datos
+        return ConectorBD.ejecutarQuery(cadenaSQL);
+    }
+
     public boolean modificar() {
         String cadenaSQL = "update formularioDeInformacion set "
                 + "fecha = '" + fecha + "', identificacionAdoptante = '" + identificacionAdoptante + "', codigoMascota = '" + codigoMascota + "', "

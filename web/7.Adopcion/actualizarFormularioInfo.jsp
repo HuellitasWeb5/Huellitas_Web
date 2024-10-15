@@ -111,6 +111,8 @@
     switch (accion) {
         case "Adicionar":
             formularioDeInformacion.grabar();
+            formularioDeInformacion.grabarFormularioConProcedimientoAlmacenado(request.getParameter("formularioInfo"));
+            
             break;
         case "Modificar":
             formularioDeInformacion.setCodigo(request.getParameter("codigo"));
@@ -122,7 +124,7 @@
             break;
             case "Aceptar":
             formularioDeInformacion.setCodigo(request.getParameter("codigo"));
-                formularioDeInformacion.aceptarFormulario();
+            formularioDeInformacion.aceptarFormulario();
             adopcion.setIdentificacionAdoptante(request.getParameter("identificacionAdoptante"));
             adopcion.setCodigoMascota(request.getParameter("codigoMascota"));
             adopcion.grabar();
