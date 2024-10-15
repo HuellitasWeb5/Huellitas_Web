@@ -9,6 +9,9 @@
 <%@page import="java.util.Map"%>
 <%@page import="clases.Apadrinamiento"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<link rel="stylesheet" href="presentacion/style-Tarjetas.css">
+
 <%
     boolean subioArchivo = false;
     Map<String, String> variables = new HashMap<String, String>();

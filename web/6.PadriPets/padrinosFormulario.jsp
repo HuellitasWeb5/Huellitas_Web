@@ -11,6 +11,7 @@
 <%@page import="java.util.List"%>
 <%@page import="clases.Apadrinamiento"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<link rel="stylesheet" href="presentacion/style-Tarjetas.css">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,26 +19,26 @@
 
 <style>
     .swiper-container {
-        overflow: hidden; /* Oculta las barras de desplazamiento */
+        overflow: hidden; 
     }
     .swiper-wrapper {
         display: flex;
-        justify-content: center; /* Centra las tarjetas dentro del carrusel */
+        justify-content: center; 
     }
 
     .btn-container {
         display: flex;
-        justify-content: center; /* Centra los botones */
-        gap: 20px; /* AÃ±ade espacio entre los botones */
-        margin-top: 20px; /* AÃ±ade margen superior para mayor separaciÃ³n */
+        justify-content: center; 
+        gap: 20px; 
+        margin-top: 20px; 
     }
     .ui-dialog {
-        max-height: 90vh; /* Limita la altura mÃ¡xima del diÃ¡logo al 90% de la altura de la ventana */
-        overflow-y: auto; /* Permite el desplazamiento solo si es absolutamente necesario */
+        max-height: 90vh; 
+        overflow-y: auto; 
     }
     .swiper-container {
-        height: auto; /* Ajusta el contenedor del carrusel para que ocupe solo el espacio necesario */
-        overflow: hidden; /* Elimina cualquier barra de desplazamiento innecesaria */
+        height: auto; 
+        overflow: hidden; 
     }
 
 
@@ -73,14 +74,13 @@
         listaPlan += "</div>";
         listaPlan += "<div class='card-body'>";
 
-        // AquÃ­ se agrega el label alrededor de la tarjeta
         listaPlan += "<label style='display: block; cursor: pointer;'>";
         listaPlan += "<p><strong>Codigo:</strong> " + planes2.getId() + "</p>";
         listaPlan += "<p><strong>DescripciÃ³n:</strong> " + planes2.getDescripcion() + "</p>";
         listaPlan += "<div class='button-container'>";
         listaPlan += "<input type='radio' name='opcionSeleccionada' value='" + planes2.getId() + "' style='display: none;'>";
         listaPlan += "</div>";
-        listaPlan += "</label>"; // Cierra el label
+        listaPlan += "</label>"; 
 
         listaPlan += "</div>";
         listaPlan += "</div>";
@@ -106,47 +106,45 @@
                 <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
 
                     <input type="hidden" name="mascotasPlan" id="mascotasPlan" required="">
-                    <table border='0'>
-                        <tr>
-                            <th>Identificacion</th>
-                            <td><input type="text" name="identificacion" id="identificacion" required></td>
-                        </tr>
-                        <tr>
-                            <th>Nombre</th>
-                            <td type="text" name="nombre" id="nombre"></td>
-                        </tr>
-                        <tr>
-                            <th>Direccion</th>
-                            <td type="text" name="direccion" id="direccion"></td>
-                        </tr>
-                        <tr>
-                            <th>Telefono</th>
-                            <td type="text" name="telefono" id="telefono"></td>
-                        </tr>
-                        <tr>
-                            <th>Foto recibo</th>
-                            <td>
-                                <input type="file" name="fotoRecibo" accept="image/*"  required="">
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>Pdf cedula (ambos lados)</th>
-                            <td>
-                                <input type="file" name="pdfCedula" accept="application/pdf" required="">
-                            </td>
-                        </tr>
-                        </div>
+                   <div class="form-group">
+                    <label for="identificacion">Identificación</label>
+                    <input type="text" name="identificacion" id="identificacion" required>
+                </div>
 
-                        <tr>
-                            <td><input type="button" class="btn-otro" value="Seleccionar Mascota" onclick="abrirFormulario();" required=""></td>
-                        </tr>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label> <br>
+                    <span id="nombre" style="display: inline-block; border-bottom: 1px solid #ccc; padding: 5px;"></span>
+                </div>
 
-                    </table>
-                    <div class='btn-container'>
-                        <input type="hidden" name="numero" value="<%=codigo%>">
-                        <input type="submit" name="accion" class="btn-adicionar" value="<%= accion != null ? accion : "Adicionar"%>">
-                        <input type="button" class="btn-eliminar" value="Cancelar" onClick="window.history.back()">
-                    </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección</label><br>
+                    <span id="direccion" style="display: inline-block; border-bottom: 1px solid #ccc; padding: 5px;"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label><br>
+                    <span id="telefono" style="display: inline-block; border-bottom: 1px solid #ccc; padding: 5px;"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="fotoRecibo">Foto recibo</label>
+                    <input type="file" name="fotoRecibo" id="fotoRecibo" accept="image/*" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="pdfCedula">Pdf cédula (ambos lados)</label>
+                    <input type="file" name="pdfCedula" id="pdfCedula" accept="application/pdf" required>
+                </div>
+
+                <div class="form-group">
+                    <input type="button" class="btn-otro" value="Seleccionar Mascota" onclick="abrirFormulario();" required>
+                </div>
+
+                <div class='btn-container'>
+                    <input type="hidden" name="numero" value="<%=codigo%>">
+                    <input type="submit" name="accion" class="btn-adicionar" value="<%= accion != null ? accion : "Adicionar"%>">
+                    <input type="button" class="btn-eliminar" value="Cancelar" onClick="window.history.back()">
+                </div>
                 </form>
             </div>
 
@@ -160,22 +158,8 @@
                     <div class="swiper-button-next"></div>
                 </div>
             </div>
-
-
         </div>
-
-        <div class="carousel-container">
-            <div class="swiper-container" id="contenedorTarjetas">
-                <div class="swiper-wrapper">
-                    <!-- AquÃ­ se generarÃ¡n dinÃ¡micamente las tarjetas -->
-                </div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-            </div>
-        </div>
-
-    </div>  
-</div>
+    </div>
 
 <div id="formulario" title="Apadrinar mascota">
     <form name="formularioMascotas">
