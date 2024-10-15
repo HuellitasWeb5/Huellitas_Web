@@ -69,15 +69,6 @@
 }
 
 
-/* Estilo general del cuerpo */
-body, html {
-    font-family: 'Playfair Display', serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 20px;
-    overflow-x: hidden;
-}
-
 h3 {
     text-align: center;
     color: #333;
