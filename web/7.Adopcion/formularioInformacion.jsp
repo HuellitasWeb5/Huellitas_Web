@@ -11,6 +11,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
+    <link rel="stylesheet" href="presentacion/style-Formularios.css" />
 </head>
 <%
     String accion = request.getParameter("accion");
@@ -22,7 +23,7 @@
 <body onload="cargarFecha()">
     <h3><%=accion.toUpperCase()%> FORMULARIO DE ADOPCIÓN </h3>
     <form name="formulario" method="post" action="principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp" enctype="multipart/form-data">
-        <div class="containerFormulario">
+     <div  class="formulario-adopcion">
             <div>Fecha actual: <span id="fecha"></span></div>
             <div class="contenedor-tarjetas">
 
@@ -235,7 +236,7 @@
 
     // BUSCAR MASCOTA PRINCIPAL
 
-      var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado != 'adoptado'", null)%>;
+    var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado != 'adoptado'", null)%>;
     var vectorMascotas = new Array();
     for (var i = 0; i < mascotas.length; i++) {
         vectorMascotas[i] = mascotas[i][0];
