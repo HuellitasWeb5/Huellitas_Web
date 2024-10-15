@@ -6,6 +6,8 @@
 <%@page import="clases.PlanesApadrinamiento"%>
 <%@page import="java.util.List"%>
 
+<link rel="stylesheet" href="presentacion/style-Tarjetas.css">
+
 <%
     String codigo = request.getParameter("codigo");
     Apadrinamiento apadrinamiento = new Apadrinamiento(codigo);
@@ -93,7 +95,7 @@
             align-items: center; /* Centrado vertical */
         }
         .card {
-            width: 300px; /* Ajusta el ancho según tus necesidades */
+            width: 700px; /* Ajusta el ancho según tus necesidades */
             margin: 10px; /* Espacio entre tarjetas */
             background-color: #fff; /* Color de fondo */
             border: 1px solid #ddd; /* Bordes */
