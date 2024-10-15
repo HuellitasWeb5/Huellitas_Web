@@ -10,7 +10,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
+    <link rel="stylesheet" href="presentacion/Donacion.css">
 </head>
 
 <%
@@ -97,16 +97,16 @@
     $(function () {
         $("#formulario").dialog({
             autoOpen: false,
-            width: 400, // Ancho del diálogo en píxeles
-            height: 200, // Alto del diálogo en píxeles
             show: {
                 effect: "blind",
-                duration: 500
+                duration: 1000
             },
             hide: {
                 effect: "explode",
-                duration: 500
-            }
+                duration: 1000
+            },
+            width: 575,
+            height: 260
         });
     });
 
