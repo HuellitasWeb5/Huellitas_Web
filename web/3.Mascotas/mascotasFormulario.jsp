@@ -51,7 +51,7 @@
                 </div>
                 <div class="form-group">
                     <label for="foto">Foto:</label>
-                    <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();" required>
+                    <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();" >
                 </div>
                 <div class="form-group">
                     <label for="cuidadosEspeciales">Cuidados Especiales:</label>

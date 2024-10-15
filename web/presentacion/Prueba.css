@@ -11,7 +11,7 @@ and open the template in the editor.
 body {
     width: 100%;
     height: 100vh; /* Asegura que el fondo ocupe toda la ventana del navegador */
-    background: url('../presentacion/imagenes/Fondo-Inicio.jpg') no-repeat center center; /* Imagen centrada, sin repetición */
+    background: url('../presentacion/imagenes/mascotas.png') no-repeat center center; /* Imagen centrada, sin repetición */
     background-size: cover; /* La imagen cubre toda el área de la página */
     background-attachment: fixed; /* La imagen de fondo permanece fija mientras se desplaza */
     margin: 0;
@@ -130,5 +130,6 @@ footer {
     .navbar-nav {
         flex-direction: column; /* Muestra los elementos del menú en columnas en pantallas pequeñas */
     }
+
 
 }
