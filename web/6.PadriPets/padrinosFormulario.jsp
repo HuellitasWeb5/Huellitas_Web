@@ -103,7 +103,7 @@
             </div>
             <div class="card-body">
 
-                <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp">
+                <form name="formulario" method="post" action="principal.jsp?CONTENIDO=6.PadriPets/padrinosActualizar.jsp" enctype="multipart/form-data">
 
                     <input type="hidden" name="mascotasPlan" id="mascotasPlan" required="">
                     <div class="form-group">
@@ -132,8 +132,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="pdfCedula">Pdf cédula (ambos lados)</label>
-                        <input type="file" name="pdfCedula" id="pdfCedula" accept="application/pdf" required>
+                        <label for="fotoCedula">Pdf cédula (ambos lados)</label>
+                        <input type="file" name="fotoCedula" id="fotoCedula" accept="application/pdf" required>
                     </div>
 
                     <div class="form-group">

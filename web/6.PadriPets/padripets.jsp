@@ -103,7 +103,7 @@ listaApadrinamiento += "</div>";
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev'
         },
-        loop: true
+        loop: false
     });
     
     function eliminar(codigo){
