@@ -6,7 +6,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
+    <link rel="stylesheet" href="presentacion/Donacion.css">
 </head>
 
 
@@ -106,19 +106,19 @@
         }
     }
 
-    $(function () {
+   $(function () {
         $("#formulario").dialog({
             autoOpen: false,
-            width: 400,
-            modal: true,
             show: {
                 effect: "blind",
-                duration: 500
+                duration: 1000
             },
             hide: {
                 effect: "explode",
-                duration: 500
-            }
+                duration: 1000
+            },
+            width: 575,
+            height: 310
         });
     });
     function abrirFormulario(accion, idConcepto = null, codigoTipoDonacion = null, nombre = '', descripcion = '', tipoDonacion = '', idUnidadDeMedida = '') {
