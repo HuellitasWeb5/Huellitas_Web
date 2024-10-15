@@ -61,24 +61,28 @@
 
         <!-- Footer -->
         <footer>
-            <div class="contenedor-footer">
-                <div class="content-foo">
-                    <h4>3162562576</h4>
-                    <p>Celular</p>
-                </div>
-                <div class="content-foo">
-                    <h4>Villaesperanza@gmail.com</h4>
-                    <p>Correo electrónico</p>
-                </div>
-                <div class="content-foo">
-                    <h4>Parque Natural Chimayoy</h4> 
-                    <p>Dirección</p>
-                </div>
-                <div class="content-foo">
-                    <h4>Pasto, Nariño, Colombia</h4>
-                    <p>Ciudad</p>
-                </div>
-            </div>
+           <div class="contenedor-footer">
+               <div class="content-foo">
+                   <h4><img src="presentacion/imagenes/celular.png" alt="Celular" width="24" height="24"> Celular</h4>
+                   <p>3162562576</p>
+               </div>
+               <div class="content-foo">
+                   <h4><img src="presentacion/imagenes/email.png" alt="Correo" width="24" height="24"> Correo electrónico</h4>
+                   <p>Villaesperanza@gmail.com</p>
+               </div>
+               <div class="content-foo">
+                   <h4><img src="presentacion/imagenes/mapa.png" alt="Dirección" width="24" height="24"> Dirección</h4>
+                   <p>Parque Natural Chimayoy</p>
+               </div>
+               <div class="content-foo">
+                   <h4><img src="presentacion/imagenes/ciudad.png" alt="Ciudad" width="24" height="24"> Ciudad</h4>
+                   <p>Pasto, Nariño, Colombia</p>
+               </div>
+               <div class="content-foo">
+                   <h4><img src="presentacion/imagenes/tiktok.png" alt="tiktok" width="24" height="24"> TikTok</h4>
+                   <p>villa.esperanza.28</p>
+               </div>
+           </div>
             <h2 class="titulo-final">&copy;HUELLITAS WEB</h2>
         </footer>
     </body>
