@@ -3,7 +3,7 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
+    <link rel="stylesheet" href="presentacion/Donacion.css">
 </head>
 
 <%
@@ -87,12 +87,14 @@
             autoOpen: false,
             show: {
                 effect: "blind",
-                duration: 500
+                duration: 1000
             },
             hide: {
                 effect: "explode",
-                duration: 500
-            }
+                duration: 1000
+            },
+            width: 575,
+            height: 260
         });
     });
 
@@ -169,15 +171,11 @@
 
     const swiper = new Swiper('.swiper-container', {
         loop: true,
-        slidesPerView: 4, // ayuda a mostrarme  4 tarjetas a la vez
+        slidesPerView: 3, // ayuda a mostrarme  4 tarjetas a la vez
         spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
-        },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
         }
     });
 </script>
