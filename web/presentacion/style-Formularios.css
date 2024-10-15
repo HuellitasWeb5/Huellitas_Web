@@ -1,0 +1,34 @@
+/* 
+    Created on : 10 oct 2024, 2:14:30
+    Author     : Angie
+*/
+
+.formulario-adopcion {
+    background: linear-gradient(to bottom right, #6ec1e4, #a4e787); /* Degradado de azul suave a verde claro */
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 1050px;
+    margin: 0 auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 15); /* Sombra suave */
+}
+
+input[type="text"], 
+input[type="number"], 
+input[type="radio"], 
+textarea {
+    background-color: #e6f5e1; /* Cambia este color según tu preferencia */
+    border: 1px solid #ccc; /* Borde suave */
+    padding: 10px; /* Ajusta el espacio dentro de los campos */
+    border-radius: 14px; /* Bordes redondeados */
+    color: #333; /* Color del texto */
+}
+
+input[type="text"]:focus, 
+input[type="number"]:focus, 
+textarea:focus {
+    background-color: #d8f2d2; /* Color al hacer foco */
+    border-color: #66afe9; /* Borde al hacer foco */
+    outline: none; /* Elimina el borde azul estándar de los navegadores */
+}
+
+
