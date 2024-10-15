@@ -26,7 +26,7 @@ public class PlanesApadrinamiento {
     }
 
     public PlanesApadrinamiento(String id) {
-       String cadenaSQL="select id, nombre, descripcion from planesApadrinamiento";
+       String cadenaSQL="select id, nombre, descripcion from planesApadrinamiento where id="+id;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
