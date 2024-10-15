@@ -1,3 +1,4 @@
+<%@page import="clases.Adopcion"%>
 <%@ page import="org.apache.tomcat.util.http.fileupload.FileItem"%>
 <%@ page import="java.util.Iterator"%>
 <%@ page import="java.util.List"%>
@@ -11,7 +12,7 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
-    // Inicializar variables
+   // Inicializar variables
     boolean subioArchivo = false;
     Map<String, String> variables = new HashMap<String, String>();  // Almacena los datos del formulario
     boolean isMultipart = ServletFileUpload.isMultipartContent(request);
@@ -79,6 +80,11 @@
 
     // Crear una instancia de FormularioDeInformacion y asignar valores
     FormularioDeInformacion formularioDeInformacion = new FormularioDeInformacion();
+    Adopcion adopcion = new Adopcion();
+    adopcion.setIdentificacionAdoptante(identificacionAdoptante);
+    adopcion.setCodigoMascota(codigoMascota);
+
+    
     formularioDeInformacion.setIdentificacionAdoptante(identificacionAdoptante);
     formularioDeInformacion.setCodigoMascota(codigoMascota);
     formularioDeInformacion.setOcupacion(ocupacion);
@@ -100,7 +106,7 @@
     formularioDeInformacion.setFotoVivienda(fotoVivienda);
     formularioDeInformacion.setFotoRecibo(fotoRecibo);
     formularioDeInformacion.setFotoCedula(fotoCedula);
-
+    
     // Acciones del formulario
     switch (accion) {
         case "Adicionar":
@@ -113,6 +119,14 @@
         case "Eliminar":
             formularioDeInformacion.setCodigo(request.getParameter("codigo"));
             formularioDeInformacion.eliminar();
+            break;
+            case "Aceptar":
+            formularioDeInformacion.setCodigo(request.getParameter("codigo"));
+                formularioDeInformacion.aceptarFormulario();
+            adopcion.setIdentificacionAdoptante(request.getParameter("identificacionAdoptante"));
+            adopcion.setCodigoMascota(request.getParameter("codigoMascota"));
+            adopcion.grabar();
+            
             break;
     }
 %>

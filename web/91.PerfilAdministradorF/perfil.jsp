@@ -1,6 +1,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/style-TarjetasModificar.css">
+    <link rel="stylesheet" href="presentacion/style-TarjetasFormularios.css">
 </head>
 
 <%@page import="clases.Persona"%>

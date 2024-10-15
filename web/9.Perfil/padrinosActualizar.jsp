@@ -19,28 +19,45 @@
     boolean subioArchivo = false;
     Map<String, String> variables = new HashMap<String, String>();
     boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+
     if (!isMultipart) {
         variables.put("accion", request.getParameter("accion"));
         variables.put("Identificacion", request.getParameter("Identificacion"));
     } else {
         String rutaActual = getServletContext().getRealPath("/");
-        File destino = new File(rutaActual + "/presentacion/apadrinamiento/");
+        File destino = new File(rutaActual + "/presentacion/padripet/");
+        
+        // Crear directorio si no existe
+        if (!destino.exists()) {
+            destino.mkdirs();
+        }
+
         DiskFileItemFactory factory = new DiskFileItemFactory(1024 * 1024, destino);
         ServletFileUpload upload = new ServletFileUpload(factory);
-        File archivo = null;
-
-        ServletRequestContext origen = new ServletRequestContext(request);
-        List elementosFormulario = upload.parseRequest(origen);
-        Iterator iterador = elementosFormulario.iterator();
+        
+        List<FileItem> elementosFormulario = upload.parseRequest(new ServletRequestContext(request));
+        Iterator<FileItem> iterador = elementosFormulario.iterator();
+        
         while (iterador.hasNext()) {
-            FileItem elemento = (FileItem) iterador.next();
+            FileItem elemento = iterador.next();
             if (elemento.isFormField()) {
                 variables.put(elemento.getFieldName(), elemento.getString());
             } else {
-                if (!elemento.getName().equals("")) {
+                if (!elemento.getName().isEmpty()) {
                     subioArchivo = true;
-                    elemento.write(new File(destino, elemento.getName()));
-                    variables.put(elemento.getFieldName(), elemento.getName());
+                    try {
+                        File archivo = new File(destino, elemento.getName());
+                        elemento.write(archivo);
+                        
+                        // Guardar la ruta del archivo
+                        variables.put(elemento.getFieldName(), "/presentacion/padripet/" + elemento.getName());
+                        System.out.println("Archivo subido: " + elemento.getName());
+                    } catch (Exception e) {
+                        e.printStackTrace(); // Manejo de error
+                        System.out.println("Error al subir el archivo: " + elemento.getName());
+                    }
+                } else {
+                    System.out.println("El archivo está vacío.");
                 }
             }
         }
@@ -51,15 +68,20 @@
     Apadrinamiento padrino = new Apadrinamiento();
 
     if ("Adicionar".equals(accion)) {
-        padrino.setIdentificacionPadrino( request.getParameter("identificacion"));
-        padrino.setFotoRecibo(request.getParameter("fotoRecibo"));
-        padrino.setFotoCedula(request.getParameter("fotoCedula"));
+        padrino.setIdentificacionPadrino(request.getParameter("identificacion"));
+        padrino.setFotoRecibo(variables.get("fotoRecibo")); // Usar la ruta guardada
+        padrino.setFotoCedula(variables.get("pdfCedula")); // Usar la ruta guardada
         padrino.grabarConProcedimientoAlmacenado(request.getParameter("mascotasPlan"));
-        System.out.println(request.getParameter("mascotasPlan"));
-    }
-    
-    if ("Eliminar".equals(accion)) {
+        
+        // Mostrar las rutas guardadas
+        System.out.println("Foto Recibo: " + variables.get("fotoRecibo"));
+        System.out.println("pdf Cedula: " + variables.get("fotoCedula"));
+
+    } else if ("Eliminar".equals(accion)) {
         padrino.eliminar(codigo);
+        System.out.println("Se eliminó el apadrinamiento con código: " + codigo);
+    } else {
+        System.out.println("Acción no válida: " + accion);
     }
 %>
 

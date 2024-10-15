@@ -41,7 +41,12 @@
     }
 %>
 
-
+<style>
+    card{
+        text-align: center;
+        
+    }
+</style>
 
 <div class="card">
     <div class="titulo">
