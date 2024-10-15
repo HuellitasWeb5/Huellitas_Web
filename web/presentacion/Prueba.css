@@ -9,6 +9,9 @@ and open the template in the editor.
 */
 
 body {
+    margin: 0;
+    padding: 20px;
+    overflow-x: hidden;
     font-family: 'Open Sans';
     text-align: center;
     width: 100%;
