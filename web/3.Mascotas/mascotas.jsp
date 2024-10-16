@@ -37,7 +37,7 @@
         if ("Cliente".equals(nombreTipoPersona)) {
             // Si es un cliente, solo mostrar las mascotas disponibles y apadrinadas
             if (!mascota.getEstado().equalsIgnoreCase("disponible") && 
-                !mascota.getEstado().equalsIgnoreCase("apadrinada")) {
+                !mascota.getEstado().equalsIgnoreCase("apadrinado")) {
                 mostrarMascota = false;
             }
         }
@@ -92,12 +92,11 @@
         </div>
         <ul id="nameList"></ul> <!-- Lista de nombres -->
     </form>
-</div>
-<!-- Botón de adicionar -->
-<div class="btn-container">
-    <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar">
-        <button id="Adicionar" class="btn-adicionar">Adicionar</button>
-    </a>
+    <div class="btn-container">
+            <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar">
+                <button id="Adicionar" class="btn-adicionar">Adicionar</button>
+            </a>
+        </div>
 </div>
 
 
