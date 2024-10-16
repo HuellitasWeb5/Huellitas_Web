@@ -72,6 +72,7 @@
                     </div>
                 </div>
 
+
             </div>
             <div class="swiper-container">
                 <div class="swiper-wrapper">
@@ -82,7 +83,6 @@
                 <div class="swiper-pagination"></div>
             </div> 
         </div>
-        <input  name="formularioInfo" id="formularioInfo" required>
         <table>
             <input type="hidden" name="fechaActual" id="fechaActual">
 
@@ -187,7 +187,7 @@
             <br><br>
 
             <!-- Botones de envío -->
-
+            <input  name="formularioInfo" id="formularioInfo" required>
             <input class="btn-adicionar" type="submit" name="accion" value="<%=accion%>">
             <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
 
