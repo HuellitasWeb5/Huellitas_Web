@@ -187,7 +187,7 @@
             <br><br>
 
             <!-- Botones de envío -->
-            <input  type="hidden" name="formularioInfo" id="formularioInfo" >
+            <input type="hidden"  name="formularioInfo" id="formularioInfo" >
             <input class="btn-adicionar" type="submit" name="accion" value="<%=accion%>">
             <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
 
@@ -277,24 +277,77 @@
             var tarjeta = document.createElement('div');
             tarjeta.classList.add('swiper-slide'); // Clase para cada slide
 
-            var card = document.createElement('div');
-            card.classList.add('card'); // Clase para la tarjeta
+            var contenedorDatos = document.createElement('div');
+            contenedorDatos.classList.add('tableDatos'); // Clase para el contenedor de datos
 
-            // Crear elementos para mostrar los detalles de la mascota
-            var codigoElemento = document.createElement('p');
-            codigoElemento.innerHTML = '<strong>Código de la Mascota:</strong> ' + campos[0];
+            var h2 = document.createElement('h2');
+            h2.textContent = 'MASCOTA';
 
-            var nombreElemento = document.createElement('p');
-            nombreElemento.innerHTML = '<strong>Nombre de la Mascota:</strong> ' + campos[1];
+            var datosConFoto = document.createElement('div');
+            datosConFoto.classList.add('datos-con-foto');
 
-            var fechaNacimientoElemento = document.createElement('p');
-            fechaNacimientoElemento.innerHTML = '<strong>Fecha de Nacimiento Aproximada:</strong> ' + campos[2];
+            var datos = document.createElement('div');
+            datos.classList.add('datos');
 
-            var generoElemento = document.createElement('p');
-            generoElemento.innerHTML = '<strong>Género:</strong> ' + campos[3];
+            // Crear los elementos de entrada y asignar los valores
+            var labelCodigo = document.createElement('label');
+            labelCodigo.textContent = 'Código:';
+            var inputCodigo = document.createElement('input');
+            inputCodigo.type = 'text';
+            inputCodigo.name = 'codigoMascota';
+            inputCodigo.id = 'codigoMascota' + index; // Para evitar conflicto de ID
+            inputCodigo.value = campos[0];
+            inputCodigo.readOnly = true;
 
-            var cuidadosEspecialesElemento = document.createElement('p');
-            cuidadosEspecialesElemento.innerHTML = '<strong>Cuidados Especiales:</strong> ' + campos[4];
+            var labelNombre = document.createElement('label');
+            labelNombre.textContent = 'Nombre de la mascota:';
+            var inputNombre = document.createElement('input');
+            inputNombre.type = 'text';
+            inputNombre.name = 'nombreMascota';
+            inputNombre.id = 'nombreMascota' + index;
+            inputNombre.value = campos[1];
+            inputNombre.readOnly = true;
+
+            var labelFechaNacimiento = document.createElement('label');
+            labelFechaNacimiento.textContent = 'Fecha de nacimiento Aproximada:';
+            var inputFechaNacimiento = document.createElement('input');
+            inputFechaNacimiento.type = 'text';
+            inputFechaNacimiento.name = 'fechaNacimiento';
+            inputFechaNacimiento.id = 'fechaNacimiento' + index;
+            inputFechaNacimiento.value = campos[2];
+            inputFechaNacimiento.readOnly = true;
+
+            var labelGenero = document.createElement('label');
+            labelGenero.textContent = 'Género:';
+            var inputGenero = document.createElement('input');
+            inputGenero.type = 'text';
+            inputGenero.name = 'genero';
+            inputGenero.id = 'genero' + index;
+            inputGenero.value = campos[3];
+            inputGenero.readOnly = true;
+
+            var labelCuidadosEspeciales = document.createElement('label');
+            labelCuidadosEspeciales.textContent = 'Cuidados Especiales:';
+            var inputCuidadosEspeciales = document.createElement('input');
+            inputCuidadosEspeciales.type = 'text';
+            inputCuidadosEspeciales.name = 'cuidadosEspeciales';
+            inputCuidadosEspeciales.id = 'cuidadosEspeciales' + index;
+            inputCuidadosEspeciales.value = campos[4];
+            inputCuidadosEspeciales.readOnly = true;
+
+            // Crear contenedor para la foto y añadir la imagen
+            var fotoContenedor = document.createElement('div');
+            fotoContenedor.classList.add('foto');
+
+            var fotoElemento = document.createElement('img');
+            fotoElemento.id = 'foto' + index; // Asignar ID único a cada imagen
+            fotoElemento.classList.add('fotoPreview');
+            fotoElemento.src = campos[5]; // Suponiendo que el campo 5 contiene la URL de la foto
+            fotoElemento.alt = 'Foto de la mascota';
+            fotoElemento.style.width = '100px';
+            fotoElemento.style.height = 'auto';
+
+            fotoContenedor.appendChild(fotoElemento); // Añadir la foto al contenedor
 
             // Botón para eliminar la mascota
             var botonEliminar = document.createElement('button');
@@ -303,18 +356,39 @@
                 eliminarMascota(index); // Llamar a la función para eliminar el registro
             };
 
-            // Agregar todos los elementos a la tarjeta
-            card.appendChild(codigoElemento);
-            card.appendChild(nombreElemento);
-            card.appendChild(fechaNacimientoElemento);
-            card.appendChild(generoElemento);
-            card.appendChild(cuidadosEspecialesElemento);
-            card.appendChild(botonEliminar);
+            // Añadir todos los elementos a la sección de datos
+            datos.appendChild(labelCodigo);
+            datos.appendChild(inputCodigo);
 
-            tarjeta.appendChild(card); // Agregar la tarjeta a cada slide
-            contenedor.appendChild(tarjeta); // Agregar la tarjeta al contenedor
+            datos.appendChild(labelNombre);
+            datos.appendChild(inputNombre);
+
+            datos.appendChild(labelFechaNacimiento);
+            datos.appendChild(inputFechaNacimiento);
+
+            datos.appendChild(labelGenero);
+            datos.appendChild(inputGenero);
+
+            datos.appendChild(labelCuidadosEspeciales);
+            datos.appendChild(inputCuidadosEspeciales);
+
+            datos.appendChild(botonEliminar); // Botón al final
+
+            // Añadir datos y foto en el contenedor de datos-con-foto
+            datosConFoto.appendChild(datos);
+            datosConFoto.appendChild(fotoContenedor);
+
+            // Añadir el título y la sección de datos con foto al contenedor de la tarjeta
+            contenedorDatos.appendChild(h2);
+            contenedorDatos.appendChild(datosConFoto);
+
+            tarjeta.appendChild(contenedorDatos); // Añadir el contenedor de datos a la tarjeta
+            contenedor.appendChild(tarjeta); // Añadir la tarjeta al contenedor
         });
     }
+
+
+
 
     // BUSCAR PERSONA
 
