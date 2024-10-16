@@ -106,12 +106,15 @@
     formularioDeInformacion.setFotoVivienda(fotoVivienda);
     formularioDeInformacion.setFotoRecibo(fotoRecibo);
     formularioDeInformacion.setFotoCedula(fotoCedula);
+   
+    String FormularioInfo = variables.get("formularioInfo");
+    System.out.println("Cadena de formulario:"+FormularioInfo);
     
     // Acciones del formulario
     switch (accion) {
         case "Adicionar":
             formularioDeInformacion.grabar();
-            formularioDeInformacion.grabarFormularioConProcedimientoAlmacenado(request.getParameter("formularioInfo"));
+            formularioDeInformacion.grabarFormularioConProcedimientoAlmacenado(FormularioInfo);
             
             break;
         case "Modificar":

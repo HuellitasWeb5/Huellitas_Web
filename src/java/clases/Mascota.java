@@ -54,7 +54,7 @@ public class Mascota {
              descripcion=resultado.getString("descripcion");
             }
         } catch (Exception ex) {
-             System.out.println("Error al consultar el id" + ex.getMessage());
+             System.out.println("Error al consultar el Codigo en mascota" + ex.getMessage());
         }
        
     }
