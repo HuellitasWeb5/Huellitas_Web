@@ -187,7 +187,7 @@
             <br><br>
 
             <!-- Botones de envío -->
-            <input  name="formularioInfo" id="formularioInfo" required>
+            <input  name="formularioInfo" id="formularioInfo" >
             <input class="btn-adicionar" type="submit" name="accion" value="<%=accion%>">
             <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
 
