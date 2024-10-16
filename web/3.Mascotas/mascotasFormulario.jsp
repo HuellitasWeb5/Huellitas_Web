@@ -18,6 +18,10 @@
         mascota = new Mascota(codigo);
     }
 %>
+<%
+    response.setContentType("text/html; charset=UTF-8");
+    request.setCharacterEncoding("UTF-8");
+%>
 <h3><%=accion.toUpperCase()%> MASCOTAS</h3>
 <div class="card-carousel">
     <div class="card">
@@ -26,7 +30,7 @@
         </div>   
         <div class="card-body">
             <img src="presentacion/mascota/<%=mascota.getFoto()%>" id="foto" class="profile-image">
-            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=3.Mascotas/mascotasActualizar.jsp" enctype="multipart/form-data">
+            <form name="formulario" method="post" accept-charset="UTF-8" action="principal.jsp?CONTENIDO=3.Mascotas/mascotasActualizar.jsp" enctype="multipart/form-data">
                 <div class="form-group">
                     <label for="codigo">Codigo:</label>
                     <a><%=mascota.getCodigo()%></a>
