@@ -37,7 +37,7 @@
         if ("Cliente".equals(nombreTipoPersona)) {
             // Si es un cliente, solo mostrar las mascotas disponibles y apadrinadas
             if (!mascota.getEstado().equalsIgnoreCase("disponible") && 
-                !mascota.getEstado().equalsIgnoreCase("apadrinada")) {
+                !mascota.getEstado().equalsIgnoreCase("apadrinado")) {
                 mostrarMascota = false;
             }
         }
