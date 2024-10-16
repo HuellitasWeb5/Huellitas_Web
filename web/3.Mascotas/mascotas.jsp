@@ -92,12 +92,11 @@
         </div>
         <ul id="nameList"></ul> <!-- Lista de nombres -->
     </form>
-</div>
-<!-- Botón de adicionar -->
-<div class="btn-container">
-    <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar">
-        <button id="Adicionar" class="btn-adicionar">Adicionar</button>
-    </a>
+    <div class="btn-container">
+            <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar">
+                <button id="Adicionar" class="btn-adicionar">Adicionar</button>
+            </a>
+        </div>
 </div>
 
 
