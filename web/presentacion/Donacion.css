@@ -35,12 +35,6 @@
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
 }
 
-.card-footer {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    margin-top: 10px;
-}
 
 .card-subtitle {
     font-size: 15px;
@@ -76,9 +70,9 @@ h3 {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
 }
 .card-footer {
-    display: flex; /* Alinear los botones horizontalmente */
-    justify-content: center; /* Centrar los botones */
-    margin-top: 10px; /* Espacio entre el contenido y los botones */
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }
 .card-body {
     text-align: start;
