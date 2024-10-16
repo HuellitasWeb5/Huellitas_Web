@@ -262,7 +262,7 @@
 
 
     $(document).ready(function () {
-        var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+        var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado!='Adoptado'", null)%>;
         var vectorMascotas = [];
         for (var i = 0; i < mascotas.length; i++) {
             vectorMascotas[i] = mascotas[i][1] + " - " + mascotas[i][0];
@@ -349,7 +349,7 @@
 
 
 
-    var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+    var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado!='Adoptado'", null)%>;
     function buscarMascota(valor, indice) {
         var encontrado = false;
         var i = 0;

@@ -211,6 +211,7 @@ public class Mascota {
            orden = " ";
        }
        String cadenaSQL="Select codigo, nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado, descripcion from mascota" +filtro+orden;
+       System.out.println("mensale96: "+ cadenaSQL);
        return ConectorBD.consultar(cadenaSQL);
    }
    
