@@ -22,7 +22,7 @@
 %>  
 <body onload="cargarFecha()">
     <h3><%=accion.toUpperCase()%> FORMULARIO DE ADOPCIÓN </h3>
-    <form name="formulario" method="post" action="principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp" enctype="multipart/form-data">
+    <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/actualizarFormularioInfo.jsp" enctype="multipart/form-data">
        <div  class="formulario-adopcion">
             <div>Fecha actual: <span id="fecha"></span></div>
             <div class="contenedor-tarjetas">
