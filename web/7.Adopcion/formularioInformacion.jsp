@@ -17,7 +17,7 @@
 <%
     String accion = request.getParameter("accion");
     FormularioDeInformacion formularioDeInformacion = new FormularioDeInformacion();
-    Mascota mascota = new Mascota(formularioDeInformacion.getCodigoMascota());
+    Mascota mascota = new Mascota();
     Persona persona = new Persona(formularioDeInformacion.getIdentificacionAdoptante());
 
 %>  
@@ -56,8 +56,8 @@
                     <div class="datos-con-foto">
                         <div class="datos">
                             <label>Código:</label>
-                            <input type="hidden" name="codigosMascotas" id="codigosMascotas" value="">
-                            <input type="text" name="codigoMascota" id="codigoMascota" placeholder="Digite aquí el código de la mascota" required>
+
+                            <input type="text" name="codigoMascotas" id="codigoMascotas" placeholder="Digite aquí el código de la mascota" required>
                             <label>Nombre de la mascota:</label>
                             <input type="text" name="nombreMascota" id="nombreMascota" readonly>
                             <label>Fecha de nacimiento Aproximada:</label>
@@ -181,13 +181,13 @@
                         y el bienestar de la(s) mascota(s), en cumplimiento con la legislación vigente en materia de protección de datos.</label>
                 </div>
                 <br><br>
-              
-            <!-- Botones de envío -->
-            <input type="hidden"  name="formularioInfo" id="formularioInfo" >
-            <input class="btn-adicionar" type="submit" name="accion" value="<%=accion%>">
-            <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
+
+                <!-- Botones de envío -->
+                <input class="btn-adicionar" type="submit" name="accion" value="<%=accion%>">
+                <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
 
             </table>
+            <input name="formularioInfo" id="formularioInfo" >
         </div>
     </form>
 </body>
@@ -438,13 +438,13 @@
 
     // BUSCAR MASCOTA PRINCIPAL
 
-    var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado != 'adoptado'", null)%>;
+    var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado<>'adoptado'", null)%>;
     var vectorMascotas = new Array();
     for (var i = 0; i < mascotas.length; i++) {
         vectorMascotas[i] = mascotas[i][0];
     }
 
-    $("#codigoMascota").autocomplete({
+    $("#codigoMascotas").autocomplete({
         source: vectorMascotas
     });
 
@@ -462,7 +462,7 @@
             return false;
     }
 
-    $('#codigoMascota').change(function () {
+    $('#codigoMascotas').change(function () {
         var codigo = this.value.trim();
         var indiceMascota = buscarMascota(codigo, 0);
 
@@ -497,7 +497,7 @@
 
     // BUSCAR MASCOTA FORMULARIO 
 
-    var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado != 'adoptado'", null)%>;
+    var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado<>'adoptado'", null)%>;
     var vectorMascotas = new Array();
     for (var i = 0; i < mascotas.length; i++) {
         vectorMascotas[i] = mascotas[i][0];
