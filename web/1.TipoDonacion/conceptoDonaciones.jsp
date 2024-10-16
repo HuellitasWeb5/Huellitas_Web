@@ -6,7 +6,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/Donacion.css">
+    <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
 </head>
 
 
@@ -44,7 +44,7 @@
         lista += "</div>";
     }
 %>
-
+<body>
 <h3>CONCEPTOS DE DONACIONES</h3> 
 <div class="header-container">
     <form id="searchForm">
@@ -95,7 +95,7 @@
         <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
     </form>    
 </div>
-
+</body>
 
 <script>
 
