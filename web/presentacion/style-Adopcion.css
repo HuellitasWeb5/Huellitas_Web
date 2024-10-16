@@ -52,7 +52,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .card:hover {
     background-color: #99ccff; /* Color al pasar el cursor */
-   
+
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
 }
 
@@ -74,4 +74,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     padding-bottom: 80px;
     max-width: 100%;
     margin: 0 auto; /* Centra el swiper en el contenedor */
+}
+.card-footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
 }

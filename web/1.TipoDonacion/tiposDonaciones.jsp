@@ -10,7 +10,7 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/Donacion.css">
+    <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
 </head>
 
 <%
@@ -44,46 +44,46 @@
 
 
 <html lang="es">
-
-    <h3>TIPOS DE DONACIONES</h3> 
-    <div class="header-container">
-        <form id="searchForm">
-            <div class="search-container">
-                <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
-                <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
-            </div>
-            <ul id="nameList"></ul>
-        </form>
-        <button class="btn-adicionar" onclick="abrirFormulario('Adicionar');">Agregar Tipo de donacion</button>
-    </div>
-
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <%= lista%>
-            <br><br>
+    <body>
+        <h3>TIPOS DE DONACIONES</h3> 
+        <div class="header-container">
+            <form id="searchForm">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
+                    <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
+                </div>
+                <ul id="nameList"></ul>
+            </form>
+            <button class="btn-adicionar" onclick="abrirFormulario('Adicionar');">Agregar Tipo de donacion</button>
         </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
-    </div>
 
-    <div id="formulario" title="Adicionar tipo de donación">
-        <form name="formularioTipoDonacion"> 
-            <table>
-                <tr>
-                    <th>Nombre</th>
-                    <td><input type="text" name="nombre" id="nombre"></td>
-                </tr>
-                <tr>
-                    <th>Descripción</th>
-                    <td><input type="text" name="descripcion" id="descripcion"></td>
-                </tr>
-            </table>
-            <input class="btn-adicionar" type="button" value="Agregar" onclick="agregarTipoDonacion();">
-            <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
-        </form>    
-    </div>
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <%= lista%>
+                <br><br>
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+        </div>
 
+        <div id="formulario" title="Adicionar tipo de donación">
+            <form name="formularioTipoDonacion"> 
+                <table>
+                    <tr>
+                        <th>Nombre</th>
+                        <td><input type="text" name="nombre" id="nombre"></td>
+                    </tr>
+                    <tr>
+                        <th>Descripción</th>
+                        <td><input type="text" name="descripcion" id="descripcion"></td>
+                    </tr>
+                </table>
+                <input class="btn-adicionar" type="button" value="Agregar" onclick="agregarTipoDonacion();">
+                <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
+            </form>    
+        </div>
+    </body>
 </html>
 
 <script>

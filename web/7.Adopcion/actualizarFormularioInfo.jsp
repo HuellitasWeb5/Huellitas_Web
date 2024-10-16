@@ -57,7 +57,7 @@
     // Capturar valores del formulario
     String accion = variables.get("accion");
     String identificacionAdoptante = variables.get("identificacionAdoptante");
-    String codigoMascota = variables.get("codigoMascota");
+    String codigoMascota = variables.get("codigoMascotas");
     String ocupacion = variables.get("ocupacion");
     String tiempoLibre = variables.get("tiempoLibre");
     String espacio = variables.get("espacio");
@@ -108,7 +108,8 @@
     formularioDeInformacion.setFotoCedula(fotoCedula);
    
     String FormularioInfo = variables.get("formularioInfo");
-    System.out.println("Cadena de formulario:"+FormularioInfo);
+    System.out.println("Cadena de formulario Cadena:"+FormularioInfo);
+    System.out.println("Cadena de formulario:"+codigoMascota);
     
     // Acciones del formulario
     switch (accion) {
