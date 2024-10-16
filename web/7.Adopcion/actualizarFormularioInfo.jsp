@@ -106,11 +106,16 @@
     formularioDeInformacion.setFotoVivienda(fotoVivienda);
     formularioDeInformacion.setFotoRecibo(fotoRecibo);
     formularioDeInformacion.setFotoCedula(fotoCedula);
+   
+    String FormularioInfo = variables.get("formularioInfo");
+    System.out.println("Cadena de formulario:"+FormularioInfo);
     
     // Acciones del formulario
     switch (accion) {
         case "Adicionar":
             formularioDeInformacion.grabar();
+            formularioDeInformacion.grabarFormularioConProcedimientoAlmacenado(FormularioInfo);
+            
             break;
         case "Modificar":
             formularioDeInformacion.setCodigo(request.getParameter("codigo"));
@@ -122,7 +127,7 @@
             break;
             case "Aceptar":
             formularioDeInformacion.setCodigo(request.getParameter("codigo"));
-                formularioDeInformacion.aceptarFormulario();
+            formularioDeInformacion.aceptarFormulario();
             adopcion.setIdentificacionAdoptante(request.getParameter("identificacionAdoptante"));
             adopcion.setCodigoMascota(request.getParameter("codigoMascota"));
             adopcion.grabar();
