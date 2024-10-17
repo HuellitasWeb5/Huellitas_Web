@@ -131,24 +131,39 @@ header{
     background-attachment: fixed;
     position: relative;
 }
-
-nav{
+nav {
     text-align: right;
     padding: 30px 50px 0 0;
 }
-nav > a{
+
+nav > a {
     color: #fff;
     font-weight: 300;
     text-decoration: none;
     margin-right: 10px;
-} 
-nav > a:hover{
-    text-decoration: underline;
-} 
-
-.nav-link {
-    color: #000000;
 }
+
+nav > a:hover {
+    text-decoration: underline;
+}
+
+.btn-iniciar-sesion {
+    background-color: #1dba35; /* Color de fondo azul */
+    color: #fff; /* Texto blanco */
+    padding: 18px 25px; /* Espaciado interno del botón */
+    border-radius: 25px; /* Bordes redondeados */
+    border: none; /* Sin bordes adicionales */
+    font-size: 16px; /* Tamaño del texto */
+    font-weight: bold; /* Texto en negrita para más visibilidad */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    cursor: pointer; /* Cursor de mano al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Efecto suave al pasar el mouse */
+}
+
+.btn-iniciar-sesion:hover {
+    background-color: #00cccc; /* Color de fondo al hacer hover */
+}
+
 
 
 header .textos-header{
@@ -292,16 +307,16 @@ header .textos-header{
     transform: translateY(-10px);
     background-color: #00cccc; /* Cambia el color al pasar el cursor */
 }
-
 .cards .card img {
     margin-top: 10px;
-    width: 100px; /* Tamaño de imagen */
-    height: 100px; /* Tamaño de imagen */
+    width: 110px; /* Tamaño de imagen */
+    height: 110px; /* Tamaño de imagen */
     object-fit: cover;
-    border: 3px solid rgb(111, 153, 72);
+    border: 5px solid #28a745; /* Verde más llamativo */
     border-radius: 50%;
     transition: transform 0.3s ease-in-out;
 }
+
 
 .card:hover img {
     transform: scale(1.1);
