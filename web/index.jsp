@@ -76,11 +76,15 @@
             </svg></div>
         
     </header>
+              <h2 class="titulo">¡NUESTROS EVENTOS PARA EL MES DE OCTUBRE!!</h2>
 
     <section class="eventos">
+       
         <img src="presentacion/imagenes/invitacion1.png" alt="Invitación a eventos de octubre">
+        
+     
         <div class="evento-info">
-            <h1 class="titulo">¡NUESTROS EVENTOS PARA EL MES DE OCTUBRE!</h1>
+   
             <h4 class="titulo">Recuerda que con tu participación podríamos ayudar a muchos peluditos</h4>
             <p>
                 Este mes, la fundación ha organizado varios eventos increíbles para apoyar a nuestros amigos peludos:
@@ -110,7 +114,7 @@
             <img src="presentacion/mascota/abuela.PNG" alt="Abuela">
             <h4>Abuela</h4>
             <div class="contenido-texto-adop">
-                <p>Soy una perrita de 12 años de edad, el albergue me acogió cuando tenía 5 años y desde entonces me ha cuidado y me ha brindado todo el amor posible.</p>
+                <p>Soy una perrita de 12 años de edad, el albergue me acogió cuando tenía 5 años y desde entonces me haa cuidado y me ha brindado todo el amor posible.</p>
             </div>
             <button class="btn-conocer" onclick="location.href='index-InicioSesion.jsp'">CONOCE MÁS DE NOSOTROS!</button>
         </div>
@@ -133,15 +137,18 @@
     </div>
 
     <main>
-        <center> <iframe width="700" height="600" src="https://www.youtube.com/embed/uUoWTZW3ugw?si=93vZ8npeOHSEsO11?autoplay=1" title="YouTube video player" frameborder="0" 
-                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></center>
+        <center>
+             <h2 class="titulo">¡Un poco mas de nosotros!</h2>
+            <iframe class="video-frame" width="700" height="600" src="https://www.youtube.com/embed/uUoWTZW3ugw?si=93vZ8npeOHSEsO11?autoplay=1" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </center>
+    </main>
 
-    </main>   
     <footer>
         <div class="contenedor-footer">
             <div class="contact-info">
                 <h4>
-                    <img src="presentacion/imagenes/celular.png" alt="Celular" width="24" height="24"> WhatsApp
+                    <img src="presentacion/imagenes/whats.png" alt="Celular" width="24" height="24"> WhatsApp
 
                 </h4>
                 <p>   <a href="https://wa.me/573162562576" target="_blank" style="text-decoration: none; color: blue;">
@@ -173,8 +180,8 @@
                     <img src="presentacion/imagenes/mapa.png" alt="Dirección" width="24" height="24"> Dirección
                 </h4>
                 <p>
-                    <a href="https://maps.app.goo.gl/Rgo3wTyBEUH4Fsvt5" target="_blank" style="text-decoration: none; color: blue;">
-                        Parque Natural Chimayoy
+                    <a href="https://maps.app.goo.gl/SJvHhvZrxt8fKixj9" target="_blank" style="text-decoration: none; color: blue;">
+                        Albergue Villa Esperanza-Chimayoy
                     </a>
                 </p>
                 <p style="font-size: small; color: #000;">
