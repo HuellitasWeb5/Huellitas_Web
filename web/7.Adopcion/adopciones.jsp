@@ -70,10 +70,6 @@
         listaAdopciones += "<input type='submit' value='Guardar' class='btn-adicionar'>";
         listaAdopciones += "</form>";
 
-        listaAdopciones += "<input type='hidden' name='codigoMascota' value='" + mascota.getCodigo() + "'>";
-        listaAdopciones += "<input type='submit' value='Cancelar Adopción' class='btn-cancelar' onclick='return confirm(\"¿Está seguro que desea cancelar la adopción?\");'>";
-        listaAdopciones += "</form>";
-
         // Verificar si hay acta para mostrar el enlace
         if (adopcion.getActaAdopcion() != null && !adopcion.getActaAdopcion().isEmpty()) {
             String rutaArchivo = "uploads/" + adopcion.getActaAdopcion();
