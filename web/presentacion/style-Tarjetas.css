@@ -1,3 +1,12 @@
+/*subtitulo formulario*/
+.subtitulo {
+    font-size: 14px; /* Tamaño de fuente más pequeño para subtítulo */
+    color: #a51529; /* Color gris suave */
+    margin-top: 5px; /* Espacio entre el título y el subtítulo */
+    
+}
+
+
 /* Estructura de dos columnas */
 .layout {
     display: flex;
@@ -43,6 +52,7 @@
     width: 100%;
     overflow: hidden;
     padding: 20px 0;
+
 }
 
 /* Estilo para el carrusel de tarjetas */
