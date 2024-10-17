@@ -72,7 +72,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                 </div>
@@ -80,7 +80,7 @@
                 <div class="swiper-button-prev"></div>
             </div> 
             <table>
-                
+
                 <button class="btn-adicionar" type="button" onclick="abrirFormulario();">Agregar Otra Mascota</button><br>
 
                 <input type="hidden" name="fechaActual" id="fechaActual">
@@ -142,10 +142,9 @@
                 <label for="motivacion">¿Cuál es el motivo por el cuál desea adoptar a la mascota?</label>
                 <input type="text" id="motivacion" name="motivacion" maxlength="100" required><br><br>
 
-                <label for="fechaVisitaDia">Por favor, indíquenos los días en los que estaría disponible para recibir la visita de seguimiento con respecto al cuidado de la mascota:</label>
-                <br>
-                <div style="display: flex; gap: 25px;">
-                    <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Lunes"> Lunes</label>
+                <label for="fechaVisitaDia">Por favor, indíquenos los días de la semana en los que estaría disponible para recibir la visita de seguimiento con respecto al cuidado de la mascota:</label>
+                <div style="display: flex; gap: 45px;">
+                    <br><label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Lunes"> Lunes</label>
                     <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Martes"> Martes</label>
                     <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Miercoles"> Miércoles</label>
                     <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Jueves"> Jueves</label>
@@ -157,23 +156,23 @@
                 <p id="error-message" style="color: red; display: none;">Debe seleccionar al menos un día de la semana</p>
                 <br>
 
-                <label for="fechaVisitaHora">Selecciona la hora estimada de visita:</label>
-                <input type="time" id="fechaVisitaHora" name="fechaVisitaHora" style="width: 120px; text-align: center;" required>
+                <label for="fechaVisitaHora">Selecciona la hora estimada para la visita:</label>
+                <input type="time" id="fechaVisitaHora" name="fechaVisitaHora" style="width: 120px; text-align: center;" required><br>
 
-                <label for="fotoVivienda">Por favor, suba una foto del espacio donde vivirá la mascota (puede incluir foto de la cama, alimento o accesorios):</label>
-                <br><input type="file" id="fotoVivienda" name="fotoVivienda" accept="image/*, application/pdf" required>
+                <label for="fotoCedula">Por favor, cargue una foto de su cédula de ciudadanía (ambos lados):</label>
+                <br><input type="file" id="fotoCedula" name="fotoCedula" accept="image/*, application/pdf" required>
                 <br>
-
+                
                 <label for="fotoRecibo">Por favor, cargue una foto del recibo de servicios públicos de su vivienda (gas, energía o agua):</label>
                 <br><input type="file" id="fotoRecibo" name="fotoRecibo" accept="image/*, application/pdf" required>
                 <br>
 
-                <label for="fotoCedula">Por favor, cargue una foto de su cédula de ciudadanía:</label>
-                <br><input type="file" id="fotoCedula" name="fotoCedula" accept="image/*, application/pdf" required>
+                <label for="fotoVivienda">(Opcional) Por favor, cargue una foto del espacio donde vivirá la mascota (puede incluir foto de la cama, alimento o accesorios):</label>
+                <br><input type="file" id="fotoVivienda" name="fotoVivienda" accept="image/*, application/pdf">
                 <br>
 
                 <label for="descripcion">Descripción adicional:</label>
-                <br><textarea id="descripcion" name="descripcion" rows="4" cols="88" required></textarea><br><br>
+                <br><textarea id="descripcion" name="descripcion" rows="4" cols="88"></textarea><br><br>
 
                 <div style="display: flex; align-items: center;">
                     <input type="checkbox" id="autorizacion" name="autorizacion" value="S" required>
@@ -574,12 +573,12 @@
         var registros = codigosMascotas.value.split('||');
 
         if (index >= 0 && index < registros.length) {
-            registros.splice(index, 1); 
+            registros.splice(index, 1);
         }
         var nuevosDatos = registros.join('||');
         codigosMascotas.value = nuevosDatos;
-        document.getElementById('formularioInfo').value = nuevosDatos; 
-        cargarTablaMascotas(); 
+        document.getElementById('formularioInfo').value = nuevosDatos;
+        cargarTablaMascotas();
     }
 
     // VALIDAR DATOS
