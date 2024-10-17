@@ -40,7 +40,7 @@
         overflow-y: auto;
     }
     .swiper-container {
-        height: auto;
+        height: 350px;
         overflow: hidden;
     }
 
@@ -50,7 +50,7 @@
 }
 
     .card.selected {
-        border: 4px solid #F07BFF;
+        border: 4px solid #3271e7;
         background-color: #E9F5FF;
     }
 
@@ -101,7 +101,7 @@
     <div class="card-carousel">
         <div class="card">
             <div class="card-header">
-                <h3><%=accion.toUpperCase()%>  PADRIPET</h3>
+                <h3>APADRINA UN PELUDITO</h3>
             </div>
             <div class="card-body">
 
@@ -129,14 +129,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="fotoRecibo">Foto recibo</label>
+                        <label for="fotoRecibo">Foto del recibo de servicios públicos de su vivienda</label>
+                        <p class="subtitulo">(Recuerda subir la imagen como PNG o JPG para poderla mostrar más tarde)</p>
                         <input type="file" name="fotoRecibo" id="fotoRecibo" accept="image/*" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="fotoCedula">Pdf cédula (ambos lados)</label>
+                        <label for="fotoCedula">Foto de la cédula de ciudadanía (ambos lados)</label>
+                        <p class="subtitulo">(Recuerda subir el archivo como PDF para poderla mostrar más tarde)</p>
                         <input type="file" name="fotoCedula" id="fotoCedula" accept="application/pdf" required>
                     </div>
+
 
                     <div class="form-group">
                         <input type="button" class="btn-otro" value="Seleccionar Mascota" onclick="abrirFormulario();" required>
@@ -198,11 +201,11 @@
         $("#formulario").dialog({
             autoOpen: false,
             show: {
-                effect: "blind",
+                effect: "clip",
                 duration: 1000
             },
             hide: {
-                effect: "explode",
+                effect: "clip",
                 duration: 1000
             },
             width: 950,

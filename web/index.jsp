@@ -61,8 +61,9 @@
 <body>
     <header>
         <nav>
-            <a href="#" onclick="window.location.href = 'index-InicioSesion.jsp'">INICIAR SESION</a>
+            <a href="#" class="btn-iniciar-sesion" onclick="window.location.href = 'index-InicioSesion.jsp'">INICIAR SESIÓN</a>
         </nav>
+
         <section class="textos-header">
             <h2>FUNDACION</h2>
             <h1>VILLA ESPERANZA</h1>
@@ -75,11 +76,9 @@
             </svg></div>
         
     </header>
-    
-    
 
     <section class="eventos">
-        <img src="presentacion/imagenes/invitacion.jpg" alt="Invitación a eventos de octubre">
+        <img src="presentacion/imagenes/invitacion1.png" alt="Invitación a eventos de octubre">
         <div class="evento-info">
             <h1 class="titulo">¡NUESTROS EVENTOS PARA EL MES DE OCTUBRE!</h1>
             <h4 class="titulo">Recuerda que con tu participación podríamos ayudar a muchos peluditos</h4>
@@ -105,7 +104,7 @@
             <div class="contenido-texto-adop">
                 <p>Gracias al albergue Villa Esperanza pudieron rescatarme, ya que a la edad de 2 años me abandonaron en la carretera unos migrantes, pero gracias a Dios ya estoy bajo la protección del albergue.</p>
             </div>
-            <button class="btn-conocer" onclick="location.href='index-InicioSesion.jsp'">CONOCE MÁS DE MÍ!</button>
+            <button class="btn-conocer" onclick="location.href='index-InicioSesion.jsp'">CONOCE MÁS DE NOSOTROS!</button>
         </div>
         <div class="card">
             <img src="presentacion/mascota/abuela.PNG" alt="Abuela">
@@ -113,7 +112,7 @@
             <div class="contenido-texto-adop">
                 <p>Soy una perrita de 12 años de edad, el albergue me acogió cuando tenía 5 años y desde entonces me ha cuidado y me ha brindado todo el amor posible.</p>
             </div>
-            <button class="btn-conocer" onclick="location.href='index-InicioSesion.jsp'">CONOCE MÁS DE MÍ!</button>
+            <button class="btn-conocer" onclick="location.href='index-InicioSesion.jsp'">CONOCE MÁS DE NOSOTROS!</button>
         </div>
         <div class="card">
             <img src="presentacion/mascota/tomate.PNG" alt="Minino Mono">
@@ -121,7 +120,7 @@
             <div class="contenido-texto-adop">
                 <p>Soy un perrito que estaba en las calles de Pasto, tenía muchas heridas físicas, el albergue me encontró y desde ese día me cuido y estuvo pendiente de mí, ahora estoy feliz por tener una gran familia peluda.</p>
             </div>
-            <button class="btn-conocer" onclick="location.href='index-InicioSesion.jsp'">CONOCE MÁS DE MÍ!</button>
+            <button class="btn-conocer" onclick="location.href='index-InicioSesion.jsp'">CONOCE MÁS DE NOSOTROS!</button>
         </div>
         <div class="card">
             <img src="presentacion/mascota/pechuga.PNG" alt="Comino">
@@ -129,7 +128,7 @@
             <div class="contenido-texto-adop">
                 <p>Soy un perrito que me encontraron amarrado en una vía que conduce a un pueblo nariño, soy perrito ciego que llegué al albergue totalmente desnutrido, pero hoy después de tanto tiempo ya estoy feliz por mi nuevo inicio de vida.</p>
             </div>
-            <button class="btn-conocer" onclick="location.href='index-InicioSesion.jsp'">CONOCE MÁS DE MÍ!</button>
+            <button class="btn-conocer" onclick="location.href='index-InicioSesion.jsp'">CONOCE MÁS DE NOSOTROS!</button>
         </div>
     </div>
 
