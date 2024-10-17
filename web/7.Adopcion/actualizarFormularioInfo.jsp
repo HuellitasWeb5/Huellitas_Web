@@ -138,5 +138,10 @@
 %>
 
 <script type="text/javascript">
-    document.location = "principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp&estado=Pendiente";
+    if ("<%= accion %>" !== "Aceptar") {
+        document.location = "principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp&estado=Pendiente";
+    }
+        else {
+            document.location = "principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp";
+        }
 </script>
