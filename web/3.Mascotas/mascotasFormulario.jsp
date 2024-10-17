@@ -45,14 +45,14 @@
                 </div>
                 <div class="form-group">
                     <label for="tamano">Tamaño:</label>
-                    <div>
-                        <select name="tamano" required>
-                            <option value="pequeno" <%= mascota.getTamano().equals("pequeno") ? "selected" : ""%>>Pequeño</option>
-                            <option value="mediano" <%= mascota.getTamano().equals("mediano") ? "selected" : ""%>>Mediano</option>
-                            <option value="grande" <%= mascota.getTamano().equals("grande") ? "selected" : ""%>>Grande</option>
-                        </select>
-                    </div>
+                    <select id="tamano" name="tamano" required>
+                        <!-- Compara ignorando mayúsculas/minúsculas y eliminando espacios -->
+                        <option value="pequeno" <%= mascota.getTamano().trim().equalsIgnoreCase("pequeno") ? "selected" : ""%>>Pequeño</option>
+                        <option value="mediano" <%= mascota.getTamano().trim().equalsIgnoreCase("mediano") ? "selected" : ""%>>Mediano</option>
+                        <option value="grande" <%= mascota.getTamano().trim().equalsIgnoreCase("grande") ? "selected" : ""%>>Grande</option>
+                    </select>
                 </div>
+
                 <div class="form-group">
                     <label for="foto">Foto:</label>
                     <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();" >
@@ -68,29 +68,29 @@
                 <div class="form-group">
                     <label for="fechaIngreso">Fecha De Ingreso:</label>
                     <input type="date" name="fechaIngreso" value="<%=mascota.getFechaIngreso()%>" required>
-                </div>
-                <div class="form-group">
-                    <label for="estado">Estado:</label>
-                    <select id="estado" name="estado" required>
-                        <option value="disponible" <%= mascota.getEstado().equals("disponible") ? "selected" : ""%>>Disponible</option>
-                        <option value="apadrinado" <%= mascota.getEstado().equals("apadrinado") ? "selected" : ""%>>Apadrinado</option>
-                        <option value="adoptado" <%= mascota.getEstado().equals("adoptado") ? "selected" : ""%>>Adoptado</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="descripcion">Descripción:</label>
-                    <textarea name="descripcion" cols="50" rows="5" maxlength="60" required><%=mascota.getDescripcion()%></textarea>
-                </div>
-                <div class="btn-container">
-                    <input type="hidden" name="codigo" value="<%=mascota.getCodigo()%>">
-                    <input type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
-                    <input type="button" value="Cancelar" onClick="window.history.back()" class="btn-eliminar">
-                </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="estado">Estado:</label>
+                        <select id="estado" name="estado" required>
+                            <!-- Compara ignorando mayúsculas/minúsculas y eliminando espacios -->
+                            <option value="disponible" <%= mascota.getEstado().trim().equalsIgnoreCase("disponible") ? "selected" : ""%>>Disponible</option>
+                            <option value="apadrinado" <%= mascota.getEstado().trim().equalsIgnoreCase("apadrinado") ? "selected" : ""%>>Apadrinado</option>
+                            <option value="adoptado" <%= mascota.getEstado().trim().equalsIgnoreCase("adoptado") ? "selected" : ""%>>Adoptado</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="descripcion">Descripción:</label>
+                        <textarea name="descripcion" cols="50" rows="5" maxlength="60" required><%=mascota.getDescripcion()%></textarea>
+                    </div>
+                    <div class="btn-container">
+                        <input type="hidden" name="codigo" value="<%=mascota.getCodigo()%>">
+                        <input type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
+                        <input type="button" value="Cancelar" onClick="window.history.back()" class="btn-eliminar">
+                    </div>
             </form>
         </div>
     </div>
 </div>
-
 
 <script>
     function mostrarFoto() {
