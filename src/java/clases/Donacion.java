@@ -129,8 +129,8 @@ public class Donacion {
             filtro = "";
         }
 
-        if (orden != null & orden != "") {
-            orden = " order by" + orden;
+         if (orden != null & orden != "") {
+            orden = " GROUP BY  " + orden;
         } else {
             orden = "";
         }
