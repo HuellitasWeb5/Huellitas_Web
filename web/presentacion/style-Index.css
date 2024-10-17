@@ -45,7 +45,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     display: block;
     width: 60%; /* Ancho del subrayado */
     height: 4px; /* Grosor del subrayado */
-    background: #72a84a; /* Color del subrayado */
+    background:#1dba35; /* Color del subrayado */
     margin: 10px auto; /* Centra el subrayado */
     border-radius: 5px; /* Bordes redondeados */
 }
@@ -272,13 +272,14 @@ header .textos-header{
 }
 
 .card {
-    background: #027605;
+    background: linear-gradient(to right, #a8e6a1, #a1d6e6);
+
     margin: 5px; /* Reduce el margen */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between; /* Asegura que el contenido se distribuya bien */
-    width: 200px; /* Ajusta el tamaño para que quepan las 4 tarjetas */
+    width: 250px; /* Ajusta el tamaño para que quepan las 4 tarjetas */
     height: 380px; /* Altura suficiente para incluir el contenido */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -289,7 +290,7 @@ header .textos-header{
 .card:hover {
     box-shadow: 8px 8px 30px rgba(111, 153, 72, 0.7);
     transform: translateY(-10px);
-    background-color: #72a84a; /* Cambia el color al pasar el cursor */
+    background-color: #00cccc; /* Cambia el color al pasar el cursor */
 }
 
 .cards .card img {
@@ -318,11 +319,11 @@ header .textos-header{
 
 .cards .contenido-texto-adop p {
     text-align: justify;
-    font-weight: 300;
-    line-height: 1.4;
-    padding-top: 5px;
-    margin-bottom: 0;
+ 
+    color: #000; /* Texto en color negro */
+    font-size: 17px; /* Aumenta el tamaño del texto */
 }
+
 
 .cards .card h4 {
     margin-bottom: 10px;
