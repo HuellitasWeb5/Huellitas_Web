@@ -75,11 +75,9 @@
             </svg></div>
         
     </header>
-    
-    
 
     <section class="eventos">
-        <img src="presentacion/imagenes/invitacion.jpg" alt="Invitación a eventos de octubre">
+        <img src="presentacion/imagenes/invitacion1.png" alt="Invitación a eventos de octubre">
         <div class="evento-info">
             <h1 class="titulo">¡NUESTROS EVENTOS PARA EL MES DE OCTUBRE!</h1>
             <h4 class="titulo">Recuerda que con tu participación podríamos ayudar a muchos peluditos</h4>
