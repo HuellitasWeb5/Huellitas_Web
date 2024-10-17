@@ -60,7 +60,7 @@
         listaSeguimientos += "<div class='btn-container'>";
         listaSeguimientos += "<form action='7.Adopcion/formularioSegPDF.jsp' method='post' target='_blank'>";
         listaSeguimientos += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
-        listaSeguimientos += "<input type='submit' value='Descargar PDF' class='btn-otro'>";
+        listaSeguimientos += "<input type='submit' value='Generar PDF' class='btn-otro'>";
         listaSeguimientos += "</form>";
         listaSeguimientos += "<button class='btn-eliminar' onClick='eliminar(" + formulario.getCodigo() + ")'>Eliminar</button>";
         listaSeguimientos += "</div>"; // Fin del contenedor de botones
@@ -83,13 +83,13 @@
         <ul id="nameList"></ul>
     </form>
 
-   <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioSeguimiento.jsp&accion=Adicionar">
-    <button id="Adicionar" class="btn-adicionar">Realizar seguimiento</button>
-</a>
+    <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioSeguimiento.jsp&accion=Adicionar">
+        <button id="Adicionar" class="btn-adicionar">Realizar seguimiento</button>
+    </a>
 </div>
 
 <div class="swiper-container">
-    <%= listaSeguimientos %>
+    <%= listaSeguimientos%>
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
     <div class="swiper-pagination"></div>
