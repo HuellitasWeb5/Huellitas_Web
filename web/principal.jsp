@@ -65,7 +65,7 @@
            <div class="contenedor-footer">
                <div class="contact-info">
                    <h4>
-                       <img src="presentacion/imagenes/celular.png" alt="Celular" width="24" height="24"> WhatsApp
+                       <img src="presentacion/imagenes/whats.png" alt="Celular" width="24" height="24"> WhatsApp
 
                    </h4>
                    <p>   <a href="https://wa.me/573162562576" target="_blank" style="text-decoration: none; color: blue;">
@@ -74,8 +74,9 @@
                    </p>
                    
                    <p style="font-size: small; color: #000;">
-                       Haga clic en el enlace para ir directamente a whatsap
+                       Haga clic en el enlace
                    </p>
+                   
      </div>
 
         <div class="content-foo">
@@ -88,7 +89,7 @@
                 </a>
             </p>
             <p style="font-size: small; color: #000;">
-                Haga clic en el enlace para enviar un correo
+                Haga clic en el enlace 
             </p>
         </div>
 
@@ -97,12 +98,12 @@
                 <img src="presentacion/imagenes/mapa.png" alt="Dirección" width="24" height="24"> Dirección
             </h4>
             <p>
-                <a href="https://maps.app.goo.gl/Rgo3wTyBEUH4Fsvt5" target="_blank" style="text-decoration: none; color: blue;">
-                    Parque Natural Chimayoy
-                </a>
-            </p>
+                    <a href="https://maps.app.goo.gl/SJvHhvZrxt8fKixj9" target="_blank" style="text-decoration: none; color: blue;">
+                        Albergue Villa Esperanza-Chimayoy
+                    </a>
+                </p>
             <p style="font-size: small; color: #000;">
-                Haga clic en el enlace para ver la ubicación
+                Haga clic en el enlace 
             </p>
         </div>
 
@@ -116,7 +117,7 @@
                 </a>
             </p>
             <p style="font-size: small; color: #000;">
-                Haga clic en el enlace para ver la ubicación
+                Haga clic en el enlace 
             </p>
         </div>
 
@@ -130,7 +131,7 @@
                 </a>
             </p>
             <p style="font-size: small; color: #000;">
-                Haga clic en el enlace para ir a TikTok
+                Haga clic en el enlace 
             </p>
         </div>
 
