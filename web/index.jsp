@@ -75,6 +75,27 @@
             </svg></div>
         
     </header>
+    
+    
+
+    <section class="eventos">
+        <img src="presentacion/imagenes/invitacion.jpg" alt="Invitación a eventos de octubre">
+        <div class="evento-info">
+            <h1 class="titulo">¡NUESTROS EVENTOS PARA EL MES DE OCTUBRE!</h1>
+            <h4 class="titulo">Recuerda que con tu participación podríamos ayudar a muchos peluditos</h4>
+            <p>
+                Este mes, la fundación ha organizado varios eventos increíbles para apoyar a nuestros amigos peludos:
+            </p>
+            <ul>
+                <li><strong>1 de octubre:</strong> Caminata por los peluditos rescatados.</li>
+                <li><strong>15 de octubre:</strong> Jornada de adopción responsable.</li>
+                <li><strong>22 de octubre:</strong> Taller de cuidados para mascotas adoptadas.</li>
+                <li><strong>31 de octubre:</strong> Fiesta de disfraces para mascotas.</li>
+            </ul>
+            <p>¡No te lo pierdas y ven a ser parte del cambio!</p>
+        </div>
+    </section>
+    
     <h2 class="titulo">¡CONOCE MÁS DE NUESTROS PELUDIDITOS RESCATADOS!</h2>
     <h2 class="titulo">NUESTRAS HISTORIAS</h2>
     <div class="cards">
@@ -112,24 +133,6 @@
         </div>
     </div>
 
-
-    <section class="eventos">
-        <img src="presentacion/imagenes/invitacion.jpg" alt="Invitación a eventos de octubre">
-        <div class="evento-info">
-            <h1 class="titulo">¡NUESTROS EVENTOS PARA EL MES DE OCTUBRE!</h1>
-            <h4 class="titulo">Recuerda que con tu participación podríamos ayudar a muchos peluditos</h4>
-            <p>
-                Este mes, la fundación ha organizado varios eventos increíbles para apoyar a nuestros amigos peludos:
-            </p>
-            <ul>
-                <li><strong>1 de octubre:</strong> Caminata por los peluditos rescatados.</li>
-                <li><strong>15 de octubre:</strong> Jornada de adopción responsable.</li>
-                <li><strong>22 de octubre:</strong> Taller de cuidados para mascotas adoptadas.</li>
-                <li><strong>31 de octubre:</strong> Fiesta de disfraces para mascotas.</li>
-            </ul>
-            <p>¡No te lo pierdas y ven a ser parte del cambio!</p>
-        </div>
-    </section>
     <main>
         <center> <iframe width="700" height="600" src="https://www.youtube.com/embed/uUoWTZW3ugw?si=93vZ8npeOHSEsO11?autoplay=1" title="YouTube video player" frameborder="0" 
                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></center>
