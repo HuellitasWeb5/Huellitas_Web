@@ -16,7 +16,7 @@
     String identificacion = request.getParameter("identificacion");
     DonacionDetalle donacionDetalle = new DonacionDetalle();
     Donacion donacion = new Donacion();
-    List<Donacion> datos = Donacion.getListaEnObjetos("donacionesdetalle.id=" + codigo, null);
+    List<Donacion> datos = Donacion.getListaEnObjetos("donacion.codigo=" + codigo, "donacion.codigo, donacion.fecha, donacion.descripcion, donacion.identificacionDonante");
 
     List<DonacionDetalle> detalles = DonacionDetalle.getListaEnObjetos("codigoDonacion=" + codigo, null); // Método para obtener la lista de DonacionDetalle
     for (int i = 0; i < datos.size(); i++) {
