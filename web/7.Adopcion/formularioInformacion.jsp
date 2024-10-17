@@ -45,7 +45,7 @@
                             <input type="text" name="residencia" id="residencia" readonly>
                         </div>
                         <div class="foto">
-                            <img id="foto" class="fotoPreview" src="presentacion/clientes/<%= persona.getFoto()%>" alt="Foto de <%= persona.getNombre()%>" style="width: 100px; height: auto;">
+                            <img id="foto" class="fotoPreview" src="presentacion/clientes/<%= persona.getFoto()%>" alt="Foto de <%= persona.getNombre()%>" style="width: 100px; height: 100px;">
                         </div>
                     </div>
                 </div>
@@ -67,7 +67,7 @@
                             <input type="text" name="cuidadosEspeciales" id="cuidadosEspeciales" readonly>
                         </div>
                         <div class="foto">
-                            <img id="fotoMascota" class="fotoPreview" src="presentacion/mascota/<%= mascota.getFoto()%>" alt="Foto de <%= mascota.getNombre()%>" style="width: 100px; height: auto;">
+                            <img id="fotoMascota" class="fotoPreview" src="presentacion/mascota/<%= mascota.getFoto()%>" alt="Foto de <%= mascota.getNombre()%>" style="width: 100px; height: 100px;">
                         </div>
                     </div>
                 </div>
@@ -162,7 +162,7 @@
                 <label for="fotoCedula">Por favor, cargue una foto de su cédula de ciudadanía (ambos lados):</label>
                 <br><input type="file" id="fotoCedula" name="fotoCedula" accept="image/*, application/pdf" required>
                 <br>
-                
+
                 <label for="fotoRecibo">Por favor, cargue una foto del recibo de servicios públicos de su vivienda (gas, energía o agua):</label>
                 <br><input type="file" id="fotoRecibo" name="fotoRecibo" accept="image/*, application/pdf" required>
                 <br>
@@ -209,7 +209,7 @@
                     <input type="text" name="cuidadosEspeciales" id="cuidadosEspecialesFormulario" readonly>
                 </div>
                 <div class="foto">
-                    <img id="fotoMascotaFormulario" class="fotoPreview" src="presentacion/mascota/<%= mascota.getFoto()%>" alt="Foto de <%= mascota.getNombre()%>" style="width: 100px; height: auto;">
+                    <img id="fotoMascotaFormulario" class="fotoPreview" src="presentacion/mascota/<%= mascota.getFoto()%>" alt="Foto de <%= mascota.getNombre()%>" style="width: 100px; height: 100px;">
                 </div>
             </div>
         </table>
@@ -228,6 +228,7 @@
         const fechaNacimiento = document.getElementById('fechaNacimientoFormulario').value;
         const genero = document.getElementById('generoFormulario').value;
         const cuidadosEspeciales = document.getElementById('cuidadosEspecialesFormulario').value;
+        const foto = document.getElementById('fotoMascotaFormulario').src;
 
         if (codigoMascota === '' || nombreMascota === '' || fechaNacimiento === '' || genero === '' || cuidadosEspeciales === '') {
             alert('Por favor, completa todos los campos antes de agregar la mascota.');
@@ -242,7 +243,7 @@
             codigosMascotas.value += "||";
         }
 
-        const detallesMascota = codigoMascota + "|" + nombreMascota + "|" + fechaNacimiento + "|" + genero + "|" + cuidadosEspeciales;
+        const detallesMascota = codigoMascota + "|" + nombreMascota + "|" + fechaNacimiento + "|" + genero + "|" + cuidadosEspeciales + "|" + foto;
 
         formularioInfo.value += detallesMascota;
         codigosMascotas.value += detallesMascota;
@@ -330,7 +331,7 @@
             fotoElemento.src = campos[5];
             fotoElemento.alt = 'Foto de la mascota';
             fotoElemento.style.width = '100px';
-            fotoElemento.style.height = 'auto';
+            fotoElemento.style.height = '100px';
 
             fotoContenedor.appendChild(fotoElemento);
 
@@ -369,6 +370,14 @@
             tarjeta.appendChild(contenedorDatos);
             contenedor.appendChild(tarjeta);
         });
+    }
+
+    function limpiarCamposFormulario() {
+        document.getElementById("nombreMascotaFormulario").value = '';
+        document.getElementById("fechaNacimientoFormulario").value = '';
+        document.getElementById("generoFormulario").value = '';
+        document.getElementById("cuidadosEspecialesFormulario").value = '';
+        document.getElementById("fotoMascotaFormulario").src = '';
     }
 
     // BUSCAR PERSONA
@@ -410,13 +419,13 @@
             document.getElementById("telefono").value = telefono;
             document.getElementById("direccion").value = direccion;
             document.getElementById("residencia").value = residencia;
-            document.getElementById("fotoPreview").src = foto;
+            document.getElementById("foto").src = "presentacion/clientes/" + foto;
         } else {
             document.getElementById("nombre").value = '';
             document.getElementById("telefono").value = '';
             document.getElementById("direccion").value = '';
             document.getElementById("residencia").value = '';
-            document.getElementById("fotoPreview").src = '';
+            document.getElementById("foto").src = '';
         }
     });
 
@@ -473,23 +482,15 @@
             document.getElementById("fechaNacimiento").value = fechaNacimiento;
             document.getElementById("genero").value = mostrarGenero(genero);
             document.getElementById("cuidadosEspeciales").value = cuidadosEspeciales;
-            document.getElementById("fotoPreview").src = foto;
+            document.getElementById("fotoMascota").src = "presentacion/mascota/" + foto;
         } else {
             document.getElementById("nombreMascota").value = '';
             document.getElementById("fechaNacimiento").value = '';
             document.getElementById("genero").value = '';
             document.getElementById("cuidadosEspeciales").value = '';
-            document.getElementById("fotoPreview").src = '';
+            document.getElementById("fotoMascota").src = '';
         }
     });
-
-    function limpiarCamposFormulario() {
-        document.getElementById("nombreMascota").value = '';
-        document.getElementById("fechaNacimiento").value = '';
-        document.getElementById("genero").value = '';
-        document.getElementById("cuidadosEspeciales").value = '';
-        document.getElementById("fotoPreview").src = '';
-    }
 
     // BUSCAR MASCOTA FORMULARIO 
 
@@ -530,23 +531,15 @@
             document.getElementById("fechaNacimientoFormulario").value = fechaNacimiento;
             document.getElementById("generoFormulario").value = mostrarGenero(genero);
             document.getElementById("cuidadosEspecialesFormulario").value = cuidadosEspeciales;
-            document.getElementById("fotoPreview").src = "presentacion/mascota/" + foto;
+            document.getElementById("fotoMascotaFormulario").src = "presentacion/mascota/" + foto;
         } else {
             document.getElementById("nombreMascotaFormulario").value = '';
             document.getElementById("fechaNacimientoFormulario").value = '';
             document.getElementById("generoFormulario").value = '';
             document.getElementById("cuidadosEspecialesFormulario").value = '';
-            document.getElementById("fotoPreview").src = '';
+            document.getElementById("fotoMascotaFormulario").src = '';
         }
     });
-
-    function limpiarCamposFormulario() {
-        document.getElementById("nombreMascotaFormulario").value = '';
-        document.getElementById("fechaNacimientoFormulario").value = '';
-        document.getElementById("generoFormulario").value = '';
-        document.getElementById("cuidadosEspecialesFormulario").value = '';
-        document.getElementById("fotoPreview").src = '';
-    }
 
     // AGREGAR MASCOTA A LA ADOPCION
 
@@ -554,11 +547,11 @@
         $("#formulario").dialog({
             autoOpen: false,
             show: {
-                effect: "blind",
+                effect: "clip",
                 duration: 1000
             },
             hide: {
-                effect: "explode",
+                effect: "clip",
                 duration: 1000
             },
             width: 600,
@@ -625,6 +618,7 @@
         document.getElementById('fechaNacimientoFormulario').value = '';
         document.getElementById('generoFormulario').value = '';
         document.getElementById('cuidadosEspecialesFormulario').value = '';
+        document.getElementById('fotoMascotaFormulario').src = '';
     }
 
     // CARGAR FECHA
