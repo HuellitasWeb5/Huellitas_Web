@@ -38,7 +38,7 @@ public class Mascota {
     }
 
     public Mascota(String codigo) {
-        String cadenaSQL="select codigo, nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado, descripcion from mascota where codigo=" +codigo;
+        String cadenaSQL="select codigo, nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado, descripcion from mascota where codigo="+codigo;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if(resultado.next()){
@@ -54,7 +54,7 @@ public class Mascota {
              descripcion=resultado.getString("descripcion");
             }
         } catch (Exception ex) {
-             System.out.println("Error al consultar el id" + ex.getMessage());
+             System.out.println("Error al consultar el Codigo en mascota:" + ex.getMessage());
         }
        
     }
@@ -211,6 +211,7 @@ public class Mascota {
            orden = " ";
        }
        String cadenaSQL="Select codigo, nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado, descripcion from mascota" +filtro+orden;
+       System.out.println("Lista Mascota"+cadenaSQL);
        return ConectorBD.consultar(cadenaSQL);
    }
    

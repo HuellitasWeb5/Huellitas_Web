@@ -44,7 +44,10 @@
         overflow: hidden;
     }
 
-
+.card {
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    transition: background-color 0.3s;
+}
 
     .card.selected {
         border: 4px solid #F07BFF;
@@ -69,26 +72,22 @@
     listaPlan += "<div class='swiper-wrapper'>";
     List<PlanesApadrinamiento> datosPlanes = PlanesApadrinamiento.getListaEnObjetos(null, null);
     for (int j = 0; j < datosPlanes.size(); j++) {
-        PlanesApadrinamiento planes2 = datosPlanes.get(j);
-        listaPlan += "<div class='swiper-slide'>";
-        listaPlan += "<div class='card'>";
-        listaPlan += "<div class='card-header'>";
-        listaPlan += "<h2>" + planes2.getNombre() + "</h2>";
-        listaPlan += "</div>";
-        listaPlan += "<div class='card-body'>";
+    PlanesApadrinamiento planes2 = datosPlanes.get(j);
+    listaPlan += "<div class='swiper-slide'>";
+    listaPlan += "<label class='card'>"; // Cambia aquí
+    listaPlan += "<div class='card-header'>";
+    listaPlan += "<h2>" + planes2.getNombre() + "</h2>";
+    listaPlan += "</div>";
+    listaPlan += "<div class='card-body'>";
 
-        listaPlan += "<label style='display: block; cursor: pointer;'>";
-        listaPlan += "<p><strong>Codigo:</strong> " + planes2.getId() + "</p>";
-        listaPlan += "<p><strong>DescripciÃ³n:</strong> " + planes2.getDescripcion() + "</p>";
-        listaPlan += "<div class='button-container'>";
-        listaPlan += "<input type='radio' name='opcionSeleccionada' value='" + planes2.getId() + "' style='display: none;'>";
-        listaPlan += "</div>";
-        listaPlan += "</label>";
+    listaPlan += "<p><strong>Codigo:</strong> " + planes2.getId() + "</p>";
+    listaPlan += "<p><strong>Descripción:</strong> " + planes2.getDescripcion() + "</p>";
+    listaPlan += "<input type='radio' name='opcionSeleccionada' value='" + planes2.getId() + "' style='display: none;'>"; // Mantener el input oculto
 
-        listaPlan += "</div>";
-        listaPlan += "</div>";
-        listaPlan += "</div>";
-    }
+    listaPlan += "</div>";
+    listaPlan += "</label>"; // Cierra el label aquí
+    listaPlan += "</div>";
+}
     listaPlan += "</div>";
 
     listaPlan += "<div class='swiper-button-prev'></div>";
@@ -263,7 +262,7 @@
 
 
     $(document).ready(function () {
-        var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+        var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado!='Adoptado'", null)%>;
         var vectorMascotas = [];
         for (var i = 0; i < mascotas.length; i++) {
             vectorMascotas[i] = mascotas[i][1] + " - " + mascotas[i][0];
@@ -350,7 +349,7 @@
 
 
 
-    var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+    var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado!='Adoptado'", null)%>;
     function buscarMascota(valor, indice) {
         var encontrado = false;
         var i = 0;
@@ -492,15 +491,16 @@
     }
 
     function cerrarFormulario() {
+    $('#formulario').dialog('close');
 
-        $('#formulario').dialog('close');
+    document.forms['formularioMascotas'].reset();
 
-        document.forms['formularioMascotas'].reset();
+    $('#mascotas input[type="text"]').val('');
+    $('#planes input[type="checkbox"]:checked').prop('checked', false);
 
-        $('#mascotas input[type="text"]').val('');
-        $('#planes input[type="checkbox"]:checked').prop('checked', false);
-
-    }
+    // Deseleccionar la tarjeta
+    $('.card.selected').removeClass('selected');
+}
 
 
 </script>
