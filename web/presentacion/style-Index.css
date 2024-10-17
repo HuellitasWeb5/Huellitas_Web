@@ -2,6 +2,81 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
+/*estilo eventos*/
+
+ .eventos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f5f5f5;
+      background: linear-gradient(to bottom right, #b2e0f7, #b2f7b2);
+  }
+
+  .eventos img {
+    max-width: 400px;
+    height: auto;
+    margin-right: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .evento-info {
+      
+    max-width: 600px;
+    text-align: left;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
+.titulo {
+    font-size: 2rem; /* Tamaño de fuente más grande */
+    font-weight: bold; /* Negrita para mayor impacto */
+    color: #027605; /* Color verde que combina con el tema */
+    text-align: center; /* Centra el texto */
+    margin: 20px 0; /* Espacio arriba y abajo */
+    text-transform: uppercase; /* Texto en mayúsculas */
+    position: relative; /* Para el efecto de subrayado */
+}
+
+.titulo::after {
+    content: ""; /* Pseudo-elemento para el subrayado */
+    display: block;
+    width: 60%; /* Ancho del subrayado */
+    height: 4px; /* Grosor del subrayado */
+    background: #72a84a; /* Color del subrayado */
+    margin: 10px auto; /* Centra el subrayado */
+    border-radius: 5px; /* Bordes redondeados */
+}
+
+.titulo:nth-of-type(2) {
+    color:  #1dba35; /* Color diferente para el segundo título */
+    font-style: italic; /* Cursiva para el segundo título */
+}
+
+
+  .evento-info h1, .evento-info h4 {
+    margin-bottom: 15px;
+    color: #4CAF502;
+  }
+
+  .evento-info p {
+    color: #555;
+    line-height: 1.6;
+  }
+
+  .evento-info ul {
+    list-style-type: disc;
+    padding-left: 20px;
+  }
+  
+  .evento-info ul li {
+    margin-bottom: 10px;
+  }
+
+
+
 /* Estilo del footer */
 footer {
     background: #4CAF50;
@@ -23,11 +98,13 @@ footer {
     margin:0;
     padding:0;
     box-sizing: border-box;
+    
 }
 
 
 body{
     font-family: 'Open Sans';
+       background: linear-gradient(to bottom right, #b2e0f7, #b2f7b2);
 }
 
 .contenedor{
@@ -37,12 +114,7 @@ body{
     margin: auto;
     overflow: hidden;
 }
-.titulo{
-    color: #642a73;
-    font-size: 30px;
-    text-align: center;
-    margin-bottom: 60px;
-}
+
 
 /* header */
 
@@ -192,93 +264,105 @@ header .textos-header{
 }
 
 /* historias de adopcion */
-
-
-.cards{
+.cards {
     display: flex;
     justify-content: center;
+    gap: 20px; /* Aumenta el espacio entre las tarjetas */
+    padding: 20px;
 }
-.card:hover{
-    box-shadow: 5px 5px 20px rgb(111, 153, 72);
-    transform: translateY(-3%);
-}
-.cards .card{
-    background: #276662;
-    margin: 10px;
-    display: inline;
-    width: 450px;
-    height: 400px;
+
+.card {
+    background: #027605;
+    margin: 5px; /* Reduce el margen */
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-around;
-    border-radius: 5px;
-    box-shadow: 0 0 6px rgba(0,0,0,.5);
+    justify-content: space-between; /* Asegura que el contenido se distribuya bien */
+    width: 200px; /* Ajusta el tamaño para que quepan las 4 tarjetas */
+    height: 380px; /* Altura suficiente para incluir el contenido */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease-in-out;
+    padding: 10px;
 }
 
-.cards .card img{
-    margin-left: 20%;
-    margin-top: 2%;
+.card:hover {
+    box-shadow: 8px 8px 30px rgba(111, 153, 72, 0.7);
+    transform: translateY(-10px);
+    background-color: #72a84a; /* Cambia el color al pasar el cursor */
+}
 
-    position: center;
-    width: 150px;
-    height: 150px;
+.cards .card img {
+    margin-top: 10px;
+    width: 100px; /* Tamaño de imagen */
+    height: 100px; /* Tamaño de imagen */
     object-fit: cover;
     border: 3px solid rgb(111, 153, 72);
     border-radius: 50%;
-    display: block;
-
+    transition: transform 0.3s ease-in-out;
 }
 
-.cards .card > .contenido-texto-adop{
-    margin-left: 10px;
-    width: 95%;
+.card:hover img {
+    transform: scale(1.1);
+}
+
+.cards .card > .contenido-texto-adop {
+    margin-top: 10px;
+    padding: 5px;
+    width: 90%; /* Mantiene el ancho de la descripción */
+    color: #fff;
+    text-align: center;
+    font-size: 13px;
+    overflow: hidden; /* Evita que el texto sobrepase la tarjeta */
+}
+
+.cards .contenido-texto-adop p {
+    text-align: justify;
+    font-weight: 300;
+    line-height: 1.4;
+    padding-top: 5px;
+    margin-bottom: 0;
+}
+
+.cards .card h4 {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.btn-conocer {
+    margin-top: auto; /* Coloca el botón en la parte inferior */
+    background-color: #fff;
+    color: #027605;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px; /* Tamaño del botón */
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 12px; /* Tamaño de fuente más pequeño */
+    text-align: center; /* Centrar el texto */
+}
+
+.btn-conocer:hover {
+    background-color: #72a84a;
     color: #fff;
 }
 
-.cards .cards > .contenido-texto-adop p{
-    text-align: justify;
-    font-weight: 300;
-    padding-top: 5px;
+/* Estilos responsivos */
+@media (max-width: 1200px) {
+    .card {
+        width: 180px; /* Reduce el ancho en pantallas medianas */
+        height: 360px; /* Altura ajustada en pantallas medianas */
+    }
 }
 
-/*Objetivo*/
-
-.historia {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
+@media (max-width: 768px) {
+    .card {
+        width: 160px; /* Reduce el ancho en pantallas pequeñas */
+        height: 340px; /* Altura ajustada en pantallas pequeñas */
+    }
 }
 
-.titulo {
-  text-align: center;
-}
- 
-.historia img {
-  width: 35%;
-  height: 35%;
-  margin-left: 18%;
-  margin-bottom: 5%;
-  display: flex;
-  justify-content: center;
-  box-shadow: 4px 4px 35px rgb(0 0 0 / .8);
-   border-radius: 15%;
 
-}
-
-.HistoriaObjetivo p {
-    padding: 30px 30px 40px 15px;
-    text-align: center;
-}
-
-.HistoriaObjetivo {
-  margin-left: 10px;
-}
-
-.titulo-final{
-    text-align: center;
-    font-size: 18px;
-    margin: 12px 0 0 0;
-    color: #161b16;
-}
 /* Estilos para el menú desplegable */
 .navbar {
     background-color: #f8f9fa; /* Color de fondo de la barra de navegación */
