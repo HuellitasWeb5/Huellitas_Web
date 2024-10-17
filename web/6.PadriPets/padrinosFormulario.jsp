@@ -40,7 +40,7 @@
         overflow-y: auto;
     }
     .swiper-container {
-        height: auto;
+        height: 350px;
         overflow: hidden;
     }
 
@@ -101,7 +101,7 @@
     <div class="card-carousel">
         <div class="card">
             <div class="card-header">
-                <h3><%=accion.toUpperCase()%>  PADRIPET</h3>
+                <h3>APADRINA UN PELUDITO</h3>
             </div>
             <div class="card-body">
 
