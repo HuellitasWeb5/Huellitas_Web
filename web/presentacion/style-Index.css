@@ -2,6 +2,20 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
+
+/*diseño video */
+
+.video-frame {
+    border: 18px solid #28a745; /* Marco verde llamativo */
+    border-radius: 13px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para dar profundidad */
+    transition: transform 0.3s ease; /* Transición suave al hacer hover */
+}
+
+.video-frame:hover {
+    transform: scale(1.02); /* Efecto de zoom suave al pasar el ratón */
+}
+
 /*estilo eventos*/
 
  .eventos {
@@ -62,7 +76,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
   }
 
   .evento-info p {
-    color: #555;
+    color: #000;
     line-height: 1.6;
   }
 
@@ -338,22 +352,23 @@ header .textos-header{
     color: #000; /* Texto en color negro */
     font-size: 17px; /* Aumenta el tamaño del texto */
 }
-
-
 .cards .card h4 {
+    margin-top: 20px; /* Añade espacio extra encima del título */
     margin-bottom: 10px;
     font-size: 16px;
+    font-family: 'Arial', sans-serif; /* Cambia el tipo de letra */
+    text-align: center; /* Centra el título */
 }
 
 .btn-conocer {
     margin-top: auto; /* Coloca el botón en la parte inferior */
-    background-color: #fff;
-    color: #027605;
+    background-color: #1dba35;
+    color: #fff;
     border: none;
     border-radius: 5px;
     padding: 5px 10px; /* Tamaño del botón */
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ;
     font-size: 12px; /* Tamaño de fuente más pequeño */
     text-align: center; /* Centrar el texto */
 }

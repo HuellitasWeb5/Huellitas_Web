@@ -67,11 +67,12 @@
                 <!-- Campo oculto para almacenar la cadena de donaciones -->
                 <input type="hidden" name="donacion" id="donacion" required>
                 <input type="hidden" name="accion" value="<%=accion%>">
-
-                <div class="btn-container">
-                    <input class="btn-adicionar" type="submit" value="Guardar Donación" onclick="return validarFormularioPrincipal();">
-                    <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
-                </div>
+                <center>
+                    <div class="btn-container">
+                        <input class="btn-adicionar" type="submit" value="Guardar Donación" onclick="return validarFormularioPrincipal();">
+                        <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
+                    </div>
+                </center>
             </form>
         </div>
     </div>
