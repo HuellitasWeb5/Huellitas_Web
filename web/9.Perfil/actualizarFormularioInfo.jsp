@@ -12,7 +12,7 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
-   // Inicializar variables
+    // Inicializar variables
     boolean subioArchivo = false;
     Map<String, String> variables = new HashMap<String, String>();  // Almacena los datos del formulario
     boolean isMultipart = ServletFileUpload.isMultipartContent(request);
@@ -57,7 +57,7 @@
     // Capturar valores del formulario
     String accion = variables.get("accion");
     String identificacionAdoptante = variables.get("identificacionAdoptante");
-    String codigoMascota = variables.get("codigoMascota");
+    String codigoMascota = variables.get("codigoMascotas");
     String ocupacion = variables.get("ocupacion");
     String tiempoLibre = variables.get("tiempoLibre");
     String espacio = variables.get("espacio");
@@ -106,11 +106,17 @@
     formularioDeInformacion.setFotoVivienda(fotoVivienda);
     formularioDeInformacion.setFotoRecibo(fotoRecibo);
     formularioDeInformacion.setFotoCedula(fotoCedula);
+   
+    String FormularioInfo = variables.get("formularioInfo");
+    System.out.println("Cadena de formulario Cadena:"+FormularioInfo);
+    System.out.println("Cadena de formulario:"+codigoMascota);
     
     // Acciones del formulario
     switch (accion) {
         case "Adicionar":
             formularioDeInformacion.grabar();
+            formularioDeInformacion.grabarFormularioConProcedimientoAlmacenado(FormularioInfo);
+            
             break;
         case "Modificar":
             formularioDeInformacion.setCodigo(request.getParameter("codigo"));
@@ -122,7 +128,7 @@
             break;
             case "Aceptar":
             formularioDeInformacion.setCodigo(request.getParameter("codigo"));
-                formularioDeInformacion.aceptarFormulario();
+            formularioDeInformacion.aceptarFormulario();
             adopcion.setIdentificacionAdoptante(request.getParameter("identificacionAdoptante"));
             adopcion.setCodigoMascota(request.getParameter("codigoMascota"));
             adopcion.grabar();
