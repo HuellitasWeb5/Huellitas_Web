@@ -12,6 +12,10 @@
 
 <%
     String accion = request.getParameter("accion");
+    FormularioDeSeguimiento formularioDeSeguimiento = new FormularioDeSeguimiento();
+    Mascota mascota = new Mascota();
+    Persona persona = new Persona(formularioDeSeguimiento.getIdentificacionAdoptante());
+
 %>  
 
 <body onload="cargarFecha()">
@@ -39,7 +43,7 @@
                             <input type="text" name="residencia" id="residencia" readonly>
                         </div>
                         <div class="foto">
-                            <img id="fotoAdoptante" class="fotoPreview" src="" alt="Foto Adoptante">
+                            <img id="foto" class="fotoPreview" src="presentacion/clientes/<%= persona.getFoto()%>" alt="Foto de <%= persona.getNombre()%>" style="width: 100px; height: 100px;">
                         </div>
                     </div>
                 </div>
@@ -62,7 +66,7 @@
                             <input type="text" name="cuidadosEspeciales" id="cuidadosEspeciales" readonly>
                         </div>
                         <div class="foto">
-                            <img id="fotoMascota" class="fotoPreview" src="" alt="Foto Mascota">
+                            <img id="fotoMascota" class="fotoPreview" src="presentacion/mascota/<%= mascota.getFoto()%>" alt="Foto de <%= mascota.getNombre()%>" style="width: 100px; height: 100px;">
                         </div>
                     </div>
                 </div>
@@ -190,7 +194,7 @@
         document.getElementById("telefono").value = telefono;
         document.getElementById("direccion").value = direccion;
         document.getElementById("residencia").value = residencia;
-        document.getElementById("foto").src = foto;
+        document.getElementById("foto").src = "presentacion/clientes/" + foto;
     });
 
     // MOSTRAR GENERO MASCOTA
@@ -247,7 +251,7 @@
             document.getElementById("fechaNacimiento").value = fechaNacimiento;
             document.getElementById("genero").value = mostrarGenero(genero);
             document.getElementById("cuidadosEspeciales").value = cuidadosEspeciales;
-            document.getElementById("fotoMascota").src = foto;
+            document.getElementById("fotoMascota").src = "presentacion/mascota/" + foto;
         } else {
             document.getElementById("nombreMascota").value = '';
             document.getElementById("fechaNacimiento").value = '';

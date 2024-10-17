@@ -54,7 +54,7 @@
         listaSeguimientos += "<p><strong>Cuidados Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
         listaSeguimientos += "</div>";
         listaSeguimientos += "</div>";
-        listaSeguimientos += "</div>"; // Fin del cuerpo de la tarjeta
+        listaSeguimientos += "</div>"; 
 
         // Botones de acción
         listaSeguimientos += "<div class='btn-container'>";
@@ -63,7 +63,7 @@
         listaSeguimientos += "<input type='submit' value='Generar PDF' class='btn-otro'>";
         listaSeguimientos += "</form>";
         listaSeguimientos += "<button class='btn-eliminar' onClick='eliminar(" + formulario.getCodigo() + ")'>Eliminar</button>";
-        listaSeguimientos += "</div>"; // Fin del contenedor de botones
+        listaSeguimientos += "</div>"; 
 
         listaSeguimientos += "</div>"; // Fin de la tarjeta
         listaSeguimientos += "</div>"; // Fin de la diapositiva

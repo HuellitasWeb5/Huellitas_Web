@@ -62,8 +62,9 @@
         listaAdopciones += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
         listaAdopciones += "<input type='submit' value='Generar PDF' class='btn-otro'>";
         listaAdopciones += "</form>";
+        listaAdopciones += "</div>"; 
+        listaAdopciones += "<div>"; 
         listaAdopciones += "<button class='btn-adicionar' onClick='aceptarFormulario(\"" + formulario.getCodigo() + "\", \"" + persona.getIdentificacion() + "\", \"" + formulario.getCodigoMascota() + "\")'>Aceptar</button>";
-
         listaAdopciones += "<button class='btn-eliminar' onClick='eliminar(" + formulario.getCodigo() + ")'>Rechazar</button>";
         listaAdopciones += "</div>"; 
 

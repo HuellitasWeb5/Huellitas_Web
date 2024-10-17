@@ -45,7 +45,7 @@
                             <input type="text" name="residencia" id="residencia" readonly>
                         </div>
                         <div class="foto">
-                            <img id="foto" class="fotoPreview" src="presentacion/clientes/<%= persona.getFoto()%>" alt="Foto de <%= persona.getNombre()%>" style="width: 100px; height: auto;">
+                            <img id="foto" class="fotoPreview" src="presentacion/clientes/<%= persona.getFoto()%>" alt="Foto de <%= persona.getNombre()%>" style="width: 100px; height: 100px;">
                         </div>
                     </div>
                 </div>
@@ -67,12 +67,12 @@
                             <input type="text" name="cuidadosEspeciales" id="cuidadosEspeciales" readonly>
                         </div>
                         <div class="foto">
-                            <img id="fotoMascota" class="fotoPreview" src="presentacion/mascota/<%= mascota.getFoto()%>" alt="Foto de <%= mascota.getNombre()%>" style="width: 100px; height: auto;">
+                            <img id="fotoMascota" class="fotoPreview" src="presentacion/mascota/<%= mascota.getFoto()%>" alt="Foto de <%= mascota.getNombre()%>" style="width: 100px; height: 100px;">
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                 </div>
@@ -80,7 +80,7 @@
                 <div class="swiper-button-prev"></div>
             </div> 
             <table>
-                
+
                 <button class="btn-adicionar" type="button" onclick="abrirFormulario();">Agregar Otra Mascota</button><br>
 
                 <input type="hidden" name="fechaActual" id="fechaActual">
@@ -142,10 +142,9 @@
                 <label for="motivacion">¿Cuál es el motivo por el cuál desea adoptar a la mascota?</label>
                 <input type="text" id="motivacion" name="motivacion" maxlength="100" required><br><br>
 
-                <label for="fechaVisitaDia">Por favor, indíquenos los días en los que estaría disponible para recibir la visita de seguimiento con respecto al cuidado de la mascota:</label>
-                <br>
-                <div style="display: flex; gap: 25px;">
-                    <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Lunes"> Lunes</label>
+                <label for="fechaVisitaDia">Por favor, indíquenos los días de la semana en los que estaría disponible para recibir la visita de seguimiento con respecto al cuidado de la mascota:</label>
+                <div style="display: flex; gap: 45px;">
+                    <br><label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Lunes"> Lunes</label>
                     <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Martes"> Martes</label>
                     <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Miercoles"> Miércoles</label>
                     <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Jueves"> Jueves</label>
@@ -157,23 +156,23 @@
                 <p id="error-message" style="color: red; display: none;">Debe seleccionar al menos un día de la semana</p>
                 <br>
 
-                <label for="fechaVisitaHora">Selecciona la hora estimada de visita:</label>
-                <input type="time" id="fechaVisitaHora" name="fechaVisitaHora" style="width: 120px; text-align: center;" required>
+                <label for="fechaVisitaHora">Selecciona la hora estimada para la visita:</label>
+                <input type="time" id="fechaVisitaHora" name="fechaVisitaHora" style="width: 120px; text-align: center;" required><br>
 
-                <label for="fotoVivienda">Por favor, suba una foto del espacio donde vivirá la mascota (puede incluir foto de la cama, alimento o accesorios):</label>
-                <br><input type="file" id="fotoVivienda" name="fotoVivienda" accept="image/*, application/pdf" required>
+                <label for="fotoCedula">Por favor, cargue una foto de su cédula de ciudadanía (ambos lados):</label>
+                <br><input type="file" id="fotoCedula" name="fotoCedula" accept="image/*, application/pdf" required>
                 <br>
 
                 <label for="fotoRecibo">Por favor, cargue una foto del recibo de servicios públicos de su vivienda (gas, energía o agua):</label>
                 <br><input type="file" id="fotoRecibo" name="fotoRecibo" accept="image/*, application/pdf" required>
                 <br>
 
-                <label for="fotoCedula">Por favor, cargue una foto de su cédula de ciudadanía:</label>
-                <br><input type="file" id="fotoCedula" name="fotoCedula" accept="image/*, application/pdf" required>
+                <label for="fotoVivienda">(Opcional) Por favor, cargue una foto del espacio donde vivirá la mascota (puede incluir foto de la cama, alimento o accesorios):</label>
+                <br><input type="file" id="fotoVivienda" name="fotoVivienda" accept="image/*, application/pdf">
                 <br>
 
                 <label for="descripcion">Descripción adicional:</label>
-                <br><textarea id="descripcion" name="descripcion" rows="4" cols="88" required></textarea><br><br>
+                <br><textarea id="descripcion" name="descripcion" rows="4" cols="88"></textarea><br><br>
 
                 <div style="display: flex; align-items: center;">
                     <input type="checkbox" id="autorizacion" name="autorizacion" value="S" required>
@@ -210,7 +209,7 @@
                     <input type="text" name="cuidadosEspeciales" id="cuidadosEspecialesFormulario" readonly>
                 </div>
                 <div class="foto">
-                    <img id="fotoMascotaFormulario" class="fotoPreview" src="presentacion/mascota/<%= mascota.getFoto()%>" alt="Foto de <%= mascota.getNombre()%>" style="width: 100px; height: auto;">
+                    <img id="fotoMascotaFormulario" class="fotoPreview" src="presentacion/mascota/<%= mascota.getFoto()%>" alt="Foto de <%= mascota.getNombre()%>" style="width: 100px; height: 100px;">
                 </div>
             </div>
         </table>
@@ -229,6 +228,7 @@
         const fechaNacimiento = document.getElementById('fechaNacimientoFormulario').value;
         const genero = document.getElementById('generoFormulario').value;
         const cuidadosEspeciales = document.getElementById('cuidadosEspecialesFormulario').value;
+        const foto = document.getElementById('fotoMascotaFormulario').src;
 
         if (codigoMascota === '' || nombreMascota === '' || fechaNacimiento === '' || genero === '' || cuidadosEspeciales === '') {
             alert('Por favor, completa todos los campos antes de agregar la mascota.');
@@ -243,7 +243,7 @@
             codigosMascotas.value += "||";
         }
 
-        const detallesMascota = codigoMascota + "|" + nombreMascota + "|" + fechaNacimiento + "|" + genero + "|" + cuidadosEspeciales;
+        const detallesMascota = codigoMascota + "|" + nombreMascota + "|" + fechaNacimiento + "|" + genero + "|" + cuidadosEspeciales + "|" + foto;
 
         formularioInfo.value += detallesMascota;
         codigosMascotas.value += detallesMascota;
@@ -331,7 +331,7 @@
             fotoElemento.src = campos[5];
             fotoElemento.alt = 'Foto de la mascota';
             fotoElemento.style.width = '100px';
-            fotoElemento.style.height = 'auto';
+            fotoElemento.style.height = '100px';
 
             fotoContenedor.appendChild(fotoElemento);
 
@@ -370,6 +370,14 @@
             tarjeta.appendChild(contenedorDatos);
             contenedor.appendChild(tarjeta);
         });
+    }
+
+    function limpiarCamposFormulario() {
+        document.getElementById("nombreMascotaFormulario").value = '';
+        document.getElementById("fechaNacimientoFormulario").value = '';
+        document.getElementById("generoFormulario").value = '';
+        document.getElementById("cuidadosEspecialesFormulario").value = '';
+        document.getElementById("fotoMascotaFormulario").src = '';
     }
 
     // BUSCAR PERSONA
@@ -411,13 +419,13 @@
             document.getElementById("telefono").value = telefono;
             document.getElementById("direccion").value = direccion;
             document.getElementById("residencia").value = residencia;
-            document.getElementById("fotoPreview").src = foto;
+            document.getElementById("foto").src = "presentacion/clientes/" + foto;
         } else {
             document.getElementById("nombre").value = '';
             document.getElementById("telefono").value = '';
             document.getElementById("direccion").value = '';
             document.getElementById("residencia").value = '';
-            document.getElementById("fotoPreview").src = '';
+            document.getElementById("foto").src = '';
         }
     });
 
@@ -474,23 +482,15 @@
             document.getElementById("fechaNacimiento").value = fechaNacimiento;
             document.getElementById("genero").value = mostrarGenero(genero);
             document.getElementById("cuidadosEspeciales").value = cuidadosEspeciales;
-            document.getElementById("fotoPreview").src = foto;
+            document.getElementById("fotoMascota").src = "presentacion/mascota/" + foto;
         } else {
             document.getElementById("nombreMascota").value = '';
             document.getElementById("fechaNacimiento").value = '';
             document.getElementById("genero").value = '';
             document.getElementById("cuidadosEspeciales").value = '';
-            document.getElementById("fotoPreview").src = '';
+            document.getElementById("fotoMascota").src = '';
         }
     });
-
-    function limpiarCamposFormulario() {
-        document.getElementById("nombreMascota").value = '';
-        document.getElementById("fechaNacimiento").value = '';
-        document.getElementById("genero").value = '';
-        document.getElementById("cuidadosEspeciales").value = '';
-        document.getElementById("fotoPreview").src = '';
-    }
 
     // BUSCAR MASCOTA FORMULARIO 
 
@@ -531,23 +531,15 @@
             document.getElementById("fechaNacimientoFormulario").value = fechaNacimiento;
             document.getElementById("generoFormulario").value = mostrarGenero(genero);
             document.getElementById("cuidadosEspecialesFormulario").value = cuidadosEspeciales;
-            document.getElementById("fotoPreview").src = "presentacion/mascota/" + foto;
+            document.getElementById("fotoMascotaFormulario").src = "presentacion/mascota/" + foto;
         } else {
             document.getElementById("nombreMascotaFormulario").value = '';
             document.getElementById("fechaNacimientoFormulario").value = '';
             document.getElementById("generoFormulario").value = '';
             document.getElementById("cuidadosEspecialesFormulario").value = '';
-            document.getElementById("fotoPreview").src = '';
+            document.getElementById("fotoMascotaFormulario").src = '';
         }
     });
-
-    function limpiarCamposFormulario() {
-        document.getElementById("nombreMascotaFormulario").value = '';
-        document.getElementById("fechaNacimientoFormulario").value = '';
-        document.getElementById("generoFormulario").value = '';
-        document.getElementById("cuidadosEspecialesFormulario").value = '';
-        document.getElementById("fotoPreview").src = '';
-    }
 
     // AGREGAR MASCOTA A LA ADOPCION
 
@@ -555,11 +547,11 @@
         $("#formulario").dialog({
             autoOpen: false,
             show: {
-                effect: "blind",
+                effect: "clip",
                 duration: 1000
             },
             hide: {
-                effect: "explode",
+                effect: "clip",
                 duration: 1000
             },
             width: 600,
@@ -574,12 +566,12 @@
         var registros = codigosMascotas.value.split('||');
 
         if (index >= 0 && index < registros.length) {
-            registros.splice(index, 1); 
+            registros.splice(index, 1);
         }
         var nuevosDatos = registros.join('||');
         codigosMascotas.value = nuevosDatos;
-        document.getElementById('formularioInfo').value = nuevosDatos; 
-        cargarTablaMascotas(); 
+        document.getElementById('formularioInfo').value = nuevosDatos;
+        cargarTablaMascotas();
     }
 
     // VALIDAR DATOS
@@ -626,6 +618,7 @@
         document.getElementById('fechaNacimientoFormulario').value = '';
         document.getElementById('generoFormulario').value = '';
         document.getElementById('cuidadosEspecialesFormulario').value = '';
+        document.getElementById('fotoMascotaFormulario').src = '';
     }
 
     // CARGAR FECHA
