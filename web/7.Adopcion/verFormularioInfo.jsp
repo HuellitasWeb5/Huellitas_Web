@@ -111,7 +111,7 @@
     }
 
     function aceptarFormulario(codigo, nombreMascota, identificacion,codigoMascota) {
-        let respuesta = confirm("¿Está seguro que desea aceptar la adopción  de " + nombreMascota + "?");
+        let respuesta = confirm("¿Está seguro que desea aceptar la adopción de " + nombreMascota + "?");
         if (respuesta) {
            document.location = "principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Aceptar&codigo=" + codigo + "&identificacionAdoptante=" + identificacion + "&codigoMascota="+codigoMascota;
         }

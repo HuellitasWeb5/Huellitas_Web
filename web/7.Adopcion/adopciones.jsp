@@ -75,7 +75,7 @@
             String rutaArchivo = "uploads/" + adopcion.getActaAdopcion();
             listaAdopciones += "<a href='" + rutaArchivo + "' target='_blank' class='btn-otro'>Ver Contrato de adopción</a>";
         }
-                 
+
         listaAdopciones += "<form action='7.Adopcion/formularioInfoPDF.jsp' method='post' target='_blank'>";
         listaAdopciones += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
         listaAdopciones += "<input type='submit' value='Generar Formulario de adopción' class='btn-adicionar'>";
@@ -104,7 +104,7 @@
 </div>  
 
 <div class="swiper-container">
-    <%= listaAdopciones %>
+    <%= listaAdopciones%>
 
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
@@ -114,8 +114,8 @@
 <script>
     const swiper = new Swiper('.swiper-container', {
         loop: false,
-        slidesPerView: 3, 
-        spaceBetween: 20, 
+        slidesPerView: 3,
+        spaceBetween: 20,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
