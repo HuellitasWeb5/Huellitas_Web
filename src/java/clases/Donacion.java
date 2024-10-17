@@ -23,6 +23,7 @@ public class Donacion {
     private String fecha;
     private String descripcion;
     private String identificacionDonante;
+    private String codigoTipo;
 
     public Donacion() {
     }
@@ -86,6 +87,9 @@ public class Donacion {
     public Persona getPersona() {
         return new Persona(identificacionDonante);
     }
+    public TipoDonacion getTipoDonacion() {
+        return new TipoDonacion(codigoTipo);
+    }
 
     @Override
 
@@ -146,6 +150,7 @@ public class Donacion {
                 + "    donacion\n"
                 + "INNER JOIN \n"
                 + "    donacionesdetalle ON donacion.codigo = donacionesdetalle.codigoDonacion" + filtro + orden;
+        System.out.println(cadenSQL);
         return ConectorBD.consultar(cadenSQL);
 
     }
