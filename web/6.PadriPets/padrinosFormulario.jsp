@@ -201,11 +201,11 @@
         $("#formulario").dialog({
             autoOpen: false,
             show: {
-                effect: "blind",
+                effect: "clip",
                 duration: 1000
             },
             hide: {
-                effect: "explode",
+                effect: "clip",
                 duration: 1000
             },
             width: 950,
