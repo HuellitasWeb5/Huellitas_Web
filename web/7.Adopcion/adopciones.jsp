@@ -63,11 +63,11 @@
         // Formulario para subir acta
         listaAdopciones += "<form name='formulario' method='post' action='principal.jsp?CONTENIDO=7.Adopcion/Acta.jsp' enctype='multipart/form-data'>";
         listaAdopciones += "<label for='acta'>Por favor, suba el contrato de adopción de la mascota:</label>";
-        listaAdopciones += "<br><input type='file' id='acta' name='acta' accept='application/pdf, image/*' required>";
+        listaAdopciones += "<br><input type='file' class='btn-archivo' id='acta' name='acta' accept='application/pdf, image/*' required>";
         listaAdopciones += "<br>";
         listaAdopciones += "<input type='hidden' name='accion' value='Acta'>";
         listaAdopciones += "<input type='hidden' id='codigoFormulario' name='codigoFormulario' value='" + adopcion.getCodigo() + "'>";
-        listaAdopciones += "<input type='submit' value='Guardar' class='btn-otro'>";
+        listaAdopciones += "<input type='submit' value='Guardar' class='btn-adicionar'>";
         listaAdopciones += "</form>";
 
         // Verificar si hay acta para mostrar el enlace
@@ -75,6 +75,11 @@
             String rutaArchivo = "uploads/" + adopcion.getActaAdopcion();
             listaAdopciones += "<a href='" + rutaArchivo + "' target='_blank' class='btn-otro'>Ver Contrato de adopción</a>";
         }
+                 
+        listaAdopciones += "<form action='7.Adopcion/formularioInfoPDF.jsp' method='post' target='_blank'>";
+        listaAdopciones += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
+        listaAdopciones += "<input type='submit' value='Generar Formulario de adopción' class='btn-adicionar'>";
+        listaAdopciones += "</form>";
 
         listaAdopciones += "</div>"; // Fin de card-body
         listaAdopciones += "</div>"; // Fin de card

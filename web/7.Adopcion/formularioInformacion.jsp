@@ -56,7 +56,6 @@
                     <div class="datos-con-foto">
                         <div class="datos">
                             <label>Código:</label>
-
                             <input type="text" name="codigoMascotas" id="codigoMascotas" placeholder="Digite aquí el código de la mascota" required>
                             <label>Nombre de la mascota:</label>
                             <input type="text" name="nombreMascota" id="nombreMascota" readonly>
@@ -73,6 +72,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                 </div>
@@ -80,10 +80,10 @@
                 <div class="swiper-button-prev"></div>
             </div> 
             <table>
-                <input type="hidden" name="fechaActual" id="fechaActual">
-
+                
                 <button class="btn-adicionar" type="button" onclick="abrirFormulario();">Agregar Otra Mascota</button><br>
 
+                <input type="hidden" name="fechaActual" id="fechaActual">
                 <!-- FORMULARIO  -->  
 
                 <label for="ocupacion">¿Cuál es su ocupación?</label>
@@ -187,7 +187,7 @@
                 <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
 
             </table>
-            <input name="formularioInfo" id="formularioInfo" >
+            <input type="hidden" name="formularioInfo" id="formularioInfo" >
         </div>
     </form>
 </body>
@@ -263,10 +263,10 @@
         registros.forEach(function (registro, index) {
             var campos = registro.split('|');
             var tarjeta = document.createElement('div');
-            tarjeta.classList.add('swiper-slide'); // Clase para cada slide
+            tarjeta.classList.add('swiper-slide');
 
             var contenedorDatos = document.createElement('div');
-            contenedorDatos.classList.add('tableDatos'); // Clase para el contenedor de datos
+            contenedorDatos.classList.add('tableDatos');
 
             var h2 = document.createElement('h2');
             h2.textContent = 'MASCOTA';
@@ -277,13 +277,12 @@
             var datos = document.createElement('div');
             datos.classList.add('datos');
 
-            // Crear los elementos de entrada y asignar los valores
             var labelCodigo = document.createElement('label');
             labelCodigo.textContent = 'Código:';
             var inputCodigo = document.createElement('input');
             inputCodigo.type = 'text';
             inputCodigo.name = 'codigoMascota';
-            inputCodigo.id = 'codigoMascota' + index; // Para evitar conflicto de ID
+            inputCodigo.id = 'codigoMascota' + index;
             inputCodigo.value = campos[0];
             inputCodigo.readOnly = true;
 
@@ -323,28 +322,28 @@
             inputCuidadosEspeciales.value = campos[4];
             inputCuidadosEspeciales.readOnly = true;
 
-            // Crear contenedor para la foto y añadir la imagen
             var fotoContenedor = document.createElement('div');
             fotoContenedor.classList.add('foto');
 
             var fotoElemento = document.createElement('img');
-            fotoElemento.id = 'foto' + index; // Asignar ID único a cada imagen
+            fotoElemento.id = 'foto' + index;
             fotoElemento.classList.add('fotoPreview');
-            fotoElemento.src = campos[5]; // Suponiendo que el campo 5 contiene la URL de la foto
+            fotoElemento.src = campos[5];
             fotoElemento.alt = 'Foto de la mascota';
             fotoElemento.style.width = '100px';
             fotoElemento.style.height = 'auto';
 
-            fotoContenedor.appendChild(fotoElemento); // Añadir la foto al contenedor
+            fotoContenedor.appendChild(fotoElemento);
 
             // Botón para eliminar la mascota
 
             var botonEliminar = document.createElement('button');
             botonEliminar.textContent = 'Eliminar';
+            botonEliminar.className = 'btn-eliminar';
             botonEliminar.onclick = function () {
                 eliminarMascota(index);
             };
-            // Añadir todos los elementos a la sección de datos
+
             datos.appendChild(labelCodigo);
             datos.appendChild(inputCodigo);
 
@@ -360,18 +359,16 @@
             datos.appendChild(labelCuidadosEspeciales);
             datos.appendChild(inputCuidadosEspeciales);
 
-            datos.appendChild(botonEliminar); // Botón al final
+            datos.appendChild(botonEliminar);
 
-            // Añadir datos y foto en el contenedor de datos-con-foto
             datosConFoto.appendChild(datos);
             datosConFoto.appendChild(fotoContenedor);
 
-            // Añadir el título y la sección de datos con foto al contenedor de la tarjeta
             contenedorDatos.appendChild(h2);
             contenedorDatos.appendChild(datosConFoto);
 
-            tarjeta.appendChild(contenedorDatos); // Añadir el contenedor de datos a la tarjeta
-            contenedor.appendChild(tarjeta); // Añadir la tarjeta al contenedor
+            tarjeta.appendChild(contenedorDatos);
+            contenedor.appendChild(tarjeta);
         });
     }
 
@@ -570,20 +567,19 @@
         });
     });
 
-    function eliminarMascota(index) {
-        var datos = document.getElementById('codigosMascotas').value;
-        var registros = datos.split('||');
-        registros.splice(index, 1);
-        document.getElementById('codigosMascotas').value = registros.join('||');
-        cargarTablaMascotas();
-    }
+    // ELIMINAR MASCOTA 
 
-    function cerrarFormulario() {
-        document.getElementById('codigoFormulario').value = '';
-        document.getElementById('nombreMascotaFormulario').value = '';
-        document.getElementById('fechaNacimientoFormulario').value = '';
-        document.getElementById('generoFormulario').value = '';
-        document.getElementById('cuidadosEspecialesFormulario').value = '';
+    function eliminarMascota(index) {
+        var codigosMascotas = document.getElementById('codigosMascotas');
+        var registros = codigosMascotas.value.split('||');
+
+        if (index >= 0 && index < registros.length) {
+            registros.splice(index, 1); 
+        }
+        var nuevosDatos = registros.join('||');
+        codigosMascotas.value = nuevosDatos;
+        document.getElementById('formularioInfo').value = nuevosDatos; 
+        cargarTablaMascotas(); 
     }
 
     // VALIDAR DATOS
@@ -625,6 +621,11 @@
     function cerrarFormulario() {
         $('#formularioAdoptarMascota input').val('');
         $('#formulario').dialog('close');
+        document.getElementById('codigoFormulario').value = '';
+        document.getElementById('nombreMascotaFormulario').value = '';
+        document.getElementById('fechaNacimientoFormulario').value = '';
+        document.getElementById('generoFormulario').value = '';
+        document.getElementById('cuidadosEspecialesFormulario').value = '';
     }
 
     // CARGAR FECHA
