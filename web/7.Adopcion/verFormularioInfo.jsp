@@ -64,7 +64,7 @@
         listaAdopciones += "</form>";
         listaAdopciones += "</div>"; 
         listaAdopciones += "<div>"; 
-        listaAdopciones += "<button class='btn-adicionar' onClick='aceptarFormulario(\"" + formulario.getCodigo() + "\", \"" + persona.getIdentificacion() + "\", \"" + formulario.getCodigoMascota() + "\")'>Aceptar</button>";
+        listaAdopciones += "<button class='btn-adicionar' onClick='aceptarFormulario(\"" + formulario.getCodigo() + "\",\"" + mascota.getNombre() + "\", \"" + persona.getIdentificacion() + "\", \"" + formulario.getCodigoMascota() + "\")'>Aceptar</button>";
         listaAdopciones += "<button class='btn-eliminar' onClick='eliminar(" + formulario.getCodigo() + ")'>Rechazar</button>";
         listaAdopciones += "</div>"; 
 
@@ -104,14 +104,14 @@
 
 <script type="text/javascript">
     function eliminar(codigo) {
-        let resultado = confirm("¿Realmente desea eliminar el formulario con código " + codigo + "?");
+        let resultado = confirm("¿Está seguro que desea rechazar y eliminar el formulario con código " + codigo + "?");
         if (resultado) {
             document.location = "principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Eliminar&codigo=" + codigo;
         }
     }
 
-    function aceptarFormulario(codigo,identificacion,codigoMascota) {
-        let respuesta = confirm("¿Realmente quieres aceptar el formulario con código: " + codigo + "?");
+    function aceptarFormulario(codigo, nombreMascota, identificacion,codigoMascota) {
+        let respuesta = confirm("¿Está seguro que desea aceptar la adopción  de " + nombreMascota + "?");
         if (respuesta) {
            document.location = "principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Aceptar&codigo=" + codigo + "&identificacionAdoptante=" + identificacion + "&codigoMascota="+codigoMascota;
         }

@@ -171,7 +171,7 @@
                 <br><input type="file" id="fotoVivienda" name="fotoVivienda" accept="image/*, application/pdf">
                 <br>
 
-                <label for="descripcion">Descripción adicional:</label>
+                <label for="descripcion">Descripción adicional:</label> 
                 <br><textarea id="descripcion" name="descripcion" rows="4" cols="88"></textarea><br><br>
 
                 <div style="display: flex; align-items: center;">
