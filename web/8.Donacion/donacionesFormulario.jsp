@@ -68,6 +68,8 @@
                 <input type="hidden" name="donacion" id="donacion" required>
                 <input type="hidden" name="accion" value="<%=accion%>">
                 <center>
+                        <button class="btn-otro" onclick="abrirFormulario();">Agregar Detalles de Donación</button>
+                        <br><br>
                     <div class="btn-container">
                         <input class="btn-adicionar" type="submit" value="Guardar Donación" onclick="return validarFormularioPrincipal();">
                         <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
@@ -80,7 +82,6 @@
 
 
 <!-- Botón para abrir el formulario modal -->
-<button class="btn-otro" onclick="abrirFormulario();">Agregar Detalles de Donación</button>
 
 <!-- Formulario modal para ingresar detalles de donaciones -->
 <div id="formulario" title="Donaciones">

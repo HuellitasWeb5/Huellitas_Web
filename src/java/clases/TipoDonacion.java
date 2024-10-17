@@ -66,7 +66,6 @@ public class TipoDonacion {
 
     @Override
     public String toString() {
-
         return nombre;
     }
 
