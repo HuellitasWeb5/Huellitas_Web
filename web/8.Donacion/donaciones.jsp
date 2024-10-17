@@ -22,7 +22,7 @@
     for (int i = 0; i < datos.size(); i++) {
         donacion = datos.get(i);
         Persona persona = new Persona(donacion.getIdentificacionDonante());
-        TipoDonacion tipoDonacion = new TipoDonacion(donacion.getCodigo());
+        TipoDonacion tipoDonacion = new TipoDonacion();
         lista += "<div class='swiper-slide'>";
         lista += "<div class='card'>";
         lista += "<div class='card-header'>";
@@ -35,7 +35,7 @@
         lista += "<p><strong>Teléfono:</strong> " + persona.getTelefono() + "</p>";
         lista += "<p><strong>Ubicación:</strong> " + persona.getResidencia() + "-" + persona.getDireccion() + "</p>";
         lista += "<p><strong>Correo:</strong> " + persona.getEmail() + "</p>";
-        lista += "<p><strong>Donación:</strong> " + tipoDonacion.getNombre() + "</p>";
+      //  lista += "<p><strong>Donación:</strong> " + tipoDonacion.getNombre() + "</p>";
         lista += "<p><strong>Descripción:</strong> " + donacion.getDescripcion() + "</p>";
         lista += "<div class='button-container'>";
         lista += "<button class='btn-otro' onclick='verDetalles(\"" + donacion.getCodigo() + "\", \"" + persona.getIdentificacion() + "\");'>Detalles</button>";
