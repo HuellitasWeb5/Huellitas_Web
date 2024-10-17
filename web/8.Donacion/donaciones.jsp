@@ -13,13 +13,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
-
 </head>
 
 <%
     Donacion donacion = new Donacion();
     String lista = "";
-    List<Donacion> datos = Donacion.getListaEnObjetos(null, null);
+    List<Donacion> datos = Donacion.getListaEnObjetos(null, "donacion.codigo, donacion.fecha, donacion.descripcion, donacion.identificacionDonante");
     for (int i = 0; i < datos.size(); i++) {
         donacion = datos.get(i);
         Persona persona = new Persona(donacion.getIdentificacionDonante());
