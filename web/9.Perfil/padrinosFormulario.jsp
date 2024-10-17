@@ -1,9 +1,8 @@
 <%-- 
-    Document   : padrinosFormulario.jsp
-    Created on : 02-sep-2024, 16:58:56
-    Author     : SENA
+    Document   : padrinosActualizar.jsp
+    Created on : 8/09/2024, 10:19:54 PM
+    Author     : Yandar96
 --%>
-
 
 <%@page import="clases.Persona"%>
 <%@page import="clases.Mascota"%>
@@ -17,6 +16,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
+<%
+    request.setCharacterEncoding("UTF-8");
+%>
 
 <style>
     .swiper-container {
@@ -42,7 +44,10 @@
         overflow: hidden;
     }
 
-
+    .card {
+        cursor: pointer; /* Cambia el cursor al pasar por encima */
+        transition: background-color 0.3s;
+    }
 
     .card.selected {
         border: 4px solid #F07BFF;
@@ -69,22 +74,18 @@
     for (int j = 0; j < datosPlanes.size(); j++) {
         PlanesApadrinamiento planes2 = datosPlanes.get(j);
         listaPlan += "<div class='swiper-slide'>";
-        listaPlan += "<div class='card'>";
+        listaPlan += "<label class='card'>"; // Cambia aquí
         listaPlan += "<div class='card-header'>";
         listaPlan += "<h2>" + planes2.getNombre() + "</h2>";
         listaPlan += "</div>";
         listaPlan += "<div class='card-body'>";
 
-        listaPlan += "<label style='display: block; cursor: pointer;'>";
         listaPlan += "<p><strong>Codigo:</strong> " + planes2.getId() + "</p>";
-        listaPlan += "<p><strong>DescripciÃ³n:</strong> " + planes2.getDescripcion() + "</p>";
-        listaPlan += "<div class='button-container'>";
-        listaPlan += "<input type='radio' name='opcionSeleccionada' value='" + planes2.getId() + "' style='display: none;'>";
-        listaPlan += "</div>";
-        listaPlan += "</label>";
+        listaPlan += "<p><strong>Descripción:</strong> " + planes2.getDescripcion() + "</p>";
+        listaPlan += "<input type='radio' name='opcionSeleccionada' value='" + planes2.getId() + "' style='display: none;'>"; // Mantener el input oculto
 
         listaPlan += "</div>";
-        listaPlan += "</div>";
+        listaPlan += "</label>"; // Cierra el label aquí
         listaPlan += "</div>";
     }
     listaPlan += "</div>";
@@ -105,7 +106,7 @@
             <div class="card-body">
 
 
-                <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/padrinosActualizar.jsp">
+                <form name="formulario" method="post" accept-charset="UTF-8" action="principal.jsp?CONTENIDO=9.Perfil/padrinosActualizar.jsp" enctype="multipart/form-data">>
 
                     <input type="hidden" name="mascotasPlan" id="mascotasPlan" required="">
                     <div class="form-group">
@@ -134,8 +135,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="pdfCedula">Pdf cédula (ambos lados)</label>
-                        <input type="file" name="pdfCedula" id="pdfCedula" accept="application/pdf" required>
+                        <label for="fotoCedula">Pdf cédula (ambos lados)</label>
+                        <input type="file" name="fotoCedula" id="fotoCedula" accept="application/pdf" required>
                     </div>
 
                     <div class="form-group">
@@ -262,7 +263,7 @@
 
 
     $(document).ready(function () {
-        var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+        var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado!='Adoptado'", null)%>;
         var vectorMascotas = [];
         for (var i = 0; i < mascotas.length; i++) {
             vectorMascotas[i] = mascotas[i][1] + " - " + mascotas[i][0];
@@ -349,7 +350,7 @@
 
 
 
-    var mascotas = <%=Mascota.getListaCompletaEnArregloJS(null, null)%>;
+    var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado!='Adoptado'", null)%>;
     function buscarMascota(valor, indice) {
         var encontrado = false;
         var i = 0;
@@ -491,7 +492,6 @@
     }
 
     function cerrarFormulario() {
-
         $('#formulario').dialog('close');
 
         document.forms['formularioMascotas'].reset();
@@ -499,6 +499,8 @@
         $('#mascotas input[type="text"]').val('');
         $('#planes input[type="checkbox"]:checked').prop('checked', false);
 
+        // Deseleccionar la tarjeta
+        $('.card.selected').removeClass('selected');
     }
 
 
