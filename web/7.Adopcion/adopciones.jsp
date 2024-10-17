@@ -70,12 +70,16 @@
         listaAdopciones += "<input type='submit' value='Guardar' class='btn-adicionar'>";
         listaAdopciones += "</form>";
 
+        listaAdopciones += "<input type='hidden' name='codigoMascota' value='" + mascota.getCodigo() + "'>";
+        listaAdopciones += "<input type='submit' value='Cancelar Adopción' class='btn-cancelar' onclick='return confirm(\"¿Está seguro que desea cancelar la adopción?\");'>";
+        listaAdopciones += "</form>";
+
         // Verificar si hay acta para mostrar el enlace
         if (adopcion.getActaAdopcion() != null && !adopcion.getActaAdopcion().isEmpty()) {
             String rutaArchivo = "uploads/" + adopcion.getActaAdopcion();
             listaAdopciones += "<a href='" + rutaArchivo + "' target='_blank' class='btn-otro'>Ver Contrato de adopción</a>";
         }
-                 
+
         listaAdopciones += "<form action='7.Adopcion/formularioInfoPDF.jsp' method='post' target='_blank'>";
         listaAdopciones += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
         listaAdopciones += "<input type='submit' value='Generar Formulario de adopción' class='btn-adicionar'>";
@@ -104,7 +108,7 @@
 </div>  
 
 <div class="swiper-container">
-    <%= listaAdopciones %>
+    <%= listaAdopciones%>
 
     <div class="swiper-button-prev"></div>
     <div class="swiper-button-next"></div>
@@ -114,8 +118,8 @@
 <script>
     const swiper = new Swiper('.swiper-container', {
         loop: false,
-        slidesPerView: 3, 
-        spaceBetween: 20, 
+        slidesPerView: 3,
+        spaceBetween: 20,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',
