@@ -65,7 +65,7 @@
            <div class="contenedor-footer">
                <div class="contact-info">
                    <h4>
-                       <img src="presentacion/imagenes/celular.png" alt="Celular" width="24" height="24"> WHATSAP
+                       <img src="presentacion/imagenes/celular.png" alt="Celular" width="24" height="24"> WhatsApp
 
                    </h4>
                    <p>   <a href="https://wa.me/573162562576" target="_blank" style="text-decoration: none; color: blue;">
