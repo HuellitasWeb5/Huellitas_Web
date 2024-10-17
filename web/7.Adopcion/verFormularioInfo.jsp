@@ -10,7 +10,6 @@
 </head>
 
 <%
-    // Obtener la lista de formularios de adopción
     String listaAdopciones = "";
     String estado = request.getParameter("estado");
     List<FormularioDeInformacion> formularios = FormularioDeInformacion.getListaEnObjetos("estado<>'Aceptado'", null);
@@ -55,23 +54,23 @@
         listaAdopciones += "<p><strong>Cuidados Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
         listaAdopciones += "</div>";
         listaAdopciones += "</div>";
-        listaAdopciones += "</div>"; // Fin del cuerpo de la tarjeta
+        listaAdopciones += "</div>"; 
 
         // Botones de acción
         listaAdopciones += "<div class='btn-container'>";
         listaAdopciones += "<form action='7.Adopcion/formularioInfoPDF.jsp' method='post' target='_blank'>";
         listaAdopciones += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
-        listaAdopciones += "<input type='submit' value='Descargar PDF' class='btn-otro'>";
+        listaAdopciones += "<input type='submit' value='Generar PDF' class='btn-otro'>";
         listaAdopciones += "</form>";
         listaAdopciones += "<button class='btn-adicionar' onClick='aceptarFormulario(\"" + formulario.getCodigo() + "\", \"" + persona.getIdentificacion() + "\", \"" + formulario.getCodigoMascota() + "\")'>Aceptar</button>";
 
         listaAdopciones += "<button class='btn-eliminar' onClick='eliminar(" + formulario.getCodigo() + ")'>Rechazar</button>";
-        listaAdopciones += "</div>"; // Fin del contenedor de botones
+        listaAdopciones += "</div>"; 
 
-        listaAdopciones += "</div>"; // Fin de la tarjeta
-        listaAdopciones += "</div>"; // Fin de la diapositiva
+        listaAdopciones += "</div>"; 
+        listaAdopciones += "</div>"; 
     }
-    listaAdopciones += "</div>"; // Fin del swiper-wrapper
+    listaAdopciones += "</div>"; 
 %>
 
 <h3>LISTA DE FORMULARIOS DE ADOPCIÓN</h3>
