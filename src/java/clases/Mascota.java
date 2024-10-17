@@ -38,26 +38,29 @@ public class Mascota {
     }
 
     public Mascota(String codigo) {
-        String cadenaSQL="select codigo, nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado, descripcion from mascota where codigo="+codigo;
-        ResultSet resultado = ConectorBD.consultar(cadenaSQL);
-        try {
-            if(resultado.next()){
-             this.codigo = codigo;
-             nombre=resultado.getString("nombre");
-             genero=resultado.getString("genero");
-             tamano=resultado.getString("tamano");
-             foto=resultado.getString("foto");
-             cuidadosEspeciales=resultado.getString("cuidadosEspeciales");
-             fechaNacimientoAproximada=resultado.getString("fechaNacimientoAproximada");
-             fechaIngreso=resultado.getString("fechaIngreso");
-             estado=resultado.getString("estado");
-             descripcion=resultado.getString("descripcion");
-            }
-        } catch (Exception ex) {
-             System.out.println("Error al consultar el Codigo en mascota:" + ex.getMessage());
+    String cadenaSQL = "select codigo, nombre, genero, tamano, foto, cuidadosEspeciales, fechaNacimientoAproximada, fechaIngreso, estado, descripcion from mascota where codigo='" + codigo + "'";
+    ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+    try {
+        if (resultado.next()) {
+            this.codigo = codigo;
+            nombre = resultado.getString("nombre");
+            genero = resultado.getString("genero");
+            tamano = resultado.getString("tamano");
+            estado = resultado.getString("estado");
+            foto = resultado.getString("foto");
+            cuidadosEspeciales = resultado.getString("cuidadosEspeciales");
+            fechaNacimientoAproximada = resultado.getString("fechaNacimientoAproximada");
+            fechaIngreso = resultado.getString("fechaIngreso");
+            descripcion = resultado.getString("descripcion");
+            
+            // Depuración para verificar los valores
+            System.out.println("Tamaño: " + tamano);
+            System.out.println("Estado: " + estado);
         }
-       
+    } catch (Exception ex) {
+        System.out.println("Error al consultar el Codigo en mascota: " + ex.getMessage());
     }
+}
 
     public String getCodigo() {
         return codigo;
