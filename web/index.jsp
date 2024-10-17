@@ -69,120 +69,148 @@
             <h2>Huellitas De Amor</h2>
         </section>
         <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
-                                                                        style="height: 100%; width: 100%;">
+        style="height: 100%; width: 100%;" >
             <path d="M0.28,50.83 C138.54,164.31 349.20,-49.98 500.00,49.98 L500.00,150.00 L-1.97,153.47 Z"
                   style="stroke: none; fill: rgb(255, 255, 255);"></path>
             </svg></div>
+        
     </header>
+    <h2 class="titulo">¡CONOCE MÁS DE NUESTROS PELUDIDITOS RESCATADOS!</h2>
+    <h2 class="titulo">NUESTRAS HISTORIAS</h2>
+    <div class="cards">
+        <div class="card">
+            <img src="presentacion/mascota/perritoamca.PNG" >
+            <h4>Peluchin</h4>
+            <div class="contenido-texto-adop">
+                <p>Gracias al albergue Villa Esperanza pudieron rescatarme, ya que a la edad de 2 años me abandonaron en la carretera unos migrantes, pero gracias a Dios ya estoy bajo la protección del albergue.</p>
+            </div>
+            <button class="btn-conocer" onclick="location.href='index-InicioSesion.jsp'">CONOCE MÁS DE MÍ!</button>
+        </div>
+        <div class="card">
+            <img src="presentacion/mascota/abuela.PNG" alt="Abuela">
+            <h4>Abuela</h4>
+            <div class="contenido-texto-adop">
+                <p>Soy una perrita de 12 años de edad, el albergue me acogió cuando tenía 5 años y desde entonces me ha cuidado y me ha brindado todo el amor posible.</p>
+            </div>
+            <button class="btn-conocer" onclick="location.href='index-InicioSesion.jsp'">CONOCE MÁS DE MÍ!</button>
+        </div>
+        <div class="card">
+            <img src="presentacion/mascota/tomate.PNG" alt="Minino Mono">
+            <h4>Minino Mono</h4>
+            <div class="contenido-texto-adop">
+                <p>Soy un perrito que estaba en las calles de Pasto, tenía muchas heridas físicas, el albergue me encontró y desde ese día me cuido y estuvo pendiente de mí, ahora estoy feliz por tener una gran familia peluda.</p>
+            </div>
+            <button class="btn-conocer" onclick="location.href='index-InicioSesion.jsp'">CONOCE MÁS DE MÍ!</button>
+        </div>
+        <div class="card">
+            <img src="presentacion/mascota/pechuga.PNG" alt="Comino">
+            <h4>Comino</h4>
+            <div class="contenido-texto-adop">
+                <p>Soy un perrito que me encontraron amarrado en una vía que conduce a un pueblo nariño, soy perrito ciego que llegué al albergue totalmente desnutrido, pero hoy después de tanto tiempo ya estoy feliz por mi nuevo inicio de vida.</p>
+            </div>
+            <button class="btn-conocer" onclick="location.href='index-InicioSesion.jsp'">CONOCE MÁS DE MÍ!</button>
+        </div>
+    </div>
+
+
+    <section class="eventos">
+        <img src="presentacion/imagenes/invitacion.jpg" alt="Invitación a eventos de octubre">
+        <div class="evento-info">
+            <h1 class="titulo">¡NUESTROS EVENTOS PARA EL MES DE OCTUBRE!</h1>
+            <h4 class="titulo">Recuerda que con tu participación podríamos ayudar a muchos peluditos</h4>
+            <p>
+                Este mes, la fundación ha organizado varios eventos increíbles para apoyar a nuestros amigos peludos:
+            </p>
+            <ul>
+                <li><strong>1 de octubre:</strong> Caminata por los peluditos rescatados.</li>
+                <li><strong>15 de octubre:</strong> Jornada de adopción responsable.</li>
+                <li><strong>22 de octubre:</strong> Taller de cuidados para mascotas adoptadas.</li>
+                <li><strong>31 de octubre:</strong> Fiesta de disfraces para mascotas.</li>
+            </ul>
+            <p>¡No te lo pierdas y ven a ser parte del cambio!</p>
+        </div>
+    </section>
     <main>
-        <center> <iframe width="990" height="715" src="https://www.youtube.com/embed/uUoWTZW3ugw?si=93vZ8npeOHSEsO11?autoplay=1" title="YouTube video player" frameborder="0" 
+        <center> <iframe width="700" height="600" src="https://www.youtube.com/embed/uUoWTZW3ugw?si=93vZ8npeOHSEsO11?autoplay=1" title="YouTube video player" frameborder="0" 
                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></center>
 
-        <section class="historias contenedor">
-            <h2 class="titulo">NUESTRAS HISTORIAS</h2>
-            <div class="cards">
-                <div class="card">
-                    <img src="presentacion/mascota/perritoamca.PNG" alt="">
-                    <div class="contenido-texto-adop">
-                        <center><h4>Peluchin</h4></center>
-                        <p>Gracias al albergue Villa Esperanza pudieron rescatarme, ya que a la edad de 2 aï¿½os me abandonaron en 
-                            la carretera  unos migrantes, pero gracias a Dios ya estoy bajo la proteccion del albergue.
-                        </p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="presentacion/mascota/abuela.PNG" alt="">
-                    <div class="contenido-texto-adop">
-                        <center><h4>Abuela</h4></center>
-                        <p> Soy una perrita de 12 aï¿½os de edad, el albergue me acogio cuando tenia 5 aï¿½os 
-                            y desde entonces me ha cuidado y me ha brindado todo el amor posible
-                        </p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="presentacion/mascota/tomate.PNG" alt="">
-                    <div class="contenido-texto-adop">
-                        <center><h4>Minino Mono</h4></center>
-                        <p>Soy una gatica que estaba en la calles de pasto, tenia muchas heridas fisicas, el albergue me econtro y desde ese dia me cuido y esuvo pendiente de mi, ahora estoy feliz por tener una gran familia peluda. 
-                        </p>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="presentacion/mascota/pechuga.PNG" alt="">
-                    <div class="contenido-texto-adop">
-                        <center><h4>Comino</h4></center>
-                        <p>Soy perrito que me encontraron amarrado en una via que conduce a un pueblo nariï¿½o, soy perrito ciego que llegue al albergue totalmente desnutrido, pero hoy despues de tanto tiempo ya estoy feliz por mi nuevo inicio de vida
-                        </p>
-                    </div>
-                </div>
-        </section>
-        <section>
-            <h1 class="titulo">OBJETIVO</h1>
-            <div class="historia">
-
-                <img src="presentacion/mascota/perrito1.jpg" alt="">
-                <div class="HistoriaObjetivo">
-                    <p>Nuestro objetivo es poder rescatar a los perritos que no se encuentran en buen estado intentando poder ayudarles a velar por la seguridad de estos animales, tambien asi ayudando a conseguirles un hogar donde puedan vivir en condiciones ï¿½ptimas para el cuidado de ellos, la adopciï¿½n no es algo tan sencillo, primero debe mirar si la persona interesada en adopciï¿½n cumple con las condiciones necesarias para poder cuidar a una mascota y si el trato que le van a dar es el correcto.
-
-                </div>
-        </section>
     </main>   
-      <footer>
-            <div class="contenedor-footer">
-                <div class="content-foo">
-                    <h4><img src="presentacion/imagenes/celular.png" alt="Celular" width="24" height="24"> Celular</h4>
-                    <p>3162562576</p>
-                </div>
-                <div class="content-foo">
-                    <h4><img src="presentacion/imagenes/email.png" alt="Correo" width="24" height="24"> Correo electrónico</h4>
-                    <p>Villaesperanza@gmail.com</p>
-                </div>
-                <div class="content-foo">
-                    <h4>
-                        <img src="presentacion/imagenes/mapa.png" alt="Dirección" width="24" height="24"> Dirección
-                    </h4>
-                    <p>
-                        <a href="https://maps.app.goo.gl/Rgo3wTyBEUH4Fsvt5" target="_blank" style="text-decoration: none; color: blue;">
-                            Parque Natural Chimayoy
-                        </a>
-                    </p>
-                    <p style="font-size: small; color: #000;">
-                        Haga clic en el enlace para ver la ubicación
-                    </p>
-                </div>
+    <footer>
+        <div class="contenedor-footer">
+            <div class="contact-info">
+                <h4>
+                    <img src="presentacion/imagenes/celular.png" alt="Celular" width="24" height="24"> WhatsApp
 
-                <div class="content-foo">
-                    <h4>
-                        <img src="presentacion/imagenes/ciudad.png" alt="Ciudad" width="24" height="24"> Ciudad
-                    </h4>
-                    <p>
-                        <a href="https://maps.app.goo.gl/G3CdcyUxiZ2aXAvf9" target="_blank" style="text-decoration: none; color: blue;">
-                            Pasto, Nariño, Colombia
-                        </a>
-                    </p>
-                    <p style="font-size: small; color: #000;">
-                        Haga clic en el enlace para ver la ubicación
-                    </p>
-                </div>
+                </h4>
+                <p>   <a href="https://wa.me/573162562576" target="_blank" style="text-decoration: none; color: blue;">
+                        Número: 3162562576
+                    </a>
+                </p>
 
-                <div class="content-foo">
-                    <h4>
-                        <img src="presentacion/imagenes/tiktok.png" alt="tiktok" width="24" height="24"> TikTok
-                    </h4>
-                    <p>
-                        <a href="https://www.tiktok.com/@villa.esperanza.28" target="_blank" style="text-decoration: none; color: blue;">
-                            villa.esperanza.28
-                        </a>
-                    </p>
-                    <p style="font-size: small; color: #000;">
-                        Haga clic en el enlace para ir a TikTok
-                    </p>
-                </div>
-
-
+                <p style="font-size: small; color: #000;">
+                    Haga clic en el enlace para ir directamente a whatsap
+                </p>
             </div>
-            <h2 class="titulo-final">&copy;HUELLITAS WEB</h2>
-        </footer>
+
+            <div class="content-foo">
+                <h4>
+                    <img src="presentacion/imagenes/email.png" alt="Correo" width="24" height="24"> Correo electrónico
+                </h4>
+                <p>
+                    <a href="mailto:huellitasweb5@gmail.com" target="_blank" style="text-decoration: none; color: blue;">
+                        villaesperanza@gmail.com
+                    </a>
+                </p>
+                <p style="font-size: small; color: #000;">
+                    Haga clic en el enlace para enviar un correo
+                </p>
+            </div>
+
+            <div class="content-foo">
+                <h4>
+                    <img src="presentacion/imagenes/mapa.png" alt="Dirección" width="24" height="24"> Dirección
+                </h4>
+                <p>
+                    <a href="https://maps.app.goo.gl/Rgo3wTyBEUH4Fsvt5" target="_blank" style="text-decoration: none; color: blue;">
+                        Parque Natural Chimayoy
+                    </a>
+                </p>
+                <p style="font-size: small; color: #000;">
+                    Haga clic en el enlace para ver la ubicación
+                </p>
+            </div>
+
+            <div class="content-foo">
+                <h4>
+                    <img src="presentacion/imagenes/ciudad.png" alt="Ciudad" width="24" height="24"> Ciudad
+                </h4>
+                <p>
+                    <a href="https://maps.app.goo.gl/G3CdcyUxiZ2aXAvf9" target="_blank" style="text-decoration: none; color: blue;">
+                        Pasto, Nariño, Colombia
+                    </a>
+                </p>
+                <p style="font-size: small; color: #000;">
+                    Haga clic en el enlace para ver la ubicación
+                </p>
+            </div>
+
+            <div class="content-foo">
+                <h4>
+                    <img src="presentacion/imagenes/tiktok.png" alt="tiktok" width="24" height="24"> TikTok
+                </h4>
+                <p>
+                    <a href="https://www.tiktok.com/@villa.esperanza.28" target="_blank" style="text-decoration: none; color: blue;">
+                        villa.esperanza.28
+                    </a>
+                </p>
+                <p style="font-size: small; color: #000;">
+                    Haga clic en el enlace para ir a TikTok
+                </p>
+            </div>
+
+        </div>
+        <h2 class="titulo-final">&copy;HUELLITAS WEB</h2>
+    </footer>
 </body>
 
 </html>
