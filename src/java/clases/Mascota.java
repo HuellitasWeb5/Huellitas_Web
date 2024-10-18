@@ -53,9 +53,6 @@ public class Mascota {
             fechaIngreso = resultado.getString("fechaIngreso");
             descripcion = resultado.getString("descripcion");
             
-            // Depuración para verificar los valores
-            System.out.println("Tamaño: " + tamano);
-            System.out.println("Estado: " + estado);
         }
     } catch (Exception ex) {
         System.out.println("Error al consultar el Codigo en mascota: " + ex.getMessage());
