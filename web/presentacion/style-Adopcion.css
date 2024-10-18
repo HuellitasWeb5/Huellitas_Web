@@ -80,3 +80,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     justify-content: center;
     margin-top: 10px;
 }
+
+.card-body-Adop {
+    font-size: 0.95em; /* Reducir el tamaño del texto */
+    font-size: 1em; /* Ajustar el tamaño de la fuente */
+    margin-bottom: 16px;
+}
+
+.imagen-Adop {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 5px  solid #e0f4e0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2)
+}
