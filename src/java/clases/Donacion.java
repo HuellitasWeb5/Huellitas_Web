@@ -150,7 +150,6 @@ public class Donacion {
                 + "    donacion\n"
                 + "INNER JOIN \n"
                 + "    donacionesdetalle ON donacion.codigo = donacionesdetalle.codigoDonacion" + filtro + orden;
-        System.out.println(cadenSQL);
         return ConectorBD.consultar(cadenSQL);
 
     }
