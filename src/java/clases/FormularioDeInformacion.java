@@ -77,7 +77,7 @@ public class FormularioDeInformacion {
                 fotoVivienda = resultado.getString("fotoVivienda");
                 fotoCedula = resultado.getString("fotoCedula");
                 autorizacionDatos = resultado.getString("autorizacionDatos");
-                estado = resultado.getString("estado");  // Obtener el valor del campo estado
+                estado = resultado.getString("estado"); 
             } else {
                 System.out.print("No se encontró el formulario de información con el código: " + codigo);
             }
@@ -478,7 +478,7 @@ public class FormularioDeInformacion {
                     formulario.setFotoVivienda(datos.getString("fotoVivienda"));
                     formulario.setFotoCedula(datos.getString("fotoCedula"));
                     formulario.setAutorizacionDatos(datos.getString("autorizacionDatos"));
-                    formulario.setEstado(datos.getString("estado")); // Campo estado añadido
+                    formulario.setEstado(datos.getString("estado")); 
 
                     lista.add(formulario);
                 }
@@ -520,7 +520,7 @@ public class FormularioDeInformacion {
                     + "\"fotoVivienda\": \"" + formulario.getFotoVivienda() + "\", "
                     + "\"fotoCedula\": \"" + formulario.getFotoCedula() + "\", "
                     + "\"autorizacionDatos\": \"" + formulario.getAutorizacionDatos() + "\", "
-                    + "\"estado\": \"" + formulario.getEstado() + "\"" // Campo estado añadido
+                    + "\"estado\": \"" + formulario.getEstado() + "\"" 
                     + "}";
         }
 
@@ -549,33 +549,22 @@ public class FormularioDeInformacion {
     }
 
     public static List<String[]> getAdopcionesPorFechaSolicitud() {
-        List<String[]> lista = new ArrayList<>(); // Se inicializa una lista que almacenará arrays de Strings, cada uno con los datos de cada año y su cantidad de formularios de adopción.
-
-        // Consulta SQL que selecciona el año de la fecha de solicitud y cuenta cuántos formularios de adopción se realizaron en ese año.
+        List<String[]> lista = new ArrayList<>(); 
         String cadenaSQL = "SELECT YEAR(fecha) AS anio, COUNT(*) AS cantidad "
                 + "FROM FormularioDeInformacion GROUP BY YEAR(fecha);";
 
-        ResultSet resultado = ConectorBD.consultar(cadenaSQL); // Ejecuta la consulta y guarda los resultados en un ResultSet.
+        ResultSet resultado = ConectorBD.consultar(cadenaSQL); 
 
         try {
-            // Itera sobre el ResultSet para obtener los datos.
             while (resultado.next()) {
-                String[] registro = new String[2]; // Crea un array de Strings para almacenar el año y la cantidad.
-
-                // Obtiene el año de la columna 'anio' de la consulta.
+                String[] registro = new String[2]; 
                 registro[0] = resultado.getString("anio");
-
-                // Obtiene la cantidad de la columna 'cantidad' de la consulta.
                 registro[1] = resultado.getString("cantidad");
-
-                // Agrega el registro (año, cantidad) a la lista.
                 lista.add(registro);
             }
         } catch (SQLException ex) {
-            // Captura cualquier error que pueda ocurrir al procesar el ResultSet.
             System.out.println("Error en getAdopcionesPorFechaSolicitud. \nCadenaSQL: " + cadenaSQL + "\nError: " + ex.getMessage());
         } finally {
-            // Asegura el cierre del ResultSet para liberar recursos.
             try {
                 if (resultado != null && !resultado.isClosed()) {
                     resultado.close();
@@ -584,8 +573,6 @@ public class FormularioDeInformacion {
                 System.out.println("Error al cerrar el ResultSet en getAdopcionesPorFechaSolicitud. \nError: " + ex.getMessage());
             }
         }
-
-        // Retorna la lista de arrays con los datos de año y cantidad de formularios de adopción.
         return lista;
     }
 
@@ -603,8 +590,8 @@ public class FormularioDeInformacion {
         try {
             while (resultado != null && resultado.next()) {
                 String[] registro = new String[2];
-                registro[0] = resultado.getString("mes"); // Mes y año de solicitud (YYYY-MM)
-                registro[1] = resultado.getString("cantidad"); // Cantidad de formularios de adopción
+                registro[0] = resultado.getString("mes"); 
+                registro[1] = resultado.getString("cantidad"); 
                 lista.add(registro);
             }
         } catch (SQLException ex) {
