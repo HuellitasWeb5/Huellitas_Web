@@ -68,14 +68,15 @@
                 <input type="hidden" name="donacion" id="donacion" required>
                 <input type="hidden" name="accion" value="<%=accion%>">
                 <center>
-                        <button class="btn-otro" onclick="abrirFormulario();">Agregar Detalles de Donación</button>
-                        <br><br>
+                    <br><br>
+
                     <div class="btn-container">
                         <input class="btn-adicionar" type="submit" value="Guardar Donación" onclick="return validarFormularioPrincipal();">
                         <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
                     </div>
                 </center>
             </form>
+            <div class="form-group"><button class="btn-otro" onclick="abrirFormulario();">Agregar Detalles de Donación</button></div>
         </div>
     </div>
 </div>
@@ -126,7 +127,7 @@
 </body>
 
 <script>
-    var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
+    var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
     var conceptoDonacion = <%=ConceptoDonacion.getListaEnArreglosJS(null, null)%>;
     var vectorPersonas = new Array();
     for (var i = 0; i < personas.length; i++) {
@@ -302,7 +303,7 @@
 
     const swiper = new Swiper('.swiper-container', {
         loop: false,
-        slidesPerView: 3,
+        slidesPerView: 4,
         spaceBetween: 20,
         navigation: {
             nextEl: '.swiper-button-next',
