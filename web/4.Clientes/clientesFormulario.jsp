@@ -36,7 +36,7 @@ if (accion.equals("Modificar")) {
                 </div>
                 <div class="form-group">
                     <label>Género:</label>
-                    <div><%=clientes.getGeneroEnObjeto().getRadioButtons() %></div>
+                    <div><%=clientes.getGeneroEnObjeto().getRadioButtons()%></div>
                 </div>
                 <div class="form-group">
                     <label for="fechaNacimiento">Fecha De Nacimiento:</label>

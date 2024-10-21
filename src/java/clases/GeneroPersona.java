@@ -49,7 +49,7 @@ public class GeneroPersona {
             break;
         case "F":
              lista="<input type='radio' name='genero' value='M' >Masculino"
-                    + "<input type='radio' name='genero ' value='F' checked>Femenino";
+                    + "<input type='radio' name='genero' value='F' checked>Femenino";
              break;
         default:
             lista="<input type='radio' name='genero' value='M' checked>Masculino"
