@@ -14,18 +14,17 @@
 <%
     // Inicializar variables
     boolean subioArchivo = false;
-    Map<String, String> variables = new HashMap<String, String>();  // Almacena los datos del formulario
+    Map<String, String> variables = new HashMap<String, String>();  
     boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 
-    String rutaArchivos = getServletContext().getRealPath("/") + "uploads/";  // Ruta de guardado
+    String rutaArchivos = getServletContext().getRealPath("/") + "uploads/";  
     File destino = new File(rutaArchivos);
 
     if (!destino.exists()) {
-        destino.mkdirs();  // Crear el directorio si no existe
+        destino.mkdirs(); 
     }
 
     if (isMultipart) {
-        // Configuraciones para subir los archivos
         DiskFileItemFactory factory = new DiskFileItemFactory();
         ServletFileUpload upload = new ServletFileUpload(factory);
         List<FileItem> items = upload.parseRequest(new ServletRequestContext(request));
@@ -35,21 +34,18 @@
         while (iterador.hasNext()) {
             FileItem item = iterador.next();
             if (item.isFormField()) {
-                // Si es un campo de formulario, almacenar en el mapa
                 variables.put(item.getFieldName(), item.getString());
             } else {
-                // Si es un archivo, manejar la subida del archivo
                 String nombreArchivo = item.getName();
                 if (!nombreArchivo.isEmpty()) {
                     File archivoGuardado = new File(destino, nombreArchivo);
                     item.write(archivoGuardado);
-                    variables.put(item.getFieldName(), nombreArchivo);  // Almacenar el nombre del archivo
+                    variables.put(item.getFieldName(), nombreArchivo); 
                     subioArchivo = true;
                 }
             }
         }
     } else {
-        // No es un formulario de tipo multipart, manejar los datos regulares
         variables.put("accion", request.getParameter("accion"));
         variables.put("identificacionAdoptante", request.getParameter("identificacionAdoptante"));
     }
@@ -62,9 +58,9 @@
     String tiempoLibre = variables.get("tiempoLibre");
     String espacio = variables.get("espacio");
     String compromiso = variables.get("compromiso");
-    String ninos = variables.get("ninos");  // Dejar como String
-    String habitantes = variables.get("habitantes");  // Dejar como String
-    String responsables = variables.get("responsables");  // Dejar como String
+    String ninos = variables.get("ninos");  
+    String habitantes = variables.get("habitantes");  
+    String responsables = variables.get("responsables");  
     String otrasMascotas = variables.get("otrasMascotas");
     String propietario = variables.get("propietario");
     String motivacion = variables.get("motivacion");
@@ -108,8 +104,6 @@
     formularioDeInformacion.setFotoCedula(fotoCedula);
    
     String FormularioInfo = variables.get("formularioInfo");
-    System.out.println("Cadena de formulario Cadena:"+FormularioInfo);
-    System.out.println("Cadena de formulario:"+codigoMascota);
     
     // Acciones del formulario
     switch (accion) {
@@ -138,5 +132,10 @@
 %>
 
 <script type="text/javascript">
-    document.location = "principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp&estado=Pendiente";
+    if ("<%= accion %>" !== "Aceptar") {
+        document.location = "principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp&estado=Pendiente";
+    }
+        else {
+            document.location = "principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp";
+        }
 </script>
