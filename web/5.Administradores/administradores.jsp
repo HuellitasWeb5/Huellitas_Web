@@ -50,6 +50,7 @@
     lista += "</div>"; // Fin del swiper-wrapper
 %>
 
+
 <h3>LISTA DE ADMINISTRADORES</h3>
 
 <div class="header-container">
