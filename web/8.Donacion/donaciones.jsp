@@ -29,13 +29,23 @@
         lista += "<h2>Código: " + donacion.getCodigo() + " - Fecha: " + donacion.getFecha() + "</h2>";
         lista += "</div>";
         lista += "<div class='card-body'>";
-        lista += "<p><strong>Donacion</strong></p>";
-        lista += "<p>" + persona.getNombre() + "</p>";
-        lista += "<p>" + persona.getIdentificacion() + "</p>";
+        lista += "<p><strong>Donación</strong></p>";
+
+        lista += "<div style='display: flex; margin-bottom: 20px;'>";
+        lista += "<div style='margin-right: 20px;'>";
+        lista += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' style='width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 5px solid #98FF98;'/>";
+        lista += "</div>";
+
+        lista += "<div>";
+        lista += "<p><strong>Nombre:</strong> " + persona.getNombre() + "</p>";
+        lista += "<p><strong>Identificación:</strong> " + persona.getIdentificacion() + "</p>";
         lista += "<p><strong>Teléfono:</strong> " + persona.getTelefono() + "</p>";
         lista += "<p><strong>Ubicación:</strong> " + persona.getResidencia() + "-" + persona.getDireccion() + "</p>";
         lista += "<p><strong>Correo:</strong> " + persona.getEmail() + "</p>";
-      //  lista += "<p><strong>Donación:</strong> " + tipoDonacion.getNombre() + "</p>";
+        lista += "</div>";
+        lista += "</div>";
+
+        //  lista += "<p><strong>Donación:</strong> " + tipoDonacion.getNombre() + "</p>";
         lista += "<p><strong>Descripción:</strong> " + donacion.getDescripcion() + "</p>";
         lista += "<div class='button-container'>";
         lista += "<button class='btn-otro' onclick='verDetalles(\"" + donacion.getCodigo() + "\", \"" + persona.getIdentificacion() + "\");'>Detalles</button>";
