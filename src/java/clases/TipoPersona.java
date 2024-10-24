@@ -7,6 +7,7 @@ package clases;
 public class TipoPersona {
 
     private String codigo;
+    private String identificacion;
 
     public TipoPersona(String codigo) {
         this.codigo = codigo;
@@ -18,6 +19,9 @@ public class TipoPersona {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+     public Persona getPersona() {
+        return new Persona(identificacion);
     }
 
     public String getNombre() {
