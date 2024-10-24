@@ -30,24 +30,28 @@
     </head>
     <body>
         <video autoplay muted loop>
-            <source src="presentacion/mascota/videofull2.mp4" type="video/mp4">
+            <source src="presentacion/imagenes/inicioSesion.mp4" type="video/mp4">
             Tu navegador no soporta el elemento de video.
         </video>
-        <div class="container"> <!-- Contenedor principal -->
+        <div class="logo-container">
+            <img src="presentacion/imagenes/Logo-Fundacion.png" alt="Logo Izquierdo" class="logo logo-left">
+            <img src="presentacion/imagenes/Logo.png" alt="Logo Derecho" class="logo logo-right">
+        </div>
+        <div class="container"> 
             <h3>HUELLITAS WEB</h3>
             <p id="error"><%=mensaje%></p>
             <form name="formulario" method="post" action="validar.jsp">  
                 <div class="input-box">
-                    <label for="usuario">IDENTIFICACION</label>
+                    <label for="usuario">IDENTIFICACIÓN</label>
                     <div class="icon-input">
-                        <input type="text" name="identificacion" id="usuario" required placeholder="Ingrese su identificacion">
+                        <input type="text" name="identificacion" id="usuario" required placeholder="Identificaciòn">
                         <img src="presentacion/iconos/identificacion.png" alt="usuario" class="icon">
                     </div>
                 </div>
                 <div class="input-box">
                     <label for="clave">CONTRASEÑA</label>
                     <div class="icon-input">
-                        <input type="password" name="clave" id="clave" required placeholder="Ingrese su contraseña">
+                        <input type="password" name="clave" id="clave" required placeholder="Contraseña">
                         <img src="presentacion/iconos/seguridad.png" alt="clave" class="icon">
                     </div>
                 </div>

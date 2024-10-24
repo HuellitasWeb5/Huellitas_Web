@@ -52,8 +52,8 @@ for (int j = 0; j < datosApadrinamiento.size(); j++) {
     listaApadrinamiento += "<div>";
     listaApadrinamiento += "<p><strong>Nombre:</strong> " + mascota.getNombre() + "</p>";
     listaApadrinamiento += "<p><strong>Identificación:</strong> " + mascota.getCodigo() + "</p>";
+    listaApadrinamiento += "<p><strong>Edad:</strong> " + mascota.getEdad() + " años</p>";
     listaApadrinamiento += "<p><strong>C. Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
-    listaApadrinamiento += "<p><strong>Edad:</strong> " + mascota.getEdad() + "</p>";
     listaApadrinamiento += "</div>"; 
     listaApadrinamiento += "</div>"; 
 
