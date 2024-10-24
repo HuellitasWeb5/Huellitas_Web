@@ -404,7 +404,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .btn-container {
-    display: flex;
+    display: ruby;
     margin: auto;
     text-align: center; 
     margin-bottom: 10px; 
