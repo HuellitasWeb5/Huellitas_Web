@@ -37,7 +37,7 @@
         listaSeguimientos += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' class='profile-image'/>";
         listaSeguimientos += "</div>";
         listaSeguimientos += "<div>";
-        listaSeguimientos += "<p><strong>Nombre adoptante:</strong> " + persona.getNombre() + "</p>";
+        listaSeguimientos += "<p><strong>Nombre:</strong> " + persona.getNombre() + "</p>";
         listaSeguimientos += "<p><strong>Identificación:</strong> " + formulario.getIdentificacionAdoptante() + "</p>";
         listaSeguimientos += "<p><strong>Contacto:</strong> " + persona.getTelefono() + "</p>";
         listaSeguimientos += "</div>";
@@ -49,12 +49,16 @@
         listaSeguimientos += "<img src='presentacion/mascota/" + mascota.getFoto() + "' alt='Foto de " + mascota.getNombre() + "' class='profile-image'/>";
         listaSeguimientos += "</div>";
         listaSeguimientos += "<div>";
-        listaSeguimientos += "<p><strong>Nombre mascota:</strong> " + formulario.getMascota() + "</p>";
+        listaSeguimientos += "<p><strong>Nombre:</strong> " + mascota.getNombre() + "</p>";
+        listaSeguimientos += "<p><strong>Identificación:</strong> " + mascota.getCodigo() + "</p>";
         listaSeguimientos += "<p><strong>Edad:</strong> " + mascota.getEdad() + " años</p>";
         listaSeguimientos += "<p><strong>C.Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
         listaSeguimientos += "</div>";
         listaSeguimientos += "</div>";
-        listaSeguimientos += "</div>"; 
+        listaSeguimientos += "<div>";
+        listaSeguimientos += "<p><strong>Calificación:</strong> " + formulario.getCalificacion() + " Estrellas</p>";
+        listaSeguimientos += "</div>";
+        listaSeguimientos += "</div>";
 
         // Botones de acción
         listaSeguimientos += "<div class='btn-container'>";
@@ -62,9 +66,10 @@
         listaSeguimientos += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
         listaSeguimientos += "<input type='submit' value='Generar PDF' class='btn-otro'>";
         listaSeguimientos += "</form>";
+         listaSeguimientos += "<div>";
         listaSeguimientos += "<button class='btn-eliminar' onClick='eliminar(" + formulario.getCodigo() + ")'>Eliminar</button>";
-        listaSeguimientos += "</div>"; 
-
+        listaSeguimientos += "</div>";
+        listaSeguimientos += "</div>";
         listaSeguimientos += "</div>"; // Fin de la tarjeta
         listaSeguimientos += "</div>"; // Fin de la diapositiva
     }
