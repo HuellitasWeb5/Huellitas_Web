@@ -50,11 +50,3 @@ body{
     width: 100%;  /* Ajusta la imagen al tamaño del contenedor */
     height: auto; /* Mantiene la proporción de la imagen */
 }
-
-
-.titulo-final {
-    margin-top: 20px;
-    font-size: 1.2em;
-    text-align: center;
-    color: white;
-}

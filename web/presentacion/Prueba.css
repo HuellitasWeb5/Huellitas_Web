@@ -64,11 +64,13 @@ html, body {
 
 /* Estilo del footer */
 footer {
-    background: #4CAF50;
+    background-color: rgba(0, 128, 0, 0.4); 
     padding: 12px;
     width: 100%;
     text-align: center;
     border-radius: 30px;
+    backdrop-filter: blur(15px); 
+    
 }
 .contenedor-footer {
     display: flex;
@@ -77,6 +79,23 @@ footer {
     margin: auto;
     padding-bottom: 8px;
     border-bottom: 2px solid #000;
+}
+
+footer a {
+    color: #166b0a;
+    font-weight: bold;
+}
+
+footer a:hover {
+    color: #3c463a; 
+    font-weight: bold;
+}
+
+.titulo-final {
+    font-size: 15px;  /* Negrita */
+    color: black; /* Color del texto, puedes cambiarlo */
+    text-align: center; /* Centrar el texto */
+    margin-top: 20px; /* Fuente, ajusta según prefieras */
 }
 
 .transparent-navbar {
