@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="presentacion/Donacion.css">
 </head>
 <%
+    String identificacionUsuario=(String) request.getAttribute("identificacionUsuario");
     String accion = request.getParameter("accion");
 %>
 <body onload="cargarFecha()">
@@ -22,7 +23,7 @@
             <h2>DATOS DEL USUARIO</h2>
         </div>
         <div class="card-body">
-            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/donacionesFormularioActualizar.jsp">
+            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=8.Donacion/donacionesFormularioActualizar.jsp">
 
                 <div class="form-group">
                     <label>Fecha actual:</label>
@@ -67,19 +68,22 @@
                 <!-- Campo oculto para almacenar la cadena de donaciones -->
                 <input type="hidden" name="donacion" id="donacion" required>
                 <input type="hidden" name="accion" value="<%=accion%>">
+                <center>
+                    <br><br>
 
-                <div class="btn-container">
-                    <input class="btn-adicionar" type="submit" value="Guardar Donación" onclick="return validarFormularioPrincipal();">
-                    <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
-                </div>
+                    <div class="btn-container">
+                        <input class="btn-adicionar" type="submit" value="Guardar Donación" onclick="return validarFormularioPrincipal();">
+                        <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
+                    </div>
+                </center>
             </form>
+            <div class="form-group"><button class="btn-otro" onclick="abrirFormulario();">Agregar Detalles de Donación</button></div>
         </div>
     </div>
 </div>
 
 
 <!-- Botón para abrir el formulario modal -->
-<button class="btn-otro" onclick="abrirFormulario();">Agregar Detalles de Donación</button>
 
 <!-- Formulario modal para ingresar detalles de donaciones -->
 <div id="formulario" title="Donaciones">
@@ -124,7 +128,9 @@
 </body>
 
 <script>
-    var personas = <%=Persona.getListaEnArreglosJS(null, null)%>;
+    <%=identificacionUsuario %> ;
+   
+    var personas = <%=Persona.getListaEnArreglosJS("identificacion="+identificacionUsuario, null)%>;
     var conceptoDonacion = <%=ConceptoDonacion.getListaEnArreglosJS(null, null)%>;
     var vectorPersonas = new Array();
     for (var i = 0; i < personas.length; i++) {
@@ -188,11 +194,11 @@
         $("#formulario").dialog({
             autoOpen: false,
             show: {
-                effect: "blind",
+                effect: "clip",
                 duration: 1000
             },
             hide: {
-                effect: "explode",
+                effect: "clip",
                 duration: 1000
             },
             width: 560,
@@ -300,7 +306,7 @@
 
     const swiper = new Swiper('.swiper-container', {
         loop: false,
-        slidesPerView: 3,
+        slidesPerView: 4,
         spaceBetween: 20,
         navigation: {
             nextEl: '.swiper-button-next',
