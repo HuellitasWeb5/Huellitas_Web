@@ -56,88 +56,69 @@
             <div id="menu"><%=USUARIO.getTipoEnObjeto().getMenu()%></div>
             <div id="contenido">
                 <jsp:include page='<%=request.getParameter("CONTENIDO")%>' flush="true" />
-                
+
             </div>
         </div>
 
         <!-- Footer -->
-       <footer>
-           <div class="contenedor-footer">
-               <div class="contact-info">
-                   <h4>
-                       <img src="presentacion/imagenes/whats.png" alt="Celular" width="24" height="24"> WhatsApp
+        <footer>
+            <div class="contenedor-footer">
+                <div class="contact-info">
+                    <h4>
+                        <img src="presentacion/imagenes/whats.png" alt="Celular" width="24" height="24"> WhatsApp
 
-                   </h4>
-                   <p>   <a href="https://wa.me/573162562576" target="_blank" style="text-decoration: none; color: blue;">
-                           Número: 3162562576
-                       </a>
-                   </p>
-                   
-                   <p style="font-size: small; color: #000;">
-                       Haga clic en el enlace
-                   </p>
-                   
-     </div>
+                    </h4>
+                    <p>   <a href="https://wa.me/573162562576" target="_blank">
+                            3162562576
+                        </a>
+                    </p>
 
-        <div class="content-foo">
-            <h4>
-                <img src="presentacion/imagenes/email.png" alt="Correo" width="24" height="24"> Correo electrónico
-            </h4>
-            <p>
-                <a href="mailto:huellitasweb5@gmail.com" target="_blank" style="text-decoration: none; color: blue;">
-                    villaesperanza@gmail.com
-                </a>
-            </p>
-            <p style="font-size: small; color: #000;">
-                Haga clic en el enlace 
-            </p>
-        </div>
+                </div>
+                <div class="content-foo">
+                    <h4>
+                        <img src="presentacion/imagenes/tiktok.png" alt="tiktok" width="24" height="24"> TikTok
+                    </h4>
+                    <p>
+                        <a href="https://www.tiktok.com/@villa.esperanza.28" target="_blank">
+                            villa.esperanza.28
+                        </a>
+                    </p>
+                </div>
+                <div class="content-foo">
+                    <h4>
+                        <img src="presentacion/imagenes/email.png" alt="Correo" width="24" height="24"> Email
+                    </h4>
+                    <p>
+                        <a href="mailto:huellitasweb5@gmail.com" target="_blank">
+                            villaesperanza@gmail.com
+                        </a>
+                    </p>
+                </div>
 
-        <div class="content-foo">
-            <h4>
-                <img src="presentacion/imagenes/mapa.png" alt="Dirección" width="24" height="24"> Dirección
-            </h4>
-            <p>
-                    <a href="https://maps.app.goo.gl/SJvHhvZrxt8fKixj9" target="_blank" style="text-decoration: none; color: blue;">
-                        Albergue Villa Esperanza-Chimayoy
-                    </a>
-                </p>
-            <p style="font-size: small; color: #000;">
-                Haga clic en el enlace 
-            </p>
-        </div>
+                <div class="content-foo">
+                    <h4>
+                        <img src="presentacion/imagenes/mapa.png" alt="Dirección" width="24" height="24"> Dirección
+                    </h4>
+                    <p>
+                        <a href="https://maps.app.goo.gl/SJvHhvZrxt8fKixj9" target="_blank">
+                            Albergue Villa Esperanza - Chimayoy
+                        </a>
+                    </p>
+                </div>
 
-        <div class="content-foo">
-            <h4>
-                <img src="presentacion/imagenes/ciudad.png" alt="Ciudad" width="24" height="24"> Ciudad
-            </h4>
-            <p>
-                <a href="https://maps.app.goo.gl/G3CdcyUxiZ2aXAvf9" target="_blank" style="text-decoration: none; color: blue;">
-                    Pasto, Nariño, Colombia
-                </a>
-            </p>
-            <p style="font-size: small; color: #000;">
-                Haga clic en el enlace 
-            </p>
-        </div>
-
-        <div class="content-foo">
-            <h4>
-                <img src="presentacion/imagenes/tiktok.png" alt="tiktok" width="24" height="24"> TikTok
-            </h4>
-            <p>
-                <a href="https://www.tiktok.com/@villa.esperanza.28" target="_blank" style="text-decoration: none; color: blue;">
-                    villa.esperanza.28
-                </a>
-            </p>
-            <p style="font-size: small; color: #000;">
-                Haga clic en el enlace 
-            </p>
-        </div>
-
-    </div>
-    <h2 class="titulo-final">&copy;HUELLITAS WEB</h2>
-</footer>
+                <div class="content-foo">
+                    <h4>
+                        <img src="presentacion/imagenes/ciudad.png" alt="Ciudad" width="24" height="24"> Ciudad
+                    </h4>
+                    <p>
+                        <a href="https://maps.app.goo.gl/G3CdcyUxiZ2aXAvf9" target="_blank">
+                            Pasto, Nariño, Colombia
+                        </a>
+                    </p>
+                </div>
+            </div>
+            <h2 class="titulo-final">&copy;HUELLITAS WEB</h2>
+        </footer>
 
     </body>
 </html>
