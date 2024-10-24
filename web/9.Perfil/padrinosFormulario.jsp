@@ -108,7 +108,7 @@
 
                 <form name="formulario" method="post" accept-charset="UTF-8" action="principal.jsp?CONTENIDO=9.Perfil/padrinosActualizar.jsp" enctype="multipart/form-data">>
 
-                    <input type="hidden" name="mascotasPlan" id="mascotasPlan" required="">
+                <input type="hidden" name="mascotasPlan" id="mascotasPlan" required="">
                     <div class="form-group">
                         <label for="identificacion">Identificación</label>
                         <input type="text" name="identificacion" id="identificacion" required>
@@ -130,14 +130,17 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="fotoRecibo">Foto recibo</label>
+                        <label for="fotoRecibo">Foto del recibo de servicios públicos de su vivienda</label>
+                        <p class="subtitulo">(Recuerda subir la imagen como PNG o JPG para poderla mostrar más tarde)</p>
                         <input type="file" name="fotoRecibo" id="fotoRecibo" accept="image/*" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="fotoCedula">Pdf cédula (ambos lados)</label>
+                        <label for="fotoCedula">Foto de la cédula de ciudadanía (ambos lados)</label>
+                        <p class="subtitulo">(Recuerda subir el archivo como PDF para poderla mostrar más tarde)</p>
                         <input type="file" name="fotoCedula" id="fotoCedula" accept="application/pdf" required>
                     </div>
+
 
                     <div class="form-group">
                         <input type="button" class="btn-otro" value="Seleccionar Mascota" onclick="abrirFormulario();" required>
@@ -199,11 +202,11 @@
         $("#formulario").dialog({
             autoOpen: false,
             show: {
-                effect: "blind",
+                effect: "clip",
                 duration: 1000
             },
             hide: {
-                effect: "explode",
+                effect: "clip",
                 duration: 1000
             },
             width: 950,
@@ -492,16 +495,16 @@
     }
 
     function cerrarFormulario() {
-        $('#formulario').dialog('close');
+    $('#formulario').dialog('close');
 
-        document.forms['formularioMascotas'].reset();
+    document.forms['formularioMascotas'].reset();
 
-        $('#mascotas input[type="text"]').val('');
-        $('#planes input[type="checkbox"]:checked').prop('checked', false);
+    $('#mascotas input[type="text"]').val('');
+    $('#planes input[type="checkbox"]:checked').prop('checked', false);
 
-        // Deseleccionar la tarjeta
-        $('.card.selected').removeClass('selected');
-    }
+    // Deseleccionar la tarjeta
+    $('.card.selected').removeClass('selected');
+}
 
 
 </script>

@@ -32,7 +32,7 @@
  
         lista += "<div class='card-body'>"; // Cuerpo de la tarjeta
         lista += "<p><strong>Identificación:</strong> " + administrador.getIdentificacion() + "</p>";
-        lista += "<p><strong>Género:</strong> " + administrador.getGenero() + "</p>";
+        lista += "<p><strong>Género:</strong> " + administrador.getGeneroPersona()+ "</p>";
         lista += "<p><strong>Edad:</strong> " + administrador.getEdad() + " años</p>";
         lista += "<p><strong>Email:</strong> " + administrador.getEmail() + "</p>";
         lista += "<p><strong>Teléfono:</strong> " + administrador.getTelefono() + "</p>";
@@ -49,6 +49,7 @@
     }
     lista += "</div>"; // Fin del swiper-wrapper
 %>
+
 
 <h3>LISTA DE ADMINISTRADORES</h3>
 
