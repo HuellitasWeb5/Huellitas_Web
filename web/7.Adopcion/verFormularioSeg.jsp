@@ -51,7 +51,7 @@
         listaSeguimientos += "<div>";
         listaSeguimientos += "<p><strong>Nombre mascota:</strong> " + formulario.getMascota() + "</p>";
         listaSeguimientos += "<p><strong>Edad:</strong> " + mascota.getEdad() + " años</p>";
-        listaSeguimientos += "<p><strong>Cuidados Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
+        listaSeguimientos += "<p><strong>C.Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
         listaSeguimientos += "</div>";
         listaSeguimientos += "</div>";
         listaSeguimientos += "</div>"; 

@@ -37,7 +37,7 @@
         listaAdopciones += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' class='profile-image'/>";
         listaAdopciones += "</div>";
         listaAdopciones += "<div>";
-        listaAdopciones += "<p><strong>Nombre adoptante:</strong> " + persona.getNombre() + "</p>";
+        listaAdopciones += "<p><strong>Nombre:</strong> " + persona.getNombre() + "</p>";
         listaAdopciones += "<p><strong>Identificación:</strong> " + formulario.getIdentificacionAdoptante() + "</p>";
         listaAdopciones += "<p><strong>Contacto:</strong> " + persona.getTelefono() + "</p>";
         listaAdopciones += "</div>";
@@ -49,12 +49,13 @@
         listaAdopciones += "<img src='presentacion/mascota/" + mascota.getFoto() + "' alt='Foto de " + mascota.getNombre() + "' class='profile-image'/>";
         listaAdopciones += "</div>";
         listaAdopciones += "<div>";
-        listaAdopciones += "<p><strong>Nombre mascota:</strong> " + formulario.getMascota() + "</p>";
+        listaAdopciones += "<p><strong>Nombre:</strong> " + mascota.getNombre() + "</p>";
+        listaAdopciones += "<p><strong>Identificación:</strong> " + mascota.getCodigo() + "</p>";
         listaAdopciones += "<p><strong>Edad:</strong> " + mascota.getEdad() + " años</p>";
-        listaAdopciones += "<p><strong>Cuidados Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
+        listaAdopciones += "<p><strong>C.Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
         listaAdopciones += "</div>";
         listaAdopciones += "</div>";
-        listaAdopciones += "</div>"; 
+        listaAdopciones += "</div>";
 
         // Botones de acción
         listaAdopciones += "<div class='btn-container'>";
@@ -62,16 +63,16 @@
         listaAdopciones += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
         listaAdopciones += "<input type='submit' value='Generar PDF' class='btn-otro'>";
         listaAdopciones += "</form>";
-        listaAdopciones += "</div>"; 
-        listaAdopciones += "<div>"; 
+        listaAdopciones += "</div>";
+        listaAdopciones += "<div>";
         listaAdopciones += "<button class='btn-adicionar' onClick='aceptarFormulario(\"" + formulario.getCodigo() + "\",\"" + mascota.getNombre() + "\", \"" + persona.getIdentificacion() + "\", \"" + formulario.getCodigoMascota() + "\")'>Aceptar</button>";
         listaAdopciones += "<button class='btn-eliminar' onClick='eliminar(" + formulario.getCodigo() + ")'>Rechazar</button>";
-        listaAdopciones += "</div>"; 
+        listaAdopciones += "</div>";
 
-        listaAdopciones += "</div>"; 
-        listaAdopciones += "</div>"; 
+        listaAdopciones += "</div>";
+        listaAdopciones += "</div>";
     }
-    listaAdopciones += "</div>"; 
+    listaAdopciones += "</div>";
 %>
 
 <h3>LISTA DE FORMULARIOS DE ADOPCIÓN</h3>
@@ -87,10 +88,10 @@
     </form>
 
     <div class="btn-container">
-    <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar">
-        <button id="Adicionar" class="btn-adicionar">Realizar Adopción</button>
-    </a>
-</div>
+        <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar">
+            <button id="Adicionar" class="btn-adicionar">Realizar Adopción</button>
+        </a>
+    </div>
 </div>
 
 <div class="swiper-container">
@@ -110,10 +111,10 @@
         }
     }
 
-    function aceptarFormulario(codigo, nombreMascota, identificacion,codigoMascota) {
+    function aceptarFormulario(codigo, nombreMascota, identificacion, codigoMascota) {
         let respuesta = confirm("¿Está seguro que desea aceptar la adopción de " + nombreMascota + "?");
         if (respuesta) {
-           document.location = "principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Aceptar&codigo=" + codigo + "&identificacionAdoptante=" + identificacion + "&codigoMascota="+codigoMascota;
+            document.location = "principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Aceptar&codigo=" + codigo + "&identificacionAdoptante=" + identificacion + "&codigoMascota=" + codigoMascota;
         }
     }
 
