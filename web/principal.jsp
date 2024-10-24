@@ -16,6 +16,7 @@
     } else {
         USUARIO = (Persona) sesion.getAttribute("usuario");
     }
+    request.setAttribute("identificacionUsuario", USUARIO.getIdentificacion());
 %>
 
 <html>
