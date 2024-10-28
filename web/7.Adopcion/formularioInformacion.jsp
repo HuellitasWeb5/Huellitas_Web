@@ -22,7 +22,7 @@
 
 %>  
 <body onload="cargarFecha()">
-    <h3><%=accion.toUpperCase()%> FORMULARIO DE ADOPCIÓN </h3>
+    <h3><%=accion.toUpperCase()%> FORMULARIO DE PRE-ADOPCIÓN </h3>
     <form name="formulario" method="post" action="principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp" enctype="multipart/form-data">
         <div  class="formulario-adopcion">
             <div>Fecha actual: <span id="fecha"></span></div>
@@ -84,11 +84,92 @@
                 <button class="btn-adicionar" type="button" onclick="abrirFormulario();">Agregar Otra Mascota</button><br>
 
                 <input type="hidden" name="fechaActual" id="fechaActual">
+
                 <!-- FORMULARIO  -->  
 
-                <label for="ocupacion">¿Cuál es su ocupación?</label>
+                <label for="estadoCivil">Estado Civil:</label>
+                <fieldset>
+                    <input type="radio" id="estadoCivilSoltero" name="estadoCivil" value="Soltero" required>
+                    <label for="estadoCivilSoltero">Soltero(a)</label>
+                    <input type="radio" id="estadoCivilCasado" name="estadoCivil" value="Casado">
+                    <label for="estadoCivilCasado">Casado(a)</label>
+                    <input type="radio" id="estadoCivilViudo" name="estadoCivil" value="Viudo">
+                    <label for="estadoCivilViudo">Viudo(a)</label>
+                    <input type="radio" id="estadoCivilDivorciado" name="estadoCivil" value="Divorciado">
+                    <label for="estadoCivilDivorciado">Divorciado(a)</label>
+                    <input type="radio" id="estadoCivilUnionL" name="estadoCivil" value="UnionLibre">
+                    <label for="estadoCivilUnionL">Unión Libre</label>
+                </fieldset>
+
+                <label for="ocupacion">Ocupación:</label>
                 <input type="text" id="ocupacion" name="ocupacion" maxlength="100" required><br><br>
 
+                <label for="motivacion">¿Por qué desea adoptar al peludito?</label>
+                <input type="text" id="motivacion" name="motivacion" maxlength="100" required><br><br>
+
+                <label for="otrasMascotas">¿Actualmente tiene mascotas?</label>
+                <fieldset>
+                    <input type="radio" id="otrasMascotasSi" name="otrasMascotas" value="S" required>
+                    <label for="otrasMascotasSi">Sí</label>
+                    <input type="radio" id="otrasMascotasNo" name="otrasMascotas" value="N">
+                    <label for="otrasMascotasNo">No</label>
+                </fieldset>
+
+                <label for="otrasMascotasR">¿Cúales?</label>
+                <input type="text" id="otrasMascotasR" name="otrasMascotasR" maxlength="100"><br><br>
+                
+                <label for="esterilizados">¿Si los tiene, están esterilizados?</label>
+                <fieldset>
+                    <input type="radio" id="esterilizadosSi" name="esterilizados" value="S" required>
+                    <label for="esterilizadosSi">Sí</label>
+                    <input type="radio" id="esterilizadosNo" name="esterilizados" value="N">
+                    <label for="esterilizadosNo">No</label>
+                </fieldset>
+                
+                <label for="esterilizadosR">¿Por qué?</label>
+                <input type="text" id="esterilizadosR" name="esterilizadosR" maxlength="100"><br><br>
+                
+                <label for="anteriorMascotas">¿Anteriormente ha tenido otros animalitos?</label>
+                <fieldset>
+                    <input type="radio" id="anteriorMascotasSi" name="anteriorMascotas" value="S" required>
+                    <label for="anteriorMascotasSi">Sí</label>
+                    <input type="radio" id="anteriorMascotasNo" name="anteriorMascotas" value="N">
+                    <label for="anteriorMascotasNo">No</label>
+                </fieldset>
+
+                <label for="anteriorMascotasR">¿Cúales?</label>
+                <input type="text" id="anteriorMascotasR" name="anteriorMascotasR" maxlength="100"><br><br>
+                
+                <label for="habitantes">¿Cuántas personas conforman su hogar?</label>
+                <input type="number" id="habitantes" name="habitantes" min="1" required placeholder="Ingrese un valor numérico"><br><br>
+                
+                <label for="habitantesR">¿Y están de acuerdo en adoptar?</label>
+                <fieldset>
+                    <input type="radio" id="habitantesRSi" name="anteriorMascotas" value="S">
+                    <label for="habitantesRSi">Sí</label>
+                    <input type="radio" id="habitantesRNo" name="anteriorMascotas" value="N">
+                    <label for="habitantesRNo">No</label>
+                </fieldset>
+                
+                <label for="ninos">¿En su hogar viven niños?</label>
+                <fieldset>
+                    <input type="radio" id="ninosSi" name="ninos" value="S" required>
+                    <label for="ninosSi">Sí</label>
+                    <input type="radio" id="ninosNo" name="ninos" value="N">
+                    <label for="ninosNo">No</label>
+                </fieldset>
+                
+                <label for="ninosR">¿Qué edad(es) tiene(n)?</label>
+                <input type="text" id="ninosR" name="ninosR" maxlength="100" placeholder="Ejemplo: Tienen 7 y 3 años"><br><br>
+                
+                <label for="alergias">¿Alguien de su hogar es alérgico a los animales o sufre de asma?</label>
+                <fieldset>
+                    <input type="radio" id="alergiasSi" name="alergias" value="S" required>
+                    <label for="alergiasSi">Sí</label>
+                    <input type="radio" id="ninosNo" name="alergias" value="N">
+                    <label for="alergiasNo">No</label>
+                </fieldset>
+                
                 <label for="tiempoLibre">¿Cuenta con tiempo de calidad para el cuidado de la mascota?</label>
                 <fieldset>
                     <input type="radio" id="tiempoLibreSi" name="tiempoLibre" value="S" required>
@@ -113,23 +194,8 @@
                     <label for="compromisoNo">No</label>
                 </fieldset>
 
-                <label for="ninos">¿En el hogar viven niños? ¿Cuántos?</label>
-                <input type="number" id="ninos" name="ninos" min="0" required placeholder="Ingrese un valor numérico (Si la respuesta es negativa digite 0)"><br><br>
-
-                <label for="habitantes">¿Cuántas personas conforman su hogar?</label>
-                <input type="number" id="habitantes" name="habitantes" min="1" required placeholder="Ingrese un valor numérico"><br><br>
-
                 <label for="responsables">¿Cuántas personas estarán al cuidado de la mascota?</label>
                 <input type="number" id="responsables" name="responsables" min="1" required placeholder="Ingrese un valor numérico"><br><br>
-
-                <label for="otrasMascotas">¿Tiene otras mascotas a su cargo?</label>
-                <fieldset>
-                    <input type="radio" id="otrasMascotasSi" name="otrasMascotas" value="S" required>
-                    <label for="otrasMascotasSi">Sí</label>
-                    <input type="radio" id="otrasMascotasNo" name="otrasMascotas" value="N">
-                    <label for="otrasMascotasNo">No</label>
-                </fieldset>
-
 
                 <label for="propietario">¿Es propietario de la vivienda en la que reside?</label>
                 <fieldset>
@@ -138,9 +204,6 @@
                     <input type="radio" id="propietarioNo" name="propietario" value="N">
                     <label for="propietarioNo">No</label>
                 </fieldset>
-
-                <label for="motivacion">¿Cuál es el motivo por el cuál desea adoptar a la mascota?</label>
-                <input type="text" id="motivacion" name="motivacion" maxlength="100" required><br><br>
 
                 <label for="fechaVisitaDia">Por favor, indíquenos los días de la semana en los que estaría disponible para recibir la visita de seguimiento con respecto al cuidado de la mascota:</label>
                 <div style="display: flex; gap: 45px;">

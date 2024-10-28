@@ -18,6 +18,9 @@
 </head>
 <%
     request.setCharacterEncoding("UTF-8");
+
+    String identificacionUsuario = (String) request.getAttribute("identificacionUsuario");
+
 %>
 
 <style>
@@ -62,8 +65,7 @@
     }
 </style>
 
-<%
-    String accion = request.getParameter("accion");
+<%    String accion = request.getParameter("accion");
     String codigo = request.getParameter("codigo");
     Apadrinamiento apadrinamiento = new Apadrinamiento();
 
@@ -101,14 +103,14 @@
     <div class="card-carousel">
         <div class="card">
             <div class="card-header">
-                <h3><%=accion.toUpperCase()%>  PADRIPET</h3>
+                <h3>APADRINA UN PELUDITO</h3>
             </div>
             <div class="card-body">
 
 
-                <form name="formulario" method="post" accept-charset="UTF-8" action="principal.jsp?CONTENIDO=9.Perfil/padrinosActualizar.jsp" enctype="multipart/form-data">>
+                <form name="formulario" method="post" accept-charset="UTF-8" action="principal.jsp?CONTENIDO=9.Perfil/padrinosActualizar.jsp" enctype="multipart/form-data">
 
-                <input type="hidden" name="mascotasPlan" id="mascotasPlan" required="">
+                    <input type="hidden" name="mascotasPlan" id="mascotasPlan" required="">
                     <div class="form-group">
                         <label for="identificacion">Identificación</label>
                         <input type="text" name="identificacion" id="identificacion" required>
@@ -279,7 +281,8 @@
         });
     });
 
-    var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
+    <%=identificacionUsuario%>;
+    var personas = <%=Persona.getListaEnArreglosJS("identificacion=" + identificacionUsuario, null)%>;
     var vectorPersonas = new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
@@ -495,16 +498,16 @@
     }
 
     function cerrarFormulario() {
-    $('#formulario').dialog('close');
+        $('#formulario').dialog('close');
 
-    document.forms['formularioMascotas'].reset();
+        document.forms['formularioMascotas'].reset();
 
-    $('#mascotas input[type="text"]').val('');
-    $('#planes input[type="checkbox"]:checked').prop('checked', false);
+        $('#mascotas input[type="text"]').val('');
+        $('#planes input[type="checkbox"]:checked').prop('checked', false);
 
-    // Deseleccionar la tarjeta
-    $('.card.selected').removeClass('selected');
-}
+        // Deseleccionar la tarjeta
+        $('.card.selected').removeClass('selected');
+    }
 
 
 </script>

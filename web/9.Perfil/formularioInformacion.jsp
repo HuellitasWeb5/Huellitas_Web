@@ -18,12 +18,12 @@
     FormularioDeInformacion formularioDeInformacion = new FormularioDeInformacion();
     Mascota mascota = new Mascota();
     Persona persona = new Persona(formularioDeInformacion.getIdentificacionAdoptante());
-
+    String identificacionUsuario = (String) request.getAttribute("identificacionUsuario");
 %>  
 <body onload="cargarFecha()">
     <h3><%=accion.toUpperCase()%> FORMULARIO DE ADOPCIÓN </h3>
     <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/actualizarFormularioInfo.jsp" enctype="multipart/form-data">
-      <div  class="formulario-adopcion">
+        <div  class="formulario-adopcion">
             <div>Fecha actual: <span id="fecha"></span></div>
             <div class="contenedor-tarjetas">
 
@@ -71,7 +71,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="swiper-container">
                 <div class="swiper-wrapper">
                 </div>
@@ -79,7 +79,7 @@
                 <div class="swiper-button-prev"></div>
             </div> 
             <table>
-                
+
                 <button class="btn-adicionar" type="button" onclick="abrirFormulario();">Agregar Otra Mascota</button><br>
 
                 <input type="hidden" name="fechaActual" id="fechaActual">
@@ -373,7 +373,8 @@
 
     // BUSCAR PERSONA
 
-    var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
+    <%=identificacionUsuario%>;
+    var personas = <%=Persona.getListaEnArreglosJS("identificacion=" + identificacionUsuario, null)%>;
     var vectorPersonas = new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
@@ -573,12 +574,12 @@
         var registros = codigosMascotas.value.split('||');
 
         if (index >= 0 && index < registros.length) {
-            registros.splice(index, 1); 
+            registros.splice(index, 1);
         }
         var nuevosDatos = registros.join('||');
         codigosMascotas.value = nuevosDatos;
-        document.getElementById('formularioInfo').value = nuevosDatos; 
-        cargarTablaMascotas(); 
+        document.getElementById('formularioInfo').value = nuevosDatos;
+        cargarTablaMascotas();
     }
 
     // VALIDAR DATOS
