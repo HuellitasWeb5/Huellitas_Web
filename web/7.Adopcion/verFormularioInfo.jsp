@@ -75,7 +75,7 @@
     listaAdopciones += "</div>";
 %>
 
-<h3>LISTA DE FORMULARIOS DE ADOPCIÓN</h3>
+<h3>LISTA DE FORMULARIOS DE PRE-ADOPCIÓN</h3>
 
 <div class="header-container">
     <!-- Buscar por nombre del adoptante -->
@@ -89,7 +89,7 @@
 
     <div class="btn-container">
         <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar">
-            <button id="Adicionar" class="btn-adicionar">Realizar Adopción</button>
+            <button id="Adicionar" class="btn-adicionar">Llenar formulario</button>
         </a>
     </div>
 </div>

@@ -44,14 +44,14 @@
                 <div class="input-box">
                     <label for="usuario">IDENTIFICACIÓN</label>
                     <div class="icon-input">
-                        <input type="text" name="identificacion" id="usuario" required placeholder="Identificaciòn">
+                        <input type="text" name="identificacion" id="usuario" required placeholder="Digite aquí su número de identificaciòn">
                         <img src="presentacion/iconos/identificacion.png" alt="usuario" class="icon">
                     </div>
                 </div>
                 <div class="input-box">
                     <label for="clave">CONTRASEÑA</label>
                     <div class="icon-input">
-                        <input type="password" name="clave" id="clave" required placeholder="Contraseña">
+                        <input type="password" name="clave" id="clave" required placeholder="Digite aquí su contraseña">
                         <img src="presentacion/iconos/seguridad.png" alt="clave" class="icon">
                     </div>
                 </div>

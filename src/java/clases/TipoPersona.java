@@ -123,7 +123,7 @@ case "S":
     menu += "<a class='nav-link dropdown-toggle' href='#' id='adopcionesDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>Adopciones</a>";
     menu += "<ul class='dropdown-menu' aria-labelledby='adopcionesDropdown'>";
     menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
-    menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp'>Formularios de adopción</a></li>";
+    menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp'>Formularios de pre-adopción</a></li>";
     menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/verFormularioSeg.jsp'>Formularios de seguimientos</a></li>";
     menu += "</ul></li>";
 
