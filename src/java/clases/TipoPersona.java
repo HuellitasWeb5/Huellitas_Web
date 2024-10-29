@@ -153,46 +153,88 @@ case "S":
     menu += "</nav>";
     break;
 
-            case "C":
-                menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light'>";
+      case "C":
+  menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light'>";
                 menu += "<div class='container-fluid'>";
 
-                // Imagen del logo a la izquierda
-                menu += "<img src='presentacion/imagenes/Logo-Fundacion.png' alt='Logo' width='90' height='90' class='d-inline-block align-text-top'>";
+    // Imagen del logo a la izquierda
+    menu += "<img src='presentacion/imagenes/Logo-Fundacion.png' alt='Logo' width='90' height='90' class='d-inline-block align-text-top'>";
 
-                // Botón para colapsar el menú en pantallas pequeñas
-                menu += "<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>";
-                menu += "<span class='navbar-toggler-icon'></span>";
-                menu += "</button>";
+    // Botón para colapsar el menú en pantallas pequeñas
+    menu += "<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>";
+    menu += "<span class='navbar-toggler-icon'></span>";
+    menu += "</button>";
 
-                // Menú desplegable centrado
-                menu += "<div class='collapse navbar-collapse justify-content-center' id='navbarNav'>"; // justify-content-center para centrar el menú
-                menu += "<ul class='navbar-nav'>";
+    // Menú desplegable centrado
+    menu += "<div class='collapse navbar-collapse justify-content-center' id='navbarNav'>";
+    menu += "<ul class='navbar-nav'>";
 
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" + getNombre() + "'>Mascotas</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/padrinosFormulario.jsp&accion=Adicionar'>Padripet</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/formularioInformacion.jsp&accion=Adicionar'>Adopciones</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/donacionesFormulario.jsp&accion=Adicionar'>Donaciones</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/perfil.jsp'>Perfil</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='index.jsp'>Salir</a></li>";
+    // Opción "Inicio"
+    menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
 
-                menu += "</ul>";
-                menu += "</div>";
+    // Opción "Mascotas" con icono
+    menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" + getNombre() + "'>";
+    menu += "<img src='presentacion/imagenes/mascota.png' alt='Icono Mascota' width='25' height='25' class='me-2'> Mascotas</a></li>";
 
-                // Imagen del logo a la derecha
-                menu += "<img src='presentacion/imagenes/Logo.png' alt='Logo' width='80' height='80' class='d-inline-block align-text-top'>";
+    // Opción "Padripet" con icono
+    menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/padrinosFormulario.jsp&accion=Adicionar'>";
+    menu += "<img src='presentacion/imagenes/padrinos.png' alt='Icono Padripet' width='25' height='25' class='me-2'> Padripet</a></li>";
 
-                menu += "</div>";
-                menu += "</nav>";
-                break;
+    // Opción "Adopciones" con icono
+    menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/formularioInformacion.jsp&accion=Adicionar'>";
+    menu += "<img src='presentacion/imagenes/adop.png' alt='Icono Adopciones' width='25' height='25' class='me-2'> Adopciones</a></li>";
+
+    // Opción "Donaciones" con icono
+    menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/donacionesFormulario.jsp&accion=Adicionar'>";
+    menu += "<img src='presentacion/imagenes/donar.png' alt='Icono Donaciones' width='25' height='25' class='me-2'> Donaciones</a></li>";
+
+    // Opción "Perfil" con icono
+    menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/perfil.jsp'>";
+    menu += "<img src='presentacion/imagenes/persona.png' alt='Icono Perfil' width='20' height='20' class='me-2'> Perfil</a></li>";
+
+    // Menú desplegable para "Tus Ayudas"
+   menu += "<li class='nav-item dropdown position-relative'>";
+menu += "<a class='nav-link d-flex align-items-center' href='#' id='navbarDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false'>";
+menu += "<img src='presentacion/imagenes/house.png' alt='Icono Casa' width='25' height='25' class='rounded-circle me-2'>";
+menu += "<span class='me-2'>Tus Ayudas</span>";
+menu += "<span class='dropdown-arrow'></span>";  // Agrega la flecha aquí
+menu += "</a>";
+menu += "<ul class='dropdown-menu' aria-labelledby='navbarDropdown'>";
+
+
+    // Opción "Ver mis donaciones" con icono
+    menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=9.Perfil/verMisDonaciones.jsp'>";
+    menu += "<img src='presentacion/imagenes/donaciones.png' alt='Icono Donaciones' width='25' height='25' class='me-3'> <span class='ms-2'>Mis Donaciones</span></a></li>";
+
+    // Opción "Ver mis adopciones" con icono
+    menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=9.Perfil/verMisAdopciones.jsp'>";
+    menu += "<img src='presentacion/imagenes/adopciones.png' alt='Icono Adopciones' width='25' height='25' class='me-3'> <span class='ms-2'>Mis Adopciones</span></a></li>";
+
+    // Opción "Ver mis apadrinamientos" con icono
+    menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=9.Perfil/verMisApadrinamientos.jsp'>";
+    menu += "<img src='presentacion/imagenes/apadrinamiento.png' alt='Icono Apadrinamientos' width='25' height='25' class='me-3'> <span class='ms-2'>Mis Apadrinamientos</span></a></li>";
+
+    menu += "</ul>";
+    menu += "</li>";
+
+    // Opción "Salir"
+    menu += "<li class='nav-item'><a class='nav-link' href='index.jsp'>Salir</a></li>";
+
+    menu += "</ul>";
+    menu += "</div>";
+
+    // Imagen del logo a la derecha
+    menu += "<img src='presentacion/imagenes/Logo.png' alt='Logo' width='80' height='80' class='d-inline-block align-text-top'>";
+
+    menu += "</div>";
+    menu += "</nav>";
+    break;
 
         }
 
         menu += "</ul>";
         return menu;
     }
-
     public String getListaEnOptions() {
         String lista = "";
         switch (codigo) {
