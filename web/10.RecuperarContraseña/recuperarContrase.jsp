@@ -1,4 +1,10 @@
-<%@ page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8" %>
+<%-- 
+    Document   : Recuperar Contraseña
+    Created on : 24/10/2024, 14:22:31
+    Author     : Angie
+--%>
+
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ page import="java.sql.Connection" %>
 <%@ page import="java.sql.DriverManager" %>
 <%@ page import="java.sql.PreparedStatement" %>
@@ -17,60 +23,51 @@
 <%@ page import="javax.mail.Authenticator" %>
 <link rel="stylesheet" href="../presentacion/styleContra.css"> <!-- Verifica la ruta -->
 
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Recuperar Contraseña</title>
-</head>
-<body>
-    
-<form action="" method="post">
-    <h1>RECUPERAR CONTRASEÑA</h1>
-    <h2 class="subtitulo">Por favor, ingrese su número de identificación y se enviará </h2> <!-- Subtítulo con clase CSS -->
-    <h2 class="subtitulo">un código al correo electrónico asociado a su cuenta.</h2> <!-- Subtítulo con clase CSS -->
-    <label for="identificacion">Número de Identificación:</label>
-    <input type="text" id="identificacionD" name="identificacion" required><br>
-
-    <input type="submit" value="Recuperar Contraseña">
-</form>
-<a href='../index-InicioSesion.jsp'>Regresar al inicio</a>
-
-
-
-<% 
+<%
+    String mensaje = "";
+    String correoVisible = "";
     if (request.getMethod().equalsIgnoreCase("POST")) {
         String identificacion = request.getParameter("identificacion");
-        
+
         // Consulta a la base de datos para obtener el correo y la contraseña asociada al identificacion
         String correoDestino = null;
         String clave = null;
-        
+
         Connection conn = null;
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        
+
         try {
             Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/huellitasweb?characterEncoding=utf8";
             conn = DriverManager.getConnection(url, "adso", "utilizar");
-            
+
             String sql = "SELECT email, clave FROM persona WHERE identificacion = ?";
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, identificacion);
             rs = stmt.executeQuery();
-            
+
             if (rs.next()) {
                 correoDestino = rs.getString("email");
                 clave = rs.getString("clave"); // La clave debe estar almacenada sin encriptar
             } else {
-                out.println("<div class='notification-message'>Número de identificación no encontrado en la base de datos.</div>");
+                mensaje = "Número de identificación no encontrado en la base de datos.";
             }
         } catch (Exception e) {
-            out.println("<div class='notification-message'>Error en la base de datos: " + e.getMessage() + "</div>");
+            mensaje = "Error en la base de datos: " + e.getMessage();
         } finally {
-            if (rs != null) try { rs.close(); } catch (Exception e) {}
-            if (stmt != null) try { stmt.close(); } catch (Exception e) {}
-            if (conn != null) try { conn.close(); } catch (Exception e) {}
+            if (rs != null) try {
+                rs.close();
+            } catch (Exception e) {
+            }
+            if (stmt != null) try {
+                stmt.close();
+            } catch (Exception e) {
+            }
+            if (conn != null) try {
+                conn.close();
+            } catch (Exception e) {
+            }
         }
 
         // Si se encontró el correo y la clave, enviar el correo
@@ -78,7 +75,7 @@
             final String correoEnvia = "huellitasweb5@gmail.com";
             final String claveCorreo = "qfle glhu pqie lhlt";
             String asunto = "Recuperación de contraseña";
-            String mensaje = "Tu contraseña es: " + clave;
+            String mensajeCorreo = "Tu contraseña es: " + clave;
 
             // Configuración del servidor SMTP
             Properties properties = new Properties();
@@ -104,7 +101,7 @@
                 mimeMessage.setSubject(asunto);
 
                 MimeBodyPart mimeBodyPart = new MimeBodyPart();
-                mimeBodyPart.setText(mensaje);
+                mimeBodyPart.setText(mensajeCorreo);
 
                 Multipart multipart = new MimeMultipart();
                 multipart.addBodyPart(mimeBodyPart);
@@ -113,15 +110,54 @@
 
                 // Enviar el correo
                 Transport.send(mimeMessage);
-                
+
                 // Mostrar el correo con algunos caracteres en asteriscos
-                String correoVisible = correoDestino.replaceAll("(?<=.{4}).(?=.@)", "*"); // Reemplaza todos menos los primeros cuatro y los caracteres después del '@'
-                out.println("<div class='notification-message'>Correo enviado exitosamente a " + correoVisible + ".</div>");
+                correoVisible = correoDestino.replaceAll("(?<=.{4}).(?=.*@)", "*");
+                mensaje = "Correo enviado exitosamente a " + correoVisible + ".";
             } catch (MessagingException e) {
-                out.println("<div class='notification-message'>Error al enviar el correo: " + e.getMessage() + "</div>");
+                mensaje = "Error al enviar el correo: " + e.getMessage();
             }
         }
     }
 %>
-</body>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Recuperar Contraseña</title>
+        <link rel="stylesheet" href="../presentacion/styleContra.css">
+    </head>
+     <body>
+        <video autoplay muted loop>
+            <source src="../presentacion/imagenes/inicioSesion.mp4" type="video/mp4">
+            Tu navegador no soporta el elemento de video.
+        </video>
+        <div class="logo-container">
+            <img src="../presentacion/imagenes/Logo-Fundacion.png" alt="Logo Izquierdo" class="logo logo-left">
+            <img src="../presentacion/imagenes/Logo.png" alt="Logo Derecho" class="logo logo-right">
+        </div>
+        <div class="container">
+            <h1 class="title">Recuperar Contraseña</h1>
+
+            <!-- Mensaje de notificación -->
+            <p id="mensaje"><%= mensaje%></p>
+
+            <!-- Formulario de recuperación -->
+            <form action="" method="post">
+                <p class="subtitulo">Por favor, ingrese su número de identificación y se enviará un código al correo electrónico asociado a su cuenta.</p>
+                <div class="input-box">
+                    <label for="usuario">Numero de identificacion:</label>
+                    <div class="icon-input">
+                        <input type="text" name="identificacion" id="usuario" required placeholder="Digite aquí su número de identificaciòn">
+                    </div>
+                </div>
+                <input type="submit" value="Recuperar Contraseña">
+            </form>
+
+            <div class="volver">
+                <a href="../index-InicioSesion.jsp">Regresar al inicio</a>
+            </div>
+        </div>
+    </body>
 </html>
