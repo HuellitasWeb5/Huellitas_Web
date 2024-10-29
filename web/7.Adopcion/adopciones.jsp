@@ -98,6 +98,8 @@
             String rutaArchivo = "uploads/" + adopcion.getActaAdopcion();
             if (rutaArchivo !=null) {
                 listaAdopciones += "<a href='" + rutaArchivo + "' target='_blank' class='btn-otro'>Ver Contrato de adopción</a>";
+            } else if(rutaArchivo == null){
+                
             }
         }
 // Si no existe archivo, no se agrega ningún enlace y el botón no aparecerá
@@ -105,7 +107,7 @@
         listaAdopciones += "<form action='7.Adopcion/formularioInfoPDF.jsp' method='post' target='_blank'>";
         listaAdopciones += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
         listaAdopciones += "<input type='submit' value='Generar Formulario de adopción' class='btn-adicionar'>";
-        listaAdopciones += "</form>";
+        listaAdopciones += "</form>";   
 
         listaAdopciones += "<form action='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp' method='post'>";
         listaAdopciones += "<input type='hidden' name='codigoAdopcion' value='" + adopcion.getCodigo() + "'>";
