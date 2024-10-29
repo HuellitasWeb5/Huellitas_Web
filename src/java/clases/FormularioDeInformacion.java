@@ -565,8 +565,6 @@ public class FormularioDeInformacion {
     public String getEstado() {
         if (estado == null) {
             return "Pendiente";
-        } else if (estado.equals("P")) {
-            return "Prestado";
         } else if (estado.equals("A")) {
             return "Aceptado";
         }
@@ -597,7 +595,7 @@ public class FormularioDeInformacion {
                 + "', '" + refNombre1 + "', '" + refCedula1 + "', '" + refDireccion1 + "', '" + refCelular1 + "', '" + refNombre2 + "', '" + refCedula2 + "', '"
                 + refDireccion2 + "', '" + refCelular2 + "', '" + refNombre3 + "', '" + refCedula3 + "', '" + refDireccion3 + "', '" + refCelular3 + "', '"
                 + refNombre4 + "', '" + refCedula4 + "', '" + refDireccion4 + "', '" + refCelular4 + "', '" + fotoCedula + "', '" + fotoRecibo + "', '"
-                + fotoVivienda + "', '" + descripcion + "', '" + autorizacionDatos + "', 'pendiente')";
+                + fotoVivienda + "', '" + descripcion + "', '" + autorizacionDatos + "', 'Pendiente')";
 
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
