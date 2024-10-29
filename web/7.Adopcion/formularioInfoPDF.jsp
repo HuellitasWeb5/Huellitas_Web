@@ -172,16 +172,17 @@
         PdfPTable tablaFormulario = new PdfPTable(2);
 
         // DETALLES DEL FORMULARIO
+        
         tablaFormulario.addCell("Ocupación:");
         tablaFormulario.addCell(formulario.getOcupacion());
 
-        tablaFormulario.addCell("Motivación:");
+        tablaFormulario.addCell("¿Por qué desea adoptar al peludito?");
         tablaFormulario.addCell(formulario.getMotivacion());
 
-        tablaFormulario.addCell("¿Tiene otras mascotas?");
+        tablaFormulario.addCell("¿Actualmente tiene mascotas?");
         tablaFormulario.addCell(formulario.getOtrasMascotas().equals("S") ? "Sí" : "No");
 
-        tablaFormulario.addCell("Otras mascotas (especifique):");
+        tablaFormulario.addCell("¿Cúales?:");
         tablaFormulario.addCell(formulario.getOtrasMascotasR());
 
         tablaFormulario.addCell("¿Las mascotas están esterilizadas?");

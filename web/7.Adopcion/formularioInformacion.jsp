@@ -115,7 +115,7 @@
                     <label for="otrasMascotasNo">No</label>
                 </fieldset>
 
-                <label for="otrasMascotasR">¿Cúales?</label>
+                <label for="otrasMascotasR">Si la respuesta anterior es si, especifique que tipo </label>
                 <input type="text" id="otrasMascotasR" name="otrasMascotasR" maxlength="100"><br><br>
 
                 <label for="esterilizados">¿Si los tiene, están esterilizados?</label>
