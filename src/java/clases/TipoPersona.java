@@ -85,7 +85,7 @@ public class TipoPersona {
                 menu += "</nav>";
                 break;
             case "S":
-                menu += "<nav class='navbar navbar-expand-lg navbar-light transparent-navbar' style='padding: 10px 20px;'>"; // Añadido padding para mejor espacio
+                menu += "<nav class='navbar navbar-expand-lg navbar-light transparent-navbar' 'style='padding: 50px 50px; width: 100%;'>"; // Añadido padding para mejor espacio
                 menu += "<div class='container-fluid d-flex justify-content-between align-items-center'>";
 
                 // Logo ajustado con mejor tamaño y centrado verticalmente
@@ -141,8 +141,33 @@ public class TipoPersona {
                 menu += "<img src='presentacion/imagenes/huella.png' alt='San Patitas' width='22' height='22' class='me-2'> San Patitas</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link d-flex align-items-center' href='principal.jsp?CONTENIDO=5.Administradores/administradores.jsp' style='padding: 8px 15px; font-size: 0.9rem;'>";
                 menu += "<img src='presentacion/imagenes/administrador.png' alt='Administradores' width='20' height='20' class='me-2'> Administradores</a></li>";
+                menu += "<li class='nav-item dropdown'>";
+                menu += "<a class='nav-link dropdown-toggle' href='#' id='indicadoresDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false' style='padding: 8px 15px; font-size: 0.9rem;'>";
+                menu += "<img src='presentacion/imagenes/indicador.png' alt='Indicadores' width='20' height='20' class='me-2'> Indicadores</a>";
+                menu += "<ul class='dropdown-menu' aria-labelledby='indicadoresDropdown'>";
 
-                // Menú de Indicadores y Perfil
+// Opción Donaciones con icono de donar
+                menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=indicadores/donacionesXAnio.jsp'>";
+                menu += "<img src='presentacion/imagenes/donar.png' alt='Icono Donaciones' width='18' height='18' class='me-2'> Donaciones</a></li>";
+
+// Opción Apadrinamientos con icono de padrinos
+                menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=indicadores/apadrinamientoXAnio.jsp'>";
+                menu += "<img src='presentacion/imagenes/padrinos.png' alt='Icono Apadrinamientos' width='18' height='18' class='me-2'> Apadrinamientos</a></li>";
+
+// Opción Adopciones con icono de adopciones
+                menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=indicadores/adopcionesXAnio.jsp'>";
+                menu += "<img src='presentacion/imagenes/adopciones.png' alt='Icono Adopciones' width='18' height='18' class='me-2'> Adopciones</a></li>";
+
+// Opción Mascotas con icono de mascotas
+                menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=indicadores/mascotasXAnio.jsp'>";
+                menu += "<img src='presentacion/imagenes/mascota.png' alt='Icono Mascotas' width='18' height='18' class='me-2'> Mascotas</a></li>";
+
+// Opción Cuidados con icono de calificaciones
+                menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=indicadores/calificacionesXAnio.jsp'>";
+                menu += "<img src='presentacion/imagenes/calificaciones.png' alt='Icono Cuidados' width='18' height='18' class='me-2'> Cuidados</a></li>";
+
+                menu += "</ul></li>";
+                // Perfil
                 menu += "<li class='nav-item'><a class='nav-link d-flex align-items-center' href='principal.jsp?CONTENIDO=9.Perfil/perfilF.jsp' style='padding: 8px 15px; font-size: 0.9rem;'>";
                 menu += "<img src='presentacion/imagenes/perfil.png' alt='Perfil' width='20' height='20' class='me-2'> Perfil</a></li>";
                 menu += "<li class='nav-item'><a class='nav-link d-flex align-items-center' href='index.jsp' style='padding: 8px 15px; font-size: 0.9rem;'>Salir</a></li>";
@@ -207,7 +232,7 @@ public class TipoPersona {
 
 // Opción "Ver mis donaciones" con icono
                 menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=9.Perfil/verMisDonaciones.jsp'>";
-                menu += "<img src='presentacion/imagenes/donaciones.png' alt='Icono Donaciones' width='25' height='25' class='me-3'> <span class='ms-2'>Mis Donaciones</span></a></li>";
+                menu += "<img src='presentacion/imagenes/donar.png' alt='Icono Donaciones' width='25' height='25' class='me-3'> <span class='ms-2'>Mis Donaciones</span></a></li>";
 
 // Opción "Ver mis adopciones" con icono
                 menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=9.Perfil/verMisAdopciones.jsp'>";
