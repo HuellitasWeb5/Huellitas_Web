@@ -50,6 +50,7 @@
             lista += "</div>";
             lista += "<div class='card-header'>";
             lista += mascota.getNombre();
+            lista += "<p class='rol-administrador'>" + mascota.getEstado() + "</p>"; // Rol del administrador como subtítulo
             lista += "</div>";
             lista += "<div class='card-body'>";
             lista += "<p><strong>Código:</strong>" + mascota.getCodigo() + "</p>";
@@ -58,7 +59,6 @@
             lista += "<p><strong>Cuidado:</strong>" + mascota.getCuidadosEspeciales() + "</p>";
             lista += "<p><strong>Edad aproximada:</strong>" + mascota.getEdad() + " años</p>";
             lista += "<p><strong>Fecha de ingreso:</strong>" + mascota.getFechaIngreso() + "</p>";
-            lista += "<p><strong>Estado:</strong>" + mascota.getEstado() + "</p>";
             lista += "<p><strong>Descripción:</strong>" + mascota.getDescripcion() + "</p>";
             lista += "</div>";
 
