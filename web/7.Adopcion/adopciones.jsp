@@ -91,17 +91,14 @@
         listaAdopciones += "<input type='hidden' id='codigoFormulario' name='codigoFormulario' value='" + adopcion.getCodigo() + "'>";
         listaAdopciones += "<input type='submit' value='Guardar' class='btn-adicionar'>";
         listaAdopciones += "</form>";
-
+        System.out.println("mensaje para ver la foto; "+ adopcion.getActaAdopcion() );
+        
         // Verificar si hay acta para mostrar el enlace
-        // Verificar si el archivo existe antes de generar el botón
-        if (adopcion.getActaAdopcion() != null && !adopcion.getActaAdopcion().isEmpty()) {
+        if (!adopcion.getActaAdopcion().equals("null")) {
             String rutaArchivo = "uploads/" + adopcion.getActaAdopcion();
-            if (rutaArchivo !=null) {
-                listaAdopciones += "<a href='" + rutaArchivo + "' target='_blank' class='btn-otro'>Ver contrato de adopción</a>";
-            } else if(rutaArchivo == null){
-                
-            }
+            listaAdopciones += "<a href='" + rutaArchivo + "' target='_blank' class='btn-otro'>Ver contrato de adopción</a>";
         }
+
 // Si no existe archivo, no se agrega ningún enlace y el botón no aparecerá
 
         listaAdopciones += "<form action='7.Adopcion/formularioInfoPDF.jsp' method='post' target='_blank'>";

@@ -181,8 +181,7 @@ public class TipoPersona {
                 menu += "<img src='presentacion/imagenes/mascota.png' alt='Icono Mascota' width='25' height='25' class='me-2'> Mascotas</a></li>";
 
 // Opción "Padripet" con icono
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/padrinosFormulario.jsp&accion=Adicionar'>";
-                menu += "<img src='presentacion/imagenes/padrinos.png' alt='Icono Padripet' width='25' height='25' class='me-2'> Padripet</a></li>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp'><img src='presentacion/imagenes/padrinos.png' alt='Icono Padripet' width='25' height='25' class='me-2'> Padripet</a></li>";
 
 // Opción "Adopciones" con icono
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/formularioInformacion.jsp&accion=Adicionar'>";
