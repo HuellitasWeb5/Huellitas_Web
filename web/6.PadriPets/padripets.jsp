@@ -12,8 +12,16 @@
 
 <%
 String listaApadrinamiento = "<div class='swiper-wrapper'>";
+String identificacionUsuario=(String) session.getAttribute("numeroUsuario");
+String tipoUsuario = (String) session.getAttribute("tipoUsuario");
+List<Apadrinamiento> datosApadrinamiento = null;
+if(tipoUsuario.equals("C")){
+    datosApadrinamiento = Apadrinamiento.getListaEnObjetos("identificacionPadrino="+identificacionUsuario, null);
+}else{
+    datosApadrinamiento = Apadrinamiento.getListaEnObjetos(null, null);
+}
 
-List<Apadrinamiento> datosApadrinamiento = Apadrinamiento.getListaEnObjetos(null, null);
+
 for (int j = 0; j < datosApadrinamiento.size(); j++) {
     Apadrinamiento apadrinamiento = datosApadrinamiento.get(j);
     Persona persona = new Persona(apadrinamiento.getIdentificacionPadrino());
