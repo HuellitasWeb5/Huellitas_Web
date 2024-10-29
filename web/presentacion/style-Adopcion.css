@@ -8,12 +8,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 */
 
 .card {
-    margin: 5px;
-    max-width: 100%;
-    box-sizing: border-box; /* Asegura que padding y bordes estén dentro del ancho */
-    margin-bottom: 10px;
+    backdrop-filter: blur(10px);
+    background-color: rgba(173, 230, 218, 0.8); /* Fondo semi-transparente */
+    border: 4px solid #05af8b;
     width: 100%; /* Asegura que las tarjetas se ajusten al 100% del ancho */
-    background: linear-gradient(90deg, #80c1ff, #66cca3, #b3e6b3); /* Degradado de azul a verde con tonos menos saturados */
     border-radius: 50px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -26,6 +24,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     justify-content: space-between; /* Para que botones queden abajo */
 }
 
+
+.carousel-container {
+    display: flex;
+    align-items: center; /* Centra verticalmente las flechas y las tarjetas */
+    justify-content: center; /* Asegura que las flechas y las tarjetas estén alineadas correctamente */
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 20px 0;
+
+}
+
+/* Estilo para el carrusel de tarjetas */
 .card-carousel {
     display: flex; /* Organiza las tarjetas en una fila */
     justify-content: center;
@@ -37,13 +48,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     gap: 20px; /* Espacio entre las tarjetas para evitar que se superpongan */
 }
 
-.card-container {
-    display: flex;
-    overflow: hidden;
-    padding: 10px;
-    justify-content: center;
-}
-
 .card-footer {
     display: flex;
     justify-content: center;
@@ -51,8 +55,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .card:hover {
-    background-color: #99ccff; /* Color al pasar el cursor */
-
+    transform: translateY(-3px); /* Mueve la tarjeta hacia arriba */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
 }
 
