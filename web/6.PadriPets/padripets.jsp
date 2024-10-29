@@ -31,7 +31,7 @@ for (int j = 0; j < datosApadrinamiento.size(); j++) {
     // Información de la persona con su foto
     listaApadrinamiento += "<div style='display: flex; margin-bottom: 20px;'>";
     listaApadrinamiento += "<div style='margin-right: 20px;'>";
-    listaApadrinamiento += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' style='width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 5px solid #98FF98;'/>";
+    listaApadrinamiento += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' style='width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 5px solid #05af8b;'/>";
 
     listaApadrinamiento += "</div>";
     
@@ -46,7 +46,7 @@ for (int j = 0; j < datosApadrinamiento.size(); j++) {
     // Información de la mascota con su foto
     listaApadrinamiento += "<div style='display: flex; margin-bottom: 20px;'>";
     listaApadrinamiento += "<div style='margin-right: 20px;'>";
-    listaApadrinamiento += "<img src='presentacion/mascota/" + mascota.getFoto() + "' alt='Foto de " + mascota.getNombre() + "' style='width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 5px solid #98FF98;'/>";
+    listaApadrinamiento += "<img src='presentacion/mascota/" + mascota.getFoto() + "' alt='Foto de " + mascota.getNombre() + "' style='width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 5px solid #05af8b;'/>";
     listaApadrinamiento += "</div>";
     
     listaApadrinamiento += "<div>";
@@ -67,7 +67,7 @@ for (int j = 0; j < datosApadrinamiento.size(); j++) {
     listaApadrinamiento += "<button class='btn-eliminar' onclick='eliminar(" + apadrinamiento.getCodigo() + ")'>Eliminar</button>";
     listaApadrinamiento += "<button class='btn-otro' onclick='detalles(" + apadrinamiento.getCodigo() + ")'>Detalles</button>";
     listaApadrinamiento += "</div>"; 
-    listaApadrinamiento += "</div>"; 
+    listaApadrinamiento += "</div>";  
     listaApadrinamiento += "</div>";
 }
 
