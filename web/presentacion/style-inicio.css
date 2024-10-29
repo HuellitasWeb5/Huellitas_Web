@@ -1,66 +1,79 @@
-/* 
-    Created on : 7 oct 2024, 15:31:05
-    Author     : Angie
-*/
-/* Estilo base para la línea debajo de los enlaces de navegación */
-
-
-/* Flecha del menú desplegable "Tus Ayudas" */
-.dropdown-arrow::after {
-    content: "▼";
-    font-size: 15px;
-    margin-left: 5px;
-    color: #005d03;
-    display: inline-block;
-    vertical-align: middle; /* Alinea la flecha con el texto */
-}
-
-
-body{
+body {
     font-family: 'Open Sans';
-     text-align: center;
+    text-align: center;
 }
 
-.transparent-navbar {
-    background-color: rgba(250, 250, 250, 0.8); /* Fondo blanco con 80% de opacidad */
-    border-radius: 30px; /* Bordes redondeados */
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-}
-
-.transparent-navbar {
-    background-color: rgba(245, 245, 245, 0.8); /* Trasparencia */
-    border-radius: 10px;
-}
-
-.navbar-nav .nav-link, .dropdown-item {
-    font-size: 17px;  /* Aumenta el tamaño de las letras */
-    font-weight: bold; /* Letras en negrita */
-    color: #000;       /* Color negro */
-}
-
-.navbar-nav .nav-link:hover, .dropdown-item:hover {
-    color: #000;    /* Color al pasar el mouse */
-}
-
-
-/* Estilo para el título */
-.titulo-principal {
-    font-size: 36px;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-/* Contenedor de la imagen */
+/* Estilo para el contenedor de imagen */
 .contenedor-imagen {
-    width: 50%; /* Tamaño del contenedor, ajusta según necesidad */
-    margin: 0 auto; /* Centrar el contenedor */
-    padding: 20px;  /* Espaciado alrededor de la imagen */
-    border: 2px solid #1dba35; /* Opcional, para visualizar el borde */
+    position: relative;
+    text-align: center; /* Centra la imagen */
+    color: white;
 }
 
-/* Estilo de la imagen */
 .contenedor-imagen img {
-    width: 100%;  /* Ajusta la imagen al tamaño del contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
+    width: 90%;
+    height: auto;
+    object-fit: cover;
+    filter: brightness(70%); /* Aclara la imagen */
+}
+
+
+.texto-superpuesto {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translate(-100%, -50%) scale(0.8); /* Comienza fuera de la vista a la izquierda y más pequeño */
+    text-align: left;
+    opacity: 0; /* Inicialmente invisible */
+    transition: transform 0.8s ease, opacity 0.8s ease; /* Transición suave */
+}
+
+.texto-superpuesto.visible {
+    transform: translate(0, -50%) scale(1); /* Mueve el texto a su posición y tamaño original */
+    opacity: 1; /* Hace visible el texto */
+}
+
+
+.texto-superpuesto h1 {
+    font-size: 4em;
+    font-weight: bolder; /* Aumenta el grosor de la fuente */
+    color: #fff;
+}
+
+.texto-superpuesto h2 {
+    font-size: 2.5em;
+    font-weight: bold; /* Aumenta el grosor de la fuente */
+    color: #fff;
+    margin-top: 0;
+}
+
+.texto-superpuesto p {
+    font-size: 1.5em;
+    font-weight: 600; /* Aumenta el grosor de la fuente */
+    color: #fff;
+    margin-top: 10px;
+}
+/* Estilo para el botón */
+.boton-peluditos {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1em;
+    font-weight: bold;
+    color: #fff;
+    background-color: #1dba35; /* Color de fondo del botón */
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.boton-peluditos:hover {
+    background-color: #26c330; /* Color de fondo al pasar el mouse */
+}
+.huella-icono {
+    width: 20px; /* Ajusta el tamaño de la huella según sea necesario */
+    height: 20px; /* Mantiene la proporción de la imagen */
+    margin-left: 8px; /* Espacio entre el texto y la imagen */
 }
