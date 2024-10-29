@@ -54,7 +54,7 @@
     </div>
     <div class="card-body">
         <!-- Mostrar la foto del usuario -->
-        <img src="presentacion/clientes/<%=usuarioActual.getFoto()%>" id="foto" class="profile-image">
+        <img src="presentacion/administrador/<%=usuarioActual.getFoto()%>" id="foto" class="profile-image">
         <div class="form-group">
             <label for="identificacion">Identificación:</label>
             <input type="text" name="identificacion" id="identificacion" value="<%=usuarioActual.getIdentificacion()%>" readonly>
