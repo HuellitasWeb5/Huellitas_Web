@@ -255,6 +255,38 @@
 
         documento.add(tablaFormulario);
         documento.add(new Paragraph("\n"));
+        // Añadir un título para la sección de imágenes
+        documento.add(new Paragraph("Imágenes del formulario:\n\n"));
+
+// Imagen de la vivienda
+        if (formulario.getFotoVivienda() != null) {
+            String rutaVivienda = application.getRealPath("/uploads/" + formulario.getFotoVivienda());
+            Image imagenVivienda = Image.getInstance(rutaVivienda);
+            imagenVivienda.scaleToFit(1000, 800);  // Ajusta el tamaño para que ocupe gran parte de la página
+            documento.add(new Paragraph("Foto de Vivienda:"));
+            documento.add(imagenVivienda);
+            documento.newPage(); // Mueve a una nueva página después de esta imagen
+        }
+
+// Imagen del recibo
+        if (formulario.getFotoRecibo() != null) {
+            String rutaRecibo = application.getRealPath("/uploads/" + formulario.getFotoRecibo());
+            Image imagenRecibo = Image.getInstance(rutaRecibo);
+            imagenRecibo.scaleToFit(400, 400);  // Ajusta el tamaño para que ocupe gran parte de la página
+            documento.add(new Paragraph("Foto de Recibo:"));
+            documento.add(imagenRecibo);
+            documento.newPage(); // Mueve a una nueva página después de esta imagen
+        }
+
+// Imagen de la cédula
+        if (formulario.getFotoCedula() != null) {
+            String rutaCedula = application.getRealPath("/uploads/" + formulario.getFotoCedula());
+            Image imagenCedula = Image.getInstance(rutaCedula);
+            imagenCedula.scaleToFit(400, 400);  // Ajusta el tamaño para que ocupe gran parte de la página
+            documento.add(new Paragraph("Foto de Cédula:"));
+            documento.add(imagenCedula);
+            documento.newPage(); // Mueve a una nueva página después de esta imagen
+        }
 
         documento.close();
 
