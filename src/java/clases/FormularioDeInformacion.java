@@ -178,6 +178,10 @@ public class FormularioDeInformacion {
         return codigoMascota == null ? "" : codigoMascota;
     }
 
+    public Mascota getMascota() {
+        return new Mascota(codigoMascota);
+    }
+
     public void setCodigoMascota(String codigoMascota) {
         this.codigoMascota = codigoMascota;
     }
@@ -261,7 +265,7 @@ public class FormularioDeInformacion {
     public void setHabitantes(String habitantes) {
         this.habitantes = habitantes;
     }
-    
+
     public String getHabitantesR() {
         return habitantesR == null ? "" : habitantesR;
     }
@@ -486,14 +490,14 @@ public class FormularioDeInformacion {
         this.refCelular3 = refCelular3;
     }
 
-      public String getRefNombre4() {
+    public String getRefNombre4() {
         return refNombre4 == null ? "" : refNombre4;
     }
 
     public void setRefNombre4(String refNombre4) {
         this.refNombre4 = refNombre4;
     }
-    
+
     public String getRefCedula4() {
         return refCedula4 == null ? "" : refCedula4;
     }
@@ -509,7 +513,7 @@ public class FormularioDeInformacion {
     public void setRefDireccion4(String refDireccion4) {
         this.refDireccion4 = refDireccion4;
     }
-    
+
     public String getRefCelular4() {
         return refCelular4 == null ? "" : refCelular4;
     }
@@ -517,7 +521,7 @@ public class FormularioDeInformacion {
     public void setRefCelular4(String refCelular4) {
         this.refCelular4 = refCelular4;
     }
-    
+
     public String getFotoCedula() {
         return fotoCedula == null ? "" : fotoCedula;
     }
@@ -604,62 +608,59 @@ public class FormularioDeInformacion {
     }
 
     public boolean grabarFormularioConProcedimientoAlmacenado(String formularioInfo) {
-        // Validación de la fecha para que CURDATE() sea manejado correctamente
         String fecha = (this.fecha != null && !this.fecha.isEmpty()) ? "'" + this.fecha + "'" : "CURDATE()";
 
-        // Construcción del SQL con todos los datos y la cadena de detalles de mascotas
         String cadenaSQL = "CALL insertarFormularioDeInformacion("
-                + fecha + ",'"
-                + this.identificacionAdoptante + "','"
-                + formularioInfo + "','"
-                + this.estadoCivil + "','"
-                + this.ocupacion + "','"
-                + this.motivacion + "','"
-                + this.otrasMascotas + "','"
-                + this.otrasMascotasR + "','"
-                + this.esterilizados + "','"
-                + this.esterilizadosR + "','"
-                + this.anteriorMascotas + "','"
-                + this.anteriorMascotasR + "',"
-                + this.habitantes + ",'"
-                + this.habitantesR + ",'"
-                + this.ninos + "','"
-                + this.ninosR + "','"
-                + this.alergias + "','"
-                + this.vivienda + "','"
-                + this.permiteMascotas + "','"
-                + this.cambiarDomicilio + "','"
-                + this.rupturaFamiliar + "','"
-                + this.proyeccionFutura + "','"
-                + this.espacio + "','"
-                + this.responsables + "','"
-                + this.compromiso + "','"
-                + this.autorizaVisitas + "','"
-                + this.autorizaVisitasR + "','"
-                + this.fechaVisitaDia + "','"
-                + this.fechaVisitaHora + "','"
-                + this.refNombre1 + "','"
-                + this.refCedula1 + "','"
-                + this.refDireccion1 + "','"
-                + this.refCelular1 + "','"
-                + this.refNombre2 + "','"
-                + this.refCedula2 + "','"
-                + this.refDireccion2 + "','"
-                + this.refCelular2 + "','"
-                + this.refNombre3 + "','"
-                + this.refCedula3 + "','"
-                + this.refDireccion3 + "','"
-                + this.refCelular3 + "','"
-                + this.refNombre4 + "','"
-                + this.refCedula4 + "','"
-                + this.refDireccion4 + "','"
-                + this.refCelular4 + "','"
-                + this.fotoCedula + "','"
-                + this.fotoRecibo + "','"
-                + this.fotoVivienda + "','"
-                + this.descripcion + "','"
+                + fecha + ", '"
+                + this.identificacionAdoptante + "', '"
+                + formularioInfo + "', '"
+                + this.estadoCivil + "', '"
+                + this.ocupacion + "', '"
+                + this.motivacion + "', '"
+                + this.otrasMascotas + "', '"
+                + this.otrasMascotasR + "', '"
+                + this.esterilizados + "', '"
+                + this.esterilizadosR + "', '"
+                + this.anteriorMascotas + "', '"
+                + this.anteriorMascotasR + "', "
+                + this.habitantes + ", '"
+                + this.habitantesR + "', '"
+                + this.ninos + "', '"
+                + this.ninosR + "', '"
+                + this.alergias + "', '"
+                + this.vivienda + "', '"
+                + this.permiteMascotas + "', '"
+                + this.cambiarDomicilio + "', '"
+                + this.rupturaFamiliar + "', '"
+                + this.proyeccionFutura + "', '"
+                + this.espacio + "', '"
+                + this.responsables + "', '"
+                + this.compromiso + "', '"
+                + this.autorizaVisitas + "', '"
+                + this.autorizaVisitasR + "', '"
+                + this.fechaVisitaDia + "', '"
+                + this.fechaVisitaHora + "', '"
+                + this.refNombre1 + "', '"
+                + this.refCedula1 + "', '"
+                + this.refDireccion1 + "', '"
+                + this.refCelular1 + "', '"
+                + this.refNombre2 + "', '"
+                + this.refCedula2 + "', '"
+                + this.refDireccion2 + "', '"
+                + this.refCelular2 + "', '"
+                + this.refNombre3 + "', '"
+                + this.refCedula3 + "', '"
+                + this.refDireccion3 + "', '"
+                + this.refCelular3 + "', '"
+                + this.refNombre4 + "', '"
+                + this.refCedula4 + "', '"
+                + this.refDireccion4 + "', '"
+                + this.refCelular4 + "', '"
+                + this.fotoCedula + "', '"
+                + this.fotoRecibo + "', '"
+                + this.fotoVivienda + "', '"
+                + this.descripcion + "', '"
                 + this.autorizacionDatos + "')";
-
         System.out.println("Cadena procedimiento: " + cadenaSQL);
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
@@ -729,18 +730,23 @@ public class FormularioDeInformacion {
 
     public static ResultSet getLista(String filtro, String orden) {
         if (filtro != null && !filtro.isEmpty()) {
-            filtro = " where " + filtro;
+            filtro = " WHERE " + filtro;
         } else {
             filtro = " ";
         }
         if (orden != null && !orden.isEmpty()) {
-            orden = " order by " + orden;
+            orden = " ORDER BY " + orden;
         } else {
             orden = " ";
         }
 
-        String cadenaSQL = "select codigo, fecha, identificacionAdoptante, codigoMascota, ocupacion, tiempoLibre, espacio, compromiso, ninos, habitantes, habitantesR, responsables, otrasMascotas, propietario, motivacion, descripcion, fechaVisitaDia, fechaVisitaHora, fotoRecibo, fotoVivienda, fotoCedula, autorizacionDatos, estado "
-                + "from formularioDeInformacion" + filtro + orden;
+        String cadenaSQL = "SELECT codigo, fecha, identificacionAdoptante, codigoMascota, estadoCivil, ocupacion, motivacion, otrasMascotas, otrasMascotasR, esterilizados, "
+                + "esterilizadosR, anteriorMascotas, anteriorMascotasR, habitantes, habitantesR, ninos, ninosR, alergias, vivienda, permiteMascotas, cambiarDomicilio, "
+                + "rupturaFamiliar, proyeccionFutura, espacio, responsables, compromiso, autorizaVisitas, autorizaVisitasR, fechaVisitaDia, fechaVisitaHora, "
+                + "refNombre1, refCedula1, refDireccion1, refCelular1, refNombre2, refCedula2, refDireccion2, refCelular2, refNombre3, refCedula3, "
+                + "refDireccion3, refCelular3, refNombre4, refCedula4, refDireccion4, refCelular4, fotoCedula, fotoRecibo, fotoVivienda, descripcion, "
+                + "autorizacionDatos, estado "
+                + "FROM formularioDeInformacion" + filtro + orden;
 
         return ConectorBD.consultar(cadenaSQL);
     }
@@ -815,73 +821,73 @@ public class FormularioDeInformacion {
     }
 
     public static String getListaEnArregloJS(String filtro, String orden) {
-    String lista = "[";
+        String lista = "[";
 
-    List<FormularioDeInformacion> datos = FormularioDeInformacion.getListaEnObjetos(filtro, orden);
-    for (int i = 0; i < datos.size(); i++) {
-        FormularioDeInformacion formulario = datos.get(i);
-        if (i > 0) {
-            lista += ", ";
+        List<FormularioDeInformacion> datos = FormularioDeInformacion.getListaEnObjetos(filtro, orden);
+        for (int i = 0; i < datos.size(); i++) {
+            FormularioDeInformacion formulario = datos.get(i);
+            if (i > 0) {
+                lista += ", ";
+            }
+            lista += "{"
+                    + "\"codigo\": \"" + formulario.getCodigo() + "\", "
+                    + "\"fecha\": \"" + formulario.getFecha() + "\", "
+                    + "\"identificacionAdoptante\": \"" + formulario.getIdentificacionAdoptante() + "\", "
+                    + "\"codigoMascota\": \"" + formulario.getCodigoMascota() + "\", "
+                    + "\"estadoCivil\": \"" + formulario.getEstadoCivil() + "\", "
+                    + "\"ocupacion\": \"" + formulario.getOcupacion() + "\", "
+                    + "\"motivacion\": \"" + formulario.getMotivacion() + "\", "
+                    + "\"otrasMascotas\": \"" + formulario.getOtrasMascotas() + "\", "
+                    + "\"otrasMascotasR\": \"" + formulario.getOtrasMascotasR() + "\", "
+                    + "\"esterilizados\": \"" + formulario.getEsterilizados() + "\", "
+                    + "\"esterilizadosR\": \"" + formulario.getEsterilizadosR() + "\", "
+                    + "\"anteriorMascotas\": \"" + formulario.getAnteriorMascotas() + "\", "
+                    + "\"anteriorMascotasR\": \"" + formulario.getAnteriorMascotasR() + "\", "
+                    + "\"habitantes\": " + formulario.getHabitantes() + ", "
+                    + "\"habitantesR\": " + formulario.getHabitantesR() + ", "
+                    + "\"ninos\": \"" + formulario.getNinos() + "\", "
+                    + "\"ninosR\": \"" + formulario.getNinosR() + "\", "
+                    + "\"alergias\": \"" + formulario.getAlergias() + "\", "
+                    + "\"vivienda\": \"" + formulario.getVivienda() + "\", "
+                    + "\"permiteMascotas\": \"" + formulario.getPermiteMascotas() + "\", "
+                    + "\"cambiarDomicilio\": \"" + formulario.getCambiarDomicilio() + "\", "
+                    + "\"rupturaFamiliar\": \"" + formulario.getRupturaFamiliar() + "\", "
+                    + "\"proyeccionFutura\": \"" + formulario.getProyeccionFutura() + "\", "
+                    + "\"espacio\": \"" + formulario.getEspacio() + "\", "
+                    + "\"responsables\": " + formulario.getResponsables() + ", "
+                    + "\"compromiso\": \"" + formulario.getCompromiso() + "\", "
+                    + "\"autorizaVisitas\": \"" + formulario.getAutorizaVisitas() + "\", "
+                    + "\"autorizaVisitasR\": \"" + formulario.getAutorizaVisitasR() + "\", "
+                    + "\"fechaVisitaDia\": \"" + formulario.getFechaVisitaDia() + "\", "
+                    + "\"fechaVisitaHora\": \"" + formulario.getFechaVisitaHora() + "\", "
+                    + "\"refNombre1\": \"" + formulario.getRefNombre1() + "\", "
+                    + "\"refCedula1\": \"" + formulario.getRefCedula1() + "\", "
+                    + "\"refDireccion1\": \"" + formulario.getRefDireccion1() + "\", "
+                    + "\"refCelular1\": \"" + formulario.getRefCelular1() + "\", "
+                    + "\"refNombre2\": \"" + formulario.getRefNombre2() + "\", "
+                    + "\"refCedula2\": \"" + formulario.getRefCedula2() + "\", "
+                    + "\"refDireccion2\": \"" + formulario.getRefDireccion2() + "\", "
+                    + "\"refCelular2\": \"" + formulario.getRefCelular2() + "\", "
+                    + "\"refNombre3\": \"" + formulario.getRefNombre3() + "\", "
+                    + "\"refCedula3\": \"" + formulario.getRefCedula3() + "\", "
+                    + "\"refDireccion3\": \"" + formulario.getRefDireccion3() + "\", "
+                    + "\"refCelular3\": \"" + formulario.getRefCelular3() + "\", "
+                    + "\"refNombre4\": \"" + formulario.getRefNombre4() + "\", "
+                    + "\"refCedula4\": \"" + formulario.getRefCedula4() + "\", "
+                    + "\"refDireccion4\": \"" + formulario.getRefDireccion4() + "\", "
+                    + "\"refCelular4\": \"" + formulario.getRefCelular4() + "\", "
+                    + "\"fotoCedula\": \"" + formulario.getFotoCedula() + "\", "
+                    + "\"fotoRecibo\": \"" + formulario.getFotoRecibo() + "\", "
+                    + "\"fotoVivienda\": \"" + formulario.getFotoVivienda() + "\", "
+                    + "\"descripcion\": \"" + formulario.getDescripcion() + "\", "
+                    + "\"autorizacionDatos\": \"" + formulario.getAutorizacionDatos() + "\", "
+                    + "\"estado\": \"" + formulario.getEstado() + "\""
+                    + "}";
         }
-        lista += "{"
-                + "\"codigo\": \"" + formulario.getCodigo() + "\", "
-                + "\"fecha\": \"" + formulario.getFecha() + "\", "
-                + "\"identificacionAdoptante\": \"" + formulario.getIdentificacionAdoptante() + "\", "
-                + "\"codigoMascota\": \"" + formulario.getCodigoMascota() + "\", "
-                + "\"estadoCivil\": \"" + formulario.getEstadoCivil() + "\", "
-                + "\"ocupacion\": \"" + formulario.getOcupacion() + "\", "
-                + "\"motivacion\": \"" + formulario.getMotivacion() + "\", "
-                + "\"otrasMascotas\": \"" + formulario.getOtrasMascotas() + "\", "
-                + "\"otrasMascotasR\": \"" + formulario.getOtrasMascotasR() + "\", "
-                + "\"esterilizados\": \"" + formulario.getEsterilizados() + "\", "
-                + "\"esterilizadosR\": \"" + formulario.getEsterilizadosR() + "\", "
-                + "\"anteriorMascotas\": \"" + formulario.getAnteriorMascotas() + "\", "
-                + "\"anteriorMascotasR\": \"" + formulario.getAnteriorMascotasR() + "\", "
-                + "\"habitantes\": " + formulario.getHabitantes() + ", "
-                + "\"habitantesR\": " + formulario.getHabitantesR() + ", "
-                + "\"ninos\": \"" + formulario.getNinos() + "\", "
-                + "\"ninosR\": \"" + formulario.getNinosR() + "\", "
-                + "\"alergias\": \"" + formulario.getAlergias() + "\", "
-                + "\"vivienda\": \"" + formulario.getVivienda() + "\", "
-                + "\"permiteMascotas\": \"" + formulario.getPermiteMascotas() + "\", "
-                + "\"cambiarDomicilio\": \"" + formulario.getCambiarDomicilio() + "\", "
-                + "\"rupturaFamiliar\": \"" + formulario.getRupturaFamiliar() + "\", "
-                + "\"proyeccionFutura\": \"" + formulario.getProyeccionFutura() + "\", "
-                + "\"espacio\": \"" + formulario.getEspacio() + "\", "
-                + "\"responsables\": " + formulario.getResponsables() + ", "
-                + "\"compromiso\": \"" + formulario.getCompromiso() + "\", "
-                + "\"autorizaVisitas\": \"" + formulario.getAutorizaVisitas() + "\", "
-                + "\"autorizaVisitasR\": \"" + formulario.getAutorizaVisitasR() + "\", "
-                + "\"fechaVisitaDia\": \"" + formulario.getFechaVisitaDia() + "\", "
-                + "\"fechaVisitaHora\": \"" + formulario.getFechaVisitaHora() + "\", "
-                + "\"refNombre1\": \"" + formulario.getRefNombre1() + "\", "
-                + "\"refCedula1\": \"" + formulario.getRefCedula1() + "\", "
-                + "\"refDireccion1\": \"" + formulario.getRefDireccion1() + "\", "
-                + "\"refCelular1\": \"" + formulario.getRefCelular1() + "\", "
-                + "\"refNombre2\": \"" + formulario.getRefNombre2() + "\", "
-                + "\"refCedula2\": \"" + formulario.getRefCedula2() + "\", "
-                + "\"refDireccion2\": \"" + formulario.getRefDireccion2() + "\", "
-                + "\"refCelular2\": \"" + formulario.getRefCelular2() + "\", "
-                + "\"refNombre3\": \"" + formulario.getRefNombre3() + "\", "
-                + "\"refCedula3\": \"" + formulario.getRefCedula3() + "\", "
-                + "\"refDireccion3\": \"" + formulario.getRefDireccion3() + "\", "
-                + "\"refCelular3\": \"" + formulario.getRefCelular3() + "\", "
-                + "\"refNombre4\": \"" + formulario.getRefNombre4() + "\", "
-                + "\"refCedula4\": \"" + formulario.getRefCedula4() + "\", "
-                + "\"refDireccion4\": \"" + formulario.getRefDireccion4() + "\", "
-                + "\"refCelular4\": \"" + formulario.getRefCelular4() + "\", "
-                + "\"fotoCedula\": \"" + formulario.getFotoCedula() + "\", "
-                + "\"fotoRecibo\": \"" + formulario.getFotoRecibo() + "\", "
-                + "\"fotoVivienda\": \"" + formulario.getFotoVivienda() + "\", "
-                + "\"descripcion\": \"" + formulario.getDescripcion() + "\", "
-                + "\"autorizacionDatos\": \"" + formulario.getAutorizacionDatos() + "\", "
-                + "\"estado\": \"" + formulario.getEstado() + "\""
-                + "}";
-    }
 
-    lista += "];";
-    return lista;
-}
+        lista += "];";
+        return lista;
+    }
 
     public static List<FormularioDeInformacion> listarFormularios(Connection conn) {
         List<FormularioDeInformacion> formularios = new ArrayList<>();
