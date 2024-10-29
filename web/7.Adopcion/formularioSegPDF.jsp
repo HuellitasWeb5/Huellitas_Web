@@ -1,3 +1,4 @@
+<%@page import="com.itextpdf.text.FontFactory"%>
 <%@page import="java.util.List"%>
 <%@page import="com.itextpdf.text.Element"%>
 <%@page import="com.itextpdf.text.Image"%>
@@ -31,42 +32,56 @@
         Document documento = new Document();
         PdfWriter.getInstance(documento, os);
 
-        documento.open();
+         documento.open();
 
-        // Agregar los logos (Fundación Villa Esperanza y Huellitas Web)
-        PdfPTable table = new PdfPTable(2);
-        table.setWidthPercentage(100);
+        PdfPTable headerTable = new PdfPTable(3);
+        headerTable.setWidthPercentage(100);
+        headerTable.setWidths(new float[]{1, 3, 1});
 
+        // LOGO FUNDACION 
+        
         String relativeWebPath1 = "/presentacion/imagenes/Logo-Fundacion.png";
         String absoluteDiskPath1 = application.getRealPath(relativeWebPath1);
         Image logo1 = Image.getInstance(absoluteDiskPath1);
-        logo1.scaleToFit(60, 60);
+        logo1.scaleToFit(70, 70);
+        PdfPCell cellLogo1 = new PdfPCell(logo1);
+        cellLogo1.setBorder(PdfPCell.NO_BORDER);
+        cellLogo1.setHorizontalAlignment(Element.ALIGN_LEFT);
+        headerTable.addCell(cellLogo1);
 
-        PdfPCell cell1 = new PdfPCell(logo1);
-        cell1.setBorder(PdfPCell.NO_BORDER);
-        cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
-        table.addCell(cell1);
-
+        // INFORMACION FUNDACION 
+        
+        PdfPCell cellText = new PdfPCell();
+        cellText.setBorder(PdfPCell.NO_BORDER);
+        cellText.setHorizontalAlignment(Element.ALIGN_CENTER);
+        cellText.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        Paragraph title1 = new Paragraph("FUNDACIÓN DE LA PATA CON LOS PELUDOS", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12));
+        title1.setAlignment(Element.ALIGN_CENTER); // Centrar el texto
+        Paragraph title2 = new Paragraph("ALBERGUE VILLA ESPERANZA", FontFactory.getFont(FontFactory.HELVETICA, 10));
+        title2.setAlignment(Element.ALIGN_CENTER);
+        Paragraph title3 = new Paragraph("NIT: 901128925-7", FontFactory.getFont(FontFactory.HELVETICA, 10));
+        title3.setAlignment(Element.ALIGN_CENTER);
+        Paragraph title4 = new Paragraph("FORMULARIO DE SEGUIMIENTO", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12));
+        title4.setAlignment(Element.ALIGN_CENTER);
+        cellText.addElement(title1);
+        cellText.addElement(title2);
+        cellText.addElement(title3);
+        cellText.addElement(title4);
+        headerTable.addCell(cellText);
+        
+        // LOGO HUELLITAS WEB
+        
         String relativeWebPath2 = "/presentacion/imagenes/Logo.png";
         String absoluteDiskPath2 = application.getRealPath(relativeWebPath2);
         Image logo2 = Image.getInstance(absoluteDiskPath2);
-        logo2.scaleToFit(50, 50);
+        logo2.scaleToFit(60, 60);
+        PdfPCell cellLogo2 = new PdfPCell(logo2);
+        cellLogo2.setBorder(PdfPCell.NO_BORDER);
+        cellLogo2.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        headerTable.addCell(cellLogo2);
 
-        PdfPCell cell2 = new PdfPCell(logo2);
-        cell2.setBorder(PdfPCell.NO_BORDER);
-        cell2.setHorizontalAlignment(Element.ALIGN_RIGHT);
-        table.addCell(cell2);
-
-        documento.add(table);
-
-        // Título del documento
-        Paragraph title = new Paragraph("FUNDACIÓN VILLA ESPERANZA\n");
-        title.setAlignment(Element.ALIGN_CENTER);
-        documento.add(title);
-
-        Paragraph title2 = new Paragraph("Formulario de Seguimiento\n\n");
-        title2.setAlignment(Element.ALIGN_CENTER);
-        documento.add(title2);
+        documento.add(headerTable);
+        documento.add(new Paragraph("\n"));
 
         // Información del adoptante
         documento.add(new Paragraph("Adoptante:\n\n"));
