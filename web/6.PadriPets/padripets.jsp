@@ -72,8 +72,10 @@ for (int j = 0; j < datosApadrinamiento.size(); j++) {
     listaApadrinamiento += "<p><strong>Plan:</strong> " + plan.getNombre() + "</p>";
     listaApadrinamiento += "</div>"; 
     
-    listaApadrinamiento += "<button class='btn-eliminar' onclick='eliminar(" + apadrinamiento.getCodigo() + ")'>Eliminar</button>";
-    listaApadrinamiento += "<button class='btn-otro' onclick='detalles(" + apadrinamiento.getCodigo() + ")'>Detalles</button>";
+    if (!"C".equals(tipoUsuario)) {
+        listaApadrinamiento += "<button class='btn-eliminar' onclick='eliminar(" + apadrinamiento.getCodigo() + ")'>Eliminar</button>";
+    }
+     listaApadrinamiento += "<button class='btn-otro' onclick='detalles(" + apadrinamiento.getCodigo() + ")'>Detalles</button>";
     listaApadrinamiento += "</div>"; 
     listaApadrinamiento += "</div>";  
     listaApadrinamiento += "</div>";
