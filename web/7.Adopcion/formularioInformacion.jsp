@@ -107,7 +107,7 @@
                 <label for="motivacion">¿Por qué desea adoptar al peludito?</label>
                 <input type="text" id="motivacion" name="motivacion" maxlength="100" required><br><br>
 
-                <label for="otrasMascotas">¿Actualmente tiene mascotas?</label>
+                <label for="otrasMascotas">¿Tiene alguna mascota actualmente?</label>
                 <fieldset>
                     <input type="radio" id="otrasMascotasSi" name="otrasMascotas" value="S" required>
                     <label for="otrasMascotasSi">Sí</label>
@@ -115,21 +115,21 @@
                     <label for="otrasMascotasNo">No</label>
                 </fieldset>
 
-                <label for="otrasMascotasR">¿Cúales?</label>
+                <label for="otrasMascotasR">¿Qué tipo de animalitos son?</label>
                 <input type="text" id="otrasMascotasR" name="otrasMascotasR" maxlength="100"><br><br>
 
-                <label for="esterilizados">¿Si los tiene, están esterilizados?</label>
+                <label for="esterilizados">¿Están esterilizados?</label>
                 <fieldset>
-                    <input type="radio" id="esterilizadosSi" name="esterilizados" value="S" required>
+                    <input type="radio" id="esterilizadosSi" name="esterilizados" value="S">
                     <label for="esterilizadosSi">Sí</label>
                     <input type="radio" id="esterilizadosNo" name="esterilizados" value="N">
                     <label for="esterilizadosNo">No</label>
                 </fieldset>
 
-                <label for="esterilizadosR">¿Por qué?</label>
+                <label for="esterilizadosR">¿Por qué no están esterilizadas?</label>
                 <input type="text" id="esterilizadosR" name="esterilizadosR" maxlength="100"><br><br>
 
-                <label for="anteriorMascotas">¿Anteriormente ha tenido otros animalitos?</label>
+                <label for="anteriorMascotas">¿Ha tenido otras mascotas anteriormente?</label>
                 <fieldset>
                     <input type="radio" id="anteriorMascotasSi" name="anteriorMascotas" value="S" required>
                     <label for="anteriorMascotasSi">Sí</label>
@@ -137,13 +137,13 @@
                     <label for="anteriorMascotasNo">No</label>
                 </fieldset>
 
-                <label for="anteriorMascotasR">¿Cúales?</label>
+                <label for="anteriorMascotasR">¿Qué tipo de animalitos eran?</label>
                 <input type="text" id="anteriorMascotasR" name="anteriorMascotasR" maxlength="100"><br><br>
 
                 <label for="habitantes">¿Cuántas personas conforman su hogar?</label>
                 <input type="number" id="habitantes" name="habitantes" min="1" required placeholder="Ingrese un valor numérico"><br><br>
 
-                <label for="habitantesR">¿Y están de acuerdo en adoptar?</label>
+                <label for="habitantesR">¿Están de acuerdo en adoptar?</label>
                 <fieldset>
                     <input type="radio" id="habitantesRSi" name="habitantesR" value="S">
                     <label for="habitantesRSi">Sí</label>
@@ -151,7 +151,7 @@
                     <label for="habitantesRNo">No</label>
                 </fieldset>
 
-                <label for="ninos">¿En su hogar viven niños?</label>
+                <label for="ninos">¿Hay niños en el hogar?</label>
                 <fieldset>
                     <input type="radio" id="ninosSi" name="ninos" value="S" required>
                     <label for="ninosSi">Sí</label>
@@ -160,9 +160,9 @@
                 </fieldset>
 
                 <label for="ninosR">¿Qué edad(es) tiene(n)?</label>
-                <input type="text" id="ninosR" name="ninosR" maxlength="100" placeholder="Ejemplo: Tienen 7 y 3 años"><br><br>
+                <input type="text" id="ninosR" name="ninosR" maxlength="100"><br><br>
 
-                <label for="alergias">¿Alguien de su hogar es alérgico a los animales o sufre de asma?</label>
+                <label for="alergias">¿Alguien de su hogar es alérgico a los animalitos o sufre de asma?</label>
                 <fieldset>
                     <input type="radio" id="alergiasSi" name="alergias" value="S" required>
                     <label for="alergiasSi">Sí</label>
@@ -170,7 +170,7 @@
                     <label for="alergiasNo">No</label>
                 </fieldset>
 
-                <label for="vivienda">La casa y/o apartamento donde vive actualmente es :</label>
+                <label for="vivienda">La casa y/o apartamento donde vive actualmente es:</label>
                 <fieldset>
                     <input type="radio" id="viviendaPropio" name="vivienda" value="Propio" required>
                     <label for="viviendaPropio">Propio</label>
@@ -182,7 +182,7 @@
                     <label for="viviendaFamiliar">Familiar</label>
                 </fieldset>
 
-                <label for="permiteMascotas">¿En el caso de que sea arriendo y/o antrices el propietario permite animalitos?</label>
+                <label for="permiteMascotas">¿El propietario permite animalitos?</label>
                 <fieldset>
                     <input type="radio" id="permiteMascotasSi" name="permiteMascotas" value="S">
                     <label for="permiteMascotasSi">Sí</label>
@@ -216,7 +216,7 @@
                     <label for="autorizaVisitasnNo">No</label>
                 </fieldset>
 
-                <label for="autorizaVisitasR">¿Por qué?</label>
+                <label for="autorizaVisitasR">¿Por qué motivo no desea que se realicen visitas de seguimiento?</label>
                 <input type="text" id="autorizaVisitasR" name="autorizaVisitasR" maxlength="100" required><br><br>
 
                 <label for="fechaVisitaDia">Por favor, indíquenos los días de la semana en los que estaría disponible para recibir la visita:</label>
@@ -233,7 +233,7 @@
                 <p id="error-message" style="color: red; display: none;">Debe seleccionar al menos un día de la semana</p>
                 <br>
 
-                <label for="fechaVisitaHora">Seleccione una hora estimada de visita para el día seleccionado:</label>
+                <label for="fechaVisitaHora">¿A qué hora le gustaría programar la visita para el día seleccionado?</label>
                 <input type="time" id="fechaVisitaHora" name="fechaVisitaHora" style="width: 120px; text-align: center;" required><br>
 
 
@@ -290,15 +290,15 @@
                 <input type="text" id="refCelular4" name="refCelular4" maxlength="100" required><br><br>
                 
                 <label for="fotoCedula">Por favor, cargue una foto de su cédula de ciudadanía (ambos lados):</label>
-                <br><input type="file" id="fotoCedula" name="fotoCedula" accept="image/*, application/pdf" required>
+                <br><input type="file" id="fotoCedula" name="fotoCedula"  accept="image/*" required>
                 <br>
 
                 <label for="fotoRecibo">Por favor, cargue una foto del recibo de servicios públicos de su vivienda (gas, energía o agua):</label>
-                <br><input type="file" id="fotoRecibo" name="fotoRecibo" accept="image/*, application/pdf" required>
+                <br><input type="file" id="fotoRecibo" name="fotoRecibo"  accept="image/*" required>
                 <br>
 
                 <label for="fotoVivienda">(Opcional) Por favor, cargue una foto del espacio donde vivirá la mascota (puede incluir foto de la cama, alimento o accesorios):</label>
-                <br><input type="file" id="fotoVivienda" name="fotoVivienda" accept="image/*, application/pdf">
+                <br><input type="file" id="fotoVivienda" name="fotoVivienda"  accept="image/*">
                 <br>
 
                 <label for="descripcion">Descripción adicional:</label> 
