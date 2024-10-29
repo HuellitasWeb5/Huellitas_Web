@@ -2,6 +2,20 @@
     Created on : 7 oct 2024, 15:31:05
     Author     : Angie
 */
+/* Estilo base para la línea debajo de los enlaces de navegación */
+
+
+/* Flecha del menú desplegable "Tus Ayudas" */
+.dropdown-arrow::after {
+    content: "▼";
+    font-size: 15px;
+    margin-left: 5px;
+    color: #005d03;
+    display: inline-block;
+    vertical-align: middle; /* Alinea la flecha con el texto */
+}
+
+
 body{
     font-family: 'Open Sans';
      text-align: center;
