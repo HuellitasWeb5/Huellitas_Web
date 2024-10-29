@@ -11,11 +11,13 @@
     String identificacion = request.getParameter("identificacion");
     String clave = request.getParameter("clave");
     Persona usuario = Persona.validar(identificacion, clave);
-    if (usuario!=null) {
-            HttpSession sesion = request.getSession();
-            sesion.setAttribute("usuario", usuario);
-            response.sendRedirect("principal.jsp?CONTENIDO=inicio.jsp");
-        }else {
+    if (usuario != null) {
+        HttpSession sesion = request.getSession();
+        sesion.setAttribute("usuario", usuario);
+        sesion.setAttribute("numeroUsuario", usuario.getIdentificacion()); // Almacena el número en la sesión
+        sesion.setAttribute("tipoUsuario", usuario.getTipo()); // Almacena el tipo en la sesión
+        response.sendRedirect("principal.jsp?CONTENIDO=inicio.jsp");
+    } else {
         response.sendRedirect("index-InicioSesion.jsp?error=1");
     }
 %>
