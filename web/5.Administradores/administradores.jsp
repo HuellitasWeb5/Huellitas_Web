@@ -25,7 +25,7 @@
         lista += "<img src='presentacion/administrador/" + administrador.getFoto() + "' alt='Foto de " + administrador.getNombre() + "' class='profile-image' width='30' height='auto'>";
         lista += "</div>"; // Fin de la imagen
         lista += "<div class='card-header'>"; // Cabecera de la tarjeta
-        lista += "<h3 class'nombre-administrador'>" + administrador.getNombre() + "</h3>"; // Nombre del administrador como título
+        lista += administrador.getNombre(); // Nombre del administrador como título
         lista += "<p class='rol-administrador'>" + administrador.getTipoEnObjeto() + "</p>"; // Rol del administrador como subtítulo
 
         lista += "</div>"; // Fin de la cabecera
