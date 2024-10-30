@@ -44,10 +44,10 @@
         overflow: hidden;
     }
 
-.card {
-    cursor: pointer; /* Cambia el cursor al pasar por encima */
-    transition: background-color 0.3s;
-}
+    .card {
+        cursor: pointer; /* Cambia el cursor al pasar por encima */
+        transition: background-color 0.3s;
+    }
 
     .card.selected {
         border: 4px solid #3271e7;
@@ -63,6 +63,12 @@
 </style>
 
 <%
+    String identificacionUsuario = (String) session.getAttribute("numeroUsuario");
+    String tipoUsuario = (String) session.getAttribute("tipoUsuario");
+    String privado = "";
+    if (tipoUsuario.equals("C")) {
+        privado = "readonly";
+    }
     String accion = request.getParameter("accion");
     String codigo = request.getParameter("codigo");
 
@@ -71,22 +77,22 @@
     listaPlan += "<div class='swiper-wrapper'>";
     List<PlanesApadrinamiento> datosPlanes = PlanesApadrinamiento.getListaEnObjetos(null, null);
     for (int j = 0; j < datosPlanes.size(); j++) {
-    PlanesApadrinamiento planes2 = datosPlanes.get(j);
-    listaPlan += "<div class='swiper-slide'>";
-    listaPlan += "<label class='card'>"; // Cambia aquí
-    listaPlan += "<div class='card-header'>";
-    listaPlan += "<h2>" + planes2.getNombre() + "</h2>";
-    listaPlan += "</div>";
-    listaPlan += "<div class='card-body'>";
+        PlanesApadrinamiento planes2 = datosPlanes.get(j);
+        listaPlan += "<div class='swiper-slide'>";
+        listaPlan += "<label class='card'>"; // Cambia aquí
+        listaPlan += "<div class='card-header'>";
+        listaPlan += "<h2>" + planes2.getNombre() + "</h2>";
+        listaPlan += "</div>";
+        listaPlan += "<div class='card-body'>";
 
-    listaPlan += "<p><strong>Codigo:</strong> " + planes2.getId() + "</p>";
-    listaPlan += "<p><strong>Descripción:</strong> " + planes2.getDescripcion() + "</p>";
-    listaPlan += "<input type='radio' name='opcionSeleccionada' value='" + planes2.getId() + "' style='display: none;'>"; // Mantener el input oculto
+        listaPlan += "<p><strong>Codigo:</strong> " + planes2.getId() + "</p>";
+        listaPlan += "<p><strong>Descripción:</strong> " + planes2.getDescripcion() + "</p>";
+        listaPlan += "<input type='radio' name='opcionSeleccionada' value='" + planes2.getId() + "' style='display: none;'>"; // Mantener el input oculto
 
-    listaPlan += "</div>";
-    listaPlan += "</label>"; // Cierra el label aquí
-    listaPlan += "</div>";
-}
+        listaPlan += "</div>";
+        listaPlan += "</label>"; // Cierra el label aquí
+        listaPlan += "</div>";
+    }
     listaPlan += "</div>";
 
     listaPlan += "<div class='swiper-button-prev'></div>";
@@ -109,7 +115,7 @@
                     <input type="hidden" name="mascotasPlan" id="mascotasPlan" required="">
                     <div class="form-group">
                         <label for="identificacion">Identificación</label>
-                        <input type="text" name="identificacion" id="identificacion" required>
+                        <input type="text" name="identificacion" id="identificacion" required <%= privado%> >
                     </div>
 
                     <div class="form-group">
@@ -182,6 +188,21 @@
 
 </center>
 <script>
+     var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
+    var identificacionUsuario = "<%= identificacionUsuario%>";
+    var tipoUsuario = "<%= tipoUsuario%>";
+
+    // Cargar el valor en el input si tipoUsuario es "C"
+    if (tipoUsuario === "C") {
+        document.getElementById("identificacion").value = identificacionUsuario;
+        indicePersona = buscarPersona(identificacionUsuario, 0);
+        nombres = personas[indicePersona][1];
+        direccion = personas[indicePersona][3];
+        telefono = personas[indicePersona][2];
+        document.getElementById("nombre").innerHTML = nombres;
+        document.getElementById("direccion").innerHTML = direccion;
+        document.getElementById("telefono").innerHTML = telefono;
+    }
 
     document.forms['formulario'].onsubmit = function () {
         var objeto = document.getElementById("mascotasPlan").value;
@@ -277,7 +298,7 @@
         });
     });
 
-    var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
+   
     var vectorPersonas = new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
@@ -493,16 +514,16 @@
     }
 
     function cerrarFormulario() {
-    $('#formulario').dialog('close');
+        $('#formulario').dialog('close');
 
-    document.forms['formularioMascotas'].reset();
+        document.forms['formularioMascotas'].reset();
 
-    $('#mascotas input[type="text"]').val('');
-    $('#planes input[type="checkbox"]:checked').prop('checked', false);
+        $('#mascotas input[type="text"]').val('');
+        $('#planes input[type="checkbox"]:checked').prop('checked', false);
 
-    // Deseleccionar la tarjeta
-    $('.card.selected').removeClass('selected');
-}
+        // Deseleccionar la tarjeta
+        $('.card.selected').removeClass('selected');
+    }
 
 
 </script>
