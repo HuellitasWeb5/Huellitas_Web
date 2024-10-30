@@ -8,10 +8,10 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
-</head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
+<link rel="stylesheet" href="presentacion/style-MascotasHeader.css" />
+
 
 <%
     // Recibir el parámetro "nombre" desde la URL
@@ -36,8 +36,8 @@
         boolean mostrarMascota = true;
         if ("Cliente".equals(nombreTipoPersona)) {
             // Si es un cliente, solo mostrar las mascotas disponibles y apadrinadas
-            if (!mascota.getEstado().equalsIgnoreCase("disponible") && 
-                !mascota.getEstado().equalsIgnoreCase("apadrinado")) {
+            if (!mascota.getEstado().equalsIgnoreCase("disponible")
+                    && !mascota.getEstado().equalsIgnoreCase("apadrinado")) {
                 mostrarMascota = false;
             }
         }
@@ -50,6 +50,7 @@
             lista += "</div>";
             lista += "<div class='card-header'>";
             lista += mascota.getNombre();
+            lista += "<p class='rol-administrador'>" + mascota.getEstado() + "</p>"; // Rol del administrador como subtítulo
             lista += "</div>";
             lista += "<div class='card-body'>";
             lista += "<p><strong>Código:</strong>" + mascota.getCodigo() + "</p>";
@@ -58,7 +59,6 @@
             lista += "<p><strong>Cuidado:</strong>" + mascota.getCuidadosEspeciales() + "</p>";
             lista += "<p><strong>Edad aproximada:</strong>" + mascota.getEdad() + " años</p>";
             lista += "<p><strong>Fecha de ingreso:</strong>" + mascota.getFechaIngreso() + "</p>";
-            lista += "<p><strong>Estado:</strong>" + mascota.getEstado() + "</p>";
             lista += "<p><strong>Descripción:</strong>" + mascota.getDescripcion() + "</p>";
             lista += "</div>";
 
@@ -82,7 +82,17 @@
     }
     lista += "</div>";
 %>
-<h3>LISTA DE MASCOTAS</h3>
+<header>
+    <section class="textos-header">
+        <h2>CONOCE A</h2>
+        <h1>NUESTROS PELUDOS</h1>
+    </section>
+    <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
+                                                                    style="height: 100%; width: 100%;" >
+        <path d="M0.28,50.83 C138.54,164.31 349.20,-49.98 500.00,49.98 L500.00,150.00 L-1.97,153.47 Z"
+              style="stroke: none; fill: rgb(255, 255, 255);"></path>
+        </svg></div>
+</header>
 <div class="header-container">
     <!-- Buscar por nombre -->
     <form id="searchForm">
@@ -93,10 +103,12 @@
         <ul id="nameList"></ul> <!-- Lista de nombres -->
     </form>
     <div class="btn-container">
-            <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar">
-                <button id="Adicionar" class="btn-adicionar">Adicionar</button>
-            </a>
-        </div>
+        <% if (!"Cliente".equals(nombreTipoPersona)) { %>
+        <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar">
+            <button id="Adicionar" class="btn-adicionar">Adicionar</button>
+        </a>
+        <% }%>
+    </div>
 </div>
 
 

@@ -19,7 +19,7 @@
         for (int i = 0; i < datos.size(); i++) {
             String[] registro = datos.get(i);
             lista.append("<tr>");
-            lista.append("<td><a href='principal.jsp?CONTENIDO=indicadores/mascotasMes.jsp?anio=")
+            lista.append("<td><a href='principal.jsp?CONTENIDO=indicadores/mascotasXMes.jsp?anio=")
                     .append(registro[0].substring(0, 4))
                     .append("'>").append(registro[0]).append("</a></td>");
             lista.append("<td>").append(registro[1]).append("</td>");

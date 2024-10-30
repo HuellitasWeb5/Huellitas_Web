@@ -11,7 +11,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-image: url('../IMAGENES/FondoPrincipal.jpg');
+    background-image: url('presentacion/imagenes/fondoVillaEsperanza.jpg');
     background-size: cover;
     background-position: center;
 }
@@ -31,15 +31,20 @@ body {
     overflow: hidden;
     backdrop-filter: blur(15px); 
 }
-/* Video de fondo ajustable */
-video {
+
+.fondo-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: -1; 
+}
+
+.fondo-container img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    z-index: -1;
 }
 
 /* Título */
@@ -145,7 +150,7 @@ input[type="submit"]:hover {
 
 /* Links */
 .recordar a, .registro a {
-    color: #1c7430;
+    color: #0e5b20;
     text-decoration: none;
     font-weight: bold;
     margin: 15px ;
@@ -157,36 +162,6 @@ input[type="submit"]:hover {
     text-decoration: underline;
 }
 
-/* Media Queries para pantallas pequeñas */
-@media only screen and (max-width: 600px) {
-    h3 {
-        font-size: 1.5rem;
-    }
-    .container {
-        padding: 15px;
-    }
-    input[type="submit"] {
-        padding: 8px;
-    }
-}
-
-/* Media Queries para tablets */
-@media only screen and (max-width: 768px) {
-    .container {
-        width: 95%; /* Ancho mayor en tablets */
-        max-width: 600px;
-    }
-}
-
-/* Media Queries para pantallas más grandes */
-@media only screen and (min-width: 1200px) {
-    .container {
-        max-width: 600px; /* Limita el ancho máximo en pantallas grandes */
-    }
-    h3 {
-        font-size: 2rem; /* Aumenta el tamaño del título */
-    }
-}
 .logo-container {
     display: flex;
     justify-content: space-between; /* Alinea los logos uno a la izquierda y otro a la derecha */
