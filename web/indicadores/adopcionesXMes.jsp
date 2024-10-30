@@ -4,11 +4,10 @@
     Author     : URB
 --%>
 <%@page import="java.util.List"%>
-<%@page import="clases.FormularioDeInformacion"%>
+<%@page import="clases.Adopcion"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <head>
-    
     <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
 </head>
 
@@ -19,8 +18,8 @@
         anio = "2024"; // Valor predeterminado si no se proporciona el año
     }
 
-    // Obtén los datos de los formularios de adopción por mes para el año especificado
-    List<String[]> datos = FormularioDeInformacion.getAdopcionesPorMes(anio);
+    // Obtén los datos de las adopciones por mes para el año especificado
+    List<String[]> datos = Adopcion.getAdopcionesPorMes(anio);
     StringBuilder lista = new StringBuilder();
     StringBuilder datosGraficos = new StringBuilder("[");
 
@@ -28,7 +27,7 @@
         String[] registro = datos.get(i);
         lista.append("<tr>");
         lista.append("<td>").append(registro[0]).append("</td>"); // Mes y año
-        lista.append("<td>").append(registro[1]).append("</td>"); // Cantidad de formularios
+        lista.append("<td>").append(registro[1]).append("</td>"); // Cantidad de adopciones
         lista.append("</tr>");
 
         if (i > 0) datosGraficos.append(", ");
@@ -40,13 +39,13 @@
     datosGraficos.append("]");
 %>
 
-<h3>Indicador de Formularios de Adopción <%= anio %></h3>
+<h3>Indicador de Adopciones <%= anio %></h3>
 
 <table border="0">
     <tr>
         <td>
             <table border="1">
-                <tr><th>Mes de Solicitud</th><th>Cantidad de Formularios</th></tr>
+                <tr><th>Mes de Adopción</th><th>Cantidad de Adopciones</th></tr>
                 <%= lista.toString() %>
             </table>
         </td>
@@ -103,7 +102,7 @@
         }));
 
         var series = chart.series.push(am5xy.ColumnSeries.new(root, {
-            name: "Formularios",
+            name: "Adopciones",
             xAxis: xAxis,
             yAxis: yAxis,
             valueYField: "value",
@@ -134,4 +133,3 @@
         chart.appear(1000, 100);
     }); // end am5.ready()
 </script>
-
