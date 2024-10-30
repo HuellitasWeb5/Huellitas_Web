@@ -116,6 +116,9 @@ h3 {
 /* Estilo del hover de la tarjeta */
 .card:hover {
     transform: translateY(-3px); /* Mueve la tarjeta hacia arriba */
+    backdrop-filter: blur(10px);
+    border: 4px solid #049b7d; /* Borde ligeramente más oscuro */
+    background-color: rgba(153, 204, 193, 0.8); /* Fondo ligeramente más oscuro */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
 }
 
@@ -551,13 +554,12 @@ input[type="radio"], input[type="checkbox"] {
     
 .rol-administrador {
     font-size: 20px; /* Tamaño de fuente para el subtítulo */
-    color: white; /* Color de texto blanco */
-    
+    color: #e8e8e8; /* Color de texto blanco */
     padding: 10px; /* Espaciado interno */
     border-radius: 30px; /* Bordes redondeados */
     margin: 10px auto; /* Margen superior e inferior, centrado horizontalmente */
     text-align: center; /* Centra el texto */
-    background: linear-gradient(to right, #4CAF50, #2196F3); /* Gradiente de verde apagado a azul apagado */
+    background: linear-gradient(to right, #81c6b5, #92a8d1); /* Gradiente pastel ligeramente más oscuro de verde a azul */
     max-width: 300px; /* Ancho máximo del subtítulo */
     width: 80%; /* Ancho del subtítulo (opcional) */
 }
