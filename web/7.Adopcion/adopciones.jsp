@@ -118,7 +118,6 @@
 
 %>
 
-
 <h3>ADOPCIONES</h3>
 
 <div class="header-container">
