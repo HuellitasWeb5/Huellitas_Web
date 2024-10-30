@@ -7,56 +7,53 @@
 }
 
 .title {
-    font-size: 2.5rem;
-    text-align: center;
-    font-weight: bold;
-    color: #1c7430;
-    background: linear-gradient(90deg, #1c7430, #48b339);
     background-clip: text;
-    -webkit-background-clip: text;
-    color: transparent;
     padding: 10px;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    animation: fadeIn 1.5s ease-in-out;
 }
 
-
 body {
+    background-image: url('../presentacion/imagenes/fondoVillaEsperanza.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-image: url('../imagenes/FondoPrincipal.jpg');
-    background-size: cover;
-    background-position: center;
+    min-height: 100vh; /* Asegura que el cuerpo ocupe toda la altura de la pantalla */
+    margin: 0;
 }
 
 .container {
-    width: 90%; /* Ancho dinámico para pantallas pequeñas */
-    max-width: 500px; /* Máximo ancho para pantallas grandes */
+    width: 90%;
+    max-width: 500px;
     background-color: rgba(255, 255, 255, 0.3); /* Fondo semi-transparente */
     border: 4px solid #2e302f;
     border-radius: 40px;
-    font-weight: bold;
     padding: 20px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     display: flex;
     flex-direction: column;
     align-items: center;
     overflow: hidden;
-    backdrop-filter: blur(15px); 
+    backdrop-filter: blur(15px); /* Difumina ligeramente el fondo detrás */
+    margin: 50px auto; /* Centra el contenedor en la pantalla */
 }
 
-/* Video de fondo ajustable */
-video {
+.fondo-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
     z-index: -1;
+}
+
+.fondo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 /* Título */
@@ -67,10 +64,16 @@ h3 {
 }
 
 /* Mensaje de error */
-p#error {
-    color: red;
+.mensaje-error {
+    color: #da312c; 
+    background-color: #f2dede; 
+    border: 1px solid #ebccd1; 
+    padding: 10px;
+    border-radius: 5px;
     text-align: center;
-    margin-bottom: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 /* Formulario */
@@ -92,6 +95,8 @@ form {
     color: black;
     text-align: center;
     width: 100%;
+    font-size: 1.2rem; 
+    font-weight: bold; 
 }
 
 /* Input con icono */
@@ -124,15 +129,15 @@ form {
 }
 
 .icon-input input:focus {
-    border-color: #1c7430; 
-    outline: none; 
+    border-color: #1c7430;
+    outline: none;
     box-shadow: 0 0 5px rgba(17, 153, 142, 0.5);
     background-color: rgba(240, 240, 240, 0.5);
 }
 
 /* Botón de enviar */
 input[type="submit"] {
-    width: 40%;
+    width: 50%;
     padding: 13px;
     background-color: #1c7430;
     color: white;
@@ -174,35 +179,16 @@ input[type="submit"]:hover {
     text-decoration: underline;
 }
 
-/* Media Queries para pantallas pequeñas */
-@media only screen and (max-width: 600px) {
-    h3 {
-        font-size: 1.5rem;
-    }
-    .container {
-        padding: 15px;
-    }
-    input[type="submit"] {
-        padding: 8px;
-    }
+.volver a {
+    color: #134708;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-decoration: none;
 }
 
-/* Media Queries para tablets */
-@media only screen and (max-width: 768px) {
-    .container {
-        width: 95%; /* Ancho mayor en tablets */
-        max-width: 600px;
-    }
-}
-
-/* Media Queries para pantallas más grandes */
-@media only screen and (min-width: 1200px) {
-    .container {
-        max-width: 600px; /* Limita el ancho máximo en pantallas grandes */
-    }
-    h3 {
-        font-size: 2rem; /* Aumenta el tamaño del título */
-    }
+.volver a:hover {
+    color: black;
+    text-decoration: underline;
 }
 
 .logo-container {
@@ -220,14 +206,14 @@ input[type="submit"]:hover {
 .logo-left {
     margin-left: 25px;
     margin-top: 30px;
-    width: 125px; 
+    width: 125px;
     height: auto;
 }
 
 .logo-right {
-    margin-right: 30px; 
+    margin-right: 30px;
     margin-top: 30px;
-    width: 100px; 
+    width: 100px;
     height: auto;
 }
 /* Estilo del subtítulo en color negro */

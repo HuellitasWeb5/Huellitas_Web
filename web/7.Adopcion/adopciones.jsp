@@ -55,8 +55,8 @@
         listaAdopciones += "<div class='card-header'>Código de adopción: " + adopcion.getCodigo() + "</div>";
 
         listaAdopciones += "<div class='card-body-Adop'>";
-        listaAdopciones += "<p><strong>Fecha de adopción:</strong> " + adopcion.getFechaAdopcion() + "</p>";
-        listaAdopciones += "<p><strong>Estado:</strong> " + adopcion.getEstado() + "</p>";
+        listaAdopciones += "<p><strong>FECHA DE ADOPCIÓN:</strong> " + adopcion.getFechaAdopcion() + "</p>";
+        listaAdopciones += "<p><strong>ESTADO:</strong> " + adopcion.getEstado() + "</p>";
 
         // Sección de adoptante
         listaAdopciones += "<div class='adoptante-section' style='display: flex; align-items: center; margin-bottom: 10px;'>";
@@ -64,9 +64,9 @@
         listaAdopciones += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' class='imagen-Adop'/>";
         listaAdopciones += "</div>";
         listaAdopciones += "<div class='info-container'>";
-        listaAdopciones += "<p><strong>Nombre adoptante: </strong>" + persona.getNombre() + "</p>";
-        listaAdopciones += "<p><strong>Identificación:</strong> " + formulario.getIdentificacionAdoptante() + "</p>";
-        listaAdopciones += "<p><strong>Contacto:</strong> " + persona.getTelefono() + "</p>";
+        listaAdopciones += "<p><strong>NOMBRE: </strong>" + persona.getNombre() + "</p>";
+        listaAdopciones += "<p><strong>IDENTIFICACIÓN:</strong> " + formulario.getIdentificacionAdoptante() + "</p>";
+        listaAdopciones += "<p><strong>CONTACTO:</strong> " + persona.getTelefono() + "</p>";
         listaAdopciones += "</div>";
         listaAdopciones += "</div>";
 
@@ -76,9 +76,10 @@
         listaAdopciones += "<img src='presentacion/mascota/" + mascota.getFoto() + "' alt='Foto de " + mascota.getNombre() + "' class='imagen-Adop'/>";
         listaAdopciones += "</div>";
         listaAdopciones += "<div class='info-container'>";
-        listaAdopciones += "<p><strong>Nombre mascota:</strong> " + formulario.getMascota() + "</p>";
-        listaAdopciones += "<p><strong>Edad:</strong> " + mascota.getEdad() + " años</p>";
-        listaAdopciones += "<p><strong>Cuidados Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
+        listaAdopciones += "<p><strong>NOMBRE:</strong> " + mascota.getNombre() + "</p>";
+        listaAdopciones += "<p><strong>IDENTIFICACIÓN:</strong> " + mascota.getCodigo() + "</p>";
+        listaAdopciones += "<p><strong>EDAD:</strong> " + mascota.getEdad() + " años</p>";
+        listaAdopciones += "<p><strong>CUIDADOS ESPECIALES:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
         listaAdopciones += "</div>";
         listaAdopciones += "</div>";
 
@@ -91,20 +92,15 @@
         listaAdopciones += "<input type='hidden' id='codigoFormulario' name='codigoFormulario' value='" + adopcion.getCodigo() + "'>";
         listaAdopciones += "<input type='submit' value='Guardar' class='btn-adicionar'>";
         listaAdopciones += "</form>";
-        System.out.println("mensaje para ver la foto; "+ adopcion.getActaAdopcion() );
-        
-        // Verificar si hay acta para mostrar el enlace
         if (!adopcion.getActaAdopcion().equals("null")) {
             String rutaArchivo = "uploads/" + adopcion.getActaAdopcion();
             listaAdopciones += "<a href='" + rutaArchivo + "' target='_blank' class='btn-otro'>Ver contrato de adopción</a>";
         }
 
-// Si no existe archivo, no se agrega ningún enlace y el botón no aparecerá
-
         listaAdopciones += "<form action='7.Adopcion/formularioInfoPDF.jsp' method='post' target='_blank'>";
         listaAdopciones += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
         listaAdopciones += "<input type='submit' value='Ver formulario de pre-adopción' class='btn-adicionar'>";
-        listaAdopciones += "</form>";   
+        listaAdopciones += "</form>";
 
         listaAdopciones += "<form action='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp' method='post'>";
         listaAdopciones += "<input type='hidden' name='codigoAdopcion' value='" + adopcion.getCodigo() + "'>";
@@ -120,7 +116,6 @@
     listaAdopciones += "</div>";
 
 %>
-
 
 <h3>ADOPCIONES</h3>
 

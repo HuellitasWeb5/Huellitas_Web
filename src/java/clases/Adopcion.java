@@ -113,8 +113,7 @@ public class Adopcion {
     }
 
     public boolean grabar() {
-        String cadenaSQL = "insert into adopcion (identificacionAdoptante, codigoMascota, fechaAdopcion, actaAdopcion, estado) values ('" + identificacionAdoptante + "','" + codigoMascota + "',curdate(),'" + actaAdopcion + "', 'vigente')";
-
+        String cadenaSQL = "insert into adopcion (identificacionAdoptante, codigoMascota, fechaAdopcion, actaAdopcion, estado) values ('" + identificacionAdoptante + "','" + codigoMascota + "',curdate(),'" + actaAdopcion + "', 'Vigente')";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 

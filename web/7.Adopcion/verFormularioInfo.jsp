@@ -10,7 +10,7 @@
 </head>
 
 <%
-    String listaAdopciones = "";
+    String listaAdopciones = ""; 
     String estado = request.getParameter("estado");
     List<FormularioDeInformacion> formularios = FormularioDeInformacion.getListaEnObjetos("estado<>'Aceptado'", null);
     listaAdopciones += "<div class='swiper-wrapper'>";

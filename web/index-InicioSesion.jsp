@@ -29,10 +29,12 @@
         <title>Huellitas Web</title>
     </head>
     <body>
-        <video autoplay muted loop>
-            <source src="presentacion/imagenes/inicioSesion.mp4" type="video/mp4">
-            Tu navegador no soporta el elemento de video.
-        </video>
+        <!--  <video autoplay muted loop>
+             <source src="presentacion/videos/inicioSesion.mp4" type="video/mp4">
+         </video>-->
+        <div class="fondo-container">
+            <img src="presentacion/imagenes/fondoVillaEsperanza.jpg" class="fondoVE">
+        </div>
         <div class="logo-container">
             <img src="presentacion/imagenes/Logo-Fundacion.png" alt="Logo Izquierdo" class="logo logo-left">
             <img src="presentacion/imagenes/Logo.png" alt="Logo Derecho" class="logo logo-right">
@@ -62,7 +64,7 @@
                 <a href="10.RecuperarContraseña/recuperarContrase.jsp">¿Olvidó su contraseña?</a>
             </div>
             <div class="registro">
-                ¿Aún no tienes una cuenta? <a href="registrarseFormulario.jsp">Registrarse</a>
+                ¿Aún no tienes una cuenta? <a href="registrarseFormulario.jsp">Registrarse aquí</a>
             </div>
         </div> <!-- Cierre del contenedor -->
     </body>

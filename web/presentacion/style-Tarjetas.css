@@ -553,15 +553,15 @@ input[type="radio"], input[type="checkbox"] {
     }
     
 .rol-administrador {
-    font-size: 20px; /* Tamaño de fuente para el subtítulo */
-    color: #e8e8e8; /* Color de texto blanco */
-    padding: 10px; /* Espaciado interno */
-    border-radius: 30px; /* Bordes redondeados */
-    margin: 10px auto; /* Margen superior e inferior, centrado horizontalmente */
-    text-align: center; /* Centra el texto */
-    background: linear-gradient(to right, #81c6b5, #92a8d1); /* Gradiente pastel ligeramente más oscuro de verde a azul */
-    max-width: 300px; /* Ancho máximo del subtítulo */
-    width: 80%; /* Ancho del subtítulo (opcional) */
+    font-size: 20px; 
+    color: white; 
+    padding: 10px; 
+    border-radius: 30px; 
+    margin: 10px auto; 
+    text-align: center; 
+    background: linear-gradient(to right, #72c2ae, #859fcf); 
+    max-width: 300px; 
+    width: 80%; 
 }
 
 h3 {
