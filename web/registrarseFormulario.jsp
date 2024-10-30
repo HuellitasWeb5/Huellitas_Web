@@ -16,19 +16,17 @@
     Persona clientes = new Persona();
 %>
 <body>
-    <video autoplay muted loop>
-        <source src="presentacion/imagenes/inicioSesion.mp4" type="video/mp4">
-        Tu navegador no soporta el elemento de video.
-    </video>
     <div class="logo-container">
         <img src="presentacion/imagenes/Logo-Fundacion.png" alt="Logo Izquierdo" class="logo logo-left">
         <img src="presentacion/imagenes/Logo.png" alt="Logo Derecho" class="logo logo-right">
     </div>
-    <h3>REGÍSTRATE</h3>
+    <div class="fondo-container">
+        <img src="presentacion/imagenes/fondoVillaEsperanza.jpg" class="fondoVE">
+    </div>
     <div class="card-carousel">
         <div class="container">
             <div class="card-header">
-                <h2>DATOS SAN PATITAS</h2>
+                <h2>Registra Tus Datos Personales</h2>
             </div>
             <div class="card-body">
                 <img src="presentacion/clientes/<%=clientes.getFoto()%>" id="foto" class="profile-image">

@@ -3,6 +3,14 @@
     Author     : Angie
 */
 
+body {
+    background-image: url('presentacion/imagenes/fondoVillaEsperanza.jpg'); 
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed;
+}
+
 .container {
     width: 90%; /* Ancho dinámico para pantallas pequeñas */
     max-width: 500px; /* Máximo ancho para pantallas grandes */
@@ -20,54 +28,29 @@
     margin: 0 auto; /* Centro horizontalmente */
 }
 
-video {
+.fondo-container {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    z-index: -1; 
+}
+
+.fondo-container img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    z-index: -1;
 }
 
-/* Media Queries para pantallas pequeñas */
-@media only screen and (max-width: 600px) {
-    h3 {
-        font-size: 1.5rem;
-    }
-    .container {
-        padding: 15px;
-    }
-    input[type="submit"] {
-        padding: 8px;
-    }
-}
-
-/* Media Queries para tablets */
-@media only screen and (max-width: 768px) {
-    .container {
-        width: 95%; /* Ancho mayor en tablets */
-        max-width: 600px;
-    }
-}
-
-/* Media Queries para pantallas más grandes */
-@media only screen and (min-width: 1200px) {
-    .container {
-        max-width: 600px; /* Limita el ancho máximo en pantallas grandes */
-    }
-    h3 {
-        font-size: 2rem; /* Aumenta el tamaño del título */
-    }
-}
 .logo-container {
     display: flex;
-    justify-content: space-between; /* Alinea los logos uno a la izquierda y otro a la derecha */
-    align-items: center; /* Centra verticalmente los logos */
-    width: 100%; /* Hace que ocupe todo el ancho del contenedor */
-    padding: 10px; /* Añade espacio alrededor de los logos */
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%; 
+    padding: 10px; 
     position: absolute;
-    top: 0; /* Posiciona los logos en la parte superior de la página */
+    top: 0; 
     left: 0;
     right: 0;
 }

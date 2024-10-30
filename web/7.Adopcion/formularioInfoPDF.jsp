@@ -14,7 +14,6 @@
 <%@page import="clases.FormularioDeInformacion"%>
 <%@page contentType="application/pdf" pageEncoding="UTF-8"%>
 
-
 <%!
     public PdfPCell createTitleCell(String text) {
         PdfPCell cell = new PdfPCell(new Phrase(text, FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
@@ -115,6 +114,8 @@
         estado.add(new Phrase(formulario.getEstado(), FontFactory.getFont(FontFactory.HELVETICA, 12)));  // Contenido en texto normal
         documento.add(estado);
         documento.add(new Paragraph("\n"));
+        
+        // Información del adoptante
 
         documento.add(new Paragraph("Adoptante:\n\n"));
 

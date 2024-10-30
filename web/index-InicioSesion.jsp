@@ -30,8 +30,7 @@
     </head>
     <body>
         <video autoplay muted loop>
-            <source src="presentacion/imagenes/inicioSesion.mp4" type="video/mp4">
-            Tu navegador no soporta el elemento de video.
+            <source src="presentacion/videos/inicioSesion.mp4" type="video/mp4">
         </video>
         <div class="logo-container">
             <img src="presentacion/imagenes/Logo-Fundacion.png" alt="Logo Izquierdo" class="logo logo-left">
