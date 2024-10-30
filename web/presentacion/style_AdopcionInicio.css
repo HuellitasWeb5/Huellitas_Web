@@ -1,0 +1,87 @@
+/* Estilos para el header */
+header {
+    width: 100%;
+    height: 100vh; /* Ajusta la altura del header */
+    position: relative;
+    display: flex;
+    justify-content: center; /* Centra el contenido horizontalmente */
+    align-items: center; /* Centra el contenido verticalmente */
+    overflow: hidden; /* Evita que el contenido salga del header */
+}
+
+.contenedor-imagen {
+    position: absolute; /* Cambiado a absolute para que no afecte el layout */
+    top: 0; /* Asegura que esté en la parte superior */
+    left: 50%; /* Coloca la imagen en el centro */
+    transform: translateX(-50%); /* Ajusta la imagen para que esté centrada */
+    width: 95%; /* Ocupa el 90% del ancho */
+    height: 100%; /* Ocupa el 90% de la altura */
+}
+
+.contenedor-imagen img {
+    width: 100%; /* Mantiene el 100% del ancho del contenedor */
+    height: 100%; /* Mantiene el 100% de la altura del contenedor */
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+    filter: brightness(70%); 
+}
+/* Estilos para el texto y el cuadro */
+.texto-superpuesto {
+    position: absolute; /* Para permitir posicionamiento absoluto */
+    top: 50%; /* Posicionar verticalmente en el centro */
+    left: 50%; /* Posicionar horizontalmente en el centro */
+    transform: translate(-50%, -50%) scale(0.8); /* Centrar y hacer más pequeño inicialmente */
+    z-index: 1; /* Asegura que el texto esté por encima de la imagen */
+    transition: transform 0.8s ease, opacity 0.8s ease; /* Transición suave */
+    opacity: 0; /* Comienza como invisible */
+}
+
+.texto-superpuesto.visible {
+    transform: translate(-50%, -50%) scale(1); /* Mueve el texto a su posición y tamaño original */
+    opacity: 1; /* Hace visible el texto */
+}
+
+.texto-superpuesto h1 {
+    font-size: 38px; /* Aumentar tamaño de la letra */
+    color: #fff;
+}
+
+/* Ajustes en el cuadro de contenido */
+.preguntas {
+    background-color: rgba(0, 0, 0, 0.5); /* Más transparente */
+    padding: 30px; /* Aumentar el padding para hacer el cuadro más grande */
+    border-radius: 20px;
+    width: 80%; /* Ajustar el ancho para que sea más grande */
+    color: #fff;
+    text-align: center;
+    margin: 0 auto; /* Centrar el cuadro */
+    transition: transform 0.5s ease; /* Transición suave al mover el cuadro */
+}
+
+/* Aumentar el tamaño de las letras dentro del cuadro */
+.preguntas h4 {
+    font-size: 36px; /* Aumentar tamaño de la letra del encabezado */
+    color: #bada55;
+    font-weight: 700;
+}
+
+.preguntas p {
+    font-size: 24px; /* Aumentar tamaño de la letra de los párrafos */
+}
+
+/* Estilo del botón */
+.preguntas button {
+    background-color: #005d03;
+    color: #fff;
+    padding: 15px 30px; /* Aumentar padding para hacer el botón más grande */
+    border: none;
+    border-radius: 15px;
+    font-weight: bold;
+    font-size: 15px; /* Aumentar tamaño de la letra del botón */
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background-color 0.3s ease; /* Transición suave para el botón */
+}
+
+.preguntas button:hover {
+    background-color: #1dba35; /* Cambiar color de fondo al pasar el mouse */
+}
