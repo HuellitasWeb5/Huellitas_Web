@@ -63,6 +63,8 @@
 </style>
 
 <%
+    String identificacionUsuario=(String) session.getAttribute("numeroUsuario");
+    String tipoUsuario = (String) session.getAttribute("tipoUsuario");
     String accion = request.getParameter("accion");
     String codigo = request.getParameter("codigo");
 
