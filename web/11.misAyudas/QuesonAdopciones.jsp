@@ -22,7 +22,7 @@
         <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar"btn-adicionar">
            <button>PRE-FORMULARIO DE ADOPCION</button>
         </a>
-        <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" class="btn-adicionar">
+        <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=Cliente" class="btn-adicionar">
             <button>CONOCE A NUESTROS PELUDITOS</button>
         </a>
     </div>
