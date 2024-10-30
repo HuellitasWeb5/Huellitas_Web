@@ -100,9 +100,11 @@ listaApadrinamiento += "</div>";
 
     <!-- Botón de adicionar -->
     <div class="btn-container">
-        <a href="principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp&accion=Adicionar" >
+        <% if (!"C".equals(tipoUsuario)) { %>
+        <a href="principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp&accion=Adicionar">
             <button class="btn-adicionar">Adicionar</button>
         </a>
+    <% } %>
     </div>
 </div>
 

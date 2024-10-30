@@ -8,10 +8,10 @@
 <%@page import="java.util.List"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
-</head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
+<link rel="stylesheet" href="presentacion/style-MascotasHeader.css" />
+
 
 <%
     // Recibir el parámetro "nombre" desde la URL
@@ -82,7 +82,24 @@
     }
     lista += "</div>";
 %>
-<h3>LISTA DE MASCOTAS</h3>
+
+<% if ("Cliente".equals(nombreTipoPersona)) {  %>
+<header>
+    <section class="textos-header">
+        <h2>CONOCE A</h2>
+        <h1>NUESTROS PELUDOS</h1>
+    </section>
+    <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
+                                                                    style="height: 100%; width: 100%;" >
+        <path d="M0.28,50.83 C138.54,164.31 349.20,-49.98 500.00,49.98 L500.00,150.00 L-1.97,153.47 Z"
+              style="stroke: none; fill: rgb(255, 255, 255);"></path>
+        </svg></div>
+</header>
+<% }%>
+
+<% if (!"Cliente".equals(nombreTipoPersona)) {%>
+<h1>LISTA DE MASCOTAS</h1>
+<% }%>
 <div class="header-container">
     <!-- Buscar por nombre -->
     <form id="searchForm">
