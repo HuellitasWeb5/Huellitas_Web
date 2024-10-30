@@ -29,12 +29,12 @@
         <title>Huellitas Web</title>
     </head>
     <body>
-        <video autoplay muted loop>
-             <source src="presentacion/videos/inicioSesion.mp4" type="video/mp4">
-         </video> 
         <div class="logo-container">
             <img src="presentacion/imagenes/Logo-Fundacion.png" alt="Logo Izquierdo" class="logo logo-left">
             <img src="presentacion/imagenes/Logo.png" alt="Logo Derecho" class="logo logo-right">
+        </div>
+        <div class="fondo-container">
+            <img src="presentacion/imagenes/fondoVillaEsperanza.jpg" class="fondoVE">
         </div>
         <div class="container"> 
             <h3>HUELLITAS WEB</h3>
