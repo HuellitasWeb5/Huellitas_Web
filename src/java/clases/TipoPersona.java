@@ -210,7 +210,7 @@ public class TipoPersona {
                 menu += "<img src='presentacion/imagenes/padrinos.png' alt='Icono Padripet' width='20' height='20' class='me-2'> Padripet</a></li>";
 
 // Opción "Adopciones" con icono
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/formularioInformacion.jsp&accion=Adicionar' style='padding: 8px 20px; font-size: 1.2rem; color: black; font-weight: bold;'>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=11.misAyudas/QuesonAdopciones.jsp&accion=Adicionar' style='padding: 8px 20px; font-size: 1.2rem; color: black; font-weight: bold;'>";
                 menu += "<img src='presentacion/imagenes/adop.png' alt='Icono Adopciones' width='20' height='20' class='me-2'> Adopciones</a></li>";
 
 // Opción "Donaciones" con icono y estilo
