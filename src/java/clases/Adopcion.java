@@ -172,4 +172,66 @@ public class Adopcion {
         return lista;
     }
 
+    public static List<String[]> getAdopcionesPorFechaSolicitud() {
+    List<String[]> lista = new ArrayList<>();
+    String cadenaSQL = "SELECT YEAR(fechaAdopcion) AS anio, COUNT(*) AS cantidad "
+            + "FROM adopcion GROUP BY YEAR(fechaAdopcion);";
+
+    ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+
+    try {
+        while (resultado.next()) {
+            String[] registro = new String[2];
+            registro[0] = resultado.getString("anio");
+            registro[1] = resultado.getString("cantidad");
+            lista.add(registro);
+        }
+    } catch (SQLException ex) {
+        System.out.println("Error en getAdopcionesPorFechaSolicitud. \nCadenaSQL: " + cadenaSQL + "\nError: " + ex.getMessage());
+    } finally {
+        try {
+            if (resultado != null && !resultado.isClosed()) {
+                resultado.close();
+            }
+        } catch (SQLException ex) {
+            System.out.println("Error al cerrar el ResultSet en getAdopcionesPorFechaSolicitud. \nError: " + ex.getMessage());
+        }
+    }
+    return lista;
+}
+
+public static List<String[]> getAdopcionesPorMes(String anio) {
+    List<String[]> lista = new ArrayList<>();
+    String cadenaSQL = "SELECT DATE_FORMAT(fechaAdopcion, '%Y-%m') AS mes, COUNT(*) AS cantidad "
+            + "FROM adopcion "
+            + "WHERE YEAR(fechaAdopcion) = " + anio + " "
+            + "GROUP BY DATE_FORMAT(fechaAdopcion, '%Y-%m') "
+            + "ORDER BY mes "
+            + "LIMIT 0, 200;";
+
+    ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+
+    try {
+        while (resultado != null && resultado.next()) {
+            String[] registro = new String[2];
+            registro[0] = resultado.getString("mes");
+            registro[1] = resultado.getString("cantidad");
+            lista.add(registro);
+        }
+    } catch (SQLException ex) {
+        System.err.println("Error en getAdopcionesPorMes.");
+        System.err.println("Consulta SQL: " + cadenaSQL);
+        System.err.println("Error: " + ex.getMessage());
+    } finally {
+        try {
+            if (resultado != null) {
+                resultado.close();
+            }
+        } catch (SQLException ex) {
+            System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
+        }
+    }
+    return lista;
+}
+
 }

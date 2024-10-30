@@ -4,6 +4,7 @@
 */
 
 body {
+    overflow-x: hidden;
     background-image: url('presentacion/imagenes/fondoVillaEsperanza.jpg'); 
     background-size: cover; 
     background-position: center; 
@@ -69,3 +70,39 @@ body {
     width: 100px; 
     height: auto;
 }
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px; 
+    margin-top: 20px;
+}
+
+.btn-adicionar1, .btn-eliminar1 {
+    width: 100px;
+    padding: 13px;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 17px;
+    text-align: center;
+     font-family: 'Open Sans'; 
+}
+
+.btn-adicionar1 {
+    background-color: #1c7430;
+}
+
+.btn-adicionar1:hover {
+    background-color: #48b339;
+}
+
+.btn-eliminar1 {
+    background-color: #b32828;
+}
+
+.btn-eliminar1:hover {
+    background-color: #e74c3c;
+}
+

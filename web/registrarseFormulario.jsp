@@ -89,8 +89,8 @@
                     </div>
                     <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
                     <div class="btn-container">
-                        <input class='btn-adicionar' type="submit" name="accion" value="Adicionar">
-                        <input class='btn-eliminar' type="button" value="Cancelar" onClick="window.history.back()">
+                        <input class='btn-adicionar1' type="submit" name="accion" value="Adicionar">
+                        <input class='btn-eliminar1' type="submit" value="Cancelar" onClick="window.history.back()">
                     </div>
                 </form>
             </div>

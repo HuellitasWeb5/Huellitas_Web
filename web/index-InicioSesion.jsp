@@ -61,7 +61,7 @@
                 <a href="10.RecuperarContraseña/recuperarContrase.jsp">¿Olvidó su contraseña?</a>
             </div>
             <div class="registro">
-                ¿Aún no tienes una cuenta? <a href="registrarseFormulario.jsp">Registrarse</a>
+                ¿Aún no tienes una cuenta? <a href="registrarseFormulario.jsp">Registrarse aquí</a>
             </div>
         </div> <!-- Cierre del contenedor -->
     </body>

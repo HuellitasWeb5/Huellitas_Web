@@ -65,7 +65,6 @@
 <%
     String accion = request.getParameter("accion");
     String codigo = request.getParameter("codigo");
-    Apadrinamiento apadrinamiento = new Apadrinamiento();
 
     String listaPlan = "<div class='carousel-container'>";
     listaPlan += "<div class='swiper-container carousel'>";

@@ -23,7 +23,7 @@
     <a href="formularioSeguimiento.jsp"></a>
     <form name="formulario" method="post" action="principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioSeg.jsp" enctype="multipart/form-data">
         <div class="formulario-adopcion">
-            <div>Fecha actual: <span id="fecha"></span></div>
+            <div class="fecha-contenedor">Fecha actual: <span class="fecha" id="fecha"></span></div>
             <div class="contenedor-tarjetas">
 
                 <!-- Sección de SAN PATITAS (Adoptante) -->
@@ -75,6 +75,8 @@
                 <input type="hidden" name="fechaActual" id="fechaActual">
 
                 <!-- FORMULARIO  -->    
+                
+                 <h1>Cuestionario de seguimiento</h1>
 
                 <label>¿Cómo describirías el estado actual de la salud de la mascota?</label><br>
                 <input type="radio" id="saludExcelente" name="evolucionMedica" value="Excelente" required>

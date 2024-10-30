@@ -139,18 +139,21 @@
         <div class="container">
             <h1 class="title">Recuperar Contraseña</h1>
 
-            <!-- Mensaje de notificación -->
-            <p id="mensaje"><%= mensaje%></p>
-
             <!-- Formulario de recuperación -->
             <form action="" method="post">
-                <p class="subtitulo">Por favor, ingrese su número de identificación y se enviará un código al correo electrónico asociado a su cuenta.</p>
+                <p class="subtitulo">Por favor, ingrese su número de identificación.</p>
+                <p class="subtitulo">Le enviaremos un código de recuperación al correo electrónico asociado a su cuenta.</p>
                 <div class="input-box">
-                    <label for="usuario">Numero de identificacion:</label>
+                    <label for="usuario">Número de identificación:</label>
                     <div class="icon-input">
-                        <input type="text" name="identificacion" id="usuario" required placeholder="Digite aquí su número de identificaciòn">
+                        <input type="text" name="identificacion" id="usuario" required>
                     </div>
                 </div>
+
+                <% if (!mensaje.isEmpty()) { %>
+                    <p id="mensaje" class="mensaje-error"><%= mensaje %></p>
+                <% } %>
+
                 <input type="submit" value="Recuperar Contraseña">
             </form>
 
