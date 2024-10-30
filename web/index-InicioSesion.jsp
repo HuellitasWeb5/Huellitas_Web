@@ -31,7 +31,7 @@
     <body>
         <video autoplay muted loop>
              <source src="presentacion/videos/inicioSesion.mp4" type="video/mp4">
-         </video>
+         </video> 
         <div class="logo-container">
             <img src="presentacion/imagenes/Logo-Fundacion.png" alt="Logo Izquierdo" class="logo logo-left">
             <img src="presentacion/imagenes/Logo.png" alt="Logo Derecho" class="logo logo-right">
