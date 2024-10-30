@@ -36,8 +36,8 @@
         boolean mostrarMascota = true;
         if ("Cliente".equals(nombreTipoPersona)) {
             // Si es un cliente, solo mostrar las mascotas disponibles y apadrinadas
-            if (!mascota.getEstado().equalsIgnoreCase("disponible") && 
-                !mascota.getEstado().equalsIgnoreCase("apadrinado")) {
+            if (!mascota.getEstado().equalsIgnoreCase("disponible")
+                    && !mascota.getEstado().equalsIgnoreCase("apadrinado")) {
                 mostrarMascota = false;
             }
         }
@@ -50,6 +50,7 @@
             lista += "</div>";
             lista += "<div class='card-header'>";
             lista += mascota.getNombre();
+            lista += "<p class='rol-administrador'>" + mascota.getEstado() + "</p>"; // Rol del administrador como subtítulo
             lista += "</div>";
             lista += "<div class='card-body'>";
             lista += "<p><strong>Código:</strong>" + mascota.getCodigo() + "</p>";
@@ -58,7 +59,6 @@
             lista += "<p><strong>Cuidado:</strong>" + mascota.getCuidadosEspeciales() + "</p>";
             lista += "<p><strong>Edad aproximada:</strong>" + mascota.getEdad() + " años</p>";
             lista += "<p><strong>Fecha de ingreso:</strong>" + mascota.getFechaIngreso() + "</p>";
-            lista += "<p><strong>Estado:</strong>" + mascota.getEstado() + "</p>";
             lista += "<p><strong>Descripción:</strong>" + mascota.getDescripcion() + "</p>";
             lista += "</div>";
 
@@ -93,10 +93,12 @@
         <ul id="nameList"></ul> <!-- Lista de nombres -->
     </form>
     <div class="btn-container">
-            <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar">
-                <button id="Adicionar" class="btn-adicionar">Adicionar</button>
-            </a>
-        </div>
+        <% if (!"Cliente".equals(nombreTipoPersona)) { %>
+        <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar">
+            <button id="Adicionar" class="btn-adicionar">Adicionar</button>
+        </a>
+        <% }%>
+    </div>
 </div>
 
 
