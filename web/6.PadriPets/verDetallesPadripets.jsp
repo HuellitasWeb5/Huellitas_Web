@@ -56,56 +56,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="presentacion/estiloyandar.css">
     <title>Detalles de Padripet</title>
-    <style>
-        .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 1; 
-            left: 0;
-            top: 0;
-            width: 100%; 
-            height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0, 0, 0, 0.9);
-        }
 
-        .modal-content {
-            margin: auto;
-            display: block;
-            width: 80%; 
-            max-width: 700px; 
-        }
-
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #fff;
-            font-size: 40px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .swiper-container {
-            width: 100%; /* Asegúrate de que ocupe todo el ancho */
-            height: 400px; /* Ajusta la altura según lo necesites */
-        }
-        .swiper-slide {
-            display: flex; /* Flex para centrar el contenido */
-            justify-content: center; /* Centrado horizontal */
-            align-items: center; /* Centrado vertical */
-        }
-        .card {
-            width: 700px; /* Ajusta el ancho según tus necesidades */
-            margin: 10px; /* Espacio entre tarjetas */
-            background-color: #fff; /* Color de fondo */
-            border: 1px solid #ddd; /* Bordes */
-            border-radius: 5px; /* Bordes redondeados */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra */
-            padding: 15px; /* Espaciado interno */
-            box-sizing: border-box; /* Incluye padding y border en el total del ancho */
-        }
-    </style>
 </head>
 
 <center>

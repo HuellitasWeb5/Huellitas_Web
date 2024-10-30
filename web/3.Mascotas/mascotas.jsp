@@ -82,6 +82,8 @@
     }
     lista += "</div>";
 %>
+
+<% if ("Cliente".equals(nombreTipoPersona)) {  %>
 <header>
     <section class="textos-header">
         <h2>CONOCE A</h2>
@@ -93,6 +95,11 @@
               style="stroke: none; fill: rgb(255, 255, 255);"></path>
         </svg></div>
 </header>
+<% }%>
+
+<% if (!"Cliente".equals(nombreTipoPersona)) {%>
+<h1>LISTA DE MASCOTAS</h1>
+<% }%>
 <div class="header-container">
     <!-- Buscar por nombre -->
     <form id="searchForm">
