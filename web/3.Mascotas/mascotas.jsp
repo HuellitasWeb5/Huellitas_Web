@@ -36,8 +36,8 @@
         boolean mostrarMascota = true;
         if ("Cliente".equals(nombreTipoPersona)) {
             // Si es un cliente, solo mostrar las mascotas disponibles y apadrinadas
-            if (!mascota.getEstado().equalsIgnoreCase("disponible") && 
-                !mascota.getEstado().equalsIgnoreCase("apadrinado")) {
+            if (!mascota.getEstado().equalsIgnoreCase("disponible")
+                    && !mascota.getEstado().equalsIgnoreCase("apadrinado")) {
                 mostrarMascota = false;
             }
         }
@@ -93,10 +93,12 @@
         <ul id="nameList"></ul> <!-- Lista de nombres -->
     </form>
     <div class="btn-container">
-            <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar">
-                <button id="Adicionar" class="btn-adicionar">Adicionar</button>
-            </a>
-        </div>
+        <% if (!"Cliente".equals(nombreTipoPersona)) { %>
+        <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar">
+            <button id="Adicionar" class="btn-adicionar">Adicionar</button>
+        </a>
+        <% }%>
+    </div>
 </div>
 
 
