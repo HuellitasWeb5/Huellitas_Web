@@ -92,7 +92,6 @@
         listaAdopciones += "<input type='hidden' id='codigoFormulario' name='codigoFormulario' value='" + adopcion.getCodigo() + "'>";
         listaAdopciones += "<input type='submit' value='Guardar' class='btn-adicionar'>";
         listaAdopciones += "</form>";
-
         if (!adopcion.getActaAdopcion().equals("null")) {
             String rutaArchivo = "uploads/" + adopcion.getActaAdopcion();
             listaAdopciones += "<a href='" + rutaArchivo + "' target='_blank' class='btn-otro'>Ver contrato de adopción</a>";

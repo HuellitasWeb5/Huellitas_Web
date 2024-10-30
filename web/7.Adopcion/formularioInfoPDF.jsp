@@ -114,7 +114,7 @@
         estado.add(new Phrase(formulario.getEstado(), FontFactory.getFont(FontFactory.HELVETICA, 12)));  // Contenido en texto normal
         documento.add(estado);
         documento.add(new Paragraph("\n"));
-        
+
         // Información del adoptante
 
         documento.add(new Paragraph("Adoptante:\n\n"));
