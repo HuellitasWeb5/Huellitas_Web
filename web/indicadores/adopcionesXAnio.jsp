@@ -5,13 +5,13 @@
 --%>
 
 <%@page import="java.util.List"%>
-<%@page import="clases.FormularioDeInformacion"%>
+<%@page import="clases.Adopcion"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-   <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
+<link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
 
 <%
-    // Obtén los datos de los formularios por fecha de solicitud.
-    List<String[]> datos = FormularioDeInformacion.getAdopcionesPorFechaSolicitud();
+    // Obtén los datos de las adopciones por fecha de solicitud.
+    List<String[]> datos = Adopcion.getAdopcionesPorFechaSolicitud();
     StringBuilder lista = new StringBuilder();
     StringBuilder datosGraficos = new StringBuilder("[");
 
@@ -35,12 +35,12 @@
     datosGraficos.append("]");
 %>
 
-<h3>Indicador de Formularios de Adopción </h3>
+<h3>Indicador de Adopciones por Año</h3>
 <table border="0">
     <tr>
         <td>
             <table border="1">
-                <tr><th>Fecha de Solicitud</th><th>Cantidad de Formularios</th></tr>
+                <tr><th>Año de Adopción</th><th>Cantidad de Adopciones</th></tr>
                 <%=lista.toString()%>
             </table>
         </td>
@@ -97,7 +97,7 @@
         }));
 
         var series = chart.series.push(am5xy.ColumnSeries.new(root, {
-            name: "Mascotas",
+            name: "Adopciones",
             xAxis: xAxis,
             yAxis: yAxis,
             valueYField: "value",
@@ -124,4 +124,3 @@
 
     }); // end am5.ready()
 </script>
-
