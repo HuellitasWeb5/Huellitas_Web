@@ -96,20 +96,6 @@
 <div id="result"></div>
 
 <script type="text/javascript">
-    function eliminar(codigo) {
-        let resultado = confirm("¿Está seguro que desea rechazar y eliminar el formulario con código " + codigo + "?");
-        if (resultado) {
-            document.location = "principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Eliminar&codigo=" + codigo;
-        }
-    }
-
-    function aceptarFormulario(codigo, nombreMascota, identificacion, codigoMascota) {
-        let respuesta = confirm("¿Está seguro que desea aceptar la adopción de " + nombreMascota + "?");
-        if (respuesta) {
-            document.location = "principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&accion=Aceptar&codigo=" + codigo + "&identificacionAdoptante=" + identificacion + "&codigoMascota=" + codigoMascota;
-        }
-    }
-
     function filterNames() {
         const input = document.getElementById('searchInput');
         const filter = input.value.toLowerCase();
