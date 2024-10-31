@@ -73,7 +73,7 @@
 
             // Estos botones siempre se muestran
             lista += "<div class='btn-container'>";
-            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/padrinosFormulario.jsp&accion=Adicionar'><button class='btn-otro'>Apadrinar</button></a>";
+            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp'><button class='btn-otro'>Apadrinar</button></a>";
             lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/formularioInformacion.jsp&accion=Adicionar'><button class='btn-otro'>Adoptar</button></a>";
             lista += "</div>";
             lista += "</div>";
@@ -89,10 +89,9 @@
         <h2>CONOCE A</h2>
         <h1>NUESTROS PELUDOS</h1>
     </section>
-    <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
-                                                                    style="height: 100%; width: 100%;" >
+    <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;" >
         <path d="M0.28,50.83 C138.54,164.31 349.20,-49.98 500.00,49.98 L500.00,150.00 L-1.97,153.47 Z"
-              style="stroke: none; fill: rgb(255, 255, 255);"></path>
+              style="stroke: none; fill: #eeffef;"></path>
         </svg></div>
 </header>
 <% }%>
