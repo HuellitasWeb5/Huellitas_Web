@@ -14,12 +14,57 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 15);
 }
 
-input[type="text"], 
-input[type="number"], 
-input[type="radio"], 
-input[type="file"], 
-input[type="time"], 
 textarea {
+    background-color: #d4f1f9;
+    border: 1px solid #ccc; 
+    padding: 8px; 
+    border-radius: 18px; 
+    color: black; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    font-size: 1em; 
+    background-color: #d4f1f9; 
+    width: 80%;
+}
+
+textarea:focus {
+    background-color: #d8f2d2; 
+    border-color: #66afe9; 
+    outline: none; 
+}
+
+input[type="number"], 
+input[type="radio"],  
+input[type="time"] {
+    background-color: #d4f1f9;
+    border: 1px solid #ccc; 
+    padding: 8px; 
+    border-radius: 18px;
+    color: black; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    font-size: 1em; 
+    background-color: #d4f1f9;  
+    width: 30%;
+}
+
+input[type="file"] {
+    background-color: #d4f1f9;
+    border: 1px solid #ccc; 
+    padding: 8px; 
+    border-radius: 18px;
+    color: black; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    font-size: 1em; 
+    background-color: #d4f1f9;  
+    width: 40%;
+}
+
+input[type="number"]:focus {
+    background-color: #d8f2d2; 
+    border-color: #66afe9; 
+    outline: none; 
+}
+
+.custom-text-input {
     background-color: #d4f1f9;/* Cambia este color según tu preferencia */
     border: 1px solid #ccc; /* Borde suave */
     padding: 8px; /* Ajusta el espacio dentro de los campos */
@@ -27,15 +72,34 @@ textarea {
     color: black; /* Color del texto */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     font-size: 1em; /* Tamaño de fuente */ 
-    background-color: #d4f1f9; /* Color de fondo blanco */  
+    background-color: #d4f1f9; /* Color de fondo blanco */ 
+    width: 30%;
 }
 
-input[type="text"]:focus, 
-input[type="number"]:focus, 
-textarea:focus {
+/* Estilo en foco (cuando el usuario hace clic en el campo) */
+.custom-text-input:focus {
     background-color: #d8f2d2; /* Color al hacer foco */
     border-color: #66afe9; /* Borde al hacer foco */
-    outline: none; /* Elimina el borde azul estándar de los navegadores */
+    outline: none;
+}
+
+.custom-text-input2 {
+     background-color: #d4f1f9;/* Cambia este color según tu preferencia */
+    border: 1px solid #ccc; /* Borde suave */
+    padding: 8px; /* Ajusta el espacio dentro de los campos */
+    border-radius: 18px; /* Bordes redondeados */
+    color: black; /* Color del texto */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    font-size: 1em; /* Tamaño de fuente */ 
+    background-color: #d4f1f9; /* Color de fondo blanco */ 
+    width: 100%;
+}
+
+/* Estilo en foco (cuando el usuario hace clic en el campo) */
+.custom-text-input2:focus {
+    background-color: #d8f2d2; /* Color al hacer foco */
+    border-color: #66afe9; /* Borde al hacer foco */
+    outline: none;
 }
 
 /* Estilo de los formularios -----------------------------------------------------------------------------------*/
@@ -76,6 +140,14 @@ h3 {
     font-weight: bold;
 }
 
+h4 {
+    font-size: 25px;
+    color: #333;
+    text-align: center;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
 .tableDatos {
     flex: 1;
     margin: 10px auto; /* Asegura que esté centrado */
@@ -106,10 +178,6 @@ label {
     padding: 5px;
 }
 
-input[type="text"], input[type="number"], textarea {
-    width: 100%;
-}
-
 fieldset {
     border: none;
     margin-top: 15px;
@@ -117,6 +185,77 @@ fieldset {
 
 input[type="radio"], input[type="checkbox"] {
     margin-right: 10px;
+}
+
+input[type="radio"] {
+    display: none; /* Oculta el radio button original */
+}
+
+input[type="radio"] + label {
+    position: relative;
+    padding-left: 30px; /* Espacio para el nuevo círculo */
+    cursor: pointer;
+}
+
+input[type="radio"] + label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #05af8b; /* Color del borde del círculo */
+    border-radius: 50%;
+    background-color: white;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+input[type="radio"]:checked + label:before {
+    background-color: #05af8b; /* Color de fondo cuando está seleccionado */
+    border-color: #05af8b;
+}
+
+/* Estilos personalizados para checkboxes */
+input[type="checkbox"] {
+    display: none; /* Oculta el checkbox original */
+}
+
+input[type="checkbox"] + label {
+    position: relative;
+    padding-left: 30px; /* Espacio para el nuevo cuadrado */
+    cursor: pointer;
+}
+
+input[type="checkbox"] + label:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border: 2px solid #05af8b; /* Color del borde del checkbox */
+    border-radius: 4px; /* Bordes ligeramente redondeados */
+    background-color: white;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+input[type="checkbox"]:checked + label:before {
+    background-color: #05af8b; /* Color de fondo cuando está seleccionado */
+    border-color: #05af8b;
+}
+
+input[type="checkbox"]:checked + label:after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg); /* Rota el símbolo de check */
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0; /* Crea el símbolo de check */
 }
 
 .datos-con-foto {
@@ -251,4 +390,56 @@ input[type="radio"], input[type="checkbox"] {
    background-color: white;
    color: #e3203b;
    border: 2px solid #e3203b;
+}
+
+.pregunta-container {
+    display: flex;
+    justify-content: center; /* Centra el contenedor principal horizontalmente */
+    align-items: center; /* Centra verticalmente si el contenido ocupa varias líneas */
+    margin-bottom: 15px;
+    width: 100%; /* Asegura que el contenedor ocupe todo el ancho */
+}
+
+.opciones-estado-civil {
+    display: flex;
+    gap: 15px; 
+    align-items: center;
+}
+
+.opciones-SiNo {
+    display: flex;
+    gap: 15px; 
+    align-items: center;
+}
+.referencias-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.referencias{
+    flex: 1;
+}
+
+.referencias label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.referencias input {
+    width: 100%;
+    padding: 8px;
+    border-radius: 15px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    background-color: #d4f1f9;
+}
+
+.divisor {
+    height: 4px;
+    background-color: #069979; 
+    margin: 30px 0; 
+    width: 100%; 
+    border-radius: 15px;
 }

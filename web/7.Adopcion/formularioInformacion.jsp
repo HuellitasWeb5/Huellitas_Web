@@ -39,15 +39,15 @@
                         <div class="datos-con-foto">
                             <div class="datos">
                                 <label>Identificación:</label>
-                                <input type="text" name="identificacionAdoptante" id="identificacion" placeholder="Digite aquí la identificación del adoptante" required>
+                                <input type="text" name="identificacionAdoptante" id="identificacion" placeholder="Digite aquí la identificación del adoptante" class="custom-text-input2" required>
                                 <label>Nombre del Adoptante</label>
-                                <input type="text" name="nombre" id="nombre" readonly>
+                                <input type="text" name="nombre" id="nombre" class="custom-text-input2" readonly>
                                 <label>Teléfono</label>
-                                <input type="text" name="telefono" id="telefono" readonly>
+                                <input type="text" name="telefono" id="telefono" class="custom-text-input2" readonly>
                                 <label>Dirección</label>
-                                <input type="text" name="direccion" id="direccion" readonly>
+                                <input type="text" name="direccion" id="direccion" class="custom-text-input2" readonly>
                                 <label>Residencia</label>
-                                <input type="text" name="residencia" id="residencia" readonly>
+                                <input type="text" name="residencia" id="residencia" class="custom-text-input2" readonly>
                             </div>
                             <div class="foto">
                                 <img id="foto" class="fotoPreview" src="presentacion/clientes/<%= persona.getFoto()%>" alt="Foto de <%= persona.getNombre()%>" style="width: 100px; height: 100px;">
@@ -61,15 +61,15 @@
                         <div class="datos-con-foto">
                             <div class="datos">
                                 <label>Código:</label>
-                                <input type="text" name="codigoMascotas" id="codigoMascotas" placeholder="Digite aquí el código de la mascota" required>
+                                <input type="text" name="codigoMascotas" id="codigoMascotas" placeholder="Digite aquí el código de la mascota" class="custom-text-input2" required>
                                 <label>Nombre de la mascota:</label>
-                                <input type="text" name="nombreMascota" id="nombreMascota" readonly>
+                                <input type="text" name="nombreMascota" id="nombreMascota" class="custom-text-input2" readonly>
                                 <label>Fecha de nacimiento Aproximada:</label>
-                                <input type="text" name="fechaNacimiento" id="fechaNacimiento" readonly>
+                                <input type="text" name="fechaNacimiento" id="fechaNacimiento" class="custom-text-input2" readonly>
                                 <label>Género:</label>
-                                <input type="text" name="genero" id="genero" readonly>
+                                <input type="text" name="genero" id="genero" class="custom-text-input2" readonly>
                                 <label>Cuidados Especiales:</label>
-                                <input type="text" name="cuidadosEspeciales" id="cuidadosEspeciales" readonly>
+                                <input type="text" name="cuidadosEspeciales" id="cuidadosEspeciales" class="custom-text-input2" readonly>
                             </div>
                             <div class="foto">
                                 <img id="fotoMascota" class="fotoPreview" src="presentacion/mascota/<%= mascota.getFoto()%>" alt="Foto de <%= mascota.getNombre()%>" style="width: 100px; height: 100px;">
@@ -91,151 +91,193 @@
                     <input type="hidden" name="fechaActual" id="fechaActual">
 
                     <!-- FORMULARIO  -->  
-                    
+
+                    <div class="divisor"></div>
+
                     <h1>Cuestionario de información</h1>
 
-                    <label for="estadoCivil">Estado Civil:</label>
-                    <fieldset>
-                        <input type="radio" id="estadoCivilSoltero" name="estadoCivil" value="Soltero" required>
-                        <label for="estadoCivilSoltero">Soltero(a)</label>
-                        <input type="radio" id="estadoCivilCasado" name="estadoCivil" value="Casado">
-                        <label for="estadoCivilCasado">Casado(a)</label>
-                        <input type="radio" id="estadoCivilViudo" name="estadoCivil" value="Viudo">
-                        <label for="estadoCivilViudo">Viudo(a)</label>
-                        <input type="radio" id="estadoCivilDivorciado" name="estadoCivil" value="Divorciado">
-                        <label for="estadoCivilDivorciado">Divorciado(a)</label>
-                        <input type="radio" id="estadoCivilUnionL" name="estadoCivil" value="UnionLibre">
-                        <label for="estadoCivilUnionL">Unión Libre</label>
-                    </fieldset>
+                    <div class="pregunta-container">
+                        <label for="estadoCivil">Estado Civil:</label>
+                        <div class="opciones-estado-civil">
+                            <input type="radio" id="estadoCivilSoltero" name="estadoCivil" value="Soltero" required>
+                            <label for="estadoCivilSoltero">Soltero(a)</label>
+                            <input type="radio" id="estadoCivilCasado" name="estadoCivil" value="Casado">
+                            <label for="estadoCivilCasado">Casado(a)</label>
+                            <input type="radio" id="estadoCivilViudo" name="estadoCivil" value="Viudo">
+                            <label for="estadoCivilViudo">Viudo(a)</label>
+                            <input type="radio" id="estadoCivilDivorciado" name="estadoCivil" value="Divorciado">
+                            <label for="estadoCivilDivorciado">Divorciado(a)</label>
+                            <input type="radio" id="estadoCivilUnionL" name="estadoCivil" value="UnionLibre">
+                            <label for="estadoCivilUnionL">Unión Libre</label>
+                        </div>
+                    </div>
 
                     <label for="ocupacion">Ocupación:</label>
-                    <input type="text" id="ocupacion" name="ocupacion" maxlength="100" required><br><br>
+                    <input type="text" id="ocupacion" name="ocupacion" class="custom-text-input" maxlength="100" required><br><br>
 
                     <label for="motivacion">¿Por qué desea adoptar al peludito?</label>
-                    <input type="text" id="motivacion" name="motivacion" maxlength="100" required><br><br>
+                    <input type="text" id="motivacion" name="motivacion" class="custom-text-input" maxlength="100" required><br><br>
 
-                    <label for="otrasMascotas">¿Tiene alguna mascota actualmente?</label>
-                    <fieldset>
-                        <input type="radio" id="otrasMascotasSi" name="otrasMascotas" value="S" required>
-                        <label for="otrasMascotasSi">Sí</label>
-                        <input type="radio" id="otrasMascotasNo" name="otrasMascotas" value="N">
-                        <label for="otrasMascotasNo">No</label>
-                    </fieldset>
+                    <div class="pregunta-container">
+                        <label for="otrasMascotas">¿Tiene alguna mascota actualmente?</label>
+                        <div class="opciones-SiNo">
+                            <input type="radio" id="otrasMascotasSi" name="otrasMascotas" value="S" required>
+                            <label for="otrasMascotasSi">Sí</label>
+                            <input type="radio" id="otrasMascotasNo" name="otrasMascotas" value="N">
+                            <label for="otrasMascotasNo">No</label>
+                        </div>
+                    </div>
 
-                    <label for="otrasMascotasR">¿Qué tipo de animalitos son?</label>
-                    <input type="text" id="otrasMascotasR" name="otrasMascotasR" maxlength="100"><br><br>
+                    <div id="otrasMascotasR-container" style="display: none;">
+                        <label for="otrasMascotasR">¿Qué tipo de animalito es?</label>
+                        <input type="text" id="otrasMascotasR" name="otrasMascotasR" class="custom-text-input" maxlength="100"><br><br>
+                    </div>
 
-                    <label for="esterilizados">¿Están esterilizados?</label>
-                    <fieldset>
-                        <input type="radio" id="esterilizadosSi" name="esterilizados" value="S">
-                        <label for="esterilizadosSi">Sí</label>
-                        <input type="radio" id="esterilizadosNo" name="esterilizados" value="N">
-                        <label for="esterilizadosNo">No</label>
-                    </fieldset>
+                    <div class="pregunta-container" id="esterilizados-container" style="display: none;">
+                        <label for="esterilizados">¿Está esterilizado?</label>
+                        <div class="opciones-SiNo">
+                            <input type="radio" id="esterilizadosSi" name="esterilizados" value="S">
+                            <label for="esterilizadosSi">Sí</label>
+                            <input type="radio" id="esterilizadosNo" name="esterilizados" value="N">
+                            <label for="esterilizadosNo">No</label>
+                        </div>
+                    </div>
 
-                    <label for="esterilizadosR">¿Por qué no están esterilizadas?</label>
-                    <input type="text" id="esterilizadosR" name="esterilizadosR" maxlength="100"><br><br>
+                    <div id="esterilizadosR-container" style="display: none;">
+                        <label for="esterilizadosR">¿Por qué no está esterilizado?</label>
+                        <input type="text" id="esterilizadosR" name="esterilizadosR" class="custom-text-input" maxlength="100"><br><br>
+                    </div>
+                    <div class="pregunta-container">
+                        <label for="anteriorMascotas">¿Ha tenido otras mascotas anteriormente?</label>
+                        <div class="opciones-SiNo">
+                            <input type="radio" id="anteriorMascotasSi" name="anteriorMascotas" value="S" required>
+                            <label for="anteriorMascotasSi">Sí</label>
+                            <input type="radio" id="anteriorMascotasNo" name="anteriorMascotas" value="N">
+                            <label for="anteriorMascotasNo">No</label>
+                        </div>
+                    </div>
 
-                    <label for="anteriorMascotas">¿Ha tenido otras mascotas anteriormente?</label>
-                    <fieldset>
-                        <input type="radio" id="anteriorMascotasSi" name="anteriorMascotas" value="S" required>
-                        <label for="anteriorMascotasSi">Sí</label>
-                        <input type="radio" id="anteriorMascotasNo" name="anteriorMascotas" value="N">
-                        <label for="anteriorMascotasNo">No</label>
-                    </fieldset>
-
-                    <label for="anteriorMascotasR">¿Qué tipo de animalitos eran?</label>
-                    <input type="text" id="anteriorMascotasR" name="anteriorMascotasR" maxlength="100"><br><br>
-
+                    <div id="anteriorMascotasR-container" style="display: none;">
+                        <label for="anteriorMascotasR">¿Qué tipo de animalitos eran?</label>
+                        <input type="text" id="anteriorMascotasR" name="anteriorMascotasR" class="custom-text-input" maxlength="100"><br><br>
+                    </div>
                     <label for="habitantes">¿Cuántas personas conforman su hogar?</label>
                     <input type="number" id="habitantes" name="habitantes" min="1" required placeholder="Ingrese un valor numérico"><br><br>
 
-                    <label for="habitantesR">¿Están de acuerdo en adoptar?</label>
-                    <fieldset>
-                        <input type="radio" id="habitantesRSi" name="habitantesR" value="S">
-                        <label for="habitantesRSi">Sí</label>
-                        <input type="radio" id="habitantesRNo" name="habitantesR" value="N">
-                        <label for="habitantesRNo">No</label>
-                    </fieldset>
+                    <div class="pregunta-container">
+                        <label for="habitantesR">¿Están de acuerdo en adoptar?</label>
+                        <div class="opciones-SiNo">
+                            <input type="radio" id="habitantesRSi" name="habitantesR" value="S">
+                            <label for="habitantesRSi">Sí</label>
+                            <input type="radio" id="habitantesRNo" name="habitantesR" value="N">
+                            <label for="habitantesRNo">No</label>
+                        </div>
+                    </div>
 
-                    <label for="ninos">¿Hay niños en el hogar?</label>
-                    <fieldset>
-                        <input type="radio" id="ninosSi" name="ninos" value="S" required>
-                        <label for="ninosSi">Sí</label>
-                        <input type="radio" id="ninosNo" name="ninos" value="N">
-                        <label for="ninosNo">No</label>
-                    </fieldset>
+                    <div class="pregunta-container">
+                        <label for="ninos">¿Hay niños en el hogar?</label>
+                        <div class="opciones-SiNo">
+                            <input type="radio" id="ninosSi" name="ninos" value="S" required>
+                            <label for="ninosSi">Sí</label>
+                            <input type="radio" id="ninosNo" name="ninos" value="N">
+                            <label for="ninosNo">No</label>
+                        </div>
+                    </div>
 
-                    <label for="ninosR">¿Qué edad(es) tiene(n)?</label>
-                    <input type="text" id="ninosR" name="ninosR" maxlength="100"><br><br>
+                    <div id="ninosR-container" style="display: none;">
+                        <label for="ninosR">¿Qué edad(es) tiene(n)?</label>
+                        <input type="text" id="ninosR" name="ninosR" class="custom-text-input" maxlength="100"><br><br>
+                    </div>
 
-                    <label for="alergias">¿Alguien de su hogar es alérgico a los animalitos o sufre de asma?</label>
-                    <fieldset>
-                        <input type="radio" id="alergiasSi" name="alergias" value="S" required>
-                        <label for="alergiasSi">Sí</label>
-                        <input type="radio" id="alergiasNo" name="alergias" value="N">
-                        <label for="alergiasNo">No</label>
-                    </fieldset>
+                    <div class="pregunta-container">
+                        <label for="alergias">¿Alguien de su hogar es alérgico a los animalitos o sufre de asma?</label>
+                        <div class="opciones-SiNo">
+                            <input type="radio" id="alergiasSi" name="alergias" value="S" required>
+                            <label for="alergiasSi">Sí</label>
+                            <input type="radio" id="alergiasNo" name="alergias" value="N">
+                            <label for="alergiasNo">No</label>
+                        </div>
+                    </div>
+                    <div class="pregunta-container" >
+                        <label for="vivienda">La casa y/o apartamento donde vive actualmente es:</label>
+                        <div class="opciones-estado-civil">
+                            <input type="radio" id="viviendaPropio" name="vivienda" value="Propio" required>
+                            <label for="viviendaPropio">Propio</label>
+                            <input type="radio" id="viviendaArriendo" name="vivienda" value="Arrendado">
+                            <label for="viviendaArriendo">Arrendado</label>
+                            <input type="radio" id="viviendaAnticres" name="vivienda" value="Anticresado">
+                            <label for="viviendaAnticres">Anticresado</label>
+                            <input type="radio" id="viviendaFamiliar" name="vivienda" value="Familiar">
+                            <label for="viviendaFamiliar">Familiar</label>
+                        </div>
+                    </div>
 
-                    <label for="vivienda">La casa y/o apartamento donde vive actualmente es:</label>
-                    <fieldset>
-                        <input type="radio" id="viviendaPropio" name="vivienda" value="Propio" required>
-                        <label for="viviendaPropio">Propio</label>
-                        <input type="radio" id="viviendaArriendo" name="vivienda" value="Arrendado">
-                        <label for="viviendaArriendo">Arrendado</label>
-                        <input type="radio" id="viviendaAnticres" name="vivienda" value="Anticresado">
-                        <label for="viviendaAnticres">Anticresado</label>
-                        <input type="radio" id="viviendaFamiliar" name="vivienda" value="Familiar">
-                        <label for="viviendaFamiliar">Familiar</label>
-                    </fieldset>
-
-                    <label for="permiteMascotas">¿El propietario permite animalitos?</label>
-                    <fieldset>
-                        <input type="radio" id="permiteMascotasSi" name="permiteMascotas" value="S">
-                        <label for="permiteMascotasSi">Sí</label>
-                        <input type="radio" id="permiteMascotasNo" name="permiteMascotas" value="N">
-                        <label for="permiteMascotasNo">No</label>
-                    </fieldset>
+                    <div class="pregunta-container" id="permiteMascotas-container" style="display: none;">
+                        <label for="permiteMascotas">¿El propietario permite animalitos?</label>
+                        <div class="opciones-SiNo">
+                            <input type="radio" id="permiteMascotasSi" name="permiteMascotas" value="S">
+                            <label for="permiteMascotasSi">Sí</label>
+                            <input type="radio" id="permiteMascotasNo" name="permiteMascotas" value="N">
+                            <label for="permiteMascotasNo">No</label>
+                        </div>
+                    </div>
 
                     <label for="cambiarDomicilio">Si por algún motivo tuviera que cambiar de domicilio, ¿Qué pasaría con el peludito?</label>
-                    <input type="text" id="cambiarDomicilio" name="cambiarDomicilio" maxlength="100" required><br><br>
+                    <input type="text" id="cambiarDomicilio" name="cambiarDomicilio" class="custom-text-input" maxlength="100" required><br><br>
 
                     <label for="rupturaFamiliar">En caso de una ruptura en la familia (divorcio, fallecimiento) o la llegada de un nuevo integrante ¿Cuáles serían los cambios en el trato hacia el peludito adoptado?</label>
-                    <input type="text" id="rupturaFamiliar" name="rupturaFamiliar" maxlength="100" required><br><br>
+                    <input type="text" id="rupturaFamiliar" name="rupturaFamiliar" class="custom-text-input" maxlength="100" required><br><br>
 
                     <label for="proyeccionFutura">¿Cómo se ve con el peludito que desea adoptar dentro de 5 años?</label>
-                    <input type="text" id="proyeccionFutura" name="proyeccionFutura" maxlength="100" required><br><br>
+                    <input type="text" id="proyeccionFutura" name="proyeccionFutura" class="custom-text-input" maxlength="100" required><br><br>
 
                     <label for="espacio">¿En qué área de la casa dormirá el peludito?</label>
-                    <input type="text" id="espacio" name="espacio" maxlength="100" required><br><br>
+                    <input type="text" id="espacio" name="espacio" class="custom-text-input" maxlength="100" required><br><br>
 
                     <label for="responsables">¿Con quién permanecerá el peludito durante el día?</label>
-                    <input type="text" id="responsables" name="responsables" maxlength="100" required><br><br>
+                    <input type="text" id="responsables" name="responsables" class="custom-text-input" maxlength="100" required><br><br>
 
                     <label for="compromiso">Si el comportamiento del peludito no es el que usted desea (juguetón, mordelón, inquieto, mimado, rebelde), ¿Qué medidas tomaría?</label>
-                    <input type="text" id="compromiso" name="compromiso" maxlength="100" required><br><br>
+                    <input type="text" id="compromiso" name="compromiso" class="custom-text-input" maxlength="100" required><br><br>
 
-                    <label for="autorizaVisitas">¿Está de acuerdo en que se haga una visita periódica a su domicilio para ver cómo se encuentra el peludito adoptado?</label>
-                    <fieldset>
-                        <input type="radio" id="autorizaVisitasSi" name="autorizaVisitas" value="S" required> 
-                        <label for="autorizaVisitasSi">Sí</label>
-                        <input type="radio" id="autorizaVisitasNo" name="autorizaVisitas" value="N">
-                        <label for="autorizaVisitasnNo">No</label>
-                    </fieldset>
+                    <div class="pregunta-container">
+                        <label for="autorizaVisitas">¿Está de acuerdo en que se haga una visita periódica a su domicilio para ver cómo se encuentra el peludito adoptado?</label>
+                        <div class="opciones-SiNo">
+                            <input type="radio" id="autorizaVisitasSi" name="autorizaVisitas" value="S" required> 
+                            <label for="autorizaVisitasSi">Sí</label>
+                            <input type="radio" id="autorizaVisitasNo" name="autorizaVisitas" value="N">
+                            <label for="autorizaVisitasNo">No</label>
+                        </div>
+                    </div>
 
-                    <label for="autorizaVisitasR">¿Por qué motivo no desea que se realicen visitas de seguimiento?</label>
-                    <input type="text" id="autorizaVisitasR" name="autorizaVisitasR" maxlength="100" required><br><br>
-
+                    <div id="autorizaVisitasR-container" style="display: none;">
+                        <label for="autorizaVisitasR">¿Por qué motivo no desea que se realicen visitas de seguimiento?</label>
+                        <input type="text" id="autorizaVisitasR" name="autorizaVisitasR" class="custom-text-input" maxlength="100"><br><br>
+                    </div>
                     <label for="fechaVisitaDia">Por favor, indíquenos los días de la semana en los que estaría disponible para recibir la visita:</label>
                     <div style="display: flex; gap: 45px;">
-                        <br><label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Lunes"> Lunes</label>
-                        <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Martes"> Martes</label>
-                        <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Miercoles"> Miércoles</label>
-                        <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Jueves"> Jueves</label>
-                        <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Viernes"> Viernes</label>
-                        <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Sabado"> Sábado</label>
-                        <label style="display: flex; align-items: center;"><input type="checkbox" name="fechaVisitaDia" value="Domingo"> Domingo</label>
+                        <input type="checkbox" id="lunes" name="fechaVisitaDia" value="Lunes">
+                        <label for="lunes">Lunes</label>
+
+                        <input type="checkbox" id="martes" name="fechaVisitaDia" value="Martes">
+                        <label for="martes">Martes</label>
+
+                        <input type="checkbox" id="miercoles" name="fechaVisitaDia" value="Miercoles">
+                        <label for="miercoles">Miércoles</label>
+
+                        <input type="checkbox" id="jueves" name="fechaVisitaDia" value="Jueves">
+                        <label for="jueves">Jueves</label>
+
+                        <input type="checkbox" id="viernes" name="fechaVisitaDia" value="Viernes">
+                        <label for="viernes">Viernes</label>
+
+                        <input type="checkbox" id="sabado" name="fechaVisitaDia" value="Sabado">
+                        <label for="sabado">Sábado</label>
+
+                        <input type="checkbox" id="domingo" name="fechaVisitaDia" value="Domingo">
+                        <label for="domingo">Domingo</label>
                     </div>
+
                     <input type="hidden" id="fechaVisitaDiaHidden" name="fechaVisitaDia">
                     <p id="error-message" style="color: red; display: none;">Debe seleccionar al menos un día de la semana</p>
                     <br>
@@ -243,44 +285,79 @@
                     <label for="fechaVisitaHora">¿A qué hora le gustaría programar la visita para el día seleccionado?</label>
                     <input type="time" id="fechaVisitaHora" name="fechaVisitaHora" style="width: 120px; text-align: center;" required><br>
 
+                    <div class="divisor"></div>
 
                     <h1>Referencias Familiares</h1>
 
-                    <label for="refNombre1">Nombre:</label>
-                    <input type="text" id="refNombre1" name="refNombre1" maxlength="100" required><br><br>
-                    <label for="refCedula1">Cédula:</label>
-                    <input type="number" id="refCedula1" name="refCedula1" maxlength="100" required><br><br>
-                    <label for="refDireccion1">Dirección:</label>
-                    <input type="text" id="refDireccion1" name="refDireccion1" maxlength="100" required><br><br>
-                    <label for="refCelular1">Celular:</label>
-                    <input type="number" id="refCelular1" name="refCelular1" maxlength="100" required><br><br>
-                    <label for="refNombre2">Nombre:</label>
-                    <input type="text" id="refNombre2" name="refNombre2" maxlength="100" required><br><br>
-                    <label for="refCedula2">Cédula:</label>
-                    <input type="number" id="refCedula2" name="refCedula2" maxlength="100" required><br><br>
-                    <label for="refDireccion2">Dirección:</label>
-                    <input type="text" id="refDireccion2" name="refDireccion2" maxlength="100" required><br><br>
-                    <label for="refCelular2">Celular:</label>
-                    <input type="number" id="refCelular2" name="refCelular2" maxlength="100" required><br><br>
+                    <div class="referencias-container">
+                        <div class="referencias">
+                            <h4>Referencia Familiar 1</h4>
+                            <label for="refNombre1">Nombre:</label>
+                            <input type="text" id="refNombre1" name="refNombre1" maxlength="100" required><br>
+
+                            <label for="refCedula1">Cédula:</label>
+                            <input type="number" id="refCedula1" name="refCedula1" maxlength="100" required><br>
+
+                            <label for="refDireccion1">Dirección:</label>
+                            <input type="text" id="refDireccion1" name="refDireccion1" maxlength="100" required><br>
+
+                            <label for="refCelular1">Celular:</label>
+                            <input type="number" id="refCelular1" name="refCelular1" maxlength="100" required><br>
+                        </div>
+
+                        <div class="referencias">
+                            <h4>Referencia Familiar 2</h4>
+                            <label for="refNombre2">Nombre:</label>
+                            <input type="text" id="refNombre2" name="refNombre2" maxlength="100" required><br>
+
+                            <label for="refCedula2">Cédula:</label>
+                            <input type="number" id="refCedula2" name="refCedula2" maxlength="100" required><br>
+
+                            <label for="refDireccion2">Dirección:</label>
+                            <input type="text" id="refDireccion2" name="refDireccion2" maxlength="100" required><br>
+
+                            <label for="refCelular2">Celular:</label>
+                            <input type="number" id="refCelular2" name="refCelular2" maxlength="100" required><br>
+                        </div>
+                    </div>
+
+                    <div class="divisor"></div>
 
                     <h1>Referencias Personales</h1>
 
-                    <label for="refNombre3">Nombre:</label>
-                    <input type="text" id="refNombre3" name="refNombre3" maxlength="100" required><br><br>
-                    <label for="refCedula3">Cédula:</label>
-                    <input type="number" id="refCedula3" name="refCedula3" maxlength="100" required><br><br> 
-                    <label for="refDireccion3">Dirección:</label>
-                    <input type="text" id="refDireccion3" name="refDireccion3" maxlength="100" required><br><br>
-                    <label for="refCelular3">Celular:</label>
-                    <input type="number" id="refCelular3" name="refCelular3" maxlength="100" required><br><br>
-                    <label for="refNombre4">Nombre:</label>
-                    <input type="text" id="refNombre4" name="refNombre4" maxlength="100" required><br><br>
-                    <label for="refCedula4">Cédula:</label>
-                    <input type="number" id="refCedula4" name="refCedula4" maxlength="100" required><br><br>
-                    <label for="refDireccion4">Dirección:</label>
-                    <input type="text" id="refDireccion4" name="refDireccion4" maxlength="100" required><br><br>
-                    <label for="refCelular4">Celular:</label>
-                    <input type="number" id="refCelular4" name="refCelular4" maxlength="100" required><br><br>
+                    <div class="referencias-container">
+                        <div class="referencias">
+                            <h4>Referencia Personal 1</h4>
+                            <label for="refNombre3">Nombre:</label>
+                            <input type="text" id="refNombre3" name="refNombre3" class="custom-text-input" maxlength="100" required>
+
+                            <label for="refCedula3">Cédula:</label>
+                            <input type="number" id="refCedula3" name="refCedula3" class="custom-text-input" maxlength="100" required>
+
+                            <label for="refDireccion3">Dirección:</label>
+                            <input type="text" id="refDireccion3" name="refDireccion3" class="custom-text-input" maxlength="100" required>
+
+                            <label for="refCelular3">Celular:</label>
+                            <input type="number" id="refCelular3" name="refCelular3" class="custom-text-input" maxlength="100" required>
+                        </div>
+
+                        <div class="referencias">
+                            <h4>Referencia Personal 2</h4>
+                            <label for="refNombre4">Nombre:</label>
+                            <input type="text" id="refNombre4" name="refNombre4" class="custom-text-input" maxlength="100" required>
+
+                            <label for="refCedula4">Cédula:</label>
+                            <input type="number" id="refCedula4" name="refCedula4" class="custom-text-input" maxlength="100" required>
+
+                            <label for="refDireccion4">Dirección:</label>
+                            <input type="text" id="refDireccion4" name="refDireccion4" class="custom-text-input" maxlength="100" required>
+
+                            <label for="refCelular4">Celular:</label>
+                            <input type="number" id="refCelular4" name="refCelular4" class="custom-text-input" maxlength="100" required>
+                        </div>
+                    </div>
+
+                    <div class="divisor"></div>
 
                     <label for="fotoCedula">Por favor, cargue una foto de su cédula de ciudadanía (ambos lados):</label>
                     <br><input type="file" id="fotoCedula" name="fotoCedula"  accept="image/*" required>
@@ -341,7 +418,7 @@
         </div>
         <script>
 
-        // ADICIONAR LA NUEVA MASCOTA 
+            // ADICIONAR LA NUEVA MASCOTA 
 
             function agregarMascota() {
                 const codigoMascota = document.getElementById('codigoFormulario').value;
@@ -782,6 +859,87 @@
                     el: '.swiper-pagination',
                     clickable: true,
                 }
+            });
+
+            // Preguntas Dependientes
+
+            document.addEventListener('DOMContentLoaded', function () {
+                // Escucha el cambio en la respuesta de "¿Tiene alguna mascota actualmente?"
+                document.querySelectorAll('input[name="otrasMascotas"]').forEach((input) => {
+                    input.addEventListener('change', function () {
+                        if (this.value === 'S') {
+                            document.getElementById('otrasMascotasR-container').style.display = 'block';
+                            document.getElementById('esterilizados-container').style.display = 'block';
+                        } else {
+                            document.getElementById('otrasMascotasR-container').style.display = 'none';
+                            document.getElementById('esterilizados-container').style.display = 'none';
+                            document.getElementById('esterilizadosR-container').style.display = 'none';
+                        }
+                    });
+                });
+
+                // Escucha el cambio en la respuesta de "¿Están esterilizados?"
+                document.querySelectorAll('input[name="esterilizados"]').forEach((input) => {
+                    input.addEventListener('change', function () {
+                        if (this.value === 'N') {
+                            document.getElementById('esterilizadosR-container').style.display = 'block';
+                        } else {
+                            document.getElementById('esterilizadosR-container').style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                // Escucha el cambio en la respuesta de "¿Ha tenido otras mascotas anteriormente?"
+                document.querySelectorAll('input[name="anteriorMascotas"]').forEach((input) => {
+                    input.addEventListener('change', function () {
+                        if (this.value === 'S') {
+                            document.getElementById('anteriorMascotasR-container').style.display = 'block';
+                        } else {
+                            document.getElementById('anteriorMascotasR-container').style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                // Escucha el cambio en la respuesta de "¿Hay niños en el hogar?"
+                document.querySelectorAll('input[name="ninos"]').forEach((input) => {
+                    input.addEventListener('change', function () {
+                        if (this.value === 'S') {
+                            document.getElementById('ninosR-container').style.display = 'block';
+                        } else {
+                            document.getElementById('ninosR-container').style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                // Escucha el cambio en la respuesta de "La casa y/o apartamento donde vive actualmente es:"
+                document.querySelectorAll('input[name="vivienda"]').forEach((input) => {
+                    input.addEventListener('change', function () {
+                        if (this.value === 'Arrendado' || this.value === 'Anticresado') {
+                            document.getElementById('permiteMascotas-container').style.display = 'block';
+                        } else {
+                            document.getElementById('permiteMascotas-container').style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            document.addEventListener('DOMContentLoaded', function () {
+                // Escucha el cambio en la respuesta de "¿Está de acuerdo en que se haga una visita periódica a su domicilio?"
+                document.querySelectorAll('input[name="autorizaVisitas"]').forEach((input) => {
+                    input.addEventListener('change', function () {
+                        if (this.value === 'N') {
+                            document.getElementById('autorizaVisitasR-container').style.display = 'block';
+                        } else {
+                            document.getElementById('autorizaVisitasR-container').style.display = 'none';
+                        }
+                    });
+                });
             });
         </script>
 

@@ -49,7 +49,7 @@
 
             if (rs.next()) {
                 correoDestino = rs.getString("email");
-                clave = rs.getString("clave"); // La clave debe estar almacenada sin encriptar
+                clave = rs.getString("clave"); 
             } else {
                 mensaje = "Número de identificación no encontrado en la base de datos.";
             }
@@ -112,7 +112,7 @@
                 Transport.send(mimeMessage);
 
                 // Mostrar el correo con algunos caracteres en asteriscos
-                correoVisible = correoDestino.replaceAll("(?<=.{4}).(?=.*@)", "*");
+                correoVisible = correoDestino.replaceAll("(?<=.{4}).(?=.@)", "");
                 mensaje = "Correo enviado exitosamente a " + correoVisible + ".";
             } catch (MessagingException e) {
                 mensaje = "Error al enviar el correo: " + e.getMessage();
