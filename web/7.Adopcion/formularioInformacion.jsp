@@ -133,9 +133,9 @@
                         <input type="text" id="otrasMascotasR" name="otrasMascotasR" class="custom-text-input" maxlength="100"><br><br>
                     </div>
 
-                    <div class="pregunta-container" id="esterilizados-container" style="display: none;">
+                    <div class="pregunta-container-p" id="esterilizados-container" style="display: none;">
                         <label for="esterilizados">¿Está esterilizado?</label>
-                        <div class="opciones-SiNo">
+                        <div class="opciones-SiNo-p">
                             <input type="radio" id="esterilizadosSi" name="esterilizados" value="S">
                             <label for="esterilizadosSi">Sí</label>
                             <input type="radio" id="esterilizadosNo" name="esterilizados" value="N">
@@ -167,6 +167,7 @@
                     <div class="pregunta-container">
                         <label for="habitantesR">¿Están de acuerdo en adoptar?</label>
                         <div class="opciones-SiNo">
+
                             <input type="radio" id="habitantesRSi" name="habitantesR" value="S">
                             <label for="habitantesRSi">Sí</label>
                             <input type="radio" id="habitantesRNo" name="habitantesR" value="N">
@@ -212,15 +213,16 @@
                         </div>
                     </div>
 
-                    <div class="pregunta-container" id="permiteMascotas-container" style="display: none;">
+                    <div class="pregunta-container-p" id="permiteMascotas-container" style="display: none;">
                         <label for="permiteMascotas">¿El propietario permite animalitos?</label>
-                        <div class="opciones-SiNo">
+                        <div class="opciones-SiNo-p" >
                             <input type="radio" id="permiteMascotasSi" name="permiteMascotas" value="S">
                             <label for="permiteMascotasSi">Sí</label>
                             <input type="radio" id="permiteMascotasNo" name="permiteMascotas" value="N">
                             <label for="permiteMascotasNo">No</label>
                         </div>
                     </div>
+
 
                     <label for="cambiarDomicilio">Si por algún motivo tuviera que cambiar de domicilio, ¿Qué pasaría con el peludito?</label>
                     <input type="text" id="cambiarDomicilio" name="cambiarDomicilio" class="custom-text-input" maxlength="100" required><br><br>

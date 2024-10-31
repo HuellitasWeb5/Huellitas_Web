@@ -214,7 +214,7 @@ public class TipoPersona {
                 menu += "<img src='presentacion/imagenes/adop.png' alt='Icono Adopciones' width='20' height='20' class='me-2'> Adopciones</a></li>";
 
 // Opción "Donaciones" con icono y estilo
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/donacionesFormulario.jsp&accion=Adicionar' style='padding: 8px 20px; font-size: 1.2rem; color: black; font-weight: bold;'>";
+                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=11.misAyudas/QueSonDonaciones.jsp&accion=Adicionar' style='padding: 8px 20px; font-size: 1.2rem; color: black; font-weight: bold;'>";
                 menu += "<img src='presentacion/imagenes/donar.png' alt='Icono Donaciones' width='20' height='20' class='me-2'> Donaciones</a></li>";
 
 // Opción "Perfil" con icono

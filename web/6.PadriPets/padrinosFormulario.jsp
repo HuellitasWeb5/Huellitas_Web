@@ -115,7 +115,7 @@
                     <input type="hidden" name="mascotasPlan" id="mascotasPlan" required="">
                     <div class="form-group">
                         <label for="identificacion">Identificación</label>
-                        <input type="text" name="identificacion" id="identificacion" required <%= privado%> >
+                        <input type="text" name="identificacion" id="identificacion" required <%= privado%>>
                     </div>
 
                     <div class="form-group">
