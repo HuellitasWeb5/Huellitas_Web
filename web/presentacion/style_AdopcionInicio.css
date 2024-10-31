@@ -48,7 +48,7 @@ header {
 /* Ajustes en el cuadro de contenido */
 .preguntas {
     background-color: rgba(0, 0, 0, 0.5); /* Más transparente */
-    padding: 30px; /* Aumentar el padding para hacer el cuadro más grande */
+    padding: 10px; /* Aumentar el padding para hacer el cuadro más grande */
     border-radius: 20px;
     width: 80%; /* Ajustar el ancho para que sea más grande */
     color: #fff;
@@ -72,9 +72,9 @@ header {
 .preguntas button {
     background-color: #005d03;
     color: #fff;
-    padding: 15px 30px; /* Aumentar padding para hacer el botón más grande */
+    padding: 18px 27px; /* Aumentar padding para hacer el botón más grande */
     border: none;
-    border-radius: 15px;
+    border-radius: 18px;
     font-weight: bold;
     font-size: 15px; /* Aumentar tamaño de la letra del botón */
     cursor: pointer;

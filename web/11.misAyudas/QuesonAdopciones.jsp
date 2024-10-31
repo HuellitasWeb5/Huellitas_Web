@@ -17,10 +17,11 @@
         <h1>¿POR QUÉ ADOPTAR?</h1>
             <div class="preguntas">
         <h4>Compromisos al adoptar</h4>
-        <p>Debes comprometerte a cuidar lo mejor que puedas al peludito que estés acogiendo...</p>
-        <p>Adoptar un perrito no solo le brinda un hogar lleno de amor y seguridad, sino que también le das la oportunidad de vivir una vida plena y feliz. ¡Si deseas hacer la diferencia y adoptar, haz clic aquí!</p>
-        <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar"btn-adicionar">
-           <button>PRE-FORMULARIO DE ADOPCION</button>
+        <p>Adoptar significa comprometerse a brindar todo el amor, cuidado y responsabilidad al peludito que estás acogiendo en tu vida.</p>
+        <p>Al brindarle un hogar, no solo le ofreces amor y seguridad, sino también la oportunidad de vivir una vida plena y feliz.</p>
+        <p>¡Si quieres hacer la diferencia y cambiar una vida, haz clic aquí abajo!</p> 
+        <a href="principal.jsp?CONTENIDO=9.Perfil/formularioInformacion.jsp&accion=Adicionar"btn-adicionar">
+           <button>DESEO ADOPTAR</button>
         </a>
         <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=Cliente" class="btn-adicionar">
             <button>CONOCE A NUESTROS PELUDITOS</button>

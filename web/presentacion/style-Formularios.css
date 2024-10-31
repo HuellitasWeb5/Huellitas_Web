@@ -84,7 +84,7 @@ input[type="number"]:focus {
 }
 
 .custom-text-input2 {
-     background-color: #d4f1f9;/* Cambia este color según tu preferencia */
+    background-color: #d4f1f9;/* Cambia este color según tu preferencia */
     border: 1px solid #ccc; /* Borde suave */
     padding: 8px; /* Ajusta el espacio dentro de los campos */
     border-radius: 18px; /* Bordes redondeados */
@@ -92,7 +92,7 @@ input[type="number"]:focus {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
     font-size: 1em; /* Tamaño de fuente */ 
     background-color: #d4f1f9; /* Color de fondo blanco */ 
-    width: 100%;
+    width: 100%;          
 }
 
 /* Estilo en foco (cuando el usuario hace clic en el campo) */
