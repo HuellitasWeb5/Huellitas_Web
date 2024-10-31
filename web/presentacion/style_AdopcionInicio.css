@@ -1,6 +1,9 @@
 /* Estilos para el header */
 header {
     width: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
     height: 100vh; /* Ajusta la altura del header */
     position: relative;
     display: flex;
