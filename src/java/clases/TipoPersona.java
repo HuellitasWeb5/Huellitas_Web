@@ -235,7 +235,7 @@ public class TipoPersona {
                 menu += "<img src='presentacion/imagenes/donar.png' alt='Icono Donaciones' width='25' height='25' class='me-3'> <span class='ms-2'>Mis Donaciones</span></a></li>";
 
 // Opción "Ver mis adopciones" con icono
-                menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=11.misAyudas/verMisAdopciones.jsp' style='padding: 10px 15px; font-size: 1.2rem; color: black; font-weight: bold;'>";
+               menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=11.misAyudas/verMisAdopciones.jsp' style='padding: 10px 15px; font-size: 1.2rem; color: black; font-weight: bold;'>";
                 menu += "<img src='presentacion/imagenes/adopciones.png' alt='Icono Adopciones' width='20' height='20' class='me-3'> <span class='ms-2'>Mis Adopciones</span></a></li>";
 
 // Opción "Ver mis apadrinamientos" con icono
