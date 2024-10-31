@@ -1,0 +1,55 @@
+header{
+    width: 100%;
+    height: 580px;
+    background: -webkit-linear-gradient(to right, hsla(143, 85%, 58%, 0.61), hsla(175, 80%, 33%, 0.61)),url(../presentacion/imagenes/PerritosMascotas.jpg);
+
+    /* Chrome 10-25, Safari 5.1-6 */
+
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: url(../presentacion/imagenes/Fondo-Inicio.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+    filter: brightness(90%);
+
+}
+header .textos-header{
+    display: flex;
+    height: 430px;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.textos-header h1{
+    size: 100;
+    font-size: 50px;
+    color: #fff;
+}
+
+.textos-header h2{
+    font-size: 30px;
+    font-weight: 300;
+    color: #fff;
+}
+.btn-container {
+    text-align: center;
+    margin-top: 20px;
+}
+.btn-adicionar {
+    background-color: #28a745; /* Verde */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px; /* Bordes redondeados */
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.btn-adicionar:hover {
+    background-color: #218838; /* Verde más oscuro al pasar el mouse */
+    transform: scale(1.05); /* Pequeña animación */
+}

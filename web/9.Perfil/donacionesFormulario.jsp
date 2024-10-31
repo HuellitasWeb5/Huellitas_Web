@@ -7,11 +7,12 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <head>
-    <link rel="stylesheet" href="presentacion/Donacion.css">
+    <link rel="stylesheet" href="presentacion/style-TarjetasFormularios.css">
 </head>
 <%
-    String identificacionUsuario=(String) request.getAttribute("identificacionUsuario");
+    String identificacionUsuario = (String) request.getAttribute("identificacionUsuario");
     String accion = request.getParameter("accion");
+    String tipoUsuario = (String) session.getAttribute("tipoUsuario");
 %>
 <body onload="cargarFecha()">
 <center><h3>DONACIONES</h3></center>
@@ -32,12 +33,12 @@
 
                 <div class="form-group">
                     <label>Identificación</label>
-                    <input type="text" name="identificacionD" id="identificacionD" value="" required>
+                    <input type="text" name="identificacionD" id="identificacionD" value="" readonly="">
                 </div>
 
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <span id="nombre" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                    <span id="nombre" name="nombre" readonly></span> <!-- Se elimina el atributo "value" en span -->
                 </div>
 
                 <div class="form-group">
@@ -128,10 +129,11 @@
 </body>
 
 <script>
-    <%=identificacionUsuario %> ;
-   
-    var personas = <%=Persona.getListaEnArreglosJS("identificacion="+identificacionUsuario, null)%>;
+    var tipoUsuario = "<%= tipoUsuario%>";
+    var personas = <%=Persona.getListaEnArreglosJS("identificacion=" + identificacionUsuario, null)%>;
     var conceptoDonacion = <%=ConceptoDonacion.getListaEnArreglosJS(null, null)%>;
+    var identificacionUsuario = <%= identificacionUsuario%>;
+    
     var vectorPersonas = new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
@@ -139,6 +141,8 @@
     $("#identificacionD").autocomplete({
         source: vectorPersonas
     });
+
+
 
     function validarFormularioPrincipal() {
         const donacionDetalles = document.getElementById('donacion').value;
@@ -162,21 +166,7 @@
         }
     }
 
-    $('#identificacionD').change(function () {
-        let identificacion = this.value.trim();
-        let indicePersona = buscarPersona(identificacion, 0);
-        let nombre = personas[indicePersona][1];
-        let telefono = personas[indicePersona][2];
-        let direccion = personas[indicePersona][3];
-        let residencia = personas[indicePersona][4];
-        let correo = personas[indicePersona][5];
 
-        document.getElementById("nombre").innerText = nombre;
-        document.getElementById("telefono").innerText = telefono;
-        document.getElementById("direccion").innerText = direccion;
-        document.getElementById("residencia").innerText = residencia;
-        document.getElementById("correo").innerText = correo;
-    });
 
     function buscarPersona(valor, indice) {
         let encontrado = false;
@@ -316,5 +306,36 @@
             el: '.swiper-pagination',
             clickable: true,
         }
+    });
+
+    if (tipoUsuario === "C") {
+        document.getElementById("identificacionD").value = identificacionUsuario;
+        indicePersona = buscarPersona(identificacionUsuario, 0);
+        nombres = personas[indicePersona][1];
+        telefono = personas[indicePersona][2];
+        direccion = personas[indicePersona][3];
+        residencia = personas[indicePersona][4];
+        correo = personas[indicePersona][5];
+
+        document.getElementById("nombre").innerText = nombres;
+        document.getElementById("telefono").innerText = telefono;
+        document.getElementById("direccion").innerText = direccion;
+        document.getElementById("residencia").innerText = residencia;
+        document.getElementById("correo").innerText = correo;
+    }
+    $('#identificacionD').change(function () {
+        let identificacion = this.value.trim();
+        let indicePersona = buscarPersona(identificacion, 0);
+        let nombre = personas[indicePersona][1];
+        let telefono = personas[indicePersona][2];
+        let direccion = personas[indicePersona][3];
+        let residencia = personas[indicePersona][4];
+        let correo = personas[indicePersona][5];
+
+        document.getElementById("nombre").innerText = nombre;
+        document.getElementById("telefono").innerText = telefono;
+        document.getElementById("direccion").innerText = direccion;
+        document.getElementById("residencia").innerText = residencia;
+        document.getElementById("correo").innerText = correo;
     });
 </script>
