@@ -21,6 +21,9 @@
 %>
 
 <style>
+    .swiper-button-next {
+  right: -3px;
+}
     .swiper-container {
         overflow: hidden;
     }
