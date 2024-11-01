@@ -89,10 +89,6 @@
         <h2>CONOCE A</h2>
         <h1>NUESTROS PELUDITOS</h1>
     </section>
-    <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;" >
-        <path d="M0.28,50.83 C138.54,164.31 349.20,-49.98 500.00,49.98 L500.00,150.00 L-1.97,153.47 Z"
-              style="stroke: none; fill: #eeffef;"></path>
-        </svg></div>
 </header>
 <% }%>
 
