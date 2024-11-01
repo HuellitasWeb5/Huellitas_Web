@@ -24,7 +24,7 @@
             <h2>DATOS DEL USUARIO</h2>
         </div>
         <div class="card-body">
-            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=8.Donacion/donacionesFormularioActualizar.jsp">
+            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/donacionesFormularioActualizar.jsp">
 
                 <div class="form-group">
                     <label>Fecha actual:</label>
