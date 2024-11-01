@@ -1,36 +1,51 @@
 body {
-    font-family: 'Open Sans';
+    margin: 0;
+    padding: 0;
+    background-color: #333;
     text-align: center;
 }
-
-.contenedor-imagen {
+.dark-background {
     position: relative;
-    text-align: center; 
-    color: white;
-    margin-bottom: 20px;
+    display: flex;
+    justify-content: center; /* Centra verticalmente el contenido */
+    align-items: center; /* Centra horizontalmente el contenido */
+    width: 100%;
+    height: 100vh; /* Ocupa toda la altura de la vista */
+    padding: 0;
+    background: url(../presentacion/imagenes/inicio1.jpg) no-repeat center center;
+    background-size: cover; /* Ajusta la imagen al contenedor */
+    background-attachment: fixed;
+    margin-top: 0;
+    border-radius: 0;
 }
 
-.contenedor-imagen img {
-    width: 90%;
-    height: auto;
-    object-fit: cover;
-    filter: brightness(70%); 
+.dark-background::after {
+    content: ''; /* Necesario para que el pseudo-elemento se muestre */
+    position: absolute; /* Posiciona el pseudo-elemento sobre la imagen */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Superposición oscura */
+    z-index: 1; /* Asegúrate de que esté por encima de la imagen de fondo */
 }
 
 .texto-superpuesto {
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    transform: translate(-100%, -50%) scale(0.8); /* Comienza fuera de la vista a la izquierda y más pequeño */
-    text-align: left;
+    position: absolute; /* Cambia a absoluto para el posicionamiento */
+    top: 50%; /* Centra verticalmente */
+    left: 10%; /* Alinea a la izquierda */
+    transform: translateY(-50%) scale(0.8); /* Comienza más pequeño y centrado verticalmente */
+    z-index: 2; /* Asegúrate de que el texto esté por encima de la superposición oscura */
+    text-align: left; /* Alinea el texto a la izquierda */
     opacity: 0; /* Inicialmente invisible */
     transition: transform 0.8s ease, opacity 0.8s ease; /* Transición suave */
 }
 
 .texto-superpuesto.visible {
-    transform: translate(0, -50%) scale(1); /* Mueve el texto a su posición y tamaño original */
+    transform: translateY(-50%) scale(1); /* Mantiene la posición centrada y tamaño normal */
     opacity: 1; /* Hace visible el texto */
 }
+
 
 
 .texto-superpuesto h1 {

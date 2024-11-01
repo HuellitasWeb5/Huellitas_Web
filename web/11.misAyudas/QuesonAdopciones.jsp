@@ -9,24 +9,26 @@
     <link rel="stylesheet" href="presentacion/style_AdopcionInicio.css" />
 </head>
 <body>
-<header>
-    <div class="contenedor-imagen">
-        <img src="presentacion/imagenes/Adopcionees.jpg" alt="Imagen de la Fundación">
-    </div>
+    <div class="dark-background">
+        <header>
     <div class="texto-superpuesto">
-        <h1>¿POR QUÉ ADOPTAR?</h1>
+            <h1>¿POR QUÉ ADOPTAR?</h1>
             <div class="preguntas">
-        <h4>Compromisos al adoptar</h4>
-        <p>Adoptar significa comprometerse a brindar todo el amor, cuidado y responsabilidad al peludito que estás acogiendo en tu vida.</p>
-        <p>Al brindarle un hogar, no solo le ofreces amor y seguridad, sino también la oportunidad de vivir una vida plena y feliz.</p>
-        <p>¡Si quieres hacer la diferencia y cambiar una vida, haz clic aquí abajo!</p> 
-        <a href="principal.jsp?CONTENIDO=9.Perfil/formularioInformacion.jsp&accion=Adicionar"btn-adicionar">
-           <button>¡DESEO ADOPTAR AHORA!</button>
-        </a>
+                <h4>Compromisos al adoptar</h4>
+                <p>Adoptar significa comprometerse a brindar todo el amor, cuidado y responsabilidad al peludito que estás acogiendo en tu vida.</p>
+                <p>Al brindarle un hogar, no solo le ofreces amor y seguridad, sino también la oportunidad de vivir una vida plena y feliz.</p>
+                <p>¡Si quieres hacer la diferencia y cambiar una vida, haz clic aquí abajo!</p> 
+                <a href="principal.jsp?CONTENIDO=9.Perfil/formularioInformacion.jsp&accion=Adicionar" class="btn-adicionar">
+                    <button>¡DESEO ADOPTAR AHORA!</button>
+                </a>
+            </div>
+        </div>
     </div>
-    </div>
-</header>
-        <script>
+        </header>
+
+    
+
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const textoSuperpuesto = document.querySelector('.texto-superpuesto');
             setTimeout(() => {
@@ -35,4 +37,6 @@
         });
     </script>
 </body>
+
+
 </html>
