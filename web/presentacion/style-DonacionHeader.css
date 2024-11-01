@@ -53,3 +53,12 @@ header .textos-header{
     background-color: #218838; /* Verde más oscuro al pasar el mouse */
     transform: scale(1.05); /* Pequeña animación */
 }
+
+.info-box {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    color:#ffffff;
+    backdrop-filter: blur(15px); 
+    border-radius: 15px;
+    background-color: #004085;
+}
