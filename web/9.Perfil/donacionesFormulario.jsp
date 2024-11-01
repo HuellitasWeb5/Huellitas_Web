@@ -132,7 +132,7 @@
     var personas = <%=Persona.getListaEnArreglosJS("identificacion=" + identificacionUsuario, null)%>;
     var conceptoDonacion = <%=ConceptoDonacion.getListaEnArreglosJS(null, null)%>;
     var identificacionUsuario = <%= identificacionUsuario%>;
-    
+
     var vectorPersonas = new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
@@ -260,8 +260,11 @@
 
             var botonEliminar = document.createElement('button');
             botonEliminar.textContent = 'Eliminar';
+            botonEliminar.classList.add('btn-eliminar');
             botonEliminar.onclick = function () {
                 eliminarRegistro(index);
+            };
+
             };
 
             card.appendChild(tipoDonacionElemento);

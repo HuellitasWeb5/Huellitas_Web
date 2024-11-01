@@ -7,7 +7,7 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <head>
-   <link rel="stylesheet" href="presentacion/style-TarjetasFormularios.css">
+    <link rel="stylesheet" href="presentacion/style-TarjetasFormularios.css">
 </head>
 <%
     String accion = request.getParameter("accion");
@@ -268,8 +268,11 @@
 
             var botonEliminar = document.createElement('button');
             botonEliminar.textContent = 'Eliminar';
+            botonEliminar.classList.add('btn-eliminar');
             botonEliminar.onclick = function () {
                 eliminarRegistro(index);
+           
+
             };
 
             card.appendChild(tipoDonacionElemento);
