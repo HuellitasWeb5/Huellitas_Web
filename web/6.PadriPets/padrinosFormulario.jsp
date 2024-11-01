@@ -27,6 +27,10 @@
     .swiper-container {
         overflow: hidden;
     }
+    .swiper-container {
+  height: 300px;
+  overflow: hidden;
+}
     .swiper-wrapper {
         display: flex;
         justify-content: center;
@@ -68,6 +72,9 @@
 <%
     String identificacionUsuario = (String) session.getAttribute("numeroUsuario");
     String tipoUsuario = (String) session.getAttribute("tipoUsuario");
+    String codigoMascota = request.getParameter("Mascota");
+    Mascota mpadrino = new Mascota(codigoMascota);
+    String auto = mpadrino.getNombre() + " - "+ mpadrino.getCodigo();
     String privado = "";
     if (tipoUsuario.equals("C")) {
         privado = "readonly";
@@ -177,7 +184,7 @@
     <div id="formulario" title="Apadrinar mascota">
         <form name="formularioMascotas">
             <table id="mascotas" border="0">
-                <tr><th>Mascota</th><th><input type="text" name="Mascota" id="Mascota" required></th></tr>
+                <tr><th>Mascota</th><th><input type="text" name="Mascota" id="Mascota" required>  </th></tr>
                 <tr><th>Fecha Inicio:</th><th><input type="date" name="Fecha" id="Fecha" required></th></tr>
                 <tr><th>Fecha Fin:</th><th><input type="date" name="FechaFin" id="FechaFin" required></th></tr>
             </table>
@@ -194,8 +201,7 @@
      var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
     var identificacionUsuario = "<%= identificacionUsuario%>";
     var tipoUsuario = "<%= tipoUsuario%>";
-
-    // Cargar el valor en el input si tipoUsuario es "C"
+    
     if (tipoUsuario === "C") {
         document.getElementById("identificacion").value = identificacionUsuario;
         indicePersona = buscarPersona(identificacionUsuario, 0);
@@ -232,7 +238,7 @@
                 duration: 1000
             },
             width: 950,
-            height: 'auto', // Cambiar de un valor fijo a 'auto' para ajustar dinÃ¡micamente la altura
+            height: 1024, // Cambiar de un valor fijo a 'auto' para ajustar dinÃ¡micamente la altura
             modal: true,
             open: function (event, ui) {
                 $(this).dialog('option', 'height', 'auto'); // Ajusta automÃ¡ticamente la altura del modal al contenido
@@ -376,6 +382,7 @@
 
 
     var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado!='Adoptado'", null)%>;
+    
     function buscarMascota(valor, indice) {
         var encontrado = false;
         var i = 0;
@@ -464,7 +471,7 @@
                 // AÃ±adir la tarjeta al contenedor
                 contenedor.appendChild(tarjeta);
             } else {
-                console.warn('Mascota no encontrada para el cÃ³digo: ' + campos[0]);
+                console.warn('Mascota no encontrada para el código: ' + campos[0]);
             }
         });
 
@@ -500,9 +507,6 @@
                 contador++;
             }
         }
-
-        console.log("Filas despuÃ©s de eliminar:", mascotae);
-
         // Actualizar el campo con los nuevos datos
         document.formulario.mascotasPlan.value = mascotae;
 
@@ -510,12 +514,21 @@
         cargarTabla();
     }
 
-
+var masbar=<%= codigoMascota%>
+$(document).ready(function() {
+    // Verifica si tipoUsuario es igual a "C" al cargar la página
+    if (tipoUsuario === "C" && masbar!==null) {
+        abrirFormulario(); // Llama a la función para abrir el formulario
+    }
+});
 
     function abrirFormulario() {
         $('#formulario').dialog('open');
+        if (tipoUsuario === "C" && masbar!==null) {
+        // Si es "C", escribe "Tomate" en el input de mascota
+        document.getElementById("Mascota").value = "<%=auto%>";
     }
-
+    }
     function cerrarFormulario() {
         $('#formulario').dialog('close');
 
