@@ -236,7 +236,7 @@ public class TipoPersona {
 
 // Opción "Ver mis apadrinamientos" con icono
                 menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp' style='padding: 10px 15px; font-size: 1.2rem; color: black; font-weight: bold;'>";
-                menu += "<img src='presentacion/imagenes/apadrinamiento.png' alt='Icono Apadrinamientos' width='18' height='18' class='me-3'> <span class='ms-2'>Mis Apadrinamientos</span></a></li>";
+                menu += "<img src='presentacion/imagenes/apadrinamiento.png' alt='Icono Apadrinamientos' width='10' height='18' class='me-3'> <span class='ms-2'>Mis Apadrinamientos</span></a></li>";
                 menu += "</ul>";
                 menu += "</li>";
 

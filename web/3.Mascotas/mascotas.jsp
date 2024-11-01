@@ -84,7 +84,9 @@
 %>
 
 <% if ("Cliente".equals(nombreTipoPersona)) {  %>
+<body>
 <header>
+    
     <section class="textos-header">
         <h2>CONOCE A</h2>
         <h1>NUESTROS PELUDITOS</h1>
@@ -117,7 +119,7 @@
     </div>
 </div>
 
-
+</body>
 
 <div class="swiper-container">
     <%= lista%>
