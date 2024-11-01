@@ -65,10 +65,10 @@
         <footer>
             <div class="contenedor-footer">
                 <div class="contact-info">
-                    <h4>
-                        <img src="presentacion/imagenes/whats.png" alt="Celular" width="24" height="24"> WhatsApp
+                    <h6>
+                        <img src="presentacion/iconos/whatsApp.png" alt="Celular" width="24" height="24"> WhatsApp
 
-                    </h4>
+                    </h6>
                     <p>   <a href="https://wa.me/573162562576" target="_blank">
                             3162562576
                         </a>
@@ -76,9 +76,9 @@
 
                 </div>
                 <div class="content-foo">
-                    <h4>
-                        <img src="presentacion/imagenes/tiktok.png" alt="tiktok" width="24" height="24"> TikTok
-                    </h4>
+                    <h6>
+                        <img src="presentacion/iconos/tiktok.png" alt="tiktok" width="24" height="24"> TikTok
+                    </h6>
                     <p>
                         <a href="https://www.tiktok.com/@villa.esperanza.28" target="_blank">
                             villa.esperanza.28
@@ -86,31 +86,31 @@
                     </p>
                 </div>
                 <div class="content-foo">
-                    <h4>
-                        <img src="presentacion/imagenes/email.png" alt="Correo" width="24" height="24"> Email
-                    </h4>
+                    <h6>
+                        <img src="presentacion/iconos/facebook.png" alt="Facebook" width="24" height="24"> Facebook
+                    </h6>
                     <p>
-                        <a href="mailto:huellitasweb5@gmail.com" target="_blank">
-                            villaesperanza@gmail.com
+                        <a href="https://www.facebook.com/share/imnHxwmHPePBDVvu/" target="_blank">
+                            Villa Esperanza
                         </a>
                     </p>
                 </div>
 
                 <div class="content-foo">
-                    <h4>
-                        <img src="presentacion/imagenes/mapa.png" alt="Dirección" width="24" height="24"> Dirección
-                    </h4>
+                    <h6>
+                        <img src="presentacion/iconos/ubicacion.png" alt="Dirección" width="24" height="24"> Dirección
+                    </h6>
                     <p>
                         <a href="https://maps.app.goo.gl/SJvHhvZrxt8fKixj9" target="_blank">
-                            Albergue Villa Esperanza - Chimayoy
+                            Parque Natural Chimayoy
                         </a>
                     </p>
                 </div>
 
                 <div class="content-foo">
-                    <h4>
-                        <img src="presentacion/imagenes/ciudad.png" alt="Ciudad" width="24" height="24"> Ciudad
-                    </h4>
+                    <h6>
+                        <img src="presentacion/iconos/mundo.png" alt="Ciudad" width="24" height="24"> Ciudad
+                    </h6>
                     <p>
                         <a href="https://maps.app.goo.gl/G3CdcyUxiZ2aXAvf9" target="_blank">
                             Pasto, Nariño, Colombia
