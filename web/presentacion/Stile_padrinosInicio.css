@@ -1,6 +1,5 @@
 /* General Background */
 body {
-    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     background-color: #333;
@@ -62,7 +61,7 @@ body {
 
 /* Estilo personalizado para los títulos */
 .info-box h2 {
-    font-family: 'Georgia', serif; /* Fuente personalizada para el título */
+   
     font-size: 1.8em;
     color: #fff; /* Color dorado */
     text-transform: uppercase;
@@ -127,12 +126,10 @@ body {
     font-size: 2.8em;
     color: #fff;
     margin: 0;
-    font-family: 'Georgia', serif; /* Fuente para el título principal */
     text-transform: uppercase;
 }
 
 .textos-header h2 {
-    font-family: 'Georgia', serif; 
     font-size: 1.7em;
     font-weight: 300;
     color: #fff;
