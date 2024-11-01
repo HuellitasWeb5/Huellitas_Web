@@ -90,8 +90,10 @@
 <%
 } else {
 %>
-<p>Aún no has realizado ninguna adopción.</p>
+<br/>  
+<h4><p>Aún no has realizado ninguna adopción.</p>
 <p>¡Anímate a cambiar una vida y adopta un peludito!</p>
+<h4> 
 <%
     }
 %>

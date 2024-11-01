@@ -76,8 +76,10 @@
 <%
 } else {
 %>
-<p>Aún no has realizado ninguna donación.</p>
-<p>¡Tu apoyo puede hacer una gran diferencia en la vida de un peludito!"</p>
+<br><h4>
+    <p>Aún no has realizado ninguna donación.</p>
+    <p>¡Tu apoyo puede hacer una gran diferencia en la vida de un peludito!"</p>
+</h4>
 <%
     }
 %>

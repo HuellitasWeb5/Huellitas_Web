@@ -35,13 +35,13 @@
         lista += clientes.getNombre();
         lista += "</div>";
         lista += "<div class='card-body'>"; // Contenedor para el cuerpo de la tarjeta   
-        lista += "<p><strong>Identificacion:</strong>" + clientes.getIdentificacion() + "</p>";
-        lista += "<p><strong>Genero:</strong>" + clientes.getGeneroPersona() + "</p>";
-        lista += "<p><strong>Edad:</strong>" + clientes.getEdad() + " años</p>";
-        lista += "<p><strong>Email:</strong>" + clientes.getEmail() + "</p>";
-        lista += "<p><strong>Telefono:</strong>" + clientes.getTelefono() + "</p>";
-        lista += "<p><strong>Direccion:</strong>" + clientes.getDireccion() + "</p>";
-        lista += "<p><strong>Residencia:</strong>" + clientes.getResidencia() + "</p>";
+        lista += "<p><strong>Identificacion: </strong>" + clientes.getIdentificacion() + "</p>";
+        lista += "<p><strong>Genero: </strong>" + clientes.getGeneroPersona() + "</p>";
+        lista += "<p><strong>Edad: </strong>" + clientes.getEdad() + " años</p>";
+        lista += "<p><strong>Email: </strong>" + clientes.getEmail() + "</p>";
+        lista += "<p><strong>Telefono: </strong>" + clientes.getTelefono() + "</p>";
+        lista += "<p><strong>Direccion: </strong>" + clientes.getDireccion() + "</p>";
+        lista += "<p><strong>Residencia: </strong>" + clientes.getResidencia() + "</p>";
         lista += "</div>";
         lista += "<div class='btn-container'>"; // Contenedor para los botones
         if (!"AdministradorFundacion".equals(nombreTipoPersona)) {

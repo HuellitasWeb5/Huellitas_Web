@@ -53,13 +53,13 @@
             lista += "<p class='rol-administrador'>" + mascota.getEstado() + "</p>"; // Rol del administrador como subtítulo
             lista += "</div>";
             lista += "<div class='card-body'>";
-            lista += "<p><strong>Código:</strong>" + mascota.getCodigo() + "</p>";
-            lista += "<p><strong>Género:</strong>" + mascota.getGeneroEnObjeto() + "</p>";
-            lista += "<p><strong>Tamaño:</strong>" + mascota.getTamano() + "</p>";
-            lista += "<p><strong>Cuidado:</strong>" + mascota.getCuidadosEspeciales() + "</p>";
-            lista += "<p><strong>Edad aproximada:</strong>" + mascota.getEdad() + " años</p>";
-            lista += "<p><strong>Fecha de ingreso:</strong>" + mascota.getFechaIngreso() + "</p>";
-            lista += "<p><strong>Descripción:</strong>" + mascota.getDescripcion() + "</p>";
+            lista += "<p><strong>Código: </strong>" + mascota.getCodigo() + "</p>";
+            lista += "<p><strong>Género: </strong>" + mascota.getGeneroEnObjeto() + "</p>";
+            lista += "<p><strong>Tamaño: </strong>" + mascota.getTamano() + "</p>";
+            lista += "<p><strong>Cuidado: </strong>" + mascota.getCuidadosEspeciales() + "</p>";
+            lista += "<p><strong>Edad aproximada: </strong>" + mascota.getEdad() + " años</p>";
+            lista += "<p><strong>Fecha de ingreso: </strong>" + mascota.getFechaIngreso() + "</p>";
+            lista += "<p><strong>Descripción: </strong>" + mascota.getDescripcion() + "</p>";
             lista += "</div>";
 
             // Solo mostrar los botones de Modificar y Eliminar si NO es un cliente
@@ -87,7 +87,7 @@
 <header>
     <section class="textos-header">
         <h2>CONOCE A</h2>
-        <h1>NUESTROS PELUDOS</h1>
+        <h1>NUESTROS PELUDITOS</h1>
     </section>
     <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;" >
         <path d="M0.28,50.83 C138.54,164.31 349.20,-49.98 500.00,49.98 L500.00,150.00 L-1.97,153.47 Z"
@@ -97,7 +97,7 @@
 <% }%>
 
 <% if (!"Cliente".equals(nombreTipoPersona)) {%>
-<h1>LISTA DE MASCOTAS</h1>
+<h1>NUESTROS PELUDITOS</h1>
 <% }%>
 <div class="header-container">
     <!-- Buscar por nombre -->
@@ -158,7 +158,7 @@
 
     const swiper = new Swiper('.swiper-container', {
         loop: true,
-        slidesPerView: 3, // ayuda a mostrarme  4 tarjetas a la vez
+        slidesPerView: 3, 
         spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-button-next',
