@@ -14,10 +14,8 @@
 
 
 <%
-    // Recibir el parámetro "nombre" desde la URL
     String nombreTipoPersona = request.getParameter("nombre");
 
-    // Si el parámetro no se recibe, asumir que es "Cliente" por defecto
     if (nombreTipoPersona == null) {
         nombreTipoPersona = "Cliente";
     }
