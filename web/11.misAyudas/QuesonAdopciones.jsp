@@ -21,10 +21,7 @@
         <p>Al brindarle un hogar, no solo le ofreces amor y seguridad, sino también la oportunidad de vivir una vida plena y feliz.</p>
         <p>¡Si quieres hacer la diferencia y cambiar una vida, haz clic aquí abajo!</p> 
         <a href="principal.jsp?CONTENIDO=9.Perfil/formularioInformacion.jsp&accion=Adicionar"btn-adicionar">
-           <button>DESEO ADOPTAR</button>
-        </a>
-        <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=Cliente" class="btn-adicionar">
-            <button>CONOCE A NUESTROS PELUDITOS</button>
+           <button>¡DESEO ADOPTAR AHORA!</button>
         </a>
     </div>
     </div>

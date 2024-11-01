@@ -32,7 +32,7 @@ for (int j = 0; j < datosApadrinamiento.size(); j++) {
     listaApadrinamiento += "<div class='swiper-slide'>";
     listaApadrinamiento += "<div class='card'>";
     listaApadrinamiento += "<div class='card-header'>";
-    listaApadrinamiento += "<h2>Apadrinamiento #" + apadrinamiento.getCodigo() + "</h2>";
+    listaApadrinamiento += "<h2 style='font-weight: bold;'>Códido padripet: " + apadrinamiento.getCodigo() + "</h2>";
     listaApadrinamiento += "</div>";
     listaApadrinamiento += "<div class='card-body'>";
 

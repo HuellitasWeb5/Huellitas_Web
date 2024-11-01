@@ -14,7 +14,7 @@
 </head>
 
 <body onload="cargarFecha()">
-    
+
     <%
         String accion = request.getParameter("accion");
         FormularioDeInformacion formularioDeInformacion = new FormularioDeInformacion();
@@ -24,7 +24,7 @@
         String tipoUsuario = (String) session.getAttribute("tipoUsuario");
 
     %>  
-    
+
     <h3><%=accion.toUpperCase()%> FORMULARIO DE PRE-ADOPCIÓN </h3>
     <form name="formulario" method="post" action="principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp" enctype="multipart/form-data">
         <div class="formulario-adopcion">
@@ -131,9 +131,9 @@
                     <input type="text" id="otrasMascotasR" name="otrasMascotasR" class="custom-text-input" maxlength="100"><br><br>
                 </div>
 
-                <div class="pregunta-container" id="esterilizados-container" style="display: none;">
+                <div class="pregunta-container-p" id="esterilizados-container" style="display: none;">
                     <label for="esterilizados">¿Está esterilizado?</label>
-                    <div class="opciones-SiNo">
+                    <div class="opciones-SiNo-p">
                         <input type="radio" id="esterilizadosSi" name="esterilizados" value="S">
                         <label for="esterilizadosSi">Sí</label>
                         <input type="radio" id="esterilizadosNo" name="esterilizados" value="N">
@@ -210,9 +210,9 @@
                     </div>
                 </div>
 
-                <div class="pregunta-container" id="permiteMascotas-container" style="display: none;">
+                <div class="pregunta-container-p" id="permiteMascotas-container" style="display: none;">
                     <label for="permiteMascotas">¿El propietario permite animalitos?</label>
-                    <div class="opciones-SiNo">
+                    <div class="opciones-SiNo-p">
                         <input type="radio" id="permiteMascotasSi" name="permiteMascotas" value="S">
                         <label for="permiteMascotasSi">Sí</label>
                         <input type="radio" id="permiteMascotasNo" name="permiteMascotas" value="N">
@@ -377,8 +377,18 @@
                     <label for="autorizacion" style="margin-left: 8px;">Autorizo el uso de mis datos personales exclusivamente para fines relacionados con la adopción 
                         y el bienestar de la(s) mascota(s), en cumplimiento con la legislación vigente en materia de protección de datos.</label>
                 </div>
-                <br><br>
+                <br>
 
+                <div class="divisor"></div>
+                <h1>¡Gracias por dar el primer paso!</h1>
+                <h2>
+                    <p>Una vez envíe el formulario, uno de nuestros representantes se pondrá en contacto contigo lo antes posible.</p>
+                    <p>Mientras tanto, su solicitud estará en proceso y cuando sea aprobada, podrá verla en la sección de </p>
+                    <p>'Mis Ayudas' - 'Ver mis Adopciones'.</p>
+                    <p>¡Gracias de corazón por tu amor y compromiso con nuestros peluditos en busca de un hogar!</p>
+                </h2>
+
+                <div class="divisor"></div><br>
                 <!-- Botones de envío -->
                 <input class="btn-adicionar2" type="submit" name="accion" value="<%=accion%>">
                 <input class="btn-eliminar2" type="button" value="Cancelar" onClick="window.history.back()">
