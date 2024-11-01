@@ -71,7 +71,6 @@
                 <input type="hidden" name="accion" value="<%=accion%>">
                 <center>
                     <br><br>
-
                     <div class="btn-container">
                         <input class="btn-adicionar" type="submit" value="Guardar Donación" onclick="return validarFormularioPrincipal();">
                         <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
