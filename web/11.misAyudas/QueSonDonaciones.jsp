@@ -14,20 +14,15 @@
         <title>JSP Page</title>
     </head>
 <body>
-    <header>
-        <section class="textos-header">
-            <h1>DONACIONES</h1>
-            <h2 >No vamos a cambiar el mundo ayunando a un animal,</h2>
-            <h2 > pero al menos el mundo habrá cambiado para el</h2>
-        </section>
-         <div class="wave" style="height: 100px; overflow: hidden;">
-        <svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;">
-            <path d="M0.28,50.83 C138.54,164.31 349.20,-49.98 500.00,49.98 L500.00,150.00 L-1.97,153.47 Z"
-                  style="stroke: none; fill: #eeffef;"></path>
-        </svg>
-    </div>
-    </header>
- <div class="dark-background">
+  <header>
+    <section class="textos-header">
+        <h1>DONACIONES</h1>
+        <h2>Tu apoyo transforma vidas peluditas.</h2>
+        <h2>Con tu ayuda, podemos hacer mucho más.</h2>
+    </section>
+</header>
+</header>
+<div class="dark-background">
     <div class="container-fluid my-5 p-5">
         <div class="info-box col-lg-8 col-md-10 col-sm-12 mx-auto text-center">
             <h2 class="text-center">Amigos de los animales</h2>
@@ -40,16 +35,26 @@
             <p>
                 Gracias por ser parte de esta misión y por ayudarnos a brindar un futuro mejor a nuestros amigos de cuatro patas. Juntos, creamos un mundo más compasivo y lleno de esperanza.
             </p>
-            <p class="text-right font-weight-bold">Con gratitud,<br>Fundación Villa Esperanza</p>
+  
+             <div class="donation-section">
+                <div class="heart-icon">❤</div>
+                <p>HAZ UNA DONACIÓN</p>
+                <a href="principal.jsp?CONTENIDO=9.Perfil/donacionesFormulario.jsp&accion=Adicionar">
+                    <button class="btn-donar">DONAR AHORA</button>
+                </a>
         </div>
     </div>
 </div>
-    <div class="btn-container">
-        <br>
-        <a href="principal.jsp?CONTENIDO=9.Perfil/donacionesFormulario.jsp&accion=Adicionar" >
-            <button class="btn-adicionar">¡Realiza tu donacion!</button>
-        </a>
-    </div>
-    <br>
 </body>
 </html>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const textosHeader = document.querySelector('.textos-header');
+    
+    // Espera un momento antes de activar la clase 'visible'
+    setTimeout(() => {
+        textosHeader.classList.add('visible'); // Activa la clase visible
+    }, 100); 
+});
+
+    </script>

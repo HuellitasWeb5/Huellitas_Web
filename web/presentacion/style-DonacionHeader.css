@@ -10,7 +10,7 @@ header {
     margin: 0;
     padding: 0;
     overflow: hidden; /* Asegura que no haya scroll adicional */
-    background: url(../presentacion/imagenes/Fondo-Inicio.jpg) no-repeat center center;
+    background: url(../presentacion/imagenes/donacionm.jpg) no-repeat center center;
     background-size: cover; /* Cubre todo el ancho y alto del header */
     background-attachment: fixed;
     position: relative;
@@ -22,23 +22,40 @@ header .textos-header {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 100%; /* Asegúrate de que el contenedor ocupe toda la altura */
     text-align: center;
 }
 
 .textos-header h1 {
-    font-size: 50px;
-    color: #fff;
-    text-transform: uppercase;
-    margin: 0;
+    font-size: 60px; /* Tamaño de fuente más grande para h1 */
+    color: #fff; /* Color blanco */
+    transition: transform 0.8s ease, opacity 0.8s ease; /* Agrega transición */
+    transform: translateX(-20px); /* Inicia el movimiento desde la izquierda */
+    opacity: 0; /* Inicia invisible */
+}
+
+/* Clase para hacer que aparezcan */
+.textos-header.visible h1 {
+    transform: translateX(0); /* Regresa a su posición original */
+    opacity: 1; /* Hace visible el texto */
 }
 
 .textos-header h2 {
-    font-size: 30px;
-    font-weight: 300;
-    color: #fff;
-    margin: 0;
+    font-size: 40px; /* Tamaño de fuente más grande para h2 */
+    font-weight: 300; /* Peso de la fuente */
+    color: #fff; /* Color blanco */
+    transition: transform 0.8s ease, opacity 0.8s ease; /* Agrega transición */
+    transform: translateX(20px); /* Inicia el movimiento desde la derecha */
+    opacity: 0; /* Inicia invisible */
 }
+
+/* Clase para hacer que aparezcan */
+.textos-header.visible h2 {
+    transform: translateX(0); /* Regresa a su posición original */
+    opacity: 1; /* Hace visible el texto */
+}
+
+
 .btn-container {
     text-align: center;
     margin-top: 20px;
@@ -58,12 +75,105 @@ header .textos-header {
     background-color: #218838; /* Verde más oscuro al pasar el mouse */
     transform: scale(1.05); /* Pequeña animación */
 }
+.dark-background {
+    background: url('../presentacion/imagenes/negro12.jpg') no-repeat center center; /* Cambia la ruta de la imagen según sea necesario */
+    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+    position: relative; /* Para posicionar el overlay */
+    height: 100vh; /* Altura completa de la ventana */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dark-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Color negro con transparencia */
+    z-index: 1; /* Para que esté detrás del contenido */
+}
 
 .info-box {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-    color:#ffffff;
-    backdrop-filter: blur(15px); 
-    border-radius: 15px;
-    background-color: #004085;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro con transparencia */
+    padding: 20px; /* Aumentar el padding para hacer el cuadro más grande */
+    border-radius: 20px; /* Bordes redondeados */
+    width: 80%; /* Ajustar el ancho para que sea más grande */
+    color: #fff; /* Color del texto */
+    text-align: center; /* Centrar el texto */
+    margin: 0 auto; /* Centrar el cuadro */
+    transition: transform 0.5s ease; /* Transición suave al mover el cuadro */
+    position: relative; /* Para que el contenido esté por encima del overlay */
+    z-index: 2; /* Para que esté delante del overlay */
+}
+
+.info-box h2 {
+    color: #1dba35; /* Color del texto para el título */
+    font-size: 36px; /* Tamaño del texto */
+}
+
+.info-box p {
+    font-size: 24px; /* Aumentar tamaño de la letra de los párrafos */
+    color: #fff; /* Asegúrate de que el texto sea blanco */
+}
+.btn-adicionar {
+    background-color: #005d03; /* Color del fondo del botón */
+    color: #fff; /* Color del texto del botón */
+    padding: 10px 20px; /* Espaciado interno del botón */
+    border: none; /* Sin borde */
+    border-radius: 10px; /* Bordes redondeados */
+    font-weight: bold; /* Negrita */
+    font-size: 18px; /* Tamaño de la letra del botón */
+    cursor: pointer; /* Cambia el cursor al pasar sobre el botón */
+    margin-top: 20px; /* Espacio arriba del botón */
+    transition: background-color 0.3s ease; /* Transición suave para el fondo */
+}
+
+.btn-adicionar:hover {
+    background-color: #1dba35; /* Color al pasar el mouse */
+}
+/* Estilo de fondo oscuro */
+.dark-background {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Estilo del contenedor de la sección de donación */
+.donation-section {
+    text-align: center;
+    color: #1dba35;
+    font-family: Arial, sans-serif;
+    margin-top: 20px;
+}
+
+/* Estilo del ícono de corazón */
+.heart-icon {
+    font-size: 40px;
+    color: #1dba35;
+}
+
+/* Estilo del texto "HAZ UNA DONACIÓN" */
+.donation-section p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Estilo del botón "DONAR AHORA" */
+.btn-donar {
+    background-color: #1dba35;
+    color: #ffffff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-donar:hover {
+    background-color: #34ce57;
 }
