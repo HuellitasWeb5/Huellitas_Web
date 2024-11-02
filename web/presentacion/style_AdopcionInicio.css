@@ -15,6 +15,7 @@ body {
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     margin-top: 20px;
+    margin-bottom: 25px;
 }
 
 /* Estilos para el header */
@@ -25,7 +26,7 @@ header {
     display: flex;
     justify-content: center; /* Centra el contenido horizontalmente */
     align-items: center; /* Centra el contenido verticalmente */
-    overflow: hidden; /* Evita que el contenido salga del header */
+    overflow: hidden; 
 }
 
 .contenedor-imagen {
@@ -41,7 +42,7 @@ header {
     width: 100%; /* Mantiene el 100% del ancho del contenedor */
     height: 100%; /* Mantiene el 100% de la altura del contenedor */
     object-fit: cover; /* Mantiene la proporción de la imagen */
-    filter: brightness(70%); 
+    filter: brightness(70%);
 }
 /* Estilos para el texto y el cuadro */
 .texto-superpuesto {
@@ -67,9 +68,9 @@ header {
 /* Ajustes en el cuadro de contenido */
 .preguntas {
     background-color: rgba(0, 0, 0, 0.5); /* Más transparente */
-    padding: 10px; /* Aumentar el padding para hacer el cuadro más grande */
+    padding: 40px; /* Aumentar el padding para hacer el cuadro más grande */
     border-radius: 20px;
-    width: 80%; /* Ajustar el ancho para que sea más grande */
+    width: 90%; /* Ajustar el ancho para que sea más grande */
     color: #fff;
     text-align: center;
     margin: 0 auto; /* Centrar el cuadro */
@@ -89,18 +90,17 @@ header {
 
 /* Estilo del botón */
 .preguntas button {
-    background-color: #005d03;
-    color: #fff;
-    padding: 18px 27px; /* Aumentar padding para hacer el botón más grande */
+    background-color: #117521;
+    color: #ffffff;
+    padding: 12px 24px;
     border: none;
-    border-radius: 18px;
+    border-radius: 5px;
     font-weight: bold;
-    font-size: 15px; /* Aumentar tamaño de la letra del botón */
+    font-size: 16px;
     cursor: pointer;
-    margin-top: 30px;
-    transition: background-color 0.3s ease; /* Transición suave para el botón */
+    transition: background-color 0.3s ease;/* Transición suave para el botón */
 }
 
 .preguntas button:hover {
-    background-color: #1dba35; /* Cambiar color de fondo al pasar el mouse */
+    background-color: #19ab30; /* Cambiar color de fondo al pasar el mouse */
 }

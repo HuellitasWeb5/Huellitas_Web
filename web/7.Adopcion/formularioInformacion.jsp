@@ -39,7 +39,7 @@
 
                 <!-- Sección de SAN PATITAS -->
                 <div class="tableDatos">
-                    <h2>ADOPTANTE</h2>
+                    <h4>ADOPTANTE</h4>
                     <div class="datos-con-foto">
                         <div class="datos">
                             <label>Identificación:</label>
@@ -61,7 +61,7 @@
 
                 <!-- Sección de MASCOTA -->
                 <div class="tableDatos">
-                    <h2>MASCOTA</h2>
+                    <h4>MASCOTA</h4>
                     <div class="datos-con-foto">
                         <div class="datos">
                             <label>Código:</label>
@@ -406,7 +406,7 @@
     <div id="formulario" title="Adoptar mascota">
         <form name="formularioAdoptarMascota">
             <table class="tableDatos">
-                <h2>MASCOTA</h2>
+                <h4>MASCOTA</h4>
                 <div class="datos-con-foto">
                     <div class="datos">
                         <label>Código:</label>
