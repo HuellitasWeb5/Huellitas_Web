@@ -184,4 +184,21 @@
         }
     }
 
+    // Agregar la clase "visible" cuando el elemento esté en pantalla
+    document.addEventListener('DOMContentLoaded', function () {
+        const textosHeader = document.querySelector('.textos-header');
+        
+        function checkVisibility() {
+            const rect = textosHeader.getBoundingClientRect();
+            if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                textosHeader.classList.add('visible');
+            }
+        }
+
+        // Verificar visibilidad al hacer scroll y al cargar
+        window.addEventListener('scroll', checkVisibility);
+        checkVisibility();
+    });
+
+
 </script>
