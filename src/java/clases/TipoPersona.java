@@ -56,8 +56,8 @@ public class TipoPersona {
         switch (this.codigo) {
 
             case "F":
-                menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light' >";
-                menu += "<div class='container-fluid'>";
+                menu += "<nav class='navbar navbar-expand-lg navbar-light transparent-navbar' 'style='padding: 50px 50px; width: 100%;'>"; // Añadido padding para mejor espacio
+                menu += "<div class='container-fluid d-flex justify-content-between align-items-center'>";
 
                 // Botón para colapsar el menú en pantallas pequeñas
                 menu += "<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>";
@@ -183,9 +183,8 @@ public class TipoPersona {
                 break;
 
             case "C":
-                menu += "<nav class='navbar navbar-expand-lg navbar-light bg-light'>";
-                menu += "<div class='container-fluid'>";
-
+                menu += "<nav class='navbar navbar-expand-lg navbar-light transparent-navbar' 'style='padding: 50px 50px; width: 100%;'>"; // Añadido padding para mejor espacio
+                menu += "<div class='container-fluid d-flex justify-content-between align-items-center'>";
 // Imagen del logo a la izquierda
                 menu += "<img src='presentacion/imagenes/Logo-Fundacion.png' alt='Logo' width='90' height='90' class='d-inline-block align-text-top'>";
 
@@ -231,7 +230,7 @@ public class TipoPersona {
                 menu += "<img src='presentacion/imagenes/donar.png' alt='Icono Donaciones' width='25' height='25' class='me-3'> <span class='ms-2'>Mis Donaciones</span></a></li>";
 
 // Opción "Ver mis adopciones" con icono
-               menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=11.misAyudas/verMisAdopciones.jsp' style='padding: 10px 15px; font-size: 1.2rem; color: black; font-weight: bold;'>";
+                menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=11.misAyudas/verMisAdopciones.jsp' style='padding: 10px 15px; font-size: 1.2rem; color: black; font-weight: bold;'>";
                 menu += "<img src='presentacion/imagenes/adopciones.png' alt='Icono Adopciones' width='20' height='20' class='me-3'> <span class='ms-2'>Mis Adopciones</span></a></li>";
 
 // Opción "Ver mis apadrinamientos" con icono
@@ -240,10 +239,9 @@ public class TipoPersona {
                 menu += "</ul>";
                 menu += "</li>";
 
- // Opción "Perfil" con icono
+                // Opción "Perfil" con icono
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/perfil.jsp' style='padding: 8px 20px; font-size: 1.2rem; color: black; font-weight: bold;'>";
                 menu += "<img src='presentacion/imagenes/persona.png' alt='Icono Perfil' width='15' height='15' class='me-2'> Perfil</a></li>";
-
 
 // Opción "Salir"
                 menu += "<li class='nav-item'><a class='nav-link' href='index.jsp' style='padding: 10px 20px; font-size: 1.2rem; color: black; font-weight: bold;'>Salir</a></li>";
