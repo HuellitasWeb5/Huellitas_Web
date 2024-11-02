@@ -88,7 +88,7 @@
     </form>
 
     <div class="btn-container">
-        <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar">
+        <a href="principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar&codigoMascota=">
             <button id="Adicionar" class="btn-adicionar">Llenar formulario</button>
         </a>
     </div>

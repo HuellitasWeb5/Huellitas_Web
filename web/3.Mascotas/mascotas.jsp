@@ -72,7 +72,7 @@
             // Estos botones siempre se muestran
             lista += "<div class='btn-container'>";
             lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp&Mascota="+mascota.getCodigo()+"'><button class='btn-otro'>Apadrinar</button></a>";
-            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/formularioInformacion.jsp&accion=Adicionar'><button class='btn-otro'>Adoptar</button></a>";
+            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar&codigoMascota="+mascota.getCodigo()+"'><button class='btn-otro'>Adoptar</button></a>";
             lista += "</div>";
             lista += "</div>";
             lista += "</div>";
