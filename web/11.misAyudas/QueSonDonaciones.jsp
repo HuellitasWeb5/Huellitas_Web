@@ -27,10 +27,10 @@
         <div class="info-box col-lg-8 col-md-10 col-sm-12 mx-auto text-center">
             <h2 class="text-center">Amigos de los animales</h2>
             <p>
-                En la Fundación de la pata con los peludos, trabajamos incansablemente por el bienestar de los perros abandonados y maltratados. Su apoyo y generosidad nos ayudan a seguir adelante con esta labor.
+                En la fundación "De la pata con los peludos", trabajamos incansablemente por el bienestar de los perritos abandonados y maltratados. Su apoyo y generosidad nos ayudan a seguir adelante con esta labor.
             </p>
             <p>
-                Invitamos a todos a contribuir con sus donaciones. Cada aporte, grande o pequeño, hace una diferencia significativa en la vida de estos animales.
+               Únete a nosotros y contribuye con tu donación para transformar vidas. Cada aporte, grande o pequeño, hace una diferencia significativa en la vida de estos animalitos.
             </p>
             <p>
                 Gracias por ser parte de esta misión y por ayudarnos a brindar un futuro mejor a nuestros amigos de cuatro patas. Juntos, creamos un mundo más compasivo y lleno de esperanza.
@@ -38,7 +38,7 @@
   
              <div class="donation-section">
                 <div class="heart-icon">❤</div>
-                <p>HAZ UNA DONACIÓN</p>
+                <p>¡HAZ LA DIFERENCIA HOY¡</p>
                 <a href="principal.jsp?CONTENIDO=9.Perfil/donacionesFormulario.jsp&accion=Adicionar">
                     <button class="btn-donar">DONAR AHORA</button>
                 </a>

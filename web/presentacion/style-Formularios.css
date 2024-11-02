@@ -505,3 +505,4 @@ input[type="checkbox"]:checked + label:after {
     .alert-content button:hover {
         background-color: #255bb5;
     }
+ 
