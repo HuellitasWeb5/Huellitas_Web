@@ -55,11 +55,12 @@ public class TipoPersona {
 
         switch (this.codigo) {
 
-            case "F":
+            case "F": 
                 menu += "<nav class='navbar navbar-expand-lg navbar-light transparent-navbar' 'style='padding: 50px 50px; width: 100%;'>"; // Añadido padding para mejor espacio
                 menu += "<div class='container-fluid d-flex justify-content-between align-items-center'>";
-         
-           menu += "<img src='presentacion/imagenes/Logo-Fundacion.png' alt='Logo' width='90' height='90' class='d-inline-block align-text-top'>";
+
+                // Logo ajustado con mejor tamaño y centrado verticalmente
+                menu += "<img src='presentacion/imagenes/Logo-Fundacion.png' alt='Logo' width='80' height='80' class='d-inline-block align-text-top me-3'>";
 
                 // Botón para colapsar el menú en pantallas pequeñas
                 menu += "<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>";
@@ -67,27 +68,89 @@ public class TipoPersona {
                 menu += "</button>";
 
                 // Menú desplegable y alineado a la derecha
-                menu += "<div class='collapse navbar-collapse justify-content-end' id='navbarNav'>"; // justify-content-end alinea a la derecha
+                menu += "<div class='collapse navbar-collapse justify-content-center' id='navbarNav'>";
                 menu += "<ul class='navbar-nav'>";
-                menu += "<li class='nav-item'><a href='principal.jsp?CONTENIDO=inicio.jsp'>Inicio</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Medidas</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp'>Tipos Donacion</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesPadrinos.jsp'>Planes Padrinos</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" + getNombre() + "'>Mascotas</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=4.Clientes/clientes.jsp&nombre=" + getNombre() + "'>Clientes</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp'>Padripet</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=91.PerfilAdministradorF/perfil.jsp'>Perfil</a></li>";
-                menu += "<li class='nav-item'><a href='index.jsp'>Salir</a></li>";
+
+                // Enlaces del menú con mejor tamaño y espaciado
+                menu += "<li class='nav-item'><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=inicio.jsp' style='padding: 8px 10px; font-size: 0.9rem;color: black; font-weight: bold;'>Inicio</a></li>";
+
+                // Menú de Donaciones
+                menu += "<li class='nav-item dropdown'>";
+                menu += "<a class='nav-link dropdown-toggle d-flex align-items-center' href='#' id='donacionesDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false' style='padding: 8px 10px; font-size: 0.9rem; color: black; font-weight: bold;'>";
+                menu += "<img src='presentacion/imagenes/donar.png' alt='Donaciones' width='23' height='23' class='me-2'> Donaciones</a>";
+                menu += "<ul class='dropdown-menu' aria-labelledby='donacionesDropdown'>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a></li>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Unidades de Medida</a></li>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp'>Tipos de Donación</a></li>";
+                menu += "</ul></li>";
+
+                // Menú de Padripets
+                menu += "<li class='nav-item dropdown'>";
+                menu += "<a class='nav-link dropdown-toggle d-flex align-items-center' href='#' id='padripetsDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false' style='padding: 8px 10px; font-size: 0.9rem;color: black; font-weight: bold;'>";
+                menu += "<img src='presentacion/imagenes/padrinos.png' alt='Padripets' width='23' height='23' class='me-2'> Padripets</a>";
+                menu += "<ul class='dropdown-menu' aria-labelledby='padripetsDropdown'>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=6.PadriPets/padripets.jsp'>Padripets</a></li>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=2.TipoApadrinamiento/planesPadrinos.jsp'>Tipos de Padripet</a></li>";
+                menu += "</ul></li>";
+
+                // Menú de Adopciones
+                menu += "<li class='nav-item dropdown'>";
+                menu += "<a class='nav-link dropdown-toggle d-flex align-items-center' href='#' id='adopcionesDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false' style='padding: 8px 10px; font-size: 0.9rem;color: black; font-weight: bold;'>";
+                menu += "<img src='presentacion/imagenes/adop.png' alt='Adopciones' width='24' height='24' class='me-2'> Adopciones</a>";
+                menu += "<ul class='dropdown-menu' aria-labelledby='adopcionesDropdown'>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp'>Adopciones</a></li>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp'>Formularios de pre-adopción</a></li>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=7.Adopcion/verFormularioSeg.jsp'>Formularios de seguimientos</a></li>";
+                menu += "</ul></li>";
+
+                // Menú de Mascotas
+                menu += "<li class='nav-item'><a class='nav-link d-flex align-items-center' href='principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" + getNombre() + "' style='padding: 8px 10px; font-size: 0.9rem;color: black; font-weight: bold;'>";
+                menu += "<img src='presentacion/imagenes/mascota.png' alt='Mascotas' width='23' height='23' class='me-2'> Mascotas</a></li>";
+
+                // Otros menús similares, ajustando el tamaño de fuente y espaciado
+                menu += "<li class='nav-item'><a class='nav-link d-flex align-items-center' href='principal.jsp?CONTENIDO=4.Clientes/clientes.jsp&nombre=" + getNombre() + "' style='padding: 8px 10px; font-size: 0.9rem;color: black; font-weight: bold;'>";
+                menu += "<img src='presentacion/imagenes/huella.png' alt='San Patitas' width='15' height='15' class='me-2'> San Patitas</a></li>";
+                menu += "<li class='nav-item dropdown'>";
+                menu += "<a class='nav-link dropdown-toggle' href='#' id='indicadoresDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false' style='padding: 8px 10px; font-size: 0.9rem;color: black; font-weight: bold;'>";
+                menu += "<img src='presentacion/imagenes/indicador.png' alt='Indicadores' width='15' height='15' class='me-2'> Indicadores</a>";
+                menu += "<ul class='dropdown-menu' aria-labelledby='indicadoresDropdown'>";
+
+// Opción Donaciones con icono de donar
+                menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=indicadores/donacionesXAnio.jsp'>";
+                menu += "<img src='presentacion/imagenes/donar.png' alt='Icono Donaciones' width='18' height='18' class='me-2'> Donaciones</a></li>";
+
+// Opción Apadrinamientos con icono de padrinos
+                menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=indicadores/apadrinamientoXAnio.jsp'>";
+                menu += "<img src='presentacion/imagenes/padrinos.png' alt='Icono Apadrinamientos' width='18' height='18' class='me-2'> Apadrinamientos</a></li>";
+
+// Opción Adopciones con icono de adopciones
+                menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=indicadores/adopcionesXAnio.jsp'>";
+                menu += "<img src='presentacion/imagenes/adopciones.png' alt='Icono Adopciones' width='18' height='18' class='me-2'> Adopciones</a></li>";
+
+// Opción Mascotas con icono de mascotas
+                menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=indicadores/mascotasXAnio.jsp'>";
+                menu += "<img src='presentacion/imagenes/mascota.png' alt='Icono Mascotas' width='18' height='18' class='me-2'> Mascotas</a></li>";
+
+// Opción Cuidados con icono de calificaciones
+                menu += "<li><a class='dropdown-item d-flex align-items-center' href='principal.jsp?CONTENIDO=indicadores/calificacionesXAnio.jsp'>";
+                menu += "<img src='presentacion/imagenes/calificaciones.png' alt='Icono Cuidados' width='18' height='18' class='me-2'> Cuidados</a></li>";
+
+                menu += "</ul></li>";
+                // Perfil
+                menu += "<li class='nav-item'><a class='nav-link d-flex align-items-center' href='principal.jsp?CONTENIDO=9.Perfil/perfilF.jsp' style='padding: 8px 10px; font-size: 0.9rem;color: black; font-weight: bold;'>";
+                menu += "<img src='presentacion/imagenes/perfil.png' alt='Perfil' width='15' height='15' class='me-2'> Perfil</a></li>";
+                menu += "<li class='nav-item'><a class='nav-link d-flex align-items-center' href='index.jsp' style='padding: 8px 10px; font-size: 0.9rem;color: black; font-weight: bold;'>Salir</a></li>";
 
                 menu += "</ul>";
-                                menu += "<img src='presentacion/imagenes/Logo.png' alt='Logo' width='80' height='80' class='d-inline-block align-text-top'>";
-
                 menu += "</div>";
+
+                // Imagen del logo a la derecha
+                menu += "<img src='presentacion/imagenes/Logo.png' alt='Logo' width='80' height='80' class='d-inline-block align-text-top'>";
+
                 menu += "</div>";
                 menu += "</nav>";
                 break;
+                
             case "S":
                 menu += "<nav class='navbar navbar-expand-lg navbar-light transparent-navbar' 'style='padding: 50px 50px; width: 100%;'>"; // Añadido padding para mejor espacio
                 menu += "<div class='container-fluid d-flex justify-content-between align-items-center'>";
