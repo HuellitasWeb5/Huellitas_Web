@@ -71,8 +71,8 @@
 
             // Estos botones siempre se muestran
             lista += "<div class='btn-container'>";
-            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp&Mascota="+mascota.getCodigo()+"'><button class='btn-otro'>Apadrinar</button></a>";
-            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar&codigoMascota="+mascota.getCodigo()+"'><button class='btn-otro'>Adoptar</button></a>";
+            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp&Mascota=" + mascota.getCodigo() + "'><button class='btn-otro'>Apadrinar</button></a>";
+            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar&codigoMascota=" + mascota.getCodigo() + "'><button class='btn-otro'>Adoptar</button></a>";
             lista += "</div>";
             lista += "</div>";
             lista += "</div>";
@@ -81,38 +81,40 @@
     lista += "</div>";
 %>
 
-<% if ("Cliente".equals(nombreTipoPersona)) {  %>
+
 <body>
-<header>
-    
-    <section class="textos-header">
-        <h2>CONOCE A</h2>
-        <h1>NUESTROS PELUDITOS</h1>
-    </section>
-</header>
-<% }%>
-
-<% if (!"Cliente".equals(nombreTipoPersona)) {%>
-<h1>NUESTROS PELUDITOS</h1>
-<% }%>
-<div class="header-container">
-    <!-- Buscar por nombre -->
-    <form id="searchForm">
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
-            <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon"> <!-- Cambia la ruta por la de tu icono -->
+    <% if ("Cliente".equals(nombreTipoPersona)) {  %>
+    <header>
+        <section class="textos-header">
+            <h2>CONOCE A</h2>
+            <h1>NUESTROS PELUDITOS</h1>
+            <form id="searchForm">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Buscar a la mascota por nombre" onkeyup="filterNames()">
+                    <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon"> <!-- Cambia la ruta por la de tu icono -->
+                </div>
+                <ul id="nameList"></ul> <!-- Lista de nombres -->
+            </form>
+        </section>
+    </header>
+    <% }%>
+    <% if (!"Cliente".equals(nombreTipoPersona)) {%>
+    <h1>NUESTROS PELUDITOS</h1>
+    <div class="header-container">
+        <form id="searchForm">
+            <div class="search-container">
+                <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
+                <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon"> <!-- Cambia la ruta por la de tu icono -->
+            </div>
+            <ul id="nameList"></ul> <!-- Lista de nombres -->
+        </form>
+        <div class="btn-container">
+            <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar">
+                <button id="Adicionar" class="btn-adicionar">Adicionar</button>
+            </a>
         </div>
-        <ul id="nameList"></ul> <!-- Lista de nombres -->
-    </form>
-    <div class="btn-container">
-        <% if (!"Cliente".equals(nombreTipoPersona)) { %>
-        <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar">
-            <button id="Adicionar" class="btn-adicionar">Adicionar</button>
-        </a>
-        <% }%>
     </div>
-</div>
-
+    <% }%>
 </body>
 
 <div class="swiper-container">
@@ -154,7 +156,7 @@
 
     const swiper = new Swiper('.swiper-container', {
         loop: true,
-        slidesPerView: 3, 
+        slidesPerView: 3,
         spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-button-next',
@@ -187,7 +189,7 @@
     // Agregar la clase "visible" cuando el elemento esté en pantalla
     document.addEventListener('DOMContentLoaded', function () {
         const textosHeader = document.querySelector('.textos-header');
-        
+
         function checkVisibility() {
             const rect = textosHeader.getBoundingClientRect();
             if (rect.top <= window.innerHeight && rect.bottom >= 0) {
