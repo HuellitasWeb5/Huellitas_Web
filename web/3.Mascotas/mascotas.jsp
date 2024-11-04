@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
 <link rel="stylesheet" href="presentacion/style-MascotasHeader.css" />
 
-
 <%
     String nombreTipoPersona = request.getParameter("nombre");
 
