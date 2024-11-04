@@ -87,13 +87,19 @@
     <section class="textos-header">
         <h2>CONOCE A</h2>
         <h1>NUESTROS PELUDITOS</h1>
+        <form id="searchForm">
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="Buscar por nombre" onkeyup="filterNames()">
+            <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon"> <!-- Cambia la ruta por la de tu icono -->
+        </div>
+        <ul id="nameList"></ul> <!-- Lista de nombres -->
+    </form>
     </section>
 </header>
 <% }%>
 
 <% if (!"Cliente".equals(nombreTipoPersona)) {%>
 <h1>NUESTROS PELUDITOS</h1>
-<% }%>
 <div class="header-container">
     <!-- Buscar por nombre -->
     <form id="searchForm">
@@ -104,13 +110,13 @@
         <ul id="nameList"></ul> <!-- Lista de nombres -->
     </form>
     <div class="btn-container">
-        <% if (!"Cliente".equals(nombreTipoPersona)) { %>
         <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotasFormulario.jsp&accion=Adicionar">
             <button id="Adicionar" class="btn-adicionar">Adicionar</button>
         </a>
-        <% }%>
-    </div>
+        </div>
 </div>
+<% }%>
+
 
 </body>
 
