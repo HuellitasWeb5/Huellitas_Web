@@ -47,7 +47,7 @@
 </style>
 <div class="card-carousel">
     <div class="card">
-        <div class="card-header">
+        <div class="titulo">
             <h2>TUS DATOS SANPATITAS</h2>
         </div>
         <div class="card-body">
