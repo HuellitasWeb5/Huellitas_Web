@@ -16,6 +16,26 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     margin-top: 20px;
     margin-bottom: 25px;
+    position: relative; /* Necesario para el overlay */
+    overflow: hidden; /* Asegura que el overlay no se desborde */
+}
+
+.dark-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3); /* Aumenta la opacidad para un efecto más oscuro */
+    border-radius: 15px; /* Mantén el mismo borde redondeado */
+    z-index: 1;
+}
+
+/* Asegura que el contenido esté por encima del overlay */
+.dark-background * {
+    position: relative;
+    z-index: 2;
 }
 
 /* Estilos para el header */
