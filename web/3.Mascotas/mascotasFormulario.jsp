@@ -47,9 +47,9 @@
                     <label for="tamano">Tamaño:</label>
                     <select id="tamano" name="tamano" required>
                         <!-- Compara ignorando mayúsculas/minúsculas y eliminando espacios -->
-                        <option value="pequeno" <%= mascota.getTamano().trim().equalsIgnoreCase("pequeno") ? "selected" : ""%>>Pequeño</option>
-                        <option value="mediano" <%= mascota.getTamano().trim().equalsIgnoreCase("mediano") ? "selected" : ""%>>Mediano</option>
-                        <option value="grande" <%= mascota.getTamano().trim().equalsIgnoreCase("grande") ? "selected" : ""%>>Grande</option>
+                        <option value="Pequeno" <%= mascota.getTamano().trim().equalsIgnoreCase("pequeno") ? "selected" : ""%>>Pequeño</option>
+                        <option value="Mediano" <%= mascota.getTamano().trim().equalsIgnoreCase("mediano") ? "selected" : ""%>>Mediano</option>
+                        <option value="Grande" <%= mascota.getTamano().trim().equalsIgnoreCase("grande") ? "selected" : ""%>>Grande</option>
                     </select>
                 </div>
 
@@ -73,9 +73,9 @@
                         <label for="estado">Estado:</label>
                         <select id="estado" name="estado" required>
                             <!-- Compara ignorando mayúsculas/minúsculas y eliminando espacios -->
-                            <option value="disponible" <%= mascota.getEstado().trim().equalsIgnoreCase("disponible") ? "selected" : ""%>>Disponible</option>
-                            <option value="apadrinado" <%= mascota.getEstado().trim().equalsIgnoreCase("apadrinado") ? "selected" : ""%>>Apadrinado</option>
-                            <option value="adoptado" <%= mascota.getEstado().trim().equalsIgnoreCase("adoptado") ? "selected" : ""%>>Adoptado</option>
+                            <option value="Disponible" <%= mascota.getEstado().trim().equalsIgnoreCase("disponible") ? "selected" : ""%>>Disponible</option>
+                            <option value="Apadrinado" <%= mascota.getEstado().trim().equalsIgnoreCase("apadrinado") ? "selected" : ""%>>Apadrinado</option>
+                            <option value="Adoptado" <%= mascota.getEstado().trim().equalsIgnoreCase("adoptado") ? "selected" : ""%>>Adoptado</option>
                         </select>
                     </div>
                     <div class="form-group">

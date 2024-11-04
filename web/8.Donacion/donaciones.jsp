@@ -26,14 +26,14 @@
         lista += "<div class='swiper-slide'>";
         lista += "<div class='card'>";
         lista += "<div class='card-header'>";
-        lista += "<h2>Código: " + donacion.getCodigo() + " - Fecha: " + donacion.getFecha() + "</h2>";
+        lista += "<h2 style='font-weight: bold;'>Código de donación: " + donacion.getCodigo() + "</h2>";
         lista += "</div>";
         lista += "<div class='card-body'>";
-        lista += "<p><strong>Donación</strong></p>";
+        lista += "<p><strong>Fecha:</strong> " + donacion.getFecha() + "</p>";
 
         lista += "<div style='display: flex; margin-bottom: 20px;'>";
         lista += "<div style='margin-right: 20px;'>";
-        lista += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' style='width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 5px solid #98FF98;'/>";
+        lista += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' style='width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 5px solid #05af8b;'/>";
         lista += "</div>";
 
         lista += "<div>";

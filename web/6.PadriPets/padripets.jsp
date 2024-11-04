@@ -5,9 +5,7 @@
 <%@page import="clases.Persona"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-    response.setContentType("text/html; charset=UTF-8");
-%>
+
 <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
 
 <%
@@ -32,7 +30,7 @@ for (int j = 0; j < datosApadrinamiento.size(); j++) {
     listaApadrinamiento += "<div class='swiper-slide'>";
     listaApadrinamiento += "<div class='card'>";
     listaApadrinamiento += "<div class='card-header'>";
-    listaApadrinamiento += "<h2>Apadrinamiento #" + apadrinamiento.getCodigo() + "</h2>";
+    listaApadrinamiento += "<h2 style='font-weight: bold;'>Códido padripet: " + apadrinamiento.getCodigo() + "</h2>";
     listaApadrinamiento += "</div>";
     listaApadrinamiento += "<div class='card-body'>";
 
@@ -90,6 +88,7 @@ listaApadrinamiento += "</div>";
 <h3>PADRIPETS</h3>
 <div class="header-container">
     <!-- Buscar por nombre -->
+    <% if (!"C".equals(tipoUsuario)) { %>
     <form id="searchForm">
         <div class="search-container">
             <input type="text" id="searchInput" placeholder="Buscar por persona o mascota" onkeyup="filterNames()">
@@ -97,7 +96,7 @@ listaApadrinamiento += "</div>";
         </div>
         <ul id="nameList"></ul>
     </form>
-
+    <% } %>
     <!-- Botón de adicionar -->
     <div class="btn-container">
         <% if (!"C".equals(tipoUsuario)) { %>
@@ -107,7 +106,10 @@ listaApadrinamiento += "</div>";
     <% } %>
     </div>
 </div>
-
+<% if ("C".equals(tipoUsuario) && listaApadrinamiento.equals("<div class='swiper-wrapper'></div>")) { %>
+<h2>Aún no has apadrinado a ningún peludito.</h2>
+<h2>¡Conviértete en su padrino y ayúdanos a brindarle una vida llena de amor y cuidado!</h2>
+<% } %>
 <div class='carousel-container'>
     <div class='swiper-container carousel'>
         <%= listaApadrinamiento %>

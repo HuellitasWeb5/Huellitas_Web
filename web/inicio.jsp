@@ -1,26 +1,24 @@
-<%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+
+<html lang="es">  
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="presentacion/style-inicio.css">
-</head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head> 
 <body>
-
-    <!-- Contenedor de la imagen con texto superpuesto -->
-    <div class="contenedor-imagen">
-        <img src="presentacion/imagenes/inicio1.jpg" alt="Imagen de la FundaciÃ³n">
-        <div class="texto-superpuesto">
-            <h2>Â¡BIENVENIDO! </h2>
-             <h1>FundaciÃ³n "De la pata con los peludos"</h1>
-             <h2>Albergue Villa Esperanza</h2>
-            <p>En nuestra familia peluda, rodeados de patitas y colitas felices
-                creemos que hay un peludito </p>
-            <p>especial esperando por cada persona dispuesta a abrir su corazÃ³n.</p>
-            <a href=principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=" class="btn-adicionar">Conoce a nuestros peluditos</a>
-        </div> 
-    </div>
-
+    <header>
+        <div class="dark-background">
+            <div class="texto-superpuesto">
+                <h2>¡BIENVENIDO!</h2>
+                <h1>Fundación "De la pata con los peludos"</h1>
+                <h2>Albergue Villa Esperanza</h2>
+                <p>En nuestra familia peluda, rodeados de patitas y colitas felices, creemos que hay un peludito especial esperando por cada persona dispuesta a abrir su corazón.</p>
+                <a href="principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp&nombre=Cliente" class="btn-adicionar">Conoce a nuestros peluditos</a>
+            </div>
+        </div>
+    </header>
+    
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const textoSuperpuesto = document.querySelector('.texto-superpuesto');
@@ -31,3 +29,4 @@
     </script>
 </body>
 </html>
+

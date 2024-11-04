@@ -6,7 +6,6 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
     <link rel="stylesheet" href="presentacion/style-Formularios.css" />
 </head>
 
@@ -28,19 +27,19 @@
 
                 <!-- Sección de SAN PATITAS (Adoptante) -->
                 <div class="tableDatos">
-                    <h2>ADOPTANTE</h2>
+                    <h4>ADOPTANTE</h4>
                     <div class="datos-con-foto">
                         <div class="datos">
                             <label>Identificación:</label>
-                            <input type="text" name="identificacionAdoptante" id="identificacion" placeholder="Digite aquí la identificación del adoptante" required>
+                            <input type="text" name="identificacionAdoptante" id="identificacion" placeholder="Digite aquí la identificación del adoptante" class="custom-text-input2" required>
                             <label>Nombre del Adoptante</label>
-                            <input type="text" name="nombre" id="nombre" readonly>
+                            <input type="text" name="nombre" id="nombre" class="custom-text-input2" readonly>
                             <label>Teléfono</label>
-                            <input type="text" name="telefono" id="telefono" readonly>
+                            <input type="text" name="telefono" id="telefono" class="custom-text-input2" readonly>
                             <label>Dirección</label>
-                            <input type="text" name="direccion" id="direccion" readonly>
+                            <input type="text" name="direccion" id="direccion" class="custom-text-input2" readonly>
                             <label>Residencia</label>
-                            <input type="text" name="residencia" id="residencia" readonly>
+                            <input type="text" name="residencia" id="residencia" class="custom-text-input2" readonly>
                         </div>
                         <div class="foto">
                             <img id="foto" class="fotoPreview" src="presentacion/clientes/<%= persona.getFoto()%>" alt="Foto de <%= persona.getNombre()%>" style="width: 100px; height: 100px;">
@@ -50,20 +49,19 @@
 
                 <!-- Sección de MASCOTA -->
                 <div class="tableDatos">
-                    <h2>MASCOTA</h2>
+                    <h4>MASCOTA</h4>
                     <div class="datos-con-foto">
                         <div class="datos">
                             <label>Código:</label>
-                            <input type="hidden" name="codigosMascotas" id="codigosMascotas" value="">
-                            <input type="text" name="codigoMascota" id="codigoMascota" placeholder="Digite aquí el código de la mascota" required>
+                            <input type="text" name="codigoMascota" id="codigoMascota" placeholder="Digite aquí el código de la mascota" class="custom-text-input2" required>
                             <label>Nombre de la mascota:</label>
-                            <input type="text" name="nombreMascota" id="nombreMascota" readonly>
+                            <input type="text" name="nombreMascota" id="nombreMascota" class="custom-text-input2" readonly>
                             <label>Fecha de nacimiento Aproximada:</label>
-                            <input type="text" name="fechaNacimiento" id="fechaNacimiento" readonly>
+                            <input type="text" name="fechaNacimiento" id="fechaNacimiento" class="custom-text-input2" readonly>
                             <label>Género:</label>
-                            <input type="text" name="genero" id="genero" readonly>
+                            <input type="text" name="genero" id="genero" class="custom-text-input2" readonly>
                             <label>Cuidados Especiales:</label>
-                            <input type="text" name="cuidadosEspeciales" id="cuidadosEspeciales" readonly>
+                            <input type="text" name="cuidadosEspeciales" id="cuidadosEspeciales" class="custom-text-input2" readonly>
                         </div>
                         <div class="foto">
                             <img id="fotoMascota" class="fotoPreview" src="presentacion/mascota/<%= mascota.getFoto()%>" alt="Foto de <%= mascota.getNombre()%>" style="width: 100px; height: 100px;">
@@ -138,22 +136,23 @@
                 <label for="descripcion">Descripción general del seguimiento:</label><br>
                 <textarea id="descripcion" name="descripcion" rows="4" cols="50" required></textarea><br><br>
 
-                <label for="calificacionForm">Considerando tus respuestas anteriores, ¿cómo calificarías el bienestar del animal en su nuevo hogar?
-                    teniendo en cuenta que 1 estrella es la calificación más baja y 5 la más alta:</label><br>
-                <div class="rating">
-                    <input type="radio" id="star5" name="calificacion" value="5" required /><label for="star5" title="5 estrellas">★</label>
-                    <input type="radio" id="star4" name="calificacion" value="4" /><label for="star4" title="4 estrellas">★</label>
-                    <input type="radio" id="star3" name="calificacion" value="3" /><label for="star3" title="3 estrellas">★</label>
-                    <input type="radio" id="star2" name="calificacion" value="2" /><label for="star2" title="2 estrellas">★</label>
-                    <input type="radio" id="star1" name="calificacion" value="1" /><label for="star1" title="1 estrella">★</label>
-                </div>
-                <span id="calificacionError" style="color: red; display: none;">Por favor, selecciona al menos una estrella.</span>
-                <br><br>
+               <label for="calificacionForm">Considerando tus respuestas anteriores, ¿cómo calificarías el bienestar del animal en su nuevo hogar?
+    teniendo en cuenta que 1 estrella es la calificación más baja y 5 la más alta:</label><br>
+<div class="rating">
+    <input type="radio" id="star5" name="calificacion" value="5" required /><label for="star5" title="5 estrellas">★</label>
+    <input type="radio" id="star4" name="calificacion" value="4" /><label for="star4" title="4 estrellas">★</label>
+    <input type="radio" id="star3" name="calificacion" value="3" /><label for="star3" title="3 estrellas">★</label>
+    <input type="radio" id="star2" name="calificacion" value="2" /><label for="star2" title="2 estrellas">★</label>
+    <input type="radio" id="star1" name="calificacion" value="1" /><label for="star1" title="1 estrella">★</label>
+</div>
+<span id="calificacionError" style="color: red; display: none;">Por favor, selecciona al menos una estrella.</span>
+<br><br>
+
 
                 <!-- Botones de envío -->
 
-                <input class="btn-adicionar" type="submit" name="accion" value="<%=accion%>">
-                <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()">
+                <input class="btn-adicionar2" type="submit" name="accion" value="<%=accion%>">
+                <input class="btn-eliminar2" type="button" value="Cancelar" onClick="window.history.back()">
 
             </table>
         </div>

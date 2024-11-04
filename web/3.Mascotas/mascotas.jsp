@@ -14,10 +14,8 @@
 
 
 <%
-    // Recibir el parámetro "nombre" desde la URL
     String nombreTipoPersona = request.getParameter("nombre");
 
-    // Si el parámetro no se recibe, asumir que es "Cliente" por defecto
     if (nombreTipoPersona == null) {
         nombreTipoPersona = "Cliente";
     }
@@ -53,13 +51,13 @@
             lista += "<p class='rol-administrador'>" + mascota.getEstado() + "</p>"; // Rol del administrador como subtítulo
             lista += "</div>";
             lista += "<div class='card-body'>";
-            lista += "<p><strong>Código:</strong>" + mascota.getCodigo() + "</p>";
-            lista += "<p><strong>Género:</strong>" + mascota.getGeneroEnObjeto() + "</p>";
-            lista += "<p><strong>Tamaño:</strong>" + mascota.getTamano() + "</p>";
-            lista += "<p><strong>Cuidado:</strong>" + mascota.getCuidadosEspeciales() + "</p>";
-            lista += "<p><strong>Edad aproximada:</strong>" + mascota.getEdad() + " años</p>";
-            lista += "<p><strong>Fecha de ingreso:</strong>" + mascota.getFechaIngreso() + "</p>";
-            lista += "<p><strong>Descripción:</strong>" + mascota.getDescripcion() + "</p>";
+            lista += "<p><strong>Código: </strong>" + mascota.getCodigo() + "</p>";
+            lista += "<p><strong>Género: </strong>" + mascota.getGeneroEnObjeto() + "</p>";
+            lista += "<p><strong>Tamaño: </strong>" + mascota.getTamano() + "</p>";
+            lista += "<p><strong>Cuidado: </strong>" + mascota.getCuidadosEspeciales() + "</p>";
+            lista += "<p><strong>Edad aproximada: </strong>" + mascota.getEdad() + " años</p>";
+            lista += "<p><strong>Fecha de ingreso: </strong>" + mascota.getFechaIngreso() + "</p>";
+            lista += "<p><strong>Descripción: </strong>" + mascota.getDescripcion() + "</p>";
             lista += "</div>";
 
             // Solo mostrar los botones de Modificar y Eliminar si NO es un cliente
@@ -73,8 +71,8 @@
 
             // Estos botones siempre se muestran
             lista += "<div class='btn-container'>";
-            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp'><button class='btn-otro'>Apadrinar</button></a>";
-            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/formularioInformacion.jsp&accion=Adicionar'><button class='btn-otro'>Adoptar</button></a>";
+            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=6.PadriPets/padrinosFormulario.jsp&Mascota="+mascota.getCodigo()+"'><button class='btn-otro'>Apadrinar</button></a>";
+            lista += "<a class='nav-link' href='principal.jsp?CONTENIDO=7.Adopcion/formularioInformacion.jsp&accion=Adicionar&codigoMascota="+mascota.getCodigo()+"'><button class='btn-otro'>Adoptar</button></a>";
             lista += "</div>";
             lista += "</div>";
             lista += "</div>";
@@ -84,20 +82,18 @@
 %>
 
 <% if ("Cliente".equals(nombreTipoPersona)) {  %>
+<body>
 <header>
+    
     <section class="textos-header">
         <h2>CONOCE A</h2>
-        <h1>NUESTROS PELUDOS</h1>
+        <h1>NUESTROS PELUDITOS</h1>
     </section>
-    <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none" style="height: 100%; width: 100%;" >
-        <path d="M0.28,50.83 C138.54,164.31 349.20,-49.98 500.00,49.98 L500.00,150.00 L-1.97,153.47 Z"
-              style="stroke: none; fill: #eeffef;"></path>
-        </svg></div>
 </header>
 <% }%>
 
 <% if (!"Cliente".equals(nombreTipoPersona)) {%>
-<h1>LISTA DE MASCOTAS</h1>
+<h1>NUESTROS PELUDITOS</h1>
 <% }%>
 <div class="header-container">
     <!-- Buscar por nombre -->
@@ -117,7 +113,7 @@
     </div>
 </div>
 
-
+</body>
 
 <div class="swiper-container">
     <%= lista%>
@@ -158,7 +154,7 @@
 
     const swiper = new Swiper('.swiper-container', {
         loop: true,
-        slidesPerView: 3, // ayuda a mostrarme  4 tarjetas a la vez
+        slidesPerView: 3, 
         spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-button-next',
@@ -187,5 +183,22 @@
             }
         }
     }
+
+    // Agregar la clase "visible" cuando el elemento esté en pantalla
+    document.addEventListener('DOMContentLoaded', function () {
+        const textosHeader = document.querySelector('.textos-header');
+        
+        function checkVisibility() {
+            const rect = textosHeader.getBoundingClientRect();
+            if (rect.top <= window.innerHeight && rect.bottom >= 0) {
+                textosHeader.classList.add('visible');
+            }
+        }
+
+        // Verificar visibilidad al hacer scroll y al cargar
+        window.addEventListener('scroll', checkVisibility);
+        checkVisibility();
+    });
+
 
 </script>

@@ -10,7 +10,6 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-
 <%
     // Inicializar el objeto Donacion
     Donacion donacion = new Donacion();
@@ -40,5 +39,5 @@
     }
 %>
 <script type="text/javascript">
-   document.location = "principal.jsp?CONTENIDO=inicio.jsp";
+   document.location = "principal.jsp?CONTENIDO=/11.misAyudas/QueSonDonaciones.jsp";
 </script>

@@ -17,24 +17,27 @@
 
 <%
     Donacion donacion = new Donacion();
-     String identificacionUsuario=(String) request.getAttribute("identificacionUsuario");
+    String identificacionUsuario = (String) request.getAttribute("identificacionUsuario");
     String lista = "";
-    List<Donacion> datos = Donacion.getListaEnObjetos("identificacionDonante="+identificacionUsuario, "donacion.codigo, donacion.fecha, donacion.descripcion, donacion.identificacionDonante");
+    List<Donacion> datos = Donacion.getListaEnObjetos("identificacionDonante=" + identificacionUsuario, "donacion.codigo, donacion.fecha, donacion.descripcion, donacion.identificacionDonante");
+    boolean tieneDonaciones = false;
+
     for (int i = 0; i < datos.size(); i++) {
+        tieneDonaciones = true;
         donacion = datos.get(i);
         Persona persona = new Persona(donacion.getIdentificacionDonante());
         TipoDonacion tipoDonacion = new TipoDonacion();
         lista += "<div class='swiper-slide'>";
         lista += "<div class='card'>";
         lista += "<div class='card-header'>";
-        lista += "<h2>Código: " + donacion.getCodigo() + " - Fecha: " + donacion.getFecha() + "</h2>";
+        lista += "<h2 style='font-weight: bold;'>Mi Donación</h2>";
         lista += "</div>";
         lista += "<div class='card-body'>";
-        lista += "<p><strong>Donación</strong></p>";
+        lista += "<p><strong>Fecha:</strong> " + donacion.getFecha() + "</p>";
 
         lista += "<div style='display: flex; margin-bottom: 20px;'>";
         lista += "<div style='margin-right: 20px;'>";
-        lista += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' style='width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 5px solid #98FF98;'/>";
+        lista += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' style='width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 5px solid #05af8b;'/>";
         lista += "</div>";
 
         lista += "<div>";
@@ -58,37 +61,37 @@
 %>
 <h3>DONACIONES</h3> 
 
-
-
-<div class="header-container">
-    <form id="searchForm">
-        <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar" onkeyup="filterNames()">
-            <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
-        </div>
-        <ul id="nameList"></ul>
-    </form>
-   
-</div>
-
-
+<%
+    if (tieneDonaciones) {
+%>
 <div class="swiper-container">
     <div class="swiper-wrapper">
-        <%=lista%>
+        <%= lista%>
     </div>
-    <div class="swiper-button-next"></div>
     <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
     <div class="swiper-pagination"></div>
 </div>
 
+<%
+} else {
+%>
+<br><h4>
+    <p>Aún no has realizado ninguna donación.</p>
+    <p>¡Tu apoyo puede hacer una gran diferencia en la vida de un peludito!</p>
+</h4>
+<%
+    }
+%>
+
 <script>
+
     function confirmarEliminacion(codigo) {
         const respuesta = confirm("¿Realmente desea eliminar el registro?");
         if (respuesta) {
             document.location = "principal.jsp?CONTENIDO=8.Donacion/donacionesFormularioActualizar.jsp&accion=Eliminar&codigo=" + codigo;
         }
     }
-
 
     function verDetalles(codigo, iden) {
         var url = "principal.jsp?CONTENIDO=8.Donacion/verDetalles.jsp&codigo=" + codigo + "&identificacion=" + iden;
@@ -101,23 +104,6 @@
     function agregarTipoDonacion() {
         var url = "principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp?"
         window.location.href = url;
-    }
-    function filterNames() {
-        const input = document.getElementById('searchInput');
-        const filter = input.value.toLowerCase();
-        const slides = document.getElementsByClassName('swiper-slide');
-
-        // Filtrar por nombre del adoptante o mascota
-        for (let i = 0; i < slides.length; i++) {
-            const cardBody = slides[i].getElementsByClassName('card-body')[0];
-            const textValue = cardBody.textContent || cardBody.innerText;
-
-            if (textValue.toLowerCase().indexOf(filter) > -1) {
-                slides[i].style.display = "";
-            } else {
-                slides[i].style.display = "none";
-            }
-        }
     }
 
     const swiper = new Swiper('.swiper-container', {

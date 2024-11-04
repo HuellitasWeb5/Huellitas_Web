@@ -75,7 +75,14 @@
             final String correoEnvia = "huellitasweb5@gmail.com";
             final String claveCorreo = "qfle glhu pqie lhlt";
             String asunto = "Recuperación de contraseña";
-            String mensajeCorreo = "Tu contraseña es: " + clave;
+            String mensajeCorreo = "¡Hola! Tu código para iniciar sesión es: " + clave + "\n\n"
+            + "Recuerda que tu contraseña está encriptada para mayor seguridad. "
+            + "Por favor, asegúrate de copiarla exactamente como aparece para evitar problemas al iniciar sesión."
+            + "\n\n"
+            + "IMPORTANTE:Debes cambiar tu contraseña tan pronto como inicies sesión, para garantizar aún más tu seguridad."
+            + "\n\n"
+            + "¡Gracias por confiar en nosotros!";
+
 
             // Configuración del servidor SMTP
             Properties properties = new Properties();

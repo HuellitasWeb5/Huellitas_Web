@@ -64,12 +64,6 @@
     gap: 20px; /* Espacio entre las tarjetas para evitar que se superpongan */
 }
 
-
-h3 {
-    text-align: center;
-    color: #333;
-}
-
 .card-container {
     display: flex;
     overflow: hidden;
@@ -78,14 +72,13 @@ h3 {
 }
 
 .swiper-container {
-    width: 100%; /* Asegúrate de que el swiper ocupe el 100% del ancho del contenedor */
+    width: 95%; 
     position: relative;
     display: flex;
     justify-content: center;
     margin-top: 10px;
     padding-bottom: 80px;
-    max-width: 100%;
-    margin: 0 auto; /* Centra el swiper en el contenedor */
+    margin: 0 auto; 
 }
 
 .swiper-wrapper {
@@ -94,32 +87,43 @@ h3 {
 }
 
 .swiper-button-prev, .swiper-button-next {
-    position: absolute; /* Coloca las flechas de manera que estén alineadas con las tarjetas */
-    top: 50%; /* Centra las flechas verticalmente en el contenedor */
-    transform: translateY(-50%); /* Asegura el centrado vertical exacto */
-    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejor visibilidad */
+    transform: translateY(-50%) scale(0.6);
+    background-color: rgba(0, 0, 0, 0.4);
     color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 10; /* Asegura que las flechas estén por encima de las tarjetas */
-    border-radius: 50%; /* Bordes redondeados para las flechas */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10; /* Asegura que las flechas estén encima */
 }
+
+/* Mueve las flechas fuera del contenedor de las tarjetas */
 .swiper-button-prev {
-    left: 10px; /* Ubicación de la flecha izquierda */
+    left: -40px; /* Ajusta la distancia desde el borde izquierdo */
 }
 
 .swiper-button-next {
-    right: 10px; /* Ubicación de la flecha derecha */
+    right: -40px; /* Ajusta la distancia desde el borde derecho */
 }
 
-/* Estilo del hover de la tarjeta */
 .card:hover {
-    transform: translateY(-3px); /* Mueve la tarjeta hacia arriba */
+    transform: translateY(-8px); /* Mueve la tarjeta hacia arriba */
     backdrop-filter: blur(10px);
     border: 4px solid #049b7d; /* Borde ligeramente más oscuro */
-    background-color: rgba(153, 204, 193, 0.8); /* Fondo ligeramente más oscuro */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
+    background-color: rgba(123, 164, 153, 0.7); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Aumenta la sombra al hacer hover */
+    border: 5px  solid #aafeec;
+}
+
+.card:hover .card-header {
+    color: #aafeec; 
+    border-bottom: 3px solid #aafeec;
+}
+
+.card:hover .profile-image {
+    border-color: #aafeec; /* Cambia el color del borde de la imagen */
 }
 
 .card-footer {
@@ -135,26 +139,10 @@ h3 {
     text-align: center;
 }
 
-.card-subtitle {
-    font-size: 15px; /* Ajusta el tamaño de la fuente */
-    color: #005d03; /* Puedes personalizar el color */
-    margin-top: 8px; /* Ajusta el espacio entre el nombre y el rol */
-    text-align: center; /* Centra el subtítulo */
-}
-
-
 .card-body strong {
     font-weight: bold; /* Asegura que el texto esté en negrita */
     text-transform: uppercase; /* Convierte el texto a mayúsculas */
 }
-
-/* Encabezados */
-h3 {
-    text-align: center;
-    color: #333;
-}
-
-
 
 .swiper-slide {
     margin: 10px; /* Espacio entre tarjetas */
@@ -164,12 +152,6 @@ h3 {
 
 .swiper-button-prev {
     left: 10px; /* Puedes ajustar la distancia desde el borde izquierdo */
-}
-
-.card-footer {
-    display: flex; /* Alinear los botones horizontalmente */
-    justify-content: center; /* Centrar los botones */
-    margin-top: 10px; /* Espacio entre el contenido y los botones */
 }
 
 .navigation-buttons {
@@ -213,14 +195,10 @@ h2{
     font-size: 2em; /* Ajusta el tamaño del texto a 1.5 veces el tamaño de la fuente base, haciendo que la cabecera se vea más grande y destacada */
     font-weight: bold; /* Hace que el texto sea más grueso y visible, resaltando la importancia de la cabecera */
     margin-bottom: 10px; /* Añade un margen de 10 píxeles debajo del texto para crear espacio entre la cabecera y el contenido siguiente */
-    border-bottom: 3px solid #05af8b ; /* Crea un borde sólido de 3 píxeles de grosor en la parte inferior con un color verde claro, para separar visualmente la cabecera del contenido */
+    border-bottom: 3px solid #059476; /* Crea un borde sólido de 3 píxeles de grosor en la parte inferior con un color verde claro, para separar visualmente la cabecera del contenido */
     padding-bottom: 5px; /* Añade un espacio de 5 píxeles entre el texto y el borde inferior para evitar que el texto esté muy cerca del borde */
     color: #05af8b ; /* Define el color del texto a un tono verde claro para que combine con el diseño general de la tarjeta */
 }
-
-/* Cuerpo de la tarjeta */
-
-
 
 /* Botones de navegación (flechas) */
 
@@ -569,7 +547,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 h3 {
-      font-size: 35px; /* Tamaño de fuente grande */
+    font-size: 35px; /* Tamaño de fuente grande */
     color: #333; /* Color de texto blanco */
     text-align: center; /* Centra el texto */
     margin: 20px 0; /* Margen superior e inferior */
@@ -577,6 +555,12 @@ h3 {
 
 }
 
+h4 {
+    font-size: 31px; /* Tamaño de fuente grande */
+    color: #333; /* Color de texto blanco */
+    text-align: center; /* Centra el texto */
+    margin: 20px 0; /* Margen superior e inferior */
+}
 table {
     border-collapse: collapse;
     width: 100%;

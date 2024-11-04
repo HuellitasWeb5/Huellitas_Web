@@ -1,0 +1,150 @@
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    width: 100vw; /* Ocupa el ancho completo de la ventana */
+    height: 600px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Asegura que no haya scroll adicional */
+    background: url(../presentacion/imagenes/donacionm.jpg) no-repeat center center;
+    background-size: cover; /* Cubre todo el ancho y alto del header */
+    background-attachment: fixed;
+    position: relative;
+    filter: brightness(100%);
+}
+/* Ajustes para el contenedor de textos dentro del header */
+header .textos-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Asegúrate de que el contenedor ocupe toda la altura */
+    text-align: center;
+}
+
+.textos-header h1 {
+    font-size: 60px; /* Tamaño de fuente más grande para h1 */
+    color: #fff; /* Color blanco */
+    transition: transform 0.8s ease, opacity 0.8s ease; /* Agrega transición */
+    transform: translateX(-20px); /* Inicia el movimiento desde la izquierda */
+    opacity: 0; /* Inicia invisible */
+}
+
+/* Clase para hacer que aparezcan */
+.textos-header.visible h1 {
+    transform: translateX(0); /* Regresa a su posición original */
+    opacity: 1; /* Hace visible el texto */
+}
+
+.textos-header h2 {
+    font-size: 40px; /* Tamaño de fuente más grande para h2 */
+    font-weight: 300; /* Peso de la fuente */
+    color: #fff; /* Color blanco */
+    transition: transform 0.8s ease, opacity 0.8s ease; /* Agrega transición */
+    transform: translateX(20px); /* Inicia el movimiento desde la derecha */
+    opacity: 0; /* Inicia invisible */
+}
+
+/* Clase para hacer que aparezcan */
+.textos-header.visible h2 {
+    transform: translateX(0); /* Regresa a su posición original */
+    opacity: 1; /* Hace visible el texto */
+}
+
+.btn-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dark-background {
+    background: url('../presentacion/imagenes/negro12.jpg') no-repeat center center; /* Cambia la ruta de la imagen según sea necesario */
+    background-size: cover; /* Asegura que la imagen cubra todo el fondo */
+    position: relative; /* Para posicionar el overlay */
+    height: 100vh; /* Altura completa de la ventana */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 18px;
+    margin-top: 18px
+}
+
+.dark-background::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Color negro con transparencia */
+    z-index: 1; /* Para que esté detrás del contenido */
+}
+
+.info-box {
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo negro con transparencia */
+    padding: 20px; /* Aumentar el padding para hacer el cuadro más grande */
+    border-radius: 20px; /* Bordes redondeados */
+    width: 80%; /* Ajustar el ancho para que sea más grande */
+    color: #fff; /* Color del texto */
+    text-align: center; /* Centrar el texto */
+    margin: 0 auto; /* Centrar el cuadro */
+    transition: transform 0.5s ease; /* Transición suave al mover el cuadro */
+    position: relative; /* Para que el contenido esté por encima del overlay */
+    z-index: 2; /* Para que esté delante del overlay */
+}
+
+.info-box h2 {
+    color: #1dba35; /* Color del texto para el título */
+    font-size: 36px; /* Tamaño del texto */
+}
+
+.info-box p {
+    font-size: 24px; /* Aumentar tamaño de la letra de los párrafos */
+    color: #fff; /* Asegúrate de que el texto sea blanco */
+}
+
+/* Estilo de fondo oscuro */
+.dark-background {
+    background-color: #1e1e1e;
+    color: #ffffff;
+}
+
+/* Estilo del contenedor de la sección de donación */
+.donation-section {
+    text-align: center;
+    color: #1dba35;
+    margin-top: 20px;
+}
+
+/* Estilo del ícono de corazón */
+.heart-icon {
+    font-size: 40px;
+    color: #1dba35;
+}
+
+/* Estilo del texto "HAZ UNA DONACIÓN" */
+.donation-section p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Estilo del botón "DONAR AHORA" */
+.btn-donar {
+    background-color: #117521;
+    color: #ffffff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-donar:hover {
+    background-color: #19ab30;
+}

@@ -7,98 +7,30 @@ and open the template in the editor.
     Created on : 14/10/2024, 06:18:05 PM
     Author     : Luis Eraso
 */
-
 body {
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
+    
+    padding: 20px;
+    overflow-x: hidden;
     font-family: 'Open Sans';
     text-align: center;
     width: 100%;
     height: 100vh;
-    background: url('../presentacion/imagenes/mascotas.jpg') no-repeat center center;
-    background-size: cover;
-    background-attachment: fixed;
+    background: linear-gradient(135deg, rgba(173, 216, 230, 0.7), rgba(144, 238, 144, 0.7)); /* Degradado azul claro y verde claro */
+    margin: 0;
     display: flex;
     flex-direction: column;
 }
-
-.container {
-    flex: 1;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Ajuste para expandir el menú al 100% de la pantalla y eliminar cualquier espacio */
-header, nav, .menu, .navbar {
-    width: 100% !important;
-    max-width: 100% !important;
-    margin: 0 !important; /* Asegura que no haya margen */
-    padding: 0 !important; /* Asegura que no haya padding */
-    box-sizing: border-box; /* Asegura que el padding y borde no afecten el ancho */
-    position: relative;
-    left: 0; /* Alinea completamente a la izquierda */
-    right: 0; /* Alinea completamente a la derecha */
-}
-
-/* Configuración para la barra de navegación y elementos del menú */
-.navbar-nav {
-    display: flex;
-    justify-content: space-around; /* Espacio uniforme entre elementos */
-    width: 100%;
-    padding: 0; /* Elimina cualquier padding */
-    margin: 0; /* Elimina cualquier margen */
-}
-
-.nav-item {
-    flex-grow: 1; /* Cada elemento ocupa espacio proporcional */
-    text-align: center; /* Centra el texto dentro de cada elemento */
-}
-
-.transparent-navbar {
-    background-color: rgba(255, 255, 255, 0.8); /* Fondo blanco con opacidad */
-    width: 100%;
-    border-radius: 0;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    margin: 0; /* Elimina cualquier margen */
-    padding: 0; /* Elimina cualquier padding */
-}
-
-.navbar-nav .nav-link, .dropdown-item {
-    font-size: 15px;
-    font-weight: bold;
-    color: #000;
-}
-
 .dropdown-menu {
-    min-width: 100%; /* Ocupa todo el ancho del contenedor padre */
-    position: absolute;
-    left: 0; /* Alinea el menú desplegable al borde izquierdo */
-    background-color: #eeffef;
-    border: 1px solid #eeffef;
-    display: none;
-    z-index: 1000;
-}
-
-.dropdown:hover .dropdown-menu {
-    display: block; /* Muestra el menú al pasar el mouse */
+    background-color: #eeffef; /* Color de fondo del menú desplegable */
+    border: 1px solid #eeffef; /* Borde del menú desplegable */
 }
 
 .dropdown-item {
-    color: #26c330;
-    padding: 10px;
+    color: #212529; /* Color de los elementos del menú */
 }
 
 .dropdown-item:hover {
-    background-color: #26c330;
-    color: #000;
-}
-
-.dropdown-item:focus {
-    background-color: #26c330;
-    color: #ffffff;
+    background-color: #eeffef; /* Color de fondo al pasar el mouse sobre un elemento del menú */
 }
 
 /* Estilos responsivos */
@@ -108,56 +40,112 @@ header, nav, .menu, .navbar {
     }
 
     .navbar-toggler {
-        margin-left: auto;
+        margin-left: auto; /* Alinea el botón de menú a la derecha */
     }
-}
 
+}
 html, body {
-    height: 100%;
+    height: 100%; /* Asegura que la página ocupe el 100% de la altura */
     margin: 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Organiza el contenido en columnas */
 }
 
 .main-content {
-    flex: 1;
+    flex: 1; /* Permite que el contenido principal ocupe el espacio disponible */
 }
-
 .contenedor-footer h4 img {
-    margin-right: 10px;
-    vertical-align: middle;
+    margin-right: 7px; /* Espacio entre la imagen y el texto */
+    vertical-align: middle; /* Alinear la imagen con el texto */
 }
 
+h6 {
+    font-size: 22px;
+    color: black;
+    text-align: center;
+    margin: 5px 0;
+}
+
+/* Estilo del footer */
 footer {
-    background-color: rgba(0, 128, 0, 0.4); 
-    padding: 12px;
+    background-color: rgba(62, 104, 102, 0.8);
+    padding: 8px;
     width: 100%;
     text-align: center;
-    border-radius: 30px;
-    backdrop-filter: blur(15px); 
-}
+    backdrop-filter: blur(30px);
 
+}
 .contenedor-footer {
     display: flex;
     justify-content: space-evenly;
-    width: 95%;
+    width: 100%;
     margin: auto;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #000;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #012c2c;
 }
 
 footer a {
-    color: #166b0a;
+    color: #012c2c;
     font-weight: bold;
+    font-size: 16px;
 }
 
 footer a:hover {
-    color: #3c463a; 
+    color: #3c463a;
+    font-weight: bold;
 }
 
 .titulo-final {
-    font-size: 15px;
-    color: black;
-    text-align: center;
-    margin-top: 20px;
+    font-size: 15px;  /* Negrita */
+    color: black; /* Color del texto, puedes cambiarlo */
+    text-align: center; /* Centrar el texto */
+    margin-top: 10px; /* Fuente, ajusta según prefieras */
+}
+
+.transparent-navbar {
+    background-color: #eeffef; /* Fondo blanco con 80% de opacidad */
+    border-radius: 30px; /* Bordes redondeados */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.navbar-nav .nav-link, .dropdown-item {
+    font-size: 15px;  /* Aumenta el tamaño de las letras */
+    font-weight: bold; /* Letras en negrita */
+    color: #000;       /* Color negro */
+}
+
+.dropdown-menu {
+    display: none; /* Oculta el menú por defecto */
+    position: absolute; /* Posiciona el menú desplegable */
+    background-color: #eeffef; /* Color de fondo del menú */
+    border: 1px solid #eeffef; /* Borde del menú */
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block; /* Muestra el menú al pasar el mouse */
+}
+
+.dropdown-item {
+    color: #26c330; /* Color de los elementos del menú */
+    padding: 10px; /* Espaciado interno */
+}
+
+.dropdown-item:hover {
+    background-color: #26c330; /* Color de fondo al pasar el mouse */
+    color: #000; /* Color del texto al pasar el mouse */
+}
+
+.dropdown-item:focus {
+    background-color: #26c330; /* Color de fondo al seleccionar */
+    color: #ffffff; /* Color del texto al seleccionar */
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .navbar-nav {
+        flex-direction: column; /* Muestra los elementos del menú en columnas en pantallas pequeñas */
+    }
+
+
 }

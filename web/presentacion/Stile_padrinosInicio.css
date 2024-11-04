@@ -1,0 +1,167 @@
+/* General Background */
+body {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Dark background container */
+.dark-background {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px;
+    background: url(../presentacion/imagenes/post3.png) no-repeat center center;
+    background-size: cover;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+    transition: background-color 0.5s ease; /* Agrega una transición de fondo */
+}
+
+/* Contenedor para las tarjetas */
+.cards-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* Info Box Styles */
+.info-box {
+    width: 300px;
+    padding: 20px;
+    border-radius: 20px;
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transición al pasar el cursor */
+}
+
+/* Efecto de transición para Info Box al pasar el cursor */
+.info-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Specific Colors */
+.green-box {
+    background-color: rgba(0, 128, 96, 0.9); /* Fondo verde más fuerte */
+}
+
+.pink-box {
+    background-color: rgba(1, 128, 96, 0.9); /* Fondo rosa más fuerte */
+}
+
+/* Estilo personalizado para los títulos */
+.info-box h2 {
+    font-size: 1.8em;
+    color: #fff; /* Color dorado */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 15px;
+    transition: color 0.5s ease; /* Transición para el color */
+}
+
+/* Texto centrado y aumentado */
+.info-box p,
+.info-box ol,
+.info-box ul {
+    font-size: 1.1em;
+    font-weight: normal;
+    line-height: 1.6em;
+    text-align: center;
+}
+
+/* Button Styling */
+.btn-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn-padripet {
+    background-color: #117521;
+    color: #ffffff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-padripet:hover {
+    background-color: #19ab30;
+}
+
+.btn-adicionar:hover {
+    background-color: #1dba35;
+    transform: scale(1.05);
+}
+
+.btn-adicionar:active {
+    background-color: #005d03;
+    transform: scale(0.95);
+}
+/* Estilos del texto del header */
+.textos-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+
+.textos-header h1 {
+    font-size: 60px; /* Tamaño de fuente más grande para h1 */
+    color: #fff; /* Color blanco */
+    transition: transform 0.8s ease, opacity 0.8s ease; /* Agrega transición */
+    transform: translateX(-20px); /* Inicia el movimiento desde la izquierda */
+    opacity: 0; /* Inicia invisible */
+}
+
+/* Clase para hacer que aparezcan */
+.textos-header.visible h1 {
+    transform: translateX(0); /* Regresa a su posición original */
+    opacity: 1; /* Hace visible el texto */
+}
+
+.textos-header h2 {
+    font-size: 40px; /* Tamaño de fuente más grande para h2 */
+    font-weight: 300; /* Peso de la fuente */
+    color: #fff; /* Color blanco */
+    transition: transform 0.8s ease, opacity 0.8s ease; /* Agrega transición */
+    transform: translateX(20px); /* Inicia el movimiento desde la derecha */
+    opacity: 0; /* Inicia invisible */
+}
+
+/* Clase para hacer que aparezcan */
+.textos-header.visible h2 {
+    transform: translateX(0); /* Regresa a su posición original */
+    opacity: 1; /* Hace visible el texto */
+}
+
+
+/* Estilos del header */
+header {
+    width: 100%;
+    height: 600px;
+    background: url(../presentacion/imagenes/post1.png);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+/* Estilos para el efecto wave */
+.wave {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
