@@ -18,7 +18,7 @@
             <div class="cards-container">
 
                 <div class="info-box green-box">
-                    <h2>¿Qué significa ser un Padripet?</h2>
+                    <h2>¿Qué es un Padripet?</h2>
                     <p>Significa convertirte en el padrino o madrina de uno o varios perritos que forman 
                         parte de nuestra fundación. Gracias a tu apoyo, el peludito podrá acceder a atención médica regular, alimentación de 
                         calidad, un espacio cómodo y seguro y por supuesto, mucho amor y cariño. Ser un padripet no solo significa apoyar a un peludito, sino también ser parte de una

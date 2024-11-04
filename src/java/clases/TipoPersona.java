@@ -58,6 +58,8 @@ public class TipoPersona {
             case "F":
                 menu += "<nav class='navbar navbar-expand-lg navbar-light transparent-navbar' 'style='padding: 50px 50px; width: 100%;'>"; // Añadido padding para mejor espacio
                 menu += "<div class='container-fluid d-flex justify-content-between align-items-center'>";
+         
+           menu += "<img src='presentacion/imagenes/Logo-Fundacion.png' alt='Logo' width='90' height='90' class='d-inline-block align-text-top'>";
 
                 // Botón para colapsar el menú en pantallas pequeñas
                 menu += "<button class='navbar-toggler' type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation'>";
@@ -80,6 +82,8 @@ public class TipoPersona {
                 menu += "<li class='nav-item'><a href='index.jsp'>Salir</a></li>";
 
                 menu += "</ul>";
+                                menu += "<img src='presentacion/imagenes/Logo.png' alt='Logo' width='80' height='80' class='d-inline-block align-text-top'>";
+
                 menu += "</div>";
                 menu += "</div>";
                 menu += "</nav>";
