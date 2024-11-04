@@ -164,11 +164,23 @@ public class Mascota {
         this.descripcion = descripcion;
     }
     
-    public int getEdad() {
-        LocalDate fechaNacimiento = LocalDate.parse(this.getFechaNacimientoAproximada());
-        LocalDate fechaActual = LocalDate.now();
-        return Period.between(fechaNacimiento, fechaActual).getYears();
+    public String getEdad() {
+    LocalDate fechaNacimiento = LocalDate.parse(this.getFechaNacimientoAproximada());
+    LocalDate fechaActual = LocalDate.now();
+    Period periodo = Period.between(fechaNacimiento, fechaActual);
+
+    int años = periodo.getYears();
+    int meses = periodo.getMonths();
+
+    if (años == 0) {
+        // Si es menor de un año, mostrar solo los meses
+        return meses + " meses";
+    } else {
+        // Si tiene un año o más, mostrar años y meses
+        return años + " años";
     }
+}
+
     
     public String toString() {
         String datos="";

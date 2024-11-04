@@ -12,7 +12,6 @@
 <link rel="stylesheet" href="presentacion/style-Tarjetas.css" />
 <link rel="stylesheet" href="presentacion/style-MascotasHeader.css" />
 
-
 <%
     String nombreTipoPersona = request.getParameter("nombre");
 
@@ -55,7 +54,7 @@
             lista += "<p><strong>Género: </strong>" + mascota.getGeneroEnObjeto() + "</p>";
             lista += "<p><strong>Tamaño: </strong>" + mascota.getTamano() + "</p>";
             lista += "<p><strong>Cuidado: </strong>" + mascota.getCuidadosEspeciales() + "</p>";
-            lista += "<p><strong>Edad aproximada: </strong>" + mascota.getEdad() + " años</p>";
+            lista += "<p><strong>Edad aproximada: </strong>" + mascota.getEdad() + "</p>";
             lista += "<p><strong>Fecha de ingreso: </strong>" + mascota.getFechaIngreso() + "</p>";
             lista += "<p><strong>Descripción: </strong>" + mascota.getDescripcion() + "</p>";
             lista += "</div>";
@@ -132,20 +131,30 @@
     }
 
     function calcularEdad() {
-        const fechaNacimiento = document.getElementById("fechaNacimiento").value;
-        if (fechaNacimiento) {
-            const fechaActual = new Date();
-            const nacimiento = new Date(fechaNacimiento);
-            let edad = fechaActual.getFullYear() - nacimiento.getFullYear();
-            const mes = fechaActual.getMonth() - nacimiento.getMonth();
+    const fechaNacimiento = document.getElementById("fechaNacimiento").value;
+    if (fechaNacimiento) {
+        const fechaActual = new Date();
+        const nacimiento = new Date(fechaNacimiento);
 
-            if (mes < 0 || (mes === 0 && fechaActual.getDate() < nacimiento.getDate())) {
-                edad--;
-            }
+        let años = fechaActual.getFullYear() - nacimiento.getFullYear();
+        let meses = fechaActual.getMonth() - nacimiento.getMonth();
 
-            document.getElementById("edad").textContent = edad;
+        // Ajusta si el mes actual es menor que el mes de nacimiento
+        if (meses < 0 || (meses === 0 && fechaActual.getDate() < nacimiento.getDate())) {
+            años--;
+            meses += 12;
         }
+
+        // Ajusta si el día actual es menor que el día de nacimiento
+        if (fechaActual.getDate() < nacimiento.getDate()) {
+            meses--;
+        }
+
+        const edadTexto = `${años} años y ${meses} meses`;
+        document.getElementById("edad").textContent = edadTexto;
     }
+}
+
 
     // Llamar a la función al cargar la página si ya hay una fecha de nacimiento
     window.onload = function () {

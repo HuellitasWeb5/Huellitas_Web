@@ -498,42 +498,46 @@ input[type="radio"], input[type="checkbox"] {
     margin-bottom: 20px; /* Espacio entre el header y el resto del contenido */
 }
 
-#searchInput {
-    padding: 8px;
-    border-radius: 15px;
-    border: 1px solid #ccc;
-    width: 300px; /* Ajusta el ancho como desees */
-    margin-right: 10px; /* Espacio entre el input y el icono */
-}
-
 .search-container {
+    position: relative;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 10px 0;
+    justify-content: center;
+    margin: 20px 0;
 }
 
-.search-container input {
-    width: 300px; /* Ancho fijo para el input del buscador */
-    padding: 5px;
-    border-radius: 20px;
-    border: 1px solid #ccc;
+#searchInput {
+    padding: 12px 20px 12px 50px; /* Espacio para el icono dentro del input */
+    border-radius: 30px;
+    border: 2px solid #3498db; /* Color de borde definido */
+    width: 400px;
+    font-size: 16px;
+    background: #f9f9f9; /* Color de fondo claro */
+    color: #333; /* Color del texto */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra más suave */
+    transition: all 0.3s ease;
+}
+
+#searchInput:focus {
+    outline: none;
+    border-color: #2980b9; /* Color de borde más intenso al enfocarse */
+    box-shadow: 0px 6px 15px rgba(41, 128, 185, 0.3); /* Sombra más intensa */
 }
 
 .search-icon {
-    width: 25px; /* Ajusta el tamaño del icono */
-    height: 25px;
-    box-shadow: none;/* Ajusta el tamaño del icono */
-    margin-left: 10px; /* Deja espacio entre el input y el icono */
-    cursor: pointer;
+    position: absolute;
+    left: 15px; /* Coloca el icono dentro del campo */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #3498db;
+    font-size: 18px;
+    pointer-events: none; /* Hace que el icono no sea clickeable */
+}
+.stars {
+    color: gold;
+    font-size: 18px; /* Tamaño de las estrellas */
+    vertical-align: middle;
 }
 
-    .stars {
-        color: gold;
-        font-size: 18px; /* Tamaño de las estrellas */
-        vertical-align: middle;
-    }
-    
 .rol-administrador {
     font-size: 20px; 
     color: white; 
