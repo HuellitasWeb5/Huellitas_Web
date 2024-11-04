@@ -16,6 +16,22 @@ header {
     position: relative;
     filter: brightness(100%);
 }
+/* Overlay oscuro para mejorar la legibilidad del texto */
+
+/* Ajustes para el contenedor de textos dentro del header */
+/* Overlay oscuro para mejorar la legibilidad del texto */
+header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3); /* Reduce la opacidad para aclarar la imagen */
+    z-index: 1; /* Para que el overlay esté detrás del contenido */
+}
+
+
 /* Ajustes para el contenedor de textos dentro del header */
 header .textos-header {
     display: flex;
@@ -24,35 +40,42 @@ header .textos-header {
     align-items: center;
     height: 100%; /* Asegúrate de que el contenedor ocupe toda la altura */
     text-align: center;
+    position: relative; /* Para que el contenido esté por encima del overlay */
+    z-index: 2; /* Asegura que el texto esté delante del overlay */
+    padding: 0 20px; /* Agrega espacio para evitar que el texto toque los bordes */
 }
 
-.textos-header h1 {
-    font-size: 60px; /* Tamaño de fuente más grande para h1 */
-    color: #fff; /* Color blanco */
-    transition: transform 0.8s ease, opacity 0.8s ease; /* Agrega transición */
-    transform: translateX(-20px); /* Inicia el movimiento desde la izquierda */
-    opacity: 0; /* Inicia invisible */
-}
-
-/* Clase para hacer que aparezcan */
-.textos-header.visible h1 {
-    transform: translateX(0); /* Regresa a su posición original */
-    opacity: 1; /* Hace visible el texto */
-}
-
+/* Animación de entrada para h2 */
 .textos-header h2 {
-    font-size: 40px; /* Tamaño de fuente más grande para h2 */
-    font-weight: 300; /* Peso de la fuente */
-    color: #fff; /* Color blanco */
-    transition: transform 0.8s ease, opacity 0.8s ease; /* Agrega transición */
-    transform: translateX(20px); /* Inicia el movimiento desde la derecha */
-    opacity: 0; /* Inicia invisible */
+    font-size: 30px;
+    font-weight: 400;
+    color: #fff;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8); /* Sombra para mejorar visibilidad */
+    opacity: 0;
+    transform: translateY(-20px); /* Comienza un poco hacia arriba */
+    transition: transform 0.8s ease, opacity 0.8s ease; /* Transición suave */
 }
 
-/* Clase para hacer que aparezcan */
+/* Animación de entrada para h1 */
+.textos-header h1 {
+    font-size: 50px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.8); /* Sombra para mejorar visibilidad */
+    opacity: 0;
+    transform: translateY(20px); /* Comienza un poco hacia abajo */
+    transition: transform 0.8s ease, opacity 0.8s ease; /* Transición suave */
+}
+
+/* Clase para activar las animaciones */
 .textos-header.visible h2 {
-    transform: translateX(0); /* Regresa a su posición original */
-    opacity: 1; /* Hace visible el texto */
+    opacity: 1;
+    transform: translateY(0); /* Vuelve a su posición original */
+}
+
+.textos-header.visible h1 {
+    opacity: 1;
+    transform: translateY(0); /* Vuelve a su posición original */
 }
 
 .btn-container {
