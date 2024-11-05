@@ -12,6 +12,8 @@
 <%
 String accion = request.getParameter("accion");
 String identificacion = request.getParameter("identificacion");
+String nombreTipoPersona = request.getParameter("nombreTipoPersona");
+
 Persona clientes = new Persona();
 if (accion.equals("Modificar")) {
     clientes = new Persona(identificacion);
@@ -80,7 +82,9 @@ if (accion.equals("Modificar")) {
                         <li id="coincidencia">Las contraseñas deben coincidir</li>
                     </ul>
                 </div>
-                <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
+                    <input type="hidden" id="nombreTipo" name="nombreTipo" value="<%=nombreTipoPersona%>">
+ 
+                    <input type="hidden" name="identificacionAnterior" value="<%=identificacion%>">
                 <div class="btn-container">
                     <input class='btn-adicionar' type="submit" name="accion" value="<%=accion%>" class="btn-adicionar">
                     <input class='btn-eliminar' type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">

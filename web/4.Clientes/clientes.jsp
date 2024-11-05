@@ -68,7 +68,7 @@
 
     <!-- Botón de adicionar -->
     <div class="btn-container">
-        <a href="principal.jsp?CONTENIDO=4.Clientes/clientesFormulario.jsp&accion=Adicionar" title="Adicionar">
+        <a href="principal.jsp?CONTENIDO=4.Clientes/clientesFormulario.jsp&accion=Adicionar&nombreTipoPersona=<%=nombreTipoPersona%>" title="Adicionar">
             <button class='btn-adicionar' id="Adicionar">Adicionar</button></a>
     </div>
 </div>
