@@ -27,7 +27,7 @@ if (accion.equals("Modificar")) {
         </div>
         <div class="card-body">
             <img src="presentacion/clientes/<%=clientes.getFoto()%>" id="foto" class="profile-image">
-            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp&nombreTipoPersona=<%=nombreTipoPersona%>" enctype="multipart/form-data" onsubmit="return validarContraseña();">
+            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp&nombreTipo=<%=nombreTipoPersona%>" enctype="multipart/form-data" onsubmit="return validarContraseña();">
                 <div class="form-group">
                     <label for="identificacion">Identificación:</label>
                     <input type="text" name="identificacion" id="identificacion" maxlength="12" value="<%=clientes.getIdentificacion()%>" required>

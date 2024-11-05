@@ -7,7 +7,7 @@
 <%@page import="clases.DonacionDetalle"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <head>
-    <link rel="stylesheet" href="presentacion/Donacion.css">
+    <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
 </head>
 <%
     String lista = "";
@@ -44,7 +44,7 @@
         lista += "<div class='swiper-slide'>";
         lista += "<div class='card'>";
         lista += "<div class='card-header'>";
-        lista += "<h2>ID: " + donacionDetalle.getId() + "</h2>";
+        lista += "<h2>DETALLE</h2>";
         lista += "</div>";
         lista += "<div class='card-body'>";
         lista += "<p><strong>Código Tipo Donación:</strong> " + donacionDetalle.getTipoDonacion() + "</p>";
