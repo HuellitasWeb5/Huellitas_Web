@@ -13,7 +13,7 @@
 String accion = request.getParameter("accion");
 String identificacion = request.getParameter("identificacion");
 String nombreTipoPersona = request.getParameter("nombreTipoPersona");
-
+System.out.println(nombreTipoPersona);
 Persona clientes = new Persona();
 if (accion.equals("Modificar")) {
     clientes = new Persona(identificacion);
@@ -27,7 +27,7 @@ if (accion.equals("Modificar")) {
         </div>
         <div class="card-body">
             <img src="presentacion/clientes/<%=clientes.getFoto()%>" id="foto" class="profile-image">
-            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp" enctype="multipart/form-data" onsubmit="return validarContraseña();">
+            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp&nombreTipoPersona=<%=nombreTipoPersona%>" enctype="multipart/form-data" onsubmit="return validarContraseña();">
                 <div class="form-group">
                     <label for="identificacion">Identificación:</label>
                     <input type="text" name="identificacion" id="identificacion" maxlength="12" value="<%=clientes.getIdentificacion()%>" required>
