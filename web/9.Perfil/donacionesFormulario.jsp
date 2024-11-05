@@ -9,12 +9,19 @@
 <head>
     <link rel="stylesheet" href="presentacion/style-TarjetasFormularios.css">
 </head>
+
 <%
-    String identificacionUsuario = (String) request.getAttribute("identificacionUsuario");
     String accion = request.getParameter("accion");
+    String codigoMascota = request.getParameter("codigoMascota");
     String tipoUsuario = (String) session.getAttribute("tipoUsuario");
+
+    String identificacionUsuario = (String) request.getAttribute("identificacionUsuario");
+
+    String privado = "";
+    if (tipoUsuario.equals("C")) {
+        privado = "readonly";
+    }
 %>
-<body onload="cargarFecha()">
 <center><h3>DONACIONES</h3></center>
 
 <!-- Formulario principal -->
@@ -26,19 +33,19 @@
         <div class="card-body">
             <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/donacionesFormularioActualizar.jsp">
 
-                <div class="form-group">
+                <div class="form-group" onload="cargarFecha()">
                     <label>Fecha actual:</label>
                     <span id="fecha"></span> <!-- Aquí no se usa value, se cambiará el contenido con JavaScript -->
                 </div>
 
                 <div class="form-group">
                     <label>Identificación</label>
-                    <input type="text" name="identificacionD" id="identificacionD" value="" readonly="">
+                    <input type="text" name="identificacionD" id="identificacionD" value="" required <%=privado%>>
                 </div>
 
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <span id="nombre" name="nombre" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                    <span id="nombre" readonly></span> <!-- Se elimina el atributo "value" en span -->
                 </div>
 
                 <div class="form-group">
@@ -71,6 +78,7 @@
                 <input type="hidden" name="accion" value="<%=accion%>">
                 <center>
                     <br><br>
+
                     <div class="btn-container">
                         <input class="btn-adicionar" type="submit" value="Guardar Donación" onclick="return validarFormularioPrincipal();">
                         <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
@@ -125,14 +133,9 @@
     <div class="swiper-button-prev"></div>
     <div class="swiper-pagination"></div>
 </div>
-</body>
-
 <script>
-    var tipoUsuario = "<%= tipoUsuario%>";
-    var personas = <%=Persona.getListaEnArreglosJS("identificacion=" + identificacionUsuario, null)%>;
+    var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
     var conceptoDonacion = <%=ConceptoDonacion.getListaEnArreglosJS(null, null)%>;
-    var identificacionUsuario = <%= identificacionUsuario%>;
-
     var vectorPersonas = new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
@@ -140,8 +143,6 @@
     $("#identificacionD").autocomplete({
         source: vectorPersonas
     });
-
-
 
     function validarFormularioPrincipal() {
         const donacionDetalles = document.getElementById('donacion').value;
@@ -165,7 +166,21 @@
         }
     }
 
+    $('#identificacionD').change(function () {
+        let identificacion = this.value.trim();
+        let indicePersona = buscarPersona(identificacion, 0);
+        let nombre = personas[indicePersona][1];
+        let telefono = personas[indicePersona][2];
+        let direccion = personas[indicePersona][3];
+        let residencia = personas[indicePersona][4];
+        let correo = personas[indicePersona][5];
 
+        document.getElementById("nombre").innerText = nombre;
+        document.getElementById("telefono").innerText = telefono;
+        document.getElementById("direccion").innerText = direccion;
+        document.getElementById("residencia").innerText = residencia;
+        document.getElementById("correo").innerText = correo;
+    });
 
     function buscarPersona(valor, indice) {
         let encontrado = false;
@@ -263,7 +278,7 @@
             botonEliminar.classList.add('btn-eliminar');
             botonEliminar.onclick = function () {
                 eliminarRegistro(index);
-            };
+
 
             };
 
@@ -309,6 +324,8 @@
             clickable: true,
         }
     });
+    var tipoUsuario = "<%= tipoUsuario%>";
+    var identificacionUsuario = <%= identificacionUsuario%>;
 
     if (tipoUsuario === "C") {
         document.getElementById("identificacionD").value = identificacionUsuario;

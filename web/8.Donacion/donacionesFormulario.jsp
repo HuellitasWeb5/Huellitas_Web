@@ -5,125 +5,127 @@
 <%@page import="clases.TipoDonacion"%>
 <%@page import="clases.DonacionDetalle"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<html>
 
-<head>
-    <link rel="stylesheet" href="presentacion/style-TarjetasFormularios.css">
-</head>
-<%
-    String accion = request.getParameter("accion");
-%>
-<body onload="cargarFecha()">
-<center><h3>DONACIONES</h3></center>
+    <head>
+        <link rel="stylesheet" href="presentacion/style-TarjetasFormularios.css">
+    </head>
+    <%
+        String accion = request.getParameter("accion");
+    %>
 
-<!-- Formulario principal -->
-<div class="card-carousel">
-    <div class="card">
-        <div class="titulo">
-            <h2>DATOS DEL USUARIO</h2>
-        </div>
-        <div class="card-body">
-            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=8.Donacion/donacionesFormularioActualizar.jsp">
+    <body onload="cargarFecha()">
+    <center><h3>DONACIONES</h3></center>
 
-                <div class="form-group">
-                    <label>Fecha actual:</label>
-                    <span id="fecha"></span> <!-- Aquí no se usa value, se cambiará el contenido con JavaScript -->
-                </div>
+    <!-- Formulario principal -->
+    <div class="card-carousel">
+        <div class="card">
+            <div class="titulo">
+                <h2>DATOS DEL USUARIO</h2>
+            </div>
+            <div class="card-body">
+                <form name="formulario" method="post" action="principal.jsp?CONTENIDO=8.Donacion/donacionesFormularioActualizar.jsp">
 
-                <div class="form-group">
-                    <label>Identificación</label>
-                    <input type="text" name="identificacionD" id="identificacionD" value="" required>
-                </div>
-
-                <div class="form-group">
-                    <label for="nombre">Nombre</label>
-                    <span id="nombre" readonly></span> <!-- Se elimina el atributo "value" en span -->
-                </div>
-
-                <div class="form-group">
-                    <label for="telefono">Número de teléfono</label>
-                    <span id="telefono" readonly></span> <!-- Se elimina el atributo "value" en span -->
-                </div>
-
-                <div class="form-group">
-                    <label for="direccion">Dirección</label>
-                    <span id="direccion" readonly></span> <!-- Se elimina el atributo "value" en span -->
-                </div>
-
-                <div class="form-group">
-                    <label for="residencia">Residencia</label>
-                    <span id="residencia" readonly></span> <!-- Se elimina el atributo "value" en span -->
-                </div>
-
-                <div class="form-group">
-                    <label for="correo">Correo Electrónico</label>
-                    <span id="correo" readonly></span> <!-- Se elimina el atributo "value" en span -->
-                </div>
-
-                <div class="form-group">
-                    <label>Descripción</label>
-                    <textarea id="descripcion" name="descripcion" rows="6" cols="40" required></textarea>
-                </div>
-
-                <!-- Campo oculto para almacenar la cadena de donaciones -->
-                <input type="hidden" name="donacion" id="donacion" required>
-                <input type="hidden" name="accion" value="<%=accion%>">
-                <center>
-                    <br><br>
-
-                    <div class="btn-container">
-                        <input class="btn-adicionar" type="submit" value="Guardar Donación" onclick="return validarFormularioPrincipal();">
-                        <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
+                    <div class="form-group">
+                        <label>Fecha actual:</label>
+                        <span id="fecha"></span> <!-- Aquí no se usa value, se cambiará el contenido con JavaScript -->
                     </div>
-                </center>
-            </form>
-            <div class="form-group"><button class="btn-otro" onclick="abrirFormulario();">Agregar Detalles de Donación</button></div>
+
+                    <div class="form-group">
+                        <label>Identificación</label>
+                        <input type="text" name="identificacionD" id="identificacionD" value="" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <span id="nombre" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Número de teléfono</label>
+                        <span id="telefono" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <span id="direccion" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="residencia">Residencia</label>
+                        <span id="residencia" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                    </div>
+
+                    <div class="form-group">
+                        <label for="correo">Correo Electrónico</label>
+                        <span id="correo" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                    </div>
+
+                    <div class="form-group">
+                        <label>Descripción</label>
+                        <textarea id="descripcion" name="descripcion" rows="6" cols="40" required></textarea>
+                    </div>
+
+                    <!-- Campo oculto para almacenar la cadena de donaciones -->
+                    <input type="hidden" name="donacion" id="donacion" required>
+                    <input type="hidden" name="accion" value="<%=accion%>">
+                    <center>
+                        <br><br>
+
+                        <div class="btn-container">
+                            <input class="btn-adicionar" type="submit" value="Guardar Donación" onclick="return validarFormularioPrincipal();">
+                            <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
+                        </div>
+                    </center>
+                </form>
+                <div class="form-group"><button class="btn-otro" onclick="abrirFormulario();">Agregar Detalles de Donación</button></div>
+            </div>
         </div>
     </div>
-</div>
 
 
-<!-- Botón para abrir el formulario modal -->
+    <!-- Botón para abrir el formulario modal -->
 
-<!-- Formulario modal para ingresar detalles de donaciones -->
-<div id="formulario" title="Donaciones">
-    <form name="formularioDonacionDetalle">
-        <table>
-            <tr>
-                <th>Tipo de donación</th>
-                <td>
-                    <select id="tipoDonacion" name="tipoDonacion" onChange="actualizarConceptos(this.value)">
-                        <option value="">Seleccione un tipo de donación</option>
-                        <%= TipoDonacion.getListaEnOptions(null)%>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>Donación concepto</th>
-                <td>
-                    <select id="donacionConcepto" name="donacionConcepto">
-                        <option value="" disabled selected>Seleccione un concepto de donación</option>
-                    </select>
-                </td>
-            </tr>
-            <tr>
-                <th>Cantidad</th>
-                <td><input type="number" name="cantidad" id="cantidad" value="1" required></td>
-            </tr>
-        </table>
-        <input class="btn-adicionar" type="button" value="Agregar" onclick="actualizarTabla();">
-        <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
-    </form>
-</div>
-
-<!-- Contenedor para mostrar los detalles de donaciones -->
-<div class="swiper-container">
-    <div class="swiper-wrapper">
-        <!-- Aquí se cargan dinámicamente las tarjetas de donaciones -->
+    <!-- Formulario modal para ingresar detalles de donaciones -->
+    <div id="formulario" title="Donaciones">
+        <form name="formularioDonacionDetalle">
+            <table>
+                <tr>
+                    <th>Tipo de donación</th>
+                    <td>
+                        <select id="tipoDonacion" name="tipoDonacion" onChange="actualizarConceptos(this.value)">
+                            <option value="">Seleccione un tipo de donación</option>
+                            <%= TipoDonacion.getListaEnOptions(null)%>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Donación concepto</th>
+                    <td>
+                        <select id="donacionConcepto" name="donacionConcepto">
+                            <option value="" disabled selected>Seleccione un concepto de donación</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th>Cantidad</th>
+                    <td><input type="number" name="cantidad" id="cantidad" value="1" required></td>
+                </tr>
+            </table>
+            <input class="btn-adicionar" type="button" value="Agregar" onclick="actualizarTabla();">
+            <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
+        </form>
     </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
-</div>
+
+    <!-- Contenedor para mostrar los detalles de donaciones -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <!-- Aquí se cargan dinámicamente las tarjetas de donaciones -->
+        </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-pagination"></div>
+    </div>
 </body>
 
 <script>
@@ -271,7 +273,7 @@
             botonEliminar.classList.add('btn-eliminar');
             botonEliminar.onclick = function () {
                 eliminarRegistro(index);
-           
+
 
             };
 
@@ -318,3 +320,4 @@
         }
     });
 </script>
+</html>
