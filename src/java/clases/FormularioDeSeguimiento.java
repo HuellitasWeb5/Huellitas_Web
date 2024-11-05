@@ -34,10 +34,10 @@ public class FormularioDeSeguimiento {
     private String adaptacion;
     private String vinculo;
     private String calificacion;
+    private String mascotaAdoptada;
 
     public FormularioDeSeguimiento() {
     }
-
 
     public FormularioDeSeguimiento(String codigo) {
         String cadenaSQL = "SELECT fecha, identificacionAdoptante, codigoMascota, foto, fechaProximaVisita, descripcion, evolucionMedica, masaCorporal, estadoEmocional, adaptacion, vinculo, calificacion "
@@ -222,6 +222,14 @@ public class FormularioDeSeguimiento {
         this.calificacion = calificacion;
     }
 
+    public String getMascotaAdoptada() {
+        return mascotaAdoptada;
+    }
+
+    public void setMascotaAdoptada(String mascotaAdoptada) {
+        this.mascotaAdoptada = mascotaAdoptada;
+    }
+
     @Override
     public String toString() {
         return "FormularioDeSeguimiento{codigo=" + codigo + ", fecha=" + fecha + ", identificacionAdoptante='" + identificacionAdoptante + "', codigoMascota='" + codigoMascota + "', foto='" + foto + "', fechaProximaVisita=" + fechaProximaVisita
@@ -277,7 +285,7 @@ public class FormularioDeSeguimiento {
     public static List<FormularioDeSeguimiento> getListaEnObjetos(String filtro, String orden) {
         List<FormularioDeSeguimiento> lista = new ArrayList<>();
         ResultSet datos = FormularioDeSeguimiento.getLista(filtro, orden);
-        
+
         if (datos != null) {
             try {
                 while (datos.next()) {
@@ -303,6 +311,42 @@ public class FormularioDeSeguimiento {
             }
         }
         return lista;
+    }
+
+    public static ResultSet getListaMascotaAdoptante(String codigoMascota) {
+        String cadenaSQL = "select identificacionAdoptante from adopcion where codigoMascota = " + codigoMascota;
+
+        return ConectorBD.consultar(cadenaSQL);
+    }
+
+    public static List<FormularioDeSeguimiento> getListaMascotaEnObjeto(String codigoMascota) {
+        List<FormularioDeSeguimiento> listas = new ArrayList<>();
+        ResultSet dato = FormularioDeSeguimiento.getListaMascotaAdoptante(codigoMascota);
+        if (dato != null) {
+            try {
+                while (dato.next()) {
+                    FormularioDeSeguimiento mascota=  new FormularioDeSeguimiento();
+                    mascota.setCodigo(dato.getString("codigo"));
+                    mascota.setFecha(dato.getString("fecha"));
+                    mascota.setIdentificacionAdoptante(dato.getString("identificacionAdoptante"));
+                    mascota.setCodigoMascota(dato.getString("codigoMascota"));
+                    mascota.setFoto(dato.getString("foto"));
+                    mascota.setFechaProximaVisita(dato.getString("fechaProximaVisita"));
+                    mascota.setDescripcion(dato.getString("descripcion"));
+                    mascota.setEvolucionMedica(dato.getString("evolucionMedica"));
+                    mascota.setMasaCorporal(dato.getString("masaCorporal"));
+                    mascota.setEstadoEmocional(dato.getString("estadoEmocional"));
+                    mascota.setAdaptacion(dato.getString("adaptacion"));
+                    mascota.setVinculo(dato.getString("vinculo"));
+                    mascota.setCalificacion(dato.getString("calificacion"));
+                    mascota.setMascotaAdoptada(dato.getString("identificacionAdoptante"));
+                    listas.add(mascota);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(FormularioDeSeguimiento.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return listas;
     }
 
     public static String getListaEnArregloJS(String filtro, String orden) {
@@ -333,90 +377,91 @@ public class FormularioDeSeguimiento {
         lista += "]";
         return lista;
     }
-public static List<String[]> getCalificacionesXMes(String anio, String codigoMascota) {
-    List<String[]> lista = new ArrayList<>();
-    
-    // Consulta SQL para obtener calificaciones por mes, mascota y nombre de mascota
-    String cadenaSQL = "SELECT MONTH(fecha) AS mes, "
-                     + "fs.codigoMascota, "
-                     + "m.nombre AS nombreMascota, "
-                     + "SUM(fs.calificacion) / COUNT(*) AS promedio_calificacion, "  // Promedio calculado
-                     + "COUNT(*) AS total_calificaciones "  // Total de calificaciones
-                     + "FROM formularioDeSeguimiento fs "
-                     + "LEFT JOIN mascota m ON fs.codigoMascota = m.codigo " // Unir con la tabla mascota
-                     + "WHERE YEAR(fecha) = '" + anio + "' "
-                     + (codigoMascota != null && !codigoMascota.isEmpty() ? "AND fs.codigoMascota = '" + codigoMascota + "' " : "")
-                     + "GROUP BY MONTH(fecha), fs.codigoMascota, nombreMascota "  // Agrupado por mes, mascota y nombre
-                     + "ORDER BY mes, fs.codigoMascota;";  // Ordenado por mes y código de mascota
 
-    ResultSet resultado = ConectorBD.consultar(cadenaSQL); // Usar tu método de conexión
+    public static List<String[]> getCalificacionesXMes(String anio, String codigoMascota) {
+        List<String[]> lista = new ArrayList<>();
 
-    try {
-        while (resultado != null && resultado.next()) {
-            String[] registro = new String[5]; // Array para mes, código de mascota, nombre de mascota, promedio y total
-            registro[0] = resultado.getString("mes"); // Mes
-            registro[1] = resultado.getString("codigoMascota"); // Código de mascota
-            registro[2] = resultado.getString("nombreMascota"); // Nombre de mascota
-            registro[3] = String.valueOf((int) Math.round(resultado.getDouble("promedio_calificacion"))); // Promedio redondeado
-            registro[4] = resultado.getString("total_calificaciones"); // Total de calificaciones
-            lista.add(registro);
-        }
-    } catch (SQLException ex) {
-        System.err.println("Error en getCalificacionesPorMes.");
-        System.err.println("Consulta SQL: " + cadenaSQL);
-        System.err.println("Error: " + ex.getMessage());
-    } finally {
+        String cadenaSQL = "SELECT MONTH(fecha) AS mes, "
+                + "fs.codigoMascota, "
+                + "m.nombre AS nombreMascota, "
+                + "SUM(fs.calificacion) / COUNT(*) AS promedio_calificacion, " // Promedio calculado
+                + "COUNT(*) AS total_calificaciones " // Total de calificaciones
+                + "FROM formularioDeSeguimiento fs "
+                + "LEFT JOIN mascota m ON fs.codigoMascota = m.codigo " // Unir con la tabla mascota
+                + "WHERE YEAR(fecha) = '" + anio + "' "
+                + (codigoMascota != null && !codigoMascota.isEmpty() ? "AND fs.codigoMascota = '" + codigoMascota + "' " : "")
+                + "GROUP BY MONTH(fecha), fs.codigoMascota, nombreMascota " // Agrupado por mes, mascota y nombre
+                + "ORDER BY mes, fs.codigoMascota;";  // Ordenado por mes y código de mascota
+
+        ResultSet resultado = ConectorBD.consultar(cadenaSQL); // Usar tu método de conexión
+
         try {
-            if (resultado != null) {
-                resultado.close();
+            while (resultado != null && resultado.next()) {
+                String[] registro = new String[5]; // Array para mes, código de mascota, nombre de mascota, promedio y total
+                registro[0] = resultado.getString("mes"); // Mes
+                registro[1] = resultado.getString("codigoMascota"); // Código de mascota
+                registro[2] = resultado.getString("nombreMascota"); // Nombre de mascota
+                registro[3] = String.valueOf((int) Math.round(resultado.getDouble("promedio_calificacion"))); // Promedio redondeado
+                registro[4] = resultado.getString("total_calificaciones"); // Total de calificaciones
+                lista.add(registro);
             }
         } catch (SQLException ex) {
-            System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
+            System.err.println("Error en getCalificacionesPorMes.");
+            System.err.println("Consulta SQL: " + cadenaSQL);
+            System.err.println("Error: " + ex.getMessage());
+        } finally {
+            try {
+                if (resultado != null) {
+                    resultado.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
+            }
         }
-    }
-    
-    return lista;
-}
-public static List<String[]> getCalificacionXAnio() {
-    List<String[]> lista = new ArrayList<>();
-    
-    // Consulta SQL para obtener calificaciones por año, mascota y nombre de mascota
-    String cadenaSQL = "SELECT YEAR(fs.fecha) AS anio, "
-                     + "IFNULL(fs.codigoMascota, 'Sin asignar') AS codigoMascota, "
-                     + "m.nombre AS nombreMascota, "
-                     + "COUNT(fs.calificacion) AS totalCalificaciones, "
-                     + "AVG(fs.calificacion) AS calificaciones "
-                     + "FROM formularioDeSeguimiento fs "
-                     + "LEFT JOIN mascota m ON fs.codigoMascota = m.codigo " // Unir con la tabla mascota
-                     + "GROUP BY anio, fs.codigoMascota, nombreMascota "
-                     + "ORDER BY anio, fs.codigoMascota;";
-    
-    ResultSet resultado = ConectorBD.consultar(cadenaSQL);
 
-    try {
-        while (resultado != null && resultado.next()) {
-            String[] registro = new String[5]; // Array para año, código de mascota, nombre de mascota, total de calificaciones y promedio
-            registro[0] = resultado.getString("anio"); // Año
-            registro[1] = resultado.getString("codigoMascota"); // Código de mascota
-            registro[2] = resultado.getString("nombreMascota"); // Nombre de mascota
-            registro[3] = resultado.getString("totalCalificaciones"); // Total de calificaciones
-            registro[4] = resultado.getString("calificaciones"); // Promedio de calificaciones
-            lista.add(registro);
-        }
-    } catch (SQLException ex) {
-        System.err.println("Error en getCalificacionXAnio.");
-        System.err.println("Consulta SQL: " + cadenaSQL);
-        System.err.println("Error: " + ex.getMessage());
-    } finally {
+        return lista;
+    }
+
+    public static List<String[]> getCalificacionXAnio() {
+        List<String[]> lista = new ArrayList<>();
+
+        // Consulta SQL para obtener calificaciones por año, mascota y nombre de mascota
+        String cadenaSQL = "SELECT YEAR(fs.fecha) AS anio, "
+                + "IFNULL(fs.codigoMascota, 'Sin asignar') AS codigoMascota, "
+                + "m.nombre AS nombreMascota, "
+                + "COUNT(fs.calificacion) AS totalCalificaciones, "
+                + "AVG(fs.calificacion) AS calificaciones "
+                + "FROM formularioDeSeguimiento fs "
+                + "LEFT JOIN mascota m ON fs.codigoMascota = m.codigo " // Unir con la tabla mascota
+                + "GROUP BY anio, fs.codigoMascota, nombreMascota "
+                + "ORDER BY anio, fs.codigoMascota;";
+
+        ResultSet resultado = ConectorBD.consultar(cadenaSQL);
+
         try {
-            if (resultado != null) {
-                resultado.close();
+            while (resultado != null && resultado.next()) {
+                String[] registro = new String[5]; // Array para año, código de mascota, nombre de mascota, total de calificaciones y promedio
+                registro[0] = resultado.getString("anio"); // Año
+                registro[1] = resultado.getString("codigoMascota"); // Código de mascota
+                registro[2] = resultado.getString("nombreMascota"); // Nombre de mascota
+                registro[3] = resultado.getString("totalCalificaciones"); // Total de calificaciones
+                registro[4] = resultado.getString("calificaciones"); // Promedio de calificaciones
+                lista.add(registro);
             }
         } catch (SQLException ex) {
-            System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
+            System.err.println("Error en getCalificacionXAnio.");
+            System.err.println("Consulta SQL: " + cadenaSQL);
+            System.err.println("Error: " + ex.getMessage());
+        } finally {
+            try {
+                if (resultado != null) {
+                    resultado.close();
+                }
+            } catch (SQLException ex) {
+                System.err.println("Error al cerrar el ResultSet: " + ex.getMessage());
+            }
         }
+
+        return lista;
     }
-    
-    return lista;
-}
 }

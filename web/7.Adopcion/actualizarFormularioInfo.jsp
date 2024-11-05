@@ -47,12 +47,12 @@
         }
     } else {
         variables.put("accion", request.getParameter("accion"));
-        variables.put("identificacionAdoptante", request.getParameter("identificacionAdoptante"));
+        variables.put("identificacion", request.getParameter("identificacion"));
     }
 
     // Capturar valores del formulario
     String accion = variables.get("accion");
-    String identificacionAdoptante = variables.get("identificacionAdoptante");
+    String identificacion = variables.get("identificacion");
     String codigoMascota = variables.get("codigoMascotas");
     String estadoCivil = variables.get("estadoCivil");
     String ocupacion = variables.get("ocupacion");
@@ -107,10 +107,10 @@
 // Crear una instancia de FormularioDeInformacion y asignar valores
     FormularioDeInformacion formularioDeInformacion = new FormularioDeInformacion();
     Adopcion adopcion = new Adopcion();
-    adopcion.setIdentificacionAdoptante(identificacionAdoptante);
+    adopcion.setIdentificacionAdoptante(identificacion);
     adopcion.setCodigoMascota(codigoMascota);
 
-    formularioDeInformacion.setIdentificacionAdoptante(identificacionAdoptante);
+    formularioDeInformacion.setIdentificacionAdoptante(identificacion);
     formularioDeInformacion.setCodigoMascota(codigoMascota);
     formularioDeInformacion.setEstadoCivil(estadoCivil);
     formularioDeInformacion.setOcupacion(ocupacion);
@@ -185,7 +185,7 @@
         case "Aceptar":
             formularioDeInformacion.setCodigo(request.getParameter("codigo"));
             formularioDeInformacion.aceptarFormulario();
-            adopcion.setIdentificacionAdoptante(request.getParameter("identificacionAdoptante"));
+            adopcion.setIdentificacionAdoptante(request.getParameter("identificacion"));
             adopcion.setCodigoMascota(request.getParameter("codigoMascota"));
             adopcion.grabar();
 
