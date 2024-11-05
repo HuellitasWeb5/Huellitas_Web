@@ -39,5 +39,5 @@
     }
 %>
 <script type="text/javascript">
-   document.location = "principal.jsp?CONTENIDO=/11.misAyudas/QueSonDonaciones.jsp";
+   document.location = "principal.jsp?CONTENIDO=/11.misAyudas/verMisDonaciones.jsp";
 </script>
