@@ -67,7 +67,7 @@
                     </div>
 
                     <!-- Campo oculto para almacenar la cadena de donaciones -->
-                    <input type="hidden" name="donacion" id="donacion" required>
+                    <input  name="donacion" id="donacion" required>
                     <input type="hidden" name="accion" value="<%=accion%>">
                     <center>
                         <br><br>
@@ -132,6 +132,7 @@
     var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
     var conceptoDonacion = <%=ConceptoDonacion.getListaEnArreglosJS(null, null)%>;
     var vectorPersonas = new Array();
+    var vectorIdConceptosDonaciones=new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
     }
@@ -153,7 +154,7 @@
     function actualizarConceptos(codigoTipoDonacion) {
         document.formularioDonacionDetalle.donacionConcepto.length = 1;
         for (var i = 0; i < conceptoDonacion.length; i++) {
-            if (conceptoDonacion[i][2] == codigoTipoDonacion) {
+            if (conceptoDonacion[i][2] == codigoTipoDonacion && !vectorIdConceptosDonaciones.includes(conceptoDonacion[i][0])) {
                 document.formularioDonacionDetalle.donacionConcepto.length++;
                 document.formularioDonacionDetalle.donacionConcepto.options[document.formularioDonacionDetalle.donacionConcepto.length - 1].value = conceptoDonacion[i][0];
                 document.formularioDonacionDetalle.donacionConcepto.options[document.formularioDonacionDetalle.donacionConcepto.length - 1].text = conceptoDonacion[i][1];
@@ -219,6 +220,7 @@
     function actualizarTabla() {
         const tipoDonacionId = document.getElementById('tipoDonacion').value;
         const donacionConceptoId = document.getElementById('donacionConcepto').value;
+        vectorIdConceptosDonaciones[vectorIdConceptosDonaciones.length]=donacionConceptoId;
         const cantidad = document.getElementById('cantidad').value;
 
         if (tipoDonacionId === '' || donacionConceptoId === '' || cantidad === '' || cantidad <= 0) {

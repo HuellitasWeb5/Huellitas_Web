@@ -43,12 +43,13 @@
         lista += "<p><strong>Residencia: </strong>" + clientes.getResidencia() + "</p>";
         lista += "</div>";
         lista += "<div class='btn-container'>"; // Contenedor para los botones
-        
+
         if (!"AdministradorFundacion".equalsIgnoreCase(nombreTipoPersona)) {
-        lista += "<a href='principal.jsp?CONTENIDO=4.Clientes/clientesFormulario.jsp&accion=Modificar&identificacion=" + clientes.getIdentificacion()
-                + " 'title='Modificar'> <button class='btn-adicionar' title='Modificar'> Modificar </button> </a>";
+            lista += "<a href='principal.jsp?CONTENIDO=4.Clientes/clientesFormulario.jsp&accion=Modificar&identificacion=" + clientes.getIdentificacion()
+                    + " 'title='Modificar'> <button class='btn-adicionar' title='Modificar'> Modificar </button> </a>";
         }
-        lista += "<button class='btn-eliminar' title='Eliminar' onClick='eliminar(" + clientes.getIdentificacion() + ")'>Eliminar</button>";
+        lista += "<button class='btn-eliminar' title='Eliminar' onClick='eliminar(\"" + clientes.getIdentificacion() + "\", \"" + nombreTipoPersona + "\")'>Eliminar</button>";
+
         lista += "</div>";
         lista += "</div>";
         lista += "</div>";
@@ -83,10 +84,10 @@
 
 <div id="result"></div> <!-- Para mostrar la identificación -->
 <script type="text/javascript">
-    function eliminar(identificacion) {
-        resultado = confirm("Realmente desea eliminar el cliente con identificacion= " + identificacion + "?");
+    function eliminar(identificacion,nombreTipoPersona) {
+        resultado = confirm("Realmente desea eliminar el cliente con identificacion= " + identificacion + nombreTipoPersona + "?");
         if (resultado) {
-            document.location = "principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp&accion=Eliminar&identificacion=" + identificacion;
+            document.location = "principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp&accion=Eliminar&identificacion=" + identificacion + "&nombreTipo=" + nombreTipoPersona;
         }
     }
 
@@ -126,20 +127,20 @@
     });
 
     function filterNames() {
-    const input = document.getElementById('searchInput');
-    const filter = input.value.toLowerCase();
-    const slides = document.getElementsByClassName('swiper-slide');
+        const input = document.getElementById('searchInput');
+        const filter = input.value.toLowerCase();
+        const slides = document.getElementsByClassName('swiper-slide');
 
-    // Recorre cada slide y oculta o muestra dependiendo del filtro
-    for (let i = 0; i < slides.length; i++) {
-        const cardHeader = slides[i].getElementsByClassName('card-header')[0];
-        const textValue = cardHeader.textContent || cardHeader.innerText;
+        // Recorre cada slide y oculta o muestra dependiendo del filtro
+        for (let i = 0; i < slides.length; i++) {
+            const cardHeader = slides[i].getElementsByClassName('card-header')[0];
+            const textValue = cardHeader.textContent || cardHeader.innerText;
 
-        if (textValue.toLowerCase().indexOf(filter) > -1) {
-            slides[i].style.display = "";
-        } else {
-            slides[i].style.display = "none";
+            if (textValue.toLowerCase().indexOf(filter) > -1) {
+                slides[i].style.display = "";
+            } else {
+                slides[i].style.display = "none";
+            }
         }
     }
-}
 </script>
