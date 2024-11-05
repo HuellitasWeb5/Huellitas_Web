@@ -37,14 +37,13 @@
         sesion.setAttribute("usuario", usuarioActual);
 
         // Redirigir a la misma página para reflejar los cambios
-        response.sendRedirect("perfil.jsp");
+        response.sendRedirect("perfilF.jsp");
     }
 %>
 
 <style>
     card{
         text-align: center;
-        
     }
 </style>
 
