@@ -22,15 +22,15 @@
 
 <style>
     .swiper-button-next {
-  right: -3px;
-}
+        right: -3px;
+    }
     .swiper-container {
         overflow: hidden;
     }
     .swiper-container {
-  height: 300px;
-  overflow: hidden;
-}
+        height: 300px;
+        overflow: hidden;
+    }
     .swiper-wrapper {
         display: flex;
         justify-content: center;
@@ -74,7 +74,7 @@
     String tipoUsuario = (String) session.getAttribute("tipoUsuario");
     String codigoMascota = request.getParameter("Mascota");
     Mascota mpadrino = new Mascota(codigoMascota);
-    String auto = mpadrino.getNombre() + " - "+ mpadrino.getCodigo();
+    String auto = mpadrino.getNombre() + " - " + mpadrino.getCodigo();
     String privado = "";
     if (tipoUsuario.equals("C")) {
         privado = "readonly";
@@ -198,10 +198,10 @@
 
 </center>
 <script>
-     var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
+    var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
     var identificacionUsuario = "<%= identificacionUsuario%>";
     var tipoUsuario = "<%= tipoUsuario%>";
-    
+
     if (tipoUsuario === "C") {
         document.getElementById("identificacion").value = identificacionUsuario;
         indicePersona = buscarPersona(identificacionUsuario, 0);
@@ -307,7 +307,7 @@
         });
     });
 
-   
+
     var vectorPersonas = new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
@@ -340,8 +340,6 @@
         document.getElementById("direccion").innerHTML = direccion;
         document.getElementById("telefono").innerHTML = telefono;
     });
-
-
 
     function actualizarTabla() {
         // Obtener los valores de los campos de mascotas
@@ -379,10 +377,8 @@
         cerrarFormulario();
     }
 
-
-
     var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado!='Adoptado'", null)%>;
-    
+
     function buscarMascota(valor, indice) {
         var encontrado = false;
         var i = 0;
@@ -475,7 +471,6 @@
             }
         });
 
-        // Inicializar Swiper
         var swiper = new Swiper('.swiper-container', {
             slidesPerView: 3,
             spaceBetween: 10,
@@ -486,9 +481,6 @@
             loop: true
         });
     }
-
-
-
 
     function eliminar(fila) {
         console.log("Eliminando fila:", fila);
@@ -507,27 +499,23 @@
                 contador++;
             }
         }
-        // Actualizar el campo con los nuevos datos
         document.formulario.mascotasPlan.value = mascotae;
 
-        // Recargar la tabla de tarjetas para reflejar el cambio
         cargarTabla();
     }
 
-var masbar=<%= codigoMascota%>
-$(document).ready(function() {
-    // Verifica si tipoUsuario es igual a "C" al cargar la página
-    if (tipoUsuario === "C" && masbar!==null) {
-        abrirFormulario(); // Llama a la función para abrir el formulario
-    }
-});
+    var masbar =<%= codigoMascota%>
+    $(document).ready(function () {
+        if (tipoUsuario === "C" && masbar !== null) {
+            abrirFormulario();
+        }
+    });
 
     function abrirFormulario() {
         $('#formulario').dialog('open');
-        if (tipoUsuario === "C" && masbar!==null) {
-        // Si es "C", escribe "Tomate" en el input de mascota
-        document.getElementById("Mascota").value = "<%=auto%>";
-    }
+        if (tipoUsuario === "C" && masbar !== null) {
+            document.getElementById("Mascota").value = "<%=auto%>";
+        }
     }
     function cerrarFormulario() {
         $('#formulario').dialog('close');
