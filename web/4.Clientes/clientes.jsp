@@ -17,8 +17,7 @@
     // Recibir el parámetro "nombre" desde la URL
     String nombreTipoPersona = request.getParameter("nombre");
 
-    // Si el parámetro no se recibe, asumir que es "Cliente" por defecto
-    if (nombreTipoPersona == null) {
+    if (nombreTipoPersona == "") {
         nombreTipoPersona = "AdministradorFundacion";
     }
     String lista = "";
@@ -44,7 +43,8 @@
         lista += "<p><strong>Residencia: </strong>" + clientes.getResidencia() + "</p>";
         lista += "</div>";
         lista += "<div class='btn-container'>"; // Contenedor para los botones
-        if (!"AdministradorFundacion".equals(nombreTipoPersona)) {
+        
+        if (!"AdministradorFundacion".equalsIgnoreCase(nombreTipoPersona)) {
         lista += "<a href='principal.jsp?CONTENIDO=4.Clientes/clientesFormulario.jsp&accion=Modificar&identificacion=" + clientes.getIdentificacion()
                 + " 'title='Modificar'> <button class='btn-adicionar' title='Modificar'> Modificar </button> </a>";
         }
