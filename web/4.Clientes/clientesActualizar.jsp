@@ -57,7 +57,7 @@
     String accion = variables.get("accion");
     String identificacionAnterior = variables.get("identificacionAnterior");
     String nombreTipo = variables.get("nombreTipo");
-   System.out.println(nombreTipo);
+    System.out.println(nombreTipo);
 
     Persona clientes = new Persona();
     clientes.setIdentificacion(variables.get("identificacion"));
@@ -92,7 +92,6 @@
 %>
 
 <script type="text/javascript">
-    var nombreTipo = <%=nombreTipo%>
-    
-    document.location = "principal.jsp?CONTENIDO=4.Clientes/clientes.jsp&nombre="+nombreTipo;
+
+    document.location = "principal.jsp?CONTENIDO=4.Clientes/clientes.jsp&nombre=<%=nombreTipo%>";
 </script>
