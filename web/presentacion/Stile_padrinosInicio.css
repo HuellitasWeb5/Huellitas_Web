@@ -17,7 +17,8 @@ body {
     align-items: center;
     border-radius: 15px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    margin-top: 20px;
+    margin-top: 18px;
+    margin-bottom: 18px;
     transition: background-color 0.5s ease; /* Agrega una transición de fondo */
 }
 /* Overlay oscuro para mejorar la legibilidad del texto */

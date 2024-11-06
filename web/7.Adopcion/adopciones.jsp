@@ -48,7 +48,8 @@
         FormularioDeInformacion formulario = formularios.get(i);
         Persona persona = new Persona(formulario.getIdentificacionAdoptante());
         Mascota mascota = new Mascota(formulario.getCodigoMascota());
-        Adopcion adopcion = adopciones.get(i);
+
+        Adopcion adopcion = (i < adopciones.size()) ? adopciones.get(i) : new Adopcion(); // Evitar el error de índice
 
         listaAdopciones += "<div class='swiper-slide'>";
         listaAdopciones += "<div class='card'>";
@@ -86,13 +87,13 @@
         // Formulario para subir acta
         listaAdopciones += "<form name='formulario' method='post' action='principal.jsp?CONTENIDO=7.Adopcion/Acta.jsp' enctype='multipart/form-data'>";
         listaAdopciones += "<label for='acta'>Por favor, suba el contrato de adopción de la mascota:</label>";
-        listaAdopciones += "<br><input type='file' class='btn-archivo' id='acta' name='acta' accept='application/pdf, image/*' required>";
+        listaAdopciones += "<br><input type='file' class='btn-archivo2' id='acta' name='acta' accept='application/pdf, image/*' required>";
         listaAdopciones += "<br>";
         listaAdopciones += "<input type='hidden' name='accion' value='Acta'>";
         listaAdopciones += "<input type='hidden' id='codigoFormulario' name='codigoFormulario' value='" + adopcion.getCodigo() + "'>";
         listaAdopciones += "<input type='submit' value='Guardar' class='btn-adicionar'>";
         listaAdopciones += "</form>";
-        if (!adopcion.getActaAdopcion().equals("null")) {
+        if (adopcion.getActaAdopcion() != null && !adopcion.getActaAdopcion().isEmpty()) {
             String rutaArchivo = "uploads/" + adopcion.getActaAdopcion();
             listaAdopciones += "<a href='" + rutaArchivo + "' target='_blank' class='btn-otro'>Ver contrato de adopción</a>";
         }
@@ -105,7 +106,7 @@
         listaAdopciones += "<form action='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp' method='post'>";
         listaAdopciones += "<input type='hidden' name='codigoAdopcion' value='" + adopcion.getCodigo() + "'>";
         listaAdopciones += "<input type='hidden' name='codigoMascota' value='" + mascota.getCodigo() + "'>";
-        listaAdopciones += "<input type='submit' value='Cancelar adopción' class='btn-eliminar' onclick='return confirm(\"¿Está seguro que desea cancelar esta adopción?\");'>";
+        listaAdopciones += "<input type='submit' value='Cancelar adopción' class='btn-eliminar' onclick='return confirm(\"¿Está seguro que desea cancelar esta adopción? Una vez cancelada no podrá revertir esta acción\");'>";
         listaAdopciones += "</form>";
 
         listaAdopciones += "</div>";
