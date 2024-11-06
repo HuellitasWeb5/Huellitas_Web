@@ -4,6 +4,7 @@
 */
 
 .formulario-adopcion {
+   
     backdrop-filter: blur(10px);
     background-color: rgba(173, 230, 218, 0.8); /* Fondo semi-transparente */
     border: 4px solid #05af8b;
@@ -11,7 +12,8 @@
     border-radius: 10px;
     max-width: 1050px;
     margin: 0 auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 15);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 15)
+   
 }
 
 textarea {
@@ -505,4 +507,5 @@ input[type="checkbox"]:checked + label:after {
     .alert-content button:hover {
         background-color: #255bb5;
     }
- 
+   
+    
