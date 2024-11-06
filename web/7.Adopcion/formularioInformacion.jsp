@@ -65,7 +65,7 @@
                     <div class="datos">
                         <label>Código:</label>
                         <input type="text" name="codigoMascotas" id="codigoMascotas" placeholder="Digite aquí el código de la mascota" class="custom-text-input2" font-family: 'Open Sans' required>
-                               <label>Nombre de la mascota:</label>
+                        <label>Nombre de la mascota:</label>
                         <input type="text" name="nombreMascota" id="nombreMascota" class="custom-text-input2" readonly>
                         <label>Fecha de nacimiento Aproximada:</label>
                         <input type="text" name="fechaNacimiento" id="fechaNacimiento" class="custom-text-input2" readonly>
@@ -497,7 +497,7 @@
             var contenedorDatos = document.createElement('div');
             contenedorDatos.classList.add('tableDatos');
 
-            var h2 = document.createElement('h2');
+            var h2 = document.createElement('h4');
             h2.textContent = 'MASCOTA';
 
             var datosConFoto = document.createElement('div');
@@ -513,6 +513,8 @@
             inputCodigo.name = 'codigoMascota';
             inputCodigo.id = 'codigoMascota' + index;
             inputCodigo.value = campos[0];
+            inputCodigo.classList.add('custom-text-input2');
+            inputCodigo.placeholder = "Digite aquí el código de la mascota";
             inputCodigo.readOnly = true;
 
             var labelNombre = document.createElement('label');
@@ -522,6 +524,7 @@
             inputNombre.name = 'nombreMascota';
             inputNombre.id = 'nombreMascota' + index;
             inputNombre.value = campos[1];
+            inputNombre.classList.add('custom-text-input2');
             inputNombre.readOnly = true;
 
             var labelFechaNacimiento = document.createElement('label');
@@ -531,6 +534,7 @@
             inputFechaNacimiento.name = 'fechaNacimiento';
             inputFechaNacimiento.id = 'fechaNacimiento' + index;
             inputFechaNacimiento.value = campos[2];
+            inputFechaNacimiento.classList.add('custom-text-input2');
             inputFechaNacimiento.readOnly = true;
 
             var labelGenero = document.createElement('label');
@@ -540,6 +544,7 @@
             inputGenero.name = 'genero';
             inputGenero.id = 'genero' + index;
             inputGenero.value = campos[3];
+            inputGenero.classList.add('custom-text-input2');
             inputGenero.readOnly = true;
 
             var labelCuidadosEspeciales = document.createElement('label');
@@ -549,6 +554,7 @@
             inputCuidadosEspeciales.name = 'cuidadosEspeciales';
             inputCuidadosEspeciales.id = 'cuidadosEspeciales' + index;
             inputCuidadosEspeciales.value = campos[4];
+            inputCuidadosEspeciales.classList.add('custom-text-input2');
             inputCuidadosEspeciales.readOnly = true;
 
             var fotoContenedor = document.createElement('div');
@@ -565,10 +571,10 @@
             fotoContenedor.appendChild(fotoElemento);
 
             // Botón para eliminar la mascota
-
             var botonEliminar = document.createElement('button');
             botonEliminar.textContent = 'Eliminar';
-            botonEliminar.className = 'btn-eliminar';
+            botonEliminar.className = 'btn-eliminar2';
+            botonEliminar.style.marginTop = '10px';
             botonEliminar.onclick = function () {
                 eliminarMascota(index);
             };

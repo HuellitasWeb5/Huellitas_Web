@@ -53,10 +53,8 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const textosHeader = document.querySelector('.textos-header');
-
-        // Espera un momento antes de activar la clase 'visible'
         setTimeout(() => {
-            textosHeader.classList.add('visible'); // Activa la clase visible
+            textosHeader.classList.add('visible'); 
         }, 100);
     });
 
