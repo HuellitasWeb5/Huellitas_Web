@@ -8,7 +8,9 @@
 <html>
 
     <head>
-        <link rel="stylesheet" href="presentacion/style-TarjetasFormularios.css">
+        <!--    <link rel="stylesheet" href="presentacion/style-TarjetasFormularios.css">-->
+        <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
+
     </head>
     <%
         String accion = request.getParameter("accion");
@@ -18,71 +20,72 @@
     <center><h3>DONACIONES</h3></center>
 
     <!-- Formulario principal -->
-    <div class="card-carousel">
-        <div class="card">
-            <div class="titulo">
-                <h2>DATOS DEL USUARIO</h2>
-            </div>
-            <div class="card-body">
-                <form name="formulario" method="post" action="principal.jsp?CONTENIDO=8.Donacion/donacionesFormularioActualizar.jsp">
+    <center>
+        <div class="card-carousel">
+            <div class="card">
+                <div class="titulo">
+                    <h2>DATOS DEL USUARIO</h2>
+                </div>
+                <div class="card-body">
+                    <form name="formulario" method="post" action="principal.jsp?CONTENIDO=8.Donacion/donacionesFormularioActualizar.jsp">
 
-                    <div class="form-group">
-                        <label>Fecha actual:</label>
-                        <span id="fecha"></span> <!-- Aquí no se usa value, se cambiará el contenido con JavaScript -->
-                    </div>
-
-                    <div class="form-group">
-                        <label>Identificación</label>
-                        <input type="text" name="identificacionD" id="identificacionD" value="" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <span id="nombre" readonly></span> <!-- Se elimina el atributo "value" en span -->
-                    </div>
-
-                    <div class="form-group">
-                        <label for="telefono">Número de teléfono</label>
-                        <span id="telefono" readonly></span> <!-- Se elimina el atributo "value" en span -->
-                    </div>
-
-                    <div class="form-group">
-                        <label for="direccion">Dirección</label>
-                        <span id="direccion" readonly></span> <!-- Se elimina el atributo "value" en span -->
-                    </div>
-
-                    <div class="form-group">
-                        <label for="residencia">Residencia</label>
-                        <span id="residencia" readonly></span> <!-- Se elimina el atributo "value" en span -->
-                    </div>
-
-                    <div class="form-group">
-                        <label for="correo">Correo Electrónico</label>
-                        <span id="correo" readonly></span> <!-- Se elimina el atributo "value" en span -->
-                    </div>
-
-                    <div class="form-group">
-                        <label>Descripción</label>
-                        <textarea id="descripcion" name="descripcion" rows="6" cols="40" required></textarea>
-                    </div>
-
-                    <!-- Campo oculto para almacenar la cadena de donaciones -->
-                    <input  name="donacion" id="donacion" required>
-                    <input type="hidden" name="accion" value="<%=accion%>">
-                    <center>
-                        <br><br>
-
-                        <div class="btn-container">
-                            <input class="btn-adicionar" type="submit" value="Guardar Donación" onclick="return validarFormularioPrincipal();">
-                            <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
+                        <div class="form-group">
+                            <label>Fecha actual:</label>
+                            <span id="fecha"></span> <!-- Aquí no se usa value, se cambiará el contenido con JavaScript -->
                         </div>
-                    </center>
-                </form>
-                <div class="form-group"><button class="btn-otro" onclick="abrirFormulario();">Agregar Detalles de Donación</button></div>
+
+                        <div class="form-group">
+                            <label>Identificación</label>
+                            <input type="text" name="identificacionD" id="identificacionD" value="" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <span id="nombre" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefono">Número de teléfono</label>
+                            <span id="telefono" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                        </div>
+
+                        <div class="form-group">
+                            <label for="direccion">Dirección</label>
+                            <span id="direccion" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                        </div>
+
+                        <div class="form-group">
+                            <label for="residencia">Residencia</label>
+                            <span id="residencia" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                        </div>
+
+                        <div class="form-group">
+                            <label for="correo">Correo Electrónico</label>
+                            <span id="correo" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                        </div>
+
+                        <div class="form-group">
+                            <label>Descripción</label>
+                            <textarea id="descripcion" name="descripcion" rows="6" cols="40" required></textarea>
+                        </div>
+
+                        <!-- Campo oculto para almacenar la cadena de donaciones -->
+                        <input type="hidden" name="donacion" id="donacion" required>
+                        <input type="hidden" name="accion" value="<%=accion%>">
+                        <center>
+                            <br><br>
+
+                            <div class="btn-container">
+                                <input class="btn-adicionar" type="submit" value="Guardar Donación" onclick="return validarFormularioPrincipal();">
+                                <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
+                            </div>
+                        </center>
+                    </form>
+                    <div class="form-group"><button class="btn-otro" onclick="abrirFormulario();">Agregar Detalles de Donación</button></div>
+                </div>
             </div>
         </div>
-    </div>
-
+    </center>
 
     <!-- Botón para abrir el formulario modal -->
 
@@ -132,7 +135,7 @@
     var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
     var conceptoDonacion = <%=ConceptoDonacion.getListaEnArreglosJS(null, null)%>;
     var vectorPersonas = new Array();
-    var vectorIdConceptosDonaciones=new Array();
+    var vectorIdConceptosDonaciones = new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
     }
@@ -220,7 +223,7 @@
     function actualizarTabla() {
         const tipoDonacionId = document.getElementById('tipoDonacion').value;
         const donacionConceptoId = document.getElementById('donacionConcepto').value;
-        vectorIdConceptosDonaciones[vectorIdConceptosDonaciones.length]=donacionConceptoId;
+        vectorIdConceptosDonaciones[vectorIdConceptosDonaciones.length] = donacionConceptoId;
         const cantidad = document.getElementById('cantidad').value;
 
         if (tipoDonacionId === '' || donacionConceptoId === '' || cantidad === '' || cantidad <= 0) {
