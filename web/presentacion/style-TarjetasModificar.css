@@ -73,10 +73,10 @@
 
 .card-footer {
     display: flex;
-    text-align: center;
     justify-content: center;
     margin-top: 10px;
 }
+
 
 .card-subtitle {
     font-size: 15px;
@@ -118,14 +118,10 @@ h3 {
 
 .card:hover {
     background-color: #99ccff; /* Color al pasar el cursor */
-   
+
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* Aumenta la sombra al hacer hover */
 }
-.card-footer {
-    display: flex; /* Alinear los botones horizontalmente */
-    justify-content: center; /* Centrar los botones */
-    margin-top: 10px; /* Espacio entre el contenido y los botones */
-}
+
 
 .navigation-buttons {
     display: flex; /* Usar flexbox para los botones de navegación */
@@ -361,12 +357,12 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .rating label {
-        font-size: 7em;
-        color: gray;
-        cursor: pointer;
-        margin: 0 5px; /* Ajusta la separación entre las estrellas */
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra a las estrellas */
-    }
+    font-size: 7em;
+    color: gray;
+    cursor: pointer;
+    margin: 0 5px; /* Ajusta la separación entre las estrellas */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra a las estrellas */
+}
 
 .rating input:checked ~ label {
     color: #FFD700;
@@ -376,7 +372,7 @@ input[type="radio"], input[type="checkbox"] {
 .rating label:hover ~ label {
     color: #FFD700;
 }
-    
+
 .btn-adicionar {
     display: inline-block; /* Hace que los botones se muestren uno al lado del otro */
     margin-right: 20px; /* Espaciado entre los botones */
@@ -485,16 +481,16 @@ input[type="radio"], input[type="checkbox"] {
     cursor: pointer;
 }
 
-    .stars {
-        color: gold;
-        font-size: 18px; /* Tamaño de las estrellas */
-        vertical-align: middle;
-    }
-    
+.stars {
+    color: gold;
+    font-size: 18px; /* Tamaño de las estrellas */
+    vertical-align: middle;
+}
+
 .rol-administrador {
     font-size: 20px; /* Tamaño de fuente para el subtítulo */
     color: white; /* Color de texto blanco */
-    
+
     padding: 10px; /* Espaciado interno */
     border-radius: 30px; /* Bordes redondeados */
     margin: 10px auto; /* Margen superior e inferior, centrado horizontalmente */
@@ -505,7 +501,7 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 h3 {
-      font-size: 35px; /* Tamaño de fuente grande */
+    font-size: 35px; /* Tamaño de fuente grande */
     color: #333; /* Color de texto blanco */
     text-align: center; /* Centra el texto */
     margin: 20px 0; /* Margen superior e inferior */
