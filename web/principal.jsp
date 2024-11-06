@@ -113,12 +113,12 @@
                     </h6>
                     <p>
                         <a href="https://maps.app.goo.gl/G3CdcyUxiZ2aXAvf9" target="_blank">
-                            Pasto, Nariño, Colombia
+                            Pasto, Nariño, Colombia 
                         </a>
                     </p>
                 </div>
-                <h2 class="titulo-final">&copy;HUELLITAS WEB</h2>
             </div>
+            <h2 class="titulo-final">&copy;HUELLITAS WEB</h2>
         </footer>
 
     </body>
