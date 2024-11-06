@@ -51,7 +51,7 @@
         listaAdopciones += "<div>";
         listaAdopciones += "<p><strong>Nombre:</strong> " + mascota.getNombre() + "</p>";
         listaAdopciones += "<p><strong>Identificación:</strong> " + mascota.getCodigo() + "</p>";
-        listaAdopciones += "<p><strong>Edad:</strong> " + mascota.getEdad() + " años</p>";
+        listaAdopciones += "<p><strong>Edad:</strong> " + mascota.getEdad() + "</p>";
         listaAdopciones += "<p><strong>C.Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
         listaAdopciones += "</div>";
         listaAdopciones += "</div>";

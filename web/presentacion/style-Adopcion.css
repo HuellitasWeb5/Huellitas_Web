@@ -101,6 +101,51 @@
 .btn-archivo2 {
     background-color: #64d4ab;
     border-radius: 15px;
-    padding: 8px 5px; 
+    padding: 8px 5px;
     cursor: pointer;
+}
+
+.btn-adicionar2 {
+    display: inline-block; 
+    margin-right: 30px; 
+    margin-left: 30px; 
+    padding: 10px 20px;
+    background-color:#3eb847;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1em; 
+    margin-top: 10px;
+    transition-duration: 0.5s;
+}
+
+.btn-adicionar2:hover {
+   background-color: white;
+   color: #3eb847;
+   border: 2px solid #3eb847;
+}
+
+.btn-otro2 {
+    background-color: #3271e7;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    margin-right: 30px; 
+    margin-left: 30px; 
+    padding: 10px 20px; 
+    transition-duration: 0.5s;
+}
+
+.btn-otro2:hover {
+    background-color: white;
+    color: #3271e7;
+    border: 2px solid #3271e7;
 }

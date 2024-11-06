@@ -160,6 +160,7 @@
     formularioDeInformacion.setFotoRecibo(fotoRecibo);
     formularioDeInformacion.setFotoCedula(fotoCedula);
 
+    String nombreCliente = request.getParameter("nombre");
     // Asignar archivos subidos
     formularioDeInformacion.setFotoVivienda(fotoVivienda);
     formularioDeInformacion.setFotoRecibo(fotoRecibo);
@@ -194,9 +195,13 @@
 %>
 
 <script type="text/javascript">
+    if ("<%= nombreCliente%>" == "Cliente") {
+        document.location = "principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp";
+    }
     if ("<%= accion%>" !== "Aceptar") {
         document.location = "principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp&estado=Pendiente";
     } else {
         document.location = "principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp";
     }
+    
 </script>
