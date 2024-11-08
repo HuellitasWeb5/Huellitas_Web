@@ -222,23 +222,18 @@
             foto: mascotas[i][4]
         };
     }
-
-// Autocompletar para código de mascota
     $("#codigoMascota").autocomplete({
         source: vectorMascotas.map(m => m.codigo)
     });
 
-// Autocompletar para nombre de mascota
     $("#nombreMascota").autocomplete({
         source: vectorMascotas.map(m => m.nombre)
     });
 
-// Función para buscar mascota
     function buscarMascota(valor, campo) {
         return vectorMascotas.findIndex(m => m[campo] === valor);
     }
 
-// Manejo de cambio en el campo de código de mascota
     $('#codigoMascota').change(function () {
         var codigo = this.value.trim();
         var indiceMascota = buscarMascota(codigo, 'codigo');
@@ -250,7 +245,6 @@
         }
     });
 
-// Manejo de cambio en el campo de nombre de mascota
     $('#nombreMascota').change(function () {
         var nombre = this.value.trim();
         var indiceMascota = buscarMascota(nombre, 'nombre');
@@ -265,7 +259,6 @@
         }
     });
 
-// Función para precargar datos de la mascota
     function precargarDatos(indice) {
         var mascota = vectorMascotas[indice];
         document.getElementById("codigoMascota").value = mascota.codigo;
@@ -276,7 +269,6 @@
         document.getElementById("fotoMascota").src = "presentacion/mascota/" + mascota.foto;
     }
 
-// Función para limpiar datos
     function limpiarDatos() {
         document.getElementById("codigoMascota").value = '';
         document.getElementById("nombreMascota").value = '';
