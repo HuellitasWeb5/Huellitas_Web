@@ -17,7 +17,9 @@
 <%
     String accion = request.getParameter("accion");
     String codigoMascota = request.getParameter("codigoMascota");
+    String nombreCliente = request.getParameter("nombre");
     String tipoUsuario = (String) session.getAttribute("tipoUsuario");
+   
 
     String privado = "";
     if (tipoUsuario.equals("C")) {
@@ -31,7 +33,7 @@
 %>  
 
 <h3><%=accion.toUpperCase()%> FORMULARIO DE PRE-ADOPCIÓN </h3>
-<form name="formulario" method="post" action="principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp" enctype="multipart/form-data">
+<form name="formulario" method="post" action="principal.jsp?CONTENIDO=7.Adopcion/actualizarFormularioInfo.jsp&nombre=<%=nombreCliente%>" enctype="multipart/form-data">
     <div class="formulario-adopcion">
         <div class="fecha-contenedor" onload="cargarFecha()">Fecha actual: <span class="fecha" id="fecha"></span></div>
         <div class="contenedor-tarjetas">
@@ -66,7 +68,7 @@
                         <label>Código:</label>
                         <input type="text" name="codigoMascotas" id="codigoMascotas" placeholder="Digite aquí el código de la mascota" class="custom-text-input2" font-family: 'Open Sans' required>
                         <label>Nombre de la mascota:</label>
-                        <input type="text" name="nombreMascota" id="nombreMascota" class="custom-text-input2" readonly>
+                        <input type="text" name="nombreMascota" id="nombreMascota" placeholder="Digite aquí el nombre de la mascota" class="custom-text-input2">
                         <label>Fecha de nacimiento Aproximada:</label>
                         <input type="text" name="fechaNacimiento" id="fechaNacimiento" class="custom-text-input2" readonly>
                         <label>Género:</label>

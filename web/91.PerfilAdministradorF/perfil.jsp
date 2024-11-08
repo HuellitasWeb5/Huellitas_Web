@@ -44,7 +44,7 @@
 
 <div class="card">
     <div class="titulo">
-        <h2>TUS DATOS ADMINISTRADOR</h2>
+        <h2>MI PERFIL</h2>
     </div>
     <div class="card-body">
         <!-- Mostrar la foto del usuario -->
@@ -100,7 +100,7 @@
 <script>
 
     function eliminar(identificacion) {
-        resultado = confirm("Realmente desea eliminar tu cuenta?" + identificacion);
+        resultado = confirm("¿Realmente desea eliminar su cuenta registrada con cédula de ciudadanía " + identificacion + "? Este proceso será definitivo.");
         if (resultado) {
             document.location = "principal.jsp?CONTENIDO=91.PerfilAdministradorF/perfilActualizar.jsp&accion=Eliminar&identificacion=" + identificacion;
         }

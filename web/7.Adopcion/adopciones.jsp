@@ -49,7 +49,7 @@
         Persona persona = new Persona(formulario.getIdentificacionAdoptante());
         Mascota mascota = new Mascota(formulario.getCodigoMascota());
 
-        Adopcion adopcion = (i < adopciones.size()) ? adopciones.get(i) : new Adopcion(); // Evitar el error de índice
+        Adopcion adopcion = (i < adopciones.size()) ? adopciones.get(i) : new Adopcion();
 
         listaAdopciones += "<div class='swiper-slide'>";
         listaAdopciones += "<div class='card'>";
@@ -91,16 +91,18 @@
         listaAdopciones += "<br>";
         listaAdopciones += "<input type='hidden' name='accion' value='Acta'>";
         listaAdopciones += "<input type='hidden' id='codigoFormulario' name='codigoFormulario' value='" + adopcion.getCodigo() + "'>";
-        listaAdopciones += "<input type='submit' value='Guardar' class='btn-adicionar'>";
+        listaAdopciones += "<input type='submit' value='Guardar' class='btn-adicionar2'>";
         listaAdopciones += "</form>";
-        if (adopcion.getActaAdopcion() != null && !adopcion.getActaAdopcion().isEmpty()) {
-            String rutaArchivo = "uploads/" + adopcion.getActaAdopcion();
-            listaAdopciones += "<a href='" + rutaArchivo + "' target='_blank' class='btn-otro'>Ver contrato de adopción</a>";
+
+        String actaAdopcion = adopcion.getActaAdopcion();
+        if (actaAdopcion != null && !actaAdopcion.equals("null")) {
+            String rutaArchivo = "uploads/" + actaAdopcion;
+            listaAdopciones += "<a href='" + rutaArchivo + "' target='_blank' class='btn-otro2'>Ver contrato de adopción</a>";
         }
 
         listaAdopciones += "<form action='7.Adopcion/formularioInfoPDF.jsp' method='post' target='_blank'>";
         listaAdopciones += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
-        listaAdopciones += "<input type='submit' value='Ver formulario de pre-adopción' class='btn-adicionar'>";
+        listaAdopciones += "<input type='submit' value='Ver formulario de pre-adopción' class='btn-adicionar2'>";
         listaAdopciones += "</form>";
 
         listaAdopciones += "<form action='principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp' method='post'>";

@@ -48,7 +48,7 @@
 <div class="card-carousel">
     <div class="card">
         <div class="titulo">
-            <h2>TUS DATOS SANPATITAS</h2>
+            <h2>MI PERFIL</h2>
         </div>
         <div class="card-body">
             <!-- Mostrar la foto del usuario -->
@@ -105,7 +105,7 @@
 <script>
 
     function eliminar(identificacion) {
-        resultado = confirm("Realmente desea eliminar tu cuenta?" + identificacion);
+        resultado = confirm("¿Realmente desea eliminar su cuenta registrada con cédula de ciudadanía " + identificacion + "? Este proceso será definitivo.");
         if (resultado) {
             document.location = "principal.jsp?CONTENIDO=9.Perfil/perfilActualizar.jsp&accion=Modificar&identificacion=&identificacion=" + identificacion;
         }

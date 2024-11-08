@@ -56,7 +56,7 @@
     }
     lista += "</div>";
 %>
-<h3>SANPATITAS</h3>
+<h3>SAN PATITAS</h3>
 <div class="header-container">
     <!-- Buscar por nombre -->
     <form id="searchForm">
