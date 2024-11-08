@@ -672,119 +672,74 @@
 
     // BUSCAR MASCOTA PRINCIPAL
 
-    var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado<>'adoptado'", null)%>;
-    var vectorMascotas = new Array();
+    // Obtener la lista completa de mascotas en un arreglo JS
+var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado<>'adoptado'", null)%>;
+var vectorCodigos = mascotas.map(mascota => mascota[0]);  // Lista de códigos para autocompletado
+var vectorNombres = mascotas.map(mascota => mascota[1]);   // Lista de nombres para autocompletado
+
+// Inicializar el autocompletado para los campos de código y nombre
+$("#codigoMascotas, #codigoFormulario").autocomplete({
+    source: vectorCodigos
+});
+$("#nombreMascota, #nombreMascotaFormulario").autocomplete({
+    source: vectorNombres
+});
+
+// Función para buscar mascota por código o nombre
+function buscarMascota(valor, tipo = "codigo") {
     for (var i = 0; i < mascotas.length; i++) {
-        vectorMascotas[i] = mascotas[i][0];
-    }
-
-    $("#codigoMascotas").autocomplete({
-        source: vectorMascotas
-    });
-
-    function buscarMascota(valor, indice) {
-        encontrado = false;
-        i = 0;
-        while (!encontrado && i < mascotas.length) {
-            if (valor == mascotas[i][indice])
-                encontrado = true;
-            i++;
+        if ((tipo === "codigo" && mascotas[i][0] === valor) || (tipo === "nombre" && mascotas[i][1] === valor)) {
+            return i;
         }
-        if (encontrado)
-            return i - 1;
-        else
-            return false;
     }
+    return false;
+}
 
-    $('#codigoMascotas').change(function () {
-        var codigo = this.value.trim();
-        var indiceMascota = buscarMascota(codigo, 0);
-
-        if (indiceMascota !== false) {
-            var nombreMascota = mascotas[indiceMascota][1];
-            var fechaNacimiento = mascotas[indiceMascota][6];
-            var genero = mascotas[indiceMascota][2];
-            var cuidadosEspeciales = mascotas[indiceMascota][5];
-            var foto = mascotas[indiceMascota][4];
-
-            document.getElementById("nombreMascota").value = nombreMascota;
-            document.getElementById("fechaNacimiento").value = fechaNacimiento;
-            document.getElementById("genero").value = mostrarGenero(genero);
-            document.getElementById("cuidadosEspeciales").value = cuidadosEspeciales;
-            document.getElementById("fotoPreview").src = foto;
-        } else {
-            document.getElementById("nombreMascota").value = '';
-            document.getElementById("fechaNacimiento").value = '';
-            document.getElementById("genero").value = '';
-            document.getElementById("cuidadosEspeciales").value = '';
-            document.getElementById("fotoPreview").src = '';
-        }
-    });
-
-    function limpiarCamposFormulario() {
-        document.getElementById("nombreMascota").value = '';
-        document.getElementById("fechaNacimiento").value = '';
-        document.getElementById("genero").value = '';
-        document.getElementById("cuidadosEspeciales").value = '';
-        document.getElementById("fotoPreview").src = '';
+// Función para cargar datos de mascota en los campos de un formulario
+function cargarDatosMascota(indiceMascota, prefix = "") {
+    if (indiceMascota !== false) {
+        var mascota = mascotas[indiceMascota];
+        document.getElementById(`${prefix}codigoMascotas`).value = mascota[0];
+        document.getElementById(`${prefix}nombreMascota`).value = mascota[1];
+        document.getElementById(`${prefix}fechaNacimiento`).value = mascota[6];
+        document.getElementById(`${prefix}genero`).value = mostrarGenero(mascota[2]);
+        document.getElementById(`${prefix}cuidadosEspeciales`).value = mascota[5];
+        document.getElementById(`${prefix}fotoPreview`).src = "presentacion/mascota/" + mascota[4];
+    } else {
+        limpiarCamposFormulario(prefix);
     }
+}
 
-    // BUSCAR MASCOTA FORMULARIO 
+// Limpiar campos del formulario
+function limpiarCamposFormulario(prefix = "") {
+    document.getElementById(`${prefix}codigoMascotas`).value = '';
+    document.getElementById(`${prefix}nombreMascota`).value = '';
+    document.getElementById(`${prefix}codigoMascotas`).value = '';
+    document.getElementById(`${prefix}fechaNacimiento`).value = '';
+    document.getElementById(`${prefix}genero`).value = '';
+    document.getElementById(`${prefix}cuidadosEspeciales`).value = '';
+    document.getElementById(`${prefix}fotoPreview`).src = '';
+}
 
-    var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado<>'adoptado'", null)%>;
-    var vectorMascotas = new Array();
-    for (var i = 0; i < mascotas.length; i++) {
-        vectorMascotas[i] = mascotas[i][0];
-    }
-    $("#codigoFormulario").autocomplete({
-        source: vectorMascotas
-    });
-    function buscarMascota(valor, indice) {
-        encontrado = false;
-        i = 0;
-        while (!encontrado && i < mascotas.length) {
-            if (valor == mascotas[i][indice])
-                encontrado = true;
-            i++;
-        }
-        if (encontrado)
-            return i - 1;
-        else
-            return false;
-    }
+// Event listener para cambio en el campo de código en ambos formularios
+$('#codigoMascotas, #codigoFormulario').change(function () {
+    var codigo = this.value.trim();
+    var indiceMascota = buscarMascota(codigo, "codigo");
 
-    $('#codigoFormulario').change(function () {
-        var codigo = this.value.trim();
-        var indiceMascota = buscarMascota(codigo, 0);
+    // Determinar el prefijo en función del ID del campo que llama al evento
+    var prefix = this.id === "codigoFormulario" ? "Formulario" : "";
+    cargarDatosMascota(indiceMascota, prefix);
+});
 
-        if (indiceMascota !== false) {
-            var nombreMascota = mascotas[indiceMascota][1];
-            var fechaNacimiento = mascotas[indiceMascota][6];
-            var genero = mascotas[indiceMascota][2];
-            var cuidadosEspeciales = mascotas[indiceMascota][5];
-            var foto = mascotas[indiceMascota][4];
+// Event listener para cambio en el campo de nombre en ambos formularios
+$('#nombreMascota, #nombreMascotaFormulario').change(function () {
+    var nombre = this.value.trim();
+    var indiceMascota = buscarMascota(nombre, "nombre");
 
-            document.getElementById("nombreMascotaFormulario").value = nombreMascota;
-            document.getElementById("fechaNacimientoFormulario").value = fechaNacimiento;
-            document.getElementById("generoFormulario").value = mostrarGenero(genero);
-            document.getElementById("cuidadosEspecialesFormulario").value = cuidadosEspeciales;
-            document.getElementById("fotoPreview").src = "presentacion/mascota/" + foto;
-        } else {
-            document.getElementById("nombreMascotaFormulario").value = '';
-            document.getElementById("fechaNacimientoFormulario").value = '';
-            document.getElementById("generoFormulario").value = '';
-            document.getElementById("cuidadosEspecialesFormulario").value = '';
-            document.getElementById("fotoPreview").src = '';
-        }
-    });
-
-    function limpiarCamposFormulario() {
-        document.getElementById("nombreMascotaFormulario").value = '';
-        document.getElementById("fechaNacimientoFormulario").value = '';
-        document.getElementById("generoFormulario").value = '';
-        document.getElementById("cuidadosEspecialesFormulario").value = '';
-        document.getElementById("fotoPreview").src = '';
-    }
+    // Determinar el prefijo en función del ID del campo que llama al evento
+    var prefix = this.id === "nombreMascotaFormulario" ? "Formulario" : "";
+    cargarDatosMascota(indiceMascota, prefix);
+});
 
     // AGREGAR MASCOTA A LA ADOPCION
 
@@ -867,8 +822,6 @@
 
     // CARGAR FECHA
 
-    // CARGAR FECHA
-
     function cargarFecha() {
         var fecha = new Date();
         var dia = String(fecha.getDate()).padStart(2, '0');
@@ -912,7 +865,6 @@
     // Preguntas Dependientes
 
     document.addEventListener('DOMContentLoaded', function () {
-        // Escucha el cambio en la respuesta de "¿Tiene alguna mascota actualmente?"
         document.querySelectorAll('input[name="otrasMascotas"]').forEach((input) => {
             input.addEventListener('change', function () {
                 if (this.value === 'S') {
@@ -926,7 +878,6 @@
             });
         });
 
-        // Escucha el cambio en la respuesta de "¿Están esterilizados?"
         document.querySelectorAll('input[name="esterilizados"]').forEach((input) => {
             input.addEventListener('change', function () {
                 if (this.value === 'N') {
@@ -939,7 +890,6 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
-        // Escucha el cambio en la respuesta de "¿Ha tenido otras mascotas anteriormente?"
         document.querySelectorAll('input[name="anteriorMascotas"]').forEach((input) => {
             input.addEventListener('change', function () {
                 if (this.value === 'S') {
@@ -965,7 +915,6 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
-        // Escucha el cambio en la respuesta de "La casa y/o apartamento donde vive actualmente es:"
         document.querySelectorAll('input[name="vivienda"]').forEach((input) => {
             input.addEventListener('change', function () {
                 if (this.value === 'Arrendado' || this.value === 'Anticresado') {
@@ -978,7 +927,6 @@
     });
 
     document.addEventListener('DOMContentLoaded', function () {
-        // Escucha el cambio en la respuesta de "¿Está de acuerdo en que se haga una visita periódica a su domicilio?"
         document.querySelectorAll('input[name="autorizaVisitas"]').forEach((input) => {
             input.addEventListener('change', function () {
                 if (this.value === 'N') {
@@ -992,20 +940,16 @@
 
     var codigoDeMascota = "<%=codigoMascota%>";
 
-    // Autocompletar el formulario con los datos de la mascota
     if (codigoDeMascota != null && codigoDeMascota !== "") {
         document.getElementById("codigoMascotas").value = codigoDeMascota;
-        // Buscar la mascota usando la función buscarMascota
         var indiceMascota = buscarMascota(codigoDeMascota, 0);
         if (indiceMascota !== false) {
-            // Asignar los valores a los campos correspondientes del formulario
             var nombreMascota = mascotas[indiceMascota][1];
             var genero = mascotas[indiceMascota][2];
             var tamano = mascotas[indiceMascota][3];
             var foto = mascotas[indiceMascota][4];
             var cuidadosEspeciales = mascotas[indiceMascota][5];
             var fechaNacimiento = mascotas[indiceMascota][6];
-            // Asignar los valores a los campos del formulario
             document.getElementById("nombreMascota").value = nombreMascota;
             document.getElementById("genero").value = mostrarGenero(genero);
             document.getElementById("fechaNacimiento").value = fechaNacimiento;
