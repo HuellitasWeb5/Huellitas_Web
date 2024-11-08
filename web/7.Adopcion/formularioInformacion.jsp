@@ -68,7 +68,7 @@
                         <label>Código:</label>
                         <input type="text" name="codigoMascotas" id="codigoMascotas" placeholder="Digite aquí el código de la mascota" class="custom-text-input2" font-family: 'Open Sans' required>
                         <label>Nombre de la mascota:</label>
-                        <input type="text" name="nombreMascota" id="nombreMascota" class="custom-text-input2" readonly>
+                        <input type="text" name="nombreMascota" id="nombreMascota" placeholder="Digite aquí el nombre de la mascota" class="custom-text-input2">
                         <label>Fecha de nacimiento Aproximada:</label>
                         <input type="text" name="fechaNacimiento" id="fechaNacimiento" class="custom-text-input2" readonly>
                         <label>Género:</label>
