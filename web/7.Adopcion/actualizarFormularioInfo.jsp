@@ -195,13 +195,12 @@
 %>
 
 <script type="text/javascript">
-    if ("<%= nombreCliente%>" == "Cliente") {
+    if ("<%= nombreCliente%>" === "Cliente") {
         document.location = "principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp";
-    }
-    if ("<%= accion%>" !== "Aceptar") {
+    } else if ("<%= accion%>" !== "Aceptar") {
         document.location = "principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp&estado=Pendiente";
     } else {
-        document.location = "principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp";
+       document.location = "principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp";
     }
     
 </script>

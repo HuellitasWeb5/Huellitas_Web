@@ -147,7 +147,6 @@
                 <span id="calificacionError" style="color: red; display: none;">Por favor, selecciona al menos una estrella.</span>
                 <br><br>
 
-
                 <!-- Botones de envío -->
 
                 <input class="btn-adicionar2" type="submit" name="accion" value="<%=accion%>">

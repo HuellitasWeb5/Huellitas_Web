@@ -25,7 +25,7 @@
 <div class="card-carousel">
     <div class="card">
         <div class="card-header">
-            <h2>MODIFICA TUS DATOS SANPATITAS</h2>
+            <h2>MODIFICAR MIS DATOS</h2>
         </div>
         <div class="card-body">
             <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/perfilActualizar.jsp" enctype="multipart/form-data" onsubmit="return validarContraseña();">

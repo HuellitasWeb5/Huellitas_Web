@@ -25,14 +25,13 @@
 <div class="card-carousel">
     <div class="card">
         <div class="titulo">
-            <h2>MODIFICA TUS DATOS SANPATITAS</h2>
+            <h2>MODIFICAR MIS DATOS</h2>
         </div>
         <div class="card-body">
             <form name="formulario" method="post" action="principal.jsp?CONTENIDO=91.PerfilAdministradorF/perfilActualizar.jsp" enctype="multipart/form-data" onsubmit="return validarContraseña();">
-                <!-- Mostrar la foto del usuario -->
+               
                 <img src="presentacion/clientes/<%=usuarioActual.getFoto() != null ? usuarioActual.getFoto() : "default.jpg"%>" id="foto" class="profile-image">
 
-                <!-- Permitir la modificación de los datos del usuario -->
                 <div class="form-group">
                     <label for="identificacion">Identificación:</label>
                     <input type="text" id="identificacion" name="identificacion" value="<%=usuarioActual.getIdentificacion()%>" readonly>
