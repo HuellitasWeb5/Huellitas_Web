@@ -99,6 +99,7 @@ public class Apadrinamiento {
     public boolean grabarConProcedimientoAlmacenado(String mascotasPlan) {
     String cadenaSQL = "CALL registrarPadripet(" + this.identificacionPadrino + ", '" + mascotasPlan + "', '" + this.fotoRecibo + "', '" + this.fotoCedula + "')";
     System.out.println("cedula: "+ fotoCedula+ " foto recibo: " + fotoRecibo );    
+        System.out.println("llamado: "+cadenaSQL);
     return ConectorBD.ejecutarQuery(cadenaSQL); 
         
         }
