@@ -430,7 +430,7 @@
                 nombreElemento.textContent = 'Mascota: ' + mascotas[posision][1];
 
                 var codigoElemento = document.createElement('p');
-                codigoElemento.innerHTML = '<strong>CÃ³digo:</strong> ' + campos[0];
+                codigoElemento.innerHTML = '<strong>Código:</strong> ' + campos[0];
 
                 // Buscar el plan
                 var posisionPlan = buscarPlanes(campos[1], 0);
