@@ -165,36 +165,57 @@
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
     }
+
     $("#identificacion").autocomplete({
-        source: vectorPersonas
+        source: vectorPersonas,
+        select: function (event, ui) {
+            var identificacion = ui.item.value.trim();
+            var indicePersona = buscarPersona(identificacion, 0);
+
+            if (indicePersona !== false) {
+                var nombre = personas[indicePersona][1];
+                var telefono = personas[indicePersona][2];
+                var direccion = personas[indicePersona][3];
+                var residencia = personas[indicePersona][4];
+                var foto = personas[indicePersona][6];
+
+                document.getElementById("nombre").value = nombre;
+                document.getElementById("telefono").value = telefono;
+                document.getElementById("direccion").value = direccion;
+                document.getElementById("residencia").value = residencia;
+                document.getElementById("foto").src = "presentacion/clientes/" + foto;
+            } else {
+                limpiarCampos();
+            }
+
+            $(this).autocomplete("close");
+        }
     });
+
     function buscarPersona(valor, indice) {
-        encontrado = false;
-        i = 0;
-        while (!encontrado) {
-            if (valor == personas[i][indice])
+        let encontrado = false;
+        let i = 0;
+        while (!encontrado && i < personas.length) {
+            if (valor == personas[i][indice]) {
                 encontrado = true;
+            }
             i++;
         }
-        if (encontrado)
-            return i - 1;
-        else
-            return false;
+        return encontrado ? i - 1 : false;
     }
-    $('#identificacion').change(function () {
-        identificacion = this.value.trim();
-        indicePersona = buscarPersona(identificacion, 0);
-        nombre = personas[indicePersona][1];
-        telefono = personas[indicePersona][2];
-        direccion = personas[indicePersona][3];
-        residencia = personas[indicePersona][4];
-        foto = personas[indicePersona][6];
-        document.getElementById("nombre").value = nombre;
-        document.getElementById("telefono").value = telefono;
-        document.getElementById("direccion").value = direccion;
-        document.getElementById("residencia").value = residencia;
-        document.getElementById("foto").src = "presentacion/clientes/" + foto;
+
+    $('#identificacion').on('input', function () {
+        limpiarCampos();
     });
+
+    function limpiarCampos() {
+        document.getElementById("nombre").value = '';
+        document.getElementById("telefono").value = '';
+        document.getElementById("direccion").value = '';
+        document.getElementById("residencia").value = '';
+        document.getElementById("foto").src = '';
+    }
+
 
     // MOSTRAR GENERO MASCOTA
 
@@ -250,7 +271,6 @@
         var indiceMascota = buscarMascota(nombre, 'nombre');
 
         if (indiceMascota !== -1) {
-            // Si se busca por nombre, se precarga el código
             var codigoMascota = vectorMascotas[indiceMascota].codigo;
             $('#codigoMascota').val(codigoMascota);
             precargarDatos(indiceMascota);
@@ -320,7 +340,7 @@
     }
 
     // PRECARGAR DATOS ADOPTANTE
-    
-    var listaMascota = <%=FormularioDeSeguimiento.getListaMascotaEnObjeto(null)%>;    
-    
+
+    var listaMascota = <%=FormularioDeSeguimiento.getListaMascotaEnObjeto(null)%>;
+
 </script>
