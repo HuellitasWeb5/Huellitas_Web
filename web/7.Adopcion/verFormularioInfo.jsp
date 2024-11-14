@@ -81,7 +81,7 @@
     <!-- Buscar por nombre del adoptante -->
     <form id="searchForm">
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar por adoptante" onkeyup="filterNames()">
+            <input type="text" id="searchInput" placeholder="Buscar por persona o mascota%" onkeyup="filterNames()">
             <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
         </div>
         <ul id="nameList"></ul>
