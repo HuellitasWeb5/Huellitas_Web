@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : FormularioInformacion
     Created on : 5/10/2024, 02:37:31 PM
@@ -19,7 +20,6 @@
     String codigoMascota = request.getParameter("codigoMascota");
     String nombreCliente = request.getParameter("nombre");
     String tipoUsuario = (String) session.getAttribute("tipoUsuario");
-   
 
     String privado = "";
     if (tipoUsuario.equals("C")) {
@@ -44,7 +44,7 @@
                 <div class="datos-con-foto">
                     <div class="datos">
                         <label>Identificación:</label>
-                        <input type="text" name="identificacion" id="identificacion" placeholder="Digite aquí la identificación del adoptante" class="custom-text-input2" <%=privado%>>
+                        <input type="text" name="identificacion" id="identificacion" placeholder="Digite la identificación del adoptante aquí" class="custom-text-input2" <%=privado%>>
                         <label>Nombre del Adoptante</label>
                         <input type="text" name="nombre" id="nombre" class="custom-text-input2" readonly>
                         <label>Teléfono</label>
@@ -66,9 +66,9 @@
                 <div class="datos-con-foto">
                     <div class="datos">
                         <label>Código:</label>
-                        <input type="text" name="codigoMascotas" id="codigoMascotas" placeholder="Digite aquí el código de la mascota" class="custom-text-input2" font-family: 'Open Sans' required>
-                        <label>Nombre de la mascota:</label>
-                        <input type="text" name="nombreMascota" id="nombreMascota" placeholder="Digite aquí el nombre de la mascota" class="custom-text-input2">
+                        <input type="text" name="codigoMascotas" id="codigoMascotas" placeholder="Digite el código de la mascota aquí" class="custom-text-input2" font-family: 'Open Sans' required>
+                        <label>Nombre:</label>
+                        <input type="text" name="nombreMascota" id="nombreMascota" class="custom-text-input2" placeholder="Digite el nombre de la mascota aquí" readonly>
                         <label>Fecha de nacimiento Aproximada:</label>
                         <input type="text" name="fechaNacimiento" id="fechaNacimiento" class="custom-text-input2" readonly>
                         <label>Género:</label>
@@ -406,15 +406,15 @@
 </form>
 <div id="formulario" title="Adoptar mascota">
     <form name="formularioAdoptarMascota">
-        <table class="tableDatos">
+        <div class="tableDatos">
             <h4>MASCOTA</h4>
             <div class="datos-con-foto">
                 <div class="datos">
                     <label>Código:</label>
                     <input type="hidden" name="codigosMascotas" id="codigosMascotas" value="">
-                    <input type="text" name="codigoFormulario" id="codigoFormulario" class="custom-text-input2" placeholder="Digite aquí el código de la mascota" required>
+                    <input type="text" name="codigoFormulario" id="codigoFormulario" class="custom-text-input2" placeholder="Digite el código de la mascota aquí" required>
                     <label>Nombre de la mascota:</label>
-                    <input type="text" name="nombreMascota" id="nombreMascotaFormulario" class="custom-text-input2" readonly>
+                    <input type="text" name="nombreMascota" id="nombreMascotaFormulario" class="custom-text-input2" placeholder="Digite el nombre de la mascota aquí">
                     <label>Fecha de nacimiento Aproximada:</label>
                     <input type="text" name="fechaNacimiento" id="fechaNacimientoFormulario" class="custom-text-input2" readonly>
                     <label>Género:</label>
@@ -426,7 +426,7 @@
                     <img id="fotoMascotaFormulario" class="fotoPreview" src="presentacion/mascota/<%= mascota.getFoto()%>" alt="Foto de <%= mascota.getNombre()%>" style="width: 100px; height: 100px;">
                 </div>
             </div>
-        </table>
+        </div>
         <input class="btn-adicionar2" type="button" value="Agregar" onclick="agregarMascota();">
         <input class="btn-eliminar2" type="button" value="Cancelar" onclick="cerrarFormulario();">
     </form>    
@@ -516,7 +516,6 @@
             inputCodigo.id = 'codigoMascota' + index;
             inputCodigo.value = campos[0];
             inputCodigo.classList.add('custom-text-input2');
-            inputCodigo.placeholder = "Digite aquí el código de la mascota";
             inputCodigo.readOnly = true;
 
             var labelNombre = document.createElement('label');
@@ -573,6 +572,7 @@
             fotoContenedor.appendChild(fotoElemento);
 
             // Botón para eliminar la mascota
+
             var botonEliminar = document.createElement('button');
             botonEliminar.textContent = 'Eliminar';
             botonEliminar.className = 'btn-eliminar2';
@@ -611,52 +611,60 @@
 
     // BUSCAR PERSONA
 
-
     var vectorPersonas = new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
     }
+
     $("#identificacion").autocomplete({
-        source: vectorPersonas
+        source: vectorPersonas,
+        select: function (event, ui) {
+            var identificacion = ui.item.value.trim();
+            var indicePersona = buscarPersona(identificacion, 0);
+
+            if (indicePersona !== false) {
+                var nombre = personas[indicePersona][1];
+                var telefono = personas[indicePersona][2];
+                var direccion = personas[indicePersona][3];
+                var residencia = personas[indicePersona][4];
+                var foto = personas[indicePersona][6];
+
+                document.getElementById("nombre").value = nombre;
+                document.getElementById("telefono").value = telefono;
+                document.getElementById("direccion").value = direccion;
+                document.getElementById("residencia").value = residencia;
+                document.getElementById("fotoPreview").src = foto;
+            } else {
+                limpiarCampos();
+            }
+
+            $(this).autocomplete("close");
+        }
     });
+
     function buscarPersona(valor, indice) {
-        encontrado = false;
-        i = 0;
-        while (!encontrado) {
-            if (valor == personas[i][indice])
+        let encontrado = false;
+        let i = 0;
+        while (!encontrado && i < personas.length) {
+            if (valor == personas[i][indice]) {
                 encontrado = true;
+            }
             i++;
         }
-        if (encontrado)
-            return i - 1;
-        else
-            return false;
+        return encontrado ? i - 1 : false;
     }
 
-    $('#identificacion').change(function () {
-        var identificacion = this.value.trim();
-        var indicePersona = buscarPersona(identificacion, 0);
-
-        if (indicePersona !== false) {
-            var nombre = personas[indicePersona][1];
-            var telefono = personas[indicePersona][2];
-            var direccion = personas[indicePersona][3];
-            var residencia = personas[indicePersona][4];
-            var foto = personas[indicePersona][6];
-
-            document.getElementById("nombre").value = nombre;
-            document.getElementById("telefono").value = telefono;
-            document.getElementById("direccion").value = direccion;
-            document.getElementById("residencia").value = residencia;
-            document.getElementById("fotoPreview").src = foto;
-        } else {
-            document.getElementById("nombre").value = '';
-            document.getElementById("telefono").value = '';
-            document.getElementById("direccion").value = '';
-            document.getElementById("residencia").value = '';
-            document.getElementById("fotoPreview").src = '';
-        }
+    $('#identificacion').on('input', function () {
+        limpiarCamposPersona();
     });
+
+    function limpiarCamposPersona() {
+        document.getElementById("nombre").value = '';
+        document.getElementById("telefono").value = '';
+        document.getElementById("direccion").value = '';
+        document.getElementById("residencia").value = '';
+        document.getElementById("fotoPreview").src = '';
+    }
 
     // MOSTRAR GENERO MASCOTA
 
@@ -672,74 +680,122 @@
 
     // BUSCAR MASCOTA PRINCIPAL
 
-    // Obtener la lista completa de mascotas en un arreglo JS
-var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado<>'adoptado'", null)%>;
-var vectorCodigos = mascotas.map(mascota => mascota[0]);  // Lista de códigos para autocompletado
-var vectorNombres = mascotas.map(mascota => mascota[1]);   // Lista de nombres para autocompletado
-
-// Inicializar el autocompletado para los campos de código y nombre
-$("#codigoMascotas, #codigoFormulario").autocomplete({
-    source: vectorCodigos
-});
-$("#nombreMascota, #nombreMascotaFormulario").autocomplete({
-    source: vectorNombres
-});
-
-// Función para buscar mascota por código o nombre
-function buscarMascota(valor, tipo = "codigo") {
+    var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado<>'adoptado'", null)%>;
+    var vectorMascotas = new Array();
     for (var i = 0; i < mascotas.length; i++) {
-        if ((tipo === "codigo" && mascotas[i][0] === valor) || (tipo === "nombre" && mascotas[i][1] === valor)) {
-            return i;
+        vectorMascotas[i] = mascotas[i][0];
+    }
+
+    $("#codigoMascotas").autocomplete({
+        source: vectorMascotas,
+        select: function (event, ui) {
+            var codigo = ui.item.value.trim();
+            var indiceMascota = buscarMascota(codigo, 0);
+
+            if (indiceMascota !== false) {
+                var nombreMascota = mascotas[indiceMascota][1];
+                var fechaNacimiento = mascotas[indiceMascota][6];
+                var genero = mascotas[indiceMascota][2];
+                var cuidadosEspeciales = mascotas[indiceMascota][5];
+                var foto = mascotas[indiceMascota][4];
+
+                document.getElementById("nombreMascota").value = nombreMascota;
+                document.getElementById("fechaNacimiento").value = fechaNacimiento;
+                document.getElementById("genero").value = mostrarGenero(genero);
+                document.getElementById("cuidadosEspeciales").value = cuidadosEspeciales;
+                document.getElementById("fotoPreview").src = foto;
+            } else {
+                document.getElementById("nombreMascota").value = '';
+                document.getElementById("fechaNacimiento").value = '';
+                document.getElementById("genero").value = '';
+                document.getElementById("cuidadosEspeciales").value = '';
+                document.getElementById("fotoPreview").src = '';
+            }
         }
+    });
+
+    function buscarMascota(valor, indice) {
+        encontrado = false;
+        i = 0;
+        while (!encontrado && i < mascotas.length) {
+            if (valor == mascotas[i][indice])
+                encontrado = true;
+            i++;
+        }
+        if (encontrado)
+            return i - 1;
+        else
+            return false;
     }
-    return false;
-}
 
-// Función para cargar datos de mascota en los campos de un formulario
-function cargarDatosMascota(indiceMascota, prefix = "") {
-    if (indiceMascota !== false) {
-        var mascota = mascotas[indiceMascota];
-        document.getElementById(`${prefix}codigoMascotas`).value = mascota[0];
-        document.getElementById(`${prefix}nombreMascota`).value = mascota[1];
-        document.getElementById(`${prefix}fechaNacimiento`).value = mascota[6];
-        document.getElementById(`${prefix}genero`).value = mostrarGenero(mascota[2]);
-        document.getElementById(`${prefix}cuidadosEspeciales`).value = mascota[5];
-        document.getElementById(`${prefix}fotoPreview`).src = "presentacion/mascota/" + mascota[4];
-    } else {
-        limpiarCamposFormulario(prefix);
+    $('#codigoMascotas').on('input', function () {
+        limpiarCampos();
+    });
+
+    function limpiarCampos() {
+        document.getElementById("nombreMascota").value = '';
+        document.getElementById("fechaNacimiento").value = '';
+        document.getElementById("genero").value = '';
+        document.getElementById("cuidadosEspeciales").value = '';
+        document.getElementById("fotoPreview").src = '';
     }
-}
 
-// Limpiar campos del formulario
-function limpiarCamposFormulario(prefix = "") {
-    document.getElementById(`${prefix}codigoMascotas`).value = '';
-    document.getElementById(`${prefix}nombreMascota`).value = '';
-    document.getElementById(`${prefix}codigoMascotas`).value = '';
-    document.getElementById(`${prefix}fechaNacimiento`).value = '';
-    document.getElementById(`${prefix}genero`).value = '';
-    document.getElementById(`${prefix}cuidadosEspeciales`).value = '';
-    document.getElementById(`${prefix}fotoPreview`).src = '';
-}
+    // BUSCAR MASCOTA FORMULARIO 
 
-// Event listener para cambio en el campo de código en ambos formularios
-$('#codigoMascotas, #codigoFormulario').change(function () {
-    var codigo = this.value.trim();
-    var indiceMascota = buscarMascota(codigo, "codigo");
+    var mascotas = <%=Mascota.getListaCompletaEnArregloJS("estado<>'adoptado'", null)%>;
+    var vectorMascotas = new Array();
+    for (var i = 0; i < mascotas.length; i++) {
+        vectorMascotas[i] = mascotas[i][0];
+    }
+    $("#codigoFormulario").autocomplete({
+        source: vectorMascotas
+    });
+    function buscarMascota(valor, indice) {
+        encontrado = false;
+        i = 0;
+        while (!encontrado && i < mascotas.length) {
+            if (valor == mascotas[i][indice])
+                encontrado = true;
+            i++;
+        }
+        if (encontrado)
+            return i - 1;
+        else
+            return false;
+    }
 
-    // Determinar el prefijo en función del ID del campo que llama al evento
-    var prefix = this.id === "codigoFormulario" ? "Formulario" : "";
-    cargarDatosMascota(indiceMascota, prefix);
-});
+    $('#codigoFormulario').change(function () {
+        var codigo = this.value.trim();
+        var indiceMascota = buscarMascota(codigo, 0);
 
-// Event listener para cambio en el campo de nombre en ambos formularios
-$('#nombreMascota, #nombreMascotaFormulario').change(function () {
-    var nombre = this.value.trim();
-    var indiceMascota = buscarMascota(nombre, "nombre");
+        if (indiceMascota !== false) {
+            var nombreMascota = mascotas[indiceMascota][1];
+            var fechaNacimiento = mascotas[indiceMascota][6];
+            var genero = mascotas[indiceMascota][2];
+            var cuidadosEspeciales = mascotas[indiceMascota][5];
+            var foto = mascotas[indiceMascota][4];
 
-    // Determinar el prefijo en función del ID del campo que llama al evento
-    var prefix = this.id === "nombreMascotaFormulario" ? "Formulario" : "";
-    cargarDatosMascota(indiceMascota, prefix);
-});
+            document.getElementById("nombreMascotaFormulario").value = nombreMascota;
+            document.getElementById("fechaNacimientoFormulario").value = fechaNacimiento;
+            document.getElementById("generoFormulario").value = mostrarGenero(genero);
+            document.getElementById("cuidadosEspecialesFormulario").value = cuidadosEspeciales;
+            document.getElementById("fotoPreview").src = "presentacion/mascota/" + foto;
+        } else {
+            document.getElementById("nombreMascotaFormulario").value = '';
+            document.getElementById("fechaNacimientoFormulario").value = '';
+            document.getElementById("generoFormulario").value = '';
+            document.getElementById("cuidadosEspecialesFormulario").value = '';
+            document.getElementById("fotoPreview").src = '';
+        }
+    });
+
+    function limpiarCamposFormulario() {
+        document.getElementById("nombreMascotaFormulario").value = '';
+        document.getElementById("fechaNacimientoFormulario").value = '';
+        document.getElementById("generoFormulario").value = '';
+        document.getElementById("cuidadosEspecialesFormulario").value = '';
+        document.getElementById("fotoPreview").src = '';
+    }
 
     // AGREGAR MASCOTA A LA ADOPCION
 
@@ -819,6 +875,8 @@ $('#nombreMascota, #nombreMascotaFormulario').change(function () {
         document.getElementById('generoFormulario').value = '';
         document.getElementById('cuidadosEspecialesFormulario').value = '';
     }
+
+    // CARGAR FECHA
 
     // CARGAR FECHA
 
@@ -902,7 +960,6 @@ $('#nombreMascota, #nombreMascotaFormulario').change(function () {
     });
 
     document.addEventListener('DOMContentLoaded', function () {
-        // Escucha el cambio en la respuesta de "¿Hay niños en el hogar?"
         document.querySelectorAll('input[name="ninos"]').forEach((input) => {
             input.addEventListener('change', function () {
                 if (this.value === 'S') {
