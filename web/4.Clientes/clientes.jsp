@@ -85,7 +85,7 @@
 <div id="result"></div> <!-- Para mostrar la identificación -->
 <script type="text/javascript">
     function eliminar(identificacion,nombreTipoPersona) {
-        resultado = confirm("Realmente desea eliminar el cliente con identificacion= " + identificacion + nombreTipoPersona + "?");
+        resultado = confirm("Realmente desea eliminar el cliente con identificacion= " + identificacion +"?");
         if (resultado) {
             document.location = "principal.jsp?CONTENIDO=4.Clientes/clientesActualizar.jsp&accion=Eliminar&identificacion=" + identificacion + "&nombreTipo=" + nombreTipoPersona;
         }
