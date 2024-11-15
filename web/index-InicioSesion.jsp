@@ -25,6 +25,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="icon" href="presentacion/imagenes/Logo.png" type="image/x-icon">
         <link rel="stylesheet" href="presentacion/Style-InicioSesion.css">
         <title>Huellitas Web</title>
     </head>

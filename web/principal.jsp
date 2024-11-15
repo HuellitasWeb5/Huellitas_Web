@@ -22,7 +22,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+        <link rel="icon" href="presentacion/imagenes/Logo.png" type="image/x-icon">
         <link rel="stylesheet" href="recursos/jquery-ui-1.13.3.custom/jquery-ui.css">
         <link rel="stylesheet" href="recursos/bootstrap/css/bootstrap.min.css">
         <link rel="stylesheet" href="presentacion/Prueba.css">
