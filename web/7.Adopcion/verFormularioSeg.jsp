@@ -36,7 +36,7 @@
         listaSeguimientos += "<div style='margin-right: 10px;'>";
         listaSeguimientos += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' class='profile-image'/>";
         listaSeguimientos += "</div>";
-        listaSeguimientos += "<div>";
+        listaSeguimientos += "<div class='prueba'>";
         listaSeguimientos += "<p><strong>Nombre:</strong> " + persona.getNombre() + "</p>";
         listaSeguimientos += "<p><strong>Identificación:</strong> " + formulario.getIdentificacionAdoptante() + "</p>";
         listaSeguimientos += "<p><strong>Contacto:</strong> " + persona.getTelefono() + "</p>";
@@ -66,7 +66,7 @@
         listaSeguimientos += "<input type='hidden' name='codigoFormulario' value='" + formulario.getCodigo() + "'>";
         listaSeguimientos += "<input type='submit' value='Generar PDF' class='btn-otro'>";
         listaSeguimientos += "</form>";
-         listaSeguimientos += "<div>";
+        listaSeguimientos += "<div>";
         listaSeguimientos += "<button class='btn-eliminar' onClick='eliminar(" + formulario.getCodigo() + ")'>Eliminar</button>";
         listaSeguimientos += "</div>";
         listaSeguimientos += "</div>";
@@ -82,7 +82,7 @@
     <!-- Buscar por nombre del adoptante -->
     <form id="searchForm">
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar por adoptante" onkeyup="filterNames()">
+            <input type="text" id="searchInput" placeholder="Buscar por el nombre del adoptante" onkeyup="filterNames()">
             <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
         </div>
         <ul id="nameList"></ul>
@@ -116,13 +116,16 @@
         const slides = document.getElementsByClassName('swiper-slide');
 
         for (let i = 0; i < slides.length; i++) {
-            const cardHeader = slides[i].getElementsByClassName('card-header')[0];
-            const textValue = cardHeader.textContent || cardHeader.innerText;
+            const cardHeader = slides[i].querySelector('.prueba');
+            if (cardHeader) {
+                const textValue = cardHeader.textContent || cardHeader.innerText;
 
-            if (textValue.toLowerCase().indexOf(filter) > -1) {
-                slides[i].style.display = "";
-            } else {
-                slides[i].style.display = "none";
+                // Mostrar o esconder el slide según el filtro
+                if (textValue.toLowerCase().includes(filter)) {
+                    slides[i].style.display = ""; // Mostrar
+                } else {
+                    slides[i].style.display = "none"; // Ocultar
+                }
             }
         }
     }

@@ -10,7 +10,7 @@
 </head>
 
 <%
-    String listaAdopciones = ""; 
+    String listaAdopciones = "";
     String estado = request.getParameter("estado");
     List<FormularioDeInformacion> formularios = FormularioDeInformacion.getListaEnObjetos("estado<>'Aceptado'", null);
     listaAdopciones += "<div class='swiper-wrapper'>";
@@ -36,8 +36,8 @@
         listaAdopciones += "<div style='margin-right: 10px;'>";
         listaAdopciones += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' class='profile-image'/>";
         listaAdopciones += "</div>";
-        listaAdopciones += "<div>";
-        listaAdopciones += "<p><strong>Nombre:</strong> " + persona.getNombre() + "</p>";
+        listaAdopciones += "<div class='prueba'>";
+        listaAdopciones += "<p><strong >Nombre:</strong> " + persona.getNombre() + "</p>";
         listaAdopciones += "<p><strong>Identificación:</strong> " + formulario.getIdentificacionAdoptante() + "</p>";
         listaAdopciones += "<p><strong>Contacto:</strong> " + persona.getTelefono() + "</p>";
         listaAdopciones += "</div>";
@@ -81,7 +81,7 @@
     <!-- Buscar por nombre del adoptante -->
     <form id="searchForm">
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar por persona o mascota%" onkeyup="filterNames()">
+            <input type="text" id="searchInput" placeholder="Buscar por el nombre del adoptante" onkeyup="filterNames()">
             <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon">
         </div>
         <ul id="nameList"></ul>
@@ -124,13 +124,16 @@
         const slides = document.getElementsByClassName('swiper-slide');
 
         for (let i = 0; i < slides.length; i++) {
-            const cardHeader = slides[i].getElementsByClassName('card-header')[0];
-            const textValue = cardHeader.textContent || cardHeader.innerText;
+            const cardHeader = slides[i].querySelector('.prueba');
+            if (cardHeader) {
+                const textValue = cardHeader.textContent || cardHeader.innerText;
 
-            if (textValue.toLowerCase().indexOf(filter) > -1) {
-                slides[i].style.display = "";
-            } else {
-                slides[i].style.display = "none";
+                // Mostrar o esconder el slide según el filtro
+                if (textValue.toLowerCase().includes(filter)) {
+                    slides[i].style.display = ""; // Mostrar
+                } else {
+                    slides[i].style.display = "none"; // Ocultar
+                }
             }
         }
     }

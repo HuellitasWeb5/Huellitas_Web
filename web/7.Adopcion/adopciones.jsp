@@ -125,7 +125,7 @@
 <div class="header-container">
     <form id="searchForm">
         <div class="search-container">
-            <input type="text" id="searchInput" placeholder="Buscar por nombre de mascota o adoptante" onkeyup="filterNames()">
+            <input type="text" id="searchInput" placeholder="Buscar por el nombre del adoptante" onkeyup="filterNames()">
             <img src="presentacion/iconos/lupa.png" alt="Buscar" class="search-icon"> 
         </div>
         <ul id="nameList"></ul> 
@@ -160,15 +160,17 @@
         const filter = input.value.toLowerCase();
         const slides = document.getElementsByClassName('swiper-slide');
 
-        // Filtrar por nombre del adoptante o mascota
         for (let i = 0; i < slides.length; i++) {
-            const cardBody = slides[i].getElementsByClassName('card-body')[0];
-            const textValue = cardBody.textContent || cardBody.innerText;
+            const cardHeader = slides[i].querySelector('.info-container');
+            if (cardHeader) {
+                const textValue = cardHeader.textContent || cardHeader.innerText;
 
-            if (textValue.toLowerCase().indexOf(filter) > -1) {
-                slides[i].style.display = "";
-            } else {
-                slides[i].style.display = "none";
+                // Mostrar o esconder el slide según el filtro
+                if (textValue.toLowerCase().includes(filter)) {
+                    slides[i].style.display = ""; // Mostrar
+                } else {
+                    slides[i].style.display = "none"; // Ocultar
+                }
             }
         }
     }

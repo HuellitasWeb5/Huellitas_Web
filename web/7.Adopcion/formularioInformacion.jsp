@@ -68,7 +68,7 @@
                         <label>Código:</label>
                         <input type="text" name="codigoMascotas" id="codigoMascotas" placeholder="Digite el código de la mascota aquí" class="custom-text-input2" font-family: 'Open Sans' required>
                         <label>Nombre:</label>
-                        <input type="text" name="nombreMascota" id="nombreMascota" class="custom-text-input2" placeholder="Digite el nombre de la mascota aquí" readonly>
+                        <input type="text" name="nombreMascota" id="nombreMascota" class="custom-text-input2" readonly>
                         <label>Fecha de nacimiento Aproximada:</label>
                         <input type="text" name="fechaNacimiento" id="fechaNacimiento" class="custom-text-input2" readonly>
                         <label>Género:</label>
@@ -633,7 +633,7 @@
                 document.getElementById("telefono").value = telefono;
                 document.getElementById("direccion").value = direccion;
                 document.getElementById("residencia").value = residencia;
-                document.getElementById("fotoPreview").src = foto;
+                document.getElementById("foto").src = "presentacion/clientes/" + foto;
             } else {
                 limpiarCampos();
             }
@@ -703,7 +703,7 @@
                 document.getElementById("fechaNacimiento").value = fechaNacimiento;
                 document.getElementById("genero").value = mostrarGenero(genero);
                 document.getElementById("cuidadosEspeciales").value = cuidadosEspeciales;
-                document.getElementById("fotoPreview").src = foto;
+                document.getElementById("fotoMascota").src = "presentacion/mascota/" + foto;
             } else {
                 document.getElementById("nombreMascota").value = '';
                 document.getElementById("fechaNacimiento").value = '';
@@ -779,7 +779,7 @@
             document.getElementById("fechaNacimientoFormulario").value = fechaNacimiento;
             document.getElementById("generoFormulario").value = mostrarGenero(genero);
             document.getElementById("cuidadosEspecialesFormulario").value = cuidadosEspeciales;
-            document.getElementById("fotoPreview").src = "presentacion/mascota/" + foto;
+            document.getElementById("fotoMascotaFormulario").src = "presentacion/mascota/" + foto;
         } else {
             document.getElementById("nombreMascotaFormulario").value = '';
             document.getElementById("fechaNacimientoFormulario").value = '';
@@ -878,8 +878,6 @@
 
     // CARGAR FECHA
 
-    // CARGAR FECHA
-
     function cargarFecha() {
         var fecha = new Date();
         var dia = String(fecha.getDate()).padStart(2, '0');
@@ -887,25 +885,9 @@
         var anio = fecha.getFullYear();
         var fechaActual = dia + '/' + mes + '/' + anio;
         document.getElementById('fecha').innerText = fechaActual;
-        document.getElementById('fechaActual').value = anio + '-' + mes + '-' + dia;
-    }
-    document.addEventListener('DOMContentLoaded', function () {
-        const checkboxes = document.querySelectorAll('input[name="horarioVisitaDias"]');
-        const fechaVisitaDiaInput = document.getElementById('fechaVisitaDia');
-
-        checkboxes.forEach(function (checkbox) {
-            checkbox.addEventListener('change', function () {
-                let diasSeleccionados = [];
-
-                checkboxes.forEach(function (cb) {
-                    if (cb.checked) {
-                        diasSeleccionados.push(cb.value);
-                    }
-                });
-                fechaVisitaDiaInput.value = diasSeleccionados.join(',');
-            });
-        });
-    });
+    }
+cargarFecha();
+    
     const swiper = new Swiper('.swiper-container', {
         loop: false,
         slidesPerView: 2,
