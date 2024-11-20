@@ -190,7 +190,7 @@
         if (formulario.getFoto() != null) {
             String rutaCedula = application.getRealPath("/uploads/" + formulario.getFoto());
             Image imagenMascota = Image.getInstance(rutaCedula);
-            imagenMascota.scaleToFit(750, 480);
+            imagenMascota.scaleToFit(500, 480);
             documento.add(imagenMascota);
             documento.newPage();
         }

@@ -414,7 +414,7 @@
                     <input type="hidden" name="codigosMascotas" id="codigosMascotas" value="">
                     <input type="text" name="codigoFormulario" id="codigoFormulario" class="custom-text-input2" placeholder="Digite el código de la mascota aquí" required>
                     <label>Nombre de la mascota:</label>
-                    <input type="text" name="nombreMascota" id="nombreMascotaFormulario" class="custom-text-input2" placeholder="Digite el nombre de la mascota aquí">
+                    <input type="text" name="nombreMascota" id="nombreMascotaFormulario" class="custom-text-input2" readonly >
                     <label>Fecha de nacimiento Aproximada:</label>
                     <input type="text" name="fechaNacimiento" id="fechaNacimientoFormulario" class="custom-text-input2" readonly>
                     <label>Género:</label>
