@@ -277,7 +277,7 @@
         if (formulario.getFotoCedula() != null) {
             String rutaCedula = application.getRealPath("/uploads/" + formulario.getFotoCedula());
             Image imagenCedula = Image.getInstance(rutaCedula);
-            imagenCedula.scaleToFit(750, 480);
+            imagenCedula.scaleToFit(500, 480);
             documento.add(new Paragraph("Foto de la cédula de ciudadanía:"));
             documento.add(imagenCedula);
             documento.newPage();
@@ -287,7 +287,7 @@
         if (formulario.getFotoRecibo() != null) {
             String rutaRecibo = application.getRealPath("/uploads/" + formulario.getFotoRecibo());
             Image imagenRecibo = Image.getInstance(rutaRecibo);
-            imagenRecibo.scaleToFit(750, 480);
+            imagenRecibo.scaleToFit(500, 480);
             documento.add(new Paragraph("Foto del recibo de servicios públicos:"));
             documento.add(imagenRecibo);
             documento.newPage();
@@ -297,7 +297,7 @@
         if (formulario.getFotoVivienda() != null) {
             String rutaVivienda = application.getRealPath("/uploads/" + formulario.getFotoVivienda());
             Image imagenVivienda = Image.getInstance(rutaVivienda);
-            imagenVivienda.scaleToFit(750, 480);
+            imagenVivienda.scaleToFit(500, 480);
             documento.add(new Paragraph("Foto adicional:"));
             documento.add(imagenVivienda);
             documento.newPage();
