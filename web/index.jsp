@@ -24,6 +24,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"  href="presentacion/style-Index.css">
 <meta charset="UTF-8">
+<link rel="icon" href="presentacion/imagenes/Logo.png" type="image/x-icon">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Huellitas Web</title>
 <link rel="shortcut icon" href="LogoPequeï¿½o.png" type="image/x-icon">
