@@ -39,7 +39,7 @@
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/huellitasweb?characterEncoding=utf8";
+            String url = "jdbc:mysql://localhost:3306/HuellitasWeb?characterEncoding=utf8";
             conn = DriverManager.getConnection(url, "adso", "utilizar");
 
             String sql = "SELECT email, clave FROM persona WHERE identificacion = ?";
