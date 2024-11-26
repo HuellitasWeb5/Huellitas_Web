@@ -172,7 +172,7 @@
             <div class="pregunta-container">
                 <label for="habitantesR">¿Están de acuerdo en adoptar?</label>
                 <div class="opciones-SiNo">
-                    <input type="radio" id="habitantesRSi" name="habitantesR" value="S">
+                    <input type="radio" id="habitantesRSi" name="habitantesR" value="S" required>
                     <label for="habitantesRSi">Sí</label>
                     <input type="radio" id="habitantesRNo" name="habitantesR" value="N">
                     <label for="habitantesRNo">No</label>
@@ -562,7 +562,7 @@
             fotoContenedor.classList.add('foto');
 
             var fotoElemento = document.createElement('img');
-            fotoElemento.id = 'foto' + index;
+            fotoElemento.id = 'fotoMascotaFormulario' + index;
             fotoElemento.classList.add('fotoPreview');
             fotoElemento.src = campos[5];
             fotoElemento.alt = 'Foto de la mascota';
@@ -885,9 +885,9 @@
         var anio = fecha.getFullYear();
         var fechaActual = dia + '/' + mes + '/' + anio;
         document.getElementById('fecha').innerText = fechaActual;
-    }
-cargarFecha();
-    
+        }
+    cargarFecha();
+
     const swiper = new Swiper('.swiper-container', {
         loop: false,
         slidesPerView: 2,
