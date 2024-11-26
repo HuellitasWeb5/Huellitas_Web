@@ -113,7 +113,7 @@
     };
 
     const swiper = new Swiper('.swiper-container', {
-        loop: true,
+        loop: false,
         slidesPerView: 3, // ayuda a mostrarme  4 tarjetas a la vez
         spaceBetween: 10,
         navigation: {

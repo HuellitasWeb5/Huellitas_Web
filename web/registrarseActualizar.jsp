@@ -90,5 +90,5 @@
 %>
 
 <script type="text/javascript">
-    document.location = "index-InicioSesion.jsp"
+    document.location = "index-InicioSesion.jsp";
 </script>
