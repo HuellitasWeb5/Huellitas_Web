@@ -6,6 +6,8 @@
 <%@page import="java.io.File"%>
 <%@page import="org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload"%>
 <%@page import="java.util.HashMap"%>
+<%@ page import="org.apache.commons.fileupload.*" %>
+<%@ page import="org.apache.commons.io.*" %>
 <%@page import="java.util.Map"%>
 <%@page import="clases.Apadrinamiento"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
