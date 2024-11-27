@@ -42,7 +42,7 @@
         listaAdopciones += "<div class='info-container'>";
         listaAdopciones += "<p><strong>NOMBRE:</strong> " + persona.getNombre() + "</p>";
         listaAdopciones += "<p><strong>IDENTIFICACIÓN:</strong> " + persona.getIdentificacion() + "</p>";
-        listaAdopciones += "<p><strong>CONTACTO:</strong> " + persona.getTelefono() + "</p>";
+        listaAdopciones += "<p><strong>TELÉFONO:</strong> " + persona.getTelefono() + "</p>";
         listaAdopciones += "<p><strong>DIRECCIÓN</strong> " + persona.getDireccion() + "</p>";
         listaAdopciones += "</div>";
         listaAdopciones += "</div>";
