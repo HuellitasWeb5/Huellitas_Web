@@ -40,7 +40,7 @@
         // Información de la persona con su foto
         listaApadrinamiento += "<div style='display: flex; margin-bottom: 20px;'>";
         listaApadrinamiento += "<div style='margin-right: 20px;'>";
-        listaApadrinamiento += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' style='width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 5px solid #05af8b;'/>";
+        listaApadrinamiento += "<img src='presentacion/clientes/" + persona.getFoto() + "' alt='Foto de " + persona.getNombre() + "' style='width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 5px solid #05af8b;'/>";
 
         listaApadrinamiento += "</div>";
 
@@ -55,13 +55,13 @@
         // Información de la mascota con su foto
         listaApadrinamiento += "<div style='display: flex; margin-bottom: 20px;'>";
         listaApadrinamiento += "<div style='margin-right: 20px;'>";
-        listaApadrinamiento += "<img src='presentacion/mascota/" + mascota.getFoto() + "' alt='Foto de " + mascota.getNombre() + "' style='width: 170px; height: 170px; border-radius: 50%; object-fit: cover; border: 5px solid #05af8b;'/>";
+        listaApadrinamiento += "<img src='presentacion/mascota/" + mascota.getFoto() + "' alt='Foto de " + mascota.getNombre() + "' style='width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 5px solid #05af8b;'/>";
         listaApadrinamiento += "</div>";
 
         listaApadrinamiento += "<div>";
         listaApadrinamiento += "<p><strong>Nombre:</strong> " + mascota.getNombre() + "</p>";
         listaApadrinamiento += "<p><strong>Identificación:</strong> " + mascota.getCodigo() + "</p>";
-        listaApadrinamiento += "<p><strong>Edad:</strong> " + mascota.getEdad() + " años</p>";
+        listaApadrinamiento += "<p><strong>Edad:</strong> " + mascota.getEdad() + "</p>";
         listaApadrinamiento += "<p><strong>C. Especiales:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
         listaApadrinamiento += "</div>";
         listaApadrinamiento += "</div>";

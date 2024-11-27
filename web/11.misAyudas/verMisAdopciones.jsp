@@ -43,6 +43,7 @@
         listaAdopciones += "<p><strong>NOMBRE:</strong> " + persona.getNombre() + "</p>";
         listaAdopciones += "<p><strong>IDENTIFICACIÓN:</strong> " + persona.getIdentificacion() + "</p>";
         listaAdopciones += "<p><strong>CONTACTO:</strong> " + persona.getTelefono() + "</p>";
+        listaAdopciones += "<p><strong>DIRECCIÓN</strong> " + persona.getDireccion() + "</p>";
         listaAdopciones += "</div>";
         listaAdopciones += "</div>";
 
@@ -54,7 +55,7 @@
         listaAdopciones += "<div class='info-container'>";
         listaAdopciones += "<p><strong>NOMBRE:</strong> " + mascota.getNombre() + "</p>";
         listaAdopciones += "<p><strong>IDENTIFICACIÓN:</strong> " + mascota.getCodigo() + "</p>";
-        listaAdopciones += "<p><strong>EDAD:</strong> " + mascota.getEdad() + " años</p>";
+        listaAdopciones += "<p><strong>EDAD:</strong> " + mascota.getEdad() + "</p>";
         listaAdopciones += "<p><strong>C.ESPECIALES:</strong> " + mascota.getCuidadosEspeciales() + "</p>";
         listaAdopciones += "</div>";
         listaAdopciones += "</div>";
