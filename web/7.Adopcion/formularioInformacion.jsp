@@ -460,6 +460,7 @@
         const fechaNacimiento = document.getElementById('fechaNacimientoFormulario').value;
         const genero = document.getElementById('generoFormulario').value;
         const cuidadosEspeciales = document.getElementById('cuidadosEspecialesFormulario').value;
+        const foto = document.getElementById('fotoMascotaFormulario').src
 
         if (codigoMascota === '' || nombreMascota === '' || fechaNacimiento === '' || genero === '' || cuidadosEspeciales === '') {
             alert('Por favor, completa todos los campos antes de agregar la mascota.');
@@ -474,7 +475,7 @@
             codigosMascotas.value += "||";
         }
 
-        const detallesMascota = codigoMascota + "|" + nombreMascota + "|" + fechaNacimiento + "|" + genero + "|" + cuidadosEspeciales;
+        const detallesMascota = codigoMascota + "|" + nombreMascota + "|" + fechaNacimiento + "|" + genero + "|" + cuidadosEspeciales + "|" + foto;
 
         formularioInfo.value += detallesMascota;
         codigosMascotas.value += detallesMascota;
@@ -562,7 +563,7 @@
             fotoContenedor.classList.add('foto');
 
             var fotoElemento = document.createElement('img');
-            fotoElemento.id = 'fotoMascotaFormulario' + index;
+            fotoElemento.id = 'foto' + index;
             fotoElemento.classList.add('fotoPreview');
             fotoElemento.src = campos[5];
             fotoElemento.alt = 'Foto de la mascota';
@@ -608,7 +609,15 @@
             contenedor.appendChild(tarjeta);
         });
     }
-
+    
+    function limpiarCamposFormulario() {
+        document.getElementById("nombreMascotaFormulario").value = '';
+        document.getElementById("fechaNacimientoFormulario").value = '';
+        document.getElementById("generoFormulario").value = '';
+        document.getElementById("cuidadosEspecialesFormulario").value = '';
+        document.getElementById("fotoMascotaFormulario").src = '';
+    }
+    
     // BUSCAR PERSONA
 
     var vectorPersonas = new Array();
@@ -785,17 +794,9 @@
             document.getElementById("fechaNacimientoFormulario").value = '';
             document.getElementById("generoFormulario").value = '';
             document.getElementById("cuidadosEspecialesFormulario").value = '';
-            document.getElementById("fotoPreview").src = '';
+            document.getElementById("fotoMascotaFormulario").src = '';
         }
     });
-
-    function limpiarCamposFormulario() {
-        document.getElementById("nombreMascotaFormulario").value = '';
-        document.getElementById("fechaNacimientoFormulario").value = '';
-        document.getElementById("generoFormulario").value = '';
-        document.getElementById("cuidadosEspecialesFormulario").value = '';
-        document.getElementById("fotoPreview").src = '';
-    }
 
     // AGREGAR MASCOTA A LA ADOPCION
 
@@ -874,6 +875,7 @@
         document.getElementById('fechaNacimientoFormulario').value = '';
         document.getElementById('generoFormulario').value = '';
         document.getElementById('cuidadosEspecialesFormulario').value = '';
+        document.getElementById('fotoMascotaFormulario').src = '';
     }
 
     // CARGAR FECHA
