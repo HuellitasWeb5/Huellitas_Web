@@ -1,15 +1,13 @@
 <%@page import="clases.Adopcion"%>
-<%@ page import="org.apache.tomcat.util.http.fileupload.FileItem"%>
-<%@ page import="java.util.Iterator"%>
-<%@ page import="java.util.List"%>
-<%@ page import="org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext"%>
-<%@ page import="org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory"%>
-<%@ page import="org.apache.commons.fileupload.*" %>
-<%@ page import="org.apache.commons.io.*" %>
-<%@ page import="java.io.File"%>
-<%@ page import="org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload"%>
-<%@ page import="java.util.Map"%>
-<%@ page import="java.util.HashMap"%>
+<%@page import="org.apache.commons.fileupload.servlet.ServletRequestContext"%>
+<%@page import="org.apache.commons.fileupload.FileItem"%>
+<%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
+<%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="java.io.File"%>
 <%@ page import="clases.FormularioDeInformacion"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
