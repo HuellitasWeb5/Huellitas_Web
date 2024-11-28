@@ -41,11 +41,10 @@
         lista += "</div>";
 
         lista += "<div>";
-        lista += "<p><strong>Nombre:</strong> " + persona.getNombre() + "</p>";
-        lista += "<p><strong>Identificación:</strong> " + persona.getIdentificacion() + "</p>";
-        lista += "<p><strong>Teléfono:</strong> " + persona.getTelefono() + "</p>";
-        lista += "<p><strong>Ubicación:</strong> " + persona.getResidencia() + "-" + persona.getDireccion() + "</p>";
-        lista += "<p><strong>Correo:</strong> " + persona.getEmail() + "</p>";
+        lista += "<p><strong>Nombre:</strong><br> " + persona.getNombre() + "</p>";
+        lista += "<p><strong>Identificación:</strong><br> " + persona.getIdentificacion() + "</p>";
+        lista += "<p><strong>Teléfono:</strong><br> " + persona.getTelefono() + "</p>";
+        lista += "<p><strong>Dirección:</strong><br> " + persona.getResidencia() + " <br> " + persona.getDireccion() + "</p>";
         lista += "</div>";
         lista += "</div>";
 

@@ -172,7 +172,7 @@
             <div class="pregunta-container">
                 <label for="habitantesR">¿Están de acuerdo en adoptar?</label>
                 <div class="opciones-SiNo">
-                    <input type="radio" id="habitantesRSi" name="habitantesR" value="S">
+                    <input type="radio" id="habitantesRSi" name="habitantesR" value="S" required>
                     <label for="habitantesRSi">Sí</label>
                     <input type="radio" id="habitantesRNo" name="habitantesR" value="N">
                     <label for="habitantesRNo">No</label>
@@ -460,6 +460,7 @@
         const fechaNacimiento = document.getElementById('fechaNacimientoFormulario').value;
         const genero = document.getElementById('generoFormulario').value;
         const cuidadosEspeciales = document.getElementById('cuidadosEspecialesFormulario').value;
+        const foto = document.getElementById('fotoMascotaFormulario').src
 
         if (codigoMascota === '' || nombreMascota === '' || fechaNacimiento === '' || genero === '' || cuidadosEspeciales === '') {
             alert('Por favor, completa todos los campos antes de agregar la mascota.');
@@ -474,7 +475,7 @@
             codigosMascotas.value += "||";
         }
 
-        const detallesMascota = codigoMascota + "|" + nombreMascota + "|" + fechaNacimiento + "|" + genero + "|" + cuidadosEspeciales;
+        const detallesMascota = codigoMascota + "|" + nombreMascota + "|" + fechaNacimiento + "|" + genero + "|" + cuidadosEspeciales + "|" + foto;
 
         formularioInfo.value += detallesMascota;
         codigosMascotas.value += detallesMascota;
@@ -608,7 +609,15 @@
             contenedor.appendChild(tarjeta);
         });
     }
-
+    
+    function limpiarCamposFormulario() {
+        document.getElementById("nombreMascotaFormulario").value = '';
+        document.getElementById("fechaNacimientoFormulario").value = '';
+        document.getElementById("generoFormulario").value = '';
+        document.getElementById("cuidadosEspecialesFormulario").value = '';
+        document.getElementById("fotoMascotaFormulario").src = '';
+    }
+    
     // BUSCAR PERSONA
 
     var vectorPersonas = new Array();
@@ -785,17 +794,9 @@
             document.getElementById("fechaNacimientoFormulario").value = '';
             document.getElementById("generoFormulario").value = '';
             document.getElementById("cuidadosEspecialesFormulario").value = '';
-            document.getElementById("fotoPreview").src = '';
+            document.getElementById("fotoMascotaFormulario").src = '';
         }
     });
-
-    function limpiarCamposFormulario() {
-        document.getElementById("nombreMascotaFormulario").value = '';
-        document.getElementById("fechaNacimientoFormulario").value = '';
-        document.getElementById("generoFormulario").value = '';
-        document.getElementById("cuidadosEspecialesFormulario").value = '';
-        document.getElementById("fotoPreview").src = '';
-    }
 
     // AGREGAR MASCOTA A LA ADOPCION
 
@@ -874,6 +875,7 @@
         document.getElementById('fechaNacimientoFormulario').value = '';
         document.getElementById('generoFormulario').value = '';
         document.getElementById('cuidadosEspecialesFormulario').value = '';
+        document.getElementById('fotoMascotaFormulario').src = '';
     }
 
     // CARGAR FECHA
@@ -885,9 +887,9 @@
         var anio = fecha.getFullYear();
         var fechaActual = dia + '/' + mes + '/' + anio;
         document.getElementById('fecha').innerText = fechaActual;
-    }
-cargarFecha();
-    
+        }
+    cargarFecha();
+
     const swiper = new Swiper('.swiper-container', {
         loop: false,
         slidesPerView: 2,
