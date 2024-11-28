@@ -3,18 +3,15 @@
     Created on : 28/08/2024, 09:13:23 AM
     Author     : URB
 --%>
-<%@page import="java.util.UUID"%>
-<%@page import="org.apache.tomcat.util.http.fileupload.FileItem"%>
-<%@page import="java.util.Iterator"%>
-<%@page import="java.util.List"%>
-<%@ page import="org.apache.commons.fileupload.*" %>
-<%@ page import="org.apache.commons.io.*" %>
-<%@page import="org.apache.tomcat.util.http.fileupload.servlet.ServletRequestContext"%>
-<%@page import="org.apache.tomcat.util.http.fileupload.disk.DiskFileItemFactory"%>
-<%@page import="java.io.File"%>
-<%@page import="org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload"%>
+<%@page import="org.apache.commons.fileupload.servlet.ServletRequestContext"%>
+<%@page import="org.apache.commons.fileupload.FileItem"%>
+<%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
+<%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="java.io.File"%>
 <%@page import="clases.Mascota"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
@@ -23,34 +20,38 @@
 %>
 <%
     boolean subioArchivo = false;
-    Map<String, String> variables = new HashMap<String, String>(); //aqui se almacenan los datos enviados por el formulario
+    Map<String, String> variables = new HashMap<>(); // Almacena los datos enviados por el formulario
     boolean isMultipart = ServletFileUpload.isMultipartContent(request);
+
     if (!isMultipart) {
-        //no se pasa por el formulario que corresponde a eliminar
+        // Si no es un formulario con archivo adjunto
         variables.put("accion", request.getParameter("accion"));
         variables.put("codigo", request.getParameter("codigo"));
     } else {
-        //configuraciones para subir el archivo 
+        // Configuraciones para subir el archivo
         String rutaActual = getServletContext().getRealPath("/");
         out.print(rutaActual);
         File destino = new File(rutaActual + "/presentacion/mascota/");
         DiskFileItemFactory factory = new DiskFileItemFactory(1024 * 1024, destino);
         ServletFileUpload upload = new ServletFileUpload(factory);
-        File archivo = null;
 
         ServletRequestContext origen = new ServletRequestContext(request);
 
-        //para recorrer los elementos enviados por el formulario
-        List elementosFormulario = upload.parseRequest(origen);
-        Iterator iterador = elementosFormulario.iterator();
+        // Recorremos los elementos enviados por el formulario
+        List<FileItem> elementosFormulario = upload.parseRequest(origen);
+        Iterator<FileItem> iterador = elementosFormulario.iterator();
+
         while (iterador.hasNext()) {
-            FileItem elemento = (FileItem) iterador.next();
+            FileItem elemento = iterador.next();
             if (elemento.isFormField()) {
+                // Campo normal del formulario
                 out.print(elemento.getFieldName() + " = " + elemento.getString() + "<br>");
                 variables.put(elemento.getFieldName(), elemento.getString());
             } else {
+                // Campo de archivo
                 out.print(elemento.getFieldName() + " = " + elemento.getName() + "<br>");
                 variables.put(elemento.getFieldName(), elemento.getName());
+
                 if (!elemento.getName().equals("")) {
                     subioArchivo = true;
                     elemento.write(new File(destino, elemento.getName()));
@@ -60,6 +61,7 @@
         }
     }
 
+    // Creamos el objeto Mascota y asignamos los valores
     Mascota mascota = new Mascota();
     mascota.setCodigo(variables.get("codigo"));
     mascota.setNombre(variables.get("nombre"));
@@ -72,6 +74,7 @@
     mascota.setEstado(variables.get("estado"));
     mascota.setDescripcion(variables.get("descripcion"));
 
+    // Acciones según el formulario
     switch (variables.get("accion")) {
         case "Adicionar":
             mascota.grabar();
