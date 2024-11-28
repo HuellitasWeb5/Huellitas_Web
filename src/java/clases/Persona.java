@@ -218,7 +218,7 @@ public class Persona {
 
     public boolean grabar() {
 
-        String cadenaSQL = "insert into Persona(identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave) "
+        String cadenaSQL = "insert into persona(identificacion,nombre,genero,fechaNacimiento,email,telefono,direccion,residencia,foto,tipo,clave) "
                 + "values ('" + identificacion + "', '" + nombre + "','" + genero + "','" + fechaNacimiento + "', '" + email + "',"
                 + " '" + telefono + "','" + direccion + "','" + residencia + "','" + foto + "','" + tipo + "'," + this.getClave() + ")";
         return ConectorBD.ejecutarQuery(cadenaSQL);
@@ -233,7 +233,7 @@ public class Persona {
     }
 
     public boolean eliminar() {
-        String cadenaSQL = "delete from Persona where identificacion=" + identificacion;
+        String cadenaSQL = "delete from persona where identificacion=" + identificacion;
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
