@@ -13,7 +13,6 @@
 <%@page import="java.util.List"%>
 <%@page import="java.io.File"%>
 <%@page import="clases.Persona"%>
-<%@page import="clases.Persona"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     boolean subioArchivo = false;
@@ -69,6 +68,17 @@
     usuarioActual.setFoto(variables.get("foto"));
     usuarioActual.setTipo("C");
     usuarioActual.setClave(variables.get("clave"));
+    
+
+    String claveActual = variables.get("claveActual");
+    String claveActualHash = "md5('" + claveActual + "')"; // Asegúrate de que la contraseña se encripte de la misma manera que en la base de datos
+
+    // Verificar si la contraseña actual es correcta
+    Persona personaVerificada = Persona.validar(usuarioActual.getIdentificacion(), claveActual);
+    if (personaVerificada == null) {
+        out.print("<script>alert('La contraseña actual es incorrecta.'); window.history.back();</script>");
+        return; // Detener la ejecución si la contraseña es incorrecta
+    }
 
     switch (variables.get("accion")) {
         case "Modificar":
