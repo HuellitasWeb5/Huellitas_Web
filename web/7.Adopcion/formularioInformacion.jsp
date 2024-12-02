@@ -372,8 +372,8 @@
             <br><input type="file" id="fotoRecibo" name="fotoRecibo"  accept="image/*" required>
             <br>
 
-            <label for="fotoVivienda">(Opcional) Por favor, cargue una foto del espacio donde vivirá la mascota (puede incluir foto de la cama, alimento o accesorios):</label>
-            <br><input type="file" id="fotoVivienda" name="fotoVivienda"  accept="image/*">
+            <label for="fotoVivienda">Por favor, cargue una foto del espacio destinado para la mascota. Puede ser una imagen de su cama o una vista general de su hogar:</label>
+            <br><input type="file" id="fotoVivienda" name="fotoVivienda"  accept="image/*" required>
             <br>
 
             <label for="descripcion">Descripción adicional:</label> 

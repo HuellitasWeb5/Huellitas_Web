@@ -1,3 +1,4 @@
+
 <%@page import="com.itextpdf.text.Phrase"%>
 <%@page import="com.itextpdf.text.BaseColor"%>
 <%@page import="com.itextpdf.text.FontFactory"%>
@@ -108,7 +109,7 @@
         fechaParrafo.add(new Phrase("Fecha de solicitud: ", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));  // Título en negrita
         fechaParrafo.add(new Phrase(formulario.getFecha(), FontFactory.getFont(FontFactory.HELVETICA, 12)));  // Contenido en texto normal
         documento.add(fechaParrafo);
-        
+
         Paragraph estado = new Paragraph();
         estado.add(new Phrase("Estado: ", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));  // Título en negrita
         estado.add(new Phrase(formulario.getEstado(), FontFactory.getFont(FontFactory.HELVETICA, 12)));  // Contenido en texto normal
@@ -116,8 +117,7 @@
         documento.add(new Paragraph("\n"));
 
         // Información del adoptante
-
-        documento.add(new Paragraph("Adoptante:\n\n"));
+        documento.add(new Paragraph("Adoptante:\n\n", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
 
         PdfPTable tablaAdoptante = createStyledTable(2);
         tablaAdoptante.addCell(createTitleCell("Identificación:"));
@@ -138,7 +138,7 @@
         documento.add(new Paragraph("\n"));
 
         // Información de la mascota
-        documento.add(new Paragraph("Mascota:\n\n"));
+        documento.add(new Paragraph("Mascota:\n\n", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
 
         PdfPTable tablaMascota = createStyledTable(2);
         tablaMascota.addCell(createTitleCell("Código:"));
@@ -156,7 +156,7 @@
         documento.add(tablaMascota);
         documento.add(new Paragraph("\n"));
 
-        documento.add(new Paragraph("Referencias Familiares:\n\n"));
+        documento.add(new Paragraph("Referencias Familiares:\n\n", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
 
         PdfPTable tablaRefFamiliares = createStyledTable(2);
         tablaRefFamiliares.addCell(createTitleCell("Nombre:"));
@@ -182,7 +182,7 @@
         documento.add(tablaRefFamiliares2);
         documento.add(new Paragraph("\n"));
 
-        documento.add(new Paragraph("Referencias Personales:\n\n"));
+        documento.add(new Paragraph("Referencias Personales:\n\n", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
 
         PdfPTable tablaRefPersonales = createStyledTable(2);
         tablaRefPersonales.addCell(createTitleCell("Nombre:"));
@@ -208,7 +208,7 @@
         documento.add(tablaRefPersonales2);
         documento.add(new Paragraph("\n"));
 
-        documento.add(new Paragraph("Detalles del formulario:\n\n"));
+        documento.add(new Paragraph("Detalles del formulario:\n\n", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
 
         PdfPTable tablaFormulario = createStyledTable(2);
 
@@ -271,7 +271,9 @@
 
         documento.newPage();
 
-        documento.add(new Paragraph("Imágenes del formulario:\n\n"));
+        Paragraph titulo = new Paragraph("IMÁGENES DEL FORMULARIO\n\n",FontFactory.getFont(FontFactory.HELVETICA_BOLD, 13));
+        titulo.setAlignment(Element.ALIGN_CENTER); 
+        documento.add(titulo);
 
         // Imagen de la cédula
         if (formulario.getFotoCedula() != null) {
@@ -298,7 +300,7 @@
             String rutaVivienda = application.getRealPath("/uploads/" + formulario.getFotoVivienda());
             Image imagenVivienda = Image.getInstance(rutaVivienda);
             imagenVivienda.scaleToFit(500, 480);
-            documento.add(new Paragraph("Foto adicional:"));
+            documento.add(new Paragraph("Ambiente preparado para la mascota:"));
             documento.add(imagenVivienda);
             documento.newPage();
         }
@@ -310,4 +312,3 @@
         out.println("Error al generar el PDF: " + e.getMessage());
     }
 %>
-
