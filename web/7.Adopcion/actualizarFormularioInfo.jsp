@@ -196,9 +196,7 @@
 %>
 
 <script type="text/javascript">
-    if ("<%= accion %>" === "Adicionar" && "<%= nombreCliente %>" === "cliente") {
-        document.location = "principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp";  
-    } else if ("<%= accion %>" !== "Aceptar") {
+    if ("<%= accion %>" !== "Aceptar") {
         document.location = "principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp&estado=Pendiente";  
     } else {
         document.location = "principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp";  
