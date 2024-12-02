@@ -4,9 +4,12 @@
     Author     : Angie
 --%>
 
-
-<%@page import="javax.mail.internet.MimeMultipart"%>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.DriverManager"%>
 <%@page import="javax.mail.MessagingException"%>
+<%@page import="javax.mail.internet.MimeMultipart"%>
 <%@page import="javax.mail.Transport"%>
 <%@page import="javax.mail.Multipart"%>
 <%@page import="javax.mail.internet.MimeBodyPart"%>
@@ -14,13 +17,9 @@
 <%@page import="javax.mail.internet.InternetAddress"%>
 <%@page import="javax.mail.internet.MimeMessage"%>
 <%@page import="javax.mail.Session"%>
-<%@page import="java.net.PasswordAuthentication"%>
-<%@page import="java.net.Authenticator"%>
 <%@page import="java.util.Properties"%>
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.ResultSet"%>
-<%@page import="java.sql.PreparedStatement"%>
-<%@page import="java.sql.Connection"%>
+<%@page import="javax.mail.Authenticator"%>
+<%@page import="javax.mail.PasswordAuthentication"%>
 <link rel="stylesheet" href="../presentacion/styleContra.css"> <!-- Verifica la ruta -->
 
 <%
@@ -94,12 +93,12 @@
             // Autenticación
             Authenticator auth = new Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(correoEnvia, claveCorreo);
+                    return new PasswordAuthentication(correoEnvia,claveCorreo);
                 }
             };
 
             // Crear la sesión de correo con autenticación
-            Session mailSession = Session.getInstance(properties, auth);
+            Session mailSession = Session.getInstance(properties,auth);
 
             try {
                 MimeMessage mimeMessage = new MimeMessage(mailSession);
