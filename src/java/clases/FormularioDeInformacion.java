@@ -523,7 +523,11 @@ public class FormularioDeInformacion {
     }
 
     public String getFotoCedula() {
-        return fotoCedula == null ? "" : fotoCedula;
+        String resultado = fotoCedula;
+        if (fotoCedula == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setFotoCedula(String fotoCedula) {
@@ -531,7 +535,11 @@ public class FormularioDeInformacion {
     }
 
     public String getFotoRecibo() {
-        return fotoRecibo == null ? "" : fotoRecibo;
+        String resultado = fotoRecibo;
+        if (fotoRecibo == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setFotoRecibo(String fotoRecibo) {
@@ -539,7 +547,11 @@ public class FormularioDeInformacion {
     }
 
     public String getFotoVivienda() {
-        return fotoVivienda == null ? "" : fotoVivienda;
+        String resultado = fotoVivienda;
+        if (fotoVivienda == null) {
+            resultado = "";
+        }
+        return resultado;
     }
 
     public void setFotoVivienda(String fotoVivienda) {

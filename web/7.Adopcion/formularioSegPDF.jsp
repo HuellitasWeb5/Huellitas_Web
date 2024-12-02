@@ -116,7 +116,7 @@
         documento.add(new Paragraph("\n"));
 
         // Información del adoptante
-        documento.add(new Paragraph("Adoptante:\n\n"));
+        documento.add(new Paragraph("Adoptante:\n\n",FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
 
         PdfPTable tablaAdoptante = createStyledTable(2);
         tablaAdoptante.addCell(createTitleCell("Identificación:"));
@@ -133,7 +133,7 @@
         documento.add(new Paragraph("\n"));
 
         // Información de la mascota
-        documento.add(new Paragraph("Mascota:\n\n"));
+        documento.add(new Paragraph("Mascota:\n\n",FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
 
         PdfPTable tablaMascota = createStyledTable(2);
         tablaMascota.addCell(createTitleCell("Código:"));
@@ -152,7 +152,7 @@
         documento.add(new Paragraph("\n"));
 
         // Contenido del formulario (evaluaciones)
-        documento.add(new Paragraph("Evaluación del estado y bienestar de la Mascota:\n\n"));
+        documento.add(new Paragraph("Evaluación del estado y bienestar de la Mascota:\n\n",FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));;
 
         PdfPTable tablaPreguntas = createStyledTable(2);
 
@@ -177,9 +177,9 @@
         tablaPreguntas.addCell(createContentCell((calificacion + " estrellas")));
 
         documento.add(tablaPreguntas);
-        documento.add(new Paragraph("\n"));
+        documento.add(new Paragraph("\n",FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)));
         
-        Paragraph tituloFoto = new Paragraph("Foto actual de la mascota",
+        Paragraph tituloFoto = new Paragraph("FOTO DEL PELUDITO",
         FontFactory.getFont(FontFactory.HELVETICA_BOLD, 12)); 
         tituloFoto.setAlignment(Element.ALIGN_CENTER);
         tituloFoto.setSpacingBefore(20);
@@ -188,8 +188,8 @@
 
         // Imagen de la mascota
         if (formulario.getFoto() != null) {
-            String rutaCedula = application.getRealPath("/uploads/" + formulario.getFoto());
-            Image imagenMascota = Image.getInstance(rutaCedula);
+            String rutaMascota = application.getRealPath("/uploads/" + formulario.getFoto());
+            Image imagenMascota = Image.getInstance(rutaMascota);
             imagenMascota.scaleToFit(500, 480);
             documento.add(imagenMascota);
             documento.newPage();
