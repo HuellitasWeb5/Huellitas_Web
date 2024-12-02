@@ -15,6 +15,7 @@
 <%
     // Inicializar variables
     boolean subioArchivo = false;
+    String tipoUsuario = (String) session.getAttribute("tipoUsuario");
     Map<String, String> variables = new HashMap<String, String>();
     boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 
@@ -196,7 +197,9 @@
 %>
 
 <script type="text/javascript">
-    if ("<%= accion %>" !== "Aceptar") {
+    if ("<%= accion %>" === "Adicionar" && "<%= tipoUsuario %>" === "C") {
+        document.location = "principal.jsp?CONTENIDO=3.Mascotas/mascotas.jsp";  
+    } else if ("<%= accion %>" !== "Aceptar") {
         document.location = "principal.jsp?CONTENIDO=7.Adopcion/verFormularioInfo.jsp&estado=Pendiente";  
     } else {
         document.location = "principal.jsp?CONTENIDO=7.Adopcion/adopciones.jsp";  

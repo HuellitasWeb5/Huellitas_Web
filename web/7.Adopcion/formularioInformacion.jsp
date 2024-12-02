@@ -446,10 +446,11 @@
         var telefono = personas[indicePersona][2];
         var direccion = personas[indicePersona][3];
         var residencia = personas[indicePersona][4];
+        var foto = personas[indicePersona][6];
         document.getElementById("nombre").value = nombre;
         document.getElementById("telefono").value = telefono;
         document.getElementById("direccion").value = direccion;
-        document.getElementById("residencia").value = residencia;
+        document.getElementById("foto").src = "presentacion/clientes/" + foto;
     }
 
     // ADICIONAR LA NUEVA MASCOTA 
@@ -568,7 +569,7 @@
             fotoElemento.src = campos[5];
             fotoElemento.alt = 'Foto de la mascota';
             fotoElemento.style.width = '100px';
-            fotoElemento.style.height = 'auto';
+            fotoElemento.style.height = '100px';
 
             fotoContenedor.appendChild(fotoElemento);
 
