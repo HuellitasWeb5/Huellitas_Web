@@ -1,28 +1,25 @@
 <%-- 
-    Document   : Recuperar ContraseÃ±a
+    Document   : Recuperar Contraseña
     Created on : 24/10/2024, 14:22:31
     Author     : Angie
 --%>
 
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="org.apache.commons.fileupload.*" %>
-<%@ page import="org.apache.commons.io.*" %>
-<%@ page import="java.sql.Connection" %>
-<%@ page import="java.sql.DriverManager" %>
-<%@ page import="java.sql.PreparedStatement" %>
-<%@ page import="java.sql.ResultSet" %>
-<%@ page import="java.util.Properties" %>
-<%@ page import="javax.mail.Message" %>
-<%@ page import="javax.mail.Session" %>
-<%@ page import="javax.mail.Transport" %>
-<%@ page import="javax.mail.internet.InternetAddress" %>
-<%@ page import="javax.mail.internet.MimeBodyPart" %>
-<%@ page import="javax.mail.internet.MimeMessage" %>
-<%@ page import="javax.mail.internet.MimeMultipart" %>
-<%@ page import="javax.mail.Multipart" %>
-<%@ page import="javax.mail.MessagingException" %>
-<%@ page import="javax.mail.PasswordAuthentication" %>
-<%@ page import="javax.mail.Authenticator" %>
+<%@page import="java.sql.Connection"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="javax.mail.MessagingException"%>
+<%@page import="javax.mail.internet.MimeMultipart"%>
+<%@page import="javax.mail.Transport"%>
+<%@page import="javax.mail.Multipart"%>
+<%@page import="javax.mail.internet.MimeBodyPart"%>
+<%@page import="javax.mail.Message"%>
+<%@page import="javax.mail.internet.InternetAddress"%>
+<%@page import="javax.mail.internet.MimeMessage"%>
+<%@page import="javax.mail.Session"%>
+<%@page import="java.util.Properties"%>
+<%@page import="javax.mail.Authenticator"%>
+<%@page import="javax.mail.PasswordAuthentication"%>
 <link rel="stylesheet" href="../presentacion/styleContra.css"> <!-- Verifica la ruta -->
 
 <%
@@ -31,7 +28,7 @@
     if (request.getMethod().equalsIgnoreCase("POST")) {
         String identificacion = request.getParameter("identificacion");
 
-        // Consulta a la base de datos para obtener el correo y la contraseÃ±a asociada al identificacion
+        // Consulta a la base de datos para obtener el correo y la contraseña asociada al identificacion
         String correoDestino = null;
         String clave = null;
 
@@ -53,7 +50,7 @@
                 correoDestino = rs.getString("email");
                 clave = rs.getString("clave"); 
             } else {
-                mensaje = "NÃºmero de identificaciÃ³n no encontrado en la base de datos.";
+                mensaje = "Número de identificación no encontrado en la base de datos.";
             }
         } catch (Exception e) {
             mensaje = "Error en la base de datos: " + e.getMessage();
@@ -72,40 +69,40 @@
             }
         }
 
-        // Si se encontrÃ³ el correo y la clave, enviar el correo
+        // Si se encontró el correo y la clave, enviar el correo
         if (correoDestino != null && clave != null) {
             final String correoEnvia = "huellitasweb5@gmail.com";
             final String claveCorreo = "qfle glhu pqie lhlt";
-            String asunto = "RecuperaciÃ³n de contraseÃ±a";
-            String mensajeCorreo = "Â¡Hola! Tu cÃ³digo para iniciar sesiÃ³n es: " + clave + "\n\n"
-            + "Recuerda que tu contraseÃ±a estÃ¡ encriptada para mayor seguridad. "
-            + "Por favor, asegÃºrate de copiarla exactamente como aparece para evitar problemas al iniciar sesiÃ³n."
+            String asunto = "Recuperación de contraseña";
+            String mensajeCorreo = "¡Hola! Tu código para iniciar sesión es: " + clave + "\n\n"
+            + "Recuerda que tu contraseña está encriptada para mayor seguridad. "
+            + "Por favor, asegúrate de copiarla exactamente como aparece para evitar problemas al iniciar sesión."
             + "\n\n"
-            + "IMPORTANTE:Debes cambiar tu contraseÃ±a tan pronto como inicies sesiÃ³n, para garantizar aÃºn mÃ¡s tu seguridad."
+            + "IMPORTANTE:Debes cambiar tu contraseña tan pronto como inicies sesión, para garantizar aún más tu seguridad."
             + "\n\n"
-            + "Â¡Gracias por confiar en nosotros!";
+            + "¡Gracias por confiar en nosotros!";
 
 
-            // ConfiguraciÃ³n del servidor SMTP
+            // Configuración del servidor SMTP
             Properties properties = new Properties();
             properties.put("mail.smtp.host", "smtp.gmail.com");
             properties.put("mail.smtp.port", "587");
             properties.put("mail.smtp.starttls.enable", "true");
             properties.put("mail.smtp.auth", "true");
 
-            // AutenticaciÃ³n
+            // Autenticación
             Authenticator auth = new Authenticator() {
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(correoEnvia, claveCorreo);
+                    return new PasswordAuthentication(correoEnvia,claveCorreo);
                 }
             };
 
-            // Crear la sesiÃ³n de correo con autenticaciÃ³n
-            Session mailSession = Session.getInstance(properties, auth);
+            // Crear la sesión de correo con autenticación
+            Session mailSession = Session.getInstance(properties,auth);
 
             try {
                 MimeMessage mimeMessage = new MimeMessage(mailSession);
-                mimeMessage.setFrom(new InternetAddress(correoEnvia, "RecuperaciÃ³n de contraseÃ±a"));
+                mimeMessage.setFrom(new InternetAddress(correoEnvia, "Recuperación de contraseña"));
                 mimeMessage.setRecipients(Message.RecipientType.TO, InternetAddress.parse(correoDestino));
                 mimeMessage.setSubject(asunto);
 
@@ -134,7 +131,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Recuperar ContraseÃ±a</title>
+        <title>Recuperar Contraseña</title>
         <link rel="stylesheet" href="../presentacion/styleContra.css">
     </head>
     <body>
@@ -146,14 +143,14 @@
             <img src="../presentacion/imagenes/Logo.png" alt="Logo Derecho" class="logo logo-right">
         </div>
         <div class="container">
-            <h1 class="title">Recuperar ContraseÃ±a</h1>
+            <h1 class="title">Recuperar Contraseña</h1>
 
-            <!-- Formulario de recuperaciÃ³n -->
+            <!-- Formulario de recuperación -->
             <form action="" method="post">
-                <p class="subtitulo">Por favor, ingrese su nÃºmero de identificaciÃ³n.</p>
-                <p class="subtitulo">Le enviaremos un cÃ³digo de recuperaciÃ³n al correo electrÃ³nico asociado a su cuenta.</p>
+                <p class="subtitulo">Por favor, ingrese su número de identificación.</p>
+                <p class="subtitulo">Le enviaremos un código de recuperación al correo electrónico asociado a su cuenta.</p>
                 <div class="input-box">
-                    <label for="usuario">NÃºmero de identificaciÃ³n:</label>
+                    <label for="usuario">Número de identificación:</label>
                     <div class="icon-input">
                         <input type="text" name="identificacion" id="usuario" required>
                     </div>
@@ -163,7 +160,7 @@
                     <p id="mensaje" class="mensaje-error"><%= mensaje %></p>
                 <% } %>
 
-                <input type="submit" value="Recuperar ContraseÃ±a">
+                <input type="submit" value="Recuperar Contraseña">
             </form>
 
             <div class="volver">

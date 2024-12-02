@@ -1,13 +1,14 @@
-<%@page import="org.apache.commons.fileupload.servlet.ServletRequestContext"%>
+
+<%@page import="clases.Persona"%>
 <%@page import="org.apache.commons.fileupload.FileItem"%>
+<%@page import="java.util.Iterator"%>
 <%@page import="org.apache.commons.fileupload.disk.DiskFileItemFactory"%>
+<%@page import="java.util.List"%>
+<%@page import="org.apache.commons.fileupload.servlet.ServletRequestContext"%>
+<%@page import="java.io.File"%>
+<%@page import="java.util.Map"%>
 <%@page import="org.apache.commons.fileupload.servlet.ServletFileUpload"%>
 <%@page import="java.util.HashMap"%>
-<%@page import="java.util.Map"%>
-<%@page import="java.util.Iterator"%>
-<%@page import="java.util.List"%>
-<%@page import="java.io.File"%>
-<%@page import="clases.Persona"%>
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
     boolean subioArchivo = false;
