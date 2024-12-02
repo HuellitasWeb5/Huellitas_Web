@@ -27,7 +27,7 @@
 <link rel="icon" href="presentacion/imagenes/Logo.png" type="image/x-icon">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Huellitas Web</title>
-<link rel="shortcut icon" href="LogoPequeï¿½o.png" type="image/x-icon">
+<link rel="shortcut icon" href="LogoPequeÑo.png" type="image/x-icon">
 <link rel="stylesheet" href="Principal.css">
 <style>
     /* Estilo para los enlaces del menú */
