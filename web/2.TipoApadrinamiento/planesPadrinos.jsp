@@ -179,7 +179,7 @@ function cargarDatos(codigo) {
     
     
     const swiper = new Swiper('.swiper-container', {
-        loop: true,
+        loop: false,
         slidesPerView: 4, // Muestra 4 tarjetas a la vez
         spaceBetween: 10,
         navigation: {

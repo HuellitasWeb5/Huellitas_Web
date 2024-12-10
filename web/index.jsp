@@ -21,14 +21,13 @@
     }
 %>
 <!DOCTYPE html>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet"  href="presentacion/style-Index.css">
 <meta charset="UTF-8">
 <link rel="icon" href="presentacion/imagenes/Logo.png" type="image/x-icon">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Huellitas Web</title>
 <link rel="shortcut icon" href="LogoPequeÑo.png" type="image/x-icon">
-<link rel="stylesheet" href="Principal.css">
 <style>
     /* Estilo para los enlaces del menú */
     .navbar-nav .nav-item .nav-link {
@@ -66,9 +65,9 @@
         </nav>
 
         <section class="textos-header">
-            <h2>FUNDACION</h2>
-            <h1>VILLA ESPERANZA</h1>
-            <h2>Huellitas De Amor</h2>
+            <h2>FUNDACIÓN</h2>
+            <h1>DE LA PATA CON LOS PELUDOS</h1>
+            <h2>Albergue Villa Esperanza</h2>
         </section>
         <div class="wave" style="height: 150px; overflow: hidden;"><svg viewBox="0 0 500 150" preserveAspectRatio="none"
         style="height: 100%; width: 100%;" >
@@ -101,7 +100,6 @@
     </section>
     
     <h2 class="titulo">¡CONOCE MÁS DE NUESTROS PELUDIDITOS RESCATADOS!</h2>
-    <h2 class="titulo">NUESTRAS HISTORIAS</h2>
     <div class="cards">
         <div class="card">
             <img src="presentacion/mascota/perritoamca.PNG" >
@@ -137,90 +135,65 @@
         </div>
     </div>
 
-    <main>
-        <center>
-             <h2 class="titulo">¡Un poco mas de nosotros!</h2>
-            <iframe class="video-frame" width="700" height="600" src="https://www.youtube.com/embed/uUoWTZW3ugw?si=93vZ8npeOHSEsO11?autoplay=1" title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-        </center>
-    </main>
-
     <footer>
-        <div class="contenedor-footer">
-            <div class="contact-info">
-                <h4>
-                    <img src="presentacion/imagenes/whats.png" alt="Celular" width="24" height="24"> WhatsApp
+            <div class="contenedor-footer">
+                <div class="contact-info">
+                    <h6>
+                        <img src="presentacion/iconos/whatsApp.png" alt="Celular" width="24" height="24"> WhatsApp
 
-                </h4>
-                <p>   <a href="https://wa.me/573162562576" target="_blank" style="text-decoration: none; color: blue;">
-                        Número: 3162562576
-                    </a>
-                </p>
+                    </h6>
+                    <p>   <a href="https://wa.me/573162562576" target="_blank">
+                            3162562576
+                        </a>
+                    </p>
 
-                <p style="font-size: small; color: #000;">
-                    Haga clic en el enlace para ir directamente a whatsap
-                </p>
+                </div>
+                <div class="content-foo">
+                    <h6>
+                        <img src="presentacion/iconos/tiktok.png" alt="tiktok" width="24" height="24"> TikTok
+                    </h6>
+                    <p>
+                        <a href="https://www.tiktok.com/@villa.esperanza.28" target="_blank">
+                            villa.esperanza.28
+                        </a>
+                    </p>
+                </div>
+                <div class="content-foo">
+                    <h6>
+                        <img src="presentacion/iconos/facebook.png" alt="Facebook" width="24" height="24"> Facebook
+                    </h6>
+                    <p>
+                        <a href="https://www.facebook.com/share/imnHxwmHPePBDVvu/" target="_blank">
+                            Villa Esperanza
+                        </a>
+                    </p>
+                </div>
+
+                <div class="content-foo">
+                    <h6>
+                        <img src="presentacion/iconos/ubicacion.png" alt="Dirección" width="24" height="24"> Dirección
+                    </h6>
+                    <p>
+                        <a href="https://maps.app.goo.gl/SJvHhvZrxt8fKixj9" target="_blank">
+                            Parque Natural Chimayoy
+                        </a>
+                    </p>
+                </div>
+
+                <div class="content-foo">
+                    <h6>
+                        <img src="presentacion/iconos/mundo.png" alt="Ciudad" width="24" height="24"> Ciudad
+                    </h6>
+                    <p>
+                        <a href="https://maps.app.goo.gl/G3CdcyUxiZ2aXAvf9" target="_blank">
+                            Pasto, Nariño, Colombia 
+                        </a>
+                    </p>
+                </div>
             </div>
-
-            <div class="content-foo">
-                <h4>
-                    <img src="presentacion/imagenes/email.png" alt="Correo" width="24" height="24"> Correo electrónico
-                </h4>
-                <p>
-                    <a href="mailto:huellitasweb5@gmail.com" target="_blank" style="text-decoration: none; color: blue;">
-                        villaesperanza@gmail.com
-                    </a>
-                </p>
-                <p style="font-size: small; color: #000;">
-                    Haga clic en el enlace para enviar un correo
-                </p>
-            </div>
-
-            <div class="content-foo">
-                <h4>
-                    <img src="presentacion/imagenes/mapa.png" alt="Dirección" width="24" height="24"> Dirección
-                </h4>
-                <p>
-                    <a href="https://maps.app.goo.gl/SJvHhvZrxt8fKixj9" target="_blank" style="text-decoration: none; color: blue;">
-                        Albergue Villa Esperanza-Chimayoy
-                    </a>
-                </p>
-                <p style="font-size: small; color: #000;">
-                    Haga clic en el enlace para ver la ubicación
-                </p>
-            </div>
-
-            <div class="content-foo">
-                <h4>
-                    <img src="presentacion/imagenes/ciudad.png" alt="Ciudad" width="24" height="24"> Ciudad
-                </h4>
-                <p>
-                    <a href="https://maps.app.goo.gl/G3CdcyUxiZ2aXAvf9" target="_blank" style="text-decoration: none; color: blue;">
-                        Pasto, Nariño, Colombia
-                    </a>
-                </p>
-                <p style="font-size: small; color: #000;">
-                    Haga clic en el enlace para ver la ubicación
-                </p>
-            </div>
-
-            <div class="content-foo">
-                <h4>
-                    <img src="presentacion/imagenes/tiktok.png" alt="tiktok" width="24" height="24"> TikTok
-                </h4>
-                <p>
-                    <a href="https://www.tiktok.com/@villa.esperanza.28" target="_blank" style="text-decoration: none; color: blue;">
-                        villa.esperanza.28
-                    </a>
-                </p>
-                <p style="font-size: small; color: #000;">
-                    Haga clic en el enlace para ir a TikTok
-                </p>
-            </div>
-
-        </div>
-        <h2 class="titulo-final">&copy;HUELLITAS WEB</h2>
-    </footer>
+            <h2 class="titulo-final">&copy;HUELLITAS WEB</h2>
+              
+        </footer>
 </body>
 
 </html>

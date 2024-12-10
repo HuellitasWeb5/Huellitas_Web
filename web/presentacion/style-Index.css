@@ -91,22 +91,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 
 
-/* Estilo del footer */
-footer {
-    background: #4CAF50;
-    padding: 12px;
-    width: 100%;
-    text-align: center;
-    border-radius: 30px;
-}
-.contenedor-footer {
-    display: flex;
-    justify-content: space-evenly;
-    width: 95%;
-    margin: auto;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #000;
-}
 
 *{
     margin:0;
@@ -118,7 +102,7 @@ footer {
 
 body{
     font-family: 'Open Sans';
-       background: linear-gradient(to bottom right, #b2e0f7, #b2f7b2);
+       background: white;
 }
 
 .contenedor{
@@ -434,6 +418,93 @@ header .textos-header{
 .dropdown-item:focus {
     background-color: #26c330; /* Color de fondo al seleccionar */
     color: #ffffff; /* Color del texto al seleccionar */
+}
+
+/* Estilo del footer */
+.contenedor-footer h4 img {
+    margin-right: 7px; /* Espacio entre la imagen y el texto */
+    vertical-align: middle; /* Alinear la imagen con el texto */
+}
+
+footer {
+    background-color: rgba(62, 104, 102, 0.8);
+    padding: 8px;
+    width: 100%;
+    text-align: center;
+    backdrop-filter: blur(30px);
+
+}
+.contenedor-footer {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin: auto;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #012c2c;
+}
+
+footer a {
+    color: #012c2c;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+footer a:hover {
+    color: #3c463a;
+    font-weight: bold;
+}
+
+.titulo-final {
+    font-size: 15px;  /* Negrita */
+    color: black; /* Color del texto, puedes cambiarlo */
+    text-align: center; /* Centrar el texto */
+    margin-top: 10px; /* Fuente, ajusta según prefieras */
+}
+
+.transparent-navbar {
+    background-color: #eeffef; /* Fondo blanco con 80% de opacidad */
+    border-radius: 30px; /* Bordes redondeados */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+}
+
+.navbar-nav .nav-link, .dropdown-item {
+    font-size: 15px;  /* Aumenta el tamaño de las letras */
+    font-weight: bold; /* Letras en negrita */
+    color: #000;       /* Color negro */
+}
+
+.dropdown-menu {
+    display: none; /* Oculta el menú por defecto */
+    position: absolute; /* Posiciona el menú desplegable */
+    background-color: #eeffef; /* Color de fondo del menú */
+    border: 1px solid #eeffef; /* Borde del menú */
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block; /* Muestra el menú al pasar el mouse */
+}
+
+.dropdown-item {
+    color: #26c330; /* Color de los elementos del menú */
+    padding: 10px; /* Espaciado interno */
+}
+
+.dropdown-item:hover {
+    background-color: #26c330; /* Color de fondo al pasar el mouse */
+    color: #000; /* Color del texto al pasar el mouse */
+}
+
+.dropdown-item:focus {
+    background-color: #26c330; /* Color de fondo al seleccionar */
+    color: #ffffff; /* Color del texto al seleccionar */
+}
+
+h6 {
+    font-size: 22px;
+    color: black;
+    text-align: center;
+    margin: 5px 0;
 }
 
 /* Estilos responsivos */

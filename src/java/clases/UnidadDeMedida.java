@@ -27,7 +27,7 @@ public class UnidadDeMedida {
     }
 
     public UnidadDeMedida(String id) {
-        String cadenaSQL = "select id,nombre,notacion from UnidadDeMedida where id=" + id;
+        String cadenaSQL = "select id,nombre,notacion from unidadDeMedida where id=" + id;
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()) {
@@ -71,17 +71,17 @@ public class UnidadDeMedida {
     }
 
     public boolean grabar() {
-        String cadenaSQL = "insert into UnidadDeMedida (nombre,notacion) values ('" + this.nombre + "','" + this.notacion + "')";
+        String cadenaSQL = "insert into unidadDeMedida (nombre,notacion) values ('" + this.nombre + "','" + this.notacion + "')";
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
     public boolean modificar() {
-        String cadenaSQL = "update UnidadDeMedida set nombre='" + this.nombre + "',notacion='" + this.notacion + "' where id=" + this.id;
+        String cadenaSQL = "update unidadDeMedida set nombre='" + this.nombre + "',notacion='" + this.notacion + "' where id=" + this.id;
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
     public boolean eliminar() {
-        String cadenaSQL = "delete from UnidadDeMedida where id=" + this.id;
+        String cadenaSQL = "delete from unidadDeMedida where id=" + this.id;
         return ConectorBD.ejecutarQuery(cadenaSQL);
     }
 
@@ -98,7 +98,7 @@ public class UnidadDeMedida {
             orden = "";
         }
 
-        String cadenaSQL = "select id,nombre,notacion from UnidadDeMedida" + filtro + orden;
+        String cadenaSQL = "select id,nombre,notacion from unidadDeMedida" + filtro + orden;
         return ConectorBD.consultar(cadenaSQL);
     }
 

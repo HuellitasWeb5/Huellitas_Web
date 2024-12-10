@@ -36,11 +36,6 @@
         <link rel="stylesheet" href="recursos/swiper-bundle.min.css" />
 
         <title>HUELLITAS WEB</title>
-
-        <style>
-
-
-        </style>
     </head>
 
     <body>

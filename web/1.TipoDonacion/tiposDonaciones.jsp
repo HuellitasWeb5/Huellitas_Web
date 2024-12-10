@@ -166,7 +166,7 @@
     }
 
     const swiper = new Swiper('.swiper-container', {
-        loop: true,
+        loop: false,
         slidesPerView: 3,
         spaceBetween: 3,
         navigation: {
