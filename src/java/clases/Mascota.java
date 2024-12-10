@@ -218,7 +218,7 @@ public class Mascota {
            filtro= " ";
        }
        if (orden != null && orden != ""){
-           orden = " orden by " +orden;
+           orden = " order by " +orden;
        }else {
            orden = " ";
        }
