@@ -98,7 +98,7 @@ public class TipoDonacion {
             orden = "";
         }
 
-        String cadenaSQL = "select codigo,nombre,descripcion from TipoDonacion" + filtro + orden;
+        String cadenaSQL = "select codigo,nombre,descripcion from tipoDonacion" + filtro + orden;
         return ConectorBD.consultar(cadenaSQL);
     }
 

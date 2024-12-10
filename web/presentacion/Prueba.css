@@ -54,11 +54,6 @@ html, body {
 .main-content {
     flex: 1; /* Permite que el contenido principal ocupe el espacio disponible */
 }
-.contenedor-footer h4 img {
-    margin-right: 7px; /* Espacio entre la imagen y el texto */
-    vertical-align: middle; /* Alinear la imagen con el texto */
-}
-
 h6 {
     font-size: 22px;
     color: black;
@@ -67,6 +62,14 @@ h6 {
 }
 
 /* Estilo del footer */
+.contenedor-footer h4 img {
+    margin-right: 7px; /* Espacio entre la imagen y el texto */
+    vertical-align: middle; /* Alinear la imagen con el texto */
+}
+
+
+
+
 footer {
     background-color: rgba(62, 104, 102, 0.8);
     padding: 8px;
