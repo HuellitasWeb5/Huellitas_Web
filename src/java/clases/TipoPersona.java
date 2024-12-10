@@ -136,6 +136,7 @@ public class TipoPersona {
                 menu += "<img src='presentacion/imagenes/calificaciones.png' alt='Icono Cuidados' width='18' height='18' class='me-2'> Cuidados</a></li>";
 
                 menu += "</ul></li>";
+                
                 // Perfil
                 menu += "<li class='nav-item'><a class='nav-link d-flex align-items-center' href='principal.jsp?CONTENIDO=9.Perfil/perfilF.jsp' style='padding: 8px 10px; font-size: 0.9rem;color: black; font-weight: bold;'>";
                 menu += "<img src='presentacion/imagenes/perfil.png' alt='Perfil' width='15' height='15' class='me-2'> Perfil</a></li>";
@@ -305,7 +306,6 @@ public class TipoPersona {
                 menu += "<img src='presentacion/imagenes/apadrinamiento.png' alt='Icono Apadrinamientos' width='10' height='18' class='me-3'> <span class='ms-2'>Mis Apadrinamientos</span></a></li>";
                 menu += "</ul>";
                 menu += "</li>";
-
                 // Opción "Perfil" con icono
                 menu += "<li class='nav-item'><a class='nav-link' href='principal.jsp?CONTENIDO=9.Perfil/perfil.jsp' style='padding: 8px 20px; font-size: 1.2rem; color: black; font-weight: bold;'>";
                 menu += "<img src='presentacion/imagenes/persona.png' alt='Icono Perfil' width='15' height='15' class='me-2'> Perfil</a></li>";
