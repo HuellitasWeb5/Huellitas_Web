@@ -177,6 +177,7 @@ public class TipoPersona {
                 menu += "<img src='presentacion/imagenes/donar.png' alt='Donaciones' width='23' height='23' class='me-2'> Donaciones</a>";
                 menu += "<ul class='dropdown-menu' aria-labelledby='donacionesDropdown'>";
                 menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a></li>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=12.Configuracion/cambioDatos.jsp&accion=Modificar'>Configuraciones</a></li>";
                 menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Unidades de Medida</a></li>";
                 menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp'>Tipos de Donación</a></li>";
                 menu += "</ul></li>";

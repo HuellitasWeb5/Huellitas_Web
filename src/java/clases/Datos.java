@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author URB
+ * @author Qeti
  */
 public class Datos {
     private String id;
@@ -27,7 +27,7 @@ public class Datos {
     }
 
     public Datos(String id) {
-        String cadenaSQL="select id, titulo1, titulo2, informacion, foto from datos where codigo ='"+id+"';";
+        String cadenaSQL="select id, titulo1, titulo2, informacion, foto from datos where id ='"+id+"';";
         ResultSet resultado = ConectorBD.consultar(cadenaSQL);
         try {
             if (resultado.next()){
@@ -107,7 +107,7 @@ public class Datos {
    }
     // falta el to String con el override
    public boolean modificar(){
-       String cadenaSQL="update datos set titulo1='"+titulo1+"',titulo1='"+titulo2+"',informacion='"+informacion+"',foto='"+foto+"' where id="+id+";";
+       String cadenaSQL="update datos set titulo1='"+titulo1+"',titulo2='"+titulo2+"',informacion='"+informacion+"',foto='"+foto+"' where id="+id+";";
        System.out.println(cadenaSQL);
        return ConectorBD.ejecutarQuery(cadenaSQL);
    }

@@ -8,8 +8,8 @@
 <html>
 
     <head>
-        <!--    <link rel="stylesheet" href="presentacion/style-TarjetasFormularios.css">-->
-        <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
+        <link rel="stylesheet" href="presentacion/Donacion.css">
+        <!--  <link rel="stylesheet" href="presentacion/style-Tarjetas.css">-->
 
     </head>
     <%
@@ -83,9 +83,19 @@
                     </form>
                     <div class="form-group"><button class="btn-otro" onclick="abrirFormulario();">Agregar Detalles de Donación</button></div>
                 </div>
+                <div class="carousel-container">
+                    <div class="swiper-container" id="contenedorTarjetas">
+                        <div class="swiper-wrapper">
+                            <!-- AquÃ­ se generarÃ¡n dinÃ¡micamente las tarjetas -->
+                        </div>
+                        <div class="swiper-button-prev"></div>
+                        <div class="swiper-button-next"></div>
+                    </div>
+                </div>
             </div>
         </div>
     </center>
+
 
     <!-- Botón para abrir el formulario modal -->
 
@@ -118,27 +128,23 @@
             <input class="btn-adicionar" type="button" value="Agregar" onclick="actualizarTabla();">
             <input class="btn-eliminar" type="button" value="Cancelar" onclick="cerrarFormulario();">
         </form>
+
     </div>
 
-    <!-- Contenedor para mostrar los detalles de donaciones -->
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            <!-- Aquí se cargan dinámicamente las tarjetas de donaciones -->
-        </div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-pagination"></div>
-    </div>
+
 </body>
 
 <script>
     var personas = <%=Persona.getListaEnArreglosJS("tipo='C'", null)%>;
     var conceptoDonacion = <%=ConceptoDonacion.getListaEnArreglosJS(null, null)%>;
+    
     var vectorPersonas = new Array();
+    
     var vectorIdConceptosDonaciones = new Array();
     for (var i = 0; i < personas.length; i++) {
         vectorPersonas[i] = personas[i][0];
     }
+    
     $("#identificacionD").autocomplete({
         source: vectorPersonas
     });
@@ -313,8 +319,8 @@
 
     const swiper = new Swiper('.swiper-container', {
         loop: false,
-        slidesPerView: 4,
-        spaceBetween: 20,
+        slidesPerView: 2,
+        spaceBetween: 10,
         navigation: {
             nextEl: '.swiper-button-next',
             prevEl: '.swiper-button-prev',

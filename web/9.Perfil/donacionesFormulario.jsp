@@ -7,7 +7,7 @@
 <%@page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <head>
-    <link rel="stylesheet" href="presentacion/style-Tarjetas.css">
+    <link rel="stylesheet" href="presentacion/style-TarjetasModificar.css">
 </head>
 
 <%
@@ -24,71 +24,71 @@
 %>
 <center><h3>DONACIONES</h3></center>
 <center>
-    <!-- Formulario principal -->
-    <div class="card-carousel">
-        <div class="card">
-            <div class="titulo">
-                <h2>DATOS DEL USUARIO</h2>
-            </div>
-            <div class="card-body">
-                <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/donacionesFormularioActualizar.jsp">
+<!-- Formulario principal -->
+<div class="card-carousel">
+    <div class="card">
+        <div class="titulo">
+            <h2>DATOS DEL USUARIO</h2>
+        </div>
+        <div class="card-body">
+            <form name="formulario" method="post" action="principal.jsp?CONTENIDO=9.Perfil/donacionesFormularioActualizar.jsp">
 
-                    <div class="form-group" onload="cargarFecha()">
-                        <label>Fecha actual:</label>
-                        <span id="fecha"></span> <!-- Aquí no se usa value, se cambiará el contenido con JavaScript -->
+                <div class="form-group" onload="cargarFecha()">
+                    <label>Fecha actual:</label>
+                    <span id="fecha"></span> <!-- Aquí no se usa value, se cambiará el contenido con JavaScript -->
+                </div>
+
+                <div class="form-group">
+                    <label>Identificación</label>
+                    <input type="text" name="identificacionD" id="identificacionD" value="" required <%=privado%>>
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <span id="nombre" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                </div>
+
+                <div class="form-group">
+                    <label for="telefono">Número de teléfono</label>
+                    <span id="telefono" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                </div>
+
+                <div class="form-group">
+                    <label for="direccion">Dirección</label>
+                    <span id="direccion" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                </div>
+
+                <div class="form-group">
+                    <label for="residencia">Residencia</label>
+                    <span id="residencia" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                </div>
+
+                <div class="form-group">
+                    <label for="correo">Correo Electrónico</label>
+                    <span id="correo" readonly></span> <!-- Se elimina el atributo "value" en span -->
+                </div>
+
+                <div class="form-group">
+                    <label>Descripción</label>
+                    <textarea id="descripcion" name="descripcion" rows="6" cols="40" required></textarea>
+                </div>
+
+                <!-- Campo oculto para almacenar la cadena de donaciones -->
+                <input type="hidden" name="donacion" id="donacion" required>
+                <input type="hidden" name="accion" value="<%=accion%>">
+                <center>
+                    <br><br>
+
+                    <div class="btn-container">
+                        <input class="btn-adicionar" type="submit" value="Guardar Donación" onclick="return validarFormularioPrincipal();">
+                        <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
                     </div>
-
-                    <div class="form-group">
-                        <label>Identificación</label>
-                        <input type="text" name="identificacionD" id="identificacionD" value="" required <%=privado%>>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <span id="nombre" readonly></span> <!-- Se elimina el atributo "value" en span -->
-                    </div>
-
-                    <div class="form-group">
-                        <label for="telefono">Número de teléfono</label>
-                        <span id="telefono" readonly></span> <!-- Se elimina el atributo "value" en span -->
-                    </div>
-
-                    <div class="form-group">
-                        <label for="direccion">Dirección</label>
-                        <span id="direccion" readonly></span> <!-- Se elimina el atributo "value" en span -->
-                    </div>
-
-                    <div class="form-group">
-                        <label for="residencia">Residencia</label>
-                        <span id="residencia" readonly></span> <!-- Se elimina el atributo "value" en span -->
-                    </div>
-
-                    <div class="form-group">
-                        <label for="correo">Correo Electrónico</label>
-                        <span id="correo" readonly></span> <!-- Se elimina el atributo "value" en span -->
-                    </div>
-
-                    <div class="form-group">
-                        <label>Descripción</label>
-                        <textarea id="descripcion" name="descripcion" rows="6" cols="40" required></textarea>
-                    </div>
-
-                    <!-- Campo oculto para almacenar la cadena de donaciones -->
-                    <input type="hidden" name="donacion" id="donacion" required>
-                    <input type="hidden" name="accion" value="<%=accion%>">
-                    <center>
-                        <br><br>
-
-                        <div class="btn-container">
-                            <input class="btn-adicionar" type="submit" value="Guardar Donación" onclick="return validarFormularioPrincipal();">
-                            <input class="btn-eliminar" type="button" value="Cancelar" onClick="window.history.back()" class="btn-cancelar">
-                        </div>
-                    </center>
-                </form>
-                <div class="form-group"><button class="btn-otro" onclick="abrirFormulario();">Agregar Detalles de Donación</button></div>
-            </div>
+                </center>
+            </form>
+            <div class="form-group"><button class="btn-otro" onclick="abrirFormulario();">Agregar Detalles de Donación</button></div>
         </div>
     </div>
+</div>
 </center>
 
 <!-- Botón para abrir el formulario modal -->
