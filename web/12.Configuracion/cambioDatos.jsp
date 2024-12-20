@@ -22,13 +22,10 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <link rel="stylesheet" href="presentacion/style-Formularios.css" />
         <title>Formulario Datos</title>
         <style>
-            body {
-                font-family: Arial, sans-serif;
-                margin: 20px;
-            }
             form {
                 max-width: 500px;
                 margin: auto;
@@ -50,25 +47,19 @@
                 border: 1px solid #ccc;
                 border-radius: 5px;
             }
-            button {
-                background-color: #007BFF;
-                color: white;
-                border: none;
-                cursor: pointer;
-            }
-            button:hover {
-                background-color: #0056b3;
+            input[type="file"] {
+                width: 100%;
             }
         </style>
 
     </head>
     <body>
-        <h1>Formulario de Datos</h1>
+        <h1>Modificación del muro principal</h1>
         <form name="formulario" action="principal.jsp?CONTENIDO=12.Configuracion/cambioDatosActualizar.jsp" method="POST" enctype="multipart/form-data">
             <label for="titulo1">Título Principal</label>
             <textarea id="titulo1" name="titulo1" rows="2" value="" required><%=datos.getTitulo1()%></textarea>
 
-            <label for="titulo2">SubTítulo</label>
+            <label for="titulo2">Subtítulo</label>
             <textarea id="titulo2" name="titulo2" rows="2" value="" required><%=datos.getTitulo2()%></textarea>
 
             <label for="informacion">Información</label>
@@ -76,10 +67,10 @@
 
             <label for="foto">Foto</label>
             <input type="file" name="foto" accept="image/*" onchange="mostrarFoto();">
-            <input type="submit" name="accion" value="<%=accion%>">
+            <input type="submit" class="btn-adicionar2" name="accion" value="<%=accion%>">
             <input type="hidden" name="id" value="<%=datos.getId()%>">
         </form>
-        <img src="<%=request.getContextPath()%>/presentacion/imagenes/<%=datos.getFoto()%>" id="foto" width="300" height="400">
+        <img src="<%=request.getContextPath()%>/presentacion/imagenes/<%=datos.getFoto()%>" id="foto" width="500" height="auto">
 
     </body>
 </html>

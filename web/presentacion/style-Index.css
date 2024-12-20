@@ -120,11 +120,11 @@ header{
     width: 100%;
     height: 700px;
     background: #11998e;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, hsla(143, 85%, 58%, 0.61), hsla(175, 80%, 33%, 0.61)),url(../presentacion/mascota/fondoprincipal.png);
+    background: -webkit-linear-gradient(to right, hsla(143, 85%, 58%, 0.61), hsla(175, 80%, 33%, 0.61)),url(../presentacion/imagenes/FondoIndexVE.jpg);
       /* Chrome 10-25, Safari 5.1-6 */
  
      /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-     background: linear-gradient(to right, hsla(143, 85%, 58%, 0.61), hsla(175, 80%, 33%, 0.61)),url(../presentacion/mascota/fondoprincipal.png);
+     background: linear-gradient(to right, hsla(143, 85%, 58%, 0.61), hsla(175, 80%, 33%, 0.61)),url(../presentacion/imagenes/FondoIndexVE.jpg);
     background-size: cover;
     background-attachment: fixed;
     position: relative;

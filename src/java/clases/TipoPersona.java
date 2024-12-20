@@ -55,7 +55,7 @@ public class TipoPersona {
 
         switch (this.codigo) {
 
-            case "F": 
+            case "F":
                 menu += "<nav class='navbar navbar-expand-lg navbar-light transparent-navbar' 'style='padding: 50px 50px; width: 100%;'>"; // Añadido padding para mejor espacio
                 menu += "<div class='container-fluid d-flex justify-content-between align-items-center'>";
 
@@ -136,12 +136,16 @@ public class TipoPersona {
                 menu += "<img src='presentacion/imagenes/calificaciones.png' alt='Icono Cuidados' width='18' height='18' class='me-2'> Cuidados</a></li>";
 
                 menu += "</ul></li>";
-                
-                // Perfil
-                menu += "<li class='nav-item'><a class='nav-link d-flex align-items-center' href='principal.jsp?CONTENIDO=9.Perfil/perfilF.jsp' style='padding: 8px 10px; font-size: 0.9rem;color: black; font-weight: bold;'>";
-                menu += "<img src='presentacion/imagenes/perfil.png' alt='Perfil' width='15' height='15' class='me-2'> Perfil</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link d-flex align-items-center' href='index.jsp' style='padding: 8px 10px; font-size: 0.9rem;color: black; font-weight: bold;'>Salir</a></li>";
 
+                //Perfil
+                menu += "<li class='nav-item dropdown'>";
+                menu += "<a class='nav-link dropdown-toggle d-flex align-items-center' href='#' id='perfilDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false' style='padding: 8px 10px; font-size: 0.9rem; color: black; font-weight: bold;'>";
+                menu += "<img src='presentacion/imagenes/perfil.png' alt='Perfil' width='18' height='18' class='me-2'> Perfil</a>";
+                menu += "<ul class='dropdown-menu' aria-labelledby='perfilDropdown'>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=9.Perfil/perfilF.jsp'>Perfil</a></li>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=12.Configuracion/cambioDatos.jsp&accion=Modificar'>Modificar Muro</a></li>";
+                menu += "<li><a class='dropdown-item' href='index.jsp'>Salir</a></li>";
+                menu += "</ul></li>";
                 menu += "</ul>";
                 menu += "</div>";
 
@@ -151,7 +155,7 @@ public class TipoPersona {
                 menu += "</div>";
                 menu += "</nav>";
                 break;
-                
+
             case "S":
                 menu += "<nav class='navbar navbar-expand-lg navbar-light transparent-navbar' 'style='padding: 50px 50px; width: 100%;'>"; // Añadido padding para mejor espacio
                 menu += "<div class='container-fluid d-flex justify-content-between align-items-center'>";
@@ -177,7 +181,6 @@ public class TipoPersona {
                 menu += "<img src='presentacion/imagenes/donar.png' alt='Donaciones' width='23' height='23' class='me-2'> Donaciones</a>";
                 menu += "<ul class='dropdown-menu' aria-labelledby='donacionesDropdown'>";
                 menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=8.Donacion/donaciones.jsp'>Donaciones</a></li>";
-                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=12.Configuracion/cambioDatos.jsp&accion=Modificar'>Configuraciones</a></li>";
                 menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=1.TipoDonacion/unidadesDeMedida.jsp'>Unidades de Medida</a></li>";
                 menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=1.TipoDonacion/tiposDonaciones.jsp'>Tipos de Donación</a></li>";
                 menu += "</ul></li>";
@@ -236,11 +239,16 @@ public class TipoPersona {
                 menu += "<img src='presentacion/imagenes/calificaciones.png' alt='Icono Cuidados' width='18' height='18' class='me-2'> Cuidados</a></li>";
 
                 menu += "</ul></li>";
-                // Perfil
-                menu += "<li class='nav-item'><a class='nav-link d-flex align-items-center' href='principal.jsp?CONTENIDO=9.Perfil/perfilF.jsp' style='padding: 8px 10px; font-size: 0.9rem;color: black; font-weight: bold;'>";
-                menu += "<img src='presentacion/imagenes/perfil.png' alt='Perfil' width='15' height='15' class='me-2'> Perfil</a></li>";
-                menu += "<li class='nav-item'><a class='nav-link d-flex align-items-center' href='index.jsp' style='padding: 8px 10px; font-size: 0.9rem;color: black; font-weight: bold;'>Salir</a></li>";
 
+                // Perfil
+                menu += "<li class='nav-item dropdown'>";
+                menu += "<a class='nav-link dropdown-toggle d-flex align-items-center' href='#' id='perfilDropdown' role='button' data-bs-toggle='dropdown' aria-expanded='false' style='padding: 8px 10px; font-size: 0.9rem; color: black; font-weight: bold;'>";
+                menu += "<img src='presentacion/imagenes/perfil.png' alt='Perfil' width='18' height='18' class='me-2'> Perfil</a>";
+                menu += "<ul class='dropdown-menu' aria-labelledby='perfilDropdown'>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=9.Perfil/perfilF.jsp'>Perfil</a></li>";
+                menu += "<li><a class='dropdown-item' href='principal.jsp?CONTENIDO=12.Configuracion/cambioDatos.jsp&accion=Modificar'>Modificar Muro</a></li>";
+                menu += "<li><a class='dropdown-item' href='index.jsp'>Salir</a></li>";
+                menu += "</ul></li>";
                 menu += "</ul>";
                 menu += "</div>";
 
