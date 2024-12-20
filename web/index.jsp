@@ -109,41 +109,9 @@
         </div>
     </section>
 
-    <h2 class="titulo">¡CONOCE MÁS DE NUESTROS PELUDIDITOS RESCATADOS!</h2>
-    <div class="cards">
-        <div class="card">
-            <img src="presentacion/mascota/perritoamca.PNG" >
-            <h4>Peluchin</h4>
-            <div class="contenido-texto-adop">
-                <p>Gracias al albergue Villa Esperanza pudieron rescatarme, ya que a la edad de 2 años me abandonaron en la carretera unos migrantes, pero gracias a Dios ya estoy bajo la protección del albergue.</p>
-            </div>
-            <button class="btn-conocer" onclick="location.href = 'index-InicioSesion.jsp'">CONOCE MÁS DE NOSOTROS!</button>
-        </div>
-        <div class="card">
-            <img src="presentacion/mascota/abuela.PNG" alt="Abuela">
-            <h4>Abuela</h4>
-            <div class="contenido-texto-adop">
-                <p>Soy una perrita de 12 años de edad, el albergue me acogió cuando tenía 5 años y desde entonces me haa cuidado y me ha brindado todo el amor posible.</p>
-            </div>
-            <button class="btn-conocer" onclick="location.href = 'index-InicioSesion.jsp'">CONOCE MÁS DE NOSOTROS!</button>
-        </div>
-        <div class="card">
-            <img src="presentacion/mascota/tomate.PNG" alt="Minino Mono">
-            <h4>Minino Mono</h4>
-            <div class="contenido-texto-adop">
-                <p>Soy un perrito que estaba en las calles de Pasto, tenía muchas heridas físicas, el albergue me encontró y desde ese día me cuido y estuvo pendiente de mí, ahora estoy feliz por tener una gran familia peluda.</p>
-            </div>
-            <button class="btn-conocer" onclick="location.href = 'index-InicioSesion.jsp'">CONOCE MÁS DE NOSOTROS!</button>
-        </div>
-        <div class="card">
-            <img src="presentacion/mascota/pechuga.PNG" alt="Comino">
-            <h4>Comino</h4>
-            <div class="contenido-texto-adop">
-                <p>Soy un perrito que me encontraron amarrado en una vía que conduce a un pueblo nariño, soy perrito ciego que llegué al albergue totalmente desnutrido, pero hoy después de tanto tiempo ya estoy feliz por mi nuevo inicio de vida.</p>
-            </div>
-            <button class="btn-conocer" onclick="location.href = 'index-InicioSesion.jsp'">CONOCE MÁS DE NOSOTROS!</button>
-        </div>
-    </div>
+    <h2 class="titulo">¡CONOCE UN POCO MÁS DE NOSOTROS!</h2>
+    <center> <iframe width="990" height="715" src="https://www.youtube.com/embed/uUoWTZW3ugw?si=93vZ8npeOHSEsO11?autoplay=1" title="YouTube video player" frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe></center>
 
     <footer>
         <div class="contenedor-footer">
